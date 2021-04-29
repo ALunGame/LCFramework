@@ -1,0 +1,1 @@
+﻿{"mType":"LCConfig.ConfigSetting","ExcelRootPath":"./Excels","LuaRootPath":"./Assets/GameAssets/Lua/Config","JsonPath":"./Assets/Demo/Config","AutoCreateLuaConfig":false,"AutoCreateJson":true}

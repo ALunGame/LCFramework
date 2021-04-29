@@ -1,0 +1,19 @@
+{
+    "name": "LCECS",
+    "rootNamespace": "",
+    "references": [
+        "LCHelp",
+        "LCConfig",
+        "XPToolchains_Editor",
+        "XPToolchains_Runtime"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

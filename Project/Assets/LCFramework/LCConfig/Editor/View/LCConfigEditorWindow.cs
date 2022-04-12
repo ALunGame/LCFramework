@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEditor;
 using UnityEngine;
-using XPToolchains.Json;
 
 namespace LCConfig
 {
@@ -49,7 +48,7 @@ namespace LCConfig
             else
             {
                 string dataJson = EDTool.ReadText(settingPath);
-                configSetting = JsonMapper.ToObject<ConfigSetting>(dataJson);
+                //configSetting = JsonMapper.ToObject<ConfigSetting>(dataJson);
             }
 
             //多线程加载避免卡顿
@@ -67,11 +66,11 @@ namespace LCConfig
                 {
                     FileInfo fileInfo = new FileInfo(allFilePaths[i]);
                     string dataJson = EDTool.ReadText(allFilePaths[i]);
-                    ConfigGroup cfgGroup = JsonMapper.ToObject<ConfigGroup>(dataJson);
-                    if (!string.IsNullOrEmpty(cfgGroup.Name))
-                    {
-                        tmpjson.ConfGroup.Add(fileInfo.Name, cfgGroup);
-                    }
+                    //ConfigGroup cfgGroup = JsonMapper.ToObject<ConfigGroup>(dataJson);
+                    //if (!string.IsNullOrEmpty(cfgGroup.Name))
+                    //{
+                    //    tmpjson.ConfGroup.Add(fileInfo.Name, cfgGroup);
+                    //}
                 }
                 return tmpjson;
             }, (ConfigJson json) =>
@@ -103,25 +102,25 @@ namespace LCConfig
                         File.Delete(allFile[i]);
                     }
 
-                    foreach (var item in configJson.ConfGroup.Values)
-                    {
-                        string str = JsonMapper.ToJson(item);
-                        EDTool.WriteText(str, setJson.JsonPath + "/" + item.Name);
-                    }
+                    //foreach (var item in configJson.ConfGroup.Values)
+                    //{
+                    //    string str = JsonMapper.ToJson(item);
+                    //    EDTool.WriteText(str, setJson.JsonPath + "/" + item.Name);
+                    //}
 
                     return true;
                 }, (bool x) =>
                 {
-                    string jsonData = JsonMapper.ToJson(configSetting);
-                    EDTool.WriteText(jsonData, settingPath);
-                    OnClose(clearCache);
+                    //string jsonData = JsonMapper.ToJson(configSetting);
+                    //EDTool.WriteText(jsonData, settingPath);
+                    //OnClose(clearCache);
                 });
             }
             else
             {
-                string jsonData = JsonMapper.ToJson(configSetting);
-                EDTool.WriteText(jsonData, settingPath);
-                OnClose(clearCache);
+                //string jsonData = JsonMapper.ToJson(configSetting);
+                //EDTool.WriteText(jsonData, settingPath);
+                //OnClose(clearCache);
             }
         }
 

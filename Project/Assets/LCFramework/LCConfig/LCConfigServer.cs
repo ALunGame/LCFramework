@@ -1,6 +1,6 @@
 ﻿using LCHelp;
+using LCJson;
 using System.Collections.Generic;
-using XPToolchains.Json;
 
 namespace LCConfig
 {

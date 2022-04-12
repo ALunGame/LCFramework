@@ -2,12 +2,12 @@
 using LCECS.Core;
 using LCECS.Data;
 using LCHelp;
+using LCJson;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
 using UnityEditor;
 using UnityEngine;
-using XPToolchains.Json;
 
 namespace LCECS.Window
 {
@@ -56,7 +56,7 @@ namespace LCECS.Window
                 MEntityJsonList = JsonMapper.ToObject<EntityJsonList>(dataJson);
             }
 
-            EntityInfoConf = LCConfigHelp.LoadConfigGroup("EntityInfo");
+            //EntityInfoConf = LCConfigHelp.LoadConfigGroup("EntityInfo");
         }
 
         #endregion
@@ -87,40 +87,40 @@ namespace LCECS.Window
                         return;
                     }
 
-                    Config config = LCConfigHelp.GetConfig(EntityInfoConf, "BaseInfo");
-                    if (config == null)
-                    {
-                        Debug.LogError("没有BaseInfo，请在配置编辑器中创建 EntityInfo 配置组 中 BaseInfo 配置");
-                        return;
-                    }
+                    //Config config = LCConfigHelp.GetConfig(EntityInfoConf, "BaseInfo");
+                    //if (config == null)
+                    //{
+                    //    Debug.LogError("没有BaseInfo，请在配置编辑器中创建 EntityInfo 配置组 中 BaseInfo 配置");
+                    //    return;
+                    //}
 
-                    List<string> enetityId = LCConfigHelp.GetConfigItemDataList(config, "Id");
-                    List<string> enetityName = LCConfigHelp.GetConfigItemDataList(config, "Name");
-                    for (int i = 0; i < enetityId.Count; i++)
-                    {
-                        if (CheckContainEntity(int.Parse(enetityId[i])))
-                        {
-                            enetityId.RemoveAt(i);
-                            enetityName.RemoveAt(i);
-                        }
-                    }
+                    //List<string> enetityId = LCConfigHelp.GetConfigItemDataList(config, "Id");
+                    //List<string> enetityName = LCConfigHelp.GetConfigItemDataList(config, "Name");
+                    //for (int i = 0; i < enetityId.Count; i++)
+                    //{
+                    //    if (CheckContainEntity(int.Parse(enetityId[i])))
+                    //    {
+                    //        enetityId.RemoveAt(i);
+                    //        enetityName.RemoveAt(i);
+                    //    }
+                    //}
 
-                    EDPopMenu.CreatePopMenu(enetityId,(int index) => {
+                    //EDPopMenu.CreatePopMenu(enetityId,(int index) => {
 
-                        EntityJson json = new EntityJson();
-                        json.EntityId   = int.Parse(enetityId[index]);
-                        json.TipStr     = enetityName[index];
+                    //    EntityJson json = new EntityJson();
+                    //    json.EntityId   = int.Parse(enetityId[index]);
+                    //    json.TipStr     = enetityName[index];
 
-                        //默认添加Go组件
-                        EntityComJson goComJson = new EntityComJson()
-                        {
-                            ComName = "LCECS.Core.ECS.GameObjectCom",
-                        };
-                        json.Coms.Add(goComJson);
+                    //    //默认添加Go组件
+                    //    EntityComJson goComJson = new EntityComJson()
+                    //    {
+                    //        ComName = "LCECS.Core.ECS.GameObjectCom",
+                    //    };
+                    //    json.Coms.Add(goComJson);
 
-                        MEntityJsonList.List.Add(json);
-                        SelEntityChange(json);
-                    });
+                    //    MEntityJsonList.List.Add(json);
+                    //    SelEntityChange(json);
+                    //});
                 });
             });
 

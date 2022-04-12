@@ -129,6 +129,15 @@
       },
       "url": "https://packages.unity.com"
     },
+    "com.unity.textmeshpro": {
+      "version": "3.0.6",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.ugui": "1.0.0"
+      },
+      "url": "https://packages.unity.com"
+    },
     "com.unity.timeline": {
       "version": "1.4.8",
       "depth": 0,
@@ -159,12 +168,6 @@
         "com.unity.modules.xr": "1.0.0"
       },
       "url": "https://packages.unity.com"
-    },
-    "com.xp.toolchains": {
-      "version": "file:F:/Mine/MyGit/LCNodeGraph/LCNodeGraph/Packages/com.xp.toolchains",
-      "depth": 0,
-      "source": "local",
-      "dependencies": {}
     },
     "nuget.mono-cecil": {
       "version": "0.1.6-preview",

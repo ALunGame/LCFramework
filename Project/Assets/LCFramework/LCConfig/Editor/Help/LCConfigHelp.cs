@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
-using XPToolchains.Json;
 
 namespace LCConfig
 {
@@ -373,24 +372,24 @@ namespace LCConfig
 
         #region Load
 
-        public static ConfigGroup LoadConfigGroup(string name)
-        {
-            string settingPath = LCConfigLocate.SettingJsonPath;
-            if (!File.Exists(settingPath))
-                return null;
+        //public static ConfigGroup LoadConfigGroup(string name)
+        //{
+        //    string settingPath = LCConfigLocate.SettingJsonPath;
+        //    if (!File.Exists(settingPath))
+        //        return null;
 
-            string dataJson = EDTool.ReadText(settingPath);
-            ConfigSetting configSetting = JsonMapper.ToObject<ConfigSetting>(dataJson);
-            if (configSetting == null)
-                return null;
+        //    string dataJson = EDTool.ReadText(settingPath);
+        //    ConfigSetting configSetting = JsonMapper.ToObject<ConfigSetting>(dataJson);
+        //    if (configSetting == null)
+        //        return null;
 
-            dataJson = EDTool.ReadText(configSetting.JsonPath + "/" + name);
-            ConfigGroup configGroup = JsonMapper.ToObject<ConfigGroup>(dataJson);
-            if (configGroup == null)
-                return null;
+        //    dataJson = EDTool.ReadText(configSetting.JsonPath + "/" + name);
+        //    ConfigGroup configGroup = JsonMapper.ToObject<ConfigGroup>(dataJson);
+        //    if (configGroup == null)
+        //        return null;
 
-            return configGroup;
-        }
+        //    return configGroup;
+        //}
 
         #endregion
 

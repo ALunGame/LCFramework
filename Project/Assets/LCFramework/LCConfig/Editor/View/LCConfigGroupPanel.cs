@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
-using XPToolchains.Json;
 
 namespace LCConfig
 {
@@ -130,14 +129,14 @@ namespace LCConfig
 
         private void ShowOperateJson(float width, float height)
         {
-            EDLayout.CreateVertical("box", width, height, () =>
-            {
-                EDButton.CreateBtn("生成Json文件", 120, height, () =>
-                {
-                    string str = JsonMapper.ToJson(configGroup);
-                    EDTool.WriteText(str, LCConfigEditorWindow.configSetting.JsonPath + "/" + configGroup.Name);
-                });
-            });
+            //EDLayout.CreateVertical("box", width, height, () =>
+            //{
+            //    EDButton.CreateBtn("生成Json文件", 120, height, () =>
+            //    {
+            //        string str = JsonMapper.ToJson(configGroup);
+            //        EDTool.WriteText(str, LCConfigEditorWindow.configSetting.JsonPath + "/" + configGroup.Name);
+            //    });
+            //});
         }
 
         private void ShowOperateExcel(float width, float height)

@@ -5,7 +5,7 @@ using Demo.Com;
 using Demo.Config;
 using Demo.Info;
 using LCECS;
-using LCECS.Core.ECS;
+using LCECS.Core;
 using LCTileMap;
 using UnityEngine;
 using Object = UnityEngine.Object;
@@ -55,7 +55,7 @@ namespace Demo.System
 
             if (currMap == null)
             {
-                ECSLocate.ECSLog.LogError("没有检测到可以显示的地图块>>>>>>", playerPos);
+                ECSLocate.Log.LogError("没有检测到可以显示的地图块>>>>>>", playerPos);
                 return;
             }
 
@@ -74,7 +74,7 @@ namespace Demo.System
             {
                 if (mapPos != currMap.MapPos && !otherShowMaps.Contains(mapPos))
                 {
-                    ECSLocate.ECSLog.LogError("回收》》》》》》》",mapPos);
+                    ECSLocate.Log.LogError("回收》》》》》》》",mapPos);
                     HideMap(mapPos);
                 }
             }
@@ -92,8 +92,8 @@ namespace Demo.System
         //改变当前地图时
         private void ChangeCurrMap(MapData curMap)
         {
-            ECSLocate.ECSLog.LogR("当前地图为：", MapCom.CurrMap);
-            ECSLocate.ECSLog.LogR("改变的地图为：", curMap.MapPos.ToString());
+            ECSLocate.Log.LogR("当前地图为：", MapCom.CurrMap);
+            ECSLocate.Log.LogR("改变的地图为：", curMap.MapPos.ToString());
 
             if (MapCom.CurrMap == null)
             {
@@ -156,7 +156,7 @@ namespace Demo.System
         //隐藏地图
         private void HideMap(Vector2 showMap)
         {
-            ECSLocate.ECSLog.LogR("隐藏地图》》》》》》", showMap);
+            ECSLocate.Log.LogR("隐藏地图》》》》》》", showMap);
             MapCom.CurrShowMapDict.TryGetValue(showMap, out GameObject oldCurrGo);
             if (oldCurrGo != null)
             {
@@ -268,7 +268,7 @@ namespace Demo.System
         {
             if (MapCom.CurrMap==null)
             {
-                ECSLocate.ECSLog.LogError("玩家地图位置更新失败，", playerPos.ToString());
+                ECSLocate.Log.LogError("玩家地图位置更新失败，", playerPos.ToString());
                 return;
             }
 

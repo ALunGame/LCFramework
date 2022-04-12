@@ -1,7 +1,7 @@
 using Demo.Com;
 using Demo.Info;
 using LCECS;
-using LCECS.Core.ECS;
+using LCECS.Core;
 using System;
 using System.Collections.Generic;
 using UnityEngine;

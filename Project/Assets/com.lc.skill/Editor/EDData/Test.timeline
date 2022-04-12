@@ -1,0 +1,1 @@
+﻿{"mType":"Timeline.TimelineData","Name":"Test","DurationTime":33.91014,"Tracks":[{"mType":"SkillSystem.ED.Timeline.TLSK_AnimTrackData","Clips":[{"mType":"SkillSystem.ED.Timeline.TLSK_AnimClipData","FuncType":0,"animName":"111","StartTime":8.351817,"EndTime":33.91014,"DurationTime":25.55832}]}]}

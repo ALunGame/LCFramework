@@ -1,11 +1,6 @@
 ﻿using Demo.Com;
 using LCECS.Core.Tree.Base;
 using LCECS.Data;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Premise
 {

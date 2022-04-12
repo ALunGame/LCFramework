@@ -1,0 +1,1 @@
+﻿{"mType":"LCECS.Model.DecisionModel","id":1,"tree":{"mType":"LCECS.Core.Tree.Nodes.NodeRoot","Uid":"517aa92d-205c-461f-8479-2d015fc8b7b2","childNodes":null,"nodePremise":null}}

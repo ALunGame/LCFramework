@@ -1,6 +1,6 @@
 ﻿
 
-using LCECS.Core.ECS;
+using LCECS.Core;
 
 namespace Demo.Com
 {

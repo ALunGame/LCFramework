@@ -2,7 +2,7 @@
 using Demo.Config;
 using Demo.Info;
 using LCECS;
-using LCECS.Core.ECS;
+using LCECS.Core;
 using LCECS.Data;
 using LCHelp;
 using LCSkill;
@@ -22,7 +22,6 @@ namespace Demo
         private void Awake()
         {
             TempConfig.Init();
-            LCSkillLocate.Init();
         }
 
         private void Start()

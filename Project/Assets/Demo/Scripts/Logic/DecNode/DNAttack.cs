@@ -7,7 +7,6 @@ using UnityEngine;
 
 namespace DecNode
 {
-    [Node(ViewName = "攻击", IsBevNode = false)]
     public class DNAttack : NodeAction
     {
         protected override void OnEnter(NodeData wData)
@@ -27,7 +26,7 @@ namespace DecNode
             }
             
             //发送请求
-            ECSLocate.ECSLog.LogError("敌人攻击");
+            ECSLocate.Log.LogError("敌人攻击");
         }
     }
 }

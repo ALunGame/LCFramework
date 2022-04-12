@@ -11,7 +11,6 @@ using UnityEngine;
 
 namespace DecNode.Premise
 {
-    [NodePremise("进入攻击区域")]
     public class PMEnterAttack : NodePremise
     {
         public override bool OnMakeTrue(NodeData wData)

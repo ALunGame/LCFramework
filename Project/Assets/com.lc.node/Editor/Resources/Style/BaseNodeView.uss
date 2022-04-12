@@ -1,0 +1,118 @@
+#node {
+    background-color: rgba(0, 63, 63, 1);
+}
+
+#divider{
+    background-color:rgba(255, 128, 0, 1);
+}
+
+#node-border > .node-controls{
+    background-color:rgba(50, 50, 50, 1);
+}
+
+#title 
+{
+    height: 30px;
+    padding-left: 8px;
+}
+
+#title > #title-label {
+    margin-left: 2px;
+    align-self: center;
+    flex-grow: 1;
+    height: 100
+}
+
+#title > #settings-button 
+{
+    align-self: center;
+}
+
+.highlight {
+    background-color: rgba(0, 255, 255, 1);
+    border-radius: 7px
+}
+
+#input-container {
+    position: absolute;
+    right: 100%;
+    top: 45px;
+    align-items: flex-end;
+    --layer: -50;
+}
+
+/*左侧值列表*/ 
+#input > Toggle Label,
+#input > EnumField Label,
+#input > IntegerField Label,
+#input > LongField Label,
+#input > FloatField Label,
+#input > DoubleField Label,
+#input > LayerMaskField Label,
+#input > RectField Label,
+#input > BoundsField Label,
+#input > BoundsIntField Label,
+#input > ColorField Label,
+#input > Vector2Field Label,
+#input > Vector2IntField Label,
+#input > Vector3Field Label,
+#input > Vector3IntField Label,
+#input > Vector4Field Label,
+#input > CurveField Label,
+#input > GradientField Label,
+#input > ObjectField Label,
+#input > TextField Label{
+    min-width: 8px;
+    padding-top: 4px;
+    margin-right: 2px;
+    margin-left: 3px;
+}
+
+#input > TextField TextInput{
+    min-width: 50px;
+}
+
+/*Toggle右对齐*/ 
+#input > Toggle > .unity-toggle__input >{
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+/*右侧值列表*/ 
+#output > Toggle Label,
+#output > EnumField Label,
+#output > IntegerField Label,
+#output > LongField Label,
+#output > FloatField Label,
+#output > DoubleField Label,
+#output > LayerMaskField Label,
+#output > RectField Label,
+#output > BoundsField Label,
+#output > BoundsIntField Label,
+#output > ColorField Label,
+#output > Vector2Field Label,
+#output > Vector2IntField Label,
+#output > Vector3Field Label,
+#output > Vector3IntField Label,
+#output > Vector4Field Label,
+#output > CurveField Label,
+#output > GradientField Label,
+#output > ObjectField Label,
+#output > TextField Label{
+    min-width: 8px;
+    padding-top: 4px;
+    margin-right: 2px;
+    margin-left: 3px;
+}
+
+#output > TextField TextInput{
+    min-width: 50px;
+}
+
+/*Toggle右对齐*/ 
+#output > Toggle > .unity-toggle__input >{
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+

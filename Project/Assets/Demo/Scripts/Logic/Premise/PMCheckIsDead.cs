@@ -4,7 +4,6 @@ using LCECS.Data;
 
 namespace Premise
 {
-    [NodePremise("是否处于死亡状态")]
     public class PMCheckIsDead : NodePremise
     {
         public override bool OnMakeTrue(NodeData wData)

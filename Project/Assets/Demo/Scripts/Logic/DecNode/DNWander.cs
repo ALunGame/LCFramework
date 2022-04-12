@@ -5,7 +5,6 @@ using LCECS.Data;
 
 namespace Demo.DecNode
 {
-    [Node(ViewName = "徘徊", IsBevNode = false)]
     public class DNWander : NodeAction
     {
         protected override void OnEnter(NodeData wData)

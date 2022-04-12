@@ -14,7 +14,6 @@ namespace Demo.DecNode
     /// <summary>
     /// 寻路玩家
     /// </summary>
-    [Node(ViewName = "寻路玩家", IsBevNode = false)]
     public class DNSeekToPlayer : NodeAction
     {
         protected override void OnEnter(NodeData wData)

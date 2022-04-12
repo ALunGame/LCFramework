@@ -6,7 +6,6 @@ using LCECS.Data;
 
 namespace Demo.BevNode
 {
-    [Node(ViewName = "停止移动", IsBevNode = true)]
     public class BNStopMove : NodeAction
     {
         protected override void OnEnter(NodeData wData)

@@ -1,0 +1,4 @@
+.unity-text-element
+{
+    -unity-font-style: bold;
+}

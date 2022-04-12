@@ -2,7 +2,7 @@
 using Demo.Config;
 using Demo.Help;
 using LCECS;
-using LCECS.Core.ECS;
+using LCECS.Core;
 using LCHelp;
 using LCTileMap;
 using System;

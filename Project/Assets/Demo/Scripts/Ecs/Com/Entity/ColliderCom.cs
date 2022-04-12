@@ -1,4 +1,4 @@
-﻿using LCECS.Core.ECS;
+﻿using LCECS.Core;
 using UnityEngine;
 
 namespace Demo.Com

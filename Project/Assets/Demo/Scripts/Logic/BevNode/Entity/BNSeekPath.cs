@@ -11,7 +11,6 @@ namespace Demo.BevNode
     /// <summary>
     /// 寻路节点
     /// </summary>
-    [Node(ViewName = "寻路节点", IsBevNode = true)]
     public class BNSeekPath : NodeAction
     {
         protected override void OnEnter(NodeData wData)

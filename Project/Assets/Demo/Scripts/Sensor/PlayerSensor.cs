@@ -1,5 +1,5 @@
 ﻿using LCECS;
-using LCECS.Core.ECS;
+using LCECS.Core;
 using LCECS.Layer.Info;
 using UnityEngine;
 

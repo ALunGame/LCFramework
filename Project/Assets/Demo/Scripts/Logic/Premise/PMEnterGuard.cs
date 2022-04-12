@@ -9,7 +9,6 @@ using UnityEngine;
 
 namespace DecNode.Premise
 {
-    [NodePremise("进入警戒区域")]
     public class PMEnterGuard : NodePremise
     {
         public override bool OnMakeTrue(NodeData wData)

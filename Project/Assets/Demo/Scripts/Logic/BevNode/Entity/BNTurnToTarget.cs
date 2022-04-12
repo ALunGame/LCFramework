@@ -8,7 +8,6 @@ using UnityEngine;
 
 namespace Demo
 {
-    [Node(ViewName = "转向玩家", IsBevNode = true)]
     public class BNTurnToPlayer : NodeAction
     {
         protected override void OnEnter(NodeData wData)

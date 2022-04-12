@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
-using LCECS.Core.ECS;
+using LCECS.Core;
 using LCHelp;
 
 /// <summary>

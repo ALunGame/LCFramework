@@ -1,6 +1,6 @@
 ﻿using Demo.Com;
 using DG.Tweening;
-using LCECS.Core.ECS;
+using LCECS.Core;
 using System;
 using System.Collections.Generic;
 using LCECS;

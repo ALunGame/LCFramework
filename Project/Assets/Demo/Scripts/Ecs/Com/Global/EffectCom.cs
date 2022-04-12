@@ -1,6 +1,6 @@
 ﻿using Demo.Config;
 using Demo.System;
-using LCECS.Core.ECS;
+using LCECS.Core;
 using System.Collections.Generic;
 using UnityEngine;
 

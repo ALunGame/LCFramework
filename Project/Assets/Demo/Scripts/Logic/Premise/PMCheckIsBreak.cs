@@ -4,7 +4,6 @@ using LCECS.Data;
 
 namespace Premise
 {
-    [NodePremise("是否处于被攻击打断")]
     public class PMCheckIsBreak : NodePremise
     {
         public override bool OnMakeTrue(NodeData wData)

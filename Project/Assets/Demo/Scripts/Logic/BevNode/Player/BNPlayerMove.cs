@@ -19,8 +19,6 @@ namespace Demo.BevNode
         ClimbJumpRight,   //爬墙时候右跳
     }
     
-    
-    [Node(ViewName = "玩家移动节点", IsBevNode = true)]
     public class BNPlayerMove : NodeAction
     {
         protected override void OnEnter(NodeData wData)

@@ -1,4 +1,4 @@
-﻿using LCECS.Core.ECS;
+﻿using LCECS.Core;
 using LCTileMap;
 using System.Collections.Generic;
 using UnityEngine;

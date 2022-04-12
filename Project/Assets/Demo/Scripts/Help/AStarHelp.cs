@@ -208,17 +208,17 @@ namespace Demo.Help
             //1，将起点加入openList
             if (Map[StartPos.x, StartPos.y].IsObstacle)
             {
-                ECSLocate.ECSLog.LogR("起始点不能是障碍");
+                ECSLocate.Log.LogR("起始点不能是障碍");
                 return null;
             }
             if (EndPos.x > TempConfig.MapSizeX || EndPos.y > TempConfig.MapSizeY)
             {
-                ECSLocate.ECSLog.LogR("目标点超过地图范围>>>>>>>>>>>>>>>>", EndPos);
+                ECSLocate.Log.LogR("目标点超过地图范围>>>>>>>>>>>>>>>>", EndPos);
                 return null;
             }
             if (Map[EndPos.x, EndPos.y].IsObstacle)
             {
-                ECSLocate.ECSLog.LogR("目标点不能是障碍",StartPos,EndPos);
+                ECSLocate.Log.LogR("目标点不能是障碍",StartPos,EndPos);
                 return null;
             }
 

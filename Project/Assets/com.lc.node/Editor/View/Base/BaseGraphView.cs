@@ -14,11 +14,6 @@ namespace LCNode.View
 {
     public partial class BaseGraphView
     {
-        /// <summary>
-        /// 节点命名空间限制
-        /// </summary>
-        protected virtual List<string> NodeNamespace => null;
-
         protected virtual void OnInitialized() { }
 
         public override void BuildContextualMenu(ContextualMenuPopulateEvent evt)
@@ -93,7 +88,7 @@ namespace LCNode.View
                     continue;
                 if (!AttributeHelper.TryGetTypeAttribute(type,out NodeMenuItemAttribute attr))
                     continue;
-                if (NodeNamespace != null && !NodeNamespace.Contains(type.Namespace))
+                if (Model.NodeNamespace != null && !Model.NodeNamespace.Contains(type.Namespace))
                     continue;
                 yield return type;
             }

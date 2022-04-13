@@ -7,6 +7,7 @@ namespace LCECS.Tree
 {
     public class Decision : BaseGraph
     {
-        
-    } 
+        public override List<string> NodeNamespace => new List<string>() { "LCECS.Tree" };
+
+    }
 }

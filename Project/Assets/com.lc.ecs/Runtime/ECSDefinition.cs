@@ -34,6 +34,11 @@
         /// </summary>
         public const string BevTreeRootPath = CnfRootPath + "BevTree/";
 
+        /// <summary>
+        /// 行为树根目录
+        /// </summary>
+        public const string EntityRootPath = CnfRootPath + "Entity/";
+
 
         /// <summary>
         /// 获得决策路径
@@ -53,6 +58,16 @@
         public static string GetBevTreePath(string fileName)
         {
             return BevTreeRootPath + fileName + ".txt";
+        }
+
+        /// <summary>
+        /// 获得实体配置路径
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <returns></returns>
+        public static string GetEntityPath(string fileName)
+        {
+            return EntityRootPath + fileName + ".txt";
         }
     }
 

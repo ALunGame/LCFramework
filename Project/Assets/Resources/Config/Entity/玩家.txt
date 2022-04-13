@@ -1,0 +1,1 @@
+﻿{"mType":"LCECS.Model.EntityModel","id":0,"name":"","decTreeId":0,"prefabPath":"","coms":[{"mType":"LCECS.Core.GameObjectCom","Go":null,"Tran":null,"Renderer":null}]}

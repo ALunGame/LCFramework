@@ -33,4 +33,5 @@ namespace LCECS.Model
         /// </summary>
         public List<BaseCom> coms = new List<BaseCom>();
     }
+
 }

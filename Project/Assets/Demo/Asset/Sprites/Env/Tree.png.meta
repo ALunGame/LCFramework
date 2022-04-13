@@ -167,6 +167,8 @@ TextureImporter:
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -176,8 +178,8 @@ TextureImporter:
   textureSettings:
     serializedVersion: 2
     filterMode: 0
-    aniso: -1
-    mipBias: -100
+    aniso: 1
+    mipBias: 0
     wrapU: 1
     wrapV: 1
     wrapW: 1
@@ -198,9 +200,12 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
   applyGammaDecoding: 1
   platformSettings:
   - serializedVersion: 3
@@ -768,6 +773,31 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Tree_17: 21300082
+      Tree_18: 21300084
+      Tree_5: 21300058
+      Tree_4: 21300056
+      Tree_11: 21300070
+      Tree_15: 21300078
+      Tree_0: 21300048
+      Tree_13: 21300074
+      Tree_19: 21300086
+      Tree_8: 21300064
+      Tree_20: 21300088
+      Tree_3: 21300054
+      Tree_6: 21300060
+      Tree_1: 21300050
+      Tree_7: 21300062
+      Tree_16: 21300080
+      Tree_12: 21300072
+      Tree_2: 21300052
+      Tree_14: 21300076
+      Tree_22: 21300092
+      Tree_9: 21300066
+      Tree_10: 21300068
+      Tree_21: 21300090
+      Tree_23: 21300094
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

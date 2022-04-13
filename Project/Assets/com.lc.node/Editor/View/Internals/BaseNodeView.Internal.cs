@@ -142,22 +142,7 @@ namespace LCNode.View
                 AddPortView(port);
             }
 
-            //属性端口
-            foreach (FieldInfo item in ReflectionHelper.GetFieldInfos(Model.GetType()))
-            {
-                if (AttributeHelper.TryGetFieldAttribute(item, out NodeValueAttribute nodeValueAttribute))
-                    continue;
-                BasePort port = null;
-                if (AttributeHelper.TryGetFieldAttribute(item, out InputPortAttribute inputAttr))
-                    port = new BasePort(inputAttr.name, inputAttr.orientation, inputAttr.direction, inputAttr.capacity, item.FieldType);
-                if (AttributeHelper.TryGetFieldAttribute(item, out OutputPortAttribute outputAttr))
-                    port = new BasePort(outputAttr.name, outputAttr.orientation, outputAttr.direction, outputAttr.capacity, item.FieldType);
-                if (port != null)
-                {
-                    Model.AddPort(port);
-                    AddPortView(port);
-                }
-            }
+            
         }
 
         #endregion

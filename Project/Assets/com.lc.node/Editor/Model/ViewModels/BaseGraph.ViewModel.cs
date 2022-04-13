@@ -9,6 +9,11 @@ namespace LCNode.Model
 {
     public abstract partial class BaseGraph : ViewModel
     {
+        /// <summary>
+        /// 节点命名空间限制
+        /// </summary>
+        public virtual List<string> NodeNamespace => null;
+
         #region Fields
         public event Action<BaseNode> onNodeAdded;
         public event Action<BaseNode> onNodeRemoved;

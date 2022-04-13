@@ -1,7 +1,9 @@
 ﻿using LCJson;
+using LCToolkit.Help;
 using LCToolkit.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
 
 namespace LCNode.Model
@@ -98,11 +100,30 @@ namespace LCNode.Model
         {
             owner = graph;
             ports = new Dictionary<string, BasePort>();
-
+            InitPort();
             //位置绑定
             this[POSITION_NAME] = new BindableProperty<Vector2>(() => position, v => position = v);
 
             OnEnabled();
+        }
+
+        private void InitPort()
+        {
+            //属性端口
+            foreach (FieldInfo item in ReflectionHelper.GetFieldInfos(GetType()))
+            {
+                if (AttributeHelper.TryGetFieldAttribute(item, out NodeValueAttribute nodeValueAttribute))
+                    continue;
+                BasePort port = null;
+                if (AttributeHelper.TryGetFieldAttribute(item, out InputPortAttribute inputAttr))
+                    port = new BasePort(inputAttr.name, inputAttr.orientation, inputAttr.direction, inputAttr.capacity, item.FieldType);
+                if (AttributeHelper.TryGetFieldAttribute(item, out OutputPortAttribute outputAttr))
+                    port = new BasePort(outputAttr.name, outputAttr.orientation, outputAttr.direction, outputAttr.capacity, item.FieldType);
+                if (port != null)
+                {
+                    AddPort(port);
+                }
+            }
         }
 
         internal void Initialize()

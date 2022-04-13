@@ -7,6 +7,6 @@ namespace LCECS.Tree
 {
     public class Behavior : BaseGraph
     {
-        
-    } 
+        public override List<string> NodeNamespace => new List<string>() { "LCECS.Tree" };
+    }
 }

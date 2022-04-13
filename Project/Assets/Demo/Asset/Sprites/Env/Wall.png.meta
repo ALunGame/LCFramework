@@ -407,6 +407,8 @@ TextureImporter:
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -415,9 +417,9 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: -1
-    aniso: -1
-    mipBias: -100
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
     wrapU: 1
     wrapV: 1
     wrapW: 1
@@ -438,9 +440,12 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
   applyGammaDecoding: 1
   platformSettings:
   - serializedVersion: 3
@@ -1176,6 +1181,39 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Wall_14: 21300220
+      Wall_9: 21300210
+      Wall_17: 21300226
+      Wall_23: 21300238
+      Wall_21: 21300234
+      Wall_3: 21300198
+      Wall_5: 21300202
+      Wall_2: 21300196
+      Wall_7: 21300206
+      Wall_25: 21300242
+      Wall_22: 21300236
+      Wall_19: 21300230
+      Wall_30: 21300252
+      Wall_28: 21300248
+      Wall_16: 21300224
+      Wall_1: 21300194
+      Wall_0: 21300192
+      Wall_11: 21300214
+      Wall_31: 21300254
+      Wall_24: 21300240
+      Wall_15: 21300222
+      Wall_10: 21300212
+      Wall_4: 21300200
+      Wall_12: 21300216
+      Wall_20: 21300232
+      Wall_13: 21300218
+      Wall_8: 21300208
+      Wall_27: 21300246
+      Wall_26: 21300244
+      Wall_6: 21300204
+      Wall_18: 21300228
+      Wall_29: 21300250
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

@@ -4,11 +4,9 @@ using System.Collections.Generic;
 using System.Reflection;
 using UnityEditor;
 using UnityEngine;
-using LCToolkit.Core;
-using LCToolkit.Help;
 using UnityObject = UnityEngine.Object;
 
-namespace LCToolkit.Extension
+namespace LCToolkit
 {
     public static partial class GUILayoutExtension
     {

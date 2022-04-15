@@ -3,7 +3,7 @@ using LCNode.Model.Internal;
 using LCNode.View;
 using UnityEditor;
 using UnityEngine;
-using LCToolkit.Extension;
+using LCToolkit;
 using LCToolkit;
 
 namespace LCNode.Inspector

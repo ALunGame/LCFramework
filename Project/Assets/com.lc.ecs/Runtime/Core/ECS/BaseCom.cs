@@ -51,13 +51,13 @@ namespace LCECS.Core
         public int EntityId { get => entityId;}
 
         //初始化（首次添加调用）
-        public void Init(int entityId,int entityCnfId,GameObject go)
+        public void Init(Entity entity)
         {
-            this.entityId = entityId;
-            this.entityCnfId = entityCnfId;
+            this.entityId = entity.Uid;
+            this.entityCnfId = entity.Id;
             IsActive = true;
             OnEnable();
-            OnInit(go);
+            OnInit(entity.Go);
         }
 
         //实体本身启用

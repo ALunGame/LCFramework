@@ -1,7 +1,7 @@
 ﻿using LCECS.Core;
 using LCECS.Core.Tree;
 using LCECS.Data;
-using LCHelp;
+using LCToolkit;
 using LCJson;
 using System;
 using System.Collections.Generic;
@@ -50,7 +50,7 @@ namespace LCECS
         //线程执行决策层（只是读取数据操作）
         private void ThreadExcuteDec()
         {
-            TaskHelp.AddTask(() =>
+            TaskHelper.AddTask(() =>
             {
                 while (DecThreadRun)
                 {
@@ -97,31 +97,28 @@ namespace LCECS
             TextAsset jsonData = ECSLocate.Factory.GetProduct<TextAsset>(FactoryType.Asset, null, ECSDefPath.SystemSortPath);
             systemSortJson = JsonMapper.ToObject<SystemSortJson>(jsonData.text);
             //配置初始化
-            LCConfig.LCConfigLocate.Init();
+            //LCConfig.LCConfigLocate.Init();
         }
 
         //注册系统
         private void RegSystems()
         {
-            List<Type> systemTypes = LCReflect.GetClassByType<BaseSystem>();
             List<Type> updateSystems = new List<Type>();
             List<Type> fixedUpdateSystems = new List<Type>();
 
             //分组
-            for (int i = 0; i < systemTypes.Count; i++)
+            foreach (Type type in ReflectionHelper.GetChildTypes<BaseSystem>())
             {
-                Type type = systemTypes[i];
-                SystemAttribute attr = LCReflect.GetTypeAttr<SystemAttribute>(type);
-                if (attr == null)
-                {
-                    updateSystems.Add(type);
-                }
-                else
+                if (AttributeHelper.TryGetTypeAttribute(type, out SystemAttribute attr))
                 {
                     if (attr.InFixedUpdate)
                         fixedUpdateSystems.Add(type);
                     else
                         updateSystems.Add(type);
+                }
+                else
+                {
+                    updateSystems.Add(type);
                 }
             }
 
@@ -133,7 +130,7 @@ namespace LCECS
             for (int i = 0; i < updateSystems.Count; i++)
             {
                 Type type = updateSystems[i];
-                BaseSystem system = LCReflect.CreateInstanceByType<BaseSystem>(type.FullName);
+                BaseSystem system = ReflectionHelper.CreateInstance<BaseSystem>(type.FullName);
                 system.Init();
 
                 ECSLocate.ECS.RegUpdateSystem(system);
@@ -141,7 +138,7 @@ namespace LCECS
             for (int i = 0; i < fixedUpdateSystems.Count; i++)
             {
                 Type type = fixedUpdateSystems[i];
-                BaseSystem system = LCReflect.CreateInstanceByType<BaseSystem>(type.FullName);
+                BaseSystem system = ReflectionHelper.CreateInstance<BaseSystem>(type.FullName);
                 system.Init();
 
                 ECSLocate.ECS.RegFixedUpdateSystem(system);

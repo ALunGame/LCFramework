@@ -4,7 +4,7 @@ using LCNode.View.Utils;
 using System.Collections.Generic;
 using UnityEngine;
 using LCToolkit.Core;
-using LCToolkit.Extension;
+using LCToolkit;
 using LCToolkit;
 
 namespace LCNode.Inspector

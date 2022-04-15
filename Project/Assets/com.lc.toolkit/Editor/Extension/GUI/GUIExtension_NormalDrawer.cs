@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
-using LCToolkit.Help;
+using LCToolkit;
 using UnityObject = UnityEngine.Object;
 using LCToolkit.Core;
 

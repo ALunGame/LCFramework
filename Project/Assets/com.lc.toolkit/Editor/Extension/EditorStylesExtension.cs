@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using UnityEditor;
 using UnityEngine;
 
-namespace LCToolkit.Extension
+namespace LCToolkit
 {
     /// <summary>
     /// 编辑器样式

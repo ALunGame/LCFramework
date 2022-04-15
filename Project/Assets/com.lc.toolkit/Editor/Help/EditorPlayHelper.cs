@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace LCToolkit.Help
+namespace LCToolkit
 {
     /// <summary>
     /// 编辑器下播放各种效果

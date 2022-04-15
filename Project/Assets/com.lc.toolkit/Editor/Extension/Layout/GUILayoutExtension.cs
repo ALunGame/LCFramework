@@ -1,12 +1,9 @@
-﻿using UnityEditor;
-using UnityEngine;
+﻿using System;
+using UnityEditor;
 using UnityEditor.AnimatedValues;
+using UnityEngine;
 
-using UnityObject = UnityEngine.Object;
-using LCToolkit.Help;
-using System;
-
-namespace LCToolkit.Extension
+namespace LCToolkit
 {
     public static partial class GUILayoutExtension
     {
@@ -69,6 +66,18 @@ namespace LCToolkit.Extension
             EditorGUILayout.BeginHorizontal(EditorStylesExtension.RoundedBoxStyle, options);
             drawFunc?.Invoke();
             EditorGUILayout.EndHorizontal();
+        }
+
+        /// <summary>
+        /// 创建一个滚动视图
+        /// </summary>
+        public static void ScrollView(ref Vector2 pos,Action drawFunc, params GUILayoutOption[] options)
+        {
+            pos = GUILayout.BeginScrollView(pos, EditorStylesExtension.RoundedBoxStyle, options);
+            {
+                drawFunc?.Invoke();
+            }
+            GUILayout.EndScrollView();
         }
 
         /// <summary>
@@ -177,63 +186,6 @@ namespace LCToolkit.Extension
                 EditorGUI.indentLevel--;
             });
         }
-
-        /// <summary>
-        /// 绘制一个文件选择窗口
-        /// </summary>
-        /// <param name="label">提示名</param>
-        /// <param name="path">文件路径</param>
-        /// <returns></returns>
-        public static string FilePath(string label, string path)
-        {
-            EditorGUILayout.BeginHorizontal();
-            path = EditorGUILayout.TextField(label, path);
-            Rect rect = GUILayoutUtility.GetLastRect();
-            UnityObject uObj = GUIExtension.DragDropAreaSingle(rect, DragAndDropVisualMode.Copy);
-            if (uObj != null && AssetDatabase.IsMainAsset(uObj))
-            {
-                string p = AssetDatabase.GetAssetPath(uObj);
-                if (!AssetDatabase.IsValidFolder(p))
-                    path = p;
-            }
-            if (GUILayout.Button(EditorGUIUtility.FindTexture("FolderEmpty Icon"), EditorStylesExtension.OnlyIconButtonStyle, GUILayout.Width(18), GUILayout.Height(18)))
-            {
-                path = EditorUtility.OpenFilePanel($"{label}文件选择", Application.dataPath, "*");
-                if (!string.IsNullOrEmpty(path))
-                    path = path.Substring(path.IndexOf("Assets"));
-            }
-            EditorGUILayout.EndHorizontal();
-            return path;
-        }
-
-        /// <summary>
-        /// 绘制一个目录选择窗口
-        /// </summary>
-        /// <param name="label">提示名</param>
-        /// <param name="folderPath">目录路径</param>
-        /// <returns></returns>
-        public static string FolderPath(string label, string folderPath)
-        {
-            EditorGUILayout.BeginHorizontal();
-            folderPath = EditorGUILayout.TextField(label, folderPath);
-            Rect rect = GUILayoutUtility.GetLastRect();
-            UnityObject uObj = GUIExtension.DragDropAreaSingle(rect, DragAndDropVisualMode.Copy);
-            if (uObj != null && AssetDatabase.IsMainAsset(uObj))
-            {
-                string p = AssetDatabase.GetAssetPath(uObj);
-                if (AssetDatabase.IsValidFolder(p))
-                    folderPath = p;
-            }
-            if (GUILayout.Button(EditorGUIUtility.FindTexture("FolderEmpty Icon"), EditorStylesExtension.OnlyIconButtonStyle, GUILayout.Width(18), GUILayout.Height(18)))
-            {
-                folderPath = EditorUtility.OpenFolderPanel($"{label}目录选择", Application.dataPath, string.Empty);
-                if (!string.IsNullOrEmpty(folderPath))
-                    folderPath = folderPath.Substring(folderPath.IndexOf("Assets"));
-            }
-            EditorGUILayout.EndHorizontal();
-            return folderPath;
-        }
-
 
     }
 }

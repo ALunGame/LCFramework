@@ -1,9 +1,9 @@
+using LCTimeline.Player;
+using LCToolkit;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
-using LCTimeline.Player;
 using UnityEngine;
-using LCToolkit.Help;
 
 namespace LCTimeline
 {

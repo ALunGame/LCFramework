@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEditor;
 
-namespace LCToolkit.Extension
+namespace LCToolkit
 {
     /// <summary>
     /// 编辑器通用扩展

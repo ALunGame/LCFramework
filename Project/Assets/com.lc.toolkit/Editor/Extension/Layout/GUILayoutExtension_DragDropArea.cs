@@ -3,7 +3,7 @@ using UnityEngine;
 
 using UnityObject = UnityEngine.Object;
 
-namespace LCToolkit.Extension
+namespace LCToolkit
 {
     public static partial class GUILayoutExtension
     {

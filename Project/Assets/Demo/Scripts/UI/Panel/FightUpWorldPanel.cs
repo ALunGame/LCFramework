@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 using LCECS.Core;
-using LCHelp;
+using LCToolkit;
 
 /// <summary>
 /// 战斗飘字界面
@@ -85,7 +85,8 @@ public class FightUpWorldPanel : LCUI.LCUIPanel
 
         //设置位置
         GameObjectCom objectCom = entity.GetCom<GameObjectCom>();
-        Vector2 uiPoint = LCTransform.WorldPointToUI(objectCom.Go.transform.position, Canvas);
+        //Vector2 uiPoint = LCTransform.WorldPointToUI(objectCom.Go.transform.position, Canvas);
+        Vector2 uiPoint = Vector2.zero;
         worldItem.anchoredPosition3D = uiPoint;
         worldItem.GetComponent<CanvasGroup>().alpha = 1;
         worldItem.gameObject.SetActive(true);

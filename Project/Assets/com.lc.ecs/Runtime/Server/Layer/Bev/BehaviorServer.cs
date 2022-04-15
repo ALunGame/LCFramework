@@ -1,5 +1,4 @@
-﻿using LCECS.Core.Tree.Base;
-using LCECS.Data;
+﻿using LCECS.Data;
 using LCECS.Layer.Behavior;
 using LCJson;
 using System.Collections.Generic;
@@ -11,89 +10,71 @@ namespace LCECS.Server.Layer
 {
     public class BehaviorServer : IBehaviorServer
     {
-        private Dictionary<int, BaseEntityBehavior> BevDict = new Dictionary<int, BaseEntityBehavior>();
-
-        //设置行为树
-        private void SetBevTrees(Dictionary<string, Node> bevTrees)
-        {
-            if (bevTrees == null)
-                return;
-
-            CreateBev(bevTrees);
-        }
-
-        //创建行为树
-        private void CreateBev(Dictionary<string, Node> bevTrees)
-        {
-            foreach (var item in bevTrees)
-            {
-                int bevId = int.Parse(item.Value.Uid);
-                BaseEntityBehavior behavior = new BaseEntityBehavior(item.Value, bevId);
-                BevDict.Add(bevId, behavior);
-            }
-        }
-        
-        /// <summary>
-        /// 获得行为
-        /// </summary>
-        private BaseEntityBehavior GetBev(int bevId)
-        {
-            if (BevDict.ContainsKey(bevId))
-            {
-                return BevDict[bevId];
-            }
-            return null;
-        }
+        private Dictionary<int, BehaviorTree> BevDict = new Dictionary<int, BehaviorTree>();
         
         public void Init()
         {
-            TextAsset jsonData = ECSLocate.Factory.GetProduct<TextAsset>(FactoryType.Asset, null, ECSDefPath.BevTreePath);
-            Dictionary<string, Node> bevTrees  = JsonMapper.ToObject<Dictionary<string, Node>>(jsonData.text);
-            SetBevTrees(bevTrees);
+        }
+
+        public void ReqBev(EntityWorkData workData)
+        {
+            if (workData.ClearReqId == workData.CurrReqId)
+            {
+                BehaviorTree currBehavior = GetBehavior(workData.CurrReqId);
+                if (currBehavior != null)
+                    currBehavior.AddWorkData(workData);
+            }
+            else
+            {
+                //删除
+                if (BevDict.TryGetValue(workData.ClearReqId,out BehaviorTree lastBehavior))
+                    lastBehavior.RemoveWorkData(workData);
+
+                BehaviorTree currBehavior = GetBehavior(workData.CurrReqId);
+                if (currBehavior != null)
+                    currBehavior.AddWorkData(workData);
+            }
+
+        }
+
+        public void Execute()
+        {
+            foreach (BehaviorTree item in BevDict.Values)
+            {
+                item.Execute();
+            }
         }
 
         /// <summary>
         /// 获得行为树
         /// </summary>
-        public Node GetBevNode(int bevId)
+        /// <returns></returns>
+        private BehaviorTree GetBehavior(int treeId)
         {
-            BaseEntityBehavior behavior = GetBev(bevId);
-            if (behavior != null)
+            if (!BevDict.ContainsKey(treeId))
             {
-                return behavior.Tree;
+                BehaviorTree tree = LoadBehavior(treeId);
+                if (tree != null)
+                {
+                    BevDict.Add(treeId, tree);
+                }
             }
-            return null;
+            return BevDict[treeId];
         }
 
         /// <summary>
-        /// 放入实体行为
+        /// 加载行为树
         /// </summary>
-        public void PushBev(EntityWorkData workData)
+        /// <returns></returns>
+        private BehaviorTree LoadBehavior(int treeId)
         {
-            //删除
-            BaseEntityBehavior lastBehavior = GetBev(workData.ClearReqId);
-            if (lastBehavior != null)
-            {
-                lastBehavior.RemoveWorkData(workData);
-            }
-
-            //添加
-            BaseEntityBehavior currBehavior = GetBev(workData.CurrReqId);
-            if (currBehavior != null)
-            {
-                currBehavior.AddWorkData(workData);
-            }
-        }
-
-        /// <summary>
-        /// 执行实体行为
-        /// </summary>
-        public void Execute()
-        {
-            foreach (BaseEntityBehavior item in BevDict.Values)
-            {
-                item.Execute();
-            }
+            TextAsset jsonData = ECSLocate.Factory.GetProduct<TextAsset>(FactoryType.Asset, null, ECSDefPath.GetDecTreePath(treeId.ToString()));
+            if (jsonData == null)
+                return null;
+            BehaviorTree behavior = JsonMapper.ToObject<BehaviorTree>(jsonData.text);
+            if (behavior == null)
+                return null;
+            return behavior;
         }
     }
 }

@@ -1,10 +1,8 @@
-﻿using System;
+﻿using LCToolkit;
+using System;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
-using LCToolkit.Extension;
-using LCToolkit.Help;
-using LCToolkit;
 
 namespace LCTimeline.View
 {
@@ -164,7 +162,7 @@ namespace LCTimeline.View
             GUILayout.EndArea();
 
             //绘制轨道按钮边框
-            GUIHelper.DrawOutline(TrackHeadViewRect, 2, Color.gray);
+            MiscHelper.DrawOutline(TrackHeadViewRect, 2, Color.gray);
 
             //绘制片段
             for (int i = 0; i < Cliplist.Count; i++)

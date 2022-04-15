@@ -1,5 +1,4 @@
 ﻿using Demo.Com;
-using LCConfig;
 using LCECS.Core;
 using System.Collections.Generic;
 using UnityEngine.UI;
@@ -28,11 +27,11 @@ public class FightPanel : LCUI.LCUIPanel
         PlayerEntity = LCECS.ECSLocate.Player.GetPlayerEntity();
         PlayerAttrCom = PlayerEntity.GetCom<AttributeCom>();
 
-        Dictionary<string, string> attrDict = LCConfigLocate.GetConfigItemDataDict("BaseAttr", PlayerEntity.GetEntityConfId().ToString());
-        foreach (var item in attrDict)
-        {
-            PlayerAttrConfDict.Add(item.Key, float.Parse(item.Value));
-        }
+        //Dictionary<string, string> attrDict = LCConfigLocate.GetConfigItemDataDict("BaseAttr", PlayerEntity.Id.ToString());
+        //foreach (var item in attrDict)
+        //{
+        //    PlayerAttrConfDict.Add(item.Key, float.Parse(item.Value));
+        //}
     }
 
     public override void OnShow(params object[] parms)

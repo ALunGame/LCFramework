@@ -1,7 +1,6 @@
 ﻿using LCECS.Core;
 using System.Collections.Generic;
 using UnityEngine;
-using LCConfig;
 
 namespace Demo.Com
 {
@@ -12,11 +11,6 @@ namespace Demo.Com
 
         protected override void OnInit(GameObject go)
         {
-            Dictionary<string, string> attrDict = LCConfigLocate.GetConfigItemDataDict("BaseAttr", EntityCnfId.ToString());
-            foreach (var item in attrDict)
-            {
-                AttrDict.Add(item.Key, float.Parse(item.Value));
-            }
         }
     }
 }

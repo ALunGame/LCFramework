@@ -1,5 +1,5 @@
 ﻿using LCECS.Core;
-using LCHelp;
+using LCToolkit;
 using System;
 
 namespace LCECS.Help
@@ -20,12 +20,11 @@ namespace LCECS.Help
             {
                 return false;
             }
-            ComAttribute comAttribute = LCReflect.GetTypeAttr<ComAttribute>(comType);
-            if (comAttribute == null)
+            if (AttributeHelper.TryGetTypeAttribute(comType,out ComAttribute comAttribute))
             {
-                return false;
+                return comAttribute.IsGlobal;
             }
-            return comAttribute.IsGlobal;
+            return false;
         }
     }
 }

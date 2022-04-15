@@ -1,6 +1,6 @@
 ﻿using LCECS.Data;
 using LCECS.Layer.Info;
-using LCHelp;
+using LCToolkit;
 using LCJson;
 using System;
 using System.Collections.Generic;
@@ -16,22 +16,19 @@ namespace LCECS.Server.Layer
 
         private void RegAllSensor()
         {
-            List<Type> sensorTypes = LCReflect.GetInterfaceByType<ISensor>();
-            if (sensorTypes == null)
-                return;
-
             //世界信息
-            foreach (Type type in sensorTypes)
+            foreach (Type type in ReflectionHelper.GetChildTypes<ISensor>())
             {
-                WorldSensorAttribute attr = LCReflect.GetTypeAttr<WorldSensorAttribute>(type);
-                if (attr == null)
+                if (AttributeHelper.TryGetTypeAttribute(type, out WorldSensorAttribute attr))
+                {
+                    ISensor sensor = ReflectionHelper.CreateInstance<ISensor>(type.FullName);
+                    SensorDict.Add((int)attr.InfoKey, sensor);
+                }
+                else
                 {
                     ECSLocate.Log.LogR("有世界信息没有加入特性 >>>>>>", type.Name);
                     return;
                 }
-
-                ISensor sensor = LCReflect.CreateInstanceByType<ISensor>(type.FullName);
-                SensorDict.Add((int)attr.InfoKey, sensor);
             }
         }
         

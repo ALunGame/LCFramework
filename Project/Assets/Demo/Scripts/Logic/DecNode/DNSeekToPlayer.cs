@@ -5,7 +5,6 @@ using LCECS;
 using LCECS.Core.Tree.Base;
 using LCECS.Core.Tree.Nodes.Action;
 using LCECS.Data;
-using LCTileMap;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -32,7 +31,7 @@ namespace Demo.DecNode
         {
             SeekPathCom seekPathCom = workData.MEntity.GetCom<SeekPathCom>();
             Vector2Int curPos       = seekPathCom.CurrPos;
-            MapData mapData         = TempConfig.GetMapData(seekPathCom.MapPos);
+            //MapData mapData         = TempConfig.GetMapData(seekPathCom.MapPos);
 
             //找到玩家周围可寻路的点
             List<Vector2Int> canSeekPointList = new List<Vector2Int>();
@@ -41,10 +40,10 @@ namespace Demo.DecNode
                 for (int j = -1; j <=1; j++)
                 {
                     Vector2Int pos = new Vector2Int(playerPos.x + i, playerPos.y + j);
-                    if (!mapData.ObstaclePos.Contains(pos)&& !pos.Equals(playerPos))
-                    {
-                        canSeekPointList.Add(pos);
-                    }
+                    //if (!mapData.ObstaclePos.Contains(pos)&& !pos.Equals(playerPos))
+                    //{
+                    //    canSeekPointList.Add(pos);
+                    //}
                 }
             }
 

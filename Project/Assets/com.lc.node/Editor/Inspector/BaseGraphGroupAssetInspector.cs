@@ -3,10 +3,10 @@ using LCNode.Model.Internal;
 using LCNode.View;
 using UnityEditor;
 using UnityEngine;
-using LCToolkit.Extension;
+using LCToolkit;
 using LCToolkit;
 using System.Collections.Generic;
-using LCHelp;
+using LCToolkit;
 
 namespace LCNode.Inspector
 {
@@ -47,7 +47,7 @@ namespace LCNode.Inspector
             {
                 if (GUILayout.Button($"创建{groupAsset.DisplayName}", GUILayout.Height(50)))
                 {
-                    EDPopPanel.PopWindow($"输入{groupAsset.DisplayName}名：", (string name) =>
+                    MiscHelper.Input($"输入{groupAsset.DisplayName}名：", (string name) =>
                     {
                         groupAsset.CreateGraph(name);
                     });
@@ -77,7 +77,7 @@ namespace LCNode.Inspector
 
                 if (GUILayout.Button("重命名", GUILayout.Width(50)))
                 {
-                    EDPopPanel.PopWindow($"输入{groupAsset.DisplayName}名：", (string name) =>
+                    MiscHelper.Input($"输入{groupAsset.DisplayName}名：", (string name) =>
                     {
                         graphAsset.name = name;
                         EditorUtility.SetDirty(graphAsset);

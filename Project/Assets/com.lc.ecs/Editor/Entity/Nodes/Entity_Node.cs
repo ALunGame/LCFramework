@@ -1,5 +1,4 @@
 ﻿using LCECS.Core;
-using LCECS.Model;
 using LCNode;
 using LCNode.Model;
 using System.Collections.Generic;
@@ -41,23 +40,19 @@ namespace LCECS.EntityGraph
         [NodeValue("预制体路径")]
         public string prefabPath = "";
 
-        public EntityModel GetModel()
+        public Entity GetModel()
         {
-            EntityModel model = new EntityModel();  
-            model.id = id;
-            model.name = name;
-            model.decTreeId = decTreeId;
-            model.prefabPath = prefabPath;
-
+            List<BaseCom> coms = new List<BaseCom>();
             //组件节点
             List<Entity_ComNode> nodes = NodeHelper.GetNodeOutNodes<Entity_ComNode>(Owner, this);
             if (nodes.Count > 0)
             {
                 for (int i = 0; i < nodes.Count; i++)
                 {
-                    model.coms.Add(nodes[i].CreateRuntimeNode());
+                    coms.Add(nodes[i].CreateRuntimeNode());
                 }
             }
+            Entity model = new Entity(id, name, decTreeId, prefabPath, coms);
             return model;
         }
     }

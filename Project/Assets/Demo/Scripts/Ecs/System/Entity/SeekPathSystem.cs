@@ -1,10 +1,8 @@
 ﻿using Demo.Com;
 using Demo.Config;
 using Demo.Help;
-using LCECS;
 using LCECS.Core;
-using LCHelp;
-using LCTileMap;
+using LCToolkit;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -66,8 +64,8 @@ namespace Demo.System
             {
                 Vector2Int curPos     = seekPathCom.CurrPos;
                 Vector2Int tarPos     = seekPathCom.TargetPos;
-                MapData mapData       = TempConfig.GetMapData(seekPathCom.MapPos);
-                TaskHelp.AddTaskTwoParam(seekPathCom, mapData, ExcuteFindPath, FinishFindPath);
+                //MapData mapData       = TempConfig.GetMapData(seekPathCom.MapPos);
+                //TaskHelp.AddTaskTwoParam(seekPathCom, mapData, ExcuteFindPath, FinishFindPath);
                 seekPathCom.ReqSeek   = false;
             }
 
@@ -86,51 +84,51 @@ namespace Demo.System
             SpeedCom speedCom       = GetCom<SpeedCom>(comList[1]);
             ColliderCom colliderCom = GetCom<ColliderCom>(comList[2]);
             
-            MapData mapData         = TempConfig.GetMapData(seekPathCom.MapPos);
-            Vector2Int currPos      = seekPathCom.CurrPos;
+            //MapData mapData         = TempConfig.GetMapData(seekPathCom.MapPos);
+            //Vector2Int currPos      = seekPathCom.CurrPos;
             
-            //地面
-            Vector2Int groundCheckPos    = new Vector2Int(currPos.x,currPos.y-1);
-            bool isGround    = mapData.ObstaclePos.Contains(groundCheckPos);
+            ////地面
+            //Vector2Int groundCheckPos    = new Vector2Int(currPos.x,currPos.y-1);
+            //bool isGround    = mapData.ObstaclePos.Contains(groundCheckPos);
             
-            //右边
-            Vector2Int rightCheckPos    = new Vector2Int(currPos.x+1,currPos.y);
-            bool isRightWall = mapData.ObstaclePos.Contains(rightCheckPos);
+            ////右边
+            //Vector2Int rightCheckPos    = new Vector2Int(currPos.x+1,currPos.y);
+            //bool isRightWall = mapData.ObstaclePos.Contains(rightCheckPos);
             
-            //左边
-            Vector2Int leftCheckPos    = new Vector2Int(currPos.x-1,currPos.y-1);
-            bool isLeftWall = mapData.ObstaclePos.Contains(leftCheckPos);
+            ////左边
+            //Vector2Int leftCheckPos    = new Vector2Int(currPos.x-1,currPos.y-1);
+            //bool isLeftWall = mapData.ObstaclePos.Contains(leftCheckPos);
             
-            //赋值
-            if (isGround)
-            {
-                colliderCom.CollideDir = ColliderDir.Down;
-                //赋值子碰撞
-                if (isRightWall)
-                    colliderCom.SubCollideDir = ColliderDir.Right;
-                else if (isLeftWall)
-                    colliderCom.SubCollideDir = ColliderDir.Left;
-                else
-                    colliderCom.SubCollideDir = ColliderDir.None;
-            }
-            else
-            {
-                if (isRightWall)
-                {
-                    colliderCom.SubCollideDir = ColliderDir.Right;
-                    colliderCom.CollideDir = ColliderDir.Right;
-                }
-                else if (isLeftWall)
-                {
-                    colliderCom.SubCollideDir = ColliderDir.Left;
-                    colliderCom.CollideDir = ColliderDir.Left;
-                }
-                else
-                {
-                    colliderCom.SubCollideDir = ColliderDir.None;
-                    colliderCom.CollideDir = ColliderDir.None;
-                }
-            }
+            ////赋值
+            //if (isGround)
+            //{
+            //    colliderCom.CollideDir = ColliderDir.Down;
+            //    //赋值子碰撞
+            //    if (isRightWall)
+            //        colliderCom.SubCollideDir = ColliderDir.Right;
+            //    else if (isLeftWall)
+            //        colliderCom.SubCollideDir = ColliderDir.Left;
+            //    else
+            //        colliderCom.SubCollideDir = ColliderDir.None;
+            //}
+            //else
+            //{
+            //    if (isRightWall)
+            //    {
+            //        colliderCom.SubCollideDir = ColliderDir.Right;
+            //        colliderCom.CollideDir = ColliderDir.Right;
+            //    }
+            //    else if (isLeftWall)
+            //    {
+            //        colliderCom.SubCollideDir = ColliderDir.Left;
+            //        colliderCom.CollideDir = ColliderDir.Left;
+            //    }
+            //    else
+            //    {
+            //        colliderCom.SubCollideDir = ColliderDir.None;
+            //        colliderCom.CollideDir = ColliderDir.None;
+            //    }
+            //}
             
         }
 
@@ -215,21 +213,6 @@ namespace Demo.System
                     path                  = null;
                 }
             }
-        }
-
-        //执行寻路
-        private (SeekPathCom SeekPathCom, List<Vector2Int> Path) ExcuteFindPath(SeekPathCom seekPathCom, MapData mapData)
-        {
-            List<Vector2Int> path = null;
-            if (seekPathCom.CanFly)
-            {
-                path = AstarHelp.FindPath(seekPathCom.CurrPos, seekPathCom.TargetPos, mapData.ObstaclePos);
-            }
-            else
-            {
-                path = AstarHelp.FindPath(seekPathCom.CurrPos, seekPathCom.TargetPos, mapData.ObstaclePos, mapData.RoadPos);
-            }
-            return (seekPathCom, path);
         }
 
         //完成寻路

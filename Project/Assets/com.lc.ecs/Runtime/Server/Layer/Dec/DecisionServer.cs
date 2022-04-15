@@ -9,73 +9,102 @@ namespace LCECS.Server.Layer
 {
     public class DecisionServer : IDecisionServer
     {
-        private Dictionary<int, BaseDecision> DesDict = new Dictionary<int, BaseDecision>();
-        
-        //设置决策树
-        private void SetDecTrees(Dictionary<string, Node> decTrees)
-        {
-            if (decTrees == null)
-                return;
-            CreateDec(decTrees);
-        }
-
-        //创建决策
-        private void CreateDec(Dictionary<string, Node> decTrees)
-        {
-            foreach (var item in decTrees)
-            {
-                int decId = int.Parse(item.Value.Uid);
-                BaseDecision decision = new BaseDecision(item.Value);
-                DesDict.Add(decId, decision);
-            }
-        }
-        
+        private Dictionary<int, DecisionTree> DesDict = new Dictionary<int, DecisionTree>();
+       
         public void Init()
         {
-            TextAsset jsonData                  = ECSLocate.Factory.GetProduct<TextAsset>(FactoryType.Asset, null, ECSDefPath.DecTreePath);
-            Dictionary<string, Node> decTrees   = JsonMapper.ToObject<Dictionary<string, Node>>(jsonData.text);
-            SetDecTrees(decTrees);
         }
         
-        /// <summary>
-        /// 添加决策实体
-        /// </summary>
         public void AddDecisionEntity(int decId, EntityWorkData workData)
         {
-            if (!DesDict.ContainsKey(decId))
+            DecisionTree tree = GetDecision(decId);
+            if (tree == null)
             {
                 ECSLocate.Log.LogR("添加决策实体错误，没有对应决策树>>>>>>>", decId);
                 return;
             }
-            BaseDecision decision = DesDict[decId];
+
+            //删除已经存在的
+            int entityId = workData.MEntity.GetHashCode();
+            List<DecisionTree> trees = DecisionHasEntity(entityId);
+            for (int i = 0; i < trees.Count; i++)
+            {
+                trees[i].RemoveEntity(entityId);
+            }
+
+            //加入新的
+            DecisionTree decision = DesDict[decId];
             decision.AddEntity(workData);
         }
 
-        /// <summary>
-        /// 删除决策实体
-        /// </summary>
         public void RemoveDecisionEntity(int decId, int entityId)
         {
             if (!DesDict.ContainsKey(decId))
             {
                 return;
             }
-            BaseDecision decision = DesDict[decId];
+            DecisionTree decision = DesDict[decId];
             decision.RemoveEntity(entityId);
         }
 
-        /// <summary>
-        /// 执行决策
-        /// </summary>
         public void Execute()
         {
-            foreach (BaseDecision item in DesDict.Values)
+            foreach (DecisionTree item in DesDict.Values)
             {
                 if (item != null)
                 {
                     item.Execute();
                 }
             }
+        }
+
+        /// <summary>
+        /// 获得决策树
+        /// </summary>
+        /// <returns></returns>
+        private DecisionTree GetDecision(int treeId)
+        {
+            if (!DesDict.ContainsKey(treeId))
+            {
+                DecisionTree tree = LoadDecision(treeId);
+                if (tree != null)
+                {
+                    DesDict.Add(treeId, tree);
+                }
+            }
+            return DesDict[treeId];
+        }
+
+        /// <summary>
+        /// 加载决策树
+        /// </summary>
+        /// <returns></returns>
+        private DecisionTree LoadDecision(int treeId)
+        {
+            TextAsset jsonData = ECSLocate.Factory.GetProduct<TextAsset>(FactoryType.Asset, null, ECSDefPath.GetDecTreePath(treeId.ToString()));
+            if (jsonData == null)
+                return null;
+            DecisionTree decision = JsonMapper.ToObject<DecisionTree>(jsonData.text);
+            if (decision == null)
+                return null;
+            return decision;
+        }
+
+        /// <summary>
+        /// 获得其他包含此实体的决策树
+        /// </summary>
+        /// <returns></returns>
+        private List<DecisionTree> DecisionHasEntity(int entityId)
+        {
+            List<DecisionTree> trees = new List<DecisionTree>();
+            foreach (DecisionTree item in DesDict.Values)
+            {
+                if (item.GetEntity(entityId) != null)
+                {
+                    trees.Add(item);
+                }
+            }
+            return trees;
         }
     }
 }

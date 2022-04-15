@@ -1,16 +1,16 @@
 ﻿using LCECS.Core;
-using LCECS.Data;
-using LCECS.Help;
-using LCHelp;
-
+using LCJson;
+using LCToolkit;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
-using Object = UnityEngine.Object;
 
 namespace LCECS.Server.Factory
 {
     public class EntityFactory : IFactory<Entity>
     {
+        private Dictionary<int, Entity> EntityModelDict = new Dictionary<int, Entity>();
+
         public Entity CreateProduct(Action<object[]> func, params object[] data)
         {
             //解析参数
@@ -19,56 +19,56 @@ namespace LCECS.Server.Factory
             GameObject entityGo = data.Length > 2 ? data[2] as GameObject : null;
 
             //配置数据
-            EntityJson entityData = ECSLayerLocate.Info.GetEntityConf(entityConfId);
-            if (entityData == null)
+            Entity entityModel = GetEntityModel(entityConfId);
+            if (entityModel == null)
             {
                 ECSLocate.Log.LogError("实体配置数据不存在>>>>>>>", entityConfId);
                 return null;
             }
 
-            //创建实体节点
-            if (entityGo == null)
-            {
-                entityGo = (GameObject)ECSLocate.Factory.GetProduct<Object>(FactoryType.Asset, null, entityData.PrefabPath);
-                entityGo = Object.Instantiate(entityGo);
-            }
-            if (entityGo == null)
-            {
-                ECSLocate.Log.LogR("有一个实体没有节点>>>>>>>>", entityId, entityConfId);
-            }
-            else
-            {
-#if UNITY_EDITOR
-                EntityEditorViewHelp sceneHelp = entityGo.AddComponent<EntityEditorViewHelp>();
-                sceneHelp.EntityId = entityId;
-#endif
-            }
-
             //创建实体
-            Entity entity = new Entity();
-
-            //添加组件
-            for (int i = 0; i < entityData.Coms.Count; i++)
+            Entity entity = DeepCopy<Entity, Entity>.Trans(entityModel);
+            entity.SetEntityGo(entityGo);
+            entity.Init(entityId);
+            foreach (BaseCom com in entity.GetComs())
             {
-                EntityComJson comJson = entityData.Coms[i];
-                BaseCom com = LCReflect.CreateInstanceByType<BaseCom>(comJson.ComName);
-
-                //赋值
-                for (int j = 0; j < comJson.Values.Count; j++)
-                {
-                    EntityComValueJson valueJson = comJson.Values[j];
-
-                    object value = LCConvert.StrChangeToObject(valueJson.Value, valueJson.Type);
-                    LCReflect.SetTypeFieldValue(com, valueJson.Name, value);
-                }
-
-                com.Init(entityId, entityConfId, entityGo);
-                entity.AddCom(com);
+                com.Init(entity);
             }
-
             func?.Invoke(new object[] { entityGo });
 
             ECSLocate.Log.LogR("创建实体成功>>>>>>>>", entityConfId);
+            return entity;
+        }
+
+        /// <summary>
+        /// 获得实体配置
+        /// </summary>
+        /// <returns></returns>
+        private Entity GetEntityModel(int id)
+        {
+            if (!EntityModelDict.ContainsKey(id))
+            {
+                Entity entity = LoadEntityModel(id);
+                if (entity != null)
+                {
+                    EntityModelDict.Add(id, entity);
+                }
+            }
+            return EntityModelDict[id];
+        }
+
+        /// <summary>
+        /// 加载实体配置
+        /// </summary>
+        /// <returns></returns>
+        private Entity LoadEntityModel(int id)
+        {
+            TextAsset jsonData = ECSLocate.Factory.GetProduct<TextAsset>(FactoryType.Asset, null, ECSDefPath.GetEntityPath(id.ToString()));
+            if (jsonData == null)
+                return null;
+            Entity entity = JsonMapper.ToObject<Entity>(jsonData.text);
+            if (entity == null)
+                return null;
             return entity;
         }
     }

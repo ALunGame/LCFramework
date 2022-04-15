@@ -1,11 +1,10 @@
 ﻿using Demo.Com;
 using DG.Tweening;
+using LCECS;
 using LCECS.Core;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using LCConfig;
-using LCECS;
 
 namespace Demo.System
 {
@@ -33,38 +32,38 @@ namespace Demo.System
 
         private void OnInit()
         {
-            LCConfig.Config effectConfig = LCConfigLocate.GetConfig("Effect");
+            //LCConfig.Config effectConfig = LCConfigLocate.GetConfig("Effect");
 
-            for (int i = 0; i < effectConfig.Items[0].DataList.Count; i++)
-            {
-                int dataIndex = i;
-                EffectInfo effectInfo = new EffectInfo();
-                for (int j = 0; j < effectConfig.Items.Count; j++)
-                {
-                    ConfigItem configItem = effectConfig.Items[j];
-                    if (configItem.Name=="Id")
-                    {
-                        effectInfo.Id = (int)LCHelp.LCConvert.StrChangeToObject(configItem.DataList[dataIndex],typeof(int).FullName);
-                    }
-                    if (configItem.Name == "Des")
-                    {
-                        effectInfo.Des = (string)LCHelp.LCConvert.StrChangeToObject(configItem.DataList[dataIndex], typeof(string).FullName);
-                    }
-                    if (configItem.Name == "FollowObj")
-                    {
-                        effectInfo.FollowObj = (bool)LCHelp.LCConvert.StrChangeToObject(configItem.DataList[dataIndex], typeof(bool).FullName);
-                    }
-                    if (configItem.Name == "FixDir")
-                    {
-                        effectInfo.FixDir = (bool)LCHelp.LCConvert.StrChangeToObject(configItem.DataList[dataIndex], typeof(bool).FullName);
-                    }
-                    if (configItem.Name == "Prefab")
-                    {
-                        effectInfo.Prefab = (string)LCHelp.LCConvert.StrChangeToObject(configItem.DataList[dataIndex], typeof(string).FullName);
-                    }
-                }
-                effectDict.Add(effectInfo.Id, effectInfo);
-            }
+            //for (int i = 0; i < effectConfig.Items[0].DataList.Count; i++)
+            //{
+            //    int dataIndex = i;
+            //    EffectInfo effectInfo = new EffectInfo();
+            //    for (int j = 0; j < effectConfig.Items.Count; j++)
+            //    {
+            //        ConfigItem configItem = effectConfig.Items[j];
+            //        if (configItem.Name=="Id")
+            //        {
+            //            effectInfo.Id = (int)LCToolkit.LCConvert.StrChangeToObject(configItem.DataList[dataIndex],typeof(int).FullName);
+            //        }
+            //        if (configItem.Name == "Des")
+            //        {
+            //            effectInfo.Des = (string)LCToolkit.LCConvert.StrChangeToObject(configItem.DataList[dataIndex], typeof(string).FullName);
+            //        }
+            //        if (configItem.Name == "FollowObj")
+            //        {
+            //            effectInfo.FollowObj = (bool)LCToolkit.LCConvert.StrChangeToObject(configItem.DataList[dataIndex], typeof(bool).FullName);
+            //        }
+            //        if (configItem.Name == "FixDir")
+            //        {
+            //            effectInfo.FixDir = (bool)LCToolkit.LCConvert.StrChangeToObject(configItem.DataList[dataIndex], typeof(bool).FullName);
+            //        }
+            //        if (configItem.Name == "Prefab")
+            //        {
+            //            effectInfo.Prefab = (string)LCToolkit.LCConvert.StrChangeToObject(configItem.DataList[dataIndex], typeof(string).FullName);
+            //        }
+            //    }
+            //    effectDict.Add(effectInfo.Id, effectInfo);
+            //}
             
         }
 

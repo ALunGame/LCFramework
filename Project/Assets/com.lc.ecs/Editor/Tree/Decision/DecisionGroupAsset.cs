@@ -1,5 +1,5 @@
-﻿using LCECS.Model;
-using LCHelp;
+﻿using LCECS.Layer.Decision;
+using LCToolkit;
 using LCJson;
 using LCNode.Model;
 using LCNode.Model.Internal;
@@ -19,12 +19,10 @@ namespace LCECS.Tree
             BaseGraph graphData = decisionAsset.DeserializeGraph();
 
             //运行时数据结构
-            DecisionModel model = new DecisionModel();
-            model.id = decisionAsset.TreeId;
-            model.tree = SerializeHelp.SerializeToTree(graphData);
+            DecisionTree model = new DecisionTree(decisionAsset.TreeId, SerializeHelp.SerializeToTree(graphData));
 
             string filePath = ECSDefPath.GetDecTreePath(decisionAsset.name);
-            LCIO.WriteText(JsonMapper.ToJson(model), filePath);
+            IOHelper.WriteText(JsonMapper.ToJson(model), filePath);
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
             Debug.Log($"决策树生成成功>>>>{filePath}");

@@ -3,7 +3,7 @@ using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using LCToolkit.Help;
+using LCToolkit;
 using UnityObject = UnityEngine.Object;
 
 namespace LCToolkit.Core

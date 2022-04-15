@@ -1,7 +1,6 @@
 ﻿using Demo.Com;
 using LCECS;
 using LCECS.Layer.Info;
-using LCTileMap;
 using UnityEngine;
 
 namespace Demo.Info

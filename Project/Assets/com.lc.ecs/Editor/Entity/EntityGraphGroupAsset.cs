@@ -1,5 +1,5 @@
-﻿using LCECS.Model;
-using LCHelp;
+﻿using LCECS.Core;
+using LCToolkit;
 using LCJson;
 using LCNode;
 using LCNode.Model;
@@ -15,14 +15,14 @@ namespace LCECS.EntityGraph
     {
         public override string DisplayName => "实体配置";
 
-        public static EntityModel SerializeToEntityModel(BaseGraph graph)
+        public static Entity SerializeToEntityModel(BaseGraph graph)
         {
             List<Entity_Node> rootNodes = NodeHelper.GetNodes<Entity_Node>(graph);
             if (rootNodes.Count <= 0)
             {
                 Debug.LogError($"试图序列化出错，没有根节点");
             }
-            EntityModel model = rootNodes[0].GetModel();
+            Entity model = rootNodes[0].GetModel();
             return model;
         }
 
@@ -32,10 +32,10 @@ namespace LCECS.EntityGraph
             BaseGraph graphData = entityAsset.DeserializeGraph();
 
             //运行时数据结构
-            EntityModel model = SerializeToEntityModel(graphData);
+            Entity model = SerializeToEntityModel(graphData);
 
             string filePath = ECSDefPath.GetEntityPath(entityAsset.name);
-            LCIO.WriteText(JsonMapper.ToJson(model), filePath);
+            IOHelper.WriteText(JsonMapper.ToJson(model), filePath);
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
             Debug.Log($"实体配置生成成功>>>>{filePath}");

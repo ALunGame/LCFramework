@@ -1,4 +1,4 @@
-using LCHelp;
+using LCToolkit;
 using LCTimeline.Serialize;
 using System;
 using System.Collections.Generic;
@@ -60,22 +60,19 @@ namespace LCTimeline.View
         {
             GUILayout.BeginHorizontal();
 
-            EDLayout.CreateHorizontal("", HorWidth, window.ToolbarSize.height, () =>
-            {
+            GUILayoutExtension.HorizontalGroup(() => {
                 DrawPlayOperate();
                 GUILayout.FlexibleSpace();
-
                 DrawSkillLineTime();
-            });
+            },GUILayout.Width(HorWidth), GUILayout.Height(window.ToolbarSize.height));
 
             GUILayout.FlexibleSpace();
             GUILayout.Label(GetTimelineName());
             GUILayout.FlexibleSpace();
 
-            EDLayout.CreateHorizontal("", HorWidth, window.ToolbarSize.height, () =>
-            {
+            GUILayoutExtension.HorizontalGroup(() => {
                 DrawBtnList();
-            });
+            }, GUILayout.Width(HorWidth), GUILayout.Height(window.ToolbarSize.height));
 
             GUILayout.EndHorizontal();
         }
@@ -122,7 +119,7 @@ namespace LCTimeline.View
         {
             if (GUILayout.Button(NewContent, EditorStyles.toolbarButton))
             {
-                EDPopPanel.PopWindow("输入配置名", (string name) =>
+                MiscHelper.Input("输入配置名", (string name) =>
                 {
                     window.CreateTimeline(name);
                 });

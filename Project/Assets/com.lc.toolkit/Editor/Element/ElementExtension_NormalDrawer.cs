@@ -10,7 +10,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using UnityObject = UnityEngine.Object;
 using LCToolkit;
-using LCToolkit.Help;
+using LCToolkit;
 
 namespace LCToolkit
 {

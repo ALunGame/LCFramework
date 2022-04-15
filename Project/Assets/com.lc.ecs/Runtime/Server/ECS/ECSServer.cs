@@ -58,7 +58,7 @@ namespace LCECS.Server.ECS
             EntityJson entityData = ECSLayerLocate.Info.GetEntityConf(entityConfId);
 
             //初始化实体
-            entity.Init(EntityId, entityConfId, entityData.Group);
+            entity.Init(EntityId);
 
             //保存
             AddEntity(EntityId, entity);

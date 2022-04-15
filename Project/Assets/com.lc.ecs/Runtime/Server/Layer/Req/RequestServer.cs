@@ -1,6 +1,6 @@
 ﻿using LCECS.Data;
 using LCECS.Layer.Request;
-using LCHelp;
+using LCToolkit;
 using LCJson;
 using System;
 using System.Collections.Generic;
@@ -17,21 +17,18 @@ namespace LCECS.Server.Layer
         
         private void RegAllRequest()
         {
-            List<Type> requestTypes = LCReflect.GetInterfaceByType<IRequest>();
-            if (requestTypes == null)
-                return;
-            
-            foreach (Type type in requestTypes)
+            foreach (Type type in ReflectionHelper.GetChildTypes<IRequest>())
             {
-                RequestAttribute attr = LCReflect.GetTypeAttr<RequestAttribute>(type);
-                if (attr == null)
+                if (AttributeHelper.TryGetTypeAttribute(type, out RequestAttribute attr))
+                {
+                    IRequest request = ReflectionHelper.CreateInstance<IRequest>(type.FullName);
+                    RequestDict.Add((int)attr.ReqId, request);
+                }
+                else
                 {
                     ECSLocate.Log.Log("有请求没有加特性 走权重 >>>>>>", type.Name);
                     return;
                 }
-
-                IRequest request = LCReflect.CreateInstanceByType<IRequest>(type.FullName);
-                RequestDict.Add((int)attr.ReqId, request);
             }
         }
         
@@ -143,7 +140,7 @@ namespace LCECS.Server.Layer
                     return;
                 }
                 //执行请求
-                ECSLayerLocate.Behavior.PushBev(workData);
+                ECSLayerLocate.Behavior.ReqBev(workData);
                 return;
             }
 
@@ -161,7 +158,7 @@ namespace LCECS.Server.Layer
                 workData.CurrReqId = selfSwId;
 
                 //执行请求
-                ECSLayerLocate.Behavior.PushBev(workData);
+                ECSLayerLocate.Behavior.ReqBev(workData);
                 return;
             }
 
@@ -172,7 +169,7 @@ namespace LCECS.Server.Layer
                 return;
             }
             //执行请求
-            ECSLayerLocate.Behavior.PushBev(workData);
+            ECSLayerLocate.Behavior.ReqBev(workData);
         }
     }
 }

@@ -4,7 +4,7 @@ using Demo.Info;
 using LCECS;
 using LCECS.Core;
 using LCECS.Data;
-using LCHelp;
+using LCToolkit;
 using LCSkill;
 using LCUI;
 using UnityEngine;
@@ -40,8 +40,6 @@ namespace Demo
 
         private void Update()
         {
-            //时间线
-            TimeLineHelp.Update();
             ComputeVelocity();
             OnClickNormalAttack();
         }
@@ -159,7 +157,7 @@ namespace Demo
             Vector3 pos = new Vector3(playerPos.x - ((float)TempConfig.MapSizeX / 2), playerPos.y - ((float)TempConfig.MapSizeY / 2));
             Vector3 size = new Vector3(TempConfig.MapSizeX, TempConfig.MapSizeY);
             Rect mapCheck = new Rect(pos, size);
-            EDGizmos.DrawRect(mapCheck, Color.green);
+            GizmosHelper.DrawRect(mapCheck, Color.green);
         }
 
         private void DrawBgCheckBox(Vector3 playerPos)
@@ -167,7 +165,7 @@ namespace Demo
             Vector3 pos = new Vector3(playerPos.x - 45, -10);
             Vector3 size = new Vector3(90, 20);
             Rect bgCheck = new Rect(pos, size);
-            EDGizmos.DrawRect(bgCheck, Color.blue);
+            GizmosHelper.DrawRect(bgCheck, Color.blue);
         }
 
     }

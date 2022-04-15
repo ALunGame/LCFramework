@@ -1,10 +1,8 @@
-﻿using System;
-using LCTimeline.Player;
+﻿using LCTimeline.Player;
+using LCToolkit;
+using System;
 using UnityEditor;
 using UnityEngine;
-using LCToolkit.Extension;
-using LCToolkit.Help;
-using LCToolkit;
 
 namespace LCTimeline.View
 {
@@ -115,7 +113,7 @@ namespace LCTimeline.View
             OnDrawClip();
             GUILayout.EndArea();
 
-            GUIHelper.DrawOutline(ShowRect, 1, Color.black);
+            MiscHelper.DrawOutline(ShowRect, 1, Color.black);
         }
 
         public virtual void OnDrawClip()

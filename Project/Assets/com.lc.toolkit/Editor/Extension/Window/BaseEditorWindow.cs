@@ -3,7 +3,7 @@ using UnityEditor;
 using UnityEngine;
 using LCToolkit.Core;
 
-namespace LCToolkit.Extension
+namespace LCToolkit
 {
     public abstract class BaseEditorWindow : EditorWindow
     {

@@ -1,4 +1,5 @@
 using LCToolkit;
+using LCToolkit.Command;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -30,8 +31,13 @@ namespace LCConfig
         private Dictionary<FieldInfo, ConfigKeyAttribute> keyFields = new Dictionary<FieldInfo, ConfigKeyAttribute>();
         private Dictionary<FieldInfo, ConfigValueAttribute> valueFields = new Dictionary<FieldInfo, ConfigValueAttribute>();
 
+        private List<IConfig> SelConfigs = new List<IConfig>();
+        public CommandDispatcher CommandDispacter { get; private set; }
+
         public void ChangeSelAsset(ConfigAsset asset)
         {
+            CommandDispacter = new CommandDispatcher();
+
             currSelAsset = asset;
             List<IConfig> tmpConfigs = currSelAsset.Load();
             if (tmpConfigs == null)
@@ -70,9 +76,6 @@ namespace LCConfig
 
         private float BtnWidth = 100;
         private float BtnHeight = 50;
-        private List<Rect> BtnRect = new List<Rect>();
-        private IConfig CurrSelConfig = null;
-        public Color UnSelectColor = new Color32(109, 140, 171, 255);
         public Color SelectColor = new Color32(158, 203, 247, 255);
 
         private void OnGUI()
@@ -111,18 +114,12 @@ namespace LCConfig
                         IConfig config = configs[i];
                         GUILayoutExtension.HorizontalGroup(() =>
                         {
-                            Color rectColor = UnSelectColor;
-                            if (CurrSelConfig != null && CurrSelConfig.Equals(config))
-                                rectColor = SelectColor;
-                            
-                            Rect rect = EditorGUILayout.GetControlRect(false, 35);
-                            EditorGUI.DrawRect(rect, rectColor);
-                            OnSelConfigEvent(rect, config);
-
+                            GUI.color = Color.white;
+                            if (IsInSel(config))
+                                GUI.color = SelectColor;
                             MiscHelper.Btn("Ñ¡Ôñ", 35, 35, () =>
                             {
-                                CurrSelConfig = config;
-
+                                OnClickSelBtn(config);
                             });
                             foreach (var fieldInfo in keyFields.Keys)
                             {
@@ -131,104 +128,69 @@ namespace LCConfig
                                 value = GUIExtension.DrawField(EditorGUILayout.GetControlRect(true, height), value, GUIHelper.TextContent(""));
                                 fieldInfo.SetValue(config, value);
                             }
+                            GUI.color = Color.white;
                         });
                     }
                 });
             }
 
-            //OnHandleEvent(Event.current);
+            OnHandleEvent(Event.current);
         }
 
         public void OnHandleEvent(Event evt)
         {
             if (evt == null)
                 return;
-            //Vector2 mousePos = evt.mousePosition;
-            //switch (evt.type)
-            //{
-            //    case EventType.MouseDown:
-            //        //×ó¼ü
-            //        if (Event.current.button == 0)
-            //        {
-            //            CurrSelConfig = GetSelConfig(mousePos);
-            //        }
-            //        //ÓÒ¼ü
-            //        if (Event.current.button == 1)
-            //        {
-
-            //        }
-            //        break;
-            //    default:
-            //        break;
-            //}
-        }
-
-        public void OnSelConfigEvent(Rect rect, IConfig config)
-        {
-            if (Event.current == null)
-                return;
-            Vector2 mousePos = Event.current.mousePosition;
-            switch (Event.current.type)
+            //±£´æCtrl+S
+            if (Event.current.Equals(Event.KeyboardEvent("^S")))
             {
-                case EventType.MouseDown:
-                    if (rect.Contains(mousePos))
-                    {
-                        //×ó¼ü
-                        if (Event.current.button == 0)
-                        {
-                            CurrSelConfig = config;
-                        }
-                        //ÓÒ¼ü
-                        if (Event.current.button == 1)
-                        {
-
-                        }
-                    }
-                    break;
-                default:
-                    break;
+                SaveAsset(currSelAsset);
+            }
+            //³·ÏúCtrl+Z
+            if (Event.current.Equals(Event.KeyboardEvent("^Z")))
+            {
+                CommandDispacter.Undo();
+            }
+            //»ØÍËCtrl+Y
+            if (Event.current.Equals(Event.KeyboardEvent("^Y")))
+            {
+                CommandDispacter.Redo();
+            }
+            //»ØÍËCtrl+D ¸´ÖÆ
+            if (Event.current.Equals(Event.KeyboardEvent("^D")))
+            {
+                screenshot.enabled = true;
+            }
+            //É¾³ýDel
+            if (Event.current.Equals(Event.KeyboardEvent("Delete")))
+            {
+                screenshot.enabled = true;
             }
         }
 
-        private IConfig GetSelConfig(Vector2 mousePos)
+        private bool IsInSel(IConfig config)
         {
-            for (int i = 0; i < BtnRect.Count; i++)
+            for (int i = 0; i < SelConfigs.Count; i++)
             {
-                if (BtnRect[i].Contains(mousePos))
+                if (SelConfigs[i].Equals(config))
                 {
-                    return configs[i];
+                    return true;
                 }
             }
-            return null;
+            return false;
         }
 
-        private void DrawTabView(FieldInfo fieldInfo,string displayName,string tipName)
+        private void OnClickSelBtn(IConfig config)
         {
-            GUILayoutExtension.HorizontalGroup(() =>
+            for (int i = 0; i < SelConfigs.Count; i++)
             {
-                for (int i = 0; i < configs.Count; i++)
+                if (SelConfigs[i].Equals(config))
                 {
-                    IConfig config = configs[i];
-                    object value = fieldInfo.GetValue(config);
-                    float height = GUIExtension.GetHeight(fieldInfo.FieldType, value, GUIHelper.TextContent(""));
-                    value = GUIExtension.DrawField(EditorGUILayout.GetControlRect(true, height), value, GUIHelper.TextContent(""));
-                    fieldInfo.SetValue(config, value);
+                    SelConfigs.RemoveAt(i);
+                    return;
                 }
-            });
-            
-
-            ////Ò»ÁÐ
-            //GUILayoutExtension.VerticalGroup(() =>
-            //{
-            //    for (int i = 0; i < configs.Count; i++)
-            //    {
-            //        IConfig config = configs[i];
-            //        object value = fieldInfo.GetValue(config);
-            //        float height = GUIExtension.GetHeight(fieldInfo.FieldType, value, GUIHelper.TextContent(""));
-            //        value = GUIExtension.DrawField(EditorGUILayout.GetControlRect(true, height), value, GUIHelper.TextContent(""));
-            //        fieldInfo.SetValue(config, value);
-            //    }
-            //});
+            }
+            SelConfigs.Add(config);
         }
 
         private void SaveAsset(ConfigAsset asset)

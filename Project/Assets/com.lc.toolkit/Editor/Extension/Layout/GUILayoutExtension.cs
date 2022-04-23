@@ -61,11 +61,12 @@ namespace LCToolkit
         /// <param name="drawFunc">组内绘制函数</param>
         /// <param name="options">布局属性</param>
         /// <returns></returns>
-        public static void HorizontalGroup(Action drawFunc, params GUILayoutOption[] options)
+        public static Rect HorizontalGroup(Action drawFunc, params GUILayoutOption[] options)
         {
-            EditorGUILayout.BeginHorizontal(EditorStylesExtension.RoundedBoxStyle, options);
+            Rect rect = EditorGUILayout.BeginHorizontal(EditorStylesExtension.RoundedBoxStyle, options);
             drawFunc?.Invoke();
             EditorGUILayout.EndHorizontal();
+            return rect;
         }
 
         /// <summary>

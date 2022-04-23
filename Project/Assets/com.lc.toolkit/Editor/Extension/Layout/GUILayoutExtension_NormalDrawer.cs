@@ -73,9 +73,10 @@ namespace LCToolkit
             if (typeof(IList).IsAssignableFrom(fieldInfo.FieldType))
                 value = DrawArrayField(fieldInfo.FieldType, value, label);
             else
-                value = DrawSingleField(context, label);
-
-            value = DrawSingleField(value, label);
+            {
+                float height = GUIExtension.GetHeight(fieldInfo.FieldType, value, label);
+                value = GUIExtension.DrawField(EditorGUILayout.GetControlRect(true, height), value, label);
+            }
             fieldInfo.SetValue(context, value);
         }
 

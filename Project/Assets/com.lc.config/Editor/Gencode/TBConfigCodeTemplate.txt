@@ -1,0 +1,36 @@
+﻿using LCJson;
+using LCLoad;
+using System.Collections;
+using System.Collections.Generic;
+#USINGNAME#
+
+namespace LCConfig
+{
+    /// <summary>
+    /// #DISPLAYNAME#配置
+    /// </summary>
+    public class #CONFIGNAME# : Dictionary<#KEY#, #VALUE#>
+    {
+        /// <summary>
+        /// 添加#DISPLAYNAME#
+        /// </summary>
+#FUNC1TIP#
+        public void AddConfig(#FUNC1PARAM#)
+        {
+            #FUNC1VALUE#
+        }
+
+        /// <summary>
+        /// 添加#DISPLAYNAME#
+        /// </summary>
+        public void AddConfig(List<IConfig> configs)
+        {
+            foreach (var item in configs)
+            {
+                #CLASSNAME# config = (#CLASSNAME#)item;
+                AddConfig(#FUNC2PARAM#);
+            }
+        }
+
+    }
+}

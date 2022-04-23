@@ -1,0 +1,23 @@
+﻿using System;
+using System.Collections.Generic;
+#USINGNAME#
+
+namespace LCConfig
+{
+    public static class ConfigMapping
+    {
+        private static Func<string, List<IConfig>> loadFunc = null;
+
+        #CNFSTR#
+
+        public static void Init(Func<string, List<IConfig>> loadFunc)
+        {
+            ConfigMapping.loadFunc = loadFunc;
+        }
+
+        public static void Reload()
+        {
+#RELOADVALUE#
+        }
+    }
+}

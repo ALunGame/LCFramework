@@ -1,5 +1,6 @@
 ﻿using LCECS.Core;
 using LCJson;
+using LCLoad;
 using LCToolkit;
 using System;
 using System.Collections.Generic;
@@ -63,10 +64,8 @@ namespace LCECS.Server.Factory
         /// <returns></returns>
         private Entity LoadEntityModel(int id)
         {
-            TextAsset jsonData = ECSLocate.Factory.GetProduct<TextAsset>(FactoryType.Asset, null, ECSDefPath.GetEntityPath(id.ToString()));
-            if (jsonData == null)
-                return null;
-            Entity entity = JsonMapper.ToObject<Entity>(jsonData.text);
+            string text   = LoadHelper.LoadString(ECSDefPath.GetEntityPath(id.ToString()));
+            Entity entity = JsonMapper.ToObject<Entity>(text);
             if (entity == null)
                 return null;
             return entity;

@@ -1,7 +1,7 @@
 {
   "dependencies": {
     "com.littlebigfun.addressable-importer": {
-      "version": "file:F:/Mine/MyGit/LCFramework/LCFramework/Packages/unity-addressable-importer",
+      "version": "file:../../Packages/unity-addressable-importer",
       "depth": 0,
       "source": "local",
       "dependencies": {

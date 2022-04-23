@@ -26,8 +26,19 @@ namespace LCECS.Core.Tree.Nodes.Control
         protected override bool OnEvaluate(NodeData wData)
         {
             NodeControlRandomSelectorContext thisContext = GetContext<NodeControlRandomSelectorContext>(wData);
-            thisContext.currentSelectedIndex = -1;
 
+            //当前选择的还可以执行
+            if (IsIndexValid(thisContext.currentSelectedIndex))
+            {
+                Node node = GetChild<Node>(thisContext.currentSelectedIndex);
+                if (node.Evaluate(wData))
+                {
+                    return true;
+                }
+            }
+
+            //随机新的
+            thisContext.currentSelectedIndex = -1;
             //寻找可以运行的子节点
             List<Node> canRunChildNodes = new List<Node>();
             int childCount = GetChildCount();
@@ -74,6 +85,8 @@ namespace LCECS.Core.Tree.Nodes.Control
                 if (NodeState.IsFinished(runningState))
                 {
                     thisContext.lastSelectedIndex = -1;
+                    //重新随机
+                    thisContext.currentSelectedIndex = -1;
                 }
             }
             return runningState;

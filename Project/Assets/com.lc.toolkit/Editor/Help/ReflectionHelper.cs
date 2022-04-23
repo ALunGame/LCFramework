@@ -66,7 +66,7 @@ namespace LCToolkit
         /// <param name="_fullName">类型全名</param>
         /// <param name="_assemblyString">程序集名</param>
         /// <returns></returns>
-        public static Type GetType(string _fullName, string _assemblyString)
+        public static Type GetType(string _fullName, string _assemblyString = "Assembly-CSharp")
         {
             Type type;
             if (FullNameTypeCache.TryGetValue(_fullName, out type))

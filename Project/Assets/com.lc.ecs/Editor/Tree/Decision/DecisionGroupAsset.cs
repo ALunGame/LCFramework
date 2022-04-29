@@ -13,6 +13,17 @@ namespace LCECS.Tree
     {
         public override string DisplayName => "决策树";
 
+        public override void OnClickCreateBtn()
+        {
+            MiscHelper.Input($"输入决策树Id：", (string x) =>
+            {
+                int treeId = int.Parse(x);
+                string assetName = "decision_" + treeId;
+                DecisionAsset asset = CreateGraph(assetName) as DecisionAsset;
+                asset.TreeId = treeId;
+            });
+        }
+
         public override void ExportGraph(InternalBaseGraphAsset graph)
         {
             DecisionAsset decisionAsset = graph as DecisionAsset;
@@ -21,7 +32,7 @@ namespace LCECS.Tree
             //运行时数据结构
             DecisionTree model = new DecisionTree(decisionAsset.TreeId, SerializeHelp.SerializeToTree(graphData));
 
-            string filePath = ECSDefPath.GetDecTreePath(decisionAsset.name);
+            string filePath = ECSDefPath.GetDecTreePath(decisionAsset.TreeId);
             IOHelper.WriteText(JsonMapper.ToJson(model), filePath);
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();

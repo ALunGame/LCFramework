@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 713409ea51ff2014e90f40db0a90f35a, type: 3}
+  m_Name: SystemSortAsset
+  m_EditorClassIdentifier: 
+  updateSystems:
+  - typeName: AnimSystem
+    typeFullName: Demo.System.AnimSystem
+    sort: 0
+  - typeName: AttributeSystem
+    typeFullName: Demo.System.AttributeSystem
+    sort: 1
+  - typeName: PlayerEnergySystem
+    typeFullName: Demo.System.PlayerEnergySystem
+    sort: 2
+  - typeName: PlayerPhysicsSystem
+    typeFullName: Demo.System.PlayerPhysicsSystem
+    sort: 3
+  - typeName: SeekPathSystem
+    typeFullName: Demo.System.SeekPathSystem
+    sort: 4
+  - typeName: StateSystem
+    typeFullName: Demo.System.StateSystem
+    sort: 5
+  - typeName: BackgroundSystem
+    typeFullName: Demo.System.BackgroundSystem
+    sort: 6
+  - typeName: EffectSystem
+    typeFullName: Demo.System.EffectSystem
+    sort: 7
+  - typeName: MapSystem
+    typeFullName: Demo.System.MapSystem
+    sort: 8
+  - typeName: BuffSystem
+    typeFullName: LCSkill.BuffSystem
+    sort: 9
+  - typeName: DamageSystem
+    typeFullName: LCSkill.DamageSystem
+    sort: 10
+  - typeName: TimelineSystem
+    typeFullName: LCSkill.TimelineSystem
+    sort: 11
+  fixedUpdateSystems: []
+  threadSystems: []

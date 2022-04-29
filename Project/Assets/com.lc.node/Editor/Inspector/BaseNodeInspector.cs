@@ -1,11 +1,10 @@
 ﻿using LCNode.Model;
 using LCNode.View;
 using LCNode.View.Utils;
+using LCToolkit;
+using LCToolkit.Core;
 using System.Collections.Generic;
 using UnityEngine;
-using LCToolkit.Core;
-using LCToolkit;
-using LCToolkit;
 
 namespace LCNode.Inspector
 {

@@ -48,12 +48,14 @@ namespace LCConfig
                     EditorGUILayout.HelpBox("没有选择配置类！！！", MessageType.Error);
                     MiscHelper.Dropdown($"选择的配置类", cnfNames, (int a) => {
                         groupAsset.configTypeFullName = cnfTypes[a].FullName;
+                        groupAsset.configTypeName = cnfTypes[a].Name;
                     },300);
                 }
                 else
                 {
                     MiscHelper.Dropdown(groupAsset.configTypeFullName, cnfNames, (int a) => {
                         groupAsset.configTypeFullName = cnfTypes[a].FullName;
+                        groupAsset.configTypeName = cnfTypes[a].Name;
                     }, 300);
                 }
             });
@@ -74,15 +76,6 @@ namespace LCConfig
                     {
                         groupAsset.CreateAsset(name);
                     });
-                }
-
-                if (GUILayout.Button($"导出配置", GUILayout.Height(50)))
-                {
-                    //List<InternalBaseGraphAsset> graphs = groupAsset.GetAllGraph();
-                    //for (int i = 0; i < graphs.Count; i++)
-                    //{
-                    //    groupAsset.ExportGraph(graphs[i]);
-                    //}
                 }
             });
         }

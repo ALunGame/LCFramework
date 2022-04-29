@@ -35,7 +35,10 @@ namespace LCNode
         public NodeValueAttribute(string lable, string tooltip = "")
         {
             Lable = lable;
-            Tooltip = tooltip;
+            if (string.IsNullOrEmpty(""))
+                Tooltip = lable;
+            else
+                Tooltip = tooltip;
         }
     }
 

@@ -15,15 +15,27 @@ namespace LCECS.EntityGraph
     {
         public override string DisplayName => "实体配置";
 
-        public static Entity SerializeToEntityModel(BaseGraph graph)
+        public static Entity SerializeToEntityModel(BaseGraph graph, EntityGraphAsset entityAsset)
         {
             List<Entity_Node> rootNodes = NodeHelper.GetNodes<Entity_Node>(graph);
             if (rootNodes.Count <= 0)
             {
                 Debug.LogError($"试图序列化出错，没有根节点");
             }
-            Entity model = rootNodes[0].GetModel();
+            List<BaseCom> coms = rootNodes[0].GetModel();
+            Entity model = new Entity(entityAsset.entityId, rootNodes[0].name, rootNodes[0].decTreeId, coms);
             return model;
+        }
+
+        public override void OnClickCreateBtn()
+        {
+            MiscHelper.Input($"输入实体Id：", (string x) =>
+            {
+                int entityId = int.Parse(x);
+                string assetName = "entity_" + entityId;
+                EntityGraphAsset asset = CreateGraph(assetName) as EntityGraphAsset;
+                asset.entityId = entityId;
+            });
         }
 
         public override void ExportGraph(InternalBaseGraphAsset graph)
@@ -32,9 +44,9 @@ namespace LCECS.EntityGraph
             BaseGraph graphData = entityAsset.DeserializeGraph();
 
             //运行时数据结构
-            Entity model = SerializeToEntityModel(graphData);
+            Entity model = SerializeToEntityModel(graphData,entityAsset);
 
-            string filePath = ECSDefPath.GetEntityPath(entityAsset.name);
+            string filePath = ECSDefPath.GetEntityPath(entityAsset.entityId);
             IOHelper.WriteText(JsonMapper.ToJson(model), filePath);
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();

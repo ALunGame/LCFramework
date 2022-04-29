@@ -7,9 +7,13 @@ using Object = UnityEngine.Object;
 
 namespace LCConfig
 {
-    [CreateAssetMenu(fileName = "配置表", menuName = "配置组/配置表", order = 4)]
     public class ConfigAssetGroup : ScriptableObject
     {
+        //配置类型
+        [SerializeField]
+        [HideInInspector]
+        public string configTypeName;
+
         //配置类型
         [SerializeField]
         [HideInInspector]

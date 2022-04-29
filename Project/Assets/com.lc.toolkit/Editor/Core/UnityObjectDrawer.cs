@@ -1,9 +1,6 @@
 ﻿using System;
 using UnityEditor;
-using UnityEditor.SceneManagement;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using LCToolkit;
 using UnityObject = UnityEngine.Object;
 
 namespace LCToolkit.Core
@@ -39,34 +36,22 @@ namespace LCToolkit.Core
             return result;
         }
 
-        private void GetAsset(UnityObjectAsset unityObject, Type objType, bool sceneObj)
+        private void GetAsset(UnityObjectAsset unityObject, Type objType)
         {
             if (unityObject == null || string.IsNullOrEmpty(unityObject.ObjPath))
                 return;
-            unityObject.Obj = unityObject.GetObj(objType, sceneObj);
+            unityObject.Obj = unityObject.GetObj(objType);
         }
 
-        private void UpdateAssetPath(UnityObjectAsset unityObject, Type objType, bool sceneObj)
+        private void UpdateAssetPath(UnityObjectAsset unityObject)
         {
             if (unityObject == null || unityObject.Obj == null)
             {
                 unityObject.ObjPath = "";
                 return;
             }
-
-            if (sceneObj)
-            {
-                GameObject objGo = null;
-                if (objType == typeof(GameObject))
-                    objGo = (GameObject)unityObject.Obj;
-                else if (unityObject.Obj is Component)
-                    objGo = ((Component)unityObject.Obj).gameObject;
-                unityObject.ObjPath = GetPathParentToChild(objGo.transform);
-            }
-            else
-            {
-                unityObject.ObjPath = AssetDatabase.GetAssetPath(unityObject.Obj);
-            }
+            unityObject.ObjPath = AssetDatabase.GetAssetPath(unityObject.Obj);
+            unityObject.ObjName = unityObject.Obj.name;
         }
 
         public override void OnGUI(Rect _position, GUIContent _label)
@@ -77,21 +62,17 @@ namespace LCToolkit.Core
             }
 
             UnityObjectAsset unityObject = Target as UnityObjectAsset;
+            Type objType = typeof(UnityEngine.GameObject);
             if (AttributeHelper.TryGetFieldAttribute(FieldInfo, out UnityAssetTypeAttribute assetTypeAttribute))
+                objType = assetTypeAttribute.ObjType;
+
+            GetAsset(unityObject, objType);
+            UnityObject tmpObj = unityObject.Obj;
+            tmpObj = EditorGUI.ObjectField(_position, _label, tmpObj, objType, false);
+            if (tmpObj != null && !tmpObj.Equals(unityObject.Obj))
             {
-                GetAsset(unityObject, assetTypeAttribute.ObjType, assetTypeAttribute.SceneObj);
-                UnityObject tmpObj = unityObject.Obj;
-                tmpObj = EditorGUILayout.ObjectField(_label, tmpObj, assetTypeAttribute.ObjType, assetTypeAttribute.SceneObj);
-                if (tmpObj != null && !tmpObj.Equals(unityObject.Obj))
-                {
-                    unityObject.Obj = tmpObj;
-                    UpdateAssetPath(unityObject, assetTypeAttribute.ObjType, assetTypeAttribute.SceneObj);
-                }
-            }
-            else
-            {
-                _label.text = "需要声明UnityAssetTypeAttribute属性";
-                GUI.Label(_position, _label);
+                unityObject.Obj = tmpObj;
+                UpdateAssetPath(unityObject);
             }
         }
     }

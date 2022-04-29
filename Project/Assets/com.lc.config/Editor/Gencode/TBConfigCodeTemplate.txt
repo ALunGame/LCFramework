@@ -23,11 +23,11 @@ namespace LCConfig
         /// <summary>
         /// 添加#DISPLAYNAME#
         /// </summary>
-        public void AddConfig(List<IConfig> configs)
+        public void AddConfig(List<#CLASSNAME#> configs)
         {
             foreach (var item in configs)
             {
-                #CLASSNAME# config = (#CLASSNAME#)item;
+                #CLASSNAME# config = item;
                 AddConfig(#FUNC2PARAM#);
             }
         }

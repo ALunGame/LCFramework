@@ -74,7 +74,7 @@ namespace LCToolkit
                 value = DrawArrayField(fieldInfo.FieldType, value, label);
             else
             {
-                float height = GUIExtension.GetHeight(fieldInfo.FieldType, value, label);
+                float height = GUIExtension.GetHeight(fieldInfo.FieldType, label);
                 value = GUIExtension.DrawField(EditorGUILayout.GetControlRect(true, height), value, label);
             }
             fieldInfo.SetValue(context, value);
@@ -127,7 +127,7 @@ namespace LCToolkit
                 return value;
             }
 
-            float height = GUIExtension.GetHeight(type, value, label);
+            float height = GUIExtension.GetHeight(type, label);
             return GUIExtension.DrawField(EditorGUILayout.GetControlRect(true, height), value, label);
         }
 
@@ -138,7 +138,7 @@ namespace LCToolkit
 
         public static object DrawField(Type type, object value, GUIContent label)
         {
-            return GUIExtension.DrawField(EditorGUILayout.GetControlRect(true, GUIExtension.GetHeight(type, value, label)), type, value, label);
+            return GUIExtension.DrawField(EditorGUILayout.GetControlRect(true, GUIExtension.GetHeight(type, label)), type, value, label);
         }
 
         public static object DrawField(Type type, object value, string label,string tooltip)
@@ -147,7 +147,7 @@ namespace LCToolkit
             if (typeof(IList).IsAssignableFrom(type))
                 return DrawArrayField(type, value, GUIHelper.TextContent(label,tooltip));
             else
-                return GUIExtension.DrawField(EditorGUILayout.GetControlRect(true, GUIExtension.GetHeight(type, value, GUIHelper.TextContent(label))), type, value, label, tooltip);
+                return GUIExtension.DrawField(EditorGUILayout.GetControlRect(true, GUIExtension.GetHeight(type, GUIHelper.TextContent(label))), type, value, label, tooltip);
         }
 
         static object DrawArrayField(Type objType, object value, GUIContent label)

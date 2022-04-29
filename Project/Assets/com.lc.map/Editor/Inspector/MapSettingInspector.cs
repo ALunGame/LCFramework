@@ -26,7 +26,6 @@ namespace LCMap
             if (GUILayout.Button("´´½¨Ä¿Â¼", GUILayout.Height(30)))
             {
                 MapSetting mapSetting = target as MapSetting;
-                Directory.CreateDirectory(mapSetting.ActorSearchPath);
                 Directory.CreateDirectory(mapSetting.MapSearchPath);
                 Directory.CreateDirectory(mapSetting.MapExportSavePath);
                 AssetDatabase.SaveAssets();

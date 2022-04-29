@@ -22,49 +22,16 @@ namespace LCToolkit
         [JsonIgnore]
         public UnityObject Obj;
 
+        public string ObjName;
         public string ObjPath;
 
 #if UNITY_EDITOR
 
-        public UnityObject GetObj(Type objType, bool sceneObj)
+        public UnityObject GetObj(Type objType)
         {
             if (string.IsNullOrEmpty(ObjPath))
                 return null;
-            if (sceneObj)
-            {
-                Scene scene = EditorSceneManager.GetActiveScene();
-                GameObject[] rootGos = scene.GetRootGameObjects();
-                for (int i = 0; i < rootGos.Length; i++)
-                {
-                    GameObject rootGo = rootGos[i];
-                    if (ObjPath.Contains(rootGo.name))
-                    {
-                        Transform targetTrans = null;
-                        if (!ObjPath.Contains("/"))
-                            targetTrans = rootGo.transform;
-                        else
-                        {
-                            int index = ObjPath.IndexOf('/') + 1;
-                            string leftPath = ObjPath.Substring(index, ObjPath.Length - index);
-                            targetTrans = rootGo.transform.Find(leftPath);
-                        }
-
-                        if (targetTrans != null)
-                        {
-                            if (objType == typeof(GameObject))
-                                return targetTrans.gameObject;
-                            else
-
-                                return targetTrans.GetComponent(objType);
-                        }
-                    }
-                }
-            }
-            else
-            {
-                return AssetDatabase.LoadAssetAtPath(ObjPath, objType);
-            }
-            return null;
+            return AssetDatabase.LoadAssetAtPath(ObjPath, objType);
         }
 
 #endif

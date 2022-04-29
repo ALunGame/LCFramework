@@ -17,7 +17,7 @@ namespace LCToolkit
         /// <summary>
         /// 在Inspector面板上绘制一个对象
         /// </summary>
-        public static void DrawObjectInInspector(object _targetObject, UnityObject _unityOwner = null)
+        public static void DrawObjectInInspector(object _targetObject, object _owner = null)
         {
             if (_targetObject is UnityObject)
             {
@@ -26,16 +26,16 @@ namespace LCToolkit
             else
             {
                 Selection.activeObject = ObjectInspector.Instance;
-                ObjectInspector.Instance.Init(_targetObject, _unityOwner);
+                ObjectInspector.Instance.Init(_targetObject, _owner);
             }
         }
 
         /// <summary>
         /// 在Inspector面板上绘制一个对象
         /// </summary>
-        public static void DrawObjectInInspector(string _title, object _targetObject, UnityObject _unityOwner = null)
+        public static void DrawObjectInInspector(string _title, object _targetObject, object _owner = null)
         {
-            DrawObjectInInspector(_targetObject, _unityOwner);
+            DrawObjectInInspector(_targetObject, _owner);
             ObjectInspector.Instance.name = _title;
         }
     }

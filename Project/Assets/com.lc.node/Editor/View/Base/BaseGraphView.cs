@@ -76,18 +76,9 @@ namespace LCNode.View
             return compatiblePorts;
         }
 
-        public virtual IEnumerable<Type> GetNodeTypes()
+        public IEnumerable<Type> GetNodeTypes()
         {
-            foreach (var type in ReflectionHelper.GetChildTypes<BaseNode>())
-            {
-                if (type.IsAbstract) 
-                    continue;
-                if (!AttributeHelper.TryGetTypeAttribute(type,out NodeMenuItemAttribute attr))
-                    continue;
-                if (Model.NodeNamespace != null && !Model.NodeNamespace.Contains(type.Namespace))
-                    continue;
-                yield return type;
-            }
+            return Model.GetNodeTypes();
         }
 
         protected virtual Type GetNodeViewType(BaseNode node)

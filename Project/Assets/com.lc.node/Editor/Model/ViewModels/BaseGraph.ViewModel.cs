@@ -4,6 +4,7 @@ using System.Linq;
 using UnityEngine;
 using LCJson;
 using LCToolkit.ViewModel;
+using LCToolkit;
 
 namespace LCNode.Model
 {
@@ -244,6 +245,21 @@ namespace LCNode.Model
         {
             return BaseConnection.CreateNew<BaseConnection>(from, fromPortName, to, toPortName);
         }
+
+        public virtual IEnumerable<Type> GetNodeTypes()
+        {
+            foreach (var type in ReflectionHelper.GetChildTypes<BaseNode>())
+            {
+                if (type.IsAbstract)
+                    continue;
+                if (!AttributeHelper.TryGetTypeAttribute(type, out NodeMenuItemAttribute attr))
+                    continue;
+                if (NodeNamespace != null && !NodeNamespace.Contains(type.Namespace))
+                    continue;
+                yield return type;
+            }
+        }
+
         #endregion
 
         #region Static

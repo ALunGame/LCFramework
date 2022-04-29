@@ -1,12 +1,14 @@
 using LCNode.Model;
 using UnityEditor;
 using UnityEngine;
+using LCToolkit;
 
 namespace LCECS.Tree
 {
     public class BehaviorAsset : BaseGraphAsset<Behavior>
     {
-        [HideInInspector]
-        public int TreeId;
+        [EDReadOnly]
+        [Header("ÐÐÎªÇëÇó")]
+        public RequestId ReqId;
     }
 }

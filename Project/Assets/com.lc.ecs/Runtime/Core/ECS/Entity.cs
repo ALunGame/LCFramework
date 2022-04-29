@@ -1,8 +1,11 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using LCJson;
+using System;
 
 namespace LCECS.Core
 {
+    [Serializable]
     public sealed class Entity
     {
         private int uid;
@@ -29,16 +32,12 @@ namespace LCECS.Core
         /// </summary>
         public int DecTreeId { get => decTreeId; }
 
-        /// <summary>
-        /// 实体预制体路径
-        /// </summary>
-        private string goAssetPath;
-
+        [NonSerialized]
         private GameObject go;
         /// <summary>
         /// 实体节点（当然可以没有）
         /// </summary>
-        public GameObject Go { get => Go; }
+        public GameObject Go { get => go; }
 
         /// <summary>
         /// 实体是否开启
@@ -51,6 +50,7 @@ namespace LCECS.Core
         private Dictionary<string, BaseCom> coms = new Dictionary<string, BaseCom>();
 
 #if UNITY_EDITOR
+        [JsonIgnore]
         public List<string> Systems = new List<string>();
         //获得所有组件名
         public HashSet<string> GetAllComStr()
@@ -64,15 +64,14 @@ namespace LCECS.Core
 
         }
 
-        public Entity(int id,string name,int treeId,string goAssetPath, List<BaseCom> coms)
+        public Entity(int id,string name,int treeId,List<BaseCom> coms)
         {
             this.id = id;   
             this.decTreeId = treeId;
             this.name = name;
-            this.goAssetPath = goAssetPath; 
             for (int i = 0; i < coms.Count; i++)
             {
-                AddCom(coms[i]);
+                this.coms.Add(coms[i].GetType().FullName, coms[i]);
             }
         }
 
@@ -94,12 +93,12 @@ namespace LCECS.Core
         public void Init(int uid)
         {
             this.uid = uid;
-            if (Go == null && !string.IsNullOrEmpty(goAssetPath))
-            {
-                GameObject prefab = (GameObject)ECSLocate.Factory.GetProduct<Object>(FactoryType.Asset, null, goAssetPath);
-                GameObject go = Object.Instantiate(prefab);
-                SetEntityGo(go);
-            }
+            //if (Go == null && !string.IsNullOrEmpty(goAssetPath))
+            //{
+            //    GameObject prefab = (GameObject)ECSLocate.Factory.GetProduct<Object>(FactoryType.Asset, null, goAssetPath);
+            //    GameObject go = Object.Instantiate(prefab);
+            //    SetEntityGo(go);
+            //}
         }
 
         /// <summary>

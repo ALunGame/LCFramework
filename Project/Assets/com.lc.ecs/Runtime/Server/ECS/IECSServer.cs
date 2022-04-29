@@ -1,4 +1,5 @@
 ﻿using LCECS.Core;
+using LCMap;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,40 +11,82 @@ namespace LCECS.Server.ECS
     /// </summary>
     public interface IECSServer
     {
-        //创建实体（通知所有的系统检测下）  ----由工厂实例化节点
-        Entity CreateEntity(int entityConfId, ref GameObject go);
+        /// <summary>
+        /// 创建演员实体
+        /// </summary>
+        /// <param name="actorObj"></param>
+        /// <returns></returns>
+        Entity CreateEntity(ActorObj actorObj);
 
-        //创建实体（通知所有的系统检测下）  ----不需要实例化节点
-        Entity CreateEntity(int entityConfId, GameObject go);
+        /// <summary>
+        /// 创建实体
+        /// </summary>
+        /// <param name="uid"></param>
+        /// <param name="id">配置Id</param>
+        /// <param name="go"></param>
+        /// <returns></returns>
+        Entity CreateEntity(int uid, int id, GameObject go);
 
-        //获得实体
-        Entity GetEntity(int entityId);
+        /// <summary>
+        /// 获得实体
+        /// </summary>
+        /// <param name="uid"></param>
+        /// <returns></returns>
+        Entity GetEntity(int uid);
 
-        //获得所有实体
+        /// <summary>
+        /// 获得所有实体
+        /// </summary>
+        /// <returns></returns>
         Dictionary<int, Entity> GetAllEntitys();
 
-        //获得全局单一组件
+        /// <summary>
+        /// 检测系统是否检测该实体
+        /// </summary>
+        /// <param name="entityId"></param>
+        void CheckEntityInSystem(int uid);
+
+        /// <summary>
+        /// 获得全局单一组件
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
         T GetGlobalSingleCom<T>() where T : BaseCom;
 
-        //设置全局单一组件的值
+        /// <summary>
+        /// 设置全局单一组件的值
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="changeData"></param>
         void SetGlobalSingleComData<T>(Action<T> changeData) where T : BaseCom;
 
-        //注册全局单一组件改变的回调
+        /// <summary>
+        /// 注册全局单一组件改变的回调
+        /// </summary>
+        /// <param name="comType"></param>
+        /// <param name="callBack"></param>
         void RegGlobalSingleComChangeCallBack(Type comType, Action callBack);
 
-        //注册在Update中更新系统
+        /// <summary>
+        /// 注册在Update中更新的系统
+        /// </summary>
+        /// <param name="system"></param>
         void RegUpdateSystem(BaseSystem system);
 
-        //注册在FixedUpdate中更新系统
+        /// <summary>
+        /// 注册在FixedUpdate中更新的系统
+        /// </summary>
+        /// <param name="system"></param>
         void RegFixedUpdateSystem(BaseSystem system);
 
-        //检测系统是否检测该实体
-        void CheckEntityInSystem(int entityId);
-
-        //执行UpdateSystem
+        /// <summary>
+        /// 执行UpdateSystem
+        /// </summary>
         void ExcuteUpdateSystem();
 
-        //执行UpdateSystem
+        /// <summary>
+        /// 执行FixedUpdateSystem
+        /// </summary>
         void ExcuteFixedUpdateSystem();
 
     }

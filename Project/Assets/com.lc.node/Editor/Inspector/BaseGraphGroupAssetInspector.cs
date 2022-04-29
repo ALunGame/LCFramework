@@ -44,10 +44,7 @@ namespace LCNode.Inspector
             {
                 if (GUILayout.Button($"创建{groupAsset.DisplayName}", GUILayout.Height(50)))
                 {
-                    MiscHelper.Input($"输入{groupAsset.DisplayName}名：", (string name) =>
-                    {
-                        groupAsset.CreateGraph(name);
-                    });
+                    groupAsset.OnClickCreateBtn();
                 }
 
                 if (GUILayout.Button($"导出{groupAsset.DisplayName}配置", GUILayout.Height(50)))

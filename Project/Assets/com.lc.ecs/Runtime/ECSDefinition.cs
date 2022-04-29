@@ -1,28 +1,16 @@
-﻿namespace LCECS
+﻿using LCConfig;
+
+namespace LCECS
 {
     /// <summary>
     /// ECS默认路径定义
     /// </summary>
     public static class ECSDefPath
     {
-        //实体配置路径
-        public const string EntityJsonPath = "Resources/Config/ECS/EntityJson.txt";
-
-        //逻辑层请求权重路径
-        public const string LogicReqWeightPath = "Resources/Config/ECS/ReqWeight.txt";
-
-        //系统排序
-        public const string SystemSortPath = "Resources/Config/ECS/SystemSort.txt";
-
-        //决策树路径
-        public const string DecTreePath = "Resources/Config/ECS/DecTree.txt";
-        //决行为树路径
-        public const string BevTreePath = "Resources/Config/ECS/BevTree.txt";
-
         /// <summary>
         /// 配置根目录
         /// </summary>
-        public const string CnfRootPath = "Assets/Resources/Config/";
+        public const string CnfRootPath = "Assets/Demo/Asset/Config/";
 
         /// <summary>
         /// 决策树根目录
@@ -39,15 +27,25 @@
         /// </summary>
         public const string EntityRootPath = CnfRootPath + "Entity/";
 
+        public static string GetDecTreeCnfName(int entityId)
+        {
+            return ConfigDef.GetCnfNoExName("Decision_" + entityId);
+        }
 
         /// <summary>
         /// 获得决策路径
         /// </summary>
         /// <param name="filePath"></param>
         /// <returns></returns>
-        public static string GetDecTreePath(string fileName)
+        public static string GetDecTreePath(int treeId)
         {
-            return DecTreeRootPath + fileName + ".txt";
+            return DecTreeRootPath + ConfigDef.GetCnfName("Decision_" + treeId);
+        }
+
+
+        public static string GetBevTreeCnfName(RequestId requestId)
+        {
+            return ConfigDef.GetCnfNoExName("Behavior_" + requestId.ToString());
         }
 
         /// <summary>
@@ -55,9 +53,14 @@
         /// </summary>
         /// <param name="filePath"></param>
         /// <returns></returns>
-        public static string GetBevTreePath(string fileName)
+        public static string GetBevTreePath(RequestId requestId)
         {
-            return BevTreeRootPath + fileName + ".txt";
+            return BevTreeRootPath + ConfigDef.GetCnfName("Behavior_" + requestId.ToString());
+        }
+
+        public static string GetEntityCnfName(int entityId)
+        {
+            return ConfigDef.GetCnfNoExName("Entity_" + entityId);
         }
 
         /// <summary>
@@ -65,9 +68,9 @@
         /// </summary>
         /// <param name="filePath"></param>
         /// <returns></returns>
-        public static string GetEntityPath(string fileName)
+        public static string GetEntityPath(int entityId)
         {
-            return EntityRootPath + fileName + ".txt";
+            return EntityRootPath + ConfigDef.GetCnfName("Entity_" + entityId);
         }
     }
 

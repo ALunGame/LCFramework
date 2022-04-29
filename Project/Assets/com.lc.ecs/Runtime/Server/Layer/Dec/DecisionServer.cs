@@ -71,6 +71,10 @@ namespace LCECS.Server.Layer
                 {
                     DesDict.Add(treeId, tree);
                 }
+                else
+                {
+                    return null;
+                }
             }
             return DesDict[treeId];
         }
@@ -81,10 +85,8 @@ namespace LCECS.Server.Layer
         /// <returns></returns>
         private DecisionTree LoadDecision(int treeId)
         {
-            TextAsset jsonData = ECSLocate.Factory.GetProduct<TextAsset>(FactoryType.Asset, null, ECSDefPath.GetDecTreePath(treeId.ToString()));
-            if (jsonData == null)
-                return null;
-            DecisionTree decision = JsonMapper.ToObject<DecisionTree>(jsonData.text);
+            string jsonStr = LCLoad.LoadHelper.LoadString(ECSDefPath.GetDecTreeCnfName(treeId));
+            DecisionTree decision = JsonMapper.ToObject<DecisionTree>(jsonStr);
             if (decision == null)
                 return null;
             return decision;

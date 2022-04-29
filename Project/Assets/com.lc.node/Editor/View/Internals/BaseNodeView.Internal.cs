@@ -160,23 +160,26 @@ namespace LCNode.View
                             RefreshDrawerValues();
                         }));
                     });
-                    element.tooltip = nodeValueAttribute.Tooltip;
-                    index++;
-                    if (index%2==0)
-                        outputContainer.Add(element);
-                    else
-                        inputContainer.Add(element);
+                    if (element!=null)
+                    {
+                        element.tooltip = nodeValueAttribute.Tooltip;
+                        index++;
+                        if (index % 2 == 0)
+                            outputContainer.Add(element);
+                        else
+                            inputContainer.Add(element);
 
-                    //自动绑定
-                    ViewModel model = Model;
-                    model[nodeValueAttribute.Lable] = new BindableProperty(() => item.GetValue(Model),(object value)=> {
-                        item.SetValue(Model, value);
-                        RefreshDrawerValues();
-                    },nodeValueAttribute.Tooltip);
+                        //自动绑定
+                        ViewModel model = Model;
+                        model[nodeValueAttribute.Lable] = new BindableProperty(() => item.GetValue(Model), (object value) => {
+                            item.SetValue(Model, value);
+                            RefreshDrawerValues();
+                        }, nodeValueAttribute.Tooltip);
 
-                    //保存
-                    nodeValues.Add(item, nodeValueAttribute);
-                    nodeValueElements.Add(element,item);
+                        //保存
+                        nodeValues.Add(item, nodeValueAttribute);
+                        nodeValueElements.Add(element, item);
+                    }
                 }
             }
         }

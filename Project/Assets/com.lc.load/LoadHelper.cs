@@ -54,7 +54,10 @@ namespace LCLoad
         /// <returns></returns>
         public static string LoadString(string assetName)
         {
-            return LoadLocate.Load.LoadSync<TextAsset>(assetName).text;
+            TextAsset textAsset = LoadLocate.Load.LoadSync<TextAsset>(assetName);
+            if (textAsset == null)
+                return "";
+            return textAsset.text;
         }
 
         /// <summary>

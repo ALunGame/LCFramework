@@ -10,12 +10,10 @@ namespace LCECS.Server.Player
         private GameObject playerGo;
         private EntityWorkData playerWorkData;
 
-        public void CreatePlayerEntity(int entityCnfId, ref GameObject gameObject)
+        public void SetPlayerEntity(Entity entity)
         {
-            Entity entity = ECSLocate.ECS.CreateEntity(entityCnfId, ref gameObject);
             playerEntity = entity;
-            playerGo = gameObject;
-
+            playerGo = entity.Go;
             playerWorkData = ECSLayerLocate.Info.GetEntityWorkData(entity.GetHashCode());
         }
 
@@ -35,13 +33,13 @@ namespace LCECS.Server.Player
         }
 
         //请求参数
-        public ParamData GetReqParam(int reqId)
+        public ParamData GetReqParam(RequestId reqId)
         {
             return playerWorkData.GetReqParam(reqId);
         }
 
         //请求
-        public void PushPlayerReq(int reqId)
+        public void PushPlayerReq(RequestId reqId)
         {
             ECSLayerLocate.Request.PushRequest(playerEntity.GetHashCode(), reqId);
         }

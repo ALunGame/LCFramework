@@ -28,19 +28,13 @@ namespace LCECS.EntityGraph
         [OutputPort("组件列表", BasePort.Capacity.Multi, BasePort.Orientation.Vertical)]
         public EntityComData coms;
 
-        [NodeValue("实体Id")]
-        public int id = 0;
-
         [NodeValue("实体名")]
         public string name = "";
 
         [NodeValue("决策树Id")]
         public int decTreeId = 0;
 
-        [NodeValue("预制体路径")]
-        public string prefabPath = "";
-
-        public Entity GetModel()
+        public List<BaseCom> GetModel()
         {
             List<BaseCom> coms = new List<BaseCom>();
             //组件节点
@@ -52,8 +46,7 @@ namespace LCECS.EntityGraph
                     coms.Add(nodes[i].CreateRuntimeNode());
                 }
             }
-            Entity model = new Entity(id, name, decTreeId, prefabPath, coms);
-            return model;
+            return coms;
         }
     }
 }

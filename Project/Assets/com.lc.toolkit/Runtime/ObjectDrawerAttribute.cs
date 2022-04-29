@@ -19,17 +19,12 @@ namespace LCToolkit
 
         public Type ObjType { get { return objType; } }
 
-        private bool sceneObj;
-
-        public bool SceneObj { get { return sceneObj; } }
-
         /// <summary>
         /// Unity内部资源
         /// </summary>
-        public UnityAssetTypeAttribute(Type _type, bool _sceneObj)
+        public UnityAssetTypeAttribute(Type _type)
         {
             objType = _type;
-            sceneObj = _sceneObj;
         }
     }
 } 

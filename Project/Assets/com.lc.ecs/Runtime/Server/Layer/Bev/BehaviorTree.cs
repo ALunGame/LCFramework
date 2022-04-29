@@ -10,7 +10,7 @@ namespace LCECS.Layer.Behavior
     /// </summary>
     public class BehaviorTree
     {
-        private int treeId;
+        private RequestId reqId;
         private Node tree;
 
         public Node Tree
@@ -21,14 +21,6 @@ namespace LCECS.Layer.Behavior
             }
         }
 
-        /// <summary>
-        /// 行为树Id
-        /// </summary>
-        public int BevId
-        {
-            get => treeId;
-        }
-
         //需要处理的工作数据
         private List<EntityWorkData> HandleList = new List<EntityWorkData>();
 
@@ -37,10 +29,10 @@ namespace LCECS.Layer.Behavior
 
         }
 
-        public BehaviorTree(int treeId, Node tree)
+        public BehaviorTree(RequestId reqId, Node tree)
         {
             this.tree = tree;
-            this.treeId = treeId;
+            this.reqId = reqId;
         }
 
         /// <summary>
@@ -85,7 +77,7 @@ namespace LCECS.Layer.Behavior
                 EntityWorkData data = HandleList[i];
 
                 //行为改变
-                if (data.CurrReqId != treeId)
+                if (data.CurrReqId != reqId)
                 {
                     RemoveWorkData(data);
                     continue;

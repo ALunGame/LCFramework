@@ -1,4 +1,5 @@
 ﻿using LCECS.Core;
+using System;
 using System.Collections.Generic;
 
 namespace LCSkill
@@ -7,7 +8,7 @@ namespace LCSkill
     /// 伤害组件
     /// 存储游戏中所有的伤害信息
     /// </summary>
-    [Com(GroupName = "技能相关", ViewName = "伤害组件")]
+    [Serializable]
     public class DamageCom : BaseCom
     {
         private List<AddDamageInfo> damages = new List<AddDamageInfo>();

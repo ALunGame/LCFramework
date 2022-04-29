@@ -27,32 +27,21 @@ namespace LCConfig
     /// 声明为配置键
     /// </summary>
     [AttributeUsage(AttributeTargets.Field, AllowMultiple = true, Inherited = false)]
-    public class ConfigKeyAttribute : Attribute
+    public class ConfigKeyAttribute : ConfigValueAttribute
     {
         /// <summary>
         /// 第几个键
         /// </summary>
         public int keyIndex = 1;
 
-        /// <summary>
-        /// 字段名
-        /// </summary>
-        public string DisplayName;
-
-        /// <summary>
-        /// 悬浮提示名
-        /// </summary>
-        public string TooltipName;
-
-        /// <summary>
-        /// 
-        /// </summary>
         /// <param name="keyIndex">第几个键</param>
-        public ConfigKeyAttribute(int keyIndex,string displayName = "", string tooltipName = "")
+        /// <param name="name">字段名</param>
+        /// <param name="tooltip">字段提示</param>
+        public ConfigKeyAttribute(int keyIndex, string name = "", string tooltip = "")
         {
             this.keyIndex = keyIndex;
-            this.DisplayName = displayName;
-            this.TooltipName = tooltipName;
+            this.Name = name;
+            this.Tooltip = tooltip;
         }
     }
 
@@ -71,12 +60,9 @@ namespace LCConfig
         /// </summary>
         public string Tooltip;
 
-        /// <summary>
-        /// 
-        /// </summary>
         /// <param name="name">字段名</param>
         /// <param name="tooltip">字段提示</param>
-        public ConfigValueAttribute(string name, string tooltip)
+        public ConfigValueAttribute(string name = "", string tooltip = "")
         {
             this.Name = name;
             this.Tooltip = tooltip;

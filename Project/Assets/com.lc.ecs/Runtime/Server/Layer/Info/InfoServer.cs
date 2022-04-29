@@ -12,7 +12,6 @@ namespace LCECS.Server.Layer
     {
         private Dictionary<int, ISensor> SensorDict = new Dictionary<int, ISensor>();
         private Dictionary<int, EntityWorkData> WorkDataDict = new Dictionary<int, EntityWorkData>();
-        private EntityJsonList entityJsons = null;
 
         private void RegAllSensor()
         {
@@ -21,7 +20,7 @@ namespace LCECS.Server.Layer
             {
                 if (AttributeHelper.TryGetTypeAttribute(type, out WorldSensorAttribute attr))
                 {
-                    ISensor sensor = ReflectionHelper.CreateInstance<ISensor>(type.FullName);
+                    ISensor sensor = ReflectionHelper.CreateInstance(type) as ISensor;
                     SensorDict.Add((int)attr.InfoKey, sensor);
                 }
                 else
@@ -44,30 +43,12 @@ namespace LCECS.Server.Layer
         
         public void Init()
         {
-            TextAsset jsonData = ECSLocate.Factory.GetProduct<TextAsset>(FactoryType.Asset, null, ECSDefPath.EntityJsonPath);
-            EntityJsonList json = JsonMapper.ToObject<EntityJsonList>(jsonData.text);
-            this.entityJsons = json;
             RegAllSensor();
         }
 
         public T GetSensor<T>(SensorType key) where T : ISensor
         {
             return GetSensor<T>((int) key);
-        }
-
-        public EntityJson GetEntityConf(int entityId)
-        {
-            if (entityJsons == null)
-                return null;
-            for (int i = 0; i < entityJsons.List.Count; i++)
-            {
-                EntityJson json = entityJsons.List[i];
-                if (json.EntityId == entityId)
-                {
-                    return json;
-                }
-            }
-            return null;
         }
         
         public void AddEntityWorkData(int entityId, EntityWorkData data)

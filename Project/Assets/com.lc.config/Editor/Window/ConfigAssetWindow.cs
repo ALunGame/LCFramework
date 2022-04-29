@@ -1,7 +1,6 @@
 using LCToolkit;
 using LCToolkit.Command;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 using UnityEditor;
@@ -27,15 +26,19 @@ namespace LCConfig
         #endregion
 
         public ConfigAsset currSelAsset;
-        private List<IConfig> configs;
-        private Dictionary<FieldInfo, ConfigKeyAttribute> keyFields = new Dictionary<FieldInfo, ConfigKeyAttribute>();
-        private Dictionary<FieldInfo, ConfigValueAttribute> valueFields = new Dictionary<FieldInfo, ConfigValueAttribute>();
+        private List<IConfig> configs = new List<IConfig>();
+        private Dictionary<FieldInfo, ConfigValueAttribute> fields = new Dictionary<FieldInfo, ConfigValueAttribute>();
+        private Dictionary<FieldInfo, Rect> fieldRects = new Dictionary<FieldInfo, Rect>();
 
         private List<IConfig> SelConfigs = new List<IConfig>();
         public CommandDispatcher CommandDispacter { get; private set; }
 
         public void ChangeSelAsset(ConfigAsset asset)
         {
+            configs.Clear();
+            fields.Clear();
+            fieldRects.Clear();
+            SelConfigs.Clear();
             CommandDispacter = new CommandDispatcher();
 
             currSelAsset = asset;
@@ -44,38 +47,76 @@ namespace LCConfig
             {
                 configs = new List<IConfig>();
                 configs.Add(currSelAsset.CreateCnfItem());
-                configs.Add(currSelAsset.CreateCnfItem());
-                configs.Add(currSelAsset.CreateCnfItem());
-                configs.Add(currSelAsset.CreateCnfItem());
             }
             else
             {
                 configs = tmpConfigs;
             }
 
+            GetFields();
+        }
+
+        private void GetFields()
+        {
             Type cnfType = currSelAsset.GetCnfType();
+            List<FieldInfo> tmpKeyFields = new List<FieldInfo>();
+            List<FieldInfo> tmpValueFields = new List<FieldInfo>();
             foreach (var item in ReflectionHelper.GetFieldInfos(cnfType))
             {
                 if (AttributeHelper.TryGetFieldAttribute(item, out ConfigKeyAttribute keyAttr))
                 {
-                    keyFields.Add(item,keyAttr);
+                    tmpKeyFields.Add(item);
                 }
                 else
                 {
-                    if (AttributeHelper.TryGetFieldAttribute(item, out ConfigValueAttribute attr))
-                    {
-                        valueFields.Add(item, attr);
-                    }
-                    else
-                    {
-                        valueFields.Add(item, new ConfigValueAttribute(item.Name,""));
-                    }
+                    tmpValueFields.Add(item);
+                }
+            }
+            tmpKeyFields.Sort((x, y) =>
+            {
+                AttributeHelper.TryGetFieldAttribute(x, out ConfigKeyAttribute xKeyAttr);
+                AttributeHelper.TryGetFieldAttribute(y, out ConfigKeyAttribute yKeyAttr);
+
+                if (xKeyAttr.keyIndex == yKeyAttr.keyIndex)
+                    return 1;
+                else if (xKeyAttr.keyIndex > yKeyAttr.keyIndex)
+                    return 1;
+                else if (xKeyAttr.keyIndex < yKeyAttr.keyIndex)
+                    return -1;
+                else
+                    return 1;
+            });
+
+            for (int i = 0; i < tmpKeyFields.Count; i++)
+            {
+                AttributeHelper.TryGetFieldAttribute(tmpKeyFields[i], out ConfigKeyAttribute keyAttr);
+                fields.Add(tmpKeyFields[i], keyAttr);
+                fieldRects.Add(tmpKeyFields[i], GetFieldRect(tmpKeyFields[i]));
+            }
+            for (int i = 0; i < tmpValueFields.Count; i++)
+            {
+                if (AttributeHelper.TryGetFieldAttribute(tmpValueFields[i], out ConfigValueAttribute valueAttr))
+                {
+                    fields.Add(tmpValueFields[i], valueAttr);
+                    fieldRects.Add(tmpValueFields[i], GetFieldRect(tmpValueFields[i]));
+                }
+                else
+                {
+                    fields.Add(tmpValueFields[i], new ConfigValueAttribute(tmpValueFields[i].Name));
+                    fieldRects.Add(tmpValueFields[i], GetFieldRect(tmpValueFields[i]));
                 }
             }
         }
 
+        private Rect GetFieldRect(FieldInfo field)
+        {
+            float height = GUIExtension.GetHeight(field.FieldType, GUIHelper.TextContent(""));
+            return EditorGUILayout.GetControlRect(true, height);
+        }
+
         private float BtnWidth = 100;
         private float BtnHeight = 50;
+        private Vector2 ScrollPos = Vector2.zero;
         public Color SelectColor = new Color32(158, 203, 247, 255);
 
         private void OnGUI()
@@ -107,8 +148,20 @@ namespace LCConfig
 
             if (currSelAsset!=null)
             {
-                GUILayoutExtension.VerticalGroup(() =>
+                GUILayoutExtension.ScrollView(ref ScrollPos, () =>
                 {
+                    GUILayoutExtension.HorizontalGroup(() =>
+                    {
+                        EditorGUILayout.Space(35);
+                        //×Ö¶Î
+                        foreach (var fieldInfo in fields.Keys)
+                        {
+                            ConfigValueAttribute attr = fields[fieldInfo];
+                            Rect rect = GetFieldRect(fieldInfo);
+                            EditorGUI.LabelField(rect,GUIHelper.TextContent(attr.Name, attr.Tooltip), bigLabel.value);
+                        }
+                    });
+
                     for (int i = 0; i < configs.Count; i++)
                     {
                         IConfig config = configs[i];
@@ -121,20 +174,27 @@ namespace LCConfig
                             {
                                 OnClickSelBtn(config);
                             });
-                            foreach (var fieldInfo in keyFields.Keys)
+                            foreach (var fieldInfo in fields.Keys)
                             {
                                 object value = fieldInfo.GetValue(config);
-                                float height = GUIExtension.GetHeight(fieldInfo.FieldType, value, GUIHelper.TextContent(""));
-                                value = GUIExtension.DrawField(EditorGUILayout.GetControlRect(true, height), value, GUIHelper.TextContent(""));
-                                fieldInfo.SetValue(config, value);
+                                //float height = GUIExtension.GetHeight(fieldInfo.FieldType, value, GUIHelper.TextContent(""));
+                                object newValue = GUIExtension.DrawField(GetFieldRect(fieldInfo), value, GUIHelper.TextContent(""));
+                                if (newValue == null || !newValue.Equals(value))
+                                {
+                                    CommandDispacter.Do(new ChangeValueCommand(config, fieldInfo, newValue));
+                                }
                             }
                             GUI.color = Color.white;
                         });
                     }
                 });
             }
-
             OnHandleEvent(Event.current);
+        }
+
+        private void OnDestroy()
+        {
+            Selection.activeObject = null;
         }
 
         public void OnHandleEvent(Event evt)
@@ -159,12 +219,12 @@ namespace LCConfig
             //»ØÍËCtrl+D ¸´ÖÆ
             if (Event.current.Equals(Event.KeyboardEvent("^D")))
             {
-                screenshot.enabled = true;
+                CopyConfigs();
             }
             //É¾³ýDel
             if (Event.current.Equals(Event.KeyboardEvent("Delete")))
             {
-                screenshot.enabled = true;
+                DelConfigs();
             }
         }
 
@@ -191,6 +251,31 @@ namespace LCConfig
                 }
             }
             SelConfigs.Add(config);
+            InspectorExtension.DrawObjectInInspector(config,this);
+        }
+
+        private void CopyConfigs()
+        {
+            CommandDispacter.BeginGroup();
+            for (int i = 0; i < SelConfigs.Count; i++)
+            {
+                IConfig tmpComfig = SelConfigs[i];
+                IConfig newConfig = tmpComfig.Clone();
+                CommandDispacter.Do(new AddConfigCommand(configs, newConfig));
+            }
+            CommandDispacter.EndGroup();
+        }
+
+        private void DelConfigs()
+        {
+            CommandDispacter.BeginGroup();
+            for (int i = 0; i < SelConfigs.Count; i++)
+            {
+                IConfig tmpComfig = SelConfigs[i];
+                CommandDispacter.Do(new RemoveConfigCommand(configs, tmpComfig));
+            }
+            SelConfigs.Clear();
+            CommandDispacter.EndGroup();
         }
 
         private void SaveAsset(ConfigAsset asset)

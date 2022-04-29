@@ -1,1 +1,0 @@
-﻿{"mType":"LCECS.Data.ReqWeightJson","ReqWeights":[{"mType":"LCECS.Data.WeightJson","Key":0,"Weight":0},{"mType":"LCECS.Data.WeightJson","Key":1,"Weight":1},{"mType":"LCECS.Data.WeightJson","Key":2,"Weight":2},{"mType":"LCECS.Data.WeightJson","Key":3,"Weight":3},{"mType":"LCECS.Data.WeightJson","Key":4,"Weight":4}]}

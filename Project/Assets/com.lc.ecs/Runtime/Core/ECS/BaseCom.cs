@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LCJson;
+using System;
 using UnityEngine;
 
 namespace LCECS.Core
@@ -41,9 +42,12 @@ namespace LCECS.Core
         public bool ShowView { get; set; } = true;
     }
 
+    [Serializable]
     public class BaseCom
     {
+        [NonSerialized]
         private int entityId = 0;
+        [NonSerialized]
         private int entityCnfId = 0;
 
         public bool IsActive { get; private set; } = false;

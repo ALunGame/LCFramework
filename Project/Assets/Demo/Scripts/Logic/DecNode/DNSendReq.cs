@@ -19,7 +19,7 @@ namespace DecNode
         protected override void OnEnter(NodeData wData)
         {
             //ECSLocate.ECSLog.LogR("发送请求>>>>>>", wData.Id,ReqId.ToString());
-            ECSLayerLocate.Request.PushRequest(wData.Id, (int)ReqType);
+            //ECSLayerLocate.Request.PushRequest(wData.Id, (int)ReqType);
         }
 
         protected override int OnRunning(NodeData wData)

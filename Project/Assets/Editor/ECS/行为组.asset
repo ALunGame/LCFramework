@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-3757094016919443214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5a129348ce8e4346a4ecfce78a2c916, type: 3}
+  m_Name: behavior_Move
+  m_EditorClassIdentifier: 
+  serializedGraph: '{"mType":"LCECS.Tree.Behavior","pos":{"mType":"UnityEngine.Vector3","x":7.0,"y":21.0,"z":0.0},"zoom":{"mType":"UnityEngine.Vector3","x":1.0,"y":1.0,"z":1.0},"nodes":{"mType":"System.Collections.Generic.Dictionary`2[[System.String,
+    mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089],[LCNode.Model.BaseNode,
+    Assembly-CSharp-Editor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]","5d93b549-8e08-41cd-8232-3857a0dd2e34":{"mType":"LCECS.Tree.Tree_RootNode","childNode":null,"premise":null,"guid":"5d93b549-8e08-41cd-8232-3857a0dd2e34","position":{"mType":"UnityEngine.Vector2","x":829.0,"y":106.0}},"9af74832-f402-4015-92b3-5cf7252859f5":{"mType":"Demo.Tree.Tree_Bev_Act_Move","node":null,"premise":null,"guid":"9af74832-f402-4015-92b3-5cf7252859f5","position":{"mType":"UnityEngine.Vector2","x":829.0,"y":246.0}}},"connections":[{"mType":"LCNode.Model.BaseConnection","from":"5d93b549-8e08-41cd-8232-3857a0dd2e34","fromPortName":"\u5B50\u8282\u70B9","to":"9af74832-f402-4015-92b3-5cf7252859f5","toPortName":"\u8282\u70B9"}]}'
+  ReqId: 1
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 513a3b01c9dc90045b19a1bbbe5bf8cb, type: 3}
+  m_Name: "\u884C\u4E3A\u7EC4"
+  m_EditorClassIdentifier: 

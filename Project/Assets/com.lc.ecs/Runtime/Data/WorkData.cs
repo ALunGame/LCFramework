@@ -13,13 +13,13 @@ namespace LCECS.Data
         public Entity MEntity { get; }
 
         //请求参数
-        private Dictionary<int, ParamData> ReqParamData = new Dictionary<int, ParamData>();
+        private Dictionary<RequestId, ParamData> ReqParamData = new Dictionary<RequestId, ParamData>();
         //需要清除Id
-        public int ClearReqId;
+        public RequestId ClearReqId;
         //当前请求Id
-        public int CurrReqId;
+        public RequestId CurrReqId;
         //下一个请求Id
-        public int NextReqId;
+        public RequestId NextReqId;
 
         public EntityWorkData(int id, Entity entity) : base(id)
         {
@@ -27,7 +27,7 @@ namespace LCECS.Data
         }
 
         //获取请求参数
-        public ParamData GetReqParam(int reqId)
+        public ParamData GetReqParam(RequestId reqId)
         {
             if (!ReqParamData.ContainsKey(reqId))
             {

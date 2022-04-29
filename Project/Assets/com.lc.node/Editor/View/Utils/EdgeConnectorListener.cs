@@ -55,10 +55,8 @@ namespace LCNode.View.Utils
         private void ShowNodeCreationMenuFromEdge(BaseConnectionView connectionView, Vector2 position)
         {
             if (edgeNodeCreateMenuWindow == null)
-            {
                 edgeNodeCreateMenuWindow = ScriptableObject.CreateInstance<CreateNodeMenuWindow>();
-                edgeNodeCreateMenuWindow.Initialize(graphView, graphView.GetNodeTypes());
-            }
+            edgeNodeCreateMenuWindow.Initialize(graphView, graphView.GetNodeTypes());
             edgeNodeCreateMenuWindow.ConnectionFilter = connectionView;
             SearchWindow.Open(new SearchWindowContext(position + EditorWindow.focusedWindow.position.position), edgeNodeCreateMenuWindow);
         }

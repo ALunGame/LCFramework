@@ -28,7 +28,7 @@ namespace LCECS.Server.Factory
             }
 
             //创建实体
-            Entity entity = DeepCopy<Entity, Entity>.Trans(entityModel);
+            Entity entity = DeepCopy.CloneObject(entityModel) as Entity;
             entity.SetEntityGo(entityGo);
             entity.Init(entityId);
             foreach (BaseCom com in entity.GetComs())
@@ -64,7 +64,7 @@ namespace LCECS.Server.Factory
         /// <returns></returns>
         private Entity LoadEntityModel(int id)
         {
-            string text   = LoadHelper.LoadString(ECSDefPath.GetEntityPath(id.ToString()));
+            string text   = LoadHelper.LoadString(ECSDefPath.GetEntityPath(id));
             Entity entity = JsonMapper.ToObject<Entity>(text);
             if (entity == null)
                 return null;

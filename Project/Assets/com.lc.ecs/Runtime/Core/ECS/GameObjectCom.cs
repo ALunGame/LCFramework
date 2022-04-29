@@ -1,12 +1,16 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace LCECS.Core
 {
-    [Com(GroupName = "辅助组件", ViewName = "存储GameObject组件")]
+    [Serializable]
     public class GameObjectCom : BaseCom
     {
+        [NonSerialized]
         public GameObject Go;
+        [NonSerialized]
         public Transform Tran;
+        [NonSerialized]
         public SpriteRenderer Renderer;
 
         protected override void OnInit(GameObject go)

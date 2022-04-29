@@ -33,6 +33,10 @@ namespace LCMap
         [Header("是不是主角")]
         public bool IsMainActor;
 
+        [SerializeField]
+        [Header("表现状态名")]
+        public string stateName = "Default";
+
         [EDReadOnly]
         [SerializeField]
         [Header("路径根节点")]
@@ -63,14 +67,22 @@ namespace LCMap
             CheckUid();
         }
 
+        private void OnEnable()
+        {
+            if (string.IsNullOrEmpty(stateName))
+            {
+                stateName = "Default";
+            }
+        }
+
         private void OnDrawGizmos()
         {
-            if (IsMainActor)
-            {
-                GUI.color = Color.red;
-                Gizmos.DrawSphere(transform.position, 0.2f);
-                GUI.color = Color.white;
-            }
+            //if (IsMainActor)
+            //{
+            //    GUI.color = Color.red;
+            //    Gizmos.DrawSphere(transform.position, 0.05f);
+            //    GUI.color = Color.white;
+            //}
         }
 
         private void CheckUid()
@@ -115,8 +127,9 @@ namespace LCMap
             actorData.pos = HandlePos(transform.position);
             actorData.roate = HandlePos(transform.localEulerAngles);
             actorData.scale = HandlePos(transform.localScale);
-            actorData.isActive = gameObject.activeSelf;
+            actorData.isActive = IsMainActor? true : gameObject.activeSelf;
             actorData.isMainActor = IsMainActor;
+            actorData.stateName = stateName;
 
             //路径
             ED_ActorPathCom[] pathComs = PathRoot.GetComponentsInChildren<ED_ActorPathCom>(true);

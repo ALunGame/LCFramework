@@ -5,6 +5,7 @@ using UnityEditor;
 using System.Collections.Generic;
 
 using Object = UnityEngine.Object;
+using LCToolkit;
 
 namespace LCNode.Model
 {
@@ -25,6 +26,14 @@ namespace LCNode.Model
             return graphs;
         }
 
+        public override void OnClickCreateBtn()
+        {
+            MiscHelper.Input($"输入{DisplayName}名：", (string name) =>
+            {
+                CreateGraph(name);
+            });
+        }
+
         public override bool CheckHasGraph(string name)
         {
             List<InternalBaseGraphAsset> graphs = GetAllGraph();
@@ -38,12 +47,13 @@ namespace LCNode.Model
             return false;
         }
 
-        public override bool CreateGraph(string name)
+
+        public override InternalBaseGraphAsset CreateGraph(string name)
         {
             if (CheckHasGraph(name))
             {
                 Debug.LogError($"创建视图失败，重复视图>>{name}");
-                return false;
+                return null;
             }
 
             T graph = CreateInstance<T>();
@@ -53,7 +63,7 @@ namespace LCNode.Model
             EditorUtility.SetDirty(this);
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
-            return true;
+            return graph;
         }
 
         public override void RemoveGraph(InternalBaseGraphAsset graph)

@@ -4,6 +4,10 @@ using LCECS.Help;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using LCLoad;
+using LCJson;
+using LCToolkit;
+using LCMap;
 
 namespace LCECS.Server.ECS
 {
@@ -15,7 +19,7 @@ namespace LCECS.Server.ECS
     /// </summary>
     public class ECSServer : IECSServer
     {
-        private int EntityId = 1;
+        private Dictionary<int, string> entityCnf = new Dictionary<int, string>();
 
         //全局单个组件
         private Dictionary<Type, BaseCom> globalSingleCom = new Dictionary<Type, BaseCom>();
@@ -29,6 +33,17 @@ namespace LCECS.Server.ECS
 
         //所有FixedUpdate系统
         private List<BaseSystem> systemFixedUpdateList = new List<BaseSystem>();
+
+        private string GetEntityCnf(int entityConfId)
+        {
+            if (entityCnf.ContainsKey(entityConfId))
+            {
+                return entityCnf[entityConfId];
+            }
+            string jsonStr = LoadHelper.LoadString(ECSDefPath.GetEntityCnfName(entityConfId));
+            entityCnf.Add(entityConfId, jsonStr);
+            return jsonStr;
+        }
 
         //添加实体
         private void AddEntity(int id, Entity entity)
@@ -52,92 +67,108 @@ namespace LCECS.Server.ECS
         }
 
         //初始化实体（所有的实体生成都会走）
-        private void InitEntity(Entity entity, int entityConfId)
+        private void InitEntity(Entity entity)
         {
-            //实体数据
-            EntityJson entityData = ECSLayerLocate.Info.GetEntityConf(entityConfId);
-
-            //初始化实体
-            entity.Init(EntityId);
-
             //保存
-            AddEntity(EntityId, entity);
+            AddEntity(entity.Uid, entity);
 
             //系统检测
             CheckEntityInSystem(entity);
 
             //创建实体数据流
-            EntityWorkData entityWorkData = new EntityWorkData(EntityId, entity);
-            entityWorkData.Id = EntityId;
-            ECSLayerLocate.Info.AddEntityWorkData(EntityId, entityWorkData);
-            ECSLayerLocate.Decision.AddDecisionEntity(entityData.Group, entityWorkData);
+            EntityWorkData entityWorkData = new EntityWorkData(entity.Uid, entity);
+            entityWorkData.Id = entity.Uid;
+            ECSLayerLocate.Info.AddEntityWorkData(entity.Uid, entityWorkData);
+            ECSLayerLocate.Decision.AddDecisionEntity(entity.DecTreeId, entityWorkData);
 
             //添加实体全局单一组件
-            AddEntityGlobalSingleCom(entityData, entity);
-
-            //Id自增
-            EntityId++;
+            AddEntityGlobalSingleCom(entity);
         }
 
         //添加实体全局单一组件
-        private void AddEntityGlobalSingleCom(EntityJson conf, Entity entity)
+        private void AddEntityGlobalSingleCom(Entity entity)
         {
-            for (int i = 0; i < conf.Coms.Count; i++)
+            foreach (var item in entity.GetComs())
             {
-                BaseCom com = entity.GetCom(conf.Coms[i].ComName);
-                if (ECSHelp.CheckComIsGlobal(com.GetType()))
+                if (ECSHelp.CheckComIsGlobal(item.GetType()))
                 {
-                    if (globalSingleCom.ContainsKey(com.GetType()))
+                    if (globalSingleCom.ContainsKey(item.GetType()))
                     {
-                        ECSLocate.Log.LogError("有多个全局单个组件>>>>>>", conf.EntityId, com.GetType());
+                        ECSLocate.Log.LogError("有多个全局单个组件>>>>>>", entity.Id);
                         entity.Disable();
                         return;
                     }
-                    globalSingleCom.Add(com.GetType(), com);
+                    globalSingleCom.Add(item.GetType(), item);
                 }
             }
         }
 
         //-------------------------------------------------------- 接口实现 --------------------------------------------------------//
 
-        public Entity CreateEntity(int entityConfId, ref GameObject go)
+        public Entity CreateEntity(ActorObj actorObj)
         {
-            //创建实体
-            GameObject entityGo = null;
-            Entity entity = ECSLocate.Factory.GetProduct<Entity>(FactoryType.Entity, (object[] data) =>
+            //配置数据
+            string entityStr = GetEntityCnf(actorObj.EntityId);
+            if (string.IsNullOrEmpty(entityStr))
             {
-                if (data[0] != null)
-                {
-                    entityGo = data[0] as GameObject;
-                }
-            }, EntityId, entityConfId);
-
-            if (entity == null)
+                ECSLocate.Log.LogError("实体配置数据不存在>>>>>>>", actorObj.EntityId);
                 return null;
-            go = entityGo;
-            InitEntity(entity, entityConfId);
+            }
+
+            //创建实体
+            Entity entity = JsonMapper.ToObject<Entity>(entityStr);
+            entity.SetEntityGo(actorObj.gameObject);
+            entity.Init(actorObj.Uid);
+            foreach (BaseCom com in entity.GetComs())
+            {
+                com.Init(entity);
+            }
+
+            InitEntity(entity);
             return entity;
         }
 
-        public Entity CreateEntity(int entityConfId, GameObject go)
+        public Entity CreateEntity(int uid,int id, GameObject go)
         {
-            //创建实体
-            Entity entity = ECSLocate.Factory.GetProduct<Entity>(FactoryType.Entity, null, EntityId, entityConfId, go);
-            if (entity == null)
+            //配置数据
+            string entityStr = GetEntityCnf(id);
+            if (string.IsNullOrEmpty(entityStr))
+            {
+                ECSLocate.Log.LogError("实体配置数据不存在>>>>>>>", id);
                 return null;
-            InitEntity(entity, entityConfId);
+            }
+
+            //创建实体
+            Entity entity = JsonMapper.ToObject<Entity>(entityStr);
+            entity.SetEntityGo(go);
+            entity.Init(uid);
+            foreach (BaseCom com in entity.GetComs())
+            {
+                com.Init(entity);
+            }
+
+            InitEntity(entity);
+
             return entity;
         }
 
         //获得实体
-        public Entity GetEntity(int id)
+        public Entity GetEntity(int uid)
         {
-            return entityDict[id];
+            return entityDict[uid];
         }
 
         public Dictionary<int, Entity> GetAllEntitys()
         {
             return entityDict;
+        }
+
+        public void CheckEntityInSystem(int uid)
+        {
+            Entity entity = GetEntity(uid);
+            if (entity == null)
+                return;
+            CheckEntityInSystem(entity);
         }
 
         //获得全局单一组件
@@ -196,14 +227,6 @@ namespace LCECS.Server.ECS
             systemFixedUpdateList.Add(system);
         }
 
-        public void CheckEntityInSystem(int entityId)
-        {
-            Entity entity = GetEntity(entityId);
-            if (entity == null)
-                return;
-            CheckEntityInSystem(entity);
-        }
-
         public void ExcuteUpdateSystem()
         {
             for (int i = 0; i < systemUpdateList.Count; i++)
@@ -219,7 +242,5 @@ namespace LCECS.Server.ECS
                 systemFixedUpdateList[i].Excute();
             }
         }
-
-
     }
 }

@@ -95,6 +95,13 @@ namespace LCToolkit.Core
             return objectEditor;
         }
 
+        public static float GetHeight(Type _objectType)
+        {
+            ObjectDrawer objectEditor = Activator.CreateInstance(GetEditorType(_objectType), true) as ObjectDrawer;
+            if (objectEditor == null) return 0;
+            return objectEditor.GetHeight();
+        }
+
         public static bool CheckHasCustomDrawer(Type _objectType)
         {
             Type customDrawer = ObjectDrawer.GetEditorType(_objectType);

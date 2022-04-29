@@ -27,11 +27,11 @@ namespace LCToolkit.Core
                 }
             }
         }
-        public UnityObject UnityOwner { get; private set; }
+        public object Owner { get; private set; }
 
-        public void Init(object _targetObject, UnityObject _unityOwner)
+        public void Init(object _targetObject, object _owner = null)
         {
-            UnityOwner = _unityOwner;
+            Owner = _owner;
             TargetObject = _targetObject;
         }
     }
@@ -41,13 +41,13 @@ namespace LCToolkit.Core
     {
         ObjectInspectorDrawer objectEditor;
 
-        public UnityObject UnityOwner { get; set; }
+        public object Owner { get; set; }
 
         public ObjectInspector T_Target { get { return target as ObjectInspector; } }
 
         private void OnEnable()
         {
-            UnityOwner = T_Target.UnityOwner;
+            Owner = T_Target.Owner;
 
             OnEnable(T_Target.TargetObject);
             T_Target.onTargetObjectChanged = () =>
@@ -58,7 +58,7 @@ namespace LCToolkit.Core
 
             void OnEnable(object _targetObject)
             {
-                objectEditor = ObjectInspectorDrawer.CreateEditor(_targetObject, UnityOwner, this);
+                objectEditor = ObjectInspectorDrawer.CreateEditor(_targetObject, Owner, this);
                 if (objectEditor != null)
                 {
                     string title = objectEditor.GetTitle();

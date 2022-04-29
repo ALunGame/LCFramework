@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Dead
+  m_Name: dead
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -21,17 +21,17 @@ AnimationClip:
   - curve:
     - time: 0
       value: {fileID: 21300000, guid: cc67e0af2bdc14b4496629e4f6f53605, type: 3}
-    - time: 0.15
+    - time: 0.1
       value: {fileID: 21300000, guid: af342ee360e47e64a85d6f7009ce54a6, type: 3}
-    - time: 0.3
+    - time: 0.2
       value: {fileID: 21300000, guid: 79e86f48093182e429650e486a2f8475, type: 3}
-    - time: 0.45000002
+    - time: 0.3
       value: {fileID: 21300000, guid: baa9eeed6dbdb2d4dbb897ef54f50ba7, type: 3}
-    - time: 0.6
+    - time: 0.4
       value: {fileID: 21300000, guid: d9bf5d17820ba064f8a9e41054a24b49, type: 3}
-    - time: 0.75
+    - time: 0.5
       value: {fileID: 21300000, guid: 488e15ba0c0b0fd44b9acffc11dc145b, type: 3}
-    - time: 0.90000004
+    - time: 0.6
       value: {fileID: 21300000, guid: 53529927209f8a44c995ded5c987bfd5, type: 3}
     attribute: m_Sprite
     path: 
@@ -64,7 +64,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.9333334
+    m_StopTime: 0.6333334
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0

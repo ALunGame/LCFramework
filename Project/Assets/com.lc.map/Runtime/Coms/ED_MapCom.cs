@@ -12,6 +12,23 @@ namespace LCMap
     [ExecuteAlways]
     public class ED_MapCom : MonoBehaviour
     {
+        #region Static
+        public static List<ActorCnf> ActorCnfs = new List<ActorCnf>();
+
+        public static ActorCnf GetActorCnf(string name)
+        {
+            for (int i = 0; i < ActorCnfs.Count; i++)
+            {
+                if (ActorCnfs[i].name == name)
+                {
+                    return ActorCnfs[i];
+                }
+            }
+            return null;
+        }
+
+        #endregion
+
         [EDReadOnly]
         [SerializeField]
         [Header("地图Id")]
@@ -98,7 +115,7 @@ namespace LCMap
             return actors;
         }
 
-        public ED_ActorCom CreateActor(ActorAsset actorData)
+        public ED_ActorCom CreateActor(ActorCnf actorData)
         {
             ED_MapAreaCom areaCom = GetArea();
             if(areaCom == null)
@@ -113,12 +130,12 @@ namespace LCMap
             }
 
             ED_ActorCom actorCom = MapEditorDef.CreateActorGo();
-            actorCom.Init(CalcActorUid(), actorData.actorId, actorData.actorName, actorData.isMainActor, this);
+            actorCom.Init(CalcActorUid(), actorData.id, actorData.name, actorData.isPlayer, this);
 
             //预制体
             if (actorData.prefab != null)
             {
-                GameObject actorPrefab = (GameObject)PrefabUtility.InstantiatePrefab(actorData.prefab);
+                GameObject actorPrefab = (GameObject)PrefabUtility.InstantiatePrefab(actorData.prefab.GetObj(typeof(GameObject)));
                 MapEditorHelper.SetParent(actorPrefab.gameObject, actorCom.gameObject);
             }
 

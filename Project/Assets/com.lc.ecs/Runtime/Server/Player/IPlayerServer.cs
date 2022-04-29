@@ -11,14 +11,14 @@ namespace LCECS.Server.Player
     {
         GameObject GetPalyerGo();
 
-        void CreatePlayerEntity(int entityCnfId, ref GameObject gameObject);
+        void SetPlayerEntity(Entity entity);
 
         Entity GetPlayerEntity();
 
         EntityWorkData GetPlayerWorkData();
 
-        ParamData GetReqParam(int reqId);
+        ParamData GetReqParam(RequestId reqId);
 
-        void PushPlayerReq(int reqId);
+        void PushPlayerReq(RequestId reqId);
     }
 }

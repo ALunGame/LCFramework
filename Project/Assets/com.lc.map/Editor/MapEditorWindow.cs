@@ -11,6 +11,14 @@ namespace LCMap
     {
         private static GUIHelper.ContextDataCache ContextDataCache = new GUIHelper.ContextDataCache();
 
+        private static List<ActorCnf> ActorCnfs = new List<ActorCnf>();
+
+        [MenuItem("地图/编辑", true)]
+        public static bool CheckHasSetting()
+        {
+            return MapSetting.Setting != null;
+        }
+
         [MenuItem("地图/编辑")]
         public static void OpenMapEditorWindow()
         {
@@ -19,32 +27,9 @@ namespace LCMap
             prefabWin.Show();
         }
 
-        [MenuItem("地图/创建地图配置",true)]
-        public static bool CheckHasSetting()
-        {
-            return !MapEditorDef.CheckHasSetting();
-        }
-
-        [MenuItem("地图/创建地图配置")]
-        public static void CreateSetting()
-        {
-            if (!Directory.Exists(MapEditorDef.MapSetingPath))
-            {
-                Directory.CreateDirectory(MapEditorDef.MapSetingPath);
-            }
-            MapSetting setting = CreateInstance<MapSetting>();
-            setting.name = "地图配置";
-            AssetDatabase.CreateAsset(setting, MapEditorDef.MapSetingPath + "/地图配置.asset");
-            AssetDatabase.SaveAssets();
-            AssetDatabase.Refresh();
-            Selection.activeObject = setting;
-        }
-
-        private List<ActorAssetGroup> actorGroups = new List<ActorAssetGroup>();
         private List<ED_MapCom> maps = new List<ED_MapCom>();
 
         private ED_MapCom currSelMap = null;
-        private ActorAssetGroup currSelActorGroup = null;
 
         private void OnEnable()
         {
@@ -53,8 +38,8 @@ namespace LCMap
 
         private void Refresh()
         {
-            actorGroups = MapEditorDef.GetAllActorGroup();
-            maps = MapEditorDef.GetAllMaps();
+            ActorCnfs = MapSetting.GetActorCnfs();
+            maps = MapSetting.GetAllMaps();
         }
 
         private float BtnWidth = 100;
@@ -118,17 +103,22 @@ namespace LCMap
 
                 if (GUILayout.Button("导出所有配置", GUILayout.Width(BtnWidth), GUILayout.Height(BtnHeight)))
                 {
-                    List<ED_MapCom> maps = MapEditorDef.GetAllMaps();
+                    ED_MapCom.ActorCnfs = MapEditorWindow.ActorCnfs;
+                    List<ED_MapCom> maps = MapSetting.GetAllMaps();
                     for (int i = 0; i < maps.Count; i++)
                     {
-                        MapModel model = maps[i].ExportData();
+                        GameObject mapGo = GameObject.Instantiate(maps[i].gameObject);
+                        ED_MapCom eD_MapCom = mapGo.GetComponent<ED_MapCom>();
+                        MapModel model = eD_MapCom.ExportData();
 
-                        string filePath = MapEditorDef.GetMapModelSavePath(model.mapId.ToString());
+                        string filePath = MapSetting.GetMapModelSavePath(model.mapId.ToString());
                         IOHelper.WriteText(JsonMapper.ToJson(model), filePath);
-                        AssetDatabase.SaveAssets();
-                        AssetDatabase.Refresh();
+
+                        DestroyImmediate(eD_MapCom.gameObject);
                         Debug.Log($"地图配置生成成功>>>>{filePath}");
                     }
+                    AssetDatabase.SaveAssets();
+                    AssetDatabase.Refresh();
                 }
 
             },GUILayout.Height(50));
@@ -138,40 +128,16 @@ namespace LCMap
                 //演员分组列表
                 GUILayoutExtension.VerticalGroup(() =>
                 {
-                    GUILayout.Label("演员分组列表", bigLabel.value);
-                    for (int i = 0; i < actorGroups.Count; i++)
+                    GUILayout.Label("演员列表", bigLabel.value);
+                    for (int i = 0; i < ActorCnfs.Count; i++)
                     {
-                        Color btnColor = Color.white;
-                        if (currSelActorGroup != null && currSelActorGroup.name == actorGroups[i].name)
+                        if (GUILayout.Button($"{ActorCnfs[i].name}-{ActorCnfs[i].id}", GUILayout.Width(100), GUILayout.Height(BtnHeight)))
                         {
-                            btnColor = Color.green;
+                            ED_ActorCom actorCom = currSelMap.CreateActor(ActorCnfs[i]);
+                            Selection.activeObject = actorCom;
                         }
-                        GUIExtension.SetColor(btnColor, () =>
-                        {
-                            if (GUILayout.Button(actorGroups[i].name, GUILayout.Width(100), GUILayout.Height(BtnHeight)))
-                            {
-                                currSelActorGroup = actorGroups[i];
-                            }
-                        });
                     }
                 },GUILayout.Width(50));
-
-                if (currSelActorGroup != null && currSelMap != null)
-                {
-                    //演员列表
-                    GUILayoutExtension.VerticalGroup(() =>
-                    {
-                        GUILayout.Label(currSelActorGroup.name, bigLabel.value);
-                        foreach (var item in currSelActorGroup.actorDict.Values)
-                        {
-                            if (GUILayout.Button($"{item.actorName}-{item.actorId}", GUILayout.Width(100), GUILayout.Height(BtnHeight)))
-                            {
-                                ED_ActorCom actorCom = currSelMap.CreateActor(item);
-                                Selection.activeObject = actorCom;
-                            }
-                        }
-                    });
-                }
                 
             });
         }
@@ -190,7 +156,7 @@ namespace LCMap
         {
             if (map == null)
                 return;
-            string mapPath = MapEditorDef.GetMapSearchPath() + "/" + map.name + ".prefab";
+            string mapPath = MapSetting.Setting.MapSearchPath + "/" + map.name + ".prefab";
             PrefabUtility.SaveAsPrefabAsset(map.gameObject, mapPath);
             GameObject.DestroyImmediate(map.gameObject);
             AssetDatabase.SaveAssets();

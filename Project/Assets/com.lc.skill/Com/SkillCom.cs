@@ -1,4 +1,5 @@
 ﻿using LCECS.Core;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,7 +9,7 @@ namespace LCSkill
     /// 技能组件
     /// 当前拥有的技能，当前拥有的Buff
     /// </summary>
-    [Com(GroupName = "技能相关", ViewName = "技能组件")]
+    [Serializable]
     public class SkillCom : BaseCom
     {
         private List<SkillObj> skills = new List<SkillObj>();
@@ -17,11 +18,13 @@ namespace LCSkill
         /// </summary>
         public IReadOnlyList<SkillObj> Skills { get => skills;}
 
-        public IReadOnlyList<BuffObj> Buffs { get => buffs;}
+
+
+        private List<BuffObj> buffs = new List<BuffObj>();
         /// <summary>
         /// 拥有的Buff
         /// </summary>
-        private List<BuffObj> buffs = new List<BuffObj>();
+        public IReadOnlyList<BuffObj> Buffs { get => buffs; }
 
         public IReadOnlyList<TimelineObj> Timelines { get => timelines; }
         /// <summary>

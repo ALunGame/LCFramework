@@ -1,4 +1,5 @@
 ﻿using LCECS.Core;
+using System;
 using UnityEngine;
 
 namespace Demo.Com
@@ -7,11 +8,14 @@ namespace Demo.Com
     /// 玩家组件
     /// 1,这边会保存一些临时的状态（玩家本来就很特殊）
     /// </summary>
-    [Com(ViewName = "玩家组件", GroupName = "Player")]
+    [Serializable]
     public class PlayerCom : BaseCom
     {
+        [NonSerialized]
         public Transform Trans;
+        [NonSerialized]
         public SpriteRenderer SpriteRender;
+        [NonSerialized]
         public Transform WaveTrans;
 
         //能量

@@ -81,6 +81,52 @@ namespace LCToolkit
             GUILayout.EndScrollView();
         }
 
+        public static float ScrollView(float scroll, int totalCnt, Action<int> drawFunc, int count = 10)
+        {
+            EditorGUI.indentLevel++;
+
+            GUILayout.BeginHorizontal();
+            Rect r = EditorGUILayout.BeginVertical();
+
+            if (totalCnt > count)
+            {
+                int startIndex = Mathf.CeilToInt(totalCnt * scroll);
+                startIndex = Mathf.Max(0, startIndex);
+                for (int i = startIndex; i < startIndex + count; i++)
+                {
+                    drawFunc?.Invoke(i);
+                }
+            }
+            else
+            {
+                for (int i = 0; i < totalCnt; i++)
+                {
+                    drawFunc?.Invoke(i);
+                }
+            }
+
+            EditorGUILayout.EndVertical();
+            if (totalCnt > count)
+            {
+                GUILayout.Space(20);
+                if (totalCnt > count)
+                {
+                    if (Event.current.type == EventType.ScrollWheel && r.Contains(Event.current.mousePosition))
+                    {
+                        scroll += Event.current.delta.y * 0.01f;
+                        Event.current.Use();
+                    }
+
+                    r.xMin += r.width + 5;
+                    r.width = 20;
+                    scroll = GUI.VerticalScrollbar(r, scroll, (float)count / totalCnt, 0, 1);
+                }
+            }
+            GUILayout.EndHorizontal();
+            EditorGUI.indentLevel--;
+            return scroll;
+        }
+
         /// <summary>
         /// 创建一个开关布局
         /// </summary>

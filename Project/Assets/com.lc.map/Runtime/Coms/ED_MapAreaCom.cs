@@ -38,6 +38,7 @@ namespace LCMap
         {
             ActorRoot = transform.Find("Actors");
             TriggerRoot = transform.Find("Triggers");
+            UpdateRect();
             if (AreaEnv != null)
             {
                 tmpAreaEnv = (GameObject)PrefabUtility.InstantiatePrefab(AreaEnv);
@@ -46,10 +47,7 @@ namespace LCMap
 
         private void Update()
         {
-            Vector2Int areaSize = mapCom.AreaSize;
-            Vector3 centerPos = transform.position - new Vector3(areaSize.x, areaSize.y) / 2;
-            areaRect = new Rect(centerPos, areaSize);
-
+            UpdateRect();
             ED_ActorCom[] actors = GetActors();
             if (actors!=null || actors.Length>0)
             {
@@ -113,10 +111,22 @@ namespace LCMap
             GizmosHelper.DrawRect(areaRect, Color.red);
         }
 
+        private void UpdateRect()
+        {
+            Vector2Int areaSize = mapCom.AreaSize;
+            Vector3 centerPos = transform.position - new Vector3(areaSize.x, areaSize.y) / 2;
+            areaRect = new Rect(centerPos, areaSize);
+        }
+
         public override object ExportData()
         {
+            UpdateRect();
+
             AreaModel areaModel = new AreaModel();
+            areaModel.pos = transform.localPosition;
+            areaModel.rect = areaRect;
             areaModel.areaPrefab = AreaEnv.name;
+
             //演员
             ED_ActorCom[] actorComs = ActorRoot.GetComponentsInChildren<ED_ActorCom>(true);
             if (actorComs != null)
@@ -169,12 +179,12 @@ namespace LCMap
                 for (int i = 0; i < actorRoot.childCount; i++)
                 {
                     Transform actor = actorRoot.GetChild(i).transform;
-                    ActorAsset actorModel = MapEditorDef.GetActorAsset(actor.name);
+                    ActorCnf actorModel = ED_MapCom.GetActorCnf(actor.name);
                     if (actorModel != null)
                     {
                         ActorModel actorData = new ActorModel();
                         actorData.uid = defaultActorUid--;
-                        actorData.id = actorModel.actorId;
+                        actorData.id = actorModel.id;
                         actorData.pos = ED_ActorCom.HandlePos(transform.position);
                         actorData.roate = ED_ActorCom.HandlePos(transform.localEulerAngles);
                         actorData.scale = ED_ActorCom.HandlePos(transform.localScale);

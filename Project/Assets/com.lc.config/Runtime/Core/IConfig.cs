@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 namespace LCConfig
 {
     /// <summary>
@@ -9,5 +5,6 @@ namespace LCConfig
     /// </summary>
     public interface IConfig
     {
+        IConfig Clone();
     }
 }

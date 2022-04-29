@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: MapSprite
+  m_EditorClassIdentifier: 
+  m_GroupName: MapSprite
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 4b538384656cdaf479f1dd59544e8605
+  m_SerializeEntries:
+  - m_GUID: c4e7d17a2e6309c499b1d8a12b1cbe9c
+    m_Address: Assets/Demo/Asset/Maps/1001/Sprite
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 236ed1804d0ed34469592db9dc4718b7
+    m_Address: Assets/Demo/Asset/Maps/Common/Sprite
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 44f83315415fde344a5ad1dde28ca002
+    m_Address: Assets/Demo/Asset/Maps/Common/Tile/Sprite
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: c106a54d1dad7c34dbca1e47199c97a1, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 181aa0e59a9e02b49ac5eb8da4ac57f0, type: 2}
+    - {fileID: 11400000, guid: 021ff7ace2cd1bf44b10b00db55388cf, type: 2}

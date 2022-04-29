@@ -103,7 +103,7 @@ namespace LCToolkit
         /// <param name="type"></param>
         /// <param name="label"></param>
         /// <returns></returns>
-        public static float GetHeight(Type type, object value, GUIContent label)
+        public static float GetHeight(Type type, GUIContent label)
         {
             if (type.Equals(typeof(bool)))
             {
@@ -194,8 +194,7 @@ namespace LCToolkit
             }
             if (ObjectDrawer.CheckHasCustomDrawer(type))
             {
-                ObjectDrawer objectDrawer = ObjectDrawer.CreateEditor(value);
-                return objectDrawer.GetHeight();
+                return ObjectDrawer.GetHeight(type);
             }
             return 0;
         }

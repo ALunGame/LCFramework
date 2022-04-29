@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: ActorAnim
+  m_EditorClassIdentifier: 
+  m_GroupName: ActorAnim
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 271c983a1a084834f99df952467cd83f
+  m_SerializeEntries:
+  - m_GUID: fe5230509ecbd2e44aeced9d8a570160
+    m_Address: Assets/Demo/Asset/Actors/Monster/1005/Anim
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 1817ee6ec998a0a43aaf91094f22c7ba
+    m_Address: Assets/Demo/Asset/Actors/Player/1001/Anim
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: c106a54d1dad7c34dbca1e47199c97a1, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 0316344547a65a04f9562ffa5a63c0e0, type: 2}
+    - {fileID: 11400000, guid: 84dce7dacdb9d424285eafc46b6a9f0f, type: 2}

@@ -11,15 +11,14 @@ namespace LC2DAnim
         public static string SelGUID          = "";
 
         //默认的状态
-        private string IdleStateName           = "Idle";
-        private string DamageStateName         = "Damage";
+        private string IdleStateName           = "idle";
         
-        private List<string> DefaultStateNames = new List<string>(){"Run","Damage","Dead","JumpUp","JumpDown","Dash","Climb"};
-        private List<string> LoopStateNames    = new List<string>(){"Idle","Run","Climb"};
+        private List<string> DefaultStateNames = new List<string>(){ "idle","run", "climb","dead","jumpUp","jumpDown","dash"};
+        private List<string> LoopStateNames    = new List<string>(){"idle","run","climb"};
         
         private Sprite DefaultSprite        = null;
         [Header("关键帧间隔时间 (秒)")]
-        public float KeyframeTime           = 0.15f;
+        public float KeyframeTime           = 0.1f;
         [Header("预制体尺寸")]
         public float PrefabScale            = 2.5f;
         public static void Open(string selGUID)
@@ -160,19 +159,35 @@ namespace LC2DAnim
             return animatorController;
         }
 
-        private void CreateAnimatorControllerParameter(AnimatorController animatorController,List<AnimationClip> clips)
+        private bool CheckIsStateClip(string clipName)
         {
-            //默认参数
-            animatorController.AddParameter(IdleStateName, AnimatorControllerParameterType.Bool);
             for (int i = 0; i < DefaultStateNames.Count; i++)
             {
-                if (DefaultStateNames[i].Contains(DamageStateName))
+                if (clipName.Contains(DefaultStateNames[i]))
                 {
-                    animatorController.AddParameter(DefaultStateNames[i], AnimatorControllerParameterType.Trigger);
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        private void CreateAnimatorControllerParameter(AnimatorController animatorController,List<AnimationClip> clips)
+        {
+            animatorController.parameters = null;
+            foreach (var item in clips)
+            {
+                bool isState = CheckIsStateClip(item.name);
+                if (isState && item.name.Equals(IdleStateName))
+                {
+                    animatorController.AddParameter(IdleStateName, AnimatorControllerParameterType.Bool);
                 }
                 else
                 {
-                    animatorController.AddParameter(DefaultStateNames[i], AnimatorControllerParameterType.Bool);
+                    animatorController.AddParameter(item.name, AnimatorControllerParameterType.Trigger);
+                }
+                if (isState && !item.name.Equals(IdleStateName))
+                {
+                    animatorController.AddParameter(item.name + "_state", AnimatorControllerParameterType.Bool);
                 }
             }
         }
@@ -181,26 +196,25 @@ namespace LC2DAnim
         {
             //首先创建Idle
             AnimatorState idleState = CreateDefaultState(stateMachine, clips, IdleStateName);
-            //创建其余的默认状态
-            for (int i = 0; i < DefaultStateNames.Count; i++)
-            {
-                int stateIndex = i+1;
-                if (stateIndex >= DefaultStateNames.Count/2)
-                {
-                    stateIndex = DefaultStateNames.Count/2 - stateIndex-1;
-                }
-                
-                CreateDefaultState(stateMachine, clips, DefaultStateNames[i], idleState, stateIndex);
-            }
-            //创建其他状态
-            int index = 1;
+
             for (int i = 0; i < clips.Count; i++)
             {
                 AnimationClip clip = clips[i];
-                if (!DefaultStateNames.Contains(clip.name) && clip.name != IdleStateName)
+                if (clip.name == IdleStateName)
+                    continue;
+                int stateIndex = i + 1;
+                if (stateIndex >= clips.Count / 2)
                 {
-                    CreateOtherState(stateMachine, clips, clip.name, idleState, index);
-                    index++;
+                    stateIndex = clips.Count / 2 - stateIndex - 1;
+                }
+                bool isState = CheckIsStateClip(clip.name);
+                if (isState)
+                {
+                    CreateDefaultState(stateMachine, clips, clip.name, idleState, stateIndex);
+                }
+                else
+                {
+                    CreateOtherState(stateMachine, clips, clip.name, idleState, stateIndex);
                 }
             }
         }
@@ -220,23 +234,19 @@ namespace LC2DAnim
                     break;
                 }
             }
-            
-            AnimatorStateTransition _animatorStateTransition = stateMachine.AddAnyStateTransition(defaultState);
-            _animatorStateTransition.AddCondition(AnimatorConditionMode.If, 0, stateName);
-            _animatorStateTransition.hasExitTime = false;
-            _animatorStateTransition.canTransitionToSelf = false;
-            _animatorStateTransition.offset = 0;
-            _animatorStateTransition.duration = 0;
-            
-            //都要连Idle
+
+
             if (idleState==null)
-                return defaultState;
-            _animatorStateTransition = defaultState.AddTransition(idleState);
-            if (!stateName.Contains(DamageStateName))
             {
-                _animatorStateTransition.AddCondition(AnimatorConditionMode.IfNot, 0, stateName);
+                ConnectAnyState(stateMachine, defaultState, stateName);
             }
-            _animatorStateTransition.hasExitTime = true;
+            else
+            {
+                //都要连Idle
+                AnimatorStateTransition stateTransition = ConnectAnyStateByTrigger(stateMachine, defaultState, stateName + "_state");
+                stateTransition.AddCondition(AnimatorConditionMode.If, 0, stateName);
+                ConnectIdleStateByBool(defaultState, idleState, stateName + "_state");
+            }
             return defaultState;
         }
 
@@ -255,11 +265,75 @@ namespace LC2DAnim
                     break;
                 }
             }
-            
-            //都要连Idle
-            AnimatorStateTransition transition = otherState.AddTransition(idleState);
-            transition.hasExitTime = true;
+
+            ConnectAnyStateByTrigger(stateMachine, otherState, stateName);
+            ConnectIdleState(otherState, idleState);
             return otherState;
+        }
+
+        /// <summary>
+        /// 连任意状态
+        /// </summary>
+        /// <param name="stateMachine"></param>
+        /// <param name="newState"></param>
+        /// <param name="condName"></param>
+        /// <returns></returns>
+        private AnimatorStateTransition ConnectAnyState(AnimatorStateMachine stateMachine, AnimatorState newState, string condName)
+        {
+            AnimatorStateTransition _animatorStateTransition = stateMachine.AddAnyStateTransition(newState);
+            _animatorStateTransition.AddCondition(AnimatorConditionMode.If, 0, condName);
+            _animatorStateTransition.hasExitTime = false;
+            _animatorStateTransition.canTransitionToSelf = false;
+            _animatorStateTransition.offset = 0;
+            _animatorStateTransition.duration = 0;
+            return _animatorStateTransition;
+        }
+
+        /// <summary>
+        /// 触发连任意状态
+        /// </summary>
+        /// <param name="stateMachine"></param>
+        /// <param name="newState"></param>
+        /// <param name="condName"></param>
+        /// <returns></returns>
+        private AnimatorStateTransition ConnectAnyStateByTrigger(AnimatorStateMachine stateMachine, AnimatorState newState, string condName)
+        {
+            AnimatorStateTransition _animatorStateTransition = stateMachine.AddAnyStateTransition(newState);
+            _animatorStateTransition.AddCondition(AnimatorConditionMode.If, 0, condName);
+            _animatorStateTransition.hasExitTime = false;
+            _animatorStateTransition.canTransitionToSelf = true;
+            _animatorStateTransition.offset = 0;
+            _animatorStateTransition.duration = 0;
+            return _animatorStateTransition;
+        }
+
+        /// <summary>
+        /// 连闲置状态
+        /// </summary>
+        /// <param name="newState"></param>
+        /// <param name="entryState"></param>
+        private void ConnectIdleState(AnimatorState newState, AnimatorState entryState)
+        {
+            if (newState == null || entryState == null)
+                return;
+            AnimatorStateTransition _animatorStateTransition = newState.AddTransition(entryState);
+            _animatorStateTransition.hasExitTime = true;
+            _animatorStateTransition.offset = 0;
+            _animatorStateTransition.duration = 0;
+        }
+
+        private void ConnectIdleStateByBool(AnimatorState newState, AnimatorState entryState, string condName)
+        {
+            if (newState == null || entryState == null)
+                return;
+            AnimatorStateTransition _animatorStateTransition = newState.AddTransition(entryState);
+            if (newState.name != IdleStateName)
+            {
+                _animatorStateTransition.AddCondition(AnimatorConditionMode.IfNot, 0, condName);
+            }
+            _animatorStateTransition.hasExitTime = true;
+            _animatorStateTransition.offset = 0;
+            _animatorStateTransition.duration = 0;
         }
 
         //创建预制体

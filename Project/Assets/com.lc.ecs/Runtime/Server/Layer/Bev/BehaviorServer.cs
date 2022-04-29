@@ -10,7 +10,7 @@ namespace LCECS.Server.Layer
 {
     public class BehaviorServer : IBehaviorServer
     {
-        private Dictionary<int, BehaviorTree> BevDict = new Dictionary<int, BehaviorTree>();
+        private Dictionary<RequestId, BehaviorTree> BevDict = new Dictionary<RequestId, BehaviorTree>();
         
         public void Init()
         {
@@ -49,29 +49,27 @@ namespace LCECS.Server.Layer
         /// 获得行为树
         /// </summary>
         /// <returns></returns>
-        private BehaviorTree GetBehavior(int treeId)
+        private BehaviorTree GetBehavior(RequestId reqId)
         {
-            if (!BevDict.ContainsKey(treeId))
+            if (!BevDict.ContainsKey(reqId))
             {
-                BehaviorTree tree = LoadBehavior(treeId);
+                BehaviorTree tree = LoadBehavior(reqId);
                 if (tree != null)
                 {
-                    BevDict.Add(treeId, tree);
+                    BevDict.Add(reqId, tree);
                 }
             }
-            return BevDict[treeId];
+            return BevDict[reqId];
         }
 
         /// <summary>
         /// 加载行为树
         /// </summary>
         /// <returns></returns>
-        private BehaviorTree LoadBehavior(int treeId)
+        private BehaviorTree LoadBehavior(RequestId treeId)
         {
-            TextAsset jsonData = ECSLocate.Factory.GetProduct<TextAsset>(FactoryType.Asset, null, ECSDefPath.GetDecTreePath(treeId.ToString()));
-            if (jsonData == null)
-                return null;
-            BehaviorTree behavior = JsonMapper.ToObject<BehaviorTree>(jsonData.text);
+            string jsonStr = LCLoad.LoadHelper.LoadString(ECSDefPath.GetBevTreeCnfName(treeId));
+            BehaviorTree behavior = JsonMapper.ToObject<BehaviorTree>(jsonStr);
             if (behavior == null)
                 return null;
             return behavior;

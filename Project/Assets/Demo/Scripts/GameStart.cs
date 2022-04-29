@@ -8,6 +8,7 @@ using LCToolkit;
 using LCSkill;
 using LCUI;
 using UnityEngine;
+using LCMap;
 
 namespace Demo
 {
@@ -21,27 +22,28 @@ namespace Demo
 
         private void Awake()
         {
-            TempConfig.Init();
+            MapLocate.Map.Enter(1001);
+            //TempConfig.Init();
         }
 
         private void Start()
         {
-            //创建玩家实体
-            GameObject entityGo = null;
-            ECSLocate.Player.CreatePlayerEntity(1001, ref entityGo);
-            entityGo.transform.position = PlayerStart.transform.position;
-            PlayerEntity = ECSLocate.Player.GetPlayerEntity();
+            ////创建玩家实体
+            //GameObject entityGo = null;
+            //ECSLocate.Player.CreatePlayerEntity(1001, ref entityGo);
+            //entityGo.transform.position = PlayerStart.transform.position;
+            //PlayerEntity = ECSLocate.Player.GetPlayerEntity();
 
-            //创建全局系统
-            ECSLocate.ECS.CreateEntity(1003, new GameObject("MapSystem"));
-            ECSLocate.ECS.CreateEntity(1002, new GameObject("CameraSystem"));
-            ECSLocate.ECS.CreateEntity(1004, new GameObject("EffectSystem"));
+            ////创建全局系统
+            //ECSLocate.ECS.CreateEntity(1003, new GameObject("MapSystem"));
+            //ECSLocate.ECS.CreateEntity(1002, new GameObject("CameraSystem"));
+            //ECSLocate.ECS.CreateEntity(1004, new GameObject("EffectSystem"));
         }
 
         private void Update()
         {
-            ComputeVelocity();
-            OnClickNormalAttack();
+            //ComputeVelocity();
+            //OnClickNormalAttack();
         }
 
         protected void ComputeVelocity()
@@ -76,6 +78,10 @@ namespace Demo
                 move.y = 1;
             }
 
+            ParamData paramData = ECSLocate.Player.GetReqParam(RequestId.Move);
+            paramData.SetVect2(move);
+            ECSLocate.Player.PushPlayerReq(RequestId.Move);
+
             if (Input.GetMouseButtonDown(0))
             {
                 dash = true;
@@ -89,19 +95,19 @@ namespace Demo
                 {
                     return;
                 }
-                ParamData paramData = ECSLocate.Player.GetReqParam(1);
-                paramData.SetVect2(move);
-                paramData.SetBool(dash);
-                ECSLocate.Player.PushPlayerReq(1);
-                LastReqStop = true;
+                //ParamData paramData = ECSLocate.Player.GetReqParam(1);
+                //paramData.SetVect2(move);
+                //paramData.SetBool(dash);
+                //ECSLocate.Player.PushPlayerReq(1);
+                //LastReqStop = true;
             }
             else
             {
                 LastReqStop = false;
-                ParamData paramData = ECSLocate.Player.GetReqParam(1);
-                paramData.SetVect2(move);
-                paramData.SetBool(dash);
-                ECSLocate.Player.PushPlayerReq(1);
+                //ParamData paramData = ECSLocate.Player.GetReqParam(1);
+                //paramData.SetVect2(move);
+                //paramData.SetBool(dash);
+                //ECSLocate.Player.PushPlayerReq(1);
             }
 
             #endregion
@@ -112,9 +118,9 @@ namespace Demo
         {
             if (Input.GetKeyDown(KeyCode.Q))
             {
-                ParamData paramData = ECSLocate.Player.GetReqParam(2);
-                paramData.SetBool(true);
-                ECSLocate.Player.PushPlayerReq(2);
+                //ParamData paramData = ECSLocate.Player.GetReqParam(2);
+                //paramData.SetBool(true);
+                //ECSLocate.Player.PushPlayerReq(2);
             }
         }
 

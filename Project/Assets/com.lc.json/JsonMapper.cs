@@ -514,8 +514,16 @@ namespace LCJson
 
                         if (prop_data.IsField)
                         {
-                            ((FieldInfo)prop_data.Info).SetValue(
-                                instance, ReadValue(prop_data.Type, reader));
+                            try
+                            {
+                                ((FieldInfo)prop_data.Info).SetValue(
+                                                        instance, ReadValue(prop_data.Type, reader));
+                            }
+                            catch (Exception e)
+                            {
+                                Debug.LogErrorFormat("序列化失败,字段{0}不可设置{1}>>>", prop_data.Info.Name, prop_data.Type);
+                                break;
+                            }
                         }
                         else
                         {

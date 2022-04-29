@@ -40,15 +40,6 @@ namespace LCConfig
             return "tB" + cnfType.Name;
         }
 
-        [MenuItem("配置/测试")]
-        public static void TestGenCode()
-        {
-            GenCode(typeof(TestConfig));
-            GenConfigMappingCode.GenCode();
-            AssetDatabase.Refresh();
-            AssetDatabase.SaveAssets();
-        }
-
         public static void GenCode(Type cnfType)
         {
             string codeModeStr = AssetDatabase.LoadAssetAtPath<TextAsset>(CodeModelPath).text;
@@ -69,6 +60,8 @@ namespace LCConfig
             List<string> usingNames = new List<string>();
             //收集配置键
             List<FieldInfo> keyFields = new List<FieldInfo>();
+            usingNames.Add(cnfType.Namespace);
+            usingNameStr += string.Format("using {0};\n", cnfType.Namespace);
             foreach (var item in ReflectionHelper.GetFieldInfos(cnfType))
             {
                 if (AttributeHelper.TryGetFieldAttribute(item, out ConfigKeyAttribute keyAttr))
@@ -146,7 +139,7 @@ namespace LCConfig
                 if (AttributeHelper.TryGetFieldAttribute(fieldInfo, out ConfigKeyAttribute keyAttr))
                 {
                     formatStr = Regex.Replace(formatStr, "#KEY#", "key" + (i + 1));
-                    formatStr = Regex.Replace(formatStr, "#NAME#", keyAttr.DisplayName);
+                    formatStr = Regex.Replace(formatStr, "#NAME#", keyAttr.Name);
                     resValue += formatStr;
                 }
                 if (i != keyFields.Count - 1)

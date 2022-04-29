@@ -22,11 +22,16 @@ namespace LCNode.Model.Internal
         public abstract bool CheckHasGraph(string name);
 
         /// <summary>
+        /// 当点击创建按钮
+        /// </summary>
+        public abstract void OnClickCreateBtn();
+
+        /// <summary>
         /// 创建视图
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
-        public abstract bool CreateGraph(string name);  
+        public abstract InternalBaseGraphAsset CreateGraph(string name);  
 
         /// <summary>
         /// 移除视图

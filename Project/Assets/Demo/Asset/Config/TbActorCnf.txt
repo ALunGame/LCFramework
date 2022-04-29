@@ -1,0 +1,1 @@
+﻿[{"mType":"LCMap.ActorCnf","id":101,"name":"\u73A9\u5BB6","entityId":1,"prefab":{"mType":"LCToolkit.UnityObjectAsset","ObjName":"Actor_101","ObjPath":"Assets/Demo/Asset/Actors/Player/1001/Prefab/Actor_101.prefab"}}]

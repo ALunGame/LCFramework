@@ -27,8 +27,13 @@ namespace LCNode.View
         {
             graphView = _graphView;
             this.nodeTypes = nodeTypes;
+            this.nodePortMap.Clear();
             foreach (var nodeType in nodeTypes)
             {
+                if (nodePortMap.ContainsKey(nodeType))
+                {
+                    continue;
+                }
                 PortInfo portInfo = new PortInfo(); 
                 foreach (FieldInfo item in ReflectionHelper.GetFieldInfos(nodeType))
                 {

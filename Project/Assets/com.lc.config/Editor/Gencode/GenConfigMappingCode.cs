@@ -12,8 +12,11 @@ namespace LCConfig
         //代码模板文件
         private const string CodeModelPath = "Assets/com.lc.config/Editor/Gencode/ConfigMappingTemplate.txt";
         //代码生成路径
-        private const string CodeGenPath = "Assets/com.lc.config/Runtime/ConfigMapping.cs";
+        private const string CodeGenPath = "Assets/com.lc.config/Runtime/Config.cs";
 
+        private const string RelaodCode = @"
+            if(#NAME#!= null)
+				#NAME#.Clear();";
         public static void GenCode()
         {
             string codeModeStr = AssetDatabase.LoadAssetAtPath<TextAsset>(CodeModelPath).text;
@@ -37,10 +40,8 @@ namespace LCConfig
 
                 //Reload
                 string fileName = GenTBConfigCode.GetCodeClassFileName(item);
-                string tmpStr1 = "\t\t\tif({0}!= null)\n";
-                string tmpStr2 = "\t\t\t\t{0}.Clear();";
-                string reloadStr = string.Format(tmpStr1, fileName);
-                reloadStr += string.Format(tmpStr2, fileName);
+                string reloadStr = RelaodCode;
+                reloadStr = Regex.Replace(reloadStr, "#NAME#", "_" + item.Name) + "\n";
                 reloadValue += reloadStr;
             }
             resStr = Regex.Replace(resStr, "#USINGNAME#", usingNameStr);
@@ -52,22 +53,22 @@ namespace LCConfig
         }
 
         private const string CnfCode = @"
-        private static #CLASS# #NAME# = null;
+        private static #CLASS# #NAME01# = null;
         /// <summary>
         /// #DISPLAYNAME#
         /// </summary>
-        public static #CLASS# #CLASS#
+        public static #CLASS# #NAME02#
         {
             get
             {
-                if (#NAME# != null)
-                    return #NAME#;
-                else
+                if (#NAME01# == null)
                 {
-                    #NAME# = new #CLASS#();
-                    #NAME#.AddConfig(loadFunc(""#TYPE#""));
+                    string jsonStr = LoadHelper.LoadString(""#NAME03#"");
+                    List<#TYPE#> configs = LCJson.JsonMapper.ToObject<List<#TYPE#>>(jsonStr);
+                    #NAME01# = new #CLASS#();
+                    #NAME01#.AddConfig(configs);
                 }
-                return null;
+                return #NAME01#;
             }
         }";
 
@@ -84,6 +85,9 @@ namespace LCConfig
             resStr = Regex.Replace(resStr, "#CLASS#", className);
             resStr = Regex.Replace(resStr, "#NAME#", classFileName);
             resStr = Regex.Replace(resStr, "#TYPE#", cnfType.Name);
+            resStr = Regex.Replace(resStr, "#NAME01#", "_"+cnfType.Name);
+            resStr = Regex.Replace(resStr, "#NAME02#", cnfType.Name);
+            resStr = Regex.Replace(resStr, "#NAME03#", ConfigDef.GetCnfNoExName(cnfType.Name));
             resStr += "\n";
             return resStr;
         }

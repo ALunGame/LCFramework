@@ -11,6 +11,8 @@ namespace LCECS
     /// </summary>
     public static class ECSLocate
     {
+        public static ECSCenter Center;
+
         /// <summary>
         /// 日志
         /// </summary>
@@ -19,8 +21,9 @@ namespace LCECS
         public static IFactoryServer Factory { get; set; }
         public static IPlayerServer Player { get; set; }
 
-        public static void InitServer()
+        public static void InitServer(ECSCenter center)
         {
+            Center      = center;
             Log         = new ECSLogServer();
             ECS         = new ECSServer();
             Factory     = new FactoryServer();
@@ -29,7 +32,7 @@ namespace LCECS
 
         public static void Clear()
         {
-            Log    = null;
+            Log       = null;
             ECS       = null;
             Factory   = null;
             Player    = null;

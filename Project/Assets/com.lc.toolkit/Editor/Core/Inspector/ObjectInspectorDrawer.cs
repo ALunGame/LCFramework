@@ -52,10 +52,24 @@ namespace LCToolkit.Core
         {
             if (ObjectEditorTypeCache.TryGetValue(objectType, out Type editorType))
                 return editorType;
+            //¸¸Àà
             if (objectType.BaseType != null)
-                return GetEditorType(objectType.BaseType);
-            else
+            {
+                if (ObjectEditorTypeCache.TryGetValue(objectType.BaseType, out Type baseEditorType))
+                    return baseEditorType;
+            }
+            //½Ó¿Ú
+            Type[] interfaces = objectType.GetInterfaces();
+            if (interfaces == null || interfaces.Length <= 0)
+            {
                 return typeof(ObjectInspectorDrawer);
+            }
+            for (int i = 0; i < interfaces.Length; i++)
+            {
+                if (ObjectEditorTypeCache.TryGetValue(interfaces[i], out Type interfacesEditorType))
+                    return interfacesEditorType;
+            }
+            return typeof(ObjectInspectorDrawer);
         }
 
         private static ObjectInspectorDrawer InternalCreateEditor(object _targetObject)
@@ -74,7 +88,7 @@ namespace LCToolkit.Core
             return objectEditor;
         }
 
-        public static ObjectInspectorDrawer CreateEditor(object _targetObject, UnityObject _owner)
+        public static ObjectInspectorDrawer CreateEditor(object _targetObject, object _owner)
         {
             ObjectInspectorDrawer objectEditor = InternalCreateEditor(_targetObject);
             if (objectEditor == null) return null;
@@ -83,7 +97,7 @@ namespace LCToolkit.Core
             return objectEditor;
         }
 
-        public static ObjectInspectorDrawer CreateEditor(object _targetObject, UnityObject _owner, Editor _editor)
+        public static ObjectInspectorDrawer CreateEditor(object _targetObject, object _owner, Editor _editor)
         {
             ObjectInspectorDrawer objectEditor = InternalCreateEditor(_targetObject);
             if (objectEditor == null) return null;
@@ -97,7 +111,7 @@ namespace LCToolkit.Core
         protected IReadOnlyList<FieldInfo> Fields { get; private set; }
 
         public object Target { get; private set; }
-        public UnityObject Owner { get; private set; }
+        public object Owner { get; private set; }
         public Editor Editor { get; private set; }
         public MonoScript Script { get; private set; }
 
@@ -112,13 +126,13 @@ namespace LCToolkit.Core
             Fields = ReflectionHelper.GetFieldInfos(Target.GetType()).Where(field => GUILayoutExtension.CanDraw(field)).ToList();
         }
 
-        void Init(object _target, UnityObject _owner)
+        void Init(object _target, object _owner)
         {
             Owner = _owner;
             Init(_target);
         }
 
-        void Init(object _target, UnityObject _owner, Editor _editor)
+        void Init(object _target, object _owner, Editor _editor)
         {
             Owner = _owner;
             Editor = _editor;
@@ -143,7 +157,7 @@ namespace LCToolkit.Core
             EditorGUI.EndDisabledGroup();
             foreach (var field in Fields)
             {
-                GUILayoutExtension.DrawField(field, field.GetValue(Target));
+                GUILayoutExtension.DrawField(field, Target);
             }
         }
 

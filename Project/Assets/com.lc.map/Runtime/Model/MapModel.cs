@@ -20,7 +20,11 @@ namespace LCMap
     public class AreaModel
     {
         public int areaId;
+        public Vector3 pos;
+        public Rect rect;
+
         public string areaPrefab;
+
         public List<ActorModel> actors = new List<ActorModel>();
         public Dictionary<int, MapTriggerModel> triggers = new Dictionary<int, MapTriggerModel>();
     }

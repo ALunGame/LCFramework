@@ -1,10 +1,8 @@
-﻿using LCECS.Core;
+﻿using LCECS.Config;
+using LCECS.Core;
 using LCECS.Core.Tree;
-using LCECS.Data;
 using LCToolkit;
-using LCJson;
 using System;
-using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 
@@ -15,7 +13,12 @@ namespace LCECS
     /// </summary>
     public class ECSCenter : MonoBehaviour
     {
-        private SystemSortJson systemSortJson   = null;
+        [SerializeField]
+        private RequestSortAsset requestSortAsset;
+
+        [SerializeField]
+        private SystemSortAsset systemSortAsset;
+
         private bool DecThreadRun = false;
 
         private void Awake()
@@ -68,119 +71,60 @@ namespace LCECS
 
         private void Init()
         {
+            DecThreadRun = true;
+
             InitServer();
             InitConf();
             RegSystems();
-
-            //开启决策线程
-            //if (OpenDecThread)
-            //{
-            //    DecThreadRun = true;
-            //    ThreadExcuteDec();
-            //}
-
-            DecThreadRun = true;
             ThreadExcuteDec();
         }
 
         //设置服务
         private void InitServer()
         {
-            ECSLocate.InitServer();
+            ECSLocate.InitServer(this);
             ECSLayerLocate.InitLayerServer();
         }
 
         //初始化配置
         private void InitConf()
         {
-            //系统排序
-            TextAsset jsonData = ECSLocate.Factory.GetProduct<TextAsset>(FactoryType.Asset, null, ECSDefPath.SystemSortPath);
-            systemSortJson = JsonMapper.ToObject<SystemSortJson>(jsonData.text);
-            //配置初始化
-            //LCConfig.LCConfigLocate.Init();
         }
 
         //注册系统
         private void RegSystems()
         {
-            List<Type> updateSystems = new List<Type>();
-            List<Type> fixedUpdateSystems = new List<Type>();
-
-            //分组
-            foreach (Type type in ReflectionHelper.GetChildTypes<BaseSystem>())
+            foreach (var item in systemSortAsset.GetSystemSorts(SystemType.Update))
             {
-                if (AttributeHelper.TryGetTypeAttribute(type, out SystemAttribute attr))
-                {
-                    if (attr.InFixedUpdate)
-                        fixedUpdateSystems.Add(type);
-                    else
-                        updateSystems.Add(type);
-                }
-                else
-                {
-                    updateSystems.Add(type);
-                }
-            }
-
-            //排序
-            updateSystems.Sort(SystemSortFunc);
-            fixedUpdateSystems.Sort(SystemSortFunc);
-
-            //注册
-            for (int i = 0; i < updateSystems.Count; i++)
-            {
-                Type type = updateSystems[i];
-                BaseSystem system = ReflectionHelper.CreateInstance<BaseSystem>(type.FullName);
+                Type systemType = ReflectionHelper.GetType(item.typeFullName);
+                BaseSystem system = ReflectionHelper.CreateInstance(systemType) as BaseSystem;
                 system.Init();
-
                 ECSLocate.ECS.RegUpdateSystem(system);
             }
-            for (int i = 0; i < fixedUpdateSystems.Count; i++)
+            foreach (var item in systemSortAsset.GetSystemSorts(SystemType.FixedUpdate))
             {
-                Type type = fixedUpdateSystems[i];
-                BaseSystem system = ReflectionHelper.CreateInstance<BaseSystem>(type.FullName);
+                Type systemType = ReflectionHelper.GetType(item.typeFullName);
+                BaseSystem system = ReflectionHelper.CreateInstance(systemType) as BaseSystem;
                 system.Init();
-
                 ECSLocate.ECS.RegFixedUpdateSystem(system);
             }
         }
+        #endregion
 
-        //系统排序
-        private int SystemSortFunc(Type type01, Type type02)
+        #region Get
+
+        public RequestSort GetRequestSort(RequestId requestId)
         {
-            int sysSort01 = GetSystemSort(type01.FullName);
-            int sysSort02 = GetSystemSort(type02.FullName);
-
-            if (sysSort01 == sysSort02)
-                return 0;
-            else if (sysSort01 < sysSort02)
-                return -1;
-            else
-                return 1;
-        }
-
-        //获得系统排序
-        private int GetSystemSort(string sysName)
-        {
-            List<SortJson> sorts = systemSortJson.UpdateList;
-            for (int i = 0; i < sorts.Count; i++)
+            for (int i = 0; i < requestSortAsset.requests.Count; i++)
             {
-                if (sorts[i].TypeName == sysName)
+                RequestSort sort = requestSortAsset.requests[i];
+                if (sort.key.Equals(requestId.ToString()))
                 {
-                    return sorts[i].Sort;
+                    return sort;
                 }
             }
-
-            sorts = systemSortJson.FixedUpdateList;
-            for (int i = 0; i < sorts.Count; i++)
-            {
-                if (sorts[i].TypeName == sysName)
-                {
-                    return sorts[i].Sort;
-                }
-            }
-
-            return 9999;
+            ECSLocate.Log.LogError("请求没有配置排序", requestId);
+            return null;
         }
 
         #endregion

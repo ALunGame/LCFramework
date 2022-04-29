@@ -14,13 +14,123 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   allowGroupCreation: 1
   rules:
-  - path: Assets/GameAsset/BundleAssets/UI/Prefabs/*.prefab
-    matchType: 0
-    groupName: UIPrefab
+  - path: ^Assets/Demo/Asset/Actors/[^\x22]+/Anim$
+    matchType: 1
+    groupName: ActorAnim
     LabelMode: 1
     labelRefs: []
     dynamicLabels: []
-    groupTemplate: {fileID: 11400000, guid: fa9270999ebf6ea49ac3a982fe0f5228, type: 2}
+    groupTemplate: {fileID: 11400000, guid: afd24fc416a2d11478e3db337d942408, type: 2}
+    groupTemplateApplicationMode: 1
+    simplified: 0
+    addressReplacement: 
+  - path: ^Assets/Demo/Asset/Actors/[^\x22]+/Sprite$
+    matchType: 1
+    groupName: ActorSprite
+    LabelMode: 1
+    labelRefs: []
+    dynamicLabels: []
+    groupTemplate: {fileID: 11400000, guid: afd24fc416a2d11478e3db337d942408, type: 2}
+    groupTemplateApplicationMode: 1
+    simplified: 0
+    addressReplacement: 
+  - path: ^Assets/Demo/Asset/Actors/[^\x22]+/*.prefab
+    matchType: 1
+    groupName: ActorPrefab
+    LabelMode: 1
+    labelRefs: []
+    dynamicLabels: []
+    groupTemplate: {fileID: 11400000, guid: afd24fc416a2d11478e3db337d942408, type: 2}
+    groupTemplateApplicationMode: 1
+    simplified: 1
+    addressReplacement: 
+  - path: ^Assets/Demo/Asset/Maps/[^\x22]+/Prefab/.+prefab
+    matchType: 1
+    groupName: MapPrefab
+    LabelMode: 1
+    labelRefs: []
+    dynamicLabels: []
+    groupTemplate: {fileID: 11400000, guid: afd24fc416a2d11478e3db337d942408, type: 2}
+    groupTemplateApplicationMode: 1
+    simplified: 1
+    addressReplacement: 
+  - path: ^Assets/Demo/Asset/Maps/[^\x22]+/Sprite$
+    matchType: 1
+    groupName: MapSprite
+    LabelMode: 1
+    labelRefs: []
+    dynamicLabels: []
+    groupTemplate: {fileID: 11400000, guid: afd24fc416a2d11478e3db337d942408, type: 2}
+    groupTemplateApplicationMode: 1
+    simplified: 0
+    addressReplacement: 
+  - path: ^Assets/Demo/Asset/Maps/[^\x22]+/Tile$
+    matchType: 1
+    groupName: MapTile
+    LabelMode: 1
+    labelRefs: []
+    dynamicLabels: []
+    groupTemplate: {fileID: 11400000, guid: afd24fc416a2d11478e3db337d942408, type: 2}
+    groupTemplateApplicationMode: 1
+    simplified: 0
+    addressReplacement: 
+  - path: ^Assets/Demo/Asset/Common/Shader$
+    matchType: 1
+    groupName: CommonShader
+    LabelMode: 1
+    labelRefs: []
+    dynamicLabels: []
+    groupTemplate: {fileID: 11400000, guid: afd24fc416a2d11478e3db337d942408, type: 2}
+    groupTemplateApplicationMode: 1
+    simplified: 0
+    addressReplacement: 
+  - path: ^Assets/Demo/Asset/Common/UnityBuiltin$
+    matchType: 1
+    groupName: CommonUnityBuiltin
+    LabelMode: 1
+    labelRefs: []
+    dynamicLabels: []
+    groupTemplate: {fileID: 11400000, guid: afd24fc416a2d11478e3db337d942408, type: 2}
+    groupTemplateApplicationMode: 1
+    simplified: 0
+    addressReplacement: 
+  - path: ^Assets/Demo/Asset/Common/[^\x22]+/*.mat
+    matchType: 1
+    groupName: CommonMat
+    LabelMode: 1
+    labelRefs: []
+    dynamicLabels: []
+    groupTemplate: {fileID: 11400000, guid: afd24fc416a2d11478e3db337d942408, type: 2}
+    groupTemplateApplicationMode: 1
+    simplified: 0
+    addressReplacement: 
+  - path: ^Assets/Demo/Asset/Common/[^\x22]+/*.ttf
+    matchType: 1
+    groupName: CommonFont
+    LabelMode: 1
+    labelRefs: []
+    dynamicLabels: []
+    groupTemplate: {fileID: 11400000, guid: afd24fc416a2d11478e3db337d942408, type: 2}
+    groupTemplateApplicationMode: 1
+    simplified: 0
+    addressReplacement: 
+  - path: ^Assets/Demo/Asset/ScriptObject/.+asset
+    matchType: 1
+    groupName: ScriptObject
+    LabelMode: 1
+    labelRefs: []
+    dynamicLabels: []
+    groupTemplate: {fileID: 11400000, guid: afd24fc416a2d11478e3db337d942408, type: 2}
+    groupTemplateApplicationMode: 1
+    simplified: 1
+    addressReplacement: 
+  - path: ^Assets/Demo/Asset/Config/.+txt
+    matchType: 1
+    groupName: Config
+    LabelMode: 1
+    labelRefs: []
+    dynamicLabels: []
+    groupTemplate: {fileID: 11400000, guid: afd24fc416a2d11478e3db337d942408, type: 2}
     groupTemplateApplicationMode: 1
     simplified: 1
     addressReplacement: 

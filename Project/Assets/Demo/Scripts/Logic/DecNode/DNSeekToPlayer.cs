@@ -21,9 +21,9 @@ namespace Demo.DecNode
             MapSensor mapSensor = ECSLayerLocate.Info.GetSensor<MapSensor>(SensorType.Map);
 
             //发送请求
-            ParamData paramData = workData.GetReqParam((int)BevType.SeekPath);
-            paramData.SetVect2Int(mapSensor.GetPlayerMapPos());
-            ECSLayerLocate.Request.PushRequest(workData.MEntity.GetHashCode(), (int)BevType.SeekPath);
+            //ParamData paramData = workData.GetReqParam((int)BevType.SeekPath);
+            //paramData.SetVect2Int(mapSensor.GetPlayerMapPos());
+            //ECSLayerLocate.Request.PushRequest(workData.MEntity.GetHashCode(), (int)BevType.SeekPath);
         }
 
         //获得玩家寻路点

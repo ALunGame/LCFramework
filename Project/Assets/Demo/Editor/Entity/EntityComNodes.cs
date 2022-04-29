@@ -37,6 +37,8 @@ namespace Demo
         public PropertyInfo MoveSpeed = PropertyInfo.Zero;
         [NodeValue("行动速度")]
         public PropertyInfo ActionSpeed = PropertyInfo.Zero;
+        [NodeValue("质量")]
+        public PropertyInfo Mass = new PropertyInfo(1, 1, 1);
 
         protected override void OnEnabled()
         {
@@ -46,6 +48,7 @@ namespace Demo
             this[nameof(Attack)] = new BindableProperty<PropertyInfo>(() => Attack, v => Attack = v, "攻击");
             this[nameof(MoveSpeed)] = new BindableProperty<PropertyInfo>(() => MoveSpeed, v => MoveSpeed = v, "移动速度");
             this[nameof(ActionSpeed)] = new BindableProperty<PropertyInfo>(() => ActionSpeed, v => ActionSpeed = v, "行动速度");
+            this[nameof(Mass)] = new BindableProperty<PropertyInfo>(() => Mass, v => Mass = v, "质量");
         }
 
 
@@ -57,6 +60,7 @@ namespace Demo
             propertyCom.Attack = Attack;
             propertyCom.MoveSpeed = MoveSpeed;
             propertyCom.ActionSpeed = ActionSpeed;
+            propertyCom.Mass = Mass;
             return propertyCom;
         }
     }
@@ -126,6 +130,23 @@ namespace Demo
         public override BaseCom CreateRuntimeNode()
         {
             MoveCom com = new MoveCom();
+            return com;
+        }
+    }
+
+    [NodeMenuItem("演员/重力组件")]
+    public class Entity_Node_GravityCom : Entity_ComNode
+    {
+        public override string Title { get => "重力组件"; set => base.Title = value; }
+        public override string Tooltip { get => "重力组件"; set => base.Tooltip = value; }
+
+        [NodeValue("重力方向")]
+        public GravityDir Dir = GravityDir.Down;
+
+        public override BaseCom CreateRuntimeNode()
+        {
+            GravityCom com = new GravityCom();
+            com.Dir = Dir;
             return com;
         }
     }

@@ -18,6 +18,8 @@ namespace LCMap
         public Rect Rect;
 
         public GameObject AreaRootGo;
+        public GameObject AreaEnvGo;
+
         public GameObject ActorRootGo;
         public Dictionary<int, ActorObj> Actors = new Dictionary<int, ActorObj>();
 
@@ -34,9 +36,9 @@ namespace LCMap
 
             //预制体
             GameObject assetGo = LoadHelper.LoadPrefab(Model.areaPrefab);
-            GameObject areaEnv = GameObject.Instantiate(assetGo);
-            areaEnv.transform.SetParent(AreaRootGo.transform);
-            areaEnv.transform.Reset();
+            AreaEnvGo = GameObject.Instantiate(assetGo);
+            AreaEnvGo.transform.SetParent(AreaRootGo.transform);
+            AreaEnvGo.transform.Reset();
 
             //演员
             ActorRootGo = new GameObject("ActorRootGo");

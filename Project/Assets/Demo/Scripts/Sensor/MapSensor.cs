@@ -1,6 +1,7 @@
 ﻿using Demo.Com;
 using LCECS;
 using LCECS.Layer.Info;
+using LCMap;
 using UnityEngine;
 
 namespace Demo.Info
@@ -29,6 +30,16 @@ namespace Demo.Info
         {
             Gollect();
             return mapCom.PlayerMapPos;
+        }
+
+        /// <summary>
+        /// 获得坐标所在的地图区域
+        /// </summary>
+        /// <param name="uid"></param>
+        /// <returns></returns>
+        public MapArea GetMapArea(Vector3 pos)
+        {
+            return MapLocate.Map.GetPosArea(pos);
         }
     }
 }

@@ -5,6 +5,30 @@ using System;
 
 namespace Demo.Com
 {
+    public class ColliderData
+    {
+        public bool Up      = false;
+        public bool Down    = false;
+        public bool Left    = false;
+        public bool Right   = false;
+
+        public bool IsNull()
+        {
+            return !Up && !Down && !Left && !Right;
+        }
+
+        public static ColliderData Null
+        {
+            get { return new ColliderData(); }
+        }
+
+        public override string ToString()
+        {
+            return $"Up:{Up} Down:{Down} Left:{Left} Right:{Right}";
+        }
+    }
+
+
     /// <summary>
     /// 碰撞组件
     /// </summary>
@@ -14,18 +38,34 @@ namespace Demo.Com
         [NonSerialized]
         public const float CollisionOffset = 0.05f;
 
-        public Vector2 UpCheckPoint     = Vector2.zero;
-        public Vector2 BottomCheckPoint = Vector2.zero;
-        public Vector2 RightCheckPoint  = Vector2.zero;
-        public Vector2 LeftCheckPoint   = Vector2.zero;
+        [NonSerialized]
+        public ColliderData Collider = ColliderData.Null;
+
+        private Collider2D collider2D;
+
+        public Vector2 UpCheckPoint
+        {
+            get { return new Vector2(collider2D.bounds.center.x, collider2D.bounds.center.y + collider2D.bounds.extents.y + CollisionOffset); }
+        }
+
+        public Vector2 DownCheckPoint
+        {
+            get { return new Vector2(collider2D.bounds.center.x, collider2D.bounds.center.y - collider2D.bounds.extents.y - CollisionOffset); }
+        }
+
+        public Vector2 RightCheckPoint
+        {
+            get { return new Vector2(collider2D.bounds.center.x + collider2D.bounds.extents.x + CollisionOffset, collider2D.bounds.center.y); }
+        }
+
+        public Vector2 LeftCheckPoint
+        {
+            get { return new Vector2(collider2D.bounds.center.x - collider2D.bounds.extents.x - CollisionOffset, collider2D.bounds.center.y); }
+        }
 
         protected override void OnInit(GameObject go)
         {
-            Collider2D collider2D = go.GetComponent<Collider2D>();
-            UpCheckPoint = new Vector2(collider2D.bounds.center.x, collider2D.bounds.center.y + collider2D.bounds.extents.y + CollisionOffset);
-            BottomCheckPoint = new Vector2(collider2D.bounds.center.x, collider2D.bounds.center.y - collider2D.bounds.extents.y - CollisionOffset);
-            RightCheckPoint = new Vector2(collider2D.bounds.center.x + collider2D.bounds.extents.x + CollisionOffset, collider2D.bounds.center.y);
-            LeftCheckPoint = new Vector2(collider2D.bounds.center.x - collider2D.bounds.extents.x - CollisionOffset, collider2D.bounds.center.y);
+            collider2D = go.transform.Find("Display/Default/ColliderBox").GetComponent<Collider2D>();
         }
     }
 }

@@ -19,9 +19,10 @@ namespace Demo.BevNode
 
             MoveCom moveCom = workData.MEntity.GetCom<MoveCom>();
             PropertyCom propertyCom = workData.MEntity.GetCom<PropertyCom>();
-            Vector2 velocity = new Vector2(propertyCom.MoveSpeed.Curr * inputMove.x, inputMove.y);
+
+            float yValue = inputMove.y == 0 ? moveCom.Velocity.y: inputMove.y;
+            Vector2 velocity = new Vector2(propertyCom.MoveSpeed.Curr * inputMove.x, yValue);
             moveCom.Velocity = velocity;
-            Debug.Log("BEV_ACT_Move>>>>" + velocity);
         }
     }
 }

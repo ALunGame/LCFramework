@@ -77,5 +77,9 @@ namespace Demo.Com
         /// 行动速度（攻击速度）
         /// </summary>
         public PropertyInfo ActionSpeed;
+        /// <summary>
+        /// 质量
+        /// </summary>
+        public PropertyInfo Mass = new PropertyInfo(1,1,1);
     }
 }

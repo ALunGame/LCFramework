@@ -26,8 +26,8 @@ namespace Demo.BevNode
             EntityWorkData workData     = wData as EntityWorkData;
             
             //参数
-            bool doDash                 = workData.GetReqParam(workData.CurrReqId).GetBool();
-            Vector2 inputMove           = workData.GetReqParam(workData.CurrReqId).GetVect2();
+            bool doDash                 = workData.GetParam().GetBool();
+            Vector2 inputMove           = workData.GetParam().GetVect2();
 
             //组件
             PlayerCom playerCom         = workData.MEntity.GetCom<PlayerCom>();

@@ -32,16 +32,10 @@ namespace LCECS.Server.Player
             return playerGo;
         }
 
-        //请求参数
-        public ParamData GetReqParam(RequestId reqId)
-        {
-            return playerWorkData.GetReqParam(reqId);
-        }
-
         //请求
-        public void PushPlayerReq(RequestId reqId)
+        public void PushPlayerReq(RequestId reqId, ParamData param)
         {
-            ECSLayerLocate.Request.PushRequest(playerEntity.GetHashCode(), reqId);
+            ECSLayerLocate.Request.PushRequest(playerEntity.GetHashCode(), reqId, param);
         }
     }
 }

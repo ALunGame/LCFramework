@@ -109,5 +109,10 @@ namespace LCECS.Core
         {
 
         }
+
+        public virtual void OnDrawGizmosSelected()
+        {
+
+        }
     }
 }

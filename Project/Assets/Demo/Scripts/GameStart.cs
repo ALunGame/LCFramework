@@ -78,9 +78,9 @@ namespace Demo
                 move.y = 1;
             }
 
-            ParamData paramData = ECSLocate.Player.GetReqParam(RequestId.Move);
-            paramData.SetVect2(move);
-            ECSLocate.Player.PushPlayerReq(RequestId.Move);
+            //ParamData paramData = ECSLocate.Player.GetReqParam(RequestId.Move);
+            //paramData.SetVect2(move);
+            //ECSLocate.Player.PushPlayerReq(RequestId.Move);
 
             if (Input.GetMouseButtonDown(0))
             {

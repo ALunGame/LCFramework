@@ -37,8 +37,6 @@ namespace Demo
         public PropertyInfo MoveSpeed = PropertyInfo.Zero;
         [NodeValue("行动速度")]
         public PropertyInfo ActionSpeed = PropertyInfo.Zero;
-        [NodeValue("质量")]
-        public PropertyInfo Mass = new PropertyInfo(1, 1, 1);
 
         protected override void OnEnabled()
         {
@@ -48,7 +46,6 @@ namespace Demo
             this[nameof(Attack)] = new BindableProperty<PropertyInfo>(() => Attack, v => Attack = v, "攻击");
             this[nameof(MoveSpeed)] = new BindableProperty<PropertyInfo>(() => MoveSpeed, v => MoveSpeed = v, "移动速度");
             this[nameof(ActionSpeed)] = new BindableProperty<PropertyInfo>(() => ActionSpeed, v => ActionSpeed = v, "行动速度");
-            this[nameof(Mass)] = new BindableProperty<PropertyInfo>(() => Mass, v => Mass = v, "质量");
         }
 
 
@@ -60,7 +57,6 @@ namespace Demo
             propertyCom.Attack = Attack;
             propertyCom.MoveSpeed = MoveSpeed;
             propertyCom.ActionSpeed = ActionSpeed;
-            propertyCom.Mass = Mass;
             return propertyCom;
         }
     }

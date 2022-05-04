@@ -190,6 +190,7 @@ namespace LCMap
                             Debug.LogWarning($"具有多个主角>>>>>{mapData.areas[i].areaId}");
                         }
                         mapData.mainActor = mapData.areas[i].actors[j];
+                        mapData.areas[i].actors.RemoveAt(j);
                     }
                 }
             }

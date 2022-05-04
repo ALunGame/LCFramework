@@ -1,8 +1,10 @@
-﻿namespace LCECS.Server.Layer
+﻿using LCECS.Data;
+
+namespace LCECS.Server.Layer
 {
     public interface IRequestServer
     {
         void Init();
-        void PushRequest(int entityId, RequestId reqId);
+        void PushRequest(int entityId, RequestId reqId, ParamData paramData);
     }
 }

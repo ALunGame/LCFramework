@@ -20,7 +20,7 @@ namespace Demo.BevNode
             SeekPathCom seekPathCom = workData.MEntity.GetCom<SeekPathCom>();
             
             //参数
-            ParamData param         = workData.GetReqParam(workData.CurrReqId);
+            ParamData param         = workData.GetParam();
             Vector2Int targetPos    = param.GetVect2Int();
             bool isWander           = param.GetBool();
             

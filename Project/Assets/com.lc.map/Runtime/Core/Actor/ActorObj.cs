@@ -5,6 +5,7 @@ using LCToolkit;
 using LCECS;
 using UnityEditor;
 using LCECS.Core;
+using System;
 
 namespace LCMap
 {
@@ -55,6 +56,13 @@ namespace LCMap
         [EDReadOnly]
         public GameObject DisplayGo;
 
+        /// <summary>
+        /// 当表现节点改变
+        /// </summary>
+        public event Action<GameObject> OnDisplayGoChange;
+
+
+        private Entity entity;
         public void Init(ActorModel model)
         {
             this.model = model;
@@ -64,7 +72,7 @@ namespace LCMap
             SetModelDisplay();
             UpdateGoName();
 
-            Entity entity = ECSLocate.ECS.CreateEntity(this);
+            entity = ECSLocate.ECS.CreateEntity(this);
 
             //设置玩家
             if (model.isMainActor)
@@ -89,13 +97,18 @@ namespace LCMap
 
         public void Clear()
         {
-
+            OnDisplayGoChange = null;
         }
 
         private void OnDrawGizmosSelected()
         {
             Gizmos.color = Color.red;
             Gizmos.DrawSphere(GetInteractivePoint(),0.05f);
+
+            foreach (var item in entity.GetComs())
+            {
+                item.OnDrawGizmosSelected();
+            }
         }
 
         #region Misc
@@ -156,6 +169,7 @@ namespace LCMap
 
             DisplayGo = displayTrans.gameObject;
             DisplayGo.SetActive(true);
+            OnDisplayGoChange?.Invoke(DisplayGo);
         }
 
         public void SetDir(DirType dirType)

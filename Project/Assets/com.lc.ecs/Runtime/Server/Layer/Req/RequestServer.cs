@@ -39,60 +39,6 @@ namespace LCECS.Server.Layer
             return RequestDict[key];
         }
         
-        /// 请求置换规则
-        private void CheckCanSwitch(RequestId pushId, ref RequestId nextId, ref RequestId curId, ref RequestId clearId, bool isEntity)
-        {
-            //小于零错误
-            if (pushId <= 0)
-            {
-                return;
-            }
-
-            int pushSort = GetRequestSort(pushId);
-            int nextSort = GetRequestSort(nextId);
-            int curSort = GetRequestSort(curId);
-
-            //没有执行的请求---直接换
-            if (curId == 0)
-            {
-                //最新的比原本下一个排序高（覆盖）
-                if (pushSort < nextSort)
-                {
-                    curId = pushId;
-                    nextId = 0;
-                }
-                else
-                {
-                    curId = nextId;
-                    nextId = pushId;
-                }
-            }
-            else
-            {
-                //强制置换（覆盖）
-                if (pushSort == ECSDefinition.REForceSwithWeight)
-                {
-                    curId = pushId;
-                    nextId = 0;
-                    return;
-                }
-                else
-                {
-                    //判断当前的
-                    if (pushSort < curSort)
-                    {
-                        curId = pushId;
-                    }
-
-                    //判断本来的下一个
-                    if (pushSort < nextSort && curId != pushId)
-                    {
-                        nextId = pushId;
-                    }
-                }
-            }
-        }
-        
         public void Init()
         {
             RegAllRequest();
@@ -106,7 +52,7 @@ namespace LCECS.Server.Layer
             return sort.sort;
         }
         
-        public void PushRequest(int entityId, RequestId reqId)
+        public void PushRequest(int entityId, RequestId reqId, ParamData paramData)
         {
             //数据
             EntityWorkData workData = ECSLayerLocate.Info.GetEntityWorkData(entityId);
@@ -115,50 +61,78 @@ namespace LCECS.Server.Layer
                 return;
             }
 
+            if (workData.CurrReqId == reqId)
+            {
+                workData.AddParam(paramData);
+                return;
+            }
+
             //请求
             IRequest pushRequest = GetEntityRequest(reqId);
-            RequestId oldReqId = workData.CurrReqId;
+            RequestId oldReqId   = workData.CurrReqId;
+
 
             //请求不需要自身处理
             if (pushRequest == null)
             {
-                //权重置换规则
-                CheckCanSwitch(reqId, ref workData.NextReqId, ref workData.CurrReqId, ref workData.ClearReqId, true);
-                if (workData.CurrReqId == oldReqId)
-                {
-                    return;
-                }
-                //执行请求
-                ECSLayerLocate.Behavior.ReqBev(workData);
-                return;
+                ChangeRequest(workData, reqId, paramData);
             }
-
-            RequestId selfSwId = reqId;
-            //请求内部置换
-            int rule = pushRequest.SwitchRequest(reqId, ref selfSwId);
-            //只需要自身判断
-            if (rule == ECSDefinition.RESwithRuleSelf)
+            else
             {
-                //没有变化
-                if (workData.CurrReqId == selfSwId)
+                RequestId selfSwId = reqId;
+                //请求内部置换
+                int rule = pushRequest.SwitchRequest(reqId, ref selfSwId);
+                //只需要自身判断
+                if (rule == ECSDefinition.RESwithRuleSelf)
                 {
-                    return;
+                    if (workData.CurrReqId != selfSwId)
+                    {
+                        workData.ChangeRequestId(reqId);
+                        workData.AddParam(paramData);
+                    }
                 }
-                workData.CurrReqId = selfSwId;
-
-                //执行请求
-                ECSLayerLocate.Behavior.ReqBev(workData);
-                return;
+                else
+                {
+                    //自身判断也需要权重置换规则
+                    ChangeRequest(workData, reqId, paramData);
+                }
             }
 
-            //自身判断也需要权重置换规则
-            CheckCanSwitch(selfSwId, ref workData.NextReqId, ref workData.CurrReqId, ref workData.ClearReqId, true);
             if (workData.CurrReqId == oldReqId)
-            {
                 return;
-            }
+
             //执行请求
-            ECSLayerLocate.Behavior.ReqBev(workData);
+            ECSLayerLocate.Behavior.ReqBev(workData, oldReqId);
+        }
+
+        private void ChangeRequest(EntityWorkData workData, RequestId reqId, ParamData paramData)
+        {
+            if (workData.CurrReqId == RequestId.None)
+            {
+                workData.ChangeRequestId(reqId);
+                workData.AddParam(paramData);
+            }
+            else
+            {
+                int pushSort = GetRequestSort(reqId);
+                int curSort = GetRequestSort(workData.CurrReqId);
+
+                //强制置换（覆盖）
+                if (pushSort == ECSDefinition.REForceSwithWeight)
+                {
+                    workData.ChangeRequestId(reqId);
+                    workData.AddParam(paramData);
+                }
+                else
+                {
+                    //判断当前的
+                    if (pushSort < curSort)
+                    {
+                        workData.ChangeRequestId(reqId);
+                        workData.AddParam(paramData);
+                    }
+                }
+            }
         }
     }
 }

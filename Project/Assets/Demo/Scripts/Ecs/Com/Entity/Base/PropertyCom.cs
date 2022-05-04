@@ -74,12 +74,20 @@ namespace Demo.Com
         /// </summary>
         public PropertyInfo MoveSpeed;
         /// <summary>
+        /// 跳跃速度
+        /// </summary>
+        public PropertyInfo JumpSpeed = new PropertyInfo(10,5,10);
+        /// <summary>
+        /// 爬墙速度
+        /// </summary>
+        public PropertyInfo ClimbSpeed = new PropertyInfo(5, 2, 3);
+        /// <summary>
         /// 行动速度（攻击速度）
         /// </summary>
         public PropertyInfo ActionSpeed;
         /// <summary>
         /// 质量
         /// </summary>
-        public PropertyInfo Mass = new PropertyInfo(1,1,1);
+        public float Mass = 1;
     }
 }

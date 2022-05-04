@@ -21,4 +21,17 @@ namespace Demo.Tree
         }
 
     }
+
+    [NodeMenuItem("演员/跳跃")]
+    public class Tree_Bev_Act_Jump : Tree_Bev_Act_Node
+    {
+        public override string Title { get => "跳跃"; set => base.Title = value; }
+
+        public override Node CreateRuntimeNode()
+        {
+            BEV_ACT_Jump node = new BEV_ACT_Jump();
+            return node;
+        }
+
+    }
 }

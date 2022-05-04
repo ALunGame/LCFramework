@@ -19,7 +19,8 @@ namespace LCECS.Server.Layer
         /// 请求执行行为
         /// </summary>
         /// <param name="workData"></param>
-        void ReqBev(EntityWorkData workData);
+        /// <param name="clearReqId">需要删除的请求</param>
+        void ReqBev(EntityWorkData workData, RequestId clearReqId);
 
         /// <summary>BevDict
         /// 运行行为树

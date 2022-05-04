@@ -37,6 +37,10 @@ MonoBehaviour:
     m_Address: TbBehavior_Move
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 367f69d8ed850e54e930415eca44e3b8
+    m_Address: TbBehavior_Jump
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: c106a54d1dad7c34dbca1e47199c97a1, type: 2}
   m_SchemaSet:

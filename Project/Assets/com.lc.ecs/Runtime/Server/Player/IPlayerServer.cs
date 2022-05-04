@@ -17,8 +17,6 @@ namespace LCECS.Server.Player
 
         EntityWorkData GetPlayerWorkData();
 
-        ParamData GetReqParam(RequestId reqId);
-
-        void PushPlayerReq(RequestId reqId);
+        void PushPlayerReq(RequestId reqId, ParamData param);
     }
 }

@@ -13,14 +13,19 @@ namespace LCECS
 		None,
 
         /// <summary>
-        /// 移动
+        /// Move
         /// </summary>
 		Move,
 
         /// <summary>
-        /// 释放技能
+        /// PushSkill
         /// </summary>
 		PushSkill,
+
+        /// <summary>
+        /// Jump
+        /// </summary>
+		Jump,
 
     }
 }

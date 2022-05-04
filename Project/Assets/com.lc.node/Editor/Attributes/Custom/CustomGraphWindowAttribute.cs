@@ -10,6 +10,10 @@ namespace LCNode
     {
         public Type targetGraphType;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="targetGraphType"> ”Õº¿‡</param>
         public CustomGraphWindowAttribute(Type targetGraphType)
         {
             this.targetGraphType = targetGraphType;

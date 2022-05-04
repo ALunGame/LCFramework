@@ -28,6 +28,7 @@ namespace LCECS
 
         private void Update()
         {
+
             //更新树时间
             NodeTime.UpdateTime(Time.deltaTime, 1);
 
@@ -40,6 +41,8 @@ namespace LCECS
 
         private void FixedUpdate()
         {
+
+
             //系统处理
             ECSLocate.ECS.ExcuteFixedUpdateSystem();
         }

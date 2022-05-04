@@ -12,28 +12,45 @@ namespace LCECS.Data
     {
         public Entity MEntity { get; }
 
-        //请求参数
-        private Dictionary<RequestId, ParamData> ReqParamData = new Dictionary<RequestId, ParamData>();
-        //需要清除Id
-        public RequestId ClearReqId;
         //当前请求Id
-        public RequestId CurrReqId;
-        //下一个请求Id
-        public RequestId NextReqId;
+        public RequestId CurrReqId { get; private set; }
+
+        //当前请求数量
+        public int CurrReqCnt { get; private set; }
+
+        //请求参数
+        private Queue<ParamData> ParamQueue = new Queue<ParamData>();
 
         public EntityWorkData(int id, Entity entity) : base(id)
         {
             MEntity = entity;
         }
 
-        //获取请求参数
-        public ParamData GetReqParam(RequestId reqId)
+        public void ChangeRequestId(RequestId reqId)
         {
-            if (!ReqParamData.ContainsKey(reqId))
-            {
-                ReqParamData.Add(reqId, new ParamData());
-            }
-            return ReqParamData[reqId];
+            CurrReqId = reqId;
+            ParamQueue.Clear();
+            CurrReqCnt = 0;
+        }
+
+        public void AddParam(ParamData param)
+        {
+            CurrReqCnt++;
+            if (param == null)
+                return;
+            ParamQueue.Enqueue(param);
+        }
+
+        public ParamData GetParam()
+        {
+            if (ParamQueue.Count <= 0)
+                return null;
+            return ParamQueue.Dequeue();
+        }
+
+        public void RemoveCurrReqCnt()
+        {
+            CurrReqCnt--;
         }
     }
 

@@ -16,25 +16,15 @@ namespace LCECS.Server.Layer
         {
         }
 
-        public void ReqBev(EntityWorkData workData)
+        public void ReqBev(EntityWorkData workData, RequestId clearReqId)
         {
-            if (workData.ClearReqId == workData.CurrReqId)
-            {
-                BehaviorTree currBehavior = GetBehavior(workData.CurrReqId);
-                if (currBehavior != null)
-                    currBehavior.AddWorkData(workData);
-            }
-            else
-            {
-                //删除
-                if (BevDict.TryGetValue(workData.ClearReqId,out BehaviorTree lastBehavior))
-                    lastBehavior.RemoveWorkData(workData);
-
-                BehaviorTree currBehavior = GetBehavior(workData.CurrReqId);
-                if (currBehavior != null)
-                    currBehavior.AddWorkData(workData);
-            }
-
+            //删除
+            if (BevDict.TryGetValue(clearReqId, out BehaviorTree lastBehavior))
+                lastBehavior.RemoveWorkData(workData);
+            //执行
+            BehaviorTree currBehavior = GetBehavior(workData.CurrReqId);
+            if (currBehavior != null)
+                currBehavior.AddWorkData(workData);
         }
 
         public void Execute()

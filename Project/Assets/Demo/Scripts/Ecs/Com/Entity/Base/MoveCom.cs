@@ -1,4 +1,7 @@
-﻿using LCECS.Core;
+﻿using Demo.BevNode;
+using LCECS.Core;
+using LCMap;
+using LCToolkit;
 using System;
 using System.Collections;
 using UnityEngine;
@@ -11,20 +14,50 @@ namespace Demo.Com
     [Serializable]
     public class MoveCom : BaseCom
     {
-        /// <summary>
-        /// 移动的节点
-        /// </summary>
         [NonSerialized]
-        public Transform Trans;
+        public Rigidbody2D Rig;
+
+        [NonSerialized]
+        public MoveType CurrMoveType;
 
         /// <summary>
-        /// 当前速度
+        /// 移动类型冷却
         /// </summary>
-        public Vector2 Velocity;
+        [NonSerialized]
+        public float MoveTypeCd = 0;
+
+        /// <summary>
+        /// 没有请求移动
+        /// </summary>
+        [NonSerialized]
+        public bool HasNoReqMove = false;
+
+        /// <summary>
+        /// 请求的移动速度
+        /// </summary>
+        [NonSerialized]
+        public float ReqMoveSpeed;
+
+        /// <summary>
+        /// 请求的跳跃速度
+        /// </summary>
+        [NonSerialized]
+        public float ReqJumpSpeed;
+
+        /// <summary>
+        /// 第几段跳跃
+        /// </summary>
+        [NonSerialized]
+        public int JumpStep;
 
         protected override void OnInit(GameObject go)
         {
-            Trans = go.transform;
+            Rig = go.GetComponent<Rigidbody2D>();
+        }
+
+        private void OnDisplayGoChange(GameObject displayGo)
+        {
+            Rig = displayGo.transform.Find("Collider").GetComponent<Rigidbody2D>();
         }
     }
 }

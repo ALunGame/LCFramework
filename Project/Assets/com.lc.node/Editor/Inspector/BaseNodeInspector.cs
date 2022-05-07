@@ -14,19 +14,11 @@ namespace LCNode.Inspector
         public static HashSet<string> IgnoreProperties = new HashSet<string>() {
         };
 
-        static GUIHelper.ContextDataCache ContextDataCache = new GUIHelper.ContextDataCache();
-
-        BaseNode node;
-
-        public BaseNode Node
-        {
-            get { return node; }
-        }
+        protected static GUIHelper.ContextDataCache ContextDataCache = new GUIHelper.ContextDataCache();
 
         public override void OnEnable()
         {
             base.OnEnable();
-            node = Target as BaseNode;
         }
 
         public override void OnInspectorGUI()

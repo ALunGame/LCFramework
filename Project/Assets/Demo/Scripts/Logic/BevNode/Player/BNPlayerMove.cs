@@ -146,10 +146,10 @@ namespace Demo.BevNode
             
             //判断下方向
             bool isRight = false;
-            if (animCom.SpriteRender.flipX)
-                isRight = true;
-            else
-                isRight = false;
+            //if (animCom.SpriteRender.flipX)
+            //    isRight = true;
+            //else
+            //    isRight = false;
 
             //没有右方碰撞
             if (isRight && colliderCom.CollideDir!= ColliderDir.Right && colliderCom.SubCollideDir!= ColliderDir.Right)

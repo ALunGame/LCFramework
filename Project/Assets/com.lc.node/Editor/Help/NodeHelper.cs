@@ -34,10 +34,10 @@ namespace LCNode
         /// <param name="baseGraph"></param>
         /// <param name="checkNode"></param>
         /// <returns></returns>
-        public static List<T> GetNodeOutNodes<T>(BaseGraph baseGraph, BaseNode checkNode) where T : BaseNode
+        public static List<T> GetNodeOutNodes<T>(BaseGraph baseGraph, BaseNode checkNode, string portName = "") where T : BaseNode
         {
             List<T> nodes = new List<T>();
-            List<BaseNode> childNodes = GetNodeOutNodes(baseGraph,checkNode);
+            List<BaseNode> childNodes = GetNodeOutNodes(baseGraph,checkNode, portName);
             for (int i = 0; i < childNodes.Count; i++)
             {
                 if (childNodes[i] is T)
@@ -54,13 +54,13 @@ namespace LCNode
         /// <param name="baseGraph"></param>
         /// <param name="checkNode"></param>
         /// <returns></returns>
-        public static List<BaseNode> GetNodeOutNodes(BaseGraph baseGraph, BaseNode checkNode)
+        public static List<BaseNode> GetNodeOutNodes(BaseGraph baseGraph, BaseNode checkNode, string portName = "")
         {
             List<BaseNode> childNodes = new List<BaseNode>();
             for (int i = 0; i < baseGraph.connections.Count; i++)
             {
                 BaseConnection connection = baseGraph.connections[i];
-                if (connection.from == checkNode.guid)
+                if (connection.from == checkNode.guid && (string.IsNullOrEmpty(portName)|| connection.fromPortName == portName))
                 {
                     BaseNode inputNode = baseGraph.nodes.First(v => v.Value.guid == connection.to).Value;
                     if (inputNode != null)
@@ -79,10 +79,10 @@ namespace LCNode
         /// <param name="baseGraph"></param>
         /// <param name="checkNode"></param>
         /// <returns></returns>
-        public static List<T> GetNodeInNodes<T>(BaseGraph baseGraph, BaseNode checkNode) where T : BaseNode
+        public static List<T> GetNodeInNodes<T>(BaseGraph baseGraph, BaseNode checkNode, string portName = "") where T : BaseNode
         {
             List<T> nodes = new List<T>();
-            List<BaseNode> childNodes = GetNodeInNodes(baseGraph, checkNode);
+            List<BaseNode> childNodes = GetNodeInNodes(baseGraph, checkNode, portName);
             for (int i = 0; i < childNodes.Count; i++)
             {
                 if (childNodes[i] is T)
@@ -99,13 +99,13 @@ namespace LCNode
         /// <param name="baseGraph"></param>
         /// <param name="checkNode"></param>
         /// <returns></returns>
-        public static List<BaseNode> GetNodeInNodes(BaseGraph baseGraph, BaseNode checkNode)
+        public static List<BaseNode> GetNodeInNodes(BaseGraph baseGraph, BaseNode checkNode, string portName = "")
         {
             List<BaseNode> childNodes = new List<BaseNode>();
             for (int i = 0; i < baseGraph.connections.Count; i++)
             {
                 BaseConnection connection = baseGraph.connections[i];
-                if (connection.to == checkNode.guid)
+                if (connection.to == checkNode.guid && (string.IsNullOrEmpty(portName) || connection.toPortName == portName))
                 {
                     BaseNode outputNode = baseGraph.nodes.First(v => v.Value.guid == connection.from).Value;
                     if (outputNode != null)

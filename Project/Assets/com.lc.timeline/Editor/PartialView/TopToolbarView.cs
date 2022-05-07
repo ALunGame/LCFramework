@@ -64,7 +64,7 @@ namespace LCTimeline.View
                 DrawPlayOperate();
                 GUILayout.FlexibleSpace();
                 DrawSkillLineTime();
-            },GUILayout.Width(HorWidth), GUILayout.Height(window.ToolbarSize.height));
+            }, EditorStylesExtension.NullStyle, GUILayout.Width(HorWidth), GUILayout.Height(window.ToolbarSize.height));
 
             GUILayout.FlexibleSpace();
             GUILayout.Label(GetTimelineName());
@@ -72,7 +72,7 @@ namespace LCTimeline.View
 
             GUILayoutExtension.HorizontalGroup(() => {
                 DrawBtnList();
-            }, GUILayout.Width(HorWidth), GUILayout.Height(window.ToolbarSize.height));
+            }, EditorStylesExtension.NullStyle,GUILayout.Width(HorWidth), GUILayout.Height(window.ToolbarSize.height));
 
             GUILayout.EndHorizontal();
         }

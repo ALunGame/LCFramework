@@ -1,141 +1,83 @@
 ﻿using Demo.Com;
+using Demo.Help;
 using LCECS.Core;
 using System;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace Demo.System
 {
     public class AnimSystem : BaseSystem
     {
-        public  Vector2 MoveMinVector = new Vector2(0.001f,0.001f);
+        public const string IdleState = "idle";
+
         protected override List<Type> RegListenComs()
         {
-            return new List<Type>() { typeof(AnimCom), typeof(SpeedCom),typeof(ColliderCom), typeof(StateCom) };
+            return new List<Type>() { typeof(AnimCom)};
         }
 
         protected override void HandleComs(List<BaseCom> comList)
         {
-            HandlePlayAnim(comList);
-        }
-
-        private void HandlePlayAnim(List<BaseCom> comList)
-        {
             AnimCom animCom = GetCom<AnimCom>(comList[0]);
-            SpeedCom speedCom = GetCom<SpeedCom>(comList[1]);
-            ColliderCom colliderCom = GetCom<ColliderCom>(comList[2]);
+            string reqAnim = animCom.ReqAnimName;
+            string currAnim = animCom.CurrAnimName;
 
-            AnimDefaultState curState = HandleAnimDefaultState(comList);
-            
-            animCom.Animtor.SetBool("Idle", curState == AnimDefaultState.Idle);
-            animCom.Animtor.SetBool("Run", curState  == AnimDefaultState.Run);
-            animCom.Animtor.SetBool("Dead", curState == AnimDefaultState.Dead);
-            animCom.Animtor.SetBool("JumpUp", curState == AnimDefaultState.JumpUp);
-            animCom.Animtor.SetBool("JumpDown", curState == AnimDefaultState.JumpDown);
-            animCom.Animtor.SetBool("Dash", curState == AnimDefaultState.Dash);
-            animCom.Animtor.SetBool("Climb", curState == AnimDefaultState.Climb);
-
-            //方向
-            HandleAnimDir(curState, speedCom, colliderCom, animCom);
+            if (CheckIsLoopAnim(animCom, reqAnim))
+            {
+                if (reqAnim == currAnim)
+                {
+                    return;
+                }
+                if (!string.IsNullOrEmpty(currAnim))
+                {
+                    PlayLoopAnim(animCom, currAnim, false);
+                }
+                animCom.CurrAnimName = reqAnim;
+                PlayLoopAnim(animCom, reqAnim, true);
+            }
+            else
+            {
+                if (CheckIsLoopAnim(animCom, currAnim))
+                {
+                    PlayLoopAnim(animCom, currAnim, false);
+                }
+                animCom.CurrAnimName = reqAnim;
+                PlayTriggerAnim(animCom, reqAnim);
+            }
         }
 
-        //处理动画方向
-        private void HandleAnimDir(AnimDefaultState state,SpeedCom speedCom,ColliderCom colliderCom,AnimCom animCom)
+        private bool CheckIsLoopAnim(AnimCom animCom,string animName)
         {
-            if (state == AnimDefaultState.Climb)
+            if (IdleState == animName)
             {
-                if (colliderCom.CollideDir == ColliderDir.Left || colliderCom.SubCollideDir == ColliderDir.Left)
-                {
-                    animCom.SpriteRender.flipX = true;
-                }
-                if (colliderCom.CollideDir == ColliderDir.Right || colliderCom.SubCollideDir == ColliderDir.Right)
-                {
-                    animCom.SpriteRender.flipX = false;
-                }
+                return true;
+            }
+            string stateName = animName + AnimCom.StateExName;
+            return animCom.AnimParamList.Contains(stateName);
+        }
+
+        private void PlayLoopAnim(AnimCom animCom, string animName,bool animState)
+        {
+            if (AnimHelp.CheckIsInState(animCom.Anim,animName) && animState)
+            {
                 return;
             }
-            if (speedCom.CurVelocity.x > 0)
+            if (animName == IdleState)
             {
-                animCom.SpriteRender.flipX = false;
+                animCom.Anim.SetBool(IdleState, animState);
+                return;
             }
-            else if (speedCom.CurVelocity.x < 0)
+
+            string stateName = animName + AnimCom.StateExName;
+            if (animCom.AnimParamList.Contains(stateName))
             {
-                animCom.SpriteRender.flipX = true;
+                animCom.Anim.SetBool(stateName, animState);
+                animCom.Anim.SetTrigger(animName);
             }
         }
 
-        private AnimDefaultState HandleAnimDefaultState(List<BaseCom> comList)
+        private void PlayTriggerAnim(AnimCom animCom, string animName)
         {
-            AnimCom animCom = GetCom<AnimCom>(comList[0]);
-            SpeedCom speedCom = GetCom<SpeedCom>(comList[1]);
-            ColliderCom colliderCom = GetCom<ColliderCom>(comList[2]);
-            StateCom stateCom = GetCom<StateCom>(comList[3]);
-
-            //死亡
-            if (stateCom.CurState == EntityState.Dead)
-                return AnimDefaultState.Dead;
-
-            //执行触发动画
-            if (animCom.DoTrigger)
-            {
-                return AnimDefaultState.DoTrigger;
-            }
-            
-            //冲刺
-            if (speedCom.ReqDash)
-            {
-                return AnimDefaultState.Dash;
-            }
-            
-            //攀爬
-            if (CheckEntityIsClimbing(comList))
-            {
-                return AnimDefaultState.Climb;
-            }
-            
-            //跳跃
-            if (colliderCom.CollideDir == ColliderDir.None)
-            {
-                if (speedCom.CurVelocity.y > 0)
-                {
-                    return AnimDefaultState.JumpUp;
-                }
-                else
-                {
-                    return AnimDefaultState.JumpDown;
-                }
-            }
-            
-            //移动
-            if (speedCom.CurVelocity.x!=0)
-            {
-                return AnimDefaultState.Run;
-            }
-            
-            return AnimDefaultState.Idle;
-        }
-
-        //检测是否在攀爬
-        private bool CheckEntityIsClimbing(List<BaseCom> comList)
-        {
-            AnimCom animCom = GetCom<AnimCom>(comList[0]);
-            SpeedCom speedCom = GetCom<SpeedCom>(comList[1]);
-            ColliderCom colliderCom = GetCom<ColliderCom>(comList[2]);
-            
-            if (speedCom.CurVelocity.y > 0)
-            {
-                if (colliderCom.CollideDir == ColliderDir.Left || colliderCom.CollideDir == ColliderDir.Right)
-                {
-                    return true;
-                }
-                
-                if (colliderCom.SubCollideDir == ColliderDir.Left || colliderCom.SubCollideDir == ColliderDir.Right)
-                {
-                    return true;
-                }
-            }
-
-            return false;
+            animCom.Anim.SetTrigger(animName);
         }
     }
 }

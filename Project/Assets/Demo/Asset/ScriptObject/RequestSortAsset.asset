@@ -12,4 +12,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4a474688e279b241af03eb4833d06f1, type: 3}
   m_Name: RequestSortAsset
   m_EditorClassIdentifier: 
-  requests: []
+  requests:
+  - key: None
+    name: None
+    sort: 0
+    isCover: 0
+    isCustom: 0
+  - key: Move
+    name: Move
+    sort: -1
+    isCover: 0
+    isCustom: 0
+  - key: PushSkill
+    name: PushSkill
+    sort: -2
+    isCover: 0
+    isCustom: 0
+  - key: Jump
+    name: Jump
+    sort: -1
+    isCover: 0
+    isCustom: 0

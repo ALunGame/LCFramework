@@ -231,17 +231,17 @@ namespace Demo.System
         //初始化冲刺的节点
         private void InitDashGo(Entity entity, Transform dashGo, int index)
         {
-            SpriteRenderer sp = entity.GetCom<AnimCom>().SpriteRender;
-            SpriteRenderer dashSp = dashGo.GetComponent<SpriteRenderer>();
-            //大小
-            dashGo.transform.localScale = entity.GetCom<GameObjectCom>().Tran.localScale;
-            //位置
-            dashGo.transform.position = entity.GetCom<GameObjectCom>().Tran.position;
-            //方向
-            dashSp.flipX = sp.flipX;
-            //图片
-            dashSp.sprite = sp.sprite;
-            dashGo.gameObject.SetActive(true);
+            //SpriteRenderer sp = entity.GetCom<AnimCom>().SpriteRender;
+            //SpriteRenderer dashSp = dashGo.GetComponent<SpriteRenderer>();
+            ////大小
+            //dashGo.transform.localScale = entity.GetCom<GameObjectCom>().Tran.localScale;
+            ////位置
+            //dashGo.transform.position = entity.GetCom<GameObjectCom>().Tran.position;
+            ////方向
+            //dashSp.flipX = sp.flipX;
+            ////图片
+            //dashSp.sprite = sp.sprite;
+            //dashGo.gameObject.SetActive(true);
         }
 
         //渐隐冲刺节点

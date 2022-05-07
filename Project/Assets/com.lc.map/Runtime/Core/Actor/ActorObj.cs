@@ -45,6 +45,13 @@ namespace LCMap
         /// <summary>
         /// 实体配置Id
         /// </summary>
+        [Header("表现根节点")]
+        [EDReadOnly]
+        public GameObject DisplayRootGo;
+
+        /// <summary>
+        /// 实体配置Id
+        /// </summary>
         [Header("表现状态名")]
         [EDReadOnly]
         public string DisplayStateName;
@@ -69,6 +76,7 @@ namespace LCMap
             this.Uid = Model.uid;
             this.Id = Model.id;
             this.EntityId = Config.ActorCnf[Id].entityId;
+            this.DisplayRootGo = transform.Find("Display").gameObject;
             SetModelDisplay();
             UpdateGoName();
 

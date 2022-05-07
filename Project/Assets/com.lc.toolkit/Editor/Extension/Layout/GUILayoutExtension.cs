@@ -56,6 +56,19 @@ namespace LCToolkit
         }
 
         /// <summary>
+        /// 创建一个垂直的布局
+        /// </summary>
+        /// <param name="drawFunc">组内绘制函数</param>
+        /// <param name="options">布局属性</param>
+        /// <returns></returns>
+        public static void VerticalGroup(Action drawFunc,GUIStyle style, params GUILayoutOption[] options)
+        {
+            EditorGUILayout.BeginVertical(EditorStylesExtension.RoundedBoxStyle, options);
+            drawFunc?.Invoke();
+            EditorGUILayout.EndVertical();
+        }
+
+        /// <summary>
         /// 创建一个水平的布局
         /// </summary>
         /// <param name="drawFunc">组内绘制函数</param>
@@ -70,9 +83,36 @@ namespace LCToolkit
         }
 
         /// <summary>
+        /// 创建一个水平的布局
+        /// </summary>
+        /// <param name="drawFunc">组内绘制函数</param>
+        /// <param name="options">布局属性</param>
+        /// <returns></returns>
+        public static Rect HorizontalGroup(Action drawFunc, GUIStyle style, params GUILayoutOption[] options)
+        {
+            Rect rect = EditorGUILayout.BeginHorizontal(style, options);
+            drawFunc?.Invoke();
+            EditorGUILayout.EndHorizontal();
+            return rect;
+        }
+
+        /// <summary>
         /// 创建一个滚动视图
         /// </summary>
-        public static void ScrollView(ref Vector2 pos,Action drawFunc, params GUILayoutOption[] options)
+        public static void ScrollView(ref Vector2 pos, Action drawFunc, params GUILayoutOption[] options)
+        {
+            pos = GUILayout.BeginScrollView(pos, EditorStylesExtension.RoundedBoxStyle, options);
+            {
+                drawFunc?.Invoke();
+            }
+            GUILayout.EndScrollView();
+        }
+
+
+        /// <summary>
+        /// 创建一个滚动视图
+        /// </summary>
+        public static void ScrollView(ref Vector2 pos, Action drawFunc, GUIStyle style, params GUILayoutOption[] options)
         {
             pos = GUILayout.BeginScrollView(pos, EditorStylesExtension.RoundedBoxStyle, options);
             {

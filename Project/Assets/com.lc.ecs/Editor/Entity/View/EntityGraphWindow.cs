@@ -12,8 +12,6 @@ namespace LCECS.EntityGraph
     [CustomGraphWindow(typeof(EntityGraph))]
     public class EntityGraphWindow : BaseGraphWindow
     {
-        public Entity CurrSelRunningEntity { get; private set; }
-
         protected override void BuildToolbar(ToolbarView toolbar)
         {
             base.BuildToolbar(toolbar);
@@ -25,10 +23,11 @@ namespace LCECS.EntityGraph
 
         private void CreateRunningTimeToolbar(ToolbarView toolbar)
         {
+            EntityGraph graph = Graph as EntityGraph;
             //查看所有节点
             ToolbarButton btnSelEntity = new ToolbarButton()
             {
-                text = CurrSelRunningEntity == null ? "选择实体" : CurrSelRunningEntity.Go.name,
+                text = graph.RunningTimeEntity == null ? "选择实体" : graph.RunningTimeEntity.Go.name,
                 tooltip = "选择实体"
             };
             btnSelEntity.clicked += () =>
@@ -57,8 +56,9 @@ namespace LCECS.EntityGraph
 
             MiscHelper.Menu(selStrs, (int x) =>
             {
-                CurrSelRunningEntity = entities[x];
-                btnSelEntity.text = CurrSelRunningEntity.Go.name;
+                EntityGraph graph = Graph as EntityGraph;
+                graph.RunningTimeEntity = entities[x];
+                btnSelEntity.text = graph.RunningTimeEntity.Go.name;
             });
         }
     }

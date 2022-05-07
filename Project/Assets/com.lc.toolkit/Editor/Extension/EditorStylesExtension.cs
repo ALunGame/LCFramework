@@ -232,5 +232,18 @@ namespace LCToolkit
                 return roundedBoxStyle;
             }
         }
+
+        static GUIStyle nullStyle;
+        public static GUIStyle NullStyle
+        {
+            get
+            {
+                if (nullStyle == null)
+                {
+                    nullStyle = GUI.skin.label;
+                }
+                return nullStyle;
+            }
+        }
     }
 }

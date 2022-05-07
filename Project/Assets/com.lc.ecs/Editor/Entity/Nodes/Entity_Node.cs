@@ -1,6 +1,7 @@
 ﻿using LCECS.Core;
 using LCNode;
 using LCNode.Model;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,6 +15,8 @@ namespace LCECS.EntityGraph
 
         [InputPort("父节点", BasePort.Capacity.Single, BasePort.Orientation.Vertical)]
         public EntityComData parentNode;
+
+        public abstract Type RuntimeNode { get; }
 
         public abstract BaseCom CreateRuntimeNode();
     }

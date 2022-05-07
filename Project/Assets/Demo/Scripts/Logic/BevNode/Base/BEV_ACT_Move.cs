@@ -1,4 +1,5 @@
 ﻿using Demo.Com;
+using Demo.System;
 using LCECS.Core.Tree.Base;
 using LCECS.Core.Tree.Nodes.Action;
 using LCECS.Data;
@@ -33,6 +34,7 @@ namespace Demo.BevNode
 
             //组件
             MoveCom moveCom             = workData.MEntity.GetCom<MoveCom>();
+            TransformCom transCom       = workData.MEntity.GetCom<TransformCom>();    
             Collider2DCom collider2DCom = workData.MEntity.GetCom<Collider2DCom>();
             PropertyCom propertyCom     = workData.MEntity.GetCom<PropertyCom>();
 
@@ -72,7 +74,7 @@ namespace Demo.BevNode
                     break;
                 case MoveType.ClimbJump:
                     int moveValue = inputMove.x < 0 ? -1 : 1;
-                    moveCom.ReqMoveSpeed = moveValue * 2;
+                    moveCom.ReqMoveSpeed = propertyCom.MoveSpeed.Curr * moveValue;
                     moveCom.ReqJumpSpeed = propertyCom.ClimbSpeed.Curr;
                     break;
                 case MoveType.GrabWall:
@@ -86,6 +88,7 @@ namespace Demo.BevNode
             HandleMass(moveType, propertyCom);
             ClampMoveSpeed(moveCom, collider2DCom);
             HandleMoveTypeCD(moveType, moveCom);
+            HandleMoveDir(moveCom, transCom);
 
             //记录状态
             moveCom.CurrMoveType = moveType;
@@ -273,7 +276,7 @@ namespace Demo.BevNode
         {
             if (moveType == MoveType.ClimbJump)
             {
-                moveCom.MoveTypeCd = Time.realtimeSinceStartup + 1.5f;
+                moveCom.MoveTypeCd = Time.realtimeSinceStartup + 0.2f;
             }
         }
 
@@ -298,6 +301,18 @@ namespace Demo.BevNode
                 default:
                     break;
             }
+        }
+
+        #endregion
+
+        #region 方向
+
+        private void HandleMoveDir(MoveCom moveCom, TransformCom transCom)
+        {
+            if (moveCom.ReqMoveSpeed == 0)
+                return;
+            DirType dirType = moveCom.ReqMoveSpeed >0 ? DirType.Right: DirType.Left;
+            transCom.ReqDir = dirType;
         }
 
         #endregion

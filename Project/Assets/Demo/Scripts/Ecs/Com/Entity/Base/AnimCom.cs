@@ -1,9 +1,9 @@
-﻿using LCECS.Core;
+﻿using Demo.Help;
+using Demo.System;
+using LCECS.Core;
+using LCMap;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Demo.Com
@@ -24,18 +24,40 @@ namespace Demo.Com
     public class AnimCom : BaseCom
     {
         [NonSerialized]
-        public Animator Animtor;
+        public const string StateExName = "_state";
+
         [NonSerialized]
-        public SpriteRenderer SpriteRender;
-        [ComValue]
-        public AnimDefaultState CurState;
-        [ComValue]
-        public bool DoTrigger;
+        public string CurrAnimName;
+
+        [NonSerialized]
+        public Animator Anim;
+
+        [NonSerialized]
+        public List<string> AnimParamList = new List<string>();
+
+        [NonSerialized]
+        public string ReqAnimName = AnimSystem.IdleState;
 
         protected override void OnInit(GameObject go)
         {
-            Animtor = go.transform.Find("Anim").GetComponent<Animator>();
-            SpriteRender = Animtor.GetComponent<SpriteRenderer>();
+            ActorObj actorObj = go.GetComponent<ActorObj>();
+            actorObj.OnDisplayGoChange += OnDisplayGoChange;
+            OnDisplayGoChange(actorObj.DisplayGo);
+        }
+
+        private void OnDisplayGoChange(GameObject displayGo)
+        {
+            Transform animTrans = displayGo.transform.Find("Anim");
+            if (animTrans == null)
+            {
+                Anim = null;
+                AnimParamList = new List<string>();
+            }
+            else
+            {
+                Anim = animTrans.GetComponent<Animator>();
+                AnimParamList = AnimHelp.GetAllParamNames(Anim);
+            }
         }
     }
 }

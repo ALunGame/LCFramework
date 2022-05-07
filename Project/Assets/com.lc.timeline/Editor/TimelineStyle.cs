@@ -5,7 +5,7 @@ namespace LCTimeline
 {
     public class TimelineStyle
     {
-        private static readonly string EditImgPath = @"Assets/com.xp.timeline/Editor/Images/";
+        private static readonly string EditImgPath = @"Assets/com.lc.timeline/Editor/Images/";
 
         public static Texture2D LoadEdStyleImg(string imgName)
         {

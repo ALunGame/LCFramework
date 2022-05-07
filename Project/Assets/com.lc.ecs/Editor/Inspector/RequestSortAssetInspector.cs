@@ -181,6 +181,9 @@ namespace LCECS.Config
                     return 1;
             }
             sortReqests.Sort(SystemSortFunc);
+            EditorUtility.SetDirty(sortAsset);
+            AssetDatabase.SaveAssets();
+            AssetDatabase.Refresh();
         }
 
         private void GenCode()

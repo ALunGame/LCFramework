@@ -25,6 +25,5 @@ namespace LCECS.Layer.Info
     /// </summary>
     public interface ISensor
     {
- 
     }
 }

@@ -19,11 +19,16 @@ namespace Demo
             GUILayoutExtension.VerticalGroup(() =>
             {
                 int maxValue = EditorGUILayout.IntField(GUIHelper.TextContent("Max:", $"{_label.text}最大值"), target.Max);
-                target.SetMax(maxValue);
+                if (maxValue != target.Max)
+                    target.SetMax(maxValue);
+
                 int minValue = EditorGUILayout.IntField(GUIHelper.TextContent("Min:", $"{_label.text}最小值"), target.Min);
-                target.SetMin(minValue);
+                if (minValue != target.Min)
+                    target.SetMin(minValue);
+
                 int currValue = EditorGUILayout.IntField(GUIHelper.TextContent("Curr:", $"{_label.text}初始值"), target.Curr);
-                target.Curr = currValue;
+                if (currValue != target.Curr)
+                    target.Curr = currValue;
             });
         }
 

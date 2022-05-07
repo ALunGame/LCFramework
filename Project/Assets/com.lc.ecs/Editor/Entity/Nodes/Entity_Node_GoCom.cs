@@ -1,5 +1,6 @@
 ﻿using LCECS.Core;
 using LCNode;
+using System;
 using UnityEditor;
 using UnityEngine;
 
@@ -10,6 +11,7 @@ namespace LCECS.EntityGraph
     {
         public override string Title { get => "存储GameObject组件"; set => base.Title = value; }
         public override string Tooltip { get => "存储GameObject组件"; set => base.Tooltip = value; }
+        public override Type RuntimeNode => typeof(GameObjectCom);
 
         public override BaseCom CreateRuntimeNode()
         {

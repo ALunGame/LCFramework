@@ -1,6 +1,7 @@
 ﻿using LCECS.Core;
 using LCECS.EntityGraph;
 using LCNode;
+using System;
 
 namespace LCSkill
 {
@@ -9,6 +10,8 @@ namespace LCSkill
     {
         public override string Title { get => "技能组件"; set => base.Title = value; }
         public override string Tooltip { get => "技能组件"; set => base.Tooltip = value; }
+
+        public override Type RuntimeNode => typeof(SkillCom);
 
         public override BaseCom CreateRuntimeNode()
         {
@@ -22,6 +25,7 @@ namespace LCSkill
     {
         public override string Title { get => "伤害组件"; set => base.Title = value; }
         public override string Tooltip { get => "伤害组件"; set => base.Tooltip = value; }
+        public override Type RuntimeNode => typeof(DamageCom);
 
         public override BaseCom CreateRuntimeNode()
         {

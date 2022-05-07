@@ -19,14 +19,14 @@ namespace Demo
             MapSensor mapSensor     = ECSLayerLocate.Info.GetSensor<MapSensor>(SensorType.Map);
             Vector2Int playerPos    = mapSensor.GetPlayerMapPos();
 
-            if (playerPos.x >= seekPathCom.CurrPos.x)
-            {
-                animCom.SpriteRender.flipX = false;
-            }
-            else
-            {
-                animCom.SpriteRender.flipX = true;
-            }
+            //if (playerPos.x >= seekPathCom.CurrPos.x)
+            //{
+            //    animCom.SpriteRender.flipX = false;
+            //}
+            //else
+            //{
+            //    animCom.SpriteRender.flipX = true;
+            //}
         }
     }
 }

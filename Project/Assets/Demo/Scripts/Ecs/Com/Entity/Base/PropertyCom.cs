@@ -1,7 +1,6 @@
 ﻿using LCECS.Core;
-using System.Collections;
-using UnityEngine;
 using System;
+using UnityEngine;
 
 namespace Demo.Com
 {
@@ -14,7 +13,7 @@ namespace Demo.Com
 
         public int Max { get => max; }
         public int Min { get => min;}
-        public int Curr { get => curr; set => curr = Mathf.Clamp(value,max,min); }
+        public int Curr { get => curr; set => curr = Mathf.Clamp(value, min, max); }
 
         public PropertyInfo()
         {

@@ -1,4 +1,5 @@
-﻿using LCNode;
+﻿using LCECS.Core;
+using LCNode;
 using LCNode.Model;
 using LCToolkit;
 using System;
@@ -8,6 +9,12 @@ namespace LCECS.EntityGraph
 {
     public class EntityGraph : BaseGraph
     {
+        /// <summary>
+        /// 运行时实体
+        /// </summary>
+        [NonSerialized]
+        public Entity RunningTimeEntity;
+
         public override List<string> NodeNamespace => new List<string>() { "LCECS.EntityGraph" };
 
         protected override void OnEnabled()

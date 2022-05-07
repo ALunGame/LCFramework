@@ -124,6 +124,9 @@ namespace LCECS.Config
             sortAsset.GetSystemSorts(SystemType.Update).Sort(SystemSortFunc);
             sortAsset.GetSystemSorts(SystemType.FixedUpdate).Sort(SystemSortFunc);
             //sortAsset.GetSystemSorts(SystemType.Thread).Sort(SystemSortFunc);
+            EditorUtility.SetDirty(sortAsset);
+            AssetDatabase.SaveAssets();
+            AssetDatabase.Refresh();
         }
     }
 }

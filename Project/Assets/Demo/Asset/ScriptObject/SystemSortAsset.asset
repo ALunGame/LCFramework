@@ -40,6 +40,16 @@ MonoBehaviour:
   - typeName: MapSystem
     typeFullName: Demo.System.MapSystem
     sort: 8
+  - typeName: Collider2DSystem
+    typeFullName: Demo.System.Collider2DSystem
+    sort: 12
+  - typeName: GravitySystem
+    typeFullName: Demo.System.GravitySystem
+    sort: 13
+  - typeName: MoveSystem
+    typeFullName: Demo.System.MoveSystem
+    sort: 14
+  fixedUpdateSystems:
   - typeName: BuffSystem
     typeFullName: LCSkill.BuffSystem
     sort: 9
@@ -49,5 +59,4 @@ MonoBehaviour:
   - typeName: TimelineSystem
     typeFullName: LCSkill.TimelineSystem
     sort: 11
-  fixedUpdateSystems: []
   threadSystems: []

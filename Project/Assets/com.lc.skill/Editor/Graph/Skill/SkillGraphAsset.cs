@@ -8,6 +8,6 @@ namespace LCSkill.SkillGraph
     {
         [EDReadOnly]
         [Header("技能Id")]
-        public int skillId;
+        public string skillId;
     }
 }

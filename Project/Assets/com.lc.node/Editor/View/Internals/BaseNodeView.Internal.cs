@@ -94,11 +94,13 @@ namespace LCNode.View
             titleContainer.style.backgroundColor = Model.TitleColor;
             TitleLabel.style.color = Model.TitleColor.GetLuminance() > 0.5f && Model.TitleColor.a > 0.5f ? Color.black : Color.white * 0.9f;
 
+            //创建节点内部值
+            CreateDrawerValues();
+
             //刷新端口
             InitPorts();
             RefreshPorts();
-            //创建节点内部值
-            CreateDrawerValues();
+
             //绑定事件
             BindingProperties();
             //子类初始化
@@ -169,17 +171,17 @@ namespace LCNode.View
                         else
                             inputContainer.Add(element);
 
-                        //自动绑定
-                        ViewModel model = Model;
-                        model[nodeValueAttribute.Lable] = new BindableProperty(() => item.GetValue(Model), (object value) => {
-                            item.SetValue(Model, value);
-                            RefreshDrawerValues();
-                        }, nodeValueAttribute.Tooltip);
-
                         //保存
                         nodeValues.Add(item, nodeValueAttribute);
                         nodeValueElements.Add(element, item);
                     }
+
+                    //自动绑定
+                    ViewModel model = Model;
+                    model[nodeValueAttribute.Lable] = new BindableProperty(() => item.GetValue(Model), (object value) => {
+                        item.SetValue(Model, value);
+                        RefreshDrawerValues();
+                    }, nodeValueAttribute.Tooltip);
                 }
             }
         }

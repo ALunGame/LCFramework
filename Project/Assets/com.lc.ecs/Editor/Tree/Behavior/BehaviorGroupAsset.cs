@@ -31,19 +31,23 @@ namespace LCECS.Tree
             });
         }
 
-        public override void ExportGraph(InternalBaseGraphAsset graph)
+        public override void ExportGraph(List<InternalBaseGraphAsset> assets)
         {
-            BehaviorAsset behaviorAsset = graph as BehaviorAsset;
-            BaseGraph graphData = behaviorAsset.DeserializeGraph();
+            for (int i = 0; i < assets.Count; i++)
+            {
+                BehaviorAsset behaviorAsset = assets[i] as BehaviorAsset;
+                BaseGraph graphData = behaviorAsset.DeserializeGraph();
 
-            //运行时数据结构
-            BehaviorTree model = new BehaviorTree(behaviorAsset.ReqId, SerializeHelp.SerializeToTree(graphData));
+                //运行时数据结构
+                BehaviorTree model = new BehaviorTree(behaviorAsset.ReqId, SerializeHelp.SerializeToTree(graphData));
 
-            string filePath = ECSDefPath.GetBevTreePath(behaviorAsset.ReqId);
-            IOHelper.WriteText(JsonMapper.ToJson(model), filePath);
+                string filePath = ECSDefPath.GetBevTreePath(behaviorAsset.ReqId);
+                IOHelper.WriteText(JsonMapper.ToJson(model), filePath);
+                Debug.Log($"行为树生成成功>>>>{filePath}");
+            }
+            
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
-            Debug.Log($"行为树生成成功>>>>{filePath}");
         }
     }
 }

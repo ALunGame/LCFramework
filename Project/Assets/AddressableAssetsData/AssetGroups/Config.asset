@@ -41,6 +41,30 @@ MonoBehaviour:
     m_Address: TbBehavior_Jump
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: b8425f1aabe3e47459c806c8dabea95f
+    m_Address: TbSkill_1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 10fe8256a6163a8458fadb3805c7831e
+    m_Address: TbSk_Timeline_1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 0d6a7781e21c6584cb0b2611048db82b
+    m_Address: TbAoe_1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 758ec7b90f3c30c49936a01878ba9ac8
+    m_Address: TbBuff_1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 780705972694fd049876b285816404dc
+    m_Address: TbBullet_1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 309125156739a0549adbc5d2fa9aaac5
+    m_Address: TbDecision_1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: c106a54d1dad7c34dbca1e47199c97a1, type: 2}
   m_SchemaSet:

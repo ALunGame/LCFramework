@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d76ca80ad251d243acfdcbe89751432, type: 3}
   m_Name: skill_1
   m_EditorClassIdentifier: 
-  serializedGraph: 
+  serializedGraph: '{"mType":"LCSkill.SkillGraph.SkillGraph","pos":{"mType":"UnityEngine.Vector3","x":0.0,"y":163.0,"z":0.0},"zoom":{"mType":"UnityEngine.Vector3","x":1.0,"y":1.0,"z":1.0},"nodes":{"mType":"System.Collections.Generic.Dictionary`2[[System.String,
+    mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089],[LCNode.Model.BaseNode,
+    Assembly-CSharp-Editor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]","3ca7d242-2b30-404b-833d-eac8cdf1d0fa":{"mType":"LCSkill.SkillGraph.Skill_Node","condition":null,"costs":null,"addBuffs":null,"timeline":"1","guid":"3ca7d242-2b30-404b-833d-eac8cdf1d0fa","position":{"mType":"UnityEngine.Vector2","x":57.0,"y":-18.0}},"15d8f853-4096-4adb-9edd-ae54be28f643":{"mType":"LCSkill.SkillGraph.Skill_LearnBuffNode","id":1,"addStack":0,"durationSetType":true,"duration":0,"isPermanent":true,"parentNode":null,"guid":"15d8f853-4096-4adb-9edd-ae54be28f643","position":{"mType":"UnityEngine.Vector2","x":433.0,"y":-36.0}}},"connections":[{"mType":"LCNode.Model.BaseConnection","from":"3ca7d242-2b30-404b-833d-eac8cdf1d0fa","fromPortName":"\u5B66\u4F1A\u6280\u80FD\u83B7\u5F97\u7684Buff","to":"15d8f853-4096-4adb-9edd-ae54be28f643","toPortName":"\u7236\u8282\u70B9"}]}'
   skillId: 1
 --- !u!114 &11400000
 MonoBehaviour:

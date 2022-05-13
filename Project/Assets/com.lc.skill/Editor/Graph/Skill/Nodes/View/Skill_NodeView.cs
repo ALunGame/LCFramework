@@ -1,5 +1,6 @@
 ﻿using LCNode;
 using LCNode.View;
+using LCTimeline;
 using UnityEngine.UIElements;
 
 namespace LCSkill.SkillGraph.View
@@ -23,7 +24,13 @@ namespace LCSkill.SkillGraph.View
 
         private void OnClickOpenTimeline()
         {
-            
+            Skill_Node node = Model as Skill_Node;
+            TimelineGroupPath path = TimelineSetting.Setting.GetSearchPath<SkillTimelineGraphGroupAsset>();
+            SkillTimelineGraphAsset asset = TimelineSetting.Setting.GetAsset<SkillTimelineGraphAsset>(path.searchPath, "timeline_" + node.timeline);
+            if (asset != null)
+            {
+                TimelineWindow.Open(asset);
+            }
         }
     }
 }

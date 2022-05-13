@@ -40,9 +40,29 @@ namespace LCNode.Model.Internal
         public abstract void RemoveGraph(InternalBaseGraphAsset graph);
 
         /// <summary>
+        /// 导出
+        /// </summary>
+        public virtual void OnClickExport()
+        {
+            GraphGroupPath path                  = GraphSetting.Setting.GetSearchPath(this.GetType().FullName);
+            List<InternalGraphGroupAsset> groups = GraphSetting.Setting.GetGroups(path.searchPath);
+            List<InternalBaseGraphAsset> assets = new List<InternalBaseGraphAsset>();
+
+            foreach (InternalGraphGroupAsset group in groups)
+            {
+                if (group.GetType() == GetType())
+                {
+                    assets.AddRange(group.GetAllGraph());
+                }
+            }
+
+            this.ExportGraph(assets);
+        }
+
+        /// <summary>
         /// 导出视图
         /// </summary>
         /// <param name="graph"></param>
-        public abstract void ExportGraph(InternalBaseGraphAsset graph);
+        public abstract void ExportGraph(List<InternalBaseGraphAsset> assets);
     }
 }

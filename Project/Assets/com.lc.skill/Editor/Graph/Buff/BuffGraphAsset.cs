@@ -8,6 +8,6 @@ namespace LCSkill.BuffGraph
     {
         [EDReadOnly]
         [Header("技能Id")]
-        public int buffId;
+        public string buffId;
     }
 }

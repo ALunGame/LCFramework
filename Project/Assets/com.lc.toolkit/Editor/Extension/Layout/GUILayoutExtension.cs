@@ -63,7 +63,7 @@ namespace LCToolkit
         /// <returns></returns>
         public static void VerticalGroup(Action drawFunc,GUIStyle style, params GUILayoutOption[] options)
         {
-            EditorGUILayout.BeginVertical(EditorStylesExtension.RoundedBoxStyle, options);
+            EditorGUILayout.BeginVertical(style, options);
             drawFunc?.Invoke();
             EditorGUILayout.EndVertical();
         }

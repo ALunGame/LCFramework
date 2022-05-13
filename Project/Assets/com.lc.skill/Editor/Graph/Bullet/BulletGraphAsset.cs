@@ -8,6 +8,6 @@ namespace LCSkill.BulletGraph
     {
         [EDReadOnly]
         [Header("子弹Id")]
-        public int bulletId;
+        public string bulletId;
     }
 }

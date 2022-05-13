@@ -49,11 +49,7 @@ namespace LCNode.Inspector
 
                 if (GUILayout.Button($"导出{groupAsset.DisplayName}配置", GUILayout.Height(50)))
                 {
-                    List<InternalBaseGraphAsset> graphs = groupAsset.GetAllGraph();
-                    for (int i = 0; i < graphs.Count; i++)
-                    {
-                        groupAsset.ExportGraph(graphs[i]);
-                    }
+                    groupAsset.OnClickExport();
                 }
             });
         }

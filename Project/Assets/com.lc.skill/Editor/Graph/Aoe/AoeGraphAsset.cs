@@ -8,6 +8,6 @@ namespace LCSkill.AoeGraph
     {
         [EDReadOnly]
         [Header("AoeId")]
-        public int aoeId;
+        public string aoeId;
     }
 }

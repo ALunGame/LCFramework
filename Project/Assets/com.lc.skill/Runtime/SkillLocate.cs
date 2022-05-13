@@ -11,8 +11,10 @@ namespace LCSkill
 
         public static float DeltaTime = Time.fixedDeltaTime;
 
+        public static ISkillModelServer Model = new SkillModelServer();
+
         public static ISkillServer Skill;    
 
-        public static IDamageServer Damage;    
+        public static IDamageServer Damage;
     }
 }

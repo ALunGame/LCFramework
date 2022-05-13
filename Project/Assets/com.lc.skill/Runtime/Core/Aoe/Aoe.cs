@@ -10,7 +10,7 @@ namespace LCSkill
         /// <summary>
         /// AoeId
         /// </summary>
-        public int id;
+        public string id;
 
         /// <summary>
         /// Aoe预制体（可以是空）

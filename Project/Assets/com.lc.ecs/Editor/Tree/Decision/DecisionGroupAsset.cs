@@ -5,6 +5,7 @@ using LCNode.Model;
 using LCNode.Model.Internal;
 using UnityEditor;
 using UnityEngine;
+using System.Collections.Generic;
 
 namespace LCECS.Tree
 {
@@ -24,19 +25,23 @@ namespace LCECS.Tree
             });
         }
 
-        public override void ExportGraph(InternalBaseGraphAsset graph)
+        public override void ExportGraph(List<InternalBaseGraphAsset> assets)
         {
-            DecisionAsset decisionAsset = graph as DecisionAsset;
-            BaseGraph graphData = decisionAsset.DeserializeGraph();
+            for (int i = 0; i < assets.Count; i++)
+            {
+                DecisionAsset decisionAsset = assets[i] as DecisionAsset;
+                BaseGraph graphData = decisionAsset.DeserializeGraph();
 
-            //运行时数据结构
-            DecisionTree model = new DecisionTree(decisionAsset.TreeId, SerializeHelp.SerializeToTree(graphData));
+                //运行时数据结构
+                DecisionTree model = new DecisionTree(decisionAsset.TreeId, SerializeHelp.SerializeToTree(graphData));
 
-            string filePath = ECSDefPath.GetDecTreePath(decisionAsset.TreeId);
-            IOHelper.WriteText(JsonMapper.ToJson(model), filePath);
+                string filePath = ECSDefPath.GetDecTreePath(decisionAsset.TreeId);
+                IOHelper.WriteText(JsonMapper.ToJson(model), filePath);
+                Debug.Log($"决策树生成成功>>>>{filePath}");
+            }
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
-            Debug.Log($"决策树生成成功>>>>{filePath}");
+           
         }
     }
 }

@@ -13,7 +13,7 @@ namespace LCSkill
         /// <summary>
         /// BulletId
         /// </summary>
-        public int id;
+        public string id;
 
         /// <summary>
         /// 子弹预制体（可以是空）

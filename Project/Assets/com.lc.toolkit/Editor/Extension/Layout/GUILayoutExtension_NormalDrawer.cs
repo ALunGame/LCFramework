@@ -68,16 +68,30 @@ namespace LCToolkit
         public static void DrawField(FieldInfo fieldInfo, object context, GUIContent label)
         {
             object value = fieldInfo.GetValue(context);
-
-            // 判断是否是数组
-            if (typeof(IList).IsAssignableFrom(fieldInfo.FieldType))
-                value = DrawArrayField(fieldInfo.FieldType, value, label);
-            else
+            object newValue = DrawField(fieldInfo.FieldType, value, label);
+            if (value == null || newValue == null)
             {
-                float height = GUIExtension.GetHeight(fieldInfo.FieldType, label);
-                value = GUIExtension.DrawField(EditorGUILayout.GetControlRect(true, height), value, label);
+                return;
             }
-            fieldInfo.SetValue(context, value);
+            if (!newValue.Equals(value))
+            {
+                fieldInfo.SetValue(context, newValue);
+            }
+        }
+
+        public static object DrawField(Type type, object value, GUIContent label)
+        {
+            // 判断是否是数组
+            if (typeof(IList).IsAssignableFrom(type))
+                return DrawArrayField(type, value, label);
+            else
+                return DrawSingleField(type, value, label);
+        }
+
+        public static object DrawField(Type type, object value, string label,string tooltip)
+        {
+            GUIContent lable = GUIHelper.TextContent(label, tooltip);
+            return DrawField(type, value, lable);
         }
 
         /// <summary>
@@ -86,18 +100,18 @@ namespace LCToolkit
         /// <param name="value">数据</param>
         /// <param name="label">名</param>
         /// <returns></returns>
-        public static object DrawSingleField(object value, GUIContent label)
+        static object DrawSingleField(Type objType, object value, GUIContent label)
         {
-            Type type = value.GetType();
+            Type type = objType;
 
             //如果类型是类 或者 是值类型并且不是基元类型
             if (type.IsClass || (type.IsValueType && !type.IsPrimitive))
             {
                 //委托类型
-                if (typeof(Delegate).IsAssignableFrom(type)) 
+                if (typeof(Delegate).IsAssignableFrom(type))
                     return null;
                 //基础类型并且为空
-                if (typeof(object).IsAssignableFrom(type) && value == null) 
+                if (typeof(object).IsAssignableFrom(type) && value == null)
                     return null;
                 int hashCode = value.GetHashCode();
 
@@ -119,7 +133,15 @@ namespace LCToolkit
                     {
                         if (!CanDraw(field)) continue;
 
-                        DrawField(field, value, label);
+                        if (!GUIExtension.IsSupport(type))
+                        {
+                            float tmpHeight = GUIExtension.GetHeight(type, label);
+                            return GUIExtension.DrawField(EditorGUILayout.GetControlRect(true, tmpHeight), value, label);
+                        }
+                        else
+                        {
+                            DrawField(field, value, label);
+                        }
                     }
                     EditorGUI.indentLevel--;
                 }
@@ -129,25 +151,6 @@ namespace LCToolkit
 
             float height = GUIExtension.GetHeight(type, label);
             return GUIExtension.DrawField(EditorGUILayout.GetControlRect(true, height), value, label);
-        }
-
-        public static object DrawField(object value, string label)
-        {
-            return DrawSingleField(value, GUIHelper.TextContent(label));
-        }
-
-        public static object DrawField(Type type, object value, GUIContent label)
-        {
-            return GUIExtension.DrawField(EditorGUILayout.GetControlRect(true, GUIExtension.GetHeight(type, label)), type, value, label);
-        }
-
-        public static object DrawField(Type type, object value, string label,string tooltip)
-        {
-            // 判断是否是数组
-            if (typeof(IList).IsAssignableFrom(type))
-                return DrawArrayField(type, value, GUIHelper.TextContent(label,tooltip));
-            else
-                return GUIExtension.DrawField(EditorGUILayout.GetControlRect(true, GUIExtension.GetHeight(type, GUIHelper.TextContent(label))), type, value, label, tooltip);
         }
 
         static object DrawArrayField(Type objType, object value, GUIContent label)

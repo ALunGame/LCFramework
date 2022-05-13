@@ -9,6 +9,7 @@ using UnityEngine.UIElements;
 using LCToolkit.Command;
 using LCToolkit;
 using UnityObject = UnityEngine.Object;
+using System.Collections.Generic;
 
 namespace LCNode.View
 {
@@ -17,6 +18,8 @@ namespace LCNode.View
         #region 字段
         protected UnityObject graphAsset;
         protected bool locked = false;
+
+        protected List<UnityObject> jumpAssets = new List<UnityObject> ();
         #endregion
 
         #region 属性
@@ -80,6 +83,25 @@ namespace LCNode.View
             };
             toolbar.AddButtonToLeft(btnOverview);
             btnOverview.style.width = 80;
+
+            //跳转视图
+            if (jumpAssets.Count > 0)
+            {
+                IMGUIContainer jumpDrawName = new IMGUIContainer(() =>
+                {
+                    GUILayout.BeginHorizontal();
+                    UnityObject jumpAsset = jumpAssets[0];
+                    if (jumpAsset != null && GUILayout.Button(jumpAsset.name, EditorStyles.toolbarButton))
+                    {
+                        jumpAssets.Remove(jumpAsset);
+                        Open(jumpAsset as IGraphAsset);
+                    }
+                    GUILayout.EndHorizontal();
+                });
+                jumpDrawName.style.flexGrow = 1;
+                toolbar.AddToLeft(jumpDrawName);
+            }
+            
 
             //视图名
             IMGUIContainer drawName = new IMGUIContainer(() =>
@@ -254,6 +276,19 @@ namespace LCNode.View
         {
             if (graphAsset == null) return null;
             var window = GetGraphWindow(graphAsset.GraphType);
+            window.Load(graphAsset);
+            return window;
+        }
+
+        /// <summary>
+        /// 跳转视图
+        /// </summary>
+        /// <param name="graphAsset"></param>
+        /// <returns></returns>
+        public static BaseGraphWindow JumpTo(IGraphAsset graphAsset)
+        {
+            var window = GetGraphWindow(graphAsset.GraphType);
+            window.jumpAssets.Add(window.GraphAsset);
             window.Load(graphAsset);
             return window;
         }

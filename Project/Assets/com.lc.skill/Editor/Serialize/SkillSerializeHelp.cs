@@ -9,7 +9,7 @@ namespace LCSkill.Serialize
     public class SkillSerializeHelp
     {
         //收集参数
-        public static Dictionary<string, object> CollectParams(ClipData clipData,params string[] ignoreFileNames)
+        public static Dictionary<string, object> CollectParams(ClipModel clipData,params string[] ignoreFileNames)
         {
             Dictionary<string, object> paramDict = new Dictionary<string, object>();
             foreach (FieldInfo fInfo in clipData.GetType().GetFields(BindingFlags.DeclaredOnly | BindingFlags.Public | BindingFlags.Instance))

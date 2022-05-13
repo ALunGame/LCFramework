@@ -50,10 +50,12 @@ namespace LCNode.Inspector
                     {
                         if (IgnoreProperties.Contains(property.Key)) continue;
 
-                        object newValue = GUILayoutExtension.DrawField(property.Value.ValueBoxed, GraphProcessorEditorUtility.GetDisplayName(property.Key));
+                        object newValue = GUILayoutExtension.DrawField(property.Value.ValueType, property.Value.ValueBoxed, GraphProcessorEditorUtility.GetDisplayName(property.Key), property.Value.ValueTooltip);
                         if (newValue == null || !newValue.Equals(property.Value.ValueBoxed))
-                            property.Value.ValueBoxed = newValue;
-
+                        {
+                            view.CommandDispacter.Do(new BindableChangeValueCommand(property.Value, newValue));
+                            //property.Value.ValueBoxed = newValue;
+                        }
                     }
                 });
                 if (EditorGUI.EndChangeCheck())

@@ -85,12 +85,12 @@ namespace LCSkill
         /// <summary>
         /// 技能Id
         /// </summary>
-        public int id;
+        public string id;
 
         /// <summary>
         /// 技能名
         /// </summary>
-        public int name;
+        public string name;
 
         /// <summary>
         /// 技能条件
@@ -105,7 +105,7 @@ namespace LCSkill
         /// <summary>
         /// 技能效果
         /// </summary>
-        public TimelineModel timeline;
+        public string timeline;
 
         /// <summary>
         /// 学会技能时，获得的Buff

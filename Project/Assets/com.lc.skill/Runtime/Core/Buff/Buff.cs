@@ -12,7 +12,7 @@ namespace LCSkill
         /// <summary>
         /// BuffId
         /// </summary>
-        public int id;
+        public string id;
 
         /// <summary>
         /// BuffÃû×Ö

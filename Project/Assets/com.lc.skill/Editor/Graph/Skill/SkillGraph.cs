@@ -25,26 +25,20 @@ namespace LCSkill.SkillGraph
             AddNode<Skill_Node>(UnityEngine.Vector2.zero);
         }
 
+
+
         private void CollectNodeTypes()
         {
             NodeTypes.Clear();
-            foreach (var type in ReflectionHelper.GetChildTypes<Skill_ConditionNode>())
-            {
-                if (type.IsAbstract)
-                    continue;
-                if (!AttributeHelper.TryGetTypeAttribute(type, out NodeMenuItemAttribute attr))
-                    continue;
-                NodeTypes.Add(type);
-            }
-            foreach (var type in ReflectionHelper.GetChildTypes<Skill_CostNode>())
-            {
-                if (type.IsAbstract)
-                    continue;
-                if (!AttributeHelper.TryGetTypeAttribute(type, out NodeMenuItemAttribute attr))
-                    continue;
-                NodeTypes.Add(type);
-            }
-            foreach (var type in ReflectionHelper.GetChildTypes<Skill_LearnBuffNode>())
+            AddNodes<Skill_ConditionNode>();
+            AddNodes<Skill_CostNode>();
+            AddNodes<Skill_LearnBuffNode>();
+            NodeTypes.Add(typeof(Skill_LearnBuffNode));
+        }
+
+        private void AddNodes<T>()
+        {
+            foreach (var type in ReflectionHelper.GetChildTypes<T>())
             {
                 if (type.IsAbstract)
                     continue;

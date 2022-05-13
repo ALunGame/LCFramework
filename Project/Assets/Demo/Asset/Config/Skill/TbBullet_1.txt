@@ -1,0 +1,1 @@
+﻿{"mType":"LCSkill.BulletModel","id":"1","asset":{"mType":"LCToolkit.UnityObjectAsset","ObjName":null,"ObjPath":null},"radius":0,"hitTimes":1,"sameTargetDelay":0.02,"removeOnObstacle":false,"hitEnemy":true,"hitFriend":false,"moveFunc":null,"catchFunc":null,"onCreateFunc":[],"onRemovedFunc":[],"onHitFunc":[]}

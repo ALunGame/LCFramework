@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6c8efba6f25e314aa305232421793db, type: 3}
   m_Name: aoe_1
   m_EditorClassIdentifier: 
-  serializedGraph: 
+  serializedGraph: '{"mType":"LCSkill.AoeGraph.AoeGraph","pos":{"mType":"UnityEngine.Vector3","x":0.0,"y":0.0,"z":0.0},"zoom":{"mType":"UnityEngine.Vector3","x":1.0,"y":1.0,"z":1.0},"nodes":{"mType":"System.Collections.Generic.Dictionary`2[[System.String,
+    mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089],[LCNode.Model.BaseNode,
+    Assembly-CSharp-Editor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]","cd44f64d-f385-4466-a1e4-824474f5c0db":{"mType":"LCSkill.AoeGraph.Aoe_Node","asset":{"mType":"LCToolkit.UnityObjectAsset","ObjName":null,"ObjPath":null},"area":[],"tickTime":-1,"moveFunc":null,"onCreateFunc":null,"onTickFunc":null,"onRemovedFunc":null,"onActorEnterFunc":null,"onActorLeaveFunc":null,"onBulletEnterFunc":null,"onBulletLeaveFunc":null,"guid":"cd44f64d-f385-4466-a1e4-824474f5c0db","position":{"mType":"UnityEngine.Vector2","x":0.0,"y":0.0}},"882072bd-4287-4949-a083-3e18125cab3f":{"mType":"LCSkill.Aoe_LifeCycleDamageNode","damage":{"mType":"LCSkill.DamageModel","damages":[],"addBuffs":[]},"parentNode":null,"guid":"882072bd-4287-4949-a083-3e18125cab3f","position":{"mType":"UnityEngine.Vector2","x":547.0,"y":184.720001220703}}},"connections":[{"mType":"LCNode.Model.BaseConnection","from":"cd44f64d-f385-4466-a1e4-824474f5c0db","fromPortName":"\u5F53\u521B\u5EFA\u65F6","to":"882072bd-4287-4949-a083-3e18125cab3f","toPortName":"\u7236\u8282\u70B9"}]}'
   aoeId: 1
 --- !u!114 &11400000
 MonoBehaviour:

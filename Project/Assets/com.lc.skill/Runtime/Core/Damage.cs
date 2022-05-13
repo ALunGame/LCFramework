@@ -24,7 +24,7 @@ namespace LCSkill
         /// <summary>
         /// 伤害类型
         /// </summary>
-        public DamageType type;
+        public DamageType type = DamageType.Normal;
 
         /// <summary>
         /// 是否命中

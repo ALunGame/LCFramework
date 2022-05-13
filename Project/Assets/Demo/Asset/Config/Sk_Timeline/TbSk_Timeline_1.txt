@@ -1,0 +1,1 @@
+﻿{"mType":"LCSkill.TimelineModel","name":"1","duration":9.878048,"nodes":[{"mType":"Demo.Skill.Timeline.SkillTimeline_PlayAnim","animName":"attack1","timeElapsed":0}],"goToNode":{"mType":"LCSkill.TimelineGoTo","atDuration":0,"gotoDuration":0}}

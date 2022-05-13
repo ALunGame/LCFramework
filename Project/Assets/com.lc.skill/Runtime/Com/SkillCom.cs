@@ -72,7 +72,7 @@ namespace LCSkill
         /// </summary>
         /// <param name="skillId">技能Id</param>
         /// <returns>是否释放成功</returns>
-        internal bool ReleaseSkill(int skillId)
+        internal bool ReleaseSkill(string skillId)
         {
             SkillObj skillObj = GetSkill(skillId);
             if (skillObj == null || skillObj.coldDown > 0)
@@ -83,7 +83,7 @@ namespace LCSkill
             if (!skillObj.model.condition.IsTrue())
                 return false;
             TimelineObj timeline = new TimelineObj(
-                skillObj.model.timeline, this
+                SkillLocate.Model.GetTimelineModel(skillObj.model.timeline), this
             );
             //通知Buff技能即将释放
             for (int i = 0; i < buffs.Count; i++)
@@ -111,7 +111,7 @@ namespace LCSkill
         /// </summary>
         /// <param name="id">技能Id</param>
         /// <returns></returns>
-        public SkillObj GetSkill(int id)
+        public SkillObj GetSkill(string id)
         {
             for (int i = 0; i < skills.Count; i++)
             {
@@ -232,7 +232,7 @@ namespace LCSkill
         /// <param name="id">BuffId</param>
         /// <param name="checkOwers">需要检测拥有者</param>
         /// <returns></returns>
-        public List<BuffObj> GetBuffs(int id, List<SkillCom> checkOwers)
+        public List<BuffObj> GetBuffs(string id, List<SkillCom> checkOwers)
         {
             List<BuffObj> res = new List<BuffObj>();
             for (int i = 0; i < buffs.Count; i++)

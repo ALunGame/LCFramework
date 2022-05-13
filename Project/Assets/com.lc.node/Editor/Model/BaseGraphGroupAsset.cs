@@ -47,7 +47,6 @@ namespace LCNode.Model
             return false;
         }
 
-
         public override InternalBaseGraphAsset CreateGraph(string name)
         {
             if (CheckHasGraph(name))

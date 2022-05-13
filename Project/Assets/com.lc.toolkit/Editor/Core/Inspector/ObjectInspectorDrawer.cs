@@ -5,7 +5,6 @@ using System.Reflection;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
-using UnityObject = UnityEngine.Object;
 
 namespace LCToolkit.Core
 {
@@ -47,27 +46,48 @@ namespace LCToolkit.Core
             }
         }
 
+        private static List<Type> GetBaseTypes(Type objectType)
+        {
+            //只找四层
+            List<Type> baseTypes = new List<Type>();
+            if (objectType.BaseType != null)
+            {
+                baseTypes.Add(objectType.BaseType);
+                if (objectType.BaseType.BaseType != null)
+                {
+                    baseTypes.Add(objectType.BaseType.BaseType);
+                    if (objectType.BaseType.BaseType.BaseType != null)
+                    {
+                        baseTypes.Add(objectType.BaseType.BaseType.BaseType);
+                    }
+                }
+            }
+            return baseTypes;
+        }
+
         //获得对象绘制类
         private static Type GetEditorType(Type objectType)
         {
             if (ObjectEditorTypeCache.TryGetValue(objectType, out Type editorType))
                 return editorType;
-            //父类
-            if (objectType.BaseType != null)
-            {
-                if (ObjectEditorTypeCache.TryGetValue(objectType.BaseType, out Type baseEditorType))
-                    return baseEditorType;
-            }
+
             //接口
             Type[] interfaces = objectType.GetInterfaces();
-            if (interfaces == null || interfaces.Length <= 0)
+            if (interfaces != null && interfaces.Length > 0)
             {
-                return typeof(ObjectInspectorDrawer);
+                for (int i = 0; i < interfaces.Length; i++)
+                {
+                    if (ObjectEditorTypeCache.TryGetValue(interfaces[i], out Type interfacesEditorType))
+                        return interfacesEditorType;
+                }
             }
-            for (int i = 0; i < interfaces.Length; i++)
+
+            //父类
+            List<Type> baseTypes = GetBaseTypes(objectType);
+            foreach (Type type in baseTypes)
             {
-                if (ObjectEditorTypeCache.TryGetValue(interfaces[i], out Type interfacesEditorType))
-                    return interfacesEditorType;
+                if (ObjectEditorTypeCache.TryGetValue(type, out Type baseEditorType))
+                    return baseEditorType;
             }
             return typeof(ObjectInspectorDrawer);
         }

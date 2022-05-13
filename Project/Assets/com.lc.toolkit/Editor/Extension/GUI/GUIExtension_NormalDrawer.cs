@@ -66,7 +66,7 @@ namespace LCToolkit
         /// </summary>
         /// <param name="type">类型</param>
         /// <returns></returns>
-        private static bool IsSupport(Type type)
+        public static bool IsSupport(Type type)
         {
             if (IsBasicType(type))
             {
@@ -218,6 +218,10 @@ namespace LCToolkit
             {
                 return null;
             }
+            if (type.IsEnum)
+            {
+                return EditorGUI.EnumPopup(rect, label, (Enum)value);
+            }
             if (type.Equals(typeof(bool)))
             {
                 return EditorGUI.Toggle(rect, label, value == null ? false : (bool)value);
@@ -291,10 +295,6 @@ namespace LCToolkit
             {
                 return EditorGUI.ObjectField(rect, label, (UnityObject)value, type, true);
             }
-            if (type.IsEnum)
-            {
-                return EditorGUI.EnumPopup(rect, label, (Enum)value);
-            }
             if (ObjectDrawer.CheckHasCustomDrawer(type))
             {
                 ObjectDrawer objectDrawer = ObjectDrawer.CreateEditor(value);
@@ -326,6 +326,10 @@ namespace LCToolkit
         /// </summary>
         public static object DrawField(Rect rect, object value, GUIContent label)
         {
+            if (value == null)
+            {
+                Debug.LogError("绘制字段>>>" + value.GetType().FullName);
+            }
             return DrawField(rect, value.GetType(), value, label);
         }
 

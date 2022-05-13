@@ -61,16 +61,38 @@ namespace LCSkill.SkillGraph
     /// <summary>
     /// 学会技能时，获得的Buff
     /// </summary>
-    public abstract class Skill_LearnBuffNode : BaseNode
+    [NodeMenuItem("技能Buff")]
+    public class Skill_LearnBuffNode : BaseNode
     {
         public override Color TitleColor { get => Color.magenta; set => base.TitleColor = value; }
+
+        [NodeValue("BuffId")]
+        public int id = 0;
+
+        [NodeValue("添加的层数")]
+        public int addStack = 0;
+
+        [NodeValue("持续设置", "true:覆盖 false:累加")]
+        public bool durationSetType = true;
+
+        [NodeValue("持续时间")]
+        public float duration = 0;
+
+        [NodeValue("永久Buff")]
+        public bool isPermanent = true;
 
         [InputPort("父节点", BasePort.Capacity.Single)]
         public SkillLearnBuffData parentNode;
 
-        public abstract Type RuntimeNode { get; }
-
-        public abstract AddBuffModel CreateRuntimeNode();
+        public AddBuffModel CreateRuntimeNode()
+        {
+            AddBuffModel model = new AddBuffModel();
+            model.id = id;
+            model.durationSetType = durationSetType;    
+            model.duration = duration;
+            model.isPermanent = isPermanent;
+            return model;
+        }
     }
 
     [NodeMenuItem("技能配置")]

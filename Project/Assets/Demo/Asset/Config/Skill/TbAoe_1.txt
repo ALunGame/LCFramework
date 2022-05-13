@@ -1,0 +1,1 @@
+﻿{"mType":"LCSkill.AoeModel","id":"1","asset":{"mType":"LCToolkit.UnityObjectAsset","ObjName":null,"ObjPath":null},"area":[],"tickTime":-1,"moveFunc":null,"onCreateFunc":[],"onTickFunc":[],"onRemovedFunc":[],"onActorEnterFunc":[],"onActorLeaveFunc":[],"onBulletEnterFunc":[],"onBulletLeaveFunc":[]}

@@ -79,7 +79,7 @@ namespace LCToolkit
             }
         }
 
-        public static object DrawField(Type type, object value, GUIContent label)
+        public static object DrawField(Type type, object value, GUIContent label = null)
         {
             // 判断是否是数组
             if (typeof(IList).IsAssignableFrom(type))
@@ -100,13 +100,27 @@ namespace LCToolkit
         /// <param name="value">数据</param>
         /// <param name="label">名</param>
         /// <returns></returns>
-        static object DrawSingleField(Type objType, object value, GUIContent label)
+        static object DrawSingleField(Type objType, object value, GUIContent label = null)
         {
-            Type type = objType;
+            if (GUIExtension.IsBasicType(objType))
+            {
+                if (label == null)
+                {
+                    label = new GUIContent(objType.Name);
+                }
+                float tmpHeight = GUIExtension.GetHeight(objType, label);
+                return GUIExtension.DrawField(EditorGUILayout.GetControlRect(true, tmpHeight), value, label);
+            }
 
+            Type type = objType;
             //如果类型是类 或者 是值类型并且不是基元类型
             if (type.IsClass || (type.IsValueType && !type.IsPrimitive))
             {
+                if (label == null)
+                {
+                    label = new GUIContent(objType.Name);
+                }
+
                 //委托类型
                 if (typeof(Delegate).IsAssignableFrom(type))
                     return null;
@@ -133,14 +147,19 @@ namespace LCToolkit
                     {
                         if (!CanDraw(field)) continue;
 
-                        if (!GUIExtension.IsSupport(type))
+                        GUIContent fileLable  = new GUIContent(field.Name);
+                        if (AttributeHelper.TryGetFieldAttribute(field,out HeaderAttribute attr))
                         {
-                            float tmpHeight = GUIExtension.GetHeight(type, label);
-                            return GUIExtension.DrawField(EditorGUILayout.GetControlRect(true, tmpHeight), value, label);
+                            fileLable = new GUIContent(attr.header);
+                        }
+                        if (GUIExtension.IsBasicType(type))
+                        {
+                            float tmpHeight = GUIExtension.GetHeight(type, fileLable);
+                            return GUIExtension.DrawField(EditorGUILayout.GetControlRect(true, tmpHeight), field.GetValue(value), fileLable);
                         }
                         else
                         {
-                            DrawField(field, value, label);
+                            DrawField(field, value, fileLable);
                         }
                     }
                     EditorGUI.indentLevel--;
@@ -271,9 +290,9 @@ namespace LCToolkit
 
                 for (int k = 0; k < list.Count; k++)
                 {
-                    label.text = "Element " + k;
                     object obj = list[k];
-                    list[k] = DrawField(obj.GetType(), obj, "Element " + k,"");
+                    label.text = $"Element {obj.GetType().Name}" + k;
+                    list[k] = DrawField(obj.GetType(), obj);
                 }
 
                 //for (int k = 0; k < list.Count; k++)

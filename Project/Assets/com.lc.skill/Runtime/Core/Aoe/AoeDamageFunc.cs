@@ -1,5 +1,5 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using LCMap;
+using System.Collections.Generic;
 
 namespace LCSkill
 {
@@ -12,6 +12,32 @@ namespace LCSkill
 
         public override void Execute(AoeObj aoe)
         {
+        }
+    }
+
+    /// <summary>
+    /// Aoe演员进入造成伤害
+    /// </summary>
+    public class AoeActorEnterDamageFunc : AoeActorEnter
+    {
+        public DamageModel damage;
+
+        public override void Execute(AoeObj aoe, List<ActorObj> actors)
+        {
+
+        }
+    }
+
+    /// <summary>
+    /// Aoe演员离开造成伤害
+    /// </summary>
+    public class AoeActorLeaveDamageFunc : AoeActorLeave
+    {
+        public DamageModel damage;
+
+        public override void Execute(AoeObj aoe, List<ActorObj> actors)
+        {
+
         }
     }
 }

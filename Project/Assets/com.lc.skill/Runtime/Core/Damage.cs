@@ -19,23 +19,27 @@ namespace LCSkill
         /// <summary>
         /// 伤害值
         /// </summary>
+        [Header("伤害值")]
         public int damage;
-        
+
         /// <summary>
         /// 伤害类型
         /// </summary>
+        [Header("伤害类型")]
         public DamageType type = DamageType.Normal;
 
         /// <summary>
         /// 是否命中
         /// 大于1就是命中
         /// </summary>
+        [Header("是否命中>1")]
         public float hitRate;
 
         /// <summary>
         /// 是否暴击
         /// 大于1就是暴击
         /// </summary>
+        [Header("是否暴击>1")]
         public float criticalRate;
     }
 
@@ -47,11 +51,13 @@ namespace LCSkill
         /// <summary>
         /// 伤害信息
         /// </summary>
+        [Header("伤害信息")]
         public List<DamageInfo> damages;
 
         /// <summary>
         /// 伤害接受添加的Buff
         /// </summary>
+        [Header("受到伤害添加的Buff")]
         public List<AddBuffModel> addBuffs;
     }
 

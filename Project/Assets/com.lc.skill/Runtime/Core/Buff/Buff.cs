@@ -110,26 +110,31 @@ namespace LCSkill
         /// <summary>
         /// BuffId
         /// </summary>
+        [Header("BuffId")]
         public int id;
 
         /// <summary>
         /// 添加的层数，负数就是减少
         /// </summary>
+        [Header("添加的层数")]
         public int addStack;
 
         /// <summary>
         /// 持续时间设置模式(true:覆盖 false:累加)
         /// </summary>
+        [Header("持续时间设置模式true:覆盖 false:累加")]
         public bool durationSetType;
 
         /// <summary>
         /// 添加的持续时间
         /// </summary>
+        [Header("持续时间")]
         public float duration;
 
         /// <summary>
         /// 是否是一个永久的buff,如果持续使劲按减少到0，也会被删除
         /// </summary>
+        [Header("永久buff")]
         public bool isPermanent;
     }
 

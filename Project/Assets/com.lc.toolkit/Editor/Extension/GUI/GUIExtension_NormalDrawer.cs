@@ -27,7 +27,7 @@ namespace LCToolkit
         /// </summary>
         /// <param name="type"></param>
         /// <returns></returns>
-        private static bool IsBasicType(Type type)
+        public static bool IsBasicType(Type type)
         {
             if (type.Equals(typeof(bool))) return true;
             if (type.Equals(typeof(byte))) return true;
@@ -58,6 +58,7 @@ namespace LCToolkit
             if (typeof(Gradient).IsAssignableFrom(type)) return true;
             if (typeof(AnimationCurve).IsAssignableFrom(type)) return true;
             if (typeof(UnityObject).IsAssignableFrom(type)) return true;
+            if (ObjectDrawer.CheckHasCustomDrawer(type)) return true;
             return false;
         }
 

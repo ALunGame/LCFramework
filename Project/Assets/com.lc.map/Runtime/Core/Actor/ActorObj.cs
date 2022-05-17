@@ -25,42 +25,42 @@ namespace LCMap
         /// 唯一Id
         /// </summary>
         [Header("唯一Id")]
-        [EDReadOnly]
+        [ReadOnly]
         public int Uid;
 
         /// <summary>
         /// 配置Id
         /// </summary>
         [Header("配置Id")]
-        [EDReadOnly]
+        [ReadOnly]
         public int Id;
 
         /// <summary>
         /// 实体配置Id
         /// </summary>
         [Header("实体配置Id")]
-        [EDReadOnly]
+        [ReadOnly]
         public int EntityId;
 
         /// <summary>
         /// 实体配置Id
         /// </summary>
         [Header("表现根节点")]
-        [EDReadOnly]
+        [ReadOnly]
         public GameObject DisplayRootGo;
 
         /// <summary>
         /// 实体配置Id
         /// </summary>
         [Header("表现状态名")]
-        [EDReadOnly]
+        [ReadOnly]
         public string DisplayStateName;
 
         /// <summary>
         /// 实体配置Id
         /// </summary>
         [Header("表现节点")]
-        [EDReadOnly]
+        [ReadOnly]
         public GameObject DisplayGo;
 
         /// <summary>

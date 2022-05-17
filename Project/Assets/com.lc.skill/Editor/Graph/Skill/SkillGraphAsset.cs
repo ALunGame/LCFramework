@@ -6,7 +6,7 @@ namespace LCSkill.SkillGraph
 {
     public class SkillGraphAsset : BaseGraphAsset<SkillGraph>
     {
-        [EDReadOnly]
+        [ReadOnly]
         [Header("技能Id")]
         public string skillId;
     }

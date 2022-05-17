@@ -7,7 +7,7 @@ namespace LCECS.Tree
 {
     public class BehaviorAsset : BaseGraphAsset<Behavior>
     {
-        [EDReadOnly]
+        [ReadOnly]
         [Header("ÐÐÎªÇëÇó")]
         public RequestId ReqId;
     }

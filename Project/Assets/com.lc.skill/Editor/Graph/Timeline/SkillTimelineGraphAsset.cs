@@ -7,7 +7,7 @@ namespace LCSkill
 {
     public class SkillTimelineGraphAsset : BaseTimelineGraphAsset<SkillTimelineGraph>
     {
-        [EDReadOnly]
+        [ReadOnly]
         [Header("Timeline名")]
         public string timelineName;
     }

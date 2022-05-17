@@ -1,6 +1,5 @@
 ﻿using LCECS.Server;
 using LCECS.Server.ECS;
-using LCECS.Server.Factory;
 using LCECS.Server.Player;
 using LCToolkit.Server;
 
@@ -18,7 +17,6 @@ namespace LCECS
         /// </summary>
         public static ILogServer Log { get; set; }
         public static IECSServer ECS { get; set; }
-        public static IFactoryServer Factory { get; set; }
         public static IPlayerServer Player { get; set; }
 
         public static void InitServer(ECSCenter center)
@@ -26,7 +24,6 @@ namespace LCECS
             Center      = center;
             Log         = new ECSLogServer();
             ECS         = new ECSServer();
-            Factory     = new FactoryServer();
             Player      = new PlayerServer();
         }
 
@@ -34,7 +31,6 @@ namespace LCECS
         {
             Log       = null;
             ECS       = null;
-            Factory   = null;
             Player    = null;
         }
     }

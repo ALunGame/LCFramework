@@ -7,7 +7,7 @@ namespace LCConfig
 {
     public class ConfigAsset : ScriptableObject
     {
-        [EDReadOnly]
+        [ReadOnly]
         [SerializeField]
         [Header("配置类")]
         public string cnfTypeFullName;

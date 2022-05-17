@@ -13,16 +13,16 @@ namespace LCMap
     [ExecuteAlways]
     public class ED_MapAreaCom : ED_MapDataCom
     {
-        [EDReadOnly]
+        [ReadOnly]
         [SerializeField]
         private ED_MapCom mapCom;
 
-        [EDReadOnly]
+        [ReadOnly]
         [SerializeField]
         [Header("演员根节点")]
         public Transform ActorRoot;
 
-        [EDReadOnly]
+        [ReadOnly]
         [SerializeField]
         [Header("触发区域根节点")]
         public Transform TriggerRoot;

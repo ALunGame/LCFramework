@@ -29,27 +29,27 @@ namespace LCMap
 
         #endregion
 
-        [EDReadOnly]
+        [ReadOnly]
         [SerializeField]
         [Header("地图Id")]
         public int mapId;
 
-        [EDReadOnly]
+        [ReadOnly]
         [SerializeField]
         [Header("起始Uid")]
         public int startUid = 0;
 
-        [EDReadOnly]
+        [ReadOnly]
         [SerializeField]
         [Header("结束Uid")]
         public int endUid;
 
-        [EDReadOnly]
+        [ReadOnly]
         [SerializeField]
         [Header("区域根节点")]
         public Transform AreaRoot;
 
-        [EDReadOnly]
+        [ReadOnly]
         [SerializeField]
         [Header("区域范围")]
         public Vector2Int AreaSize = new Vector2Int(100, 100);

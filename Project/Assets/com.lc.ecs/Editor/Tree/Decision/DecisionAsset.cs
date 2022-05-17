@@ -7,7 +7,7 @@ namespace LCECS.Tree
 {
     public class DecisionAsset : BaseGraphAsset<Decision>
     {
-        [EDReadOnly]
+        [ReadOnly]
         [HideInInspector]
         public int TreeId;
     }

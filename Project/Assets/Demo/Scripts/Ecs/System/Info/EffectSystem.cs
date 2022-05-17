@@ -182,7 +182,7 @@ namespace Demo.System
                 return null;
             }
 
-            GameObject assetGo = (GameObject)ECSLocate.Factory.GetProduct<GameObject>(FactoryType.Asset, null, effectInfo.Prefab);
+            GameObject assetGo = null;
 
             EffectGo effectGo = new EffectGo
             {

@@ -13,22 +13,22 @@ namespace LCMap
     [ExecuteAlways]
     public class ED_ActorCom : ED_MapDataCom
     {
-        [EDReadOnly]
+        [ReadOnly]
         [SerializeField]
         [Header("演员Uid")]
         public int UId;
 
-        [EDReadOnly]
+        [ReadOnly]
         [SerializeField]
         [Header("演员Id")]
         public int Id;
 
-        [EDReadOnly]
+        [ReadOnly]
         [SerializeField]
         [Header("演员名字")]
         public string ActorName = "";
 
-        [EDReadOnly]
+        [ReadOnly]
         [SerializeField]
         [Header("是不是主角")]
         public bool IsMainActor;
@@ -37,12 +37,12 @@ namespace LCMap
         [Header("表现状态名")]
         public string stateName = "Default";
 
-        [EDReadOnly]
+        [ReadOnly]
         [SerializeField]
         [Header("路径根节点")]
         public Transform PathRoot;
 
-        [EDReadOnly]
+        [ReadOnly]
         [SerializeField]
         [Header("交互点")]
         public Transform InteractivePoint;

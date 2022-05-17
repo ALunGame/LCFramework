@@ -6,7 +6,7 @@ namespace LCSkill.BuffGraph
 {
     public class BuffGraphAsset : BaseGraphAsset<BuffGraph>
     {
-        [EDReadOnly]
+        [ReadOnly]
         [Header("技能Id")]
         public string buffId;
     }

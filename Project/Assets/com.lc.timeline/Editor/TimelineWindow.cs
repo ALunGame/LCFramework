@@ -52,7 +52,7 @@ namespace LCTimeline
             }
         }
 
-        private bool timeInFrames = false;
+        private bool timeInFrames = true;
 
         /// <summary>
         /// ֡ģʽ

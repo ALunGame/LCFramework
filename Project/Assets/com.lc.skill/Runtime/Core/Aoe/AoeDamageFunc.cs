@@ -12,6 +12,7 @@ namespace LCSkill
 
         public override void Execute(AoeObj aoe)
         {
+            SkillLocate.Damage.AddDamage(aoe.ower, aoe.ower, damage);
         }
     }
 
@@ -24,7 +25,11 @@ namespace LCSkill
 
         public override void Execute(AoeObj aoe, List<ActorObj> actors)
         {
-
+            for (int i = 0; i < actors.Count; i++)
+            {
+                SkillCom targetCom = LCECS.ECSLocate.ECS.GetEntity(actors[i].Uid).GetCom<SkillCom>();
+                SkillLocate.Damage.AddDamage(aoe.ower, targetCom, damage);
+            }
         }
     }
 
@@ -37,7 +42,11 @@ namespace LCSkill
 
         public override void Execute(AoeObj aoe, List<ActorObj> actors)
         {
-
+            for (int i = 0; i < actors.Count; i++)
+            {
+                SkillCom targetCom = LCECS.ECSLocate.ECS.GetEntity(actors[i].Uid).GetCom<SkillCom>();
+                SkillLocate.Damage.AddDamage(aoe.ower, targetCom, damage);
+            }
         }
     }
 }

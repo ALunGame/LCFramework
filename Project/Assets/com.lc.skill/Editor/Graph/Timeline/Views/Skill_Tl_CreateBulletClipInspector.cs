@@ -18,7 +18,7 @@ namespace LCSkill
             if (GUILayout.Button("Open", GUILayout.Height(30)))
             {
                 GraphGroupPath path = GraphSetting.Setting.GetSearchPath<BulletGraphGroupAsset>();
-                BulletGraphAsset asset = GraphSetting.Setting.GetAsset<BulletGraphAsset>(path.searchPath, "bullet_" + clip.bulletId);
+                BulletGraphAsset asset = GraphSetting.Setting.GetAsset<BulletGraphAsset>(path.searchPath, "bullet_" + clip.addBullet.id);
                 BaseGraphWindow.JumpTo(asset);
             }
         }

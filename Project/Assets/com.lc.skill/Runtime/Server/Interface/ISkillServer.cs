@@ -17,5 +17,28 @@
         /// <param name="skillId">技能Id</param>
         /// <returns>释放是否成功</returns>
         bool ReleaseSkill(SkillCom target, int skillId);
+
+        /// <summary>
+        /// 创建一个Aoe
+        /// </summary>
+        /// <param name="ower">Aoe拥有者</param>
+        /// <param name="addAoe"></param>
+        AoeObj CreateAoe(SkillCom ower, AddAoeModel addAoe);
+
+        /// <summary>
+        /// 创建一个Buff
+        /// </summary>
+        /// <param name="ower">Buff拥有者</param>
+        /// <param name="target">Buff目标</param>
+        /// <param name="addBuff"></param>
+        /// <returns></returns>
+        BuffObj CreateBuff(SkillCom ower, SkillCom target, AddBuffModel addBuff);
+
+        /// <summary>
+        /// 创建一个Bullet
+        /// </summary>
+        /// <param name="ower">Bullet拥有者</param>
+        /// <returns></returns>
+        BulletObj CreateBullet(SkillCom ower, AddBulletModel addBullet);
     }
 }

@@ -3,7 +3,7 @@
 namespace LCSkill
 {
     /// <summary>
-    /// Buff生命周期造成伤害
+    /// Buff生命周期添加Buff
     /// </summary>
     public class BuffLifeCycleAddBuffFunc : BuffLifeCycleFunc
     {
@@ -11,6 +11,7 @@ namespace LCSkill
 
         public override void Execute(BuffObj buff, int modifyStack = 0)
         {
+            SkillLocate.Skill.CreateBuff(buff.ower, buff.ower, addBuff);
         }
     }
 }

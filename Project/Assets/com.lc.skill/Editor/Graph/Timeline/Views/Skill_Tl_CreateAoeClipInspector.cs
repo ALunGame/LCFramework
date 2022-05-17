@@ -18,7 +18,7 @@ namespace LCSkill
             if (GUILayout.Button("Open", GUILayout.Height(30)))
             {
                 GraphGroupPath path = GraphSetting.Setting.GetSearchPath<AoeGraphGroupAsset>();
-                AoeGraphAsset asset = GraphSetting.Setting.GetAsset<AoeGraphAsset>(path.searchPath,"aoe_" + clip.aoeId);
+                AoeGraphAsset asset = GraphSetting.Setting.GetAsset<AoeGraphAsset>(path.searchPath,"aoe_" + clip.addAoe.id);
                 BaseGraphWindow.JumpTo(asset);
             }
         }

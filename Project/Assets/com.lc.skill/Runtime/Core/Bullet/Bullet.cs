@@ -6,6 +6,56 @@ using UnityEngine;
 namespace LCSkill
 {
     /// <summary>
+    /// 配置创建一个子弹
+    /// </summary>
+    public class AddBulletModel
+    {
+        /// <summary>
+        /// AoeId
+        /// </summary>
+        [Header("子弹Id")]
+        public int id;
+
+        /// <summary>
+        /// 发射的位置
+        /// </summary>
+        [Header("发射的位置")]
+        public Vector3 firePos;
+
+        /// <summary>
+        /// 发射方向
+        /// </summary>
+        [Header("发射方向")]
+        public float fireDir;
+
+        /// <summary>
+        /// 子弹的初速度，单位：米/秒
+        /// </summary>
+        [Header("子弹的初速度")]
+        public float speed;
+
+        /// <summary>
+        /// 子弹的持续时间，单位：秒
+        ///</summary>
+        [Header("子弹的持续时间")]
+        public float duration;
+
+        /// <summary>
+        /// 移动遵循发射角度
+        /// </summary>
+        [Header("移动遵循发射角度")]
+        public bool useFireDegreeForever;
+
+        /// <summary>
+        /// 子弹创建后多久是没有碰撞的，这样比如子母弹之类的，不会在创建后立即命中目标，但绝大多子弹还应该是0的
+        /// 单位：秒
+        /// </summary>
+        [Header("多久后才可以击中")]
+        public float canHitAfterCreated = 0;
+
+    }
+
+    /// <summary>
     /// 子弹配置
     /// </summary>
     public struct BulletModel
@@ -74,60 +124,6 @@ namespace LCSkill
         /// 命中目标调用
         /// </summary>
         public List<BulletHitFunc> onHitFunc;
-    }
-
-    /// <summary>
-    /// 用于创建一个子弹
-    /// </summary>
-    public struct AddBulletInfo
-    {
-        /// <summary>
-        /// 子弹
-        /// </summary>
-        public BulletModel model;
-
-        /// <summary>
-        /// 子弹的拥有者（可以是空）
-        /// </summary>
-        public SkillCom ower;
-
-        /// <summary>
-        /// 发射的位置
-        /// </summary>
-        public Vector3 firePos;
-
-        /// <summary>
-        /// 发射方向
-        /// </summary>
-        public float fireDir;
-
-        /// <summary>
-        /// 子弹的初速度，单位：米/秒
-        /// </summary>
-        public float speed;
-
-        /// <summary>
-        /// 子弹的持续时间，单位：秒
-        ///</summary>
-        public float duration;
-
-        /// <summary>
-        /// 移动遵循发射角度
-        /// </summary>
-        public bool useFireDegreeForever;
-
-        /// <summary>
-        /// 子弹创建后多久是没有碰撞的，这样比如子母弹之类的，不会在创建后立即命中目标，但绝大多子弹还应该是0的
-        /// 单位：秒
-        /// </summary>
-        public float canHitAfterCreated;
-
-        /// <summary>
-        /// 子弹的一些特殊逻辑使用的参数，可以在创建子的时候传递给子弹
-        /// </summary>
-        public Dictionary<string, object> param;
-
-
     }
 
     /// <summary>

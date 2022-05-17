@@ -76,13 +76,6 @@ namespace Demo.BevNode
             //冲刺特效
             if (playerCom.DoDash)
             {
-                ECSLocate.ECS.SetGlobalSingleComData((EffectCom com) =>
-                {
-                    com.EffectId        = 5004;
-                    com.EffectEntityId  = workData.Id;
-                    com.EffectHideTime  = 0.35f;
-                    com.EffectGapTime   = 0.08f;
-                });
             }
         }
         

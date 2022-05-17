@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace LCSkill
+﻿namespace LCSkill
 {
     /// <summary>
     /// 技能Timeline函数
@@ -24,11 +18,11 @@ namespace LCSkill
     /// </summary>
     public class SkillTimeline_CreateAoe : TimelineFunc
     {
-        public string aoeId;
+        public AddAoeModel addAoe;
 
         public override void Execute(TimelineObj timelineObj)
         {
-            
+            SkillLocate.Skill.CreateAoe(timelineObj.ower,addAoe);
         }
     }
 
@@ -37,11 +31,11 @@ namespace LCSkill
     /// </summary>
     public class SkillTimeline_CreateBullet : TimelineFunc
     {
-        public string bulletId;
+        public AddBulletModel addBullet;
 
         public override void Execute(TimelineObj timelineObj)
         {
-            
+            SkillLocate.Skill.CreateBullet(timelineObj.ower,addBullet);
         }
     }
 }

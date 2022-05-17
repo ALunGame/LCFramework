@@ -94,46 +94,4 @@ namespace LCSkill
             this.angle = angle;
         }
     }
-
-    /// <summary>
-    /// 游戏中伤害值
-    /// </summary>
-    public struct Damage
-    {
-        /// <summary>
-        /// 普通伤害（治疗）
-        /// </summary>
-        public int normal;
-
-        public Damage(int normal)
-        {
-            this.normal = normal;
-        }
-    
-        /// <summary>
-        /// 统计伤害
-        /// </summary>
-        /// <param name="asHeal">是否当做治疗来统计</param>
-        /// <returns></returns>
-        public int Overall(bool asHeal = false)
-        {
-            return (asHeal == false) ?
-                (Mathf.Max(0, normal)):
-                (Mathf.Min(0, normal));
-        }
-
-        public static Damage operator +(Damage a, Damage b)
-        {
-            return new Damage(
-                a.normal + b.normal
-            );
-        }
-
-        public static Damage operator *(Damage a, float b)
-        {
-            return new Damage(
-                Mathf.RoundToInt(a.normal * b)
-            );
-        }
-    }
 }

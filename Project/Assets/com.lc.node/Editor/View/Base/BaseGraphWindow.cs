@@ -218,12 +218,20 @@ namespace LCNode.View
         // 保存
         void Save()
         {
-            if (GraphAsset is IGraphAsset graphAsset)
-                graphAsset.SaveGraph(Graph);
-            GraphView.SetDirty();
-            AssetDatabase.SaveAssets();
-            AssetDatabase.Refresh();
-            GraphView.SetUndirty();
+            try
+            {
+                if (GraphAsset is IGraphAsset graphAsset)
+                    graphAsset.SaveGraph(Graph);
+                GraphView.SetDirty();
+                AssetDatabase.SaveAssets();
+                AssetDatabase.Refresh();
+                GraphView.SetUndirty();
+            }
+            catch (Exception e)
+            {
+                Debug.LogErrorFormat("Save>>>>{0}", e);
+            }
+
         }
 
         public void OnGraphViewDirty()

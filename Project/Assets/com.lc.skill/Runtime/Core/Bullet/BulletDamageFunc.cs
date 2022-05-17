@@ -13,7 +13,8 @@ namespace LCSkill
 
         public override void Execute(BulletObj bullet, ActorObj actor)
         {
-            
+            SkillCom targetCom = LCECS.ECSLocate.ECS.GetEntity(actor.Uid).GetCom<SkillCom>();
+            SkillLocate.Damage.AddDamage(bullet.ower, targetCom, damage);
         }
     }
 }

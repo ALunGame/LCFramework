@@ -52,6 +52,7 @@ namespace LCSkill
         /// 执行函数
         /// </summary>
         /// <param name="bullet">bullet对象</param>
+        /// <param name="actor">击中的对象</param>
         public abstract void Execute(BulletObj bullet, ActorObj actor);
     }
 }

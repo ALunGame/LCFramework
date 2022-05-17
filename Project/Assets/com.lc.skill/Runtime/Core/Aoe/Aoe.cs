@@ -5,6 +5,36 @@ using UnityEngine;
 
 namespace LCSkill
 {
+    /// <summary>
+    /// 配置添加一个Aoe
+    /// </summary>
+    public class AddAoeModel
+    {
+        /// <summary>
+        /// AoeId
+        /// </summary>
+        [Header("AoeId")]
+        public int id;
+
+        [Header("大小")]
+        public float size = 1;
+
+        /// <summary>
+        /// Aoe持续时间
+        /// </summary>
+        [Header("持续时间")]
+        public float duration;
+
+        /// <summary>
+        /// Aoe的角度
+        /// </summary>
+        [Header("Aoe的角度")]
+        public float degree;
+    }
+
+    /// <summary>
+    /// Aoe配置
+    /// </summary>
     public struct AoeModel
     {
         /// <summary>

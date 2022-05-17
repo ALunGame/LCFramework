@@ -1,6 +1,6 @@
 ﻿using LCECS.Core;
 using LCMap;
-using System;
+using LCToolkit;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,8 +9,14 @@ namespace LCECS.Server.ECS
     /// <summary>
     /// ECS服务类
     /// </summary>
-    public interface IECSServer
+    public interface IECSServer : IServer
     {
+        /// <summary>
+        /// 获得世界实体
+        /// </summary>
+        /// <returns></returns>
+        Entity GetWorld();
+
         /// <summary>
         /// 创建演员实体
         /// </summary>
@@ -45,27 +51,6 @@ namespace LCECS.Server.ECS
         /// </summary>
         /// <param name="entityId"></param>
         void CheckEntityInSystem(int uid);
-
-        /// <summary>
-        /// 获得全局单一组件
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <returns></returns>
-        T GetGlobalSingleCom<T>() where T : BaseCom;
-
-        /// <summary>
-        /// 设置全局单一组件的值
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="changeData"></param>
-        void SetGlobalSingleComData<T>(Action<T> changeData) where T : BaseCom;
-
-        /// <summary>
-        /// 注册全局单一组件改变的回调
-        /// </summary>
-        /// <param name="comType"></param>
-        /// <param name="callBack"></param>
-        void RegGlobalSingleComChangeCallBack(Type comType, Action callBack);
 
         /// <summary>
         /// 注册在Update中更新的系统

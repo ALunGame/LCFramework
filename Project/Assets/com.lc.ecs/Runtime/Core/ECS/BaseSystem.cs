@@ -41,13 +41,6 @@ namespace LCECS.Core
         public void Init()
         {
             ListenComs = RegListenComs();
-            for (int i = 0; i < ListenComs.Count; i++)
-            {
-                if (ECSHelp.CheckComIsGlobal(ListenComs[i]))
-                {
-                    ECSLocate.ECS.RegGlobalSingleComChangeCallBack(ListenComs[i], Excute);
-                }
-            }
             if (OpenTest)
             {
                 stopwatch = new Stopwatch();

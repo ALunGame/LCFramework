@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using UnityEngine;
-
-namespace LCSkill
+﻿namespace LCSkill
 {
     /// <summary>
     /// Buff生命周期造成伤害
@@ -12,6 +9,7 @@ namespace LCSkill
 
         public override void Execute(BuffObj buff, int modifyStack = 0)
         {
+            SkillLocate.Damage.AddDamage(buff.originer, buff.ower, damage);
         }
     }
 }

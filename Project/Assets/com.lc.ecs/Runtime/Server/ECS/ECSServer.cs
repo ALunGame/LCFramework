@@ -1,13 +1,10 @@
 ﻿using LCECS.Core;
 using LCECS.Data;
-using LCECS.Help;
-using System;
+using LCJson;
+using LCLoad;
+using LCMap;
 using System.Collections.Generic;
 using UnityEngine;
-using LCLoad;
-using LCJson;
-using LCToolkit;
-using LCMap;
 
 namespace LCECS.Server.ECS
 {
@@ -19,11 +16,11 @@ namespace LCECS.Server.ECS
     /// </summary>
     public class ECSServer : IECSServer
     {
+        //实体配置
         private Dictionary<int, string> entityCnf = new Dictionary<int, string>();
 
-        //全局单个组件
-        private Dictionary<Type, BaseCom> globalSingleCom = new Dictionary<Type, BaseCom>();
-        private Dictionary<Type, Action> globalSingleComCallBack = new Dictionary<Type, Action>();
+        //世界实体
+        private Entity world;
 
         //实体列表
         private Dictionary<int, Entity> entityDict = new Dictionary<int, Entity>();
@@ -34,6 +31,7 @@ namespace LCECS.Server.ECS
         //所有FixedUpdate系统
         private List<BaseSystem> systemFixedUpdateList = new List<BaseSystem>();
 
+        //获得实体配置
         private string GetEntityCnf(int entityConfId)
         {
             if (entityCnf.ContainsKey(entityConfId))
@@ -80,30 +78,23 @@ namespace LCECS.Server.ECS
             entityWorkData.Id = entity.Uid;
             ECSLayerLocate.Info.AddEntityWorkData(entity.Uid, entityWorkData);
             ECSLayerLocate.Decision.AddDecisionEntity(entity.DecTreeId, entityWorkData);
-
-            //添加实体全局单一组件
-            AddEntityGlobalSingleCom(entity);
         }
 
-        //添加实体全局单一组件
-        private void AddEntityGlobalSingleCom(Entity entity)
+        public void Init()
         {
-            foreach (var item in entity.GetComs())
-            {
-                if (ECSHelp.CheckComIsGlobal(item.GetType()))
-                {
-                    if (globalSingleCom.ContainsKey(item.GetType()))
-                    {
-                        ECSLocate.Log.LogError("有多个全局单个组件>>>>>>", entity.Id);
-                        entity.Disable();
-                        return;
-                    }
-                    globalSingleCom.Add(item.GetType(), item);
-                }
-            }
+            
         }
 
-        //-------------------------------------------------------- 接口实现 --------------------------------------------------------//
+        #region Entity
+
+        public Entity GetWorld()
+        {
+            if (world == null)
+            {
+                world = CreateEntity(-999, -999, new GameObject("EntityWorld"));
+            }
+            return world;
+        }
 
         public Entity CreateEntity(ActorObj actorObj)
         {
@@ -128,7 +119,7 @@ namespace LCECS.Server.ECS
             return entity;
         }
 
-        public Entity CreateEntity(int uid,int id, GameObject go)
+        public Entity CreateEntity(int uid, int id, GameObject go)
         {
             //配置数据
             string entityStr = GetEntityCnf(id);
@@ -152,7 +143,6 @@ namespace LCECS.Server.ECS
             return entity;
         }
 
-        //获得实体
         public Entity GetEntity(int uid)
         {
             return entityDict[uid];
@@ -171,47 +161,9 @@ namespace LCECS.Server.ECS
             CheckEntityInSystem(entity);
         }
 
-        //获得全局单一组件
-        public T GetGlobalSingleCom<T>() where T : BaseCom
-        {
-            Type comType = typeof(T);
-            if (!globalSingleCom.ContainsKey(comType))
-            {
-                ECSLocate.Log.LogError("获得全局单一组件，出错 没有该全局组件>>>>>>", comType);
-                return null;
-            }
-            return (T)globalSingleCom[comType];
-        }
+        #endregion
 
-        //设置全局单一组件的值
-        public void SetGlobalSingleComData<T>(Action<T> changeData) where T : BaseCom
-        {
-            Type comType = typeof(T);
-            if (!globalSingleCom.ContainsKey(comType))
-            {
-                ECSLocate.Log.LogError("设置全局单一组件的值，出错 没有该全局组件>>>>>>", comType);
-                return;
-            }
-            //回调
-            changeData((T)globalSingleCom[comType]);
-            //广播事件
-            Action callBack = null;
-            if (globalSingleComCallBack.ContainsKey(comType))
-                callBack = globalSingleComCallBack[comType];
-            callBack?.Invoke();
-        }
-
-        public void RegGlobalSingleComChangeCallBack(Type comType, Action callBack)
-        {
-            if (globalSingleComCallBack.ContainsKey(comType))
-            {
-                globalSingleComCallBack[comType] += callBack;
-            }
-            else
-            {
-                globalSingleComCallBack[comType] = callBack;
-            }
-        }
+        #region System
 
         public void RegUpdateSystem(BaseSystem system)
         {
@@ -241,6 +193,14 @@ namespace LCECS.Server.ECS
             {
                 systemFixedUpdateList[i].Excute();
             }
+        }
+
+
+        #endregion
+
+        public void Clear()
+        {
+            entityCnf.Clear();
         }
     }
 }

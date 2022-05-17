@@ -18,7 +18,7 @@ namespace Demo.Info
         {
             if (mapCom == null)
             {
-                mapCom = ECSLocate.ECS.GetGlobalSingleCom<MapCom>();
+                mapCom = ECSLocate.ECS.GetWorld().GetCom<MapCom>();
             }
         }
 

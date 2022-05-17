@@ -16,5 +16,15 @@ namespace LCSkill
         public static ISkillServer Skill;    
 
         public static IDamageServer Damage;
+
+        public static void SetSkillServer(ISkillServer skill)
+        {
+            Skill = skill;
+        }
+
+        public static void SetDamageServer(IDamageServer damage)
+        {
+            Damage = damage;
+        }
     }
 }

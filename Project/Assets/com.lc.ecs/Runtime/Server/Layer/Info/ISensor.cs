@@ -1,7 +1,7 @@
 ﻿using LCECS.Core;
 using System;
 
-namespace LCECS.Layer.Info
+namespace LCECS
 {
     /// <summary>
     /// 世界感知器 特性
@@ -18,8 +18,11 @@ namespace LCECS.Layer.Info
         {
             this.InfoKey = infoKey;
         }
-    }
+    } 
+}
 
+namespace LCECS.Layer.Info
+{
     /// <summary>
     /// 世界感知器（收集世界信息）
     /// </summary>

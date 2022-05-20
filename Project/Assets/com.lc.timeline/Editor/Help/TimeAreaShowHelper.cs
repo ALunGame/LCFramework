@@ -96,6 +96,14 @@ namespace LCTimeline.View
                 info.SetValue(timeArea, value);
             }
         }
+        internal float hScaleMin
+        {
+            set
+            {
+                var info = t.GetProperty("hScaleMin");
+                info.SetValue(timeArea, value);
+            }
+        }
         internal Rect rect
         {
             set
@@ -199,6 +207,12 @@ namespace LCTimeline.View
         {
             MethodInfo oMethod = t.GetMethod("PixelToTime", BindingFlags.Instance | BindingFlags.Public);
             return (float)oMethod.Invoke(timeArea, new Object[] { pixelX, timeAreaRect });
+        }
+
+        internal void UpdateZoomScale(float fMaxScaleValue, float fMinScaleValue)
+        {
+            MethodInfo oMethod = t.GetMethod("UpdateZoomScale", BindingFlags.Instance | BindingFlags.Public);
+            oMethod.Invoke(timeArea, new Object[] { fMaxScaleValue, fMinScaleValue });
         }
     }
 }

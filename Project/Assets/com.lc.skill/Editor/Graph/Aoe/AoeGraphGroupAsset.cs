@@ -60,7 +60,7 @@ namespace LCSkill.AoeGraph
             AoeModel aoeModel = new AoeModel();
             aoeModel.id = asset.aoeId;
             aoeModel.asset = node.asset;
-            aoeModel.area = node.area;
+            aoeModel.areaShape = node.areaShape;
             aoeModel.tickTime = node.tickTime;
 
             aoeModel.moveFunc = node.GetMoveFunc(); 

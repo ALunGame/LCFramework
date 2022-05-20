@@ -29,6 +29,12 @@ public class TestEnterMap : MonoBehaviour
         paramData.SetVect2(move);
         ECSLocate.Player.PushPlayerReq(RequestId.Move, paramData);
 
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            paramData.SetString("1");
+            ECSLocate.Player.PushPlayerReq(RequestId.PushSkill, paramData);
+        }
         //if (move == Vector2.zero)
         //{
         //    if (LastReqStop)

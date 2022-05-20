@@ -8,7 +8,7 @@
         /// <param name="target">目标</param>
         /// <param name="skillModel">技能配置</param>
         /// <param name="level">技能等级</param>
-        void LearnSkill(SkillCom target, SkillModel skillModel, int level = 1);
+        void LearnSkill(SkillCom target, string skillId, int level = 1);
 
         /// <summary>
         /// 释放技能
@@ -16,14 +16,14 @@
         /// <param name="target">目标</param>
         /// <param name="skillId">技能Id</param>
         /// <returns>释放是否成功</returns>
-        bool ReleaseSkill(SkillCom target, int skillId);
+        bool ReleaseSkill(SkillCom target, string skillId);
 
         /// <summary>
         /// 创建一个Aoe
         /// </summary>
         /// <param name="ower">Aoe拥有者</param>
         /// <param name="addAoe"></param>
-        AoeObj CreateAoe(SkillCom ower, AddAoeModel addAoe);
+        void CreateAoe(SkillCom ower, AddAoeModel addAoe);
 
         /// <summary>
         /// 创建一个Buff
@@ -32,13 +32,13 @@
         /// <param name="target">Buff目标</param>
         /// <param name="addBuff"></param>
         /// <returns></returns>
-        BuffObj CreateBuff(SkillCom ower, SkillCom target, AddBuffModel addBuff);
+        void CreateBuff(SkillCom ower, SkillCom target, AddBuffModel addBuff);
 
         /// <summary>
         /// 创建一个Bullet
         /// </summary>
         /// <param name="ower">Bullet拥有者</param>
         /// <returns></returns>
-        BulletObj CreateBullet(SkillCom ower, AddBulletModel addBullet);
+        void CreateBullet(SkillCom ower, AddBulletModel addBullet);
     }
 }

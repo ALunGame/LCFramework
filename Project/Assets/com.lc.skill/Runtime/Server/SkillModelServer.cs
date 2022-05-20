@@ -12,69 +12,94 @@ namespace LCSkill
         private Dictionary<string, AoeModel> aoeModelCache = new Dictionary<string, AoeModel>();
         private Dictionary<string, BulletModel> bulletModelCache = new Dictionary<string, BulletModel>();
 
-        public SkillModel GetSkillModel(string skillId)
+        public bool GetSkillModel(string skillId, out SkillModel model)
         {
             if (skillModelCache.ContainsKey(skillId))
-                return skillModelCache[skillId];
-            string assetName = SkillDef.GetSkillCnfName(skillId);
-            string jsonStr = LoadHelper.LoadString(assetName);
+            {
+                model = skillModelCache[skillId];
+                return true;
+            }
+            string jsonStr = LoadHelper.LoadString(SkillDef.GetSkillCnfName(skillId));
             if (string.IsNullOrEmpty(jsonStr))
             {
-                return default;
+                model = default;
+                return false;
             }
-            return JsonMapper.ToObject<SkillModel>(jsonStr);    
+            model = JsonMapper.ToObject<SkillModel>(jsonStr);
+            skillModelCache.Add(skillId, model);
+            return true;
         }
 
-        public TimelineModel GetTimelineModel(string timelineName)
+        public bool GetTimelineModel(string timelineName, out TimelineModel model)
         {
             if (timelineModelCache.ContainsKey(timelineName))
-                return timelineModelCache[timelineName];
-            string assetName = SkillDef.GetTimelineCnfName(timelineName);
-            string jsonStr = LoadHelper.LoadString(assetName);
+            {
+                model = timelineModelCache[timelineName];
+                return true;
+            }
+            string jsonStr = LoadHelper.LoadString(SkillDef.GetTimelineCnfName(timelineName));
             if (string.IsNullOrEmpty(jsonStr))
             {
-                return default;
+                model = default;
+                return false;
             }
-            return JsonMapper.ToObject<TimelineModel>(jsonStr);
+            model = JsonMapper.ToObject<TimelineModel>(jsonStr);
+            timelineModelCache.Add(timelineName, model);
+            return true;
         }
 
-        public BuffModel GetBuffModel(string buffId)
-        {
-            if (buffModelCache.ContainsKey(buffId))
-                return buffModelCache[buffId];
-            string assetName = SkillDef.GetBuffCnfName(buffId);
-            string jsonStr = LoadHelper.LoadString(assetName);
-            if (string.IsNullOrEmpty(jsonStr))
-            {
-                return default;
-            }
-            return JsonMapper.ToObject<BuffModel>(jsonStr);
-        }
-
-        public AoeModel GetAoeModel(string aoeId)
+        public bool GetAoeModel(string aoeId, out AoeModel model)
         {
             if (aoeModelCache.ContainsKey(aoeId))
-                return aoeModelCache[aoeId];
-            string assetName = SkillDef.GetAoeCnfName(aoeId);
-            string jsonStr = LoadHelper.LoadString(assetName);
+            {
+                model = aoeModelCache[aoeId];
+                return true;
+            }
+            string jsonStr = LoadHelper.LoadString(SkillDef.GetAoeCnfName(aoeId));
             if (string.IsNullOrEmpty(jsonStr))
             {
-                return default;
+                model = default;
+                return false;
             }
-            return JsonMapper.ToObject<AoeModel>(jsonStr);
+            model = JsonMapper.ToObject<AoeModel>(jsonStr);
+            aoeModelCache.Add(aoeId, model);
+            return true;
         }
 
-        public BulletModel GetBulletModel(string bulletId)
+        public bool GetBuffModel(string buffId, out BuffModel model)
         {
-            if (bulletModelCache.ContainsKey(bulletId))
-                return bulletModelCache[bulletId];
-            string assetName = SkillDef.GetBulletCnfName(bulletId);
-            string jsonStr = LoadHelper.LoadString(assetName);
+            if (buffModelCache.ContainsKey(buffId))
+            {
+                model = buffModelCache[buffId];
+                return true;
+            }
+            string jsonStr = LoadHelper.LoadString(SkillDef.GetBuffCnfName(buffId));
             if (string.IsNullOrEmpty(jsonStr))
             {
-                return default;
+                model = default;
+                return false;
             }
-            return JsonMapper.ToObject<BulletModel>(jsonStr);
+            model = JsonMapper.ToObject<BuffModel>(jsonStr);
+            buffModelCache.Add(buffId, model);
+            return true;
+        }
+
+        public bool GetBulletModel(string bulletId, out BulletModel model)
+        {
+            if (bulletModelCache.ContainsKey(bulletId))
+            {
+                model = bulletModelCache[bulletId];
+                return true;
+            }
+            string jsonStr = LoadHelper.LoadString(SkillDef.GetBulletCnfName(bulletId));
+            if (string.IsNullOrEmpty(jsonStr))
+            {
+                model = default;
+                return false;
+            }
+            model = JsonMapper.ToObject<BulletModel>(jsonStr);
+            bulletModelCache.Add(bulletId, model);
+            return true;
         }
     }
 }

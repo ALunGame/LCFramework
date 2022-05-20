@@ -29,13 +29,25 @@ namespace LCSkill
                 //记录运行时长
                 float wasTimeElapsed = timeline.timeElapsed;
                 timeline.timeElapsed = wasTimeElapsed + SkillLocate.DeltaTime * timeline.timeScale;
-                //判断跳转点
-                if (timeline.model.goToNode.atDuration >= wasTimeElapsed &&
-                    timeline.model.goToNode.atDuration < timeline.timeElapsed)
+
+                //已经完成
+                if (timeline.isFinish)
                 {
-                    timeline.timeElapsed = timeline.model.goToNode.gotoDuration;
-                    continue;
+                    skillCom.RemoveTimeline(timeline);
+                    return;
                 }
+
+                //判断跳转点
+                if (timeline.model.goToNode != null)
+                {
+                    if (timeline.model.goToNode.atDuration >= wasTimeElapsed &&
+                    timeline.model.goToNode.atDuration < timeline.timeElapsed)
+                    {
+                        timeline.timeElapsed = timeline.model.goToNode.gotoDuration;
+                        continue;
+                    }
+                }
+
                 //执行节点函数
                 for (int j = 0; j < timeline.model.nodes.Count; j++)
                 {
@@ -46,9 +58,11 @@ namespace LCSkill
                         timelineFunc.Execute(timeline);
                     }
                 }
+
                 //判断是否结束
                 if (timeline.timeElapsed >= timeline.model.duration)
                 {
+                    timeline.isFinish = true;
                     skillCom.RemoveTimeline(timeline);
                 }
             }

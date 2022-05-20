@@ -71,6 +71,15 @@ namespace LCMap
             Actors.Add(actor.uid, actorObj);
         }
 
+        public ActorObj GetActor(int uid)
+        {
+            if (!Actors.ContainsKey(uid))
+            {
+                return null;
+            }
+            return Actors[uid];
+        }
+
         public void Clear()
         {
 

@@ -6,7 +6,7 @@ namespace LCSkill
     /// <summary>
     /// 技能跳转
     /// </summary>
-    public struct TimelineGoTo
+    public class TimelineGoTo
     {
         ///<summary>
         ///自身处于时间点
@@ -52,6 +52,11 @@ namespace LCSkill
     public class TimelineObj
     {
         /// <summary>
+        /// 通过那个技能创建的
+        /// </summary>
+        public string skillId;
+
+        /// <summary>
         /// 配置信息
         /// </summary>
         public TimelineModel model;
@@ -82,8 +87,14 @@ namespace LCSkill
         }
         private float _timeScale = 1.00f;
 
-        public TimelineObj(TimelineModel model, SkillCom ower)
+        /// <summary>
+        /// 是否完成
+        /// </summary>
+        public bool isFinish = false;
+
+        public TimelineObj(string skillId, TimelineModel model, SkillCom ower)
         {
+            this.skillId = skillId;
             this.model = model;
             this.ower = ower;
             this._timeScale = 1.00f;

@@ -42,13 +42,15 @@ namespace LCTimeline.View
                     scaleWithWindow = true,
                     hSlider = true,
                     vSlider = false,
-                    hBaseRangeMin = 0,
+                    hBaseRangeMin = 10,
                     hBaseRangeMax = 20,
                     hRangeMin = 0,
                     hRangeMax = 100,
                     hScaleMax = 1000f,
                     rect = TimeContent,
                 };
+
+                timeAreaShow.UpdateZoomScale(500, 500);
             }
         }
 
@@ -62,6 +64,8 @@ namespace LCTimeline.View
             timeAreaShow.DrawMajorTicks(TimeTickRect, frame);
             timeAreaShow.EndViewGUI();
             GUILayout.EndHorizontal();
+
+            Debug.Log("OnDraw>>>>>>" + timeAreaShow.scale);
 
             DrawCursor();
         }

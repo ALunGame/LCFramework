@@ -1,5 +1,4 @@
-﻿using LCECS.Core;
-using LCNode;
+﻿using LCNode;
 using LCNode.Model;
 using System;
 using System.Collections.Generic;
@@ -67,7 +66,7 @@ namespace LCSkill.SkillGraph
         public override Color TitleColor { get => Color.magenta; set => base.TitleColor = value; }
 
         [NodeValue("BuffId")]
-        public int id = 0;
+        public string id = "";
 
         [NodeValue("添加的层数")]
         public int addStack = 0;

@@ -8,5 +8,7 @@ namespace LCToolkit
     public static class ToolkitLocate
     {
         public static ILogServer Log = new ToolkitLogServer();
+
+        public static IGoPoolServer GoPool = new GoPoolServer();
     } 
 }

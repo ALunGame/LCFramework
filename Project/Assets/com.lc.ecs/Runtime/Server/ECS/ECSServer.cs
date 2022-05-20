@@ -91,7 +91,15 @@ namespace LCECS.Server.ECS
         {
             if (world == null)
             {
-                world = CreateEntity(-999, -999, new GameObject("EntityWorld"));
+                ActorModel worldActor = new ActorModel();
+                worldActor.uid = -999;
+                worldActor.id = -999;
+
+                GameObject worldGo = new GameObject("<------------EntityWorld---------->");
+                ActorObj actorObj = worldGo.AddComponent<ActorObj>();
+                actorObj.Init(worldActor, -999);
+
+                world = GetEntity(-999);
             }
             return world;
         }

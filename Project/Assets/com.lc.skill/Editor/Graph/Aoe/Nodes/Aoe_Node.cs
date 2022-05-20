@@ -105,8 +105,8 @@ namespace LCSkill.AoeGraph
         [NodeValue("预制体")]
         public UnityObjectAsset asset = new UnityObjectAsset();
 
-        [NodeValue("q区域")]
-        public List<Vector3> area = new List<Vector3>();
+        [NodeValue("区域形状")]
+        public Shape areaShape = new Shape();
 
         [NodeValue("TickTime间隔")]
         public float tickTime = -1;

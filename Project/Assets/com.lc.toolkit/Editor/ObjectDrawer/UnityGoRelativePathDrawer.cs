@@ -27,10 +27,10 @@ namespace LCToolkit.Core
             return result;
         }
 
-        public override void OnGUI(Rect _position, GUIContent _label)
+        public override object OnGUI(Rect _position, GUIContent _label)
         {
             if (Target == null)
-                return;
+                return null;
 
             var target = Target as UnityGoRelativePath;
             GameObject tmpGo = target.GetObj();
@@ -44,6 +44,8 @@ namespace LCToolkit.Core
                     target.Go = tmpGo;
                 }
             }
+
+            return Target;
         }
     }
 }

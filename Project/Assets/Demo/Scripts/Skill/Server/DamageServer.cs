@@ -6,7 +6,8 @@ namespace Demo
     {
         public void AddDamage(SkillCom attacker, SkillCom target, DamageModel damage, float angle = 0)
         {
-            
+            DamageCom damageCom = LCECS.ECSLocate.ECS.GetWorld().GetCom<DamageCom>();
+            damageCom.AddDamageInfo(attacker, target, damage, angle);
         }
 
         public bool CalcDamage(AddDamageInfo damageInfo)

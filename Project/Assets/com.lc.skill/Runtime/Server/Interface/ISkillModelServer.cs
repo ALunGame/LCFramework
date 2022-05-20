@@ -1,21 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace LCSkill
+﻿namespace LCSkill
 {
     public interface ISkillModelServer
     {
-        public SkillModel GetSkillModel(string skillId);
+        public bool GetSkillModel(string skillId, out SkillModel model);
 
-        public TimelineModel GetTimelineModel(string timelineName);
+        public bool GetTimelineModel(string timelineName, out TimelineModel model);
 
-        public BuffModel GetBuffModel(string buffId);
+        public bool GetBuffModel(string buffId, out BuffModel model);
 
-        public AoeModel GetAoeModel(string aoeId);
+        public bool GetAoeModel(string aoeId, out AoeModel model);
 
-        public BulletModel GetBulletModel(string bulletId);
+        public bool GetBulletModel(string bulletId, out BulletModel model);
     }
 }

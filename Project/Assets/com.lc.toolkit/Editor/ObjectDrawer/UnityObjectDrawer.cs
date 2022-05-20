@@ -54,7 +54,7 @@ namespace LCToolkit.Core
             unityObject.ObjName = unityObject.Obj.name;
         }
 
-        public override void OnGUI(Rect _position, GUIContent _label)
+        public override object OnGUI(Rect _position, GUIContent _label)
         {
             if (Target == null)
             {
@@ -74,6 +74,8 @@ namespace LCToolkit.Core
                 unityObject.Obj = tmpObj;
                 UpdateAssetPath(unityObject);
             }
+
+            return Target;
         }
     }
 }

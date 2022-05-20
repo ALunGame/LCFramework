@@ -18,6 +18,8 @@ namespace LCECS.Server.Layer
             //世界信息
             foreach (Type type in ReflectionHelper.GetChildTypes<ISensor>())
             {
+                if (type.IsAbstract || type.IsInterface)
+                    continue;
                 if (AttributeHelper.TryGetTypeAttribute(type, out WorldSensorAttribute attr))
                 {
                     ISensor sensor = ReflectionHelper.CreateInstance(type) as ISensor;

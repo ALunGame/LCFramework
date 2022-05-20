@@ -14,8 +14,11 @@ namespace LCSkill
         /// AoeId
         /// </summary>
         [Header("AoeId")]
-        public int id;
+        public string id = "";
 
+        /// <summary>
+        /// 大小
+        /// </summary>
         [Header("大小")]
         public float size = 1;
 
@@ -26,10 +29,10 @@ namespace LCSkill
         public float duration;
 
         /// <summary>
-        /// Aoe的角度
+        /// 是否跟随拥有者
         /// </summary>
-        [Header("Aoe的角度")]
-        public float degree;
+        [Header("是否跟随拥有者")]
+        public bool follow;
     }
 
     /// <summary>
@@ -50,7 +53,7 @@ namespace LCSkill
         /// <summary>
         /// Aoe区域
         /// </summary>
-        public List<Vector3> area;
+        public Shape areaShape;
 
         /// <summary>
         /// Aoe的执行OnTick间隔
@@ -133,6 +136,21 @@ namespace LCSkill
         public AoeModel model;
 
         /// <summary>
+        /// aoe创建的节点可以是空
+        /// </summary>
+        public GameObject go;
+
+        /// <summary>
+        /// aoe拥有者，可以是空
+        /// </summary>
+        public SkillCom ower;
+
+        /// <summary>
+        /// 是否跟随拥有者
+        /// </summary>
+        public bool follow;
+
+        /// <summary>
         /// 是否被视作刚创建会调用onCreate函数
         /// </summary>
         public bool justCreated = true;
@@ -141,11 +159,6 @@ namespace LCSkill
         /// aoe区域尺寸（根据不同状态区域大小发生改变）
         /// </summary>
         public float size = 1;
-
-        /// <summary>
-        /// aoe拥有者，可以是空
-        /// </summary>
-        public SkillCom ower;
 
         /// <summary>
         /// aoe存在的时间，单位：秒
@@ -179,6 +192,44 @@ namespace LCSkill
         public void SetMoveInfo(AoeMoveInfo moveInfo)
         {
             CurrMoveInfo = moveInfo;
+        }
+
+        /// <summary>
+        /// 计算Aoe区域
+        /// </summary>
+        /// <returns></returns>
+        public Shape CalcArea()
+        {
+            if (ower == null)
+            {
+                if (size != 1)
+                {
+                    Shape newShape = model.areaShape;
+                    newShape.Scale(size);
+                    return newShape;
+                }
+                return model.areaShape;
+            }
+            else
+            {
+                if (!follow && size == 1)
+                    return model.areaShape;
+
+                Shape newShape = model.areaShape;
+                if (size != 1)
+                    newShape.Scale(size);
+                if (follow)
+                {
+                    ActorObj actorObj = MapLocate.Map.GetActor(ower.EntityId);
+                    if (actorObj == null)
+                    {
+                        SkillLocate.Log.LogError("计算区域出错,没有跟随对象>>", model.id, ower.EntityId);
+                    }
+                    newShape.Translate(actorObj.transform.position);
+                }
+                return newShape;
+            }
+            
         }
     }
 }

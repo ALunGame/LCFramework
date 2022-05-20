@@ -132,6 +132,24 @@ namespace LCMap
             return null;
         }
 
+        public ActorObj GetActor(int uid)
+        {
+            if (PlayerActor.Uid == uid)
+            {
+                return PlayerActor;
+            }
+            ActorObj actorObj = null;
+            foreach (var item in areaDict)
+            {
+                actorObj = item.Value.GetActor(uid);
+                if (actorObj != null)
+                {
+                    return actorObj;
+                }
+            }
+            return actorObj;
+        }
+
         private void CreateMainActor(ActorModel actor)
         {
             ActorCnf actorCnf = Config.ActorCnf[actor.id];

@@ -7,7 +7,7 @@ namespace LCSkill
     /// <summary>
     /// Aoe世界收集器
     /// </summary>
-    public abstract class AoeSensor : ISensor
+    public abstract class BaseAoeSensor : ISensor
     {
         /// <summary>
         /// 获取Aoe范围内的演员

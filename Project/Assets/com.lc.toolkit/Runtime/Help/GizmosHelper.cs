@@ -30,7 +30,7 @@ namespace LCToolkit
             Gizmos.DrawLine(start, end);
         }
 
-        private static void DrawLines(Vector3[] line, Color color)
+        public static void DrawLines(Vector3[] line, Color color)
         {
             if (line == null && line.Length <= 0)
                 return;

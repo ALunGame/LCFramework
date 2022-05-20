@@ -1,7 +1,6 @@
-﻿using UnityEditor;
-using UnityEngine;
-using LCTimeline;
+﻿using LCTimeline;
 using LCToolkit;
+using UnityEngine;
 
 namespace LCSkill
 {

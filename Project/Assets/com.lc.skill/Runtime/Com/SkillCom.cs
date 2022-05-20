@@ -10,13 +10,14 @@ namespace LCSkill
     /// </summary>
     public class SkillCom : BaseCom
     {
+        //初始技能
+        public List<string> initialSkills = new List<string>();
+
         private List<SkillObj> skills = new List<SkillObj>();
         /// <summary>
         /// 拥有的技能
         /// </summary>
         public IReadOnlyList<SkillObj> Skills { get => skills;}
-
-
 
         private List<BuffObj> buffs = new List<BuffObj>();
         /// <summary>
@@ -29,6 +30,14 @@ namespace LCSkill
         /// 正在播放的Timeline
         /// </summary>
         private List<TimelineObj> timelines = new List<TimelineObj>();
+
+        protected override void OnInit(GameObject go)
+        {
+            for (int i = 0; i < initialSkills.Count; i++)
+            {
+                SkillLocate.Skill.LearnSkill(this, initialSkills[i]);
+            }
+        }
 
         #region Skill
 
@@ -51,17 +60,11 @@ namespace LCSkill
 
             SkillObj skillObj = new SkillObj(skillModel, level);
             skills.Add(skillObj);
-            //TODO
-            //添加技能自带Buff（自带都应该是永久BUFF）
             if (skillModel.addBuffs != null)
             {
                 for (int i = 0; i < skillModel.addBuffs.Count; i++)
                 {
-                    //AddBuffInfo adBuff = skillModel.addBuffs[i];
-                    //adBuff.isPermanent = true;
-                    //adBuff.duration = 10;
-                    //adBuff.durationSetType = true;
-                    //AddBuff(adBuff);
+                    SkillLocate.Skill.CreateBuff(this,this,skillModel.addBuffs[i]);
                 }
             }
             return true;
@@ -80,23 +83,27 @@ namespace LCSkill
                 return false;
             }
             //检测条件
-            if (!skillObj.model.condition.IsTrue())
+            if (skillObj.model.condition != null && !skillObj.model.condition.IsTrue())
                 return false;
-            TimelineObj timeline = new TimelineObj(
-                SkillLocate.Model.GetTimelineModel(skillObj.model.timeline), this
-            );
-            //通知Buff技能即将释放
-            for (int i = 0; i < buffs.Count; i++)
+            if (SkillLocate.Model.GetTimelineModel(skillObj.model.timeline, out TimelineModel model))
             {
-                timeline = ExecuteFreedFunc(buffs[i], skillObj, timeline);
+                TimelineObj timeline = new TimelineObj(skillId, model, this);
+                //通知Buff技能即将释放
+                for (int i = 0; i < buffs.Count; i++)
+                {
+                    timeline = ExecuteFreedFunc(buffs[i], skillObj, timeline);
+                }
+                if (timeline == null)
+                {
+                    return false;
+                }
+                timeline.skillId = skillId;
+                timelines.Add(timeline);
+                skillObj.coldDown = 0.1f;
+                return true;
             }
-            if (timeline == null)
-            {
+            else
                 return false;
-            }
-            timelines.Add(timeline);
-            skillObj.coldDown = 0.1f;
-            return true;
         }
 
         private TimelineObj ExecuteFreedFunc(BuffObj buffObj, SkillObj skillObj, TimelineObj timeline)
@@ -121,6 +128,23 @@ namespace LCSkill
                 }
             }
             return null;
+        }
+
+        /// <summary>
+        /// 检测技能完成
+        /// </summary>
+        /// <param name="skillId"></param>
+        /// <returns></returns>
+        public bool CheckSkillIsFinish(string skillId)
+        {
+            for (int i = 0; i < Timelines.Count; i++)
+            {
+                if (Timelines[i].skillId == skillId)
+                {
+                    return Timelines[i].isFinish;
+                }
+            }
+            return true;
         }
 
         #endregion
@@ -152,8 +176,7 @@ namespace LCSkill
                     this,
                     addBuffInfo.duration,
                     addStack,
-                    addBuffInfo.isPermanent,
-                    addBuffInfo.buffParam
+                    addBuffInfo.isPermanent
                 );
                 buffs.Add(newBuff);
                 buffs.Sort((a, b) =>
@@ -175,15 +198,6 @@ namespace LCSkill
             for (int i = 0; i < buffs.Count; i++)
             {
                 BuffObj buffObj = buffs[i];
-                //参数
-                buffObj.buffParam = new Dictionary<string, object>();
-                if (addBuffInfo.buffParam != null)
-                {
-                    foreach (KeyValuePair<string, object> kv in addBuffInfo.buffParam)
-                    {
-                        buffObj.buffParam[kv.Key] = kv.Value;
-                    };
-                }
                 //持续时间
                 buffObj.duration = (addBuffInfo.durationSetType == true) ? addBuffInfo.duration : (addBuffInfo.duration + buffObj.duration);
                 //层数

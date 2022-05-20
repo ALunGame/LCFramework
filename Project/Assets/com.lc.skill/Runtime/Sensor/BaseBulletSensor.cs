@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace LCSkill
 {
-    public abstract class BulletSensor : ISensor
+    public abstract class BaseBulletSensor : ISensor
     {
         /// <summary>
         /// 获得Bullet击中的演员

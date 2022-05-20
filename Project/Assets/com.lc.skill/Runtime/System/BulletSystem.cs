@@ -11,11 +11,11 @@ namespace LCSkill
     /// </summary>
     public class BulletSystem : BaseSystem
     {
-        private BulletSensor Sensor;
+        private BaseBulletSensor Sensor;
 
         protected override List<Type> RegListenComs()
         {
-            Sensor = LCECS.ECSLayerLocate.Info.GetSensor<BulletSensor>(LCECS.SensorType.Skill);
+            Sensor = LCECS.ECSLayerLocate.Info.GetSensor<BaseBulletSensor>(LCECS.SensorType.Skill_Bullet);
             return new List<Type>() { typeof(BulletCom) };
         }
 

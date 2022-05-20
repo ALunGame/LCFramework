@@ -1,5 +1,4 @@
-﻿using LCToolkit;
-using System;
+﻿using System;
 using UnityEngine;
 
 namespace LCTimeline
@@ -19,7 +18,7 @@ namespace LCTimeline
         [HideInInspector]
         [SerializeField]
         [TextArea(20, 20)]
-        string serializedGraph = String.Empty;
+        public string serializedGraph = String.Empty;
 
         public override void SaveGraph(BaseTimelineGraph graph)
         {

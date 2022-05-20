@@ -197,6 +197,7 @@ namespace LCTimeline
             if (Event.current.Equals(Event.KeyboardEvent("^S")))
             {
                 SaveAsset();
+                Event.current.Use();
             }
         }
 
@@ -236,6 +237,7 @@ namespace LCTimeline
         {
             if (GraphAsset is ITimelineGraphAsset graphAsset)
                 graphAsset.SaveGraph(Graph);
+            EditorUtility.SetDirty(GraphAsset);
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
         }

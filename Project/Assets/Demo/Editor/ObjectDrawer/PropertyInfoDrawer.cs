@@ -9,7 +9,7 @@ namespace Demo
     [CustomObjectDrawer(typeof(PropertyInfo))]
     public class PropertyInfoDrawer : ObjectDrawer
     {
-        public override void OnGUI(Rect _position, GUIContent _label)
+        public override object OnGUI(Rect _position, GUIContent _label)
         {
             base.OnGUI(_position, _label);
 
@@ -30,6 +30,8 @@ namespace Demo
                 if (currValue != target.Curr)
                     target.Curr = currValue;
             });
+
+            return Target;
         }
 
         public override float GetHeight()

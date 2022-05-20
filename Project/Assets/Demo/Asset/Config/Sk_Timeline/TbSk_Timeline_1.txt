@@ -1,1 +1,1 @@
-﻿{"mType":"LCSkill.TimelineModel","name":"1","duration":9.878048,"nodes":[{"mType":"Demo.Skill.Timeline.SkillTimeline_PlayAnim","animName":"attack1","timeElapsed":0}],"goToNode":{"mType":"LCSkill.TimelineGoTo","atDuration":0,"gotoDuration":0}}
+﻿{"mType":"LCSkill.TimelineModel","name":"1","duration":0.533,"nodes":[{"mType":"Demo.Skill.Timeline.SkillTimeline_PlayAnim","animName":"attack1","timeElapsed":0},{"mType":"LCSkill.SkillTimeline_CreateAoe","addAoe":{"mType":"LCSkill.AddAoeModel","id":"1","size":1,"duration":0.06,"follow":true},"timeElapsed":0.27}],"goToNode":null}

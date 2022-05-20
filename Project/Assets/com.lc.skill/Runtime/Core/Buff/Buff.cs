@@ -13,7 +13,7 @@ namespace LCSkill
         /// BuffId
         /// </summary>
         [Header("BuffId")]
-        public int id;
+        public string id = "";
 
         /// <summary>
         /// 添加的层数，负数就是减少
@@ -177,28 +177,6 @@ namespace LCSkill
         /// 是否是一个永久的buff,如果持续使劲按减少到0，也会被删除
         /// </summary>
         public bool isPermanent;
-
-        /// <summary>
-        /// 添加的参数
-        /// </summary>
-        public Dictionary<string, object> buffParam;
-
-        public AddBuffInfo(
-            BuffModel buffModel, SkillCom ower, SkillCom target,
-            int addStack, float duration, bool durationSetType = true,
-            bool isPermanent = false,
-            Dictionary<string, object> buffParam = null
-        )
-        {
-            this.buffModel = buffModel;
-            this.ower = ower;
-            this.target = target;
-            this.addStack = addStack;
-            this.duration = duration;
-            this.durationSetType = durationSetType;
-            this.isPermanent = isPermanent;
-            this.buffParam = buffParam;
-        }
     }
 
     /// <summary>
@@ -261,8 +239,7 @@ namespace LCSkill
         /// <param name="stack">Buff层数</param>
         /// <param name="permanent">是不是永久Buff</param>
         /// <param name="buffParam">Buff参数</param>
-        public BuffObj(SkillCom originer,BuffModel model, SkillCom ower, float duration, int stack, bool permanent = false, 
-            Dictionary<string, object> buffParam = null)
+        public BuffObj(SkillCom originer,BuffModel model, SkillCom ower, float duration, int stack, bool permanent = false)
         {
             this.originer = originer;
             this.model = model;
@@ -270,7 +247,6 @@ namespace LCSkill
             this.duration = duration;
             this.stack = stack; 
             this.isPermanent = permanent;
-            this.buffParam = buffParam; 
         }
     }
 }

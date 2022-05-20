@@ -18,8 +18,10 @@ namespace Demo.System
         protected override void HandleComs(List<BaseCom> comList)
         {
             AnimCom animCom = GetCom<AnimCom>(comList[0]);
-            string reqAnim = animCom.ReqAnimName;
+            string reqAnim  = animCom.GetReqAnim();
             string currAnim = animCom.CurrAnimName;
+            if (currAnim == reqAnim)
+                return;
 
             if (CheckIsLoopAnim(animCom, reqAnim))
             {

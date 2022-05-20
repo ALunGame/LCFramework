@@ -14,7 +14,7 @@ namespace LCSkill
         /// AoeId
         /// </summary>
         [Header("子弹Id")]
-        public int id;
+        public string id = "";
 
         /// <summary>
         /// 发射的位置
@@ -44,7 +44,7 @@ namespace LCSkill
         /// 移动遵循发射角度
         /// </summary>
         [Header("移动遵循发射角度")]
-        public bool useFireDegreeForever;
+        public bool useFireDirForever;
 
         /// <summary>
         /// 子弹创建后多久是没有碰撞的，这样比如子母弹之类的，不会在创建后立即命中目标，但绝大多子弹还应该是0的
@@ -172,9 +172,19 @@ namespace LCSkill
         public BulletModel model;
 
         /// <summary>
+        /// Bullet创建的Go
+        /// </summary>
+        public GameObject go;
+
+        /// <summary>
         /// Bullet拥有者，可以是空
         /// </summary>
         public SkillCom ower;
+
+        /// <summary>
+        /// 发射时位置
+        /// </summary>
+        public Vector3 firePos;
 
         /// <summary>
         /// 发射时方向
@@ -203,6 +213,12 @@ namespace LCSkill
         public bool useFireDirForever = false;
 
         /// <summary>
+        /// 子弹创建后多久是没有碰撞的，这样比如子母弹之类的，不会在创建后立即命中目标，但绝大多子弹还应该是0的
+        /// 单位：秒
+        ///</summary>
+        public float canHitAfterCreated = 0;
+
+        /// <summary>
         /// 当前移动信息
         /// </summary>
         public BulletMoveInfo CurrMoveInfo { get; private set; }
@@ -215,12 +231,6 @@ namespace LCSkill
         /// 子弹命中纪录
         /// </summary>
         public List<BulletHitRecord> hitRecords = new List<BulletHitRecord>();
-
-        /// <summary>
-        /// 子弹创建后多久是没有碰撞的，这样比如子母弹之类的，不会在创建后立即命中目标，但绝大多子弹还应该是0的
-        /// 单位：秒
-        ///</summary>
-        public float canHitAfterCreated = 0;
 
         /// <summary>
         /// 子弹正在追踪的目标

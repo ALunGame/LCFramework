@@ -43,6 +43,9 @@ MonoBehaviour:
   - typeName: Collider2DSystem
     typeFullName: Demo.System.Collider2DSystem
     sort: 12
+  - typeName: TransformSystem
+    typeFullName: Demo.System.TransformSystem
+    sort: 12
   - typeName: GravitySystem
     typeFullName: Demo.System.GravitySystem
     sort: 13
@@ -59,4 +62,10 @@ MonoBehaviour:
   - typeName: TimelineSystem
     typeFullName: LCSkill.TimelineSystem
     sort: 11
+  - typeName: AoeSystem
+    typeFullName: LCSkill.AoeSystem
+    sort: 13
+  - typeName: BulletSystem
+    typeFullName: LCSkill.BulletSystem
+    sort: 14
   threadSystems: []

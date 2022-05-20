@@ -34,4 +34,17 @@ namespace Demo.Tree
         }
 
     }
+
+    [NodeMenuItem("演员/释放技能")]
+    public class Tree_Bev_Act_PushSkill : Tree_Bev_Act_Node
+    {
+        public override string Title { get => "释放技能"; set => base.Title = value; }
+
+        public override Node CreateRuntimeNode()
+        {
+            BEV_ACT_PushSkill node = new BEV_ACT_PushSkill();
+            return node;
+        }
+
+    }
 }

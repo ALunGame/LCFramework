@@ -65,6 +65,14 @@ MonoBehaviour:
     m_Address: TbDecision_1
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: eeb286f1e7c05a045afe97197353a67e
+    m_Address: TbEntity_-999
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f68db236f0a33ca4a984e07e4cbda43c
+    m_Address: TbBehavior_PushSkill
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: c106a54d1dad7c34dbca1e47199c97a1, type: 2}
   m_SchemaSet:

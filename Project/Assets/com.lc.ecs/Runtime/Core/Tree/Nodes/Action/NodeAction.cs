@@ -12,7 +12,7 @@ namespace LCECS.Core.Tree.Nodes.Action
         private const int ACTION_FINISHED = 2;                  //完成
 
         //行为节点环境
-        class NodeActionContext : NodeContext
+        protected class NodeActionContext : NodeContext
         {
             internal int status;
             internal bool needExit;

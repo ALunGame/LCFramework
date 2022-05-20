@@ -3,8 +3,6 @@ using UnityEngine;
 
 namespace LCToolkit
 {
-
-
     public class GoPoolServer : IGoPoolServer
     {
         private Transform poolRoot;
@@ -13,7 +11,10 @@ namespace LCToolkit
             get
             {
                 if (poolRoot == null)
+                {
                     poolRoot = new GameObject("<-----GoPool----->").transform;
+                    poolRoot.position = new Vector3(9999, 9999, 0);
+                }
                 return poolRoot;
             }
         }
@@ -69,6 +70,7 @@ namespace LCToolkit
             }
 
             activeGoDict.Add(takeGo.GetInstanceID(), name);
+            takeGo.SetActive(true);
             return takeGo;
         }
 
@@ -106,6 +108,7 @@ namespace LCToolkit
             if (!cacheGoDict.ContainsKey(name))
                 cacheGoDict.Add(name, new List<GameObject>());
             cacheGoDict[name].Add(go);
+            go.SetActive(false);
         }
     }
 }

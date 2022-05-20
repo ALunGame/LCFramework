@@ -23,7 +23,7 @@ namespace Demo.Skill.Timeline
                 return;
             }
             AnimCom animCom = entity.GetCom<AnimCom>();
-            animCom.ReqAnimName = animName;
+            animCom.SetReqAnim(animName);
         }
     }
 }

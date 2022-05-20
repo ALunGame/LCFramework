@@ -114,5 +114,11 @@ namespace LCECS.Core
         {
 
         }
+
+        public virtual void OnDrawGizmos()
+        {
+
+        }
+        
     }
 }

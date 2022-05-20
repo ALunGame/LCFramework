@@ -27,11 +27,6 @@ namespace Demo.System
                 moveCom.Rig.velocity = new Vector2(moveCom.Rig.velocity.x, moveCom.ReqJumpSpeed);
 
             HandleGravitySpeed(moveCom, propertyCom);
-            Debug.LogFormat("MoveSystem>>>>>velocity：{0}", moveCom.Rig.velocity);
-            if (moveCom.ReqJumpSpeed != 0)
-            {
-                Debug.LogFormat("MoveSystem>>>>>velocity：{0}", moveCom.Rig.velocity);
-            }
             HandleMoveAnim(comList);
         }
 
@@ -58,17 +53,17 @@ namespace Demo.System
             {
                 if (moveCom.Rig.velocity.y > 0)
                 {
-                    animCom.ReqAnimName = "jumpUp";
+                    animCom.SetReqAnim("jumpUp");
                     return;
                 }
                 if (moveCom.Rig.velocity.x != 0)
                 {
-                    animCom.ReqAnimName = "run";
+                    animCom.SetReqAnim("run");
                     return;
                 }
                 else
                 {
-                    animCom.ReqAnimName = "idle";
+                    animCom.SetReqAnim("idle");
                     return;
                 }
             }
@@ -76,7 +71,7 @@ namespace Demo.System
             {
                 if (collider2DCom.Collider.Left || collider2DCom.Collider.Right)
                 {
-                    animCom.ReqAnimName = "climb";
+                    animCom.SetReqAnim("climb");
                     return;
                 }
                 //空中
@@ -84,12 +79,12 @@ namespace Demo.System
                 {
                     if (moveCom.Rig.velocity.y > 0)
                     {
-                        animCom.ReqAnimName = "jumpUp";
+                        animCom.SetReqAnim("jumpUp");
                         return;
                     }
                     else
                     {
-                        animCom.ReqAnimName = "jumpDown";
+                        animCom.SetReqAnim("jumpDown");
                         return;
                     }
                 }

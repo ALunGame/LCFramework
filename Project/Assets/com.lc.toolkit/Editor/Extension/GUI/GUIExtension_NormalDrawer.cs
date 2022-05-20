@@ -299,8 +299,7 @@ namespace LCToolkit
             if (ObjectDrawer.CheckHasCustomDrawer(type))
             {
                 ObjectDrawer objectDrawer = ObjectDrawer.CreateEditor(value);
-                objectDrawer.OnGUI(rect, label);
-                return objectDrawer.Target;
+                return objectDrawer.OnGUI(rect, label);
             }
 
             return null;

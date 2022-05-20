@@ -84,24 +84,4 @@ namespace LCECS
         //强制置换请求权重
         public const int REForceSwithWeight = -99;
     }
-
-    /// <summary>
-    /// 工厂类别
-    /// </summary>
-    public enum FactoryType
-    {
-        Entity,                 //实体
-        Asset,                  //资源
-    }
-
-    /// <summary>
-    /// 信息类型
-    /// </summary>
-    public enum SensorType
-    {
-        Player,                  //玩家信息
-        Map,                     //地图信息
-        Entity,                  //实体信息
-        Skill,                   //技能信息
-    }
 }

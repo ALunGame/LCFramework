@@ -129,9 +129,10 @@ namespace LCToolkit.Core
             Target = _target;
         }
 
-        public virtual void OnGUI(Rect _position, GUIContent _label)
+        public virtual object OnGUI(Rect _position, GUIContent _label)
         {
             GUI.Label(_position, _label);
+            return Target;
         }
 
         public virtual float GetHeight()

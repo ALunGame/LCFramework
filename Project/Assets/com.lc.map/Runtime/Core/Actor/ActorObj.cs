@@ -68,15 +68,30 @@ namespace LCMap
         /// </summary>
         public event Action<GameObject> OnDisplayGoChange;
 
-
         private Entity entity;
+
         public void Init(ActorModel model)
         {
-            this.model = model;
-            this.Uid = Model.uid;
-            this.Id = Model.id;
-            this.EntityId = Config.ActorCnf[Id].entityId;
-            this.DisplayRootGo = transform.Find("Display").gameObject;
+            Init(model, Config.ActorCnf[model.id].entityId);
+        }
+
+        public void Init(ActorModel model,int entityId)
+        {
+            this.model      = model;
+            this.Uid        = Model.uid;
+            this.Id         = Model.id;
+            this.EntityId   = entityId;
+
+            //表现根节点
+            if (transform.Find("Display") == null)
+            {
+                this.DisplayRootGo = gameObject;
+            }
+            else
+            {
+                this.DisplayRootGo = transform.Find("Display").gameObject;
+            }
+
             SetModelDisplay();
             UpdateGoName();
 
@@ -119,10 +134,20 @@ namespace LCMap
             }
         }
 
+        private void OnDrawGizmos()
+        {
+            foreach (var item in entity.GetComs())
+            {
+                item.OnDrawGizmos();
+            }
+        }
+
         #region Misc
 
         private void UpdateGoName()
         {
+            if (!Config.ActorCnf.ContainsKey(Id))
+                return;
             ActorCnf actorCnf = Config.ActorCnf[Id];
             this.name = string.Format("{0}-{1}-{2}", actorCnf.name, actorCnf.id,Uid);
         }
@@ -140,6 +165,12 @@ namespace LCMap
         {
             GameObject disGo = GetDisplayGo();
             return disGo.transform.localEulerAngles.y == 0 ? DirType.Right : DirType.Left;
+        }
+
+        public int GetDirValue()
+        {
+            DirType dirType = GetDir();
+            return dirType == DirType.Right ? 1 : -1;
         }
 
         public Vector3 GetInteractivePoint()

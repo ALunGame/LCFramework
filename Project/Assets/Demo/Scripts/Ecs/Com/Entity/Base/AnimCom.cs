@@ -36,7 +36,7 @@ namespace Demo.Com
         public List<string> AnimParamList = new List<string>();
 
         [NonSerialized]
-        public string ReqAnimName = AnimSystem.IdleState;
+        private string ReqAnimName = AnimSystem.IdleState;
 
         protected override void OnInit(GameObject go)
         {
@@ -58,6 +58,17 @@ namespace Demo.Com
                 Anim = animTrans.GetComponent<Animator>();
                 AnimParamList = AnimHelp.GetAllParamNames(Anim);
             }
+        }
+
+        public void SetReqAnim(string animName)
+        {
+            Debug.Log("SetReqAnim:"+animName);
+            ReqAnimName = animName;
+        }
+
+        public string GetReqAnim()
+        {
+            return ReqAnimName;
         }
     }
 }

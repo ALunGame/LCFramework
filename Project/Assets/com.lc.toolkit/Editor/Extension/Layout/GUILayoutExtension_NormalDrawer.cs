@@ -33,7 +33,6 @@ namespace LCToolkit
             return @bool.value;
         }
 
-
         /// <summary>
         /// 绘制字段
         /// </summary>

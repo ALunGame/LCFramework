@@ -31,14 +31,14 @@ namespace Demo.Com
         protected override void OnInit(GameObject go)
         {
             ActorObj actorObj = go.GetComponent<ActorObj>();
-            DisplayRootTrans = actorObj.DisplayRootGo.transform;
             actorObj.OnDisplayGoChange += OnDisplayGoChange;
-            OnDisplayGoChange(actorObj.DisplayGo);
+            OnDisplayGoChange(actorObj);
         }
 
-        private void OnDisplayGoChange(GameObject displayGo)
+        private void OnDisplayGoChange(ActorObj actorObj)
         {
-            DisplayTrans = displayGo.transform;
+            DisplayRootTrans = actorObj.GetDisplayRootGo().transform;
+            DisplayTrans = actorObj.GetDisplayGo().transform;
         }
     }
 }

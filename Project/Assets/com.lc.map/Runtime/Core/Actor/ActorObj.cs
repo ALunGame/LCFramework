@@ -24,49 +24,56 @@ namespace LCMap
         /// <summary>
         /// 唯一Id
         /// </summary>
-        [Header("唯一Id")]
-        [ReadOnly]
-        public int Uid;
+        public int Uid { get; private set; }
 
         /// <summary>
         /// 配置Id
         /// </summary>
-        [Header("配置Id")]
-        [ReadOnly]
-        public int Id;
+        public int Id { get; private set; }
 
         /// <summary>
         /// 实体配置Id
         /// </summary>
-        [Header("实体配置Id")]
-        [ReadOnly]
-        public int EntityId;
+        public int EntityId { get; private set; }
 
-        /// <summary>
-        /// 实体配置Id
-        /// </summary>
-        [Header("表现根节点")]
-        [ReadOnly]
-        public GameObject DisplayRootGo;
+
 
         /// <summary>
         /// 实体配置Id
         /// </summary>
         [Header("表现状态名")]
         [ReadOnly]
-        public string DisplayStateName;
+        [SerializeField]
+        private string DisplayStateName;
+
+        /// <summary>
+        /// 实体配置Id
+        /// </summary>
+        [Header("表现根节点")]
+        [ReadOnly]
+        [SerializeField]
+        private GameObject DisplayRootGo;
 
         /// <summary>
         /// 实体配置Id
         /// </summary>
         [Header("表现节点")]
         [ReadOnly]
-        public GameObject DisplayGo;
+        [SerializeField]
+        private GameObject DisplayGo;
+
+        /// <summary>
+        /// 实体配置Id
+        /// </summary>
+        [Header("相机跟随节点")]
+        [ReadOnly]
+        [SerializeField]
+        private GameObject CameraFollowGo;
 
         /// <summary>
         /// 当表现节点改变
         /// </summary>
-        public event Action<GameObject> OnDisplayGoChange;
+        public event Action<ActorObj> OnDisplayGoChange;
 
         private Entity entity;
 
@@ -104,6 +111,9 @@ namespace LCMap
             }
         }
 
+        /// <summary>
+        /// 设置显示
+        /// </summary>
         public void SetModelDisplay()
         {
             //位置
@@ -154,25 +164,101 @@ namespace LCMap
 
         #endregion
 
+        #region Set
+
+        public void SetDisplayGo(string stateName)
+        {
+            this.DisplayStateName = stateName;
+            Transform displayTrans = DisplayRootGo.transform.Find(stateName);
+            if (displayTrans == null)
+            {
+                Debug.LogError("设置表现节点失败>>>" + stateName);
+                displayTrans = gameObject.transform;
+            }
+            else
+            {
+                //全隐藏
+                Transform displayRoot = transform.Find("Display");
+                for (int i = 0; i < displayRoot.childCount; i++)
+                {
+                    displayRoot.GetChild(i).gameObject.SetActive(false);
+                }
+            }
+            DisplayGo = displayTrans.gameObject;
+            DisplayGo.SetActive(true);
+
+            //设置跟随
+            Transform followTrans = DisplayGo.transform.Find("Camera_Follow");
+            if (followTrans == null)
+                followTrans = DisplayGo.transform;
+            CameraFollowGo = followTrans.gameObject;
+
+            OnDisplayGoChange?.Invoke(this);
+        }
+
+        public void SetDir(DirType dirType)
+        {
+            GameObject disGo = GetDisplayGo();
+            Vector3 oldDir = disGo.transform.localEulerAngles;
+            int yValue = dirType == DirType.Right ? 0 : 180;
+            disGo.transform.localEulerAngles = new Vector3(oldDir.x, yValue, oldDir.z);
+        }
+
+        #endregion
+
         #region Get
 
+        /// <summary>
+        /// 表现节点
+        /// </summary>
+        /// <returns></returns>
+        public GameObject GetDisplayRootGo()
+        {
+            return DisplayRootGo;
+        }
+
+        /// <summary>
+        /// 表现节点
+        /// </summary>
+        /// <returns></returns>
         public GameObject GetDisplayGo()
         {
             return DisplayGo;
         }
 
+        /// <summary>
+        /// 获得相机跟随节点
+        /// </summary>
+        /// <returns></returns>
+        public GameObject GetFollowGo()
+        {
+            return CameraFollowGo;
+        }
+
+        /// <summary>
+        /// 方向
+        /// </summary>
+        /// <returns></returns>
         public DirType GetDir()
         {
             GameObject disGo = GetDisplayGo();
             return disGo.transform.localEulerAngles.y == 0 ? DirType.Right : DirType.Left;
         }
 
+        /// <summary>
+        /// 获得方向值
+        /// </summary>
+        /// <returns></returns>
         public int GetDirValue()
         {
             DirType dirType = GetDir();
             return dirType == DirType.Right ? 1 : -1;
         }
 
+        /// <summary>
+        /// 获得交互点
+        /// </summary>
+        /// <returns></returns>
         public Vector3 GetInteractivePoint()
         {
             DirType dirType = GetDir();
@@ -186,39 +272,6 @@ namespace LCMap
 
         #endregion
 
-        #region Set
 
-        public void SetDisplayGo(string stateName)
-        {
-            this.DisplayStateName = stateName;
-            Transform displayTrans = transform.Find("Display/"+ stateName);
-            if (displayTrans == null)
-            {
-                Debug.LogError("设置表现节点失败>>>" + stateName);
-                DisplayGo = gameObject;
-                return;
-            }
-
-            //全隐藏
-            Transform displayRoot = transform.Find("Display");
-            for (int i = 0; i < displayRoot.childCount; i++)
-            {
-                displayRoot.GetChild(i).gameObject.SetActive(false);
-            }
-
-            DisplayGo = displayTrans.gameObject;
-            DisplayGo.SetActive(true);
-            OnDisplayGoChange?.Invoke(DisplayGo);
-        }
-
-        public void SetDir(DirType dirType)
-        {
-            GameObject disGo = GetDisplayGo();
-            Vector3 oldDir = disGo.transform.localEulerAngles;
-            int yValue = dirType == DirType.Right ? 0 : 180;
-            disGo.transform.localEulerAngles = new Vector3(oldDir.x, yValue, oldDir.z);
-        }
-
-        #endregion
     }
 }

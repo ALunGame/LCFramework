@@ -40,6 +40,20 @@ namespace LCToolkit
 
         public List<Vector2> PolygonVertices;
 
+        public Vector2 GetCenter()
+        {
+            switch (ShapeType)
+            {
+                case ShapeType.AABB:
+                    return (AABBMin + AABBMax) / 2;
+                case ShapeType.Circle:
+                case ShapeType.Polygon:
+                    return Center;
+                default:
+                    break;
+            }
+            return Center;
+        }
 
         /// <summary>(
         /// 移动delta位置

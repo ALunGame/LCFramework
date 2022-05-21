@@ -64,9 +64,20 @@ namespace LCMap
             }
         }
 
+        private MapArea currArea;
+        /// <summary>
+        /// 当前地图区域
+        /// </summary>
+        public MapArea CurrArea
+        {
+            get
+            {
+                return currArea;
+            }
+        }
+
         //地图区域
         public Dictionary<int, MapArea> areaDict = new Dictionary<int, MapArea>();
-
         //地图配置
         private Dictionary<int, MapModel> mapCnf = new Dictionary<int, MapModel>();
         private MapModel GetMapCnf(int mapId)
@@ -101,6 +112,7 @@ namespace LCMap
             //创建主角所在区域
             MapArea area = GetPosArea(mapModel.mainActor.pos);
             CreateArea(area);
+            currArea = area;
 
             //创建主角
             CreateMainActor(mapModel.mainActor);

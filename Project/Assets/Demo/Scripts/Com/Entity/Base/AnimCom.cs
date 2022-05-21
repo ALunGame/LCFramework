@@ -42,12 +42,12 @@ namespace Demo.Com
         {
             ActorObj actorObj = go.GetComponent<ActorObj>();
             actorObj.OnDisplayGoChange += OnDisplayGoChange;
-            OnDisplayGoChange(actorObj.DisplayGo);
+            OnDisplayGoChange(actorObj);
         }
 
-        private void OnDisplayGoChange(GameObject displayGo)
+        private void OnDisplayGoChange(ActorObj actorObj)
         {
-            Transform animTrans = displayGo.transform.Find("Anim");
+            Transform animTrans = actorObj.GetDisplayGo().transform.Find("Anim");
             if (animTrans == null)
             {
                 Anim = null;

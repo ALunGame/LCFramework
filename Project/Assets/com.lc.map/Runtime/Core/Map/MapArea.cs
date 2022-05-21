@@ -3,6 +3,7 @@ using UnityEngine;
 using LCLoad;
 using LCToolkit;
 using LCConfig;
+using Cinemachine;
 
 namespace LCMap
 {
@@ -23,10 +24,15 @@ namespace LCMap
         public GameObject ActorRootGo;
         public Dictionary<int, ActorObj> Actors = new Dictionary<int, ActorObj>();
 
+        public CinemachineVirtualCamera FollowCamera;
+        public CinemachineVirtualCamera DragCamera;
+        public GameObject DragTarget;
+        public Transform CameraColliderRootTrans;
+
         public MapArea(AreaModel model)
         {
-            this.Model = model;
             this.Id = model.areaId;
+            this.Model = model;
             this.Rect = model.rect;
         }
 
@@ -40,6 +46,8 @@ namespace LCMap
             AreaEnvGo.transform.SetParent(AreaRootGo.transform);
             AreaEnvGo.transform.Reset();
 
+            InitArea();
+
             //演员
             ActorRootGo = new GameObject("ActorRootGo");
             ActorRootGo.transform.SetParent(AreaRootGo.transform);
@@ -50,8 +58,21 @@ namespace LCMap
                 ActorModel actorModel = Model.actors[i];
                 CreateActorObj(actorModel);
             }
-
             return AreaRootGo;
+        }
+
+        private void InitArea()
+        {
+            Transform camRootTrans = AreaEnvGo.transform.Find("CMCamera");
+            if (camRootTrans == null)
+            {
+                MapLocate.Log.LogError("地图区域创建失败，没有相机节点>>>", Id);
+                return;
+            }
+            FollowCamera = camRootTrans.Find("FollowCamera").GetComponent<CinemachineVirtualCamera>();
+            DragCamera = camRootTrans.Find("DragCamera").GetComponent<CinemachineVirtualCamera>();
+            DragTarget = camRootTrans.Find("DragTarget").gameObject;
+            CameraColliderRootTrans = camRootTrans.Find("CameraColliders");
         }
 
         private void CreateActorObj(ActorModel actor)
@@ -84,5 +105,37 @@ namespace LCMap
         {
 
         }
+
+        #region 相机
+
+        /// <summary>
+        /// 设置相机范围
+        /// </summary>
+        /// <param name="colliderName">相机范围名</param>
+        public void SetCameraCollider(string colliderName = "")
+        {
+            if (string.IsNullOrEmpty(colliderName))
+                colliderName = "DefaultCollider";
+            Transform colliderTrans = CameraColliderRootTrans.Find(colliderName);
+            if (colliderTrans == null)
+            {
+                MapLocate.Log.LogError("设置相机范围失败，没有节点>>>", Id,colliderName);
+                return;
+            }
+            Collider2D collider2D = colliderTrans.GetComponent<Collider2D>();
+            FollowCamera.GetComponent<CinemachineConfiner>().m_BoundingShape2D = collider2D;
+            DragCamera.GetComponent<CinemachineConfiner>().m_BoundingShape2D = collider2D;
+        }
+
+        /// <summary>
+        /// 获得相机范围
+        /// </summary>
+        /// <returns></returns>
+        public PolygonCollider2D GetCameraCollider()
+        {
+            return (PolygonCollider2D)FollowCamera.GetComponent<CinemachineConfiner>().m_BoundingShape2D;
+        }
+
+        #endregion
     }
 }

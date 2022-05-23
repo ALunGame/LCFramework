@@ -5,7 +5,7 @@ using LCECS.Core.Tree.Nodes.Action;
 using LCECS.Data;
 using LCSkill;
 
-namespace Demo.BevNode
+namespace Demo.Behavior
 {
     /// <summary>
     /// 释放技能

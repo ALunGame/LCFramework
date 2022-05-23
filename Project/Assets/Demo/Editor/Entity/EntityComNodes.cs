@@ -191,29 +191,75 @@ namespace Demo
 
     #region 全局
 
-    //[NodeMenuItem("演员/属性组件")]
-    //public class Entity_Node_PropertyCom : Entity_ComNode
-    //{
-    //    public override string Title { get => "属性组件"; set => base.Title = value; }
-    //    public override string Tooltip { get => "属性组件"; set => base.Tooltip = value; }
+    [NodeMenuItem("全局/相机/拖动相机")]
+    public class Entity_Node_DragCameraCom : Entity_ComNode
+    {
+        public override string Title { get => "拖动相机组件"; set => base.Title = value; }
+        public override string Tooltip { get => "拖动相机组件"; set => base.Tooltip = value; }
+        public override Type RuntimeNode => typeof(DragCameraCom);
 
-    //    public PropertyInfo Hp = PropertyInfo.Zero;
-    //    public PropertyInfo Mp = PropertyInfo.Zero;
-    //    public PropertyInfo Attack = PropertyInfo.Zero;
-    //    public PropertyInfo MoveSpeed = PropertyInfo.Zero;
-    //    public PropertyInfo ActionSpeed = PropertyInfo.Zero;
+        /// <summary>
+        /// 拖拽速度
+        /// </summary>
+        [NodeValue("拖拽速度")]
+        public float DragSpeed = 1.2f;
 
-    //    public override BaseCom CreateRuntimeNode()
-    //    {
-    //        PropertyCom propertyCom = new PropertyCom();
-    //        propertyCom.Hp = Hp;
-    //        propertyCom.Mp = Mp;
-    //        propertyCom.Attack = Attack;
-    //        propertyCom.MoveSpeed = MoveSpeed;
-    //        propertyCom.ActionSpeed = ActionSpeed;
-    //        return propertyCom;
-    //    }
-    //}
+        /// <summary>
+        /// 弹簧回弹区域
+        /// </summary>
+        [NodeValue("弹簧回弹区域")]
+        public float SpringOffset = 0.5f;
+
+        /// <summary>
+        /// 弹簧回弹时间
+        /// </summary>
+        [NodeValue("弹簧回弹时间")]
+        public float SpringSmoothTime = 0.05f;
+
+        /// <summary>
+        /// 弹簧强度
+        /// </summary>
+        [NodeValue("弹簧强度")]
+        public float SpringIntensity = 0.75f;
+
+        /// <summary>
+        /// 惯性移动速率
+        /// </summary>
+        [NodeValue("惯性移动速率")]
+        public float InertiaRate = 0.4f;
+
+        /// <summary>
+        /// 惯性移动阻尼总时间
+        /// </summary>
+        [NodeValue("惯性移动阻尼总时间")]
+        public float InertiaDampDuration = 0.4f;
+
+        public override BaseCom CreateRuntimeNode()
+        {
+            DragCameraCom dragCom = new DragCameraCom();
+            dragCom.DragSpeed = DragSpeed;
+            dragCom.SpringOffset = SpringOffset;
+            dragCom.SpringSmoothTime = SpringSmoothTime;
+            dragCom.SpringIntensity = SpringIntensity;
+            dragCom.InertiaRate = InertiaRate;
+            dragCom.InertiaDampDuration = InertiaDampDuration;
+            return dragCom;
+        }
+    }
+
+    [NodeMenuItem("全局/相机/跟随相机")]
+    public class Entity_Node_FollowCameraCom : Entity_ComNode
+    {
+        public override string Title { get => "跟随相机组件"; set => base.Title = value; }
+        public override string Tooltip { get => "跟随相机组件"; set => base.Tooltip = value; }
+        public override Type RuntimeNode => typeof(FollowCameraCom);
+
+        public override BaseCom CreateRuntimeNode()
+        {
+            FollowCameraCom followCom = new FollowCameraCom();
+            return followCom;
+        }
+    }
 
     #endregion
 }

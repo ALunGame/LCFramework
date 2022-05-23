@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LCToolkit.ViewModel
 {
@@ -62,7 +58,7 @@ namespace LCToolkit.ViewModel
 
         public void SetValueWithoutNotify(object value)
         {
-            SetValueWithoutNotify((T)value);
+            Setter((T)value);
         }
 
         public void ClearChangedEvent()

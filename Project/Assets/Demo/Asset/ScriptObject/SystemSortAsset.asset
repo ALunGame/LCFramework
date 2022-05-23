@@ -52,6 +52,12 @@ MonoBehaviour:
   - typeName: MoveSystem
     typeFullName: Demo.System.MoveSystem
     sort: 14
+  - typeName: FollowCameraSystem
+    typeFullName: Demo.System.FollowCameraSystem
+    sort: 14
+  - typeName: DragCameraSystem
+    typeFullName: Demo.System.DragCameraSystem
+    sort: 14
   fixedUpdateSystems:
   - typeName: BuffSystem
     typeFullName: LCSkill.BuffSystem

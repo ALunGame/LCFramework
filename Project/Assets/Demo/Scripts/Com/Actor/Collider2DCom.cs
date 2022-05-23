@@ -3,6 +3,7 @@ using UnityEngine;
 using LCJson;
 using System;
 using LCMap;
+using LCToolkit;
 
 namespace Demo.Com
 {
@@ -43,7 +44,7 @@ namespace Demo.Com
         public ColliderData Collider = ColliderData.Null;
 
         [NonSerialized]
-        private CapsuleCollider2D collider2D;
+        private BoxCollider2D collider2D;
 
         [NonSerialized]
         public Vector2 UpCheckPoint;
@@ -58,21 +59,24 @@ namespace Demo.Com
         public Vector2 LeftCheckPoint;
 
         [NonSerialized]
-        private Rigidbody2D Rig;
+        public Transform trans;
+
         protected override void OnInit(GameObject go)
         {
-            Rig = go.GetComponent<Rigidbody2D>();
-            OnDisplayGoChange(go);
+            ActorObj actorObj = go.GetComponent<ActorObj>();
+            trans = go.transform;
+            actorObj.OnDisplayGoChange += OnDisplayGoChange;
+            OnDisplayGoChange(actorObj);
         }
 
-        private Vector2 GetColliderOffset(CapsuleCollider2D collider2D)
+        private Vector2 GetColliderOffset(BoxCollider2D collider2D)
         {
-            return new Vector2(collider2D.bounds.center.x, collider2D.bounds.center.y) - Rig.position;
+            return new Vector2(collider2D.bounds.center.x, collider2D.bounds.center.y) - trans.position.ToVector2();
         }
 
-        private void OnDisplayGoChange(GameObject displayGo)
+        private void OnDisplayGoChange(ActorObj actorGo)
         {
-            collider2D = displayGo.GetComponent<CapsuleCollider2D>();
+            collider2D     = actorGo.GetBodyCollider();
             Vector2 offset = GetColliderOffset(collider2D);
 
             UpCheckPoint    = new Vector2(offset.x, offset.y + collider2D.bounds.extents.y + CollisionOffset);
@@ -83,7 +87,7 @@ namespace Demo.Com
 
         public override void OnDrawGizmosSelected()
         {
-            Vector2 pos = Rig.position;
+            Vector2 pos = trans.position;
 
             Gizmos.color = Color.blue;
             Gizmos.DrawSphere(pos + UpCheckPoint, 0.05f);

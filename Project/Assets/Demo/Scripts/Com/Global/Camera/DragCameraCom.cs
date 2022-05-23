@@ -110,7 +110,7 @@ namespace Demo.Com
         /// 惯性移动方向
         /// </summary>
         [NonSerialized]
-        public float InertiaDir;
+        public Vector3 InertiaDir;
 
         /// <summary>
         /// 惯性阻尼

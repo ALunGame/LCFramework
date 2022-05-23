@@ -1,11 +1,10 @@
 ﻿using Demo.Com;
-using Demo.System;
 using LCECS.Core.Tree.Base;
 using LCECS.Core.Tree.Nodes.Action;
 using LCECS.Data;
 using UnityEngine;
 
-namespace Demo.BevNode
+namespace Demo.Behavior
 {
     /// <summary>
     /// 移动类型

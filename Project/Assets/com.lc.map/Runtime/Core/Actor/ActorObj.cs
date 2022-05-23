@@ -36,8 +36,6 @@ namespace LCMap
         /// </summary>
         public int EntityId { get; private set; }
 
-
-
         /// <summary>
         /// 实体配置Id
         /// </summary>
@@ -168,22 +166,38 @@ namespace LCMap
 
         public void SetDisplayGo(string stateName)
         {
-            this.DisplayStateName = stateName;
-            Transform displayTrans = DisplayRootGo.transform.Find(stateName);
-            if (displayTrans == null)
+            //全部隐藏
+            Transform displayRoot = transform.Find("Display");
+            if (displayRoot != null)
             {
-                Debug.LogError("设置表现节点失败>>>" + stateName);
-                displayTrans = gameObject.transform;
-            }
-            else
-            {
-                //全隐藏
-                Transform displayRoot = transform.Find("Display");
                 for (int i = 0; i < displayRoot.childCount; i++)
                 {
                     displayRoot.GetChild(i).gameObject.SetActive(false);
                 }
             }
+
+            Transform displayTrans = null;
+            if (displayRoot == null)
+            {
+                displayTrans = transform;
+            }
+            else
+            {
+                if (string.IsNullOrEmpty(stateName))
+                    displayTrans = displayRoot.GetChild(0);
+                else
+                {
+                    displayTrans = transform.Find("Display/" + stateName);
+                }
+            }
+
+            if (displayTrans == null)
+            {
+                displayTrans = transform;
+                MapLocate.Log.LogError("设置状态节点出错>>>", Id, stateName);
+            }
+
+            DisplayStateName = displayTrans.name;
             DisplayGo = displayTrans.gameObject;
             DisplayGo.SetActive(true);
 
@@ -193,6 +207,8 @@ namespace LCMap
                 followTrans = DisplayGo.transform;
             CameraFollowGo = followTrans.gameObject;
 
+            //更新碰撞
+            UpdateCollider();
             OnDisplayGoChange?.Invoke(this);
         }
 
@@ -272,6 +288,28 @@ namespace LCMap
 
         #endregion
 
+        #region Collider
+
+        private PolygonCollider2D clickCollider;
+        private BoxCollider2D bodyCollider;
+
+        private void UpdateCollider()
+        {
+            clickCollider = DisplayGo.transform.Find("ClickBox").GetComponent<PolygonCollider2D>();
+            bodyCollider = DisplayGo.transform.Find("BodyCollider").GetComponent<BoxCollider2D>();
+        }
+
+        public PolygonCollider2D GetClickCollider()
+        {
+            return clickCollider;
+        }
+
+        public BoxCollider2D GetBodyCollider()
+        {
+            return bodyCollider;
+        }
+
+        #endregion
 
     }
 }

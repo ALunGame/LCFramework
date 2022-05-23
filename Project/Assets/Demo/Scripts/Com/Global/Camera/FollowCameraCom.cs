@@ -3,6 +3,7 @@ using LCECS.Core;
 using LCMap;
 using UnityEngine;
 using System;
+using LCToolkit;
 
 namespace Demo.Com
 {
@@ -16,12 +17,6 @@ namespace Demo.Com
         /// </summary>
         [NonSerialized]
         public CinemachineVirtualCamera CMCamera;
-
-        /// <summary>
-        /// 跟随演员
-        /// </summary>
-        [NonSerialized]
-        public ActorObj FollowActor;
 
         protected override void OnInit(GameObject go)
         {

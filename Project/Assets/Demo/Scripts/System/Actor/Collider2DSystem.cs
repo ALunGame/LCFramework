@@ -12,20 +12,19 @@ namespace Demo.System
 
         protected override List<Type> RegListenComs()
         {
-            return new List<Type>() { typeof(Collider2DCom), typeof(MoveCom) };
+            return new List<Type>() { typeof(Collider2DCom)};
         }
 
         protected override void HandleComs(List<BaseCom> comList)
         {
             Collider2DCom collider2DCom = GetCom<Collider2DCom>(comList[0]);
-            MoveCom moveCom = GetCom<MoveCom>(comList[1]);
-            HandleCollider(collider2DCom, moveCom);
+            HandleCollider(collider2DCom);
         }
 
         //碰撞处理
-        private void HandleCollider(Collider2DCom collider2DCom,MoveCom moveCom)
+        private void HandleCollider(Collider2DCom collider2DCom)
         {
-            Vector2 pos = moveCom.Rig.position;
+            Vector2 pos = collider2DCom.trans.position;
             collider2DCom.Collider.Up       = CheckCollider(pos + collider2DCom.UpCheckPoint);
             collider2DCom.Collider.Down     = CheckCollider(pos + collider2DCom.DownCheckPoint);
             collider2DCom.Collider.Left     = CheckCollider(pos + collider2DCom.LeftCheckPoint);

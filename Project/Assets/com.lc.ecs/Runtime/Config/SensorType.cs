@@ -12,6 +12,11 @@ namespace LCECS
     public enum SensorType
     {
         /// <summary>
+        /// 全局信息
+        /// </summary>
+        Global,
+
+        /// <summary>
         /// 玩家信息
         /// </summary>
         Player,                  
@@ -34,6 +39,6 @@ namespace LCECS
         /// <summary>
         /// 技能Bullet信息
         /// </summary>
-        Skill_Bullet,                   
+        Skill_Bullet,    
     }
 }

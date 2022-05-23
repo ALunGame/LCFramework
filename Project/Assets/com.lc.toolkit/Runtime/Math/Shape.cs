@@ -120,6 +120,27 @@ namespace LCToolkit
         }
 
         /// <summary>
+        /// 检测包含点
+        /// </summary>
+        /// <param name="point"></param>
+        /// <returns></returns>
+        public bool ContainPoint(Vector2 point)
+        {
+            switch (ShapeType)
+            {
+                case ShapeType.AABB:
+                    return ShapeMath2D.AABBContainsPoint(AABBMin, AABBMax, point);
+                case ShapeType.Circle:
+                    return ShapeMath2D.CircleContainsPoint(Center, CircleRadius, point);
+                case ShapeType.Polygon:
+                    return ShapeMath2D.PolygonContainsPoint(PolygonVertices.ToArray(), point);
+                default:
+                    break;
+            }
+            return false;
+        }
+
+        /// <summary>
         /// 检测相交
         /// </summary>
         /// <param name="otherShape"></param>

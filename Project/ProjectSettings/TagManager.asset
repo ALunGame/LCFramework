@@ -11,8 +11,8 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
+  - CameraCollider
+  - ActorClick
   - Ground
   - Entity
   - 

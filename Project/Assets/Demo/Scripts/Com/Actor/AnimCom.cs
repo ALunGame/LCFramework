@@ -62,7 +62,6 @@ namespace Demo.Com
 
         public void SetReqAnim(string animName)
         {
-            Debug.Log("SetReqAnim:"+animName);
             ReqAnimName = animName;
         }
 

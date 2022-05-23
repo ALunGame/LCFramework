@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using LCLoad;
 using LCToolkit;
+using Demo;
 
 namespace LCMap
 {
@@ -113,6 +114,7 @@ namespace LCMap
             MapArea area = GetPosArea(mapModel.mainActor.pos);
             CreateArea(area);
             currArea = area;
+            LCECS.ECSLayerLocate.Info.GetSensor<GlobalSensor>(LCECS.SensorType.Global).CurrArea.Value = area;
 
             //创建主角
             CreateMainActor(mapModel.mainActor);
@@ -174,6 +176,9 @@ namespace LCMap
             //添加组件
             PlayerActor = actorGo.AddComponent<ActorObj>();
             PlayerActor.Init(actor);
+
+            //跟随
+            LCECS.ECSLayerLocate.Info.GetSensor<GlobalSensor>(LCECS.SensorType.Global).FollowActor.Value = PlayerActor;
         }
     }
 }

@@ -13,8 +13,8 @@ TagManager:
   - UI
   - CameraCollider
   - ActorClick
-  - Ground
-  - Entity
+  - ActorBody
+  - Map
   - 
   - 
   - 

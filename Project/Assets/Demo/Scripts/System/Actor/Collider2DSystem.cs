@@ -34,7 +34,7 @@ namespace Demo.System
         private bool CheckCollider(Vector2 point)
         {
             Collider2D[] results = new Collider2D[4];
-            int colliderCnt  = Physics2D.OverlapCircleNonAlloc(point, CollisionRadius, results, LayerMask.GetMask("Ground"));
+            int colliderCnt  = Physics2D.OverlapCircleNonAlloc(point, CollisionRadius, results, LayerMask.GetMask("Map"));
             return colliderCnt > 0;
         }
     }

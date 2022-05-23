@@ -27,6 +27,11 @@ namespace LCECS
         /// </summary>
 		Jump,
 
+        /// <summary>
+        /// 徘徊
+        /// </summary>
+		Wander,
+
     }
 }
 

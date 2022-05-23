@@ -1,1 +1,1 @@
-﻿{"mType":"LCECS.Layer.Decision.DecisionTree","treeId":1,"tree":{"mType":"LCECS.Core.Tree.Nodes.NodeRoot","Uid":"bf970f10-59a5-43b3-a8e1-e637c20dbfc1","childNodes":null,"nodePremise":null},"EntityList":[]}
+﻿{"mType":"LCECS.Layer.Decision.DecisionTree","treeId":1,"tree":{"mType":"LCECS.Core.Tree.Nodes.NodeRoot","Uid":"427c696a-c3a6-4256-a460-f4a6288fd396","childNodes":[{"mType":"Demo.Decision.DEC_ACT_Wander","WanderRange":-1,"Uid":"6110bcef-663b-481f-82bc-2e8a182ad693","childNodes":null,"nodePremise":null}],"nodePremise":null},"EntityList":[]}

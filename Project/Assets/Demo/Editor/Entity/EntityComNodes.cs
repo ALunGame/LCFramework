@@ -187,6 +187,20 @@ namespace Demo
         }
     }
 
+    [NodeMenuItem("演员/AI/徘徊组件")]
+    public class Entity_Node_WanderCom : Entity_ComNode
+    {
+        public override string Title { get => "徘徊组件"; set => base.Title = value; }
+        public override string Tooltip { get => "徘徊组件"; set => base.Tooltip = value; }
+        public override Type RuntimeNode => typeof(WanderCom);
+
+        public override BaseCom CreateRuntimeNode()
+        {
+            WanderCom com = new WanderCom();
+            return com;
+        }
+    }
+
     #endregion
 
     #region 全局

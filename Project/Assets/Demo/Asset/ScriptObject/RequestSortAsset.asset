@@ -33,3 +33,8 @@ MonoBehaviour:
     sort: -1
     isCover: 0
     isCustom: 0
+  - key: Wander
+    name: "\u5F98\u5F8A"
+    sort: -1
+    isCover: 0
+    isCustom: 0

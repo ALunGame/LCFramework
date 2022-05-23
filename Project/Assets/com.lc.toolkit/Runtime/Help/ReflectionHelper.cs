@@ -47,7 +47,9 @@ namespace LCToolkit
                 foreach (var type in AllTypeCache)
                 {
                     if (type != _baseType && _baseType.IsAssignableFrom(type))
+                    {
                         yield return type;
+                    }    
                 }
             }
         }

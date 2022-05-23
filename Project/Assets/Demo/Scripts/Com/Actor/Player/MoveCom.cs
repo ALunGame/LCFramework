@@ -1,9 +1,6 @@
-﻿using Demo.BevNode;
+﻿using Demo.Behavior;
 using LCECS.Core;
-using LCMap;
-using LCToolkit;
 using System;
-using System.Collections;
 using UnityEngine;
 
 namespace Demo.Com

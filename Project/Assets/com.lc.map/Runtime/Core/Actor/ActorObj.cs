@@ -295,8 +295,14 @@ namespace LCMap
 
         private void UpdateCollider()
         {
-            clickCollider = DisplayGo.transform.Find("ClickBox").GetComponent<PolygonCollider2D>();
-            bodyCollider = DisplayGo.transform.Find("BodyCollider").GetComponent<BoxCollider2D>();
+            if (DisplayGo.transform.Find("ClickBox") != null)
+            {
+                clickCollider = DisplayGo.transform.Find("ClickBox").GetComponent<PolygonCollider2D>();
+            }
+            if (DisplayGo.transform.Find("BodyCollider") != null)
+            {
+                bodyCollider = DisplayGo.transform.Find("BodyCollider").GetComponent<BoxCollider2D>();
+            }
         }
 
         public PolygonCollider2D GetClickCollider()

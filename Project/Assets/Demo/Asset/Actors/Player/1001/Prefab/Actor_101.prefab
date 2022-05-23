@@ -252,8 +252,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6953365012334285068}
   - component: {fileID: 6683135150663290587}
-  m_Layer: 0
-  m_Name: Click
+  m_Layer: 7
+  m_Name: ClickBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -314,8 +314,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5523495557705417873}
-  m_Layer: 0
-  m_Name: Collider
+  - component: {fileID: 82252355}
+  m_Layer: 8
+  m_Name: BodyCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -336,6 +337,32 @@ Transform:
   m_Father: {fileID: 1927960376519824173}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &82252355
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8645025716274135851}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.01287812, y: -0.038634375}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.20155853, y: 0.27882728}
+  m_EdgeRadius: 0
 --- !u!1 &9080455965034522621
 GameObject:
   m_ObjectHideFlags: 0

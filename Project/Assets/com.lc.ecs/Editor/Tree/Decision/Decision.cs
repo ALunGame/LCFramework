@@ -39,6 +39,8 @@ namespace LCECS.Tree
                     continue;
                 if (type == typeof(Tree_RootNode))
                     continue;
+                if (type.BaseType == typeof(Tree_Bev_Act_Node))
+                    continue;
                 NodeTypes.Add(type);
             }
             foreach (var type in ReflectionHelper.GetChildTypes<Tree_PremiseNode>())

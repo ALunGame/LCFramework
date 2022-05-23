@@ -1,0 +1,1 @@
+﻿{"mType":"LCECS.Layer.Behavior.BehaviorTree","reqId":4,"tree":{"mType":"LCECS.Core.Tree.Nodes.NodeRoot","Uid":"e97623fe-4927-4574-992b-712e1a475bba","childNodes":[{"mType":"Demo.Behavior.BEV_ACT_Wander","Uid":"ff8655d8-12ad-4ae5-a023-937d43276c43","childNodes":null,"nodePremise":null}],"nodePremise":null},"HandleList":[]}

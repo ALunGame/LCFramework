@@ -4,7 +4,6 @@ using System.Collections.Generic;
 
 namespace LCSkill
 {
-    [System(InFixedUpdate = true)]
     public class TimelineSystem : BaseSystem
     {
         protected override List<Type> RegListenComs()

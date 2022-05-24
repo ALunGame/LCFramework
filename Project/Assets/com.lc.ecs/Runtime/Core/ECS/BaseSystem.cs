@@ -5,24 +5,6 @@ using System.Diagnostics;
 
 namespace LCECS.Core
 {
-
-    /// <summary>
-    /// 系统特性 类可用
-    /// </summary>
-    [AttributeUsage(AttributeTargets.Class)]
-    public class SystemAttribute : Attribute
-    {
-        private bool inFixedUpdate = false;
-        /// <summary>
-        /// 在FixedUpdate更新
-        /// </summary>
-        public bool InFixedUpdate
-        {
-            get { return inFixedUpdate; }
-            set { inFixedUpdate = value; }
-        }
-    }
-
     public abstract class BaseSystem
     {
         //警告执行时间毫秒
@@ -88,27 +70,19 @@ namespace LCECS.Core
             if (check)
             {
                 if (!IdHandleComsDict.ContainsKey(entityId))
+                {
                     IdHandleComsDict.Add(entityId, listenComs);
+                    OnAddCheckComs(IdHandleComsDict[entityId]);
+                }
             }
             else
             {
                 if (IdHandleComsDict.ContainsKey(entityId))
+                {
                     IdHandleComsDict.Remove(entityId);
-                RemoveEntityDrawData(entityId);
+                    OnRemoveCheckComs(IdHandleComsDict[entityId]);
+                }
             }
-
-            //编辑器辅助显示用
-#if UNITY_EDITOR
-            if (check)
-            {
-                entity.Systems.Add(this.GetType().Name);
-            }
-            else
-            {
-                entity.Systems.Remove(this.GetType().Name);
-            }
-#endif
-
             return check;
         }
 
@@ -150,55 +124,16 @@ namespace LCECS.Core
         //处理组件
         protected abstract void HandleComs(List<BaseCom> comList);
 
-        //当有一个实体需要检测
-        protected virtual void OnAddCheckEntity(Entity entity)
+        //当组件添加检测的时候
+        protected virtual void OnAddCheckComs(List<BaseCom> comList)
         {
 
         }
 
-
-        #region 编辑器下辅助渲染Gizmos
-        public void SetEntityDrawData(int entityId, object data)
+        //当组件移除检测的时候
+        protected virtual void OnRemoveCheckComs(List<BaseCom> comList)
         {
-#if UNITY_EDITOR
-            if (EntityDrawDict.ContainsKey(entityId))
-            {
-                EntityDrawDict[entityId] = data;
-            }
-            else
-            {
-                EntityDrawDict.Add(entityId, data);
-            }
-#endif
+
         }
-
-        private void RemoveEntityDrawData(int entityId)
-        {
-#if UNITY_EDITOR
-            if (EntityDrawDict.ContainsKey(entityId))
-            {
-                EntityDrawDict.Remove(entityId);
-            }
-#endif
-        }
-
-#if UNITY_EDITOR
-        private Dictionary<int, object> EntityDrawDict = new Dictionary<int, object>();
-
-        private void OnDrawGizmos()
-        {
-            foreach (var item in EntityDrawDict)
-            {
-                OnDrawEntityGizmos(item.Key, item.Value);
-            }
-        }
-#endif
-
-        protected virtual void OnDrawEntityGizmos(int entityId, object data)
-        {
-
-        } 
-        #endregion
-
     }
 }

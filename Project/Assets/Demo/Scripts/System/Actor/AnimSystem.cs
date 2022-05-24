@@ -17,36 +17,47 @@ namespace Demo.System
 
         protected override void HandleComs(List<BaseCom> comList)
         {
+        }
+
+        protected override void OnAddCheckComs(List<BaseCom> comList)
+        {
             AnimCom animCom = GetCom<AnimCom>(comList[0]);
-
-            string reqAnim  = animCom.GetReqAnim();
-            if (string.IsNullOrEmpty(reqAnim))
-                return;
-            animCom.SetReqAnim("");
-
-            string currAnim = animCom.CurrAnimName;
-            if (CheckIsLoopAnim(animCom, reqAnim))
+            animCom.RegReqAnimChange((string x) =>
             {
-                if (reqAnim == currAnim)
-                {
+                string reqAnim = animCom.GetReqAnim();
+                if (string.IsNullOrEmpty(reqAnim))
                     return;
-                }
-                if (!string.IsNullOrEmpty(currAnim))
+
+                string currAnim = animCom.CurrAnimName;
+                if (CheckIsLoopAnim(animCom, reqAnim))
                 {
-                    PlayLoopAnim(animCom, currAnim, false);
+                    if (reqAnim == currAnim)
+                    {
+                        return;
+                    }
+                    if (!string.IsNullOrEmpty(currAnim))
+                    {
+                        PlayLoopAnim(animCom, currAnim, false);
+                    }
+                    animCom.CurrAnimName = reqAnim;
+                    PlayLoopAnim(animCom, reqAnim, true);
                 }
-                animCom.CurrAnimName = reqAnim;
-                PlayLoopAnim(animCom, reqAnim, true);
-            }
-            else
-            {
-                if (CheckIsLoopAnim(animCom, currAnim))
+                else
                 {
-                    PlayLoopAnim(animCom, currAnim, false);
+                    if (CheckIsLoopAnim(animCom, currAnim))
+                    {
+                        PlayLoopAnim(animCom, currAnim, false);
+                    }
+                    animCom.CurrAnimName = reqAnim;
+                    PlayTriggerAnim(animCom, reqAnim);
                 }
-                animCom.CurrAnimName = reqAnim;
-                PlayTriggerAnim(animCom, reqAnim);
-            }
+            });
+        }
+
+        protected override void OnRemoveCheckComs(List<BaseCom> comList)
+        {
+            AnimCom animCom = GetCom<AnimCom>(comList[0]);
+            animCom.ClearReqAnimChangeCallBack();
         }
 
         private bool CheckIsLoopAnim(AnimCom animCom,string animName)

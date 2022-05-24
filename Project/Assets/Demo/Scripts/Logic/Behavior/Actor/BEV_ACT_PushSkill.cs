@@ -1,4 +1,5 @@
 ﻿using Demo.Com;
+using Demo.System;
 using LCECS.Core.Tree;
 using LCECS.Core.Tree.Base;
 using LCECS.Core.Tree.Nodes.Action;
@@ -78,6 +79,13 @@ namespace Demo.Behavior
             NodeActionContext context = GetContext<NodeActionContext>(wData);
             PushSkillData userData = context.GetUserData<PushSkillData>();
             userData.skillId = "-1";
+
+            //打断移动
+            AnimCom animCom = workData.MEntity.GetCom<AnimCom>();
+            if (animCom != null)
+            {
+                animCom.SetReqAnim(AnimSystem.IdleState);
+            }
         }
 
     }

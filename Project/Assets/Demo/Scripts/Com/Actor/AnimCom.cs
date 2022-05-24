@@ -5,6 +5,7 @@ using LCMap;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using LCToolkit;
 
 namespace Demo.Com
 {
@@ -35,11 +36,15 @@ namespace Demo.Com
         [NonSerialized]
         public List<string> AnimParamList = new List<string>();
 
+        //[NonSerialized]
+        //private string ReqAnimName = AnimSystem.IdleState;
         [NonSerialized]
-        private string ReqAnimName = AnimSystem.IdleState;
+        private BindableValue<string> ReqAnimName = new BindableValue<string>();
 
         protected override void OnInit(GameObject go)
         {
+            ReqAnimName.Value = AnimSystem.IdleState;
+
             ActorObj actorObj = go.GetComponent<ActorObj>();
             actorObj.OnDisplayGoChange += OnDisplayGoChange;
             OnDisplayGoChange(actorObj);
@@ -63,12 +68,22 @@ namespace Demo.Com
         public void SetReqAnim(string animName)
         {
             LCECS.ECSLocate.Log.Log("SetReqAnim>>>>>", animName);
-            ReqAnimName = animName;
+            ReqAnimName.Value = animName;
         }
 
         public string GetReqAnim()
         {
-            return ReqAnimName;
+            return ReqAnimName.Value;
+        }
+
+        public void RegReqAnimChange(Action<string> callBack)
+        {
+            ReqAnimName.RegisterValueChangedEvent(callBack);
+        }
+
+        public void ClearReqAnimChangeCallBack()
+        {
+            ReqAnimName.ClearChangedEvent();
         }
     }
 }

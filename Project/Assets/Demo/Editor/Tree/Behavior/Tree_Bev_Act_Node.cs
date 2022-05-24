@@ -16,7 +16,7 @@ namespace Demo.Tree
 
         public override Node CreateRuntimeNode()
         {
-            BEV_ACT_Move node = new BEV_ACT_Move();
+            BEV_ACT_PlayerMove node = new BEV_ACT_PlayerMove();
             return node;
         }
 

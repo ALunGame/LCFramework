@@ -38,4 +38,17 @@
             SkillLocate.Skill.CreateBullet(timelineObj.ower,addBullet);
         }
     }
+
+    /// <summary>
+    /// 创建Buff
+    /// </summary>
+    public class SkillTimeline_CreateBuff : TimelineFunc
+    {
+        public AddBuffModel addBuff;
+
+        public override void Execute(TimelineObj timelineObj)
+        {
+            SkillLocate.Skill.CreateBuff(timelineObj.ower, timelineObj.ower, addBuff);
+        }
+    }
 }

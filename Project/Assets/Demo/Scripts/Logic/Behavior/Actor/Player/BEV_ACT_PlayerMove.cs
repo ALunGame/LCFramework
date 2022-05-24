@@ -22,7 +22,7 @@ namespace Demo.Behavior
     /// <summary>
     /// 移动行为
     /// </summary>
-    public class BEV_ACT_Move : NodeAction
+    public class BEV_ACT_PlayerMove : NodeAction
     {
         protected override void OnEnter(NodeData wData)
         {
@@ -32,7 +32,7 @@ namespace Demo.Behavior
             Vector2 inputMove = workData.GetParam().GetVect2();
 
             //组件
-            MoveCom moveCom             = workData.MEntity.GetCom<MoveCom>();
+            PlayerMoveCom moveCom       = workData.MEntity.GetCom<PlayerMoveCom>();
             TransformCom transCom       = workData.MEntity.GetCom<TransformCom>();    
             Collider2DCom collider2DCom = workData.MEntity.GetCom<Collider2DCom>();
             PropertyCom propertyCom     = workData.MEntity.GetCom<PropertyCom>();
@@ -84,7 +84,6 @@ namespace Demo.Behavior
                     break;
             }
 
-            HandleMass(moveType, propertyCom);
             ClampMoveSpeed(moveCom, collider2DCom);
             HandleMoveTypeCD(moveType, moveCom);
             HandleMoveDir(moveCom, transCom);
@@ -99,7 +98,7 @@ namespace Demo.Behavior
         }
 
         //重置跳跃阶段
-        private void ResetJumpStep(MoveCom moveCom, Collider2DCom collider2DCom)
+        private void ResetJumpStep(PlayerMoveCom moveCom, Collider2DCom collider2DCom)
         {
             if (!collider2DCom.Collider.Down)
                 return;
@@ -108,7 +107,7 @@ namespace Demo.Behavior
 
         #region 判断移动状态
 
-        private MoveType CalcMoveType(Collider2DCom collider2DCom, MoveCom moveCom, Vector2 inputMove)
+        private MoveType CalcMoveType(Collider2DCom collider2DCom, PlayerMoveCom moveCom, Vector2 inputMove)
         {
             //没有输入
             if (inputMove == Vector2.zero)
@@ -221,7 +220,7 @@ namespace Demo.Behavior
             return false;
         }
 
-        private bool CheckCanJump(MoveCom moveCom,Vector2 inputMove)
+        private bool CheckCanJump(PlayerMoveCom moveCom,Vector2 inputMove)
         {
             if (inputMove.y == 0)
                 return false;
@@ -239,7 +238,7 @@ namespace Demo.Behavior
 
         #region 速度限制
 
-        private void ClampMoveSpeed(MoveCom moveCom, Collider2DCom collider2DCom)
+        private void ClampMoveSpeed(PlayerMoveCom moveCom, Collider2DCom collider2DCom)
         {
             if (collider2DCom.Collider.Left)
             {
@@ -261,7 +260,7 @@ namespace Demo.Behavior
 
         #region 移动冷却
 
-        private bool CheckMoveTypeInCD(MoveCom moveCom)
+        private bool CheckMoveTypeInCD(PlayerMoveCom moveCom)
         {
             if (Time.realtimeSinceStartup > moveCom.MoveTypeCd)
             {
@@ -271,7 +270,7 @@ namespace Demo.Behavior
             return true;
         }
 
-        private void HandleMoveTypeCD(MoveType moveType,MoveCom moveCom)
+        private void HandleMoveTypeCD(MoveType moveType, PlayerMoveCom moveCom)
         {
             if (moveType == MoveType.ClimbJump)
             {
@@ -281,32 +280,9 @@ namespace Demo.Behavior
 
         #endregion
 
-        #region 处理重力
-
-        private void HandleMass(MoveType moveType, PropertyCom propertyCom)
-        {
-            switch (moveType)
-            {
-                case MoveType.None:
-                case MoveType.Run:
-                case MoveType.Jump:
-                    propertyCom.Mass = 1;
-                    break;
-                case MoveType.Climb:
-                case MoveType.ClimbJump:
-                case MoveType.GrabWall:
-                    propertyCom.Mass = 0.6f;
-                    break;
-                default:
-                    break;
-            }
-        }
-
-        #endregion
-
         #region 方向
 
-        private void HandleMoveDir(MoveCom moveCom, TransformCom transCom)
+        private void HandleMoveDir(PlayerMoveCom moveCom, TransformCom transCom)
         {
             if (moveCom.ReqMoveSpeed == 0)
                 return;

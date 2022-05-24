@@ -53,15 +53,7 @@ namespace Demo
         protected override void OnEnabled()
         {
             base.OnEnabled();
-            this[nameof(Hp)] = new BindableProperty<PropertyInfo>(() => Hp, v => Hp = v, "生命");
-            this[nameof(Mp)] = new BindableProperty<PropertyInfo>(() => Mp, v => Mp = v, "魔法");
-            this[nameof(Attack)] = new BindableProperty<PropertyInfo>(() => Attack, v => Attack = v, "攻击");
-            this[nameof(MoveSpeed)] = new BindableProperty<PropertyInfo>(() => MoveSpeed, v => MoveSpeed = v, "移动速度");
-            this[nameof(JumpSpeed)] = new BindableProperty<PropertyInfo>(() => JumpSpeed, v => JumpSpeed = v, "跳跃速度");
-            this[nameof(ClimbSpeed)] = new BindableProperty<PropertyInfo>(() => ClimbSpeed, v => ClimbSpeed = v, "爬墙速度");
-            this[nameof(ActionSpeed)] = new BindableProperty<PropertyInfo>(() => ActionSpeed, v => ActionSpeed = v, "行动速度");
         }
-
 
         public override BaseCom CreateRuntimeNode()
         {
@@ -142,11 +134,11 @@ namespace Demo
     {
         public override string Title { get => "移动组件"; set => base.Title = value; }
         public override string Tooltip { get => "移动组件"; set => base.Tooltip = value; }
-        public override Type RuntimeNode => typeof(MoveCom);
+        public override Type RuntimeNode => typeof(PlayerMoveCom);
 
         public override BaseCom CreateRuntimeNode()
         {
-            MoveCom com = new MoveCom();
+            PlayerMoveCom com = new PlayerMoveCom();
             return com;
         }
     }
@@ -158,13 +150,13 @@ namespace Demo
         public override string Tooltip { get => "重力组件"; set => base.Tooltip = value; }
         public override Type RuntimeNode => typeof(GravityCom);
 
-        [NodeValue("重力方向")]
-        public GravityDir Dir = GravityDir.Down;
+        [NodeValue("质量")]
+        public float Mass = 1;
 
         public override BaseCom CreateRuntimeNode()
         {
             GravityCom com = new GravityCom();
-            com.Dir = Dir;
+            com.Mass = Mass;
             return com;
         }
     }

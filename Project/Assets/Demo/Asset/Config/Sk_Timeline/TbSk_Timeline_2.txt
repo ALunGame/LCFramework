@@ -1,0 +1,1 @@
+﻿{"mType":"LCSkill.TimelineModel","name":"2","duration":0.5,"nodes":[{"mType":"Demo.Skill.Timeline.SkillTimeline_PlayAnim","animName":"dash","timeElapsed":0},{"mType":"LCSkill.SkillTimeline_CreateBuff","addBuff":{"mType":"LCSkill.AddBuffModel","id":"2","addStack":1,"durationSetType":false,"duration":0.5,"isPermanent":false},"timeElapsed":0}],"goToNode":null}

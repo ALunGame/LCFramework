@@ -2,9 +2,6 @@
 using LCECS.Core;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Demo.System
@@ -31,7 +28,7 @@ namespace Demo.System
             //位移
             Vector3 delta = new Vector3(wanderCom.WanderDir == DirType.Right ? 1 : -1, 0, 0);
             delta = delta * propertyCom.MoveSpeed.Curr * Time.deltaTime;
-            transCom.Trans.Translate(delta,Space.World);
+            transCom.ReqMove = delta;
         }
 
         public DirType CalcWanderMoveDir(WanderCom wanderCom, Collider2DCom collider2DCom)

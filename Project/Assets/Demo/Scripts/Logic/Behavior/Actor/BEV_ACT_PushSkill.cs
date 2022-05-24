@@ -4,6 +4,7 @@ using LCECS.Core.Tree.Base;
 using LCECS.Core.Tree.Nodes.Action;
 using LCECS.Data;
 using LCSkill;
+using UnityEngine;
 
 namespace Demo.Behavior
 {
@@ -27,11 +28,30 @@ namespace Demo.Behavior
             PushSkillData userData = context.GetUserData<PushSkillData>();
             userData.skillId = skillId;
 
-            SkillCom skillCom = workData.MEntity.GetCom<SkillCom>();
-            MoveCom moveCom = workData.MEntity.GetCom<MoveCom>();
-            moveCom.HasNoReqMove = true;
-            skillCom.ReleaseSkill(skillId);
+            //打断移动
+            TransformCom transformCom = workData.MEntity.GetCom<TransformCom>();
+            if (transformCom != null)
+            {
+                transformCom.ReqMove = Vector3.zero;
+                transformCom.ReqDir  = DirType.None;
+            }
+            PlayerMoveCom moveCom = workData.MEntity.GetCom<PlayerMoveCom>();
+            if (moveCom != null)
+            {
+                moveCom.HasNoReqMove = true;
+                moveCom.Rig.velocity = Vector2.zero;
+            }
 
+            //释放技能
+            SkillCom skillCom = workData.MEntity.GetCom<SkillCom>();
+            if (skillCom.ReleaseSkill(skillId))
+            {
+                userData.skillId = skillId;
+            }
+            else
+            {
+                userData.skillId = "-1";
+            }
             LCECS.ECSLocate.Log.LogWarning("释放技能>>>>>", skillId);
         }
 
@@ -42,7 +62,7 @@ namespace Demo.Behavior
             PushSkillData userData = context.GetUserData<PushSkillData>();
 
             SkillCom skillCom = workData.MEntity.GetCom<SkillCom>();
-            if (skillCom.CheckSkillIsFinish(userData.skillId))
+            if (userData.skillId == "-1" || skillCom.CheckSkillIsFinish(userData.skillId))
             {
                 return NodeState.FINISHED;
             }
@@ -55,8 +75,9 @@ namespace Demo.Behavior
         protected override void OnExit(NodeData wData, int runningStatus)
         {
             EntityWorkData workData = wData as EntityWorkData;
-            MoveCom moveCom = workData.MEntity.GetCom<MoveCom>();
-            moveCom.HasNoReqMove = false;
+            NodeActionContext context = GetContext<NodeActionContext>(wData);
+            PushSkillData userData = context.GetUserData<PushSkillData>();
+            userData.skillId = "-1";
         }
 
     }

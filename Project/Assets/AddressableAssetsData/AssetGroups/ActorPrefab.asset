@@ -25,10 +25,6 @@ MonoBehaviour:
     m_Address: Actor_101
     m_ReadOnly: 0
     m_SerializedLabels: []
-  - m_GUID: 394bd3848cefc80448434a94bc1e23f1
-    m_Address: 1001
-    m_ReadOnly: 0
-    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: c106a54d1dad7c34dbca1e47199c97a1, type: 2}
   m_SchemaSet:

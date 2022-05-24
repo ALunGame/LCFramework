@@ -59,6 +59,17 @@ namespace LCSkill
         /// </summary>
         [Header("受到伤害添加的Buff")]
         public List<AddBuffModel> addBuffs;
+
+        public static DamageModel Null 
+        { 
+            get 
+            {   
+                DamageModel model = new DamageModel();
+                model.addBuffs = new List<AddBuffModel>();
+                model.damages = new List<DamageInfo>();
+                return model; 
+            }
+        }
     }
 
     /// <summary>

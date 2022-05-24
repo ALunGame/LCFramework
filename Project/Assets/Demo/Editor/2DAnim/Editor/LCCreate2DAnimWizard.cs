@@ -89,12 +89,7 @@ namespace LC2DAnim
                 return;
             
             //创建动画控制器
-            AnimatorController animatorController = CreateAnimatorController(selectDirInfo.Name, clips, selectFloder + "/Anim");
-            
-            //创建预制体
-            if (!Directory.Exists(selectFloder + "/Prefab"))
-                Directory.CreateDirectory(selectFloder + "/Prefab");
-            CreatePrefab(selectDirInfo.Name,animatorController,selectFloder + "/Prefab");
+            CreateAnimatorController(selectDirInfo.Name, clips, selectFloder + "/Anim");
         }
 
         //创建动画片段

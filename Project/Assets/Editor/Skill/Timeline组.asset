@@ -1,5 +1,20 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-9106878983815053236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb681a76c9c8b5d408d6407cdbf4ac5a, type: 3}
+  m_Name: timeline_2
+  m_EditorClassIdentifier: 
+  Go: {fileID: 0}
+  serializedGraph: '{"mType":"LCSkill.SkillTimelineGraph","Name":"","DurationTime":0.5,"Tracks":[{"mType":"Demo.Skill_Tl_PlayAnimTrack","Clips":[{"mType":"Demo.Skill_Tl_PlayAnimClip","animName":"dash","StartTime":0,"EndTime":0.5,"DurationTime":0.5}]},{"mType":"LCSkill.Skill_Tl_CreateBuffTrack","Clips":[{"mType":"LCSkill.Skill_Tl_CreateBuffClip","addBuff":{"mType":"LCSkill.AddBuffModel","id":"2","addStack":1,"durationSetType":false,"duration":0.5,"isPermanent":false},"StartTime":0,"EndTime":0.5,"DurationTime":0.5}]}]}'
+  timelineName: 2
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0

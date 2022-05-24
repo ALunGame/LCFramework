@@ -84,9 +84,5 @@ namespace Demo.Com
         /// 行动速度（攻击速度）
         /// </summary>
         public PropertyInfo ActionSpeed;
-        /// <summary>
-        /// 质量
-        /// </summary>
-        public float Mass = 1;
     }
 }

@@ -42,12 +42,15 @@ MonoBehaviour:
     sort: 8
   - typeName: Collider2DSystem
     typeFullName: Demo.System.Collider2DSystem
+    sort: 10
+  - typeName: WanderSystem
+    typeFullName: Demo.System.WanderSystem
+    sort: 11
+  - typeName: GravitySystem
+    typeFullName: Demo.System.GravitySystem
     sort: 12
   - typeName: TransformSystem
     typeFullName: Demo.System.TransformSystem
-    sort: 12
-  - typeName: GravitySystem
-    typeFullName: Demo.System.GravitySystem
     sort: 13
   - typeName: MoveSystem
     typeFullName: Demo.System.MoveSystem
@@ -58,6 +61,9 @@ MonoBehaviour:
   - typeName: DragCameraSystem
     typeFullName: Demo.System.DragCameraSystem
     sort: 14
+  - typeName: PlayerMoveSystem
+    typeFullName: Demo.System.PlayerMoveSystem
+    sort: 16
   fixedUpdateSystems:
   - typeName: BuffSystem
     typeFullName: LCSkill.BuffSystem

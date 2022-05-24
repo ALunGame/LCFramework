@@ -9,7 +9,7 @@ namespace Demo.Com
     /// 移动组件
     /// </summary>
     [Serializable]
-    public class MoveCom : BaseCom
+    public class PlayerMoveCom : BaseCom
     {
         [NonSerialized]
         public Rigidbody2D Rig;

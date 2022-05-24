@@ -14,12 +14,13 @@ namespace Demo.Skill.Timeline
 
         public override void Execute(TimelineObj timelineObj)
         {
+            ECSLocate.Log.Log("SkillTimeline_PlayAnim>>>>", timelineObj.ower.EntityId);
+
             if (timelineObj.ower == null)
                 return;
             Entity entity = ECSLocate.ECS.GetEntity(timelineObj.ower.EntityId);
             if (entity == null)
             {
-                ECSLocate.Log.LogError("SkillTimeline_PlayAnim>>>>", timelineObj.ower.EntityId);
                 return;
             }
             AnimCom animCom = entity.GetCom<AnimCom>();

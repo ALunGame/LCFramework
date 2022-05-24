@@ -81,6 +81,18 @@ MonoBehaviour:
     m_Address: TbEntity_2
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 1c4d6caf88ef0a24fb76f6e188919116
+    m_Address: TbBuff_2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 4dc1ffd0a5938964ca12c6e114c9e587
+    m_Address: TbSkill_2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: c5f669809980b374f9d914a3471bf9ea
+    m_Address: TbSk_Timeline_2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: c106a54d1dad7c34dbca1e47199c97a1, type: 2}
   m_SchemaSet:

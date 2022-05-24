@@ -20,9 +20,6 @@ namespace Demo.Com
         [NonSerialized]
         public DirType CurrDir = DirType.None;
 
-        [NonSerialized]
-        public DirType ReqDir;
-
         /// <summary>
         /// 创建时的坐标
         /// </summary>
@@ -36,6 +33,11 @@ namespace Demo.Com
 
         [NonSerialized]
         public Transform DisplayTrans;
+
+        [NonSerialized]
+        public DirType ReqDir;
+        [NonSerialized]
+        public Vector3 ReqMove;
 
         protected override void OnInit(GameObject go)
         {

@@ -62,6 +62,7 @@ namespace Demo.Com
 
         public void SetReqAnim(string animName)
         {
+            LCECS.ECSLocate.Log.Log("SetReqAnim>>>>>", animName);
             ReqAnimName = animName;
         }
 

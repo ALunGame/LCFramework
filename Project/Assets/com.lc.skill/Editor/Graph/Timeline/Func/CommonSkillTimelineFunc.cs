@@ -46,4 +46,25 @@ namespace LCSkill
             return func;
         }
     }
+
+    [TrackMenu("创建Buff")]
+    public class Skill_Tl_CreateBuffTrack : TLSK_TrackData
+    {
+        public override string TitleName => "创建Buff";
+        public override Type ClipType => typeof(Skill_Tl_CreateBuffClip);
+    }
+
+    [ClipMenu("创建Buff")]
+    public class Skill_Tl_CreateBuffClip : TLSK_ClipData
+    {
+        public override string TitleName => $"创建Buff：{addBuff.id}";
+        public AddBuffModel addBuff = new AddBuffModel();
+
+        public override TimelineFunc CreateFunc()
+        {
+            SkillTimeline_CreateBuff func = new SkillTimeline_CreateBuff();
+            func.addBuff = addBuff;
+            return func;
+        }
+    }
 }

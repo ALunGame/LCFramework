@@ -100,7 +100,13 @@ namespace LCECS
             foreach (var item in systemSortAsset.GetSystemSorts(SystemType.Update))
             {
                 Type systemType = ReflectionHelper.GetType(item.typeFullName);
-                BaseSystem system = ReflectionHelper.CreateInstance(systemType) as BaseSystem;
+                if (systemType == null)
+                {
+                    LCECS.ECSLocate.Log.LogError("系统创建失败>>>", systemType, item.typeFullName);
+                    continue;
+                }
+                object systemObj = ReflectionHelper.CreateInstance(systemType);
+                BaseSystem system = systemObj as BaseSystem;
                 system.Init();
                 ECSLocate.ECS.RegUpdateSystem(system);
             }

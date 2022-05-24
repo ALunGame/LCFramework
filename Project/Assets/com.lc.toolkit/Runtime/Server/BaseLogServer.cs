@@ -33,7 +33,13 @@ namespace LCToolkit.Server
             }
 
             if (args != null && args.Length > 0)
-                stringBuilder.AppendFormat(log, args);
+            {
+                stringBuilder.Append(log);
+                for (int i = 0; i < args.Length; i++)
+                {
+                    stringBuilder.Append(" "+args[i]);
+                }
+            }
             else
                 stringBuilder.Append(log);
 

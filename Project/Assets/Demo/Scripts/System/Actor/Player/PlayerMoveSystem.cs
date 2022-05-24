@@ -6,17 +6,17 @@ using UnityEngine;
 
 namespace Demo.System
 {
-    public class MoveSystem : BaseSystem
+    public class PlayerMoveSystem : BaseSystem
     {
         protected override List<Type> RegListenComs()
         {
-            return new List<Type>() { typeof(PropertyCom), typeof(MoveCom), typeof(AnimCom), typeof(Collider2DCom) };
+            return new List<Type>() { typeof(PropertyCom), typeof(PlayerMoveCom), typeof(AnimCom), typeof(Collider2DCom) };
         }
 
         protected override void HandleComs(List<BaseCom> comList)
         {
             PropertyCom propertyCom = GetCom<PropertyCom>(comList[0]);
-            MoveCom moveCom = GetCom<MoveCom>(comList[1]);
+            PlayerMoveCom moveCom = GetCom<PlayerMoveCom>(comList[1]);
 
             if (moveCom.HasNoReqMove)
                 return;
@@ -30,21 +30,37 @@ namespace Demo.System
             HandleMoveAnim(comList);
         }
 
-        private void HandleGravitySpeed(MoveCom moveCom, PropertyCom propertyCom)
+        private void HandleGravitySpeed(PlayerMoveCom moveCom, PropertyCom propertyCom)
         {
+            float massValue = 0;
+            switch (moveCom.CurrMoveType)
+            {
+                case Behavior.MoveType.None:
+                case Behavior.MoveType.Run:
+                case Behavior.MoveType.Jump:
+                    massValue = 1;
+                    break;
+                case Behavior.MoveType.Climb:
+                case Behavior.MoveType.ClimbJump:
+                case Behavior.MoveType.GrabWall:
+                    massValue = 0.6f;
+                    break;
+                default:
+                    break;
+            }
             if (moveCom.Rig.velocity.y < 0)
             {
-                moveCom.Rig.velocity += Definition.Gravity * 1.5f * propertyCom.Mass * Time.deltaTime;
+                moveCom.Rig.velocity += Definition.Gravity * 1.5f * massValue * Time.deltaTime;
             }
             else if (moveCom.Rig.velocity.y > 0)
             {
-                moveCom.Rig.velocity += Definition.Gravity * 1 * propertyCom.Mass * Time.deltaTime;
+                moveCom.Rig.velocity += Definition.Gravity * 1 * massValue * Time.deltaTime;
             }
         }
 
         private void HandleMoveAnim(List<BaseCom> comList)
         {
-            MoveCom moveCom = GetCom<MoveCom>(comList[1]);
+            PlayerMoveCom moveCom = GetCom<PlayerMoveCom>(comList[1]);
             AnimCom animCom = GetCom<AnimCom>(comList[2]);
             Collider2DCom collider2DCom = GetCom<Collider2DCom>(comList[3]);
 

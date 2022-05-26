@@ -10,12 +10,28 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e6c8efba6f25e314aa305232421793db, type: 3}
-  m_Name: aoe_1
+  m_Name: aoe_100101
   m_EditorClassIdentifier: 
   serializedGraph: '{"mType":"LCSkill.AoeGraph.AoeGraph","pos":{"mType":"UnityEngine.Vector3","x":303.0,"y":81.0,"z":0.0},"zoom":{"mType":"UnityEngine.Vector3","x":1.0,"y":1.0,"z":1.0},"nodes":{"mType":"System.Collections.Generic.Dictionary`2[[System.String,
     mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089],[LCNode.Model.BaseNode,
     Assembly-CSharp-Editor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]","75e0c8a7-97b9-413e-9da2-9ff18f018b46":{"mType":"LCSkill.AoeGraph.Aoe_Node","asset":{"mType":"LCToolkit.UnityObjectAsset","ObjName":null,"ObjPath":null},"areaShape":{"mType":"LCToolkit.Shape","ShapeType":0,"AABBMin":{"mType":"UnityEngine.Vector2","x":1.0,"y":1.0},"AABBMax":{"mType":"UnityEngine.Vector2","x":-1.0,"y":-1.0},"Center":{"mType":"UnityEngine.Vector2","x":0.0,"y":0.0},"CircleRadius":0,"PolygonVertices":[]},"tickTime":-1,"moveFunc":null,"onCreateFunc":null,"onTickFunc":null,"onRemovedFunc":null,"onActorEnterFunc":null,"onActorLeaveFunc":null,"onBulletEnterFunc":null,"onBulletLeaveFunc":null,"guid":"75e0c8a7-97b9-413e-9da2-9ff18f018b46","position":{"mType":"UnityEngine.Vector2","x":0.0,"y":0.0}},"632b13a3-b18b-4aaf-9073-73cb3c28fef6":{"mType":"LCSkill.AoeGraph.Aoe_ActorEnterDamageNode","damage":{"mType":"LCSkill.DamageModel","damages":[{"mType":"LCSkill.DamageInfo","damage":10,"type":0,"hitRate":1,"criticalRate":0}],"addBuffs":[]},"parentNode":null,"guid":"632b13a3-b18b-4aaf-9073-73cb3c28fef6","position":{"mType":"UnityEngine.Vector2","x":361.0,"y":99.0}}},"connections":[{"mType":"LCNode.Model.BaseConnection","from":"75e0c8a7-97b9-413e-9da2-9ff18f018b46","fromPortName":"\u5F53\u6F14\u5458\u8FDB\u5165\u65F6","to":"632b13a3-b18b-4aaf-9073-73cb3c28fef6","toPortName":"\u7236\u8282\u70B9"}]}'
-  aoeId: 1
+  aoeId: 100101
+--- !u!114 &-1827610720920577386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6c8efba6f25e314aa305232421793db, type: 3}
+  m_Name: aoe_100501
+  m_EditorClassIdentifier: 
+  serializedGraph: '{"mType":"LCSkill.AoeGraph.AoeGraph","pos":{"mType":"UnityEngine.Vector3","x":85.0,"y":1.0,"z":0.0},"zoom":{"mType":"UnityEngine.Vector3","x":1.14999997615814,"y":1.14999997615814,"z":1.0},"nodes":{"mType":"System.Collections.Generic.Dictionary`2[[System.String,
+    mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089],[LCNode.Model.BaseNode,
+    Assembly-CSharp-Editor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]","05253cbd-6b21-41ca-b01b-69f1a26c981c":{"mType":"LCSkill.AoeGraph.Aoe_Node","asset":{"mType":"LCToolkit.UnityObjectAsset","assetType":0,"ObjName":"","ObjPath":""},"areaShape":{"mType":"LCToolkit.Shape","ShapeType":0,"AABBMin":{"mType":"UnityEngine.Vector2","x":-1.0,"y":-1.0},"AABBMax":{"mType":"UnityEngine.Vector2","x":1.0,"y":1.0},"Center":{"mType":"UnityEngine.Vector2","x":0.0,"y":0.0},"CircleRadius":0,"PolygonVertices":null},"tickTime":-1,"moveFunc":null,"onCreateFunc":null,"onTickFunc":null,"onRemovedFunc":null,"onActorEnterFunc":null,"onActorLeaveFunc":null,"onBulletEnterFunc":null,"onBulletLeaveFunc":null,"guid":"05253cbd-6b21-41ca-b01b-69f1a26c981c","position":{"mType":"UnityEngine.Vector2","x":0.0,"y":0.0}},"b758d02d-9dfe-43de-b145-a241e2b7e44e":{"mType":"LCSkill.AoeGraph.Aoe_ActorEnterDamageNode","damage":{"mType":"LCSkill.DamageModel","damages":[{"mType":"LCSkill.DamageInfo","damage":10,"type":0,"hitRate":1,"criticalRate":0}],"addBuffs":[]},"parentNode":null,"guid":"b758d02d-9dfe-43de-b145-a241e2b7e44e","position":{"mType":"UnityEngine.Vector2","x":307.0,"y":98.0}}},"connections":[{"mType":"LCNode.Model.BaseConnection","from":"05253cbd-6b21-41ca-b01b-69f1a26c981c","fromPortName":"\u5F53\u6F14\u5458\u8FDB\u5165\u65F6","to":"b758d02d-9dfe-43de-b145-a241e2b7e44e","toPortName":"\u7236\u8282\u70B9"}]}'
+  aoeId: 100501
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0

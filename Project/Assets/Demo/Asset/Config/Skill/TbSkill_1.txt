@@ -1,1 +1,0 @@
-﻿{"mType":"LCSkill.SkillModel","id":"1","name":"skill_1","condition":null,"costs":[],"timeline":"1","addBuffs":[]}

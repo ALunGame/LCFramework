@@ -47,6 +47,12 @@ namespace Demo.Com
         [NonSerialized]
         public int JumpStep;
 
+        /// <summary>
+        /// 请求设置位置
+        /// </summary>
+        [NonSerialized]
+        public Vector3 ReqMove;
+
         protected override void OnInit(GameObject go)
         {
             Rig = go.GetComponent<Rigidbody2D>();

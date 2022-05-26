@@ -1,6 +1,8 @@
 ﻿using LCToolkit;
 using LCToolkit.Core;
 using UnityEngine;
+using UnityEditor;
+using System.Reflection;
 
 namespace LCTimeline.Inspector
 {
@@ -26,7 +28,35 @@ namespace LCTimeline.Inspector
                 GUILayout.Label("Clip:" + clipModel.TitleName, bigLabel.value);
             });
 
-            base.OnInspectorGUI();
+            float tStart = EditorGUILayout.FloatField("Start", clipModel.StartTime);
+            if (tStart != clipModel.StartTime)
+            {
+                clipModel.SetStart((float)tStart);
+            }
+
+            float tEnd = EditorGUILayout.FloatField("End", clipModel.EndTime);
+            if (tEnd != clipModel.EndTime)
+            {
+                clipModel.SetEnd((float)tEnd);
+            }
+
+            EditorGUI.BeginDisabledGroup(true);
+            EditorGUILayout.FloatField("Duration", clipModel.DurationTime);
+            EditorGUI.EndDisabledGroup();
+
+            foreach (var field in Fields)
+            {
+                if (field.Name == "StartTime" || field.Name == "EndTime" || field.Name == "DurationTime")
+                {
+                    continue;
+                }
+                DrawFields(field);
+            }
+        }
+
+        public virtual void DrawFields(FieldInfo fieldInfo)
+        {
+            GUILayoutExtension.DrawField(fieldInfo, Target);
         }
     }
 }

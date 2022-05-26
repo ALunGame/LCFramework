@@ -26,7 +26,7 @@ namespace LCECS.Core.Tree.Nodes.Control
 
             //寻找可以运行的
             int childCount = GetChildCount();
-            for (int i = 0; i < childCount; ++i)
+            for (int i = 0; i < childCount; i++)
             {
                 Node node = GetChild<Node>(i);
                 if (node.Evaluate(wData))

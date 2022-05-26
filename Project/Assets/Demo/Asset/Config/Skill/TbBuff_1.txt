@@ -1,1 +1,0 @@
-﻿{"mType":"LCSkill.BuffModel","id":"1","name":"buff_1","tags":null,"priority":0,"maxStack":0,"tickTime":-1,"onFreedFunc":null,"onOccurFunc":[],"onTickFunc":[],"onRemovedFunc":[],"onHurtFunc":[],"onBeHurtFunc":[],"onKilledFunc":[],"onBeKilledFunc":[]}

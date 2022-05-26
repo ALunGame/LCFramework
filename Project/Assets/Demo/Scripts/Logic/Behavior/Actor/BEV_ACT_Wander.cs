@@ -3,6 +3,7 @@ using LCECS.Core.Tree;
 using LCECS.Core.Tree.Base;
 using LCECS.Core.Tree.Nodes.Action;
 using LCECS.Data;
+using UnityEngine;
 
 namespace Demo.Behavior
 {
@@ -17,6 +18,8 @@ namespace Demo.Behavior
             WanderCom wanderCom = workData.MEntity.GetCom<WanderCom>();
             wanderCom.WanderRange = wanderRange;
             wanderCom.Enable();
+            LCECS.ECSLocate.Log.LogError("BEV_ACT_Wander>>>>OnEnter");
+            Debug.LogError("BEV_ACT_Wander>>>>OnEnter");
         }
 
         protected override int OnRunning(NodeData wData)
@@ -30,6 +33,8 @@ namespace Demo.Behavior
             //组件
             WanderCom wanderCom = workData.MEntity.GetCom<WanderCom>();
             wanderCom.Disable();
+            LCECS.ECSLocate.Log.LogError("BEV_ACT_Wander>>>>OnExit");
+            Debug.LogError("BEV_ACT_Wander>>>>OnExit");
         }
     }
 }

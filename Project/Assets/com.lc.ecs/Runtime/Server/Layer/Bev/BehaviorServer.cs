@@ -1,6 +1,7 @@
 ﻿using LCECS.Data;
 using LCECS.Layer.Behavior;
 using LCJson;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 #if UNITY_EDITOR
@@ -14,6 +15,14 @@ namespace LCECS.Server.Layer
         
         public void Init()
         {
+            foreach (var item in Enum.GetValues(typeof(RequestId)))
+            {
+                BehaviorTree tree = LoadBehavior((RequestId)item);
+                if (tree != null)
+                {
+                    BevDict.Add((RequestId)item, tree);
+                }
+            }
         }
 
         public void ReqBev(EntityWorkData workData, RequestId clearReqId)
@@ -43,11 +52,7 @@ namespace LCECS.Server.Layer
         {
             if (!BevDict.ContainsKey(reqId))
             {
-                BehaviorTree tree = LoadBehavior(reqId);
-                if (tree != null)
-                {
-                    BevDict.Add(reqId, tree);
-                }
+                return null;
             }
             return BevDict[reqId];
         }

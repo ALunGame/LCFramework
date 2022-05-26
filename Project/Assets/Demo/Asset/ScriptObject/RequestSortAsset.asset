@@ -20,21 +20,21 @@ MonoBehaviour:
     isCustom: 0
   - key: Move
     name: Move
-    sort: -1
+    sort: -2
     isCover: 0
     isCustom: 0
   - key: PushSkill
     name: PushSkill
-    sort: -2
-    isCover: 0
-    isCustom: 0
-  - key: Jump
-    name: Jump
-    sort: -1
+    sort: -3
     isCover: 0
     isCustom: 0
   - key: Wander
     name: "\u5F98\u5F8A"
     sort: -1
+    isCover: 0
+    isCustom: 0
+  - key: GazeSurround
+    name: GazeSurround
+    sort: -2
     isCover: 0
     isCustom: 0

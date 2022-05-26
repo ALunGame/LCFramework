@@ -179,6 +179,8 @@ namespace Demo
         }
     }
 
+    #region AI
+
     [NodeMenuItem("演员/AI/徘徊组件")]
     public class Entity_Node_WanderCom : Entity_ComNode
     {
@@ -192,6 +194,22 @@ namespace Demo
             return com;
         }
     }
+
+    [NodeMenuItem("演员/AI/注视环绕组件")]
+    public class Entity_Node_GazeSurroundCom : Entity_ComNode
+    {
+        public override string Title { get => "注视环绕组件"; set => base.Title = value; }
+        public override string Tooltip { get => "注视环绕组件"; set => base.Tooltip = value; }
+        public override Type RuntimeNode => typeof(GazeSurroundCom);
+
+        public override BaseCom CreateRuntimeNode()
+        {
+            GazeSurroundCom com = new GazeSurroundCom();
+            return com;
+        }
+    }
+
+    #endregion
 
     #endregion
 

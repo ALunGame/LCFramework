@@ -47,6 +47,9 @@ namespace Demo.Com
         private BoxCollider2D collider2D;
 
         [NonSerialized]
+        public Shape colliderShape;
+
+        [NonSerialized]
         public Vector2 UpCheckPoint;
 
         [NonSerialized]
@@ -83,8 +86,14 @@ namespace Demo.Com
             DownCheckPoint  = new Vector2(offset.x, offset.y - collider2D.bounds.extents.y - CollisionOffset);
             RightCheckPoint = new Vector2(offset.x + collider2D.bounds.extents.x + CollisionOffset, offset.y);
             LeftCheckPoint  = new Vector2(offset.x - collider2D.bounds.extents.x - CollisionOffset, offset.y);
+
+            colliderShape = new Shape();
+            colliderShape.ShapeType = ShapeType.AABB;
+            colliderShape.AABBMin = new Vector2(offset.x - collider2D.bounds.extents.x, offset.y - collider2D.bounds.extents.y);
+            colliderShape.AABBMax = new Vector2(offset.x + collider2D.bounds.extents.x, offset.y + collider2D.bounds.extents.y);
         }
 
+        private Vector2[] _cacheVects = new Vector2[4];
         public override void OnDrawGizmosSelected()
         {
             Vector2 pos = trans.position;
@@ -100,6 +109,10 @@ namespace Demo.Com
 
             Gizmos.color = Color.red;
             Gizmos.DrawSphere(pos + RightCheckPoint, 0.05f);
+
+            Shape shape = colliderShape;
+            shape.Translate(pos);
+            Shape.RenderShape(shape, _cacheVects);
         }
     }
 }

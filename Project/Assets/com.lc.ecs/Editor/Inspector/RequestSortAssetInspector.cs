@@ -117,6 +117,11 @@ namespace LCECS.Config
                         sort.sort++;
                         UpdateSystemSort();
                     });
+                    MiscHelper.Btn("Del", 50, 35, () =>
+                    {
+                        sortAsset.requests.Remove(sort);
+                        UpdateSystemSort();
+                    });
                 }
                 EditorGUILayout.EndHorizontal();
 

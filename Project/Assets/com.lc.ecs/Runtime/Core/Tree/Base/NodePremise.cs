@@ -1,50 +1,6 @@
 ﻿
-
-using System;
-
 namespace LCECS.Core.Tree.Base
 {
-
-    /// <summary>
-    /// 节点前提特性 类可用
-    /// </summary>
-    [AttributeUsage(AttributeTargets.Class)]
-    public class NodePremiseAttribute : Attribute
-    {
-        /// <summary>
-        /// 编辑器显示名
-        /// </summary>
-        public string ViewName { get; set; } = "";
-
-        /// <summary>
-        /// 编辑器显示名
-        /// </summary>
-        public string GroupName { get; set; } = "";
-
-        public NodePremiseAttribute(string name)
-        {
-            ViewName = name;
-        }
-
-        public NodePremiseAttribute(string name, string groupName)
-        {
-            ViewName = name;
-            GroupName = groupName;
-        }
-    }
-
-    ///// <summary>
-    ///// 节点字段特性 字段可用
-    ///// </summary>
-    //[AttributeUsage(AttributeTargets.Field)]
-    //public class NodePremiseValueAttribute : Attribute
-    //{
-    //    /// <summary>
-    //    /// 可以在编辑器模式下编辑
-    //    /// </summary>
-    //    public bool ViewEditor { get; set; } = false;
-    //}
-
     /// <summary>
     /// 节点前提----------单链表
     /// </summary>

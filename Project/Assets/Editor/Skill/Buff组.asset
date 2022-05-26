@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 83a37179aee110c4cb522f7e093c0444, type: 3}
-  m_Name: buff_2
+  m_Name: buff_100102
   m_EditorClassIdentifier: 
   serializedGraph: '{"mType":"LCSkill.BuffGraph.BuffGraph","pos":{"mType":"UnityEngine.Vector3","x":13.0,"y":83.0,"z":0.0},"zoom":{"mType":"UnityEngine.Vector3","x":1.14999997615814,"y":1.14999997615814,"z":1.0},"nodes":{"mType":"System.Collections.Generic.Dictionary`2[[System.String,
     mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089],[LCNode.Model.BaseNode,
     Assembly-CSharp-Editor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]","03214aa9-e834-4a42-ad17-29b5bb60df33":{"mType":"LCSkill.BuffGraph.Buff_Node","tickTime":-1,"onFreedFunc":null,"onOccurFunc":null,"onTickFunc":null,"onRemovedFunc":null,"onHurtFunc":null,"onBeHurtFunc":null,"onKilledFunc":null,"onBeKilledFunc":null,"guid":"03214aa9-e834-4a42-ad17-29b5bb60df33","position":{"mType":"UnityEngine.Vector2","x":246.0,"y":20.0}},"033a4738-c167-4bfd-bcac-67bf21700d58":{"mType":"LCSkill.BuffGraph.Buff_BeHurtDamageNode","damage":{"mType":"LCSkill.DamageModel","damages":[],"addBuffs":[]},"damageSet":true,"damageSelf":false,"parentNode":null,"guid":"033a4738-c167-4bfd-bcac-67bf21700d58","position":{"mType":"UnityEngine.Vector2","x":530.0,"y":119.0}}},"connections":[{"mType":"LCNode.Model.BaseConnection","from":"03214aa9-e834-4a42-ad17-29b5bb60df33","fromPortName":"\u5F53\u88AB\u653B\u51FB\u65F6","to":"033a4738-c167-4bfd-bcac-67bf21700d58","toPortName":"\u7236\u8282\u70B9"}]}'
-  buffId: 2
+  buffId: 100102
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28,17 +28,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b4c03cb59a59624795d01e001092240, type: 3}
   m_Name: "Buff\u7EC4"
   m_EditorClassIdentifier: 
---- !u!114 &7541708115499230009
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83a37179aee110c4cb522f7e093c0444, type: 3}
-  m_Name: buff_1
-  m_EditorClassIdentifier: 
-  serializedGraph: 
-  buffId: 1

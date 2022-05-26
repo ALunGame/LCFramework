@@ -52,9 +52,6 @@ MonoBehaviour:
   - typeName: TransformSystem
     typeFullName: Demo.System.TransformSystem
     sort: 13
-  - typeName: MoveSystem
-    typeFullName: Demo.System.MoveSystem
-    sort: 14
   - typeName: FollowCameraSystem
     typeFullName: Demo.System.FollowCameraSystem
     sort: 14

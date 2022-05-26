@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using LCECS.Core.Tree.Base;
-using UnityEngine;
-using Random = UnityEngine.Random;
 
 namespace LCECS.Core.Tree.Nodes.Control
 {
@@ -57,7 +54,8 @@ namespace LCECS.Core.Tree.Nodes.Control
                 return false;
             }
             
-            thisContext.currentSelectedIndex = Random.Range(0,canRunChildNodes.Count);
+            System.Random random = new System.Random();
+            thisContext.currentSelectedIndex = random.Next(0, canRunChildNodes.Count);
             return true;
         }
 

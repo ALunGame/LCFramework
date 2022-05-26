@@ -70,5 +70,31 @@ namespace LCTimeline
         public float StartTime;
         public float EndTime;
         public float DurationTime;
+
+        public void SetStart(float time)
+        {
+            if (time > EndTime)
+            {
+                return;
+            }
+            StartTime = time;
+            UpdateDuration();
+        }
+
+        public void SetEnd(float time)
+        {
+            if (time < StartTime)
+            {
+                return;
+            }
+            EndTime = time;
+            UpdateDuration();
+        }
+
+        private void UpdateDuration()
+        {
+            DurationTime = EndTime - StartTime;
+        }
+
     }
 }

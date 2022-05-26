@@ -48,12 +48,13 @@ namespace Demo.Behavior
             if (skillCom.ReleaseSkill(skillId))
             {
                 userData.skillId = skillId;
+                LCECS.ECSLocate.Log.Log("释放技能成功>>>>>", skillId);
             }
             else
             {
                 userData.skillId = "-1";
+                LCECS.ECSLocate.Log.LogError("释放技能失败>>>>>", skillId);
             }
-            LCECS.ECSLocate.Log.LogWarning("释放技能>>>>>", skillId);
         }
 
         protected override int OnRunning(NodeData wData)

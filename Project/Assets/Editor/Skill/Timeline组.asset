@@ -10,11 +10,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eb681a76c9c8b5d408d6407cdbf4ac5a, type: 3}
-  m_Name: timeline_2
+  m_Name: timeline_100102
   m_EditorClassIdentifier: 
   Go: {fileID: 0}
-  serializedGraph: '{"mType":"LCSkill.SkillTimelineGraph","Name":"","DurationTime":0.5,"Tracks":[{"mType":"Demo.Skill_Tl_PlayAnimTrack","Clips":[{"mType":"Demo.Skill_Tl_PlayAnimClip","animName":"dash","StartTime":0,"EndTime":0.5,"DurationTime":0.5}]},{"mType":"LCSkill.Skill_Tl_CreateBuffTrack","Clips":[{"mType":"LCSkill.Skill_Tl_CreateBuffClip","addBuff":{"mType":"LCSkill.AddBuffModel","id":"2","addStack":1,"durationSetType":false,"duration":0.5,"isPermanent":false},"StartTime":0,"EndTime":0.5,"DurationTime":0.5}]}]}'
-  timelineName: 2
+  serializedGraph: '{"mType":"LCSkill.SkillTimelineGraph","Name":"","DurationTime":0.25,"Tracks":[{"mType":"Demo.Skill_Tl_PlayAnimTrack","Clips":[{"mType":"Demo.Skill_Tl_PlayAnimClip","anim":{"mType":"LCToolkit.UnityObjectAsset","assetType":1,"ObjName":"dash","ObjPath":"Assets/Demo/Asset/Actors/Player/1001/Anim/dash.anim"},"StartTime":0,"EndTime":0.25,"DurationTime":0.25}]},{"mType":"LCSkill.Skill_Tl_CreateBuffTrack","Clips":[{"mType":"LCSkill.Skill_Tl_CreateBuffClip","addBuff":{"mType":"LCSkill.AddBuffModel","id":"100102","addStack":1,"durationSetType":false,"duration":0.5,"isPermanent":false},"StartTime":0,"EndTime":0.25,"DurationTime":0.25}]},{"mType":"Demo.Skill_Tl_MoveTrack","Clips":[{"mType":"Demo.Skill_Tl_MoveClip","movePos":{"mType":"UnityEngine.Vector2","x":10.0,"y":0.0},"StartTime":0,"EndTime":0.25,"DurationTime":0.25}]}]}'
+  timelineName: 100102
+--- !u!114 &-6443779620572851272
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb681a76c9c8b5d408d6407cdbf4ac5a, type: 3}
+  m_Name: timeline_100501
+  m_EditorClassIdentifier: 
+  Go: {fileID: 5689995233595559735, guid: 247f6d3085ed5224c92bdf7cc056d4d9, type: 3}
+  serializedGraph: '{"mType":"LCSkill.SkillTimelineGraph","Name":"","DurationTime":0.5366653,"Tracks":[{"mType":"Demo.Skill_Tl_PlayAnimTrack","Clips":[{"mType":"Demo.Skill_Tl_PlayAnimClip","anim":{"mType":"LCToolkit.UnityObjectAsset","assetType":1,"ObjName":"attack1","ObjPath":"Assets/Demo/Asset/Actors/Monster/1005/Anim/attack1.anim"},"StartTime":0,"EndTime":0.5333334,"DurationTime":0.5333334}]},{"mType":"LCSkill.Skill_Tl_CreateAoeTrack","Clips":[{"mType":"LCSkill.Skill_Tl_CreateAoeClip","addAoe":{"mType":"LCSkill.AddAoeModel","id":"100501","size":1,"duration":0.2,"follow":true},"StartTime":0.3441433,"EndTime":0.5366653,"DurationTime":0.192522}]}]}'
+  timelineName: 100501
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37,8 +52,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eb681a76c9c8b5d408d6407cdbf4ac5a, type: 3}
-  m_Name: timeline_1
+  m_Name: timeline_100101
   m_EditorClassIdentifier: 
   Go: {fileID: 855395167282372573, guid: 6a01ab910f559064eb633ba634aca85e, type: 3}
-  serializedGraph: '{"mType":"LCSkill.SkillTimelineGraph","Name":"","DurationTime":0.533,"Tracks":[{"mType":"Demo.Skill_Tl_PlayAnimTrack","Clips":[{"mType":"Demo.Skill_Tl_PlayAnimClip","animName":"attack1","StartTime":0,"EndTime":0.533,"DurationTime":0.533}]},{"mType":"LCSkill.Skill_Tl_CreateAoeTrack","Clips":[{"mType":"LCSkill.Skill_Tl_CreateAoeClip","addAoe":{"mType":"LCSkill.AddAoeModel","id":"1","size":1,"duration":0.06,"follow":true},"StartTime":0.27,"EndTime":0.33,"DurationTime":0.06}]}]}'
-  timelineName: 1
+  serializedGraph: '{"mType":"LCSkill.SkillTimelineGraph","Name":"","DurationTime":0.533,"Tracks":[{"mType":"Demo.Skill_Tl_PlayAnimTrack","Clips":[{"mType":"Demo.Skill_Tl_PlayAnimClip","anim":{"mType":"LCToolkit.UnityObjectAsset","assetType":1,"ObjName":"attack1","ObjPath":"Assets/Demo/Asset/Actors/Player/1001/Anim/attack1.anim"},"StartTime":0,"EndTime":0.533,"DurationTime":0.533}]},{"mType":"LCSkill.Skill_Tl_CreateAoeTrack","Clips":[{"mType":"LCSkill.Skill_Tl_CreateAoeClip","addAoe":{"mType":"LCSkill.AddAoeModel","id":"100101","size":1,"duration":0.06,"follow":true},"StartTime":0.27,"EndTime":0.33,"DurationTime":0.06}]}]}'
+  timelineName: 100101

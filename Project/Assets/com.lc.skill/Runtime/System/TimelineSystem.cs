@@ -51,10 +51,17 @@ namespace LCSkill
                 for (int j = 0; j < timeline.model.nodes.Count; j++)
                 {
                     TimelineFunc timelineFunc = timeline.model.nodes[j];
-                    if (timelineFunc.timeElapsed >= wasTimeElapsed &&
-                        timelineFunc.timeElapsed < timeline.timeElapsed)
+                    if (timelineFunc.timeStart >= wasTimeElapsed &&
+                        timelineFunc.timeStart < timeline.timeElapsed)
                     {
-                        timelineFunc.Execute(timeline);
+                        timelineFunc.Enter(timeline);
+                    }
+                    timelineFunc.Tick(timeline);
+                    float endTime = timelineFunc.timeStart + timelineFunc.timeContinue;
+                    if (endTime >= wasTimeElapsed &&
+                        endTime < timeline.timeElapsed)
+                    {
+                        timelineFunc.Exit(timeline);
                     }
                 }
 

@@ -11,75 +11,24 @@ namespace LCECS
     /// <summary>
     /// ECS启动中心
     /// </summary>
-    public class ECSCenter : MonoBehaviour
+    public class ECSCenter
     {
-        [SerializeField]
         private RequestSortAsset requestSortAsset;
-
-        [SerializeField]
         private SystemSortAsset systemSortAsset;
-
+        private bool _Init = false;
         private bool DecThreadRun = false;
-
-        private void Awake()
-        {
-            Init();
-        }
-
-        private void Update()
-        {
-
-            //更新树时间
-            NodeTime.UpdateTime(Time.deltaTime, 1);
-
-            //执行行为树
-            ECSLayerLocate.Behavior.Execute();
-
-            //系统处理
-            ECSLocate.ECS.ExcuteUpdateSystem();
-        }
-
-        private void FixedUpdate()
-        {
-
-
-            //系统处理
-            ECSLocate.ECS.ExcuteFixedUpdateSystem();
-        }
-
-        private void OnDestroy()
-        {
-            DecThreadRun = false;
-            ECSLocate.Clear();
-        }
-
-        //线程执行决策层（只是读取数据操作）
-        private void ThreadExcuteDec()
-        {
-            TaskHelper.AddTask(() =>
-            {
-                while (DecThreadRun)
-                {
-                    Thread.Sleep(100);
-                    //更新决策
-                    ECSLayerLocate.Decision.Execute();
-                }
-            }, () =>
-            {
-                ECSLocate.Log.LogWarning("决策更新结束");
-            });
-        }
 
         #region 初始化
 
-        private void Init()
+        public void Init(RequestSortAsset requestSort, SystemSortAsset systemSortAsset)
         {
+            this.requestSortAsset = requestSort;
+            this.systemSortAsset = systemSortAsset;
+            _Init = true;
             DecThreadRun = true;
-
             InitServer();
-            InitConf();
             RegSystems();
-            ThreadExcuteDec();
+            Execute_Thread();
         }
 
         //设置服务
@@ -87,11 +36,6 @@ namespace LCECS
         {
             ECSLocate.InitServer(this);
             ECSLayerLocate.InitLayerServer();
-        }
-
-        //初始化配置
-        private void InitConf()
-        {
         }
 
         //注册系统
@@ -118,6 +62,60 @@ namespace LCECS
                 ECSLocate.ECS.RegFixedUpdateSystem(system);
             }
         }
+
+        public void Clear()
+        {
+            _Init = false;
+            DecThreadRun = false;
+            ECSLocate.Clear();
+        }
+
+        #endregion
+
+        #region Execute
+
+        public void Execute_Update()
+        {
+            if (!_Init)
+                return;
+
+            //更新树时间
+            NodeTime.UpdateTime(Time.deltaTime, 1);
+
+            //执行行为树
+            ECSLayerLocate.Behavior.Execute();
+
+            //系统处理
+            ECSLocate.ECS.ExcuteUpdateSystem();
+        }
+
+        public void Execute_FixedUpdate()
+        {
+            if (!_Init)
+                return;
+
+            //系统处理
+            ECSLocate.ECS.ExcuteFixedUpdateSystem();
+        }
+
+        public void Execute_Thread()
+        {
+            if (!_Init)
+                return;
+            TaskHelper.AddTask(() =>
+            {
+                while (DecThreadRun)
+                {
+                    Thread.Sleep(100);
+                    //更新决策
+                    ECSLayerLocate.Decision.Execute();
+                }
+            }, () =>
+            {
+                ECSLocate.Log.LogWarning("决策更新结束");
+            });
+        }
+
         #endregion
 
         #region Get

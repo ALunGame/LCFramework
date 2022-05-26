@@ -25,8 +25,10 @@ namespace Demo.Com
         /// </summary>
         public Vector3 CreatePos { get;private set; }
 
+        public Vector3 CurrPos;
+
         [NonSerialized]
-        public Transform Trans;
+        private Transform Trans;
 
         [NonSerialized]
         public Transform DisplayRootTrans;
@@ -43,6 +45,8 @@ namespace Demo.Com
         {
             Trans = go.transform;
             CreatePos = go.transform.position;
+            CurrPos = CreatePos;
+
             ActorObj actorObj = go.GetComponent<ActorObj>();
             actorObj.OnDisplayGoChange += OnDisplayGoChange;
             OnDisplayGoChange(actorObj);
@@ -52,6 +56,22 @@ namespace Demo.Com
         {
             DisplayRootTrans = actorObj.GetDisplayRootGo().transform;
             DisplayTrans = actorObj.GetDisplayGo().transform;
+        }
+
+        public Vector2 GetPos()
+        {
+            return CurrPos;
+        }
+
+        public void Translate(Vector3 delta)
+        {
+            Trans.Translate(delta, Space.World);
+            CurrPos = Trans.position;
+        }
+
+        public void UpdatePos()
+        {
+            CurrPos = Trans.position;
         }
     }
 }

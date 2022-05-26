@@ -11,15 +11,22 @@ namespace LCECS.Core.Tree.Base
         public int Id = 0;
         public Dictionary<string, NodeContext> Context;
 
+        /// <summary>
+        /// 黑板数据
+        /// </summary>
+        public Dictionary<string, object> Blackboard;
+
         public NodeData(int id)
         {
             Id = id;
             Context = new Dictionary<string, NodeContext>();
+            Blackboard = new Dictionary<string, object>();
         }
 
         ~NodeData()
         {
             Context = null;
+            Blackboard = null;
         }
     }
 

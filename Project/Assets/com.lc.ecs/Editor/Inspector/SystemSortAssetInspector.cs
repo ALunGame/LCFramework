@@ -93,6 +93,11 @@ namespace LCECS.Config
                     sort.sort++;
                     UpdateSystemSort();
                 });
+                MiscHelper.Btn("Del", 50, 35, () =>
+                {
+                    sortAsset.GetSystemSorts(systemType).Remove(sort);
+                    UpdateSystemSort();
+                });
                 MiscHelper.Dropdown(systemType.ToString(), systemTyps, (int x) =>
                 {
                     SystemType newType = (SystemType)x;

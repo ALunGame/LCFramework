@@ -6,11 +6,38 @@
     public abstract class TimelineFunc
     {
         /// <summary>
-        /// 节点运行时间
+        /// 节点开始时间
         /// </summary>
-        public float timeElapsed;
+        public float timeStart;
 
-        public abstract void Execute(TimelineObj timelineObj);
+        /// <summary>
+        /// 节点持续时间
+        /// </summary>
+        public float timeContinue;
+
+        /// <summary>
+        /// 进入时
+        /// </summary>
+        /// <param name="timelineObj"></param>
+        public abstract void Enter(TimelineObj timelineObj);
+
+        /// <summary>
+        /// 离开时
+        /// </summary>
+        /// <param name="timelineObj"></param>
+        public virtual void Exit(TimelineObj timelineObj)
+        {
+
+        }
+
+        /// <summary>
+        /// 每帧调用
+        /// </summary>
+        /// <param name="timelineObj"></param>
+        public virtual void Tick(TimelineObj timelineObj)
+        {
+
+        }
     }
 
     /// <summary>
@@ -20,7 +47,7 @@
     {
         public AddAoeModel addAoe;
 
-        public override void Execute(TimelineObj timelineObj)
+        public override void Enter(TimelineObj timelineObj)
         {
             SkillLocate.Skill.CreateAoe(timelineObj.ower,addAoe);
         }
@@ -33,7 +60,7 @@
     {
         public AddBulletModel addBullet;
 
-        public override void Execute(TimelineObj timelineObj)
+        public override void Enter(TimelineObj timelineObj)
         {
             SkillLocate.Skill.CreateBullet(timelineObj.ower,addBullet);
         }
@@ -46,7 +73,7 @@
     {
         public AddBuffModel addBuff;
 
-        public override void Execute(TimelineObj timelineObj)
+        public override void Enter(TimelineObj timelineObj)
         {
             SkillLocate.Skill.CreateBuff(timelineObj.ower, timelineObj.ower, addBuff);
         }

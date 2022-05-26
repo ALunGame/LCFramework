@@ -20,7 +20,7 @@ namespace Demo.System
             Collider2DCom collider2DCom = GetCom<Collider2DCom>(comList[2]);
             PropertyCom propertyCom = GetCom<PropertyCom>(comList[3]);
 
-            wanderCom.WanderDir = CalcWanderMoveDir(wanderCom,collider2DCom);
+            wanderCom.WanderDir = CalcWanderMoveDir(transCom,wanderCom, collider2DCom);
 
             //更新方向
             transCom.ReqDir = wanderCom.WanderDir;
@@ -31,8 +31,9 @@ namespace Demo.System
             transCom.ReqMove = delta;
         }
 
-        public DirType CalcWanderMoveDir(WanderCom wanderCom, Collider2DCom collider2DCom)
+        public DirType CalcWanderMoveDir(TransformCom transCom,WanderCom wanderCom, Collider2DCom collider2DCom)
         {
+            //碰撞判断
             if (wanderCom.WanderDir == DirType.None)
             {
                 return (DirType)UnityEngine.Random.Range((int)DirType.Left, (int)DirType.Right);
@@ -50,6 +51,24 @@ namespace Demo.System
             {
                 return DirType.Left;
             }
+
+            //范围判断
+            if (wanderCom.WanderRange > 0)
+            {
+                Vector3 currPos = transCom.GetPos();
+                if (Vector2.Distance(transCom.CreatePos, currPos) > wanderCom.WanderRange)
+                {
+                    if (currPos.x - transCom.CreatePos.x > 0)
+                    {
+                        return DirType.Left;
+                    }
+                    else
+                    {
+                        return DirType.Right;
+                    }
+                }
+            }
+
             return wanderCom.WanderDir;
         }
     }

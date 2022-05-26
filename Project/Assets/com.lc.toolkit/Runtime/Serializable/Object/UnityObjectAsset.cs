@@ -22,16 +22,50 @@ namespace LCToolkit
         [JsonIgnore]
         public UnityObject Obj;
 
-        public string ObjName;
-        public string ObjPath;
+        public AssetType assetType = AssetType.GameObj;
+        public string ObjName = "";
+        public string ObjPath = "";
+
+        public UnityObjectAsset()
+        {
+
+        }
+
+        public UnityObjectAsset(AssetType assetType)
+        {
+            this.assetType = assetType;
+        }
 
 #if UNITY_EDITOR
 
-        public UnityObject GetObj(Type objType)
+        public enum AssetType
+        {
+            GameObj,
+            AnimClip,
+        }
+
+        public UnityObject GetObj()
         {
             if (string.IsNullOrEmpty(ObjPath))
                 return null;
-            return AssetDatabase.LoadAssetAtPath(ObjPath, objType);
+            return AssetDatabase.LoadAssetAtPath(ObjPath, GetObjType());
+        }
+
+        public Type GetObjType()
+        {
+            Type objType = typeof(GameObject);
+            switch (assetType)
+            {
+                case AssetType.GameObj:
+                    objType = typeof(GameObject);
+                    break;
+                case AssetType.AnimClip:
+                    objType = typeof(AnimationClip);
+                    break;
+                default:
+                    break;
+            }
+            return objType;
         }
 
 #endif

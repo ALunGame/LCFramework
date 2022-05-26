@@ -23,14 +23,14 @@ namespace LCECS
 		PushSkill,
 
         /// <summary>
-        /// Jump
-        /// </summary>
-		Jump,
-
-        /// <summary>
         /// 徘徊
         /// </summary>
 		Wander,
+
+        /// <summary>
+        /// 注视围绕
+        /// </summary>
+		GazeSurround,
 
     }
 }

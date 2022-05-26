@@ -177,9 +177,8 @@ namespace LCTimeline.View
         private void CreateClipView(Type clipType)
         {
             ClipModel clipModel = ReflectionHelper.CreateInstance(clipType) as ClipModel;
-            clipModel.StartTime = 0;
-            clipModel.EndTime = 1;
-            clipModel.DurationTime = clipModel.EndTime - clipModel.StartTime;
+            clipModel.SetStart(0);
+            clipModel.SetEnd(1);
             AddClip(clipModel);
         }
 

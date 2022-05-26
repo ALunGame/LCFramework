@@ -4,6 +4,8 @@ using LCNode.Model;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using LCToolkit;
+using System.Reflection;
 
 namespace LCECS.EntityGraph
 {
@@ -16,7 +18,17 @@ namespace LCECS.EntityGraph
         [InputPort("父节点", BasePort.Capacity.Single, BasePort.Orientation.Vertical)]
         public EntityComData parentNode;
 
+        [NodeValue("是否开启")]
+        public bool isActive = true;
+
         public abstract Type RuntimeNode { get; }
+
+        public BaseCom GetRuntimeNode()
+        {
+            BaseCom baseCom = CreateRuntimeNode();
+            baseCom.isActive = isActive;
+            return baseCom;
+        }
 
         public abstract BaseCom CreateRuntimeNode();
     }
@@ -46,7 +58,7 @@ namespace LCECS.EntityGraph
             {
                 for (int i = 0; i < nodes.Count; i++)
                 {
-                    coms.Add(nodes[i].CreateRuntimeNode());
+                    coms.Add(nodes[i].GetRuntimeNode());
                 }
             }
             return coms;

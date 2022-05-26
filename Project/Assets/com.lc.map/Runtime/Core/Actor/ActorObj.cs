@@ -22,6 +22,11 @@ namespace LCMap
         public ActorModel Model { get => model;}
 
         /// <summary>
+        /// 所属的区域
+        /// </summary>
+        public MapArea Area { get; private set; }
+
+        /// <summary>
         /// 唯一Id
         /// </summary>
         public int Uid { get; private set; }
@@ -75,8 +80,9 @@ namespace LCMap
 
         private Entity entity;
 
-        public void Init(ActorModel model)
+        public void Init(ActorModel model,MapArea mapArea)
         {
+            Area = mapArea;
             Init(model, Config.ActorCnf[model.id].entityId);
         }
 

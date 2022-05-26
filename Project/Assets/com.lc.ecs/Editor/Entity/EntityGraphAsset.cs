@@ -9,7 +9,6 @@ namespace LCECS.EntityGraph
 {
     public class EntityGraphAsset : BaseGraphAsset<EntityGraph>
     {
-        [ReadOnly]
         [Header("实体Id")]
         public int entityId;
     }

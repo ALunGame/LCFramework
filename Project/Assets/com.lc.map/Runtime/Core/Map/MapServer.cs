@@ -148,7 +148,7 @@ namespace LCMap
 
         public ActorObj GetActor(int uid)
         {
-            if (PlayerActor.Uid == uid)
+            if (PlayerActor!=null && PlayerActor.Uid == uid)
             {
                 return PlayerActor;
             }
@@ -175,7 +175,7 @@ namespace LCMap
 
             //添加组件
             PlayerActor = actorGo.AddComponent<ActorObj>();
-            PlayerActor.Init(actor);
+            PlayerActor.Init(actor, currArea);
 
             //跟随
             LCECS.ECSLayerLocate.Info.GetSensor<GlobalSensor>(LCECS.SensorType.Global).FollowActor.Value = PlayerActor;

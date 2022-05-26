@@ -36,11 +36,11 @@ namespace LCToolkit.Core
             return result;
         }
 
-        private void GetAsset(UnityObjectAsset unityObject, Type objType)
+        private void GetAsset(UnityObjectAsset unityObject)
         {
             if (unityObject == null || string.IsNullOrEmpty(unityObject.ObjPath))
                 return;
-            unityObject.Obj = unityObject.GetObj(objType);
+            unityObject.Obj = unityObject.GetObj();
         }
 
         private void UpdateAssetPath(UnityObjectAsset unityObject)
@@ -62,11 +62,9 @@ namespace LCToolkit.Core
             }
 
             UnityObjectAsset unityObject = Target as UnityObjectAsset;
-            Type objType = typeof(UnityEngine.GameObject);
-            if (AttributeHelper.TryGetFieldAttribute(FieldInfo, out UnityAssetTypeAttribute assetTypeAttribute))
-                objType = assetTypeAttribute.ObjType;
+            Type objType = unityObject.GetObjType();
 
-            GetAsset(unityObject, objType);
+            GetAsset(unityObject);
             UnityObject tmpObj = unityObject.Obj;
             tmpObj = EditorGUI.ObjectField(_position, _label, tmpObj, objType, false);
             if (tmpObj != null && !tmpObj.Equals(unityObject.Obj))

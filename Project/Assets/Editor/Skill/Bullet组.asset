@@ -1,21 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-1995467438155865366
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5aeacf0505daeb94687b17e2dec1944f, type: 3}
-  m_Name: bullet_1
-  m_EditorClassIdentifier: 
-  serializedGraph: '{"mType":"LCSkill.BulletGraph.BulletGraph","pos":{"mType":"UnityEngine.Vector3","x":-578.0,"y":-252.0,"z":0.0},"zoom":{"mType":"UnityEngine.Vector3","x":1.7490062713623,"y":1.7490062713623,"z":1.0},"nodes":{"mType":"System.Collections.Generic.Dictionary`2[[System.String,
-    mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089],[LCNode.Model.BaseNode,
-    Assembly-CSharp-Editor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]","813c7329-fc54-4b46-9e0c-1943b088cb09":{"mType":"LCSkill.BulletGraph.Bullet_Node","asset":{"mType":"LCToolkit.UnityObjectAsset","ObjName":null,"ObjPath":null},"radius":0,"hitTimes":1,"sameTargetDelay":0.02,"removeOnObstacle":false,"hitEnemy":true,"hitFriend":false,"moveFunc":null,"catchFunc":null,"onCreateFunc":null,"onRemovedFunc":null,"onHitFunc":null,"guid":"813c7329-fc54-4b46-9e0c-1943b088cb09","position":{"mType":"UnityEngine.Vector2","x":477.0,"y":213.0}},"2fc23b70-9382-4e89-9256-58cc20abe658":{"mType":"LCSkill.BulletGraph.Bullet_HitAddBuffNode","addBuff":{"mType":"LCSkill.AddBuffModel","id":1,"addStack":0,"durationSetType":false,"duration":0,"isPermanent":false},"parentNode":null,"guid":"2fc23b70-9382-4e89-9256-58cc20abe658","position":{"mType":"UnityEngine.Vector2","x":906.0,"y":387.0}}},"connections":[{"mType":"LCNode.Model.BaseConnection","from":"813c7329-fc54-4b46-9e0c-1943b088cb09","fromPortName":"\u5F53\u51FB\u4E2D\u65F6","to":"2fc23b70-9382-4e89-9256-58cc20abe658","toPortName":"\u7236\u8282\u70B9"}]}'
-  bulletId: 1
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0

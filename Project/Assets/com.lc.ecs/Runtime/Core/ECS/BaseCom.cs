@@ -42,7 +42,6 @@ namespace LCECS.Core
         public bool ShowView { get; set; } = true;
     }
 
-    [Serializable]
     public class BaseCom
     {
         [NonSerialized]
@@ -50,7 +49,12 @@ namespace LCECS.Core
         [NonSerialized]
         private int entityCnfId = 0;
 
-        public bool IsActive { get; private set; } = false;
+        /// <summary>
+        /// 为了序列化，运行时不可设置
+        /// </summary>
+        public bool isActive = true;
+        public bool IsActive { get => isActive;}
+
         public int EntityCnfId { get => entityCnfId;}
         public int EntityId { get => entityId;}
 
@@ -59,7 +63,6 @@ namespace LCECS.Core
         {
             this.entityId = entity.Uid;
             this.entityCnfId = entity.Id;
-            IsActive = true;
             OnEnable();
             OnInit(entity.Go);
         }
@@ -67,31 +70,31 @@ namespace LCECS.Core
         //实体本身启用
         public void EntityEnable()
         {
-            IsActive = true;
+            isActive = true;
             OnEnable();
         }
 
         //启用
         public void Enable()
         {
-            ECSLocate.ECS.CheckEntityInSystem(entityId);
-            IsActive = true;
+            isActive = true;
             OnEnable();
+            ECSLocate.ECS.CheckEntityInSystem(entityId);
         }
 
         //实体本身禁用
         public void EntityDisable()
         {
-            IsActive = false;
+            isActive = false;
             OnDisable();
         }
 
         //禁用
         public void Disable()
         {
-            ECSLocate.ECS.CheckEntityInSystem(entityId);
-            IsActive = false;
+            isActive = false;
             OnDisable();
+            ECSLocate.ECS.CheckEntityInSystem(entityId);
         }
 
         //初始化（首次添加调用）

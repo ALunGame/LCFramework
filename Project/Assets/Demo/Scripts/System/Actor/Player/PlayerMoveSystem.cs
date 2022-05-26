@@ -3,6 +3,7 @@ using LCECS.Core;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using LCToolkit;
 
 namespace Demo.System
 {
@@ -17,6 +18,12 @@ namespace Demo.System
         {
             PropertyCom propertyCom = GetCom<PropertyCom>(comList[0]);
             PlayerMoveCom moveCom = GetCom<PlayerMoveCom>(comList[1]);
+
+            if (moveCom.ReqMove != Vector3.zero)
+            {
+                moveCom.Rig.MovePosition(moveCom.Rig.position + moveCom.ReqMove.ToVector2());
+                moveCom.ReqMove = Vector3.zero;
+            }
 
             if (moveCom.HasNoReqMove)
                 return;

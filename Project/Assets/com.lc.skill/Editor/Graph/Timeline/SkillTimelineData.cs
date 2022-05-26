@@ -13,7 +13,8 @@ namespace SkillSystem.ED.Timeline
         public TimelineFunc GetFunc()
         {
             TimelineFunc func = CreateFunc();
-            func.timeElapsed = StartTime;
+            func.timeStart = StartTime;
+            func.timeContinue = DurationTime;
             return func;
         }
 

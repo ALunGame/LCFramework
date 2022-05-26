@@ -51,14 +51,23 @@ namespace LCECS.Layer.Behavior
         /// <summary>
         /// 删除工作
         /// </summary>
+        public void RemoveWorkData(int index,EntityWorkData workData)
+        {
+            HandleList.RemoveAt(index);
+            Tree.Transition(workData);
+        }
+
         public void RemoveWorkData(EntityWorkData workData)
         {
-            if (!HandleList.Contains(workData))
-                return;
-
-            //清理
-            Tree.Transition(workData);
-            HandleList.Remove(workData);
+            if (HandleList.Contains(workData))
+            {
+                HandleList.Remove(workData);
+                Tree.Transition(workData);
+            }
+            else
+            {
+                Debug.LogError("RemoveWorkData失败>>>");
+            }
         }
 
         /// <summary>
@@ -78,7 +87,8 @@ namespace LCECS.Layer.Behavior
                 if (data.CurrReqId != reqId)
                 {
                     //清理
-                    RemoveWorkData(data);
+                    RemoveWorkData(i, data);
+                    Debug.LogError("行为改变清理>>>>OnExit");
                     continue;
                 }
 
@@ -97,7 +107,7 @@ namespace LCECS.Layer.Behavior
                 }
                 else
                 {
-                    RemoveWorkData(data);
+                    RemoveWorkData(i,data);
                 }
             }
         }

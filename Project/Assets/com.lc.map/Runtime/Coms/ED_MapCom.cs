@@ -135,7 +135,7 @@ namespace LCMap
             //预制体
             if (actorData.prefab != null)
             {
-                GameObject actorPrefab = (GameObject)PrefabUtility.InstantiatePrefab(actorData.prefab.GetObj(typeof(GameObject)));
+                GameObject actorPrefab = (GameObject)PrefabUtility.InstantiatePrefab(actorData.prefab.GetObj());
                 MapEditorHelper.SetParent(actorPrefab.gameObject, actorCom.gameObject);
             }
 

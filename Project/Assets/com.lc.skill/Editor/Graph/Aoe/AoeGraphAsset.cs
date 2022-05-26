@@ -6,7 +6,6 @@ namespace LCSkill.AoeGraph
 {
     public class AoeGraphAsset : BaseGraphAsset<AoeGraph>
     {
-        [ReadOnly]
         [Header("AoeId")]
         public string aoeId;
     }

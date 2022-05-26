@@ -36,11 +36,11 @@ namespace LCECS.Tree
                     continue;
                 if (type == typeof(Tree_RootNode))
                     continue;
-                if (type.BaseType == typeof(Tree_Dec_Act_Node))
+                if (type.BaseType == typeof(Base_DEC_Act_Node))
                     continue;
                 NodeTypes.Add(type);
             }
-            foreach (var type in ReflectionHelper.GetChildTypes<Tree_PremiseNode>())
+            foreach (var type in ReflectionHelper.GetChildTypes<Base_BEV_PRE_Node>())
             {
                 if (type.IsAbstract)
                     continue;
@@ -51,7 +51,7 @@ namespace LCECS.Tree
                 NodeTypes.Add(type);
             }
 
-            foreach (var type in ReflectionHelper.GetChildTypes<Tree_Bev_Act_Node>())
+            foreach (var type in ReflectionHelper.GetChildTypes<Base_BEV_ACT_Node>())
             {
                 if (type.IsAbstract)
                     continue;

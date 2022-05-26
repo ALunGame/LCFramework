@@ -79,8 +79,8 @@ namespace LCECS.Core
             {
                 if (IdHandleComsDict.ContainsKey(entityId))
                 {
-                    IdHandleComsDict.Remove(entityId);
                     OnRemoveCheckComs(IdHandleComsDict[entityId]);
+                    IdHandleComsDict.Remove(entityId);
                 }
             }
             return check;

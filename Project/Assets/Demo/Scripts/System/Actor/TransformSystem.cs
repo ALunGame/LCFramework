@@ -20,6 +20,7 @@ namespace Demo.System
 
             HandleDir(transCom);
             HandleMove(transCom, collider2DCom);
+            transCom.UpdatePos();
         }
 
         private void HandleDir(TransformCom transCom)
@@ -64,7 +65,7 @@ namespace Demo.System
             if (transCom.ReqMove == Vector3.zero)
                 return;
 
-            transCom.Trans.Translate(transCom.ReqMove, Space.World);
+            transCom.Translate(transCom.ReqMove);
 
             transCom.ReqMove = Vector3.zero;
         }

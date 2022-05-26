@@ -86,7 +86,7 @@ namespace LCMap
 
             //添加组件
             ActorObj actorObj = actorGo.AddComponent<ActorObj>();
-            actorObj.Init(actor);
+            actorObj.Init(actor,this);
 
             //保存
             Actors.Add(actor.uid, actorObj);

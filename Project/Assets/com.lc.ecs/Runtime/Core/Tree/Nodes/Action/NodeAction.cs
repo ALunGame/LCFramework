@@ -79,7 +79,9 @@ namespace LCECS.Core.Tree.Nodes.Action
 
         protected sealed override void OnTransition(NodeData wData)
         {
-            base.OnTransition(wData);
+            NodeActionContext context = GetContext<NodeActionContext>(wData);
+            context.status = ACTION_READY;
+            OnExit(wData, NodeState.TRANSITION);
         }
 
         //子类复写

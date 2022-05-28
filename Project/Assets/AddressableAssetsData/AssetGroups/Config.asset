@@ -109,6 +109,22 @@ MonoBehaviour:
     m_Address: TbSk_Timeline_100102
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 1259c6ab0418db542ac3299b9850bee2
+    m_Address: TbDecision_2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ef5b780c770c78d47a0abe5725c99604
+    m_Address: TbDecision_0
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: c3feee505d84980499f2a367130754a4
+    m_Address: TbBuff_playerBeHurt
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 87c687680a1cdb647b64f74f66203409
+    m_Address: TbBuff_enemyBeHurt
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: c106a54d1dad7c34dbca1e47199c97a1, type: 2}
   m_SchemaSet:

@@ -1,47 +1,8 @@
-﻿using LCJson;
-using System;
+﻿using System;
 using UnityEngine;
 
 namespace LCECS.Core
 {
-    /// <summary>
-    /// 组件特性 类可用
-    /// </summary>
-    [AttributeUsage(AttributeTargets.Class)]
-    public class ComAttribute : Attribute
-    {
-        /// <summary>
-        /// 编辑器显示名
-        /// </summary>
-        public string ViewName { get; set; } = "";
-
-        /// <summary>
-        /// 组件分组名
-        /// </summary>
-        public string GroupName { get; set; } = "";
-
-        /// <summary>
-        /// 全局唯一的组件
-        /// </summary>
-        public bool IsGlobal { get; set; } = false;
-    }
-
-    /// <summary>
-    /// 组件字段特性 字段可用
-    /// </summary>
-    [AttributeUsage(AttributeTargets.Field)]
-    public class ComValueAttribute : Attribute
-    {
-        /// <summary>
-        /// 可以在编辑器模式下编辑
-        /// </summary>
-        public bool ViewEditor { get; set; } = false;
-        /// <summary>
-        /// 可以在编辑器模式下显示
-        /// </summary>
-        public bool ShowView { get; set; } = true;
-    }
-
     public class BaseCom
     {
         [NonSerialized]

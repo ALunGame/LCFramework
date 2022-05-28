@@ -14,7 +14,7 @@ namespace LCECS.Tree
         public PremiseData node;
 
         [NodeValue("前提值")]
-        public bool checkValue = false;
+        public bool checkValue = true;
 
         [NodeValue("前提关系")]
         public PremiseType premiseType = PremiseType.AND;

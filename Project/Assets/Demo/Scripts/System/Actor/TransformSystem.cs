@@ -39,7 +39,7 @@ namespace Demo.System
 
             transCom.CurrDir = dirType;
             Vector3 dir = new Vector3(0, transCom.CurrDir == DirType.Right ? 0 : 180, 0);
-            transCom.DisplayRootTrans.localEulerAngles = dir;
+            transCom.DisplayTrans.localEulerAngles = dir;
 
             transCom.ReqDir = DirType.None;
         }

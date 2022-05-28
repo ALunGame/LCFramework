@@ -1,4 +1,5 @@
-﻿using Demo.Decision;
+﻿using Demo.Com;
+using Demo.Decision;
 using LCECS;
 using LCECS.Core.Tree.Base;
 using LCNode;
@@ -6,6 +7,21 @@ using LCToolkit;
 
 namespace Demo.Tree
 {
+    [NodeMenuItem("全局/检测输入")]
+    public class Tree_Dec_Pre_CheckInputAction : Base_DEC_PRE_Node
+    {
+        public override string Title { get => "检测输入"; set => base.Title = value; }
+
+        [NodeValue("输入指令")]
+        public InputAction checkAction;
+
+        public override NodePremise CreateRuntimeNode()
+        {
+            DEC_PRE_CheckInputAction premise = new DEC_PRE_CheckInputAction();
+            premise.checkAction = checkAction;
+            return premise;
+        }
+    }
 
     [NodeMenuItem("演员/AI/检测敌人在攻击范围内")]
     public class Tree_Dec_Pre_CheckEnemyInAttackRange : Base_DEC_PRE_Node

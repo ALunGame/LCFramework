@@ -12,6 +12,8 @@ namespace LCSkill
     {
         //初始技能
         public List<string> initialSkills = new List<string>();
+        //初始Buff
+        public List<string> initialBuffs = new List<string>();
 
         private List<SkillObj> skills = new List<SkillObj>();
         /// <summary>
@@ -33,6 +35,16 @@ namespace LCSkill
 
         protected override void OnInit(GameObject go)
         {
+            for (int i = 0; i < initialBuffs.Count; i++)
+            {
+                AddBuffModel addBuffModel = new AddBuffModel();
+                addBuffModel.id = initialBuffs[i];
+                addBuffModel.addStack = 1;
+                addBuffModel.durationSetType = true;
+                addBuffModel.duration = 1;
+                addBuffModel.isPermanent = true;
+                SkillLocate.Skill.CreateBuff(this,this, addBuffModel);
+            }
             for (int i = 0; i < initialSkills.Count; i++)
             {
                 SkillLocate.Skill.LearnSkill(this, initialSkills[i]);

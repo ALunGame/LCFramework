@@ -1,11 +1,9 @@
-﻿using System.Collections;
-using UnityEngine;
-using LCConfig;
-using LCToolkit;
+﻿using LCConfig;
 using LCECS;
-using UnityEditor;
 using LCECS.Core;
+using LCToolkit;
 using System;
+using UnityEngine;
 
 namespace LCMap
 {
@@ -52,14 +50,6 @@ namespace LCMap
         /// <summary>
         /// 实体配置Id
         /// </summary>
-        [Header("表现根节点")]
-        [ReadOnly]
-        [SerializeField]
-        private GameObject DisplayRootGo;
-
-        /// <summary>
-        /// 实体配置Id
-        /// </summary>
         [Header("表现节点")]
         [ReadOnly]
         [SerializeField]
@@ -92,16 +82,6 @@ namespace LCMap
             this.Uid        = Model.uid;
             this.Id         = Model.id;
             this.EntityId   = entityId;
-
-            //表现根节点
-            if (transform.Find("Display") == null)
-            {
-                this.DisplayRootGo = gameObject;
-            }
-            else
-            {
-                this.DisplayRootGo = transform.Find("Display").gameObject;
-            }
 
             SetModelDisplay();
             UpdateGoName();
@@ -173,44 +153,47 @@ namespace LCMap
         public void SetDisplayGo(string stateName)
         {
             //全部隐藏
-            Transform displayRoot = transform.Find("Display");
-            if (displayRoot != null)
+            Transform stateRoot = transform.Find("State");
+            if (stateRoot != null)
             {
-                for (int i = 0; i < displayRoot.childCount; i++)
+                for (int i = 0; i < stateRoot.childCount; i++)
                 {
-                    displayRoot.GetChild(i).gameObject.SetActive(false);
+                    stateRoot.GetChild(i).gameObject.SetActive(false);
                 }
             }
 
-            Transform displayTrans = null;
-            if (displayRoot == null)
+            Transform stateTrans = null;
+            if (stateRoot == null)
             {
-                displayTrans = transform;
+                stateTrans = transform;
             }
             else
             {
                 if (string.IsNullOrEmpty(stateName))
-                    displayTrans = displayRoot.GetChild(0);
+                    stateTrans = stateRoot.GetChild(0);
                 else
                 {
-                    displayTrans = transform.Find("Display/" + stateName);
+                    stateTrans = stateRoot.Find(stateName);
                 }
             }
 
-            if (displayTrans == null)
+            if (stateTrans == null)
             {
-                displayTrans = transform;
+                stateTrans = transform;
                 MapLocate.Log.LogError("设置状态节点出错>>>", Id, stateName);
             }
 
-            DisplayStateName = displayTrans.name;
-            DisplayGo = displayTrans.gameObject;
-            DisplayGo.SetActive(true);
+            DisplayStateName = stateTrans.name;
+
+            DisplayGo = stateTrans.gameObject;
+            if (stateTrans.Find("Display") != null)
+                DisplayGo = stateTrans.Find("Display").gameObject;
+            stateTrans.gameObject.SetActive(true);
 
             //设置跟随
-            Transform followTrans = DisplayGo.transform.Find("Camera_Follow");
+            Transform followTrans = stateTrans.transform.Find("Camera_Follow");
             if (followTrans == null)
-                followTrans = DisplayGo.transform;
+                followTrans = transform;
             CameraFollowGo = followTrans.gameObject;
 
             //更新碰撞
@@ -229,15 +212,6 @@ namespace LCMap
         #endregion
 
         #region Get
-
-        /// <summary>
-        /// 表现节点
-        /// </summary>
-        /// <returns></returns>
-        public GameObject GetDisplayRootGo()
-        {
-            return DisplayRootGo;
-        }
 
         /// <summary>
         /// 表现节点

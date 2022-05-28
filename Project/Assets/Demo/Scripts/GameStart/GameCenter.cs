@@ -58,6 +58,7 @@ namespace Demo
         [SerializeField]
         private SystemSortAsset systemSortAsset;
 
+        private DecisionCenter _DecCenter = new DecisionCenter();
         private ECSCenter _EcsCenter = new ECSCenter();
         private KeyDoubleClick LeftKey = new KeyDoubleClick(KeyCode.A);
         private KeyDoubleClick RightKey = new KeyDoubleClick(KeyCode.D);
@@ -72,17 +73,24 @@ namespace Demo
         private void Start()
         {
             MapLocate.Map.Enter(1001);
+            _DecCenter.Start_ThreadUpdate();
         }
 
         private void Update()
         {
             Execute_KeyEvent();
+            _DecCenter.Execute_Update();
             _EcsCenter.Execute_Update();
         }
 
         private void FixedUpdate()
         {
             _EcsCenter.Execute_FixedUpdate();
+        }
+
+        private void OnDestroy()
+        {
+            Clear();
         }
 
         #region 初始化
@@ -108,6 +116,7 @@ namespace Demo
         /// </summary>
         public void InitECS()
         {
+            _DecCenter.Init();
             _EcsCenter.Init(requestSortAsset, systemSortAsset);
         }
 
@@ -134,7 +143,7 @@ namespace Demo
 
         public void Clear()
         {
-            _EcsCenter.Clear();
+            ECSLocate.Clear();
         }
 
         #endregion
@@ -155,13 +164,12 @@ namespace Demo
             }
 
             paramData.SetVect2(move);
-            ECSLocate.Player.PushPlayerReq(RequestId.Move, paramData);
-
+            GameLocate.PushInputAction(Com.InputAction.Move, paramData);
 
             if (Input.GetMouseButtonDown(0))
             {
                 paramData.SetString("100101");
-                ECSLocate.Player.PushPlayerReq(RequestId.PushSkill, paramData);
+                GameLocate.PushInputAction(Com.InputAction.Skill, paramData);
             }
         }
 

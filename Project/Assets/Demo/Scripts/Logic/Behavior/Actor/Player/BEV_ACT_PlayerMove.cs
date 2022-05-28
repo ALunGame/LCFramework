@@ -94,7 +94,6 @@ namespace Demo.Behavior
             {
                 Debug.LogWarningFormat("BEV_ACT_Move>>>>>{0}--ReqMoveSpeed：{1}--ReqJumpSpeed：{2}", moveType.ToString(), moveCom.ReqMoveSpeed, moveCom.ReqJumpSpeed);
             }
-            
         }
 
         //重置跳跃阶段

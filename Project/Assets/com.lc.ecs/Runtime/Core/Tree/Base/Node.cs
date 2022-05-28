@@ -1,7 +1,4 @@
-﻿using LCECS.Data;
-using LCECS.Help;
-using LCToolkit;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace LCECS.Core.Tree.Base
@@ -123,9 +120,6 @@ namespace LCECS.Core.Tree.Base
         //执行
         public int Execute(NodeData wData)
         {
-#if UNITY_EDITOR
-            NodeRunSelEntityHelp.SetRunningNode(wData.Id, GetHashCode(), GetType().FullName);
-#endif
             return OnExcute(wData);
         }
 

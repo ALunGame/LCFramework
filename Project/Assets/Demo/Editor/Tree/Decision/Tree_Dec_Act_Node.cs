@@ -7,6 +7,35 @@ using UnityEngine;
 
 namespace Demo.Tree
 {
+    #region 玩家
+
+    [NodeMenuItem("全局/输入/玩家输入移动")]
+    public class Tree_Dec_Act_Input_Player_Move : Base_DEC_Act_Node
+    {
+        public override string Title { get => "玩家输入移动"; set => base.Title = value; }
+        public override Node CreateRuntimeNode()
+        {
+            DEC_ACT_Input_Player_Move node = new DEC_ACT_Input_Player_Move();
+            return node;
+        }
+    }
+
+    [NodeMenuItem("全局/输入/玩家输入释放技能")]
+    public class Tree_Dec_Act_Input_Player_PushSkill : Base_DEC_Act_Node
+    {
+        public override string Title { get => "玩家输入释放技能"; set => base.Title = value; }
+
+        public override Node CreateRuntimeNode()
+        {
+            DEC_ACT_Input_Player_PushSkill node = new DEC_ACT_Input_Player_PushSkill();
+            return node;
+        }
+    }
+
+    #endregion
+
+    #region AI
+
     [NodeMenuItem("演员/AI/徘徊")]
     public class Tree_Dec_Act_Wander : Base_DEC_Act_Node
     {
@@ -54,8 +83,10 @@ namespace Demo.Tree
         public override Node CreateRuntimeNode()
         {
             DEC_ACT_PushSkill node = new DEC_ACT_PushSkill();
-            node.skillId = skillId; 
+            node.skillId = skillId;
             return node;
         }
-    }
+    } 
+
+    #endregion
 }

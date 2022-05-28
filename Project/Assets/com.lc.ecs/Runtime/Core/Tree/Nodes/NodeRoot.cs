@@ -1,5 +1,4 @@
 ﻿using LCECS.Core.Tree.Base;
-using LCECS.Help;
 
 namespace LCECS.Core.Tree.Nodes
 {
@@ -20,9 +19,6 @@ namespace LCECS.Core.Tree.Nodes
 
         protected override int OnExcute(NodeData wData)
         {
-#if UNITY_EDITOR
-            NodeRunSelEntityHelp.SetNeedRefresh(wData.Id);
-#endif
             if (IsIndexValid(0))
             {
                 Node node = GetChild<Node>(0);

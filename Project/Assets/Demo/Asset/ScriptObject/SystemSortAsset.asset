@@ -16,30 +16,6 @@ MonoBehaviour:
   - typeName: AnimSystem
     typeFullName: Demo.System.AnimSystem
     sort: 0
-  - typeName: AttributeSystem
-    typeFullName: Demo.System.AttributeSystem
-    sort: 1
-  - typeName: PlayerEnergySystem
-    typeFullName: Demo.System.PlayerEnergySystem
-    sort: 2
-  - typeName: PlayerPhysicsSystem
-    typeFullName: Demo.System.PlayerPhysicsSystem
-    sort: 3
-  - typeName: SeekPathSystem
-    typeFullName: Demo.System.SeekPathSystem
-    sort: 4
-  - typeName: StateSystem
-    typeFullName: Demo.System.StateSystem
-    sort: 5
-  - typeName: BackgroundSystem
-    typeFullName: Demo.System.BackgroundSystem
-    sort: 6
-  - typeName: EffectSystem
-    typeFullName: Demo.System.EffectSystem
-    sort: 7
-  - typeName: MapSystem
-    typeFullName: Demo.System.MapSystem
-    sort: 8
   - typeName: Collider2DSystem
     typeFullName: Demo.System.Collider2DSystem
     sort: 10
@@ -60,6 +36,9 @@ MonoBehaviour:
     sort: 14
   - typeName: PlayerMoveSystem
     typeFullName: Demo.System.PlayerMoveSystem
+    sort: 16
+  - typeName: GazeSurroundSystem
+    typeFullName: Demo.System.GazeSurroundSystem
     sort: 16
   fixedUpdateSystems:
   - typeName: BuffSystem

@@ -47,6 +47,19 @@ namespace LCECS.Config
                 bigLabel.value.stretchWidth = true;
             }
 
+            MiscHelper.Btn("清除废弃请求", 250, 35, () =>
+            {
+                for (int i = 0; i < sortAsset.requests.Count; i++)
+                {
+                    RequestSort request = sortAsset.requests[i];
+                    if (!Enum.TryParse<RequestId>(request.key,out RequestId id))
+                    {
+                        sortAsset.requests.RemoveAt(i);
+                    }
+                }
+                UpdateSystemSort();
+            });
+
             GUILayoutExtension.VerticalGroup(() =>
             {
                 GUILayout.Label($"请求排序", bigLabel.value);

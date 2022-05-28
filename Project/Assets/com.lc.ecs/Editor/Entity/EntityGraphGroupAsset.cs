@@ -52,7 +52,7 @@ namespace LCECS.EntityGraph
                 Debug.LogError($"试图序列化出错，没有根节点");
             }
             List<BaseCom> coms = rootNodes[0].GetModel();
-            Entity model = new Entity(entityAsset.entityId, rootNodes[0].name, rootNodes[0].decTreeId, coms);
+            Entity model = new Entity(entityAsset.entityId, entityAsset.decGroup, rootNodes[0].name, entityAsset.decTree, coms);
             return model;
         }
     }

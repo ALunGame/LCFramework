@@ -1,6 +1,7 @@
 ﻿using Demo.Com;
 using LCECS.Core;
 using UnityEngine;
+using LCECS;
 
 namespace Demo
 {
@@ -23,6 +24,22 @@ namespace Demo
                 TransformCom transformCom = entity.GetCom<TransformCom>();
                 transformCom.ReqMove = pos;
             }
+        }
+
+        /// <summary>
+        /// 暂停实体决策
+        /// </summary>
+        public static void PauseEntityDec(this Entity entity)
+        {
+            ECSLocate.DecCenter.RemoveEntityDecision(entity.DecTreeId, entity.Uid);
+        }
+
+        /// <summary>
+        /// 恢复实体决策
+        /// </summary>
+        public static void ResumeEntityDec(this Entity entity)
+        {
+            ECSLocate.DecCenter.AddEntityDecision(entity.DecGroup, entity.DecTreeId, entity.Uid);
         }
     }
 }

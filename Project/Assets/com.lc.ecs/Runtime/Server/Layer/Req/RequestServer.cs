@@ -1,13 +1,9 @@
-﻿using LCECS.Data;
+﻿using LCECS.Config;
+using LCECS.Data;
 using LCECS.Layer.Request;
 using LCToolkit;
-using LCJson;
 using System;
 using System.Collections.Generic;
-using UnityEngine;
-using LCECS.Config;
-#if UNITY_EDITOR
-#endif
 
 namespace LCECS.Server.Layer
 {
@@ -70,7 +66,6 @@ namespace LCECS.Server.Layer
             //请求
             IRequest pushRequest = GetEntityRequest(reqId);
             RequestId oldReqId   = workData.CurrReqId;
-
 
             //请求不需要自身处理
             if (pushRequest == null)

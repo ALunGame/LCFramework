@@ -1,9 +1,5 @@
-﻿using LCECS.Core;
-using LCNode.Model;
-using System;
-using System.Collections.Generic;
+﻿using LCNode.Model;
 using UnityEngine;
-using LCToolkit;
 
 namespace LCECS.EntityGraph
 {
@@ -11,5 +7,11 @@ namespace LCECS.EntityGraph
     {
         [Header("实体Id")]
         public int entityId;
+
+        [Header("决策Id")]
+        public int decTree = 0;
+
+        [Header("决策组")]
+        public DecisionGroup decGroup = DecisionGroup.HighThread;
     }
 }

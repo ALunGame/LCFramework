@@ -8,7 +8,6 @@ namespace LCECS
     public class ECSLayerLocate
     {
         public static IInfoServer Info { get; set; }
-        public static IDecisionServer Decision { get; set; }
         public static IRequestServer Request { get; set; }
         public static IBehaviorServer Behavior { get; set; }
 
@@ -16,8 +15,6 @@ namespace LCECS
         {
             Info = new InfoServer();
             Info.Init();
-            Decision = new DecisionServer();
-            Decision.Init();
             Request = new RequestServer();
             Request.Init();
             Behavior = new BehaviorServer();

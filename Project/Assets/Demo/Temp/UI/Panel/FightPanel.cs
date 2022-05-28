@@ -11,7 +11,6 @@ public class FightPanel : LCUI.LCUIPanel
     public Dictionary<string, float> PlayerAttrConfDict = new Dictionary<string, float>();
 
     private Entity PlayerEntity = null;
-    private AttributeCom PlayerAttrCom = null;
 
     public override void OnAwake()
     {
@@ -24,14 +23,6 @@ public class FightPanel : LCUI.LCUIPanel
         {
             return;
         }
-        PlayerEntity = LCECS.ECSLocate.Player.GetPlayerEntity();
-        PlayerAttrCom = PlayerEntity.GetCom<AttributeCom>();
-
-        //Dictionary<string, string> attrDict = LCConfigLocate.GetConfigItemDataDict("BaseAttr", PlayerEntity.Id.ToString());
-        //foreach (var item in attrDict)
-        //{
-        //    PlayerAttrConfDict.Add(item.Key, float.Parse(item.Value));
-        //}
     }
 
     public override void OnShow(params object[] parms)
@@ -47,11 +38,6 @@ public class FightPanel : LCUI.LCUIPanel
     private void Update()
     {
         Init();
-        if (PlayerAttrCom==null)
-        {
-            return;
-        }
-        HpSlider.value = PlayerAttrCom.AttrDict["Hp"] / PlayerAttrConfDict["Hp"];
     }
 
 }

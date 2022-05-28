@@ -48,6 +48,32 @@ namespace LCECS.Config
                 bigLabel.value.stretchWidth = true;
             }
 
+            MiscHelper.Btn("清除废弃系统", 250, 35, () =>
+            {
+                for (int i = 0; i < sortAsset.updateSystems.Count; i++)
+                {
+                    SystemSort sort = sortAsset.updateSystems[i];
+                    if (ReflectionHelper.GetType(sort.typeFullName) == null)
+                        sortAsset.updateSystems.RemoveAt(i);
+                }
+
+                for (int i = 0; i < sortAsset.fixedUpdateSystems.Count; i++)
+                {
+                    SystemSort sort = sortAsset.fixedUpdateSystems[i];
+                    if (ReflectionHelper.GetType(sort.typeFullName) == null)
+                        sortAsset.fixedUpdateSystems.RemoveAt(i);
+                }
+
+                for (int i = 0; i < sortAsset.threadSystems.Count; i++)
+                {
+                    SystemSort sort = sortAsset.threadSystems[i];
+                    if (ReflectionHelper.GetType(sort.typeFullName) == null)
+                        sortAsset.threadSystems.RemoveAt(i);
+                }
+
+                UpdateSystemSort();
+            });
+
             GUILayoutExtension.VerticalGroup(() =>
             {
                 GUILayout.Label($"系统运行排序", bigLabel.value);

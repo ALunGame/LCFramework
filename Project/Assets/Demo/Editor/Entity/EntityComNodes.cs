@@ -2,25 +2,10 @@
 using LCECS.Core;
 using LCECS.EntityGraph;
 using LCNode;
-using LCToolkit.ViewModel;
 using System;
 
 namespace Demo
 {
-    [NodeMenuItem("玩家/玩家组件")]
-    public class Entity_Node_PlayerCom : Entity_ComNode
-    {
-        public override string Title { get => "玩家组件"; set => base.Title = value; }
-        public override string Tooltip { get => "玩家组件"; set => base.Tooltip = value; }
-        public override Type RuntimeNode => typeof(PlayerCom);
-
-        public override BaseCom CreateRuntimeNode()
-        {
-            PlayerCom playerCom = new PlayerCom();
-            return playerCom;
-        }
-    }
-
     #region 演员
 
     [NodeMenuItem("演员/属性组件")]
@@ -115,19 +100,6 @@ namespace Demo
         }
     }
 
-    [NodeMenuItem("演员/寻路组件")]
-    public class Entity_Node_SeekPathCom : Entity_ComNode
-    {
-        public override string Title { get => "寻路组件"; set => base.Title = value; }
-        public override string Tooltip { get => "寻路组件"; set => base.Tooltip = value; }
-        public override Type RuntimeNode => typeof(SeekPathCom);
-
-        public override BaseCom CreateRuntimeNode()
-        {
-            SeekPathCom seekPathCom = new SeekPathCom();
-            return seekPathCom;
-        }
-    }
 
     [NodeMenuItem("演员/移动组件")]
     public class Entity_Node_MoveCom : Entity_ComNode
@@ -282,6 +254,20 @@ namespace Demo
         {
             FollowCameraCom followCom = new FollowCameraCom();
             return followCom;
+        }
+    }
+
+    [NodeMenuItem("全局/输入/输入组件")]
+    public class Entity_Node_InputCom : Entity_ComNode
+    {
+        public override string Title { get => "输入组件"; set => base.Title = value; }
+        public override string Tooltip { get => "输入组件"; set => base.Tooltip = value; }
+        public override Type RuntimeNode => typeof(InputCom);
+
+        public override BaseCom CreateRuntimeNode()
+        {
+            InputCom com = new InputCom();
+            return com;
         }
     }
 

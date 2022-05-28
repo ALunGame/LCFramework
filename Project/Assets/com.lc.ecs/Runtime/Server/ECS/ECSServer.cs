@@ -77,7 +77,7 @@ namespace LCECS.Server.ECS
             EntityWorkData entityWorkData = new EntityWorkData(entity.Uid, entity);
             entityWorkData.Id = entity.Uid;
             ECSLayerLocate.Info.AddEntityWorkData(entity.Uid, entityWorkData);
-            ECSLayerLocate.Decision.AddDecisionEntity(entity.DecTreeId, entityWorkData);
+            ECSLocate.DecCenter.AddEntityDecision(entity.DecGroup, entity.DecTreeId, entity.Uid);
         }
 
         public void Init()

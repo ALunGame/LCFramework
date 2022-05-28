@@ -5,7 +5,6 @@ using System;
 
 namespace LCECS.Core
 {
-    [Serializable]
     public sealed class Entity
     {
         private int uid;
@@ -25,6 +24,12 @@ namespace LCECS.Core
         /// 实体名
         /// </summary>
         public string Name { get => name; }
+
+        private DecisionGroup decGroup = DecisionGroup.HighThread;
+        /// <summary>
+        /// 决策组
+        /// </summary>
+        public DecisionGroup DecGroup { get => decGroup; }
 
         private int decTreeId = 0;
         /// <summary>
@@ -64,11 +69,12 @@ namespace LCECS.Core
 
         }
 
-        public Entity(int id,string name,int treeId,List<BaseCom> coms)
+        public Entity(int id, DecisionGroup decGroup,string name,int treeId,List<BaseCom> coms)
         {
             this.id = id;   
             this.decTreeId = treeId;
             this.name = name;
+            this.decGroup = decGroup;
             for (int i = 0; i < coms.Count; i++)
             {
                 this.coms.Add(coms[i].GetType().FullName, coms[i]);
@@ -114,7 +120,7 @@ namespace LCECS.Core
                 com.EntityEnable();
             }
             ECSLocate.ECS.CheckEntityInSystem(Uid);
-            ECSLayerLocate.Decision.AddDecisionEntity(DecTreeId, ECSLayerLocate.Info.GetEntityWorkData(Uid));
+            ECSLocate.DecCenter.AddEntityDecision(DecGroup, DecTreeId, Uid);
         }
 
         /// <summary>
@@ -130,7 +136,7 @@ namespace LCECS.Core
                 com.EntityDisable();
             }
             ECSLocate.ECS.CheckEntityInSystem(Uid);
-            ECSLayerLocate.Decision.RemoveDecisionEntity(DecTreeId, Uid);
+            ECSLocate.DecCenter.RemoveEntityDecision(DecTreeId, Uid);
         }
 
         #endregion
@@ -266,10 +272,11 @@ namespace LCECS.Core
         /// <summary>
         /// 改变决策树
         /// </summary>
-        public void ChangeDecTree(int treeId)
+        public void ChangeDecTree(DecisionGroup decGroup,int treeId)
         {
-            decTreeId = treeId;
-            ECSLayerLocate.Decision.AddDecisionEntity(DecTreeId, ECSLayerLocate.Info.GetEntityWorkData(uid));
+            this.decTreeId = treeId;
+            this.decGroup = decGroup;
+            ECSLocate.DecCenter.AddEntityDecision(decGroup, decTreeId, uid);
         }
     }
 }

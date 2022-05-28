@@ -4,8 +4,6 @@ using LCNode.Model;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using LCToolkit;
-using System.Reflection;
 
 namespace LCECS.EntityGraph
 {
@@ -45,9 +43,6 @@ namespace LCECS.EntityGraph
 
         [NodeValue("实体名")]
         public string name = "";
-
-        [NodeValue("决策树Id")]
-        public int decTreeId = 0;
 
         public List<BaseCom> GetModel()
         {

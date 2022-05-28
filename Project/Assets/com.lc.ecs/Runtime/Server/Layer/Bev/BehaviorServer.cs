@@ -3,9 +3,6 @@ using LCECS.Layer.Behavior;
 using LCJson;
 using System;
 using System.Collections.Generic;
-using UnityEngine;
-#if UNITY_EDITOR
-#endif
 
 namespace LCECS.Server.Layer
 {

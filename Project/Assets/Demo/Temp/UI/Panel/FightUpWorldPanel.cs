@@ -83,30 +83,30 @@ public class FightUpWorldPanel : LCUI.LCUIPanel
             worldItem.Find("Img").GetComponent<Image>().sprite = sprite;
         }
 
-        //设置位置
-        GameObjectCom objectCom = entity.GetCom<GameObjectCom>();
-        //Vector2 uiPoint = LCTransform.WorldPointToUI(objectCom.Go.transform.position, Canvas);
-        Vector2 uiPoint = Vector2.zero;
-        worldItem.anchoredPosition3D = uiPoint;
-        worldItem.GetComponent<CanvasGroup>().alpha = 1;
-        worldItem.gameObject.SetActive(true);
+        ////设置位置
+        //GameObjectCom objectCom = entity.GetCom<GameObjectCom>();
+        ////Vector2 uiPoint = LCTransform.WorldPointToUI(objectCom.Go.transform.position, Canvas);
+        //Vector2 uiPoint = Vector2.zero;
+        //worldItem.anchoredPosition3D = uiPoint;
+        //worldItem.GetComponent<CanvasGroup>().alpha = 1;
+        //worldItem.gameObject.SetActive(true);
 
-        Vector2 upTarget= new Vector3(worldItem.anchoredPosition.x+ MoveUpPos.x, worldItem.anchoredPosition.y + MoveUpPos.y);
+        //Vector2 upTarget= new Vector3(worldItem.anchoredPosition.x+ MoveUpPos.x, worldItem.anchoredPosition.y + MoveUpPos.y);
 
-        Vector2 downTarget = new Vector3(worldItem.anchoredPosition.x + MoveDownPos.x, worldItem.anchoredPosition.y + MoveDownPos.y);
+        //Vector2 downTarget = new Vector3(worldItem.anchoredPosition.x + MoveDownPos.x, worldItem.anchoredPosition.y + MoveDownPos.y);
 
-        //Dotween
-        //1，先放大并向上飘动
-        //2，向下飘动并渐隐
-        worldItem.localScale = new Vector3(StartScale, StartScale, StartScale);
-        worldItem.DOScale(EndScale, ScaleTime);
-        worldItem.DOAnchorPos(upTarget, MoveUpTime).SetEase(MoveUpEase).OnComplete(()=> {
-            worldItem.DOAnchorPos(downTarget, MoveDownTime).SetEase(MoveDownEase);
-            worldItem.GetComponent<CanvasGroup>().DOFade(0, HideTime).OnComplete(() => {
-                worldItem.gameObject.SetActive(false);
-                worldItem.anchoredPosition3D = uiPoint;
-                PushUpWorldItemInCache(worldItem);
-            });
-        });
+        ////Dotween
+        ////1，先放大并向上飘动
+        ////2，向下飘动并渐隐
+        //worldItem.localScale = new Vector3(StartScale, StartScale, StartScale);
+        //worldItem.DOScale(EndScale, ScaleTime);
+        //worldItem.DOAnchorPos(upTarget, MoveUpTime).SetEase(MoveUpEase).OnComplete(()=> {
+        //    worldItem.DOAnchorPos(downTarget, MoveDownTime).SetEase(MoveDownEase);
+        //    worldItem.GetComponent<CanvasGroup>().DOFade(0, HideTime).OnComplete(() => {
+        //        worldItem.gameObject.SetActive(false);
+        //        worldItem.anchoredPosition3D = uiPoint;
+        //        PushUpWorldItemInCache(worldItem);
+        //    });
+        //});
     }
 }

@@ -31,9 +31,6 @@ namespace Demo.Com
         private Transform Trans;
 
         [NonSerialized]
-        public Transform DisplayRootTrans;
-
-        [NonSerialized]
         public Transform DisplayTrans;
 
         [NonSerialized]
@@ -54,7 +51,6 @@ namespace Demo.Com
 
         private void OnDisplayGoChange(ActorObj actorObj)
         {
-            DisplayRootTrans = actorObj.GetDisplayRootGo().transform;
             DisplayTrans = actorObj.GetDisplayGo().transform;
         }
 

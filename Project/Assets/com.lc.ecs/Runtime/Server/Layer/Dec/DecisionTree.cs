@@ -16,6 +16,8 @@ namespace LCECS.Layer.Decision
         //决策实体列表
         private List<EntityWorkData> EntityList = new List<EntityWorkData>();
 
+        public int TreeId { get => treeId; set => treeId = value; }
+
         public DecisionTree()
         {
 

@@ -2,7 +2,7 @@
 
 namespace LCToolkit
 {
-    public class BindableValue<T> : IBindable<T>
+    public class BindableValue<T> : IBindable
     {
         private T _value;
 

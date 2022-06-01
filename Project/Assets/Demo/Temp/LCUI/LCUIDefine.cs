@@ -11,15 +11,15 @@ namespace LCUI
         NoNeedBack_HideOther, 	    //不加入导航，同时显示时隐藏其他界面
     }
 
-    public enum UILayer
-    {
-        Base,
-        First,
-        Second,
-        Three,
-        Top,
-        Dynamic,
-    }
+    //public enum UILayer
+    //{
+    //    Base,
+    //    First,
+    //    Second,
+    //    Three,
+    //    Top,
+    //    Dynamic,
+    //}
 
     [Serializable]
     public class UIPanelInfo

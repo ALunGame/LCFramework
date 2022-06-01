@@ -1,0 +1,6 @@
+TextField {
+	width: 200px;
+	-unity-text-align: upper-left;
+	-unity-text-overflow-position: start;
+	white-space: norma;
+}

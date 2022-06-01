@@ -18,6 +18,8 @@ namespace Demo
     {
         public override string Title { get => "受伤抖动"; set => base.Title = value; }
 
+        [NodeValue("抖动时间")]
+        public float shakeTime = 0.3f;
         protected override void OnEnabled()
         {
             base.OnEnabled();
@@ -26,6 +28,7 @@ namespace Demo
         public override BuffBeHurtFunc CreateFunc()
         {
             SkillBuffBeHurtShake func = new SkillBuffBeHurtShake();
+            func.shakeTime = shakeTime;
             return func;
         }
     }

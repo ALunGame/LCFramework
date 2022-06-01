@@ -40,6 +40,10 @@ namespace LCToolkit
 
         public List<Vector2> PolygonVertices;
 
+        /// <summary>
+        /// 获得中心点
+        /// </summary>
+        /// <returns></returns>
         public Vector2 GetCenter()
         {
             switch (ShapeType)
@@ -74,6 +78,31 @@ namespace LCToolkit
                     Center += delta;
                     for (var i = 0; i < PolygonVertices.Count; i++)
                         PolygonVertices[i] += delta;
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// X轴翻折
+        /// </summary>
+        public void FlipX()
+        {
+            switch (ShapeType)
+            {
+                case ShapeType.AABB:
+                    Vector2 min;
+                    Vector2 max;
+                    ShapeMath2D.AABBFlipX(AABBMin, AABBMax, out min, out max);
+                    AABBMin = min;
+                    AABBMax = max;
+                    break;
+                case ShapeType.Circle:
+                    Center = new Vector2(Center.x * -1, Center.y);
+                    break;
+                case ShapeType.Polygon:
+                    Debug.LogError("多边形需要旋转>>>>>>");
+                    break;
+                default:
                     break;
             }
         }

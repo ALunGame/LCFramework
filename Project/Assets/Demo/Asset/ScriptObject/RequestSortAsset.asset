@@ -38,3 +38,8 @@ MonoBehaviour:
     sort: -2
     isCover: 0
     isCustom: 0
+  - key: StopBev
+    name: "\u505C\u6B62\u884C\u4E3A"
+    sort: -99
+    isCover: 1
+    isCustom: 0

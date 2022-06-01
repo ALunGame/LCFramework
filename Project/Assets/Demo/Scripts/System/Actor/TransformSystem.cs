@@ -10,16 +10,17 @@ namespace Demo.System
     {
         protected override List<Type> RegListenComs()
         {
-            return new List<Type>() { typeof(TransformCom), typeof(Collider2DCom) };
+            return new List<Type>() { typeof(TransformCom), typeof(Collider2DCom), typeof(AnimCom) };
         }
 
         protected override void HandleComs(List<BaseCom> comList)
         {
             TransformCom transCom = GetCom<TransformCom>(comList[0]);
             Collider2DCom collider2DCom = GetCom<Collider2DCom>(comList[1]);
+            AnimCom animCom = GetCom<AnimCom>(comList[2]);
 
             HandleDir(transCom);
-            HandleMove(transCom, collider2DCom);
+            HandleMove(transCom, collider2DCom, animCom);
             transCom.UpdatePos();
         }
 
@@ -44,7 +45,7 @@ namespace Demo.System
             transCom.ReqDir = DirType.None;
         }
 
-        private void HandleMove(TransformCom transCom, Collider2DCom collider2DCom)
+        private void HandleMove(TransformCom transCom, Collider2DCom collider2DCom, AnimCom animCom)
         {
 
             if (transCom.ReqMove.x != 0)
@@ -66,6 +67,7 @@ namespace Demo.System
                 return;
 
             transCom.Translate(transCom.ReqMove);
+            animCom.SetReqAnim("run");
 
             transCom.ReqMove = Vector3.zero;
         }

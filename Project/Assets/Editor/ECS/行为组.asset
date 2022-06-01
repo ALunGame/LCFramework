@@ -16,6 +16,20 @@ MonoBehaviour:
     mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089],[LCNode.Model.BaseNode,
     Assembly-CSharp-Editor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]","9156d442-3f5c-42b0-8777-b288a3c99b53":{"mType":"LCECS.Tree.Tree_RootNode","childNode":null,"premise":null,"guid":"9156d442-3f5c-42b0-8777-b288a3c99b53","position":{"mType":"UnityEngine.Vector2","x":384.0,"y":10.0}},"ede67e78-a470-4c7e-b223-27d305bf7336":{"mType":"Demo.Tree.Tree_Bev_Act_GazeSurround","node":null,"premise":null,"guid":"ede67e78-a470-4c7e-b223-27d305bf7336","position":{"mType":"UnityEngine.Vector2","x":386.0,"y":216.0}}},"connections":[{"mType":"LCNode.Model.BaseConnection","from":"9156d442-3f5c-42b0-8777-b288a3c99b53","fromPortName":"\u5B50\u8282\u70B9","to":"ede67e78-a470-4c7e-b223-27d305bf7336","toPortName":"\u8282\u70B9"}]}'
   ReqId: 4
+--- !u!114 &-5336443824566880440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5a129348ce8e4346a4ecfce78a2c916, type: 3}
+  m_Name: behavior_StopBev
+  m_EditorClassIdentifier: 
+  serializedGraph: 
+  ReqId: 0
 --- !u!114 &-3757094016919443214
 MonoBehaviour:
   m_ObjectHideFlags: 0

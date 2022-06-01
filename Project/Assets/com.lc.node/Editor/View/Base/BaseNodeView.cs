@@ -93,7 +93,6 @@ namespace LCNode
     }
 }
 
-
 namespace LCNode.View
 {
     public partial class BaseNodeView

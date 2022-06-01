@@ -2,7 +2,7 @@
 
 namespace LCToolkit
 {
-    public class BindableValue<T>
+    public class BindableValue<T> : IBindable<T>
     {
         private T _value;
 
@@ -46,7 +46,7 @@ namespace LCToolkit
             this.onValueChanged -= onValueChanged;
         }
 
-        public void ClearChangedEvent()
+        public virtual void ClearChangedEvent()
         {
             onValueChanged = null;
         }

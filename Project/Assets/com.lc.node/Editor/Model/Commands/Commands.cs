@@ -369,7 +369,7 @@ namespace LCNode.Model
     /// <summary>
     /// 改变节点值命令
     /// </summary>
-    public class ChangeValueCommand : ICommand
+    public class ChangeNodeValueCommand : ICommand
     {
         object target;
         FieldInfo field;
@@ -378,7 +378,7 @@ namespace LCNode.Model
         Action OnDoFunc;
         Action OnUndoFunc;
 
-        public ChangeValueCommand(object target, FieldInfo field, object newValue, Action OnDoFunc = null, Action OnUndoFunc = null)
+        public ChangeNodeValueCommand(object target, FieldInfo field, object newValue, Action OnDoFunc = null, Action OnUndoFunc = null)
         {
             this.target = target;
             this.field = field;
@@ -424,6 +424,34 @@ namespace LCNode.Model
         public void Undo()
         {
             property.ValueBoxed = oldValue;
+        }
+    }
+
+    /// <summary>
+    /// 值改变命令
+    /// </summary>
+    public class ChangeValueCommand : ICommand
+    {
+        object oldValue, newValue;
+        Action<object> OnDoFunc;
+        Action<object> OnUndoFunc;
+
+        public ChangeValueCommand(object oldValue, object newValue, Action<object> onDoFunc, Action<object> onUndoFunc)
+        {
+            this.newValue = newValue;
+            this.oldValue = oldValue;
+            this.OnDoFunc = onDoFunc;
+            this.OnUndoFunc = onUndoFunc;
+        }
+
+        public void Do()
+        {
+            OnDoFunc?.Invoke(newValue);
+        }
+
+        public void Undo()
+        {
+            OnUndoFunc?.Invoke(oldValue);
         }
     }
 }

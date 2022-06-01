@@ -158,7 +158,10 @@ namespace LCNode.View
                 {
                     VisualElement element = ElementExtension.DrawField(nodeValueAttribute.Lable,item.FieldType, item.GetValue(Model), (object var) =>
                     {
-                        Owner.CommandDispacter.Do(new ChangeValueCommand(Model, item, var, null, () => {
+                        Owner.CommandDispacter.Do(new ChangeNodeValueCommand(Model, item, var, () =>
+                        {
+                            OnDrawerValuesChange();
+                        }, () => {
                             RefreshDrawerValues();
                         }));
                     });
@@ -186,12 +189,13 @@ namespace LCNode.View
             }
         }
 
-        private void RefreshDrawerValues()
+        public void RefreshDrawerValues()
         {
             foreach (var item in nodeValueElements)
             {
                 ElementExtension.SetFieldValue(item.Key, item.Value.GetValue(Model));
             }
+            OnDrawerValuesChange();
         }
 
         #endregion
@@ -214,6 +218,14 @@ namespace LCNode.View
             Model.ClearBindingEvent();
             Model.onPortAdded -= OnPortAdded;
             Model.onPortRemoved -= OnPortRemoved;
+        }
+
+        /// <summary>
+        /// 当抽屉值改变
+        /// </summary>
+        protected virtual void OnDrawerValuesChange()
+        {
+
         }
 
         void OnPortAdded(BasePort port)

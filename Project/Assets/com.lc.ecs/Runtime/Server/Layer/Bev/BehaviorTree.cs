@@ -64,10 +64,6 @@ namespace LCECS.Layer.Behavior
                 HandleList.Remove(workData);
                 Tree.Transition(workData);
             }
-            else
-            {
-                Debug.LogError("RemoveWorkData失败>>>");
-            }
         }
 
         /// <summary>
@@ -88,7 +84,6 @@ namespace LCECS.Layer.Behavior
                 {
                     //清理
                     RemoveWorkData(i, data);
-                    Debug.LogError("行为改变清理>>>>OnExit");
                     continue;
                 }
 

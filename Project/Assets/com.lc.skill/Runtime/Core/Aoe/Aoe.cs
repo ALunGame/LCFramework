@@ -225,6 +225,8 @@ namespace LCSkill
                     {
                         SkillLocate.Log.LogError("计算区域出错,没有跟随对象>>", model.id, ower.EntityId);
                     }
+                    if (actorObj.GetDir() == DirType.Left)
+                        newShape.FlipX();
                     newShape.Translate(actorObj.transform.position);
                 }
                 return newShape;

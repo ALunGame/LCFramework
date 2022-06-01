@@ -103,6 +103,12 @@ namespace LCSkill.BuffGraph
         [NodeValue("TickTime间隔")]
         public float tickTime = -1;
 
+        [NodeValue("最大堆叠层数")]
+        public int maxStack = 1;
+
+        [NodeValue("优先级")]
+        public int priority = 1;
+
         [OutputPort("当释放技能时", BasePort.Capacity.Single)]
         public BuffFreedFuncData onFreedFunc;
 

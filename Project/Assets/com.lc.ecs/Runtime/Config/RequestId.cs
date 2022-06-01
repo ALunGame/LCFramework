@@ -28,9 +28,14 @@ namespace LCECS
 		Wander,
 
         /// <summary>
-        /// 注视围绕
+        /// GazeSurround
         /// </summary>
 		GazeSurround,
+
+        /// <summary>
+        /// StopBev
+        /// </summary>
+		StopBev,
 
     }
 }

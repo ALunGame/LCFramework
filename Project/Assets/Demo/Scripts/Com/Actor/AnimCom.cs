@@ -65,6 +65,11 @@ namespace Demo.Com
             }
         }
 
+        public void SetDefaultAnim()
+        {
+            ReqAnimName.Value = AnimSystem.IdleState;
+        }
+
         public void SetReqAnim(string animName)
         {
             ReqAnimName.Value = animName;

@@ -155,22 +155,27 @@ namespace Demo
             if (LeftKey.CheckEvent() || RightKey.CheckEvent())
                 return;
 
-            Input.GetKeyDown(KeyCode.A);
-            Vector2 move = Vector2.zero;
-            move.x = Input.GetAxisRaw("Horizontal");
-            if (Input.GetButtonDown("Jump"))
-            {
-                move.y = 1;
-            }
-
-            paramData.SetVect2(move);
-            GameLocate.PushInputAction(Com.InputAction.Move, paramData);
-
             if (Input.GetMouseButtonDown(0))
             {
                 paramData.SetString("100101");
                 GameLocate.PushInputAction(Com.InputAction.Skill, paramData);
             }
+            else
+            {
+                Input.GetKeyDown(KeyCode.A);
+                Vector2 move = Vector2.zero;
+                move.x = Input.GetAxisRaw("Horizontal");
+                if (Input.GetButtonDown("Jump"))
+                {
+                    move.y = 1;
+                }
+
+                paramData.SetVect2(move);
+                GameLocate.PushInputAction(Com.InputAction.Move, paramData);
+            }
+
+
+
         }
 
         #endregion

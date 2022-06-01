@@ -42,7 +42,7 @@ namespace Demo.System
         {
             if (followCameraCom == null)
                 return;
-            followCameraCom.CMCamera.Follow = obj.transform;
+            followCameraCom.CMCamera.Follow = obj.GetFollowGo().transform;
         }
     }
 }

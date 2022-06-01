@@ -125,6 +125,10 @@ MonoBehaviour:
     m_Address: TbBuff_enemyBeHurt
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: d8dce947e820edf48a58ca577f3afa26
+    m_Address: TbBehavior_None
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: c106a54d1dad7c34dbca1e47199c97a1, type: 2}
   m_SchemaSet:

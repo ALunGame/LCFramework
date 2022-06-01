@@ -145,6 +145,43 @@ namespace LCConfig
             AssetDatabase.SaveAssets();
         }
 
+        /// <summary>
+        /// 获得配置
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        public static List<T> GetConfigAssets<T>() where T : IConfig
+        {
+            List<T> assets = new List<T>();
+            string[] tileAssetPath = new string[] { Setting.ConfigSearchPath };
+            string[] guids = AssetDatabase.FindAssets("t:ScriptableObject", tileAssetPath);
+            foreach (var guid in guids)
+            {
+                string path = AssetDatabase.GUIDToAssetPath(guid);
+                ConfigAssetGroup config = AssetDatabase.LoadAssetAtPath<ConfigAssetGroup>(path);
+                if (string.IsNullOrEmpty(config.configTypeName))
+                {
+                    Debug.LogError($"p配置导出失败，没有对应配置类》》》{config.name}");
+                    continue;
+                }
+                if (config.configTypeFullName == typeof(T).FullName)
+                {
+                    foreach (var item in config.GetAllAsset())
+                    {
+                        List<IConfig> datas = item.Load();
+                        if (datas != null)
+                        {
+                            for (int i = 0; i < datas.Count; i++)
+                            {
+                                assets.Add((T)datas[i]);
+                            }
+                        }
+                    }
+                }
+            }
+            return assets;
+        }
+
         #endregion
 
         [Header("配置文件搜索路径")]

@@ -159,6 +159,26 @@ namespace LCSkill
             return true;
         }
 
+        /// <summary>
+        /// 停止当前技能
+        /// </summary>
+        public void StopSkill()
+        {
+            Debug.LogError("StopSkill>>>>>>");
+            for (int i = 0; i < Timelines.Count; i++)
+            {
+                TimelineObj timelineObj = Timelines[i];
+                timelineObj.timeElapsed = timelineObj.model.duration;
+                timelineObj.isFinish = true;
+
+                for (int j = 0; j < timelineObj.model.nodes.Count; j++)
+                {
+                    TimelineFunc timelineFunc = timelineObj.model.nodes[j];
+                    timelineFunc.Exit(timelineObj);
+                }
+            }
+        }
+
         #endregion
 
         #region Buff

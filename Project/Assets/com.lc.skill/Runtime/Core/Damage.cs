@@ -104,5 +104,10 @@ namespace LCSkill
             this.model = model;
             this.angle = angle;
         }
+
+        public override string ToString()
+        {
+            return string.Format("{0}->{1}",attacker.EntityCnfId, target.EntityCnfId);
+        }
     }
 }

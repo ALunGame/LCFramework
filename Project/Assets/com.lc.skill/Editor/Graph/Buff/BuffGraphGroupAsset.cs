@@ -60,6 +60,8 @@ namespace LCSkill.BuffGraph
             BuffModel buffModel = new BuffModel();
             buffModel.id = asset.buffId;
             buffModel.name = asset.name;
+            buffModel.priority = node.priority;
+            buffModel.maxStack = node.maxStack;
             buffModel.tickTime = node.tickTime;
 
             buffModel.onFreedFunc = node.GetOnFreedFuncs();

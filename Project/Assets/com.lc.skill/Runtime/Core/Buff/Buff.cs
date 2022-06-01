@@ -76,18 +76,6 @@ namespace LCSkill
         public float tickTime;
 
         /// <summary>
-        /// Buff添加的属性
-        /// 1,这边用数组的意义在于有时候属性的计算是复杂的，需要几个属性共同计算才有目标结果
-        /// </summary>
-        //public Property[] props;
-
-        /// <summary>
-        /// Buff对于状态的影响
-        /// 1,状态就是一种Bool运算所有不应该有多个
-        /// </summary>
-        //public State state;
-
-        /// <summary>
         /// 当释放一个技能时执行的函数
         /// 为了处理当技能释放时，更改技能表现，比如没有魔法还要释放，会执行没有魔法的动画
         /// </summary>

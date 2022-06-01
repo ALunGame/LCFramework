@@ -28,6 +28,10 @@ namespace LCECS.Data
 
         public void ChangeRequestId(RequestId reqId)
         {
+            if (MEntity.Equals(ECSLocate.Player.GetPlayerEntity()))
+            {
+                ECSLocate.Log.LogWarning("ChangeRequestId>>>>", reqId);
+            }
             CurrReqId = reqId;
             ParamQueue.Clear();
             CurrReqCnt = 0;

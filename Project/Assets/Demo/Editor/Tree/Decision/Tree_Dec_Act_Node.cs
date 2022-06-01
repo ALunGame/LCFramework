@@ -32,6 +32,18 @@ namespace Demo.Tree
         }
     }
 
+    [NodeMenuItem("全局/输入/玩家输入")]
+    public class Tree_Dec_Act_Input_Player : Base_DEC_Act_Node
+    {
+        public override string Title { get => "玩家输入"; set => base.Title = value; }
+
+        public override Node CreateRuntimeNode()
+        {
+            DEC_ACT_Input_Node node = new DEC_ACT_Input_Node();
+            return node;
+        }
+    }
+
     #endregion
 
     #region AI

@@ -34,3 +34,6 @@ MonoBehaviour:
   - typeName: EntityGraphGroupAsset
     typeFullName: LCECS.EntityGraph.EntityGraphGroupAsset
     searchPath: Assets/Editor/ECS
+  - typeName: DialogGraphGroupAsset
+    typeFullName: LCDialog.DialogGraph.DialogGraphGroupAsset
+    searchPath: Assets/Editor/Dialog

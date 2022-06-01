@@ -25,7 +25,9 @@ namespace LCSkill
         /// <param name="angle">伤害角度</param>
         public void AddDamageInfo(SkillCom attacker, SkillCom target, DamageModel damage, float angle)
         {
-            damages.Add(new AddDamageInfo(attacker,target,damage,angle));
+            AddDamageInfo damageInfo = new AddDamageInfo(attacker, target, damage, angle);
+            damages.Add(damageInfo);
+            SkillLocate.Log.Log("伤害:", damageInfo);
         }
 
         /// <summary>

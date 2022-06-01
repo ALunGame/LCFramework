@@ -2,6 +2,7 @@
 using LCECS.Core;
 using UnityEngine;
 using LCECS;
+using LCECS.Data;
 
 namespace Demo
 {
@@ -32,6 +33,7 @@ namespace Demo
         public static void PauseEntityDec(this Entity entity)
         {
             ECSLocate.DecCenter.RemoveEntityDecision(entity.DecTreeId, entity.Uid);
+            ECSLayerLocate.Request.PushRequest(entity.Uid, RequestId.StopBev, new ParamData());
         }
 
         /// <summary>
@@ -39,6 +41,8 @@ namespace Demo
         /// </summary>
         public static void ResumeEntityDec(this Entity entity)
         {
+            EntityWorkData workData = ECSLayerLocate.Info.GetEntityWorkData(entity.Uid);
+            workData.ChangeRequestId(RequestId.None);
             ECSLocate.DecCenter.AddEntityDecision(entity.DecGroup, entity.DecTreeId, entity.Uid);
         }
     }

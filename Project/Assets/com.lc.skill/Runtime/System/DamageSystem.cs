@@ -42,15 +42,13 @@ namespace LCSkill
                     ExecuteBeKilledFunc(damageInfo);
                 }
                 //伤害结束，添加Buff
-                //for (int j = 0; j < damageInfo.addBuffs.Count; j++)
-                //{
-                //    AddBuffInfo addBuffInfo = damageInfo.addBuffs[j];
-                //    SkillCom buffTarget = addBuffInfo.target;
-                //    if (buffTarget != null)
-                //    {
-                //        buffTarget.AddBuff(addBuffInfo);
-                //    }
-                //}
+                for (int j = 0; j < damageInfo.model.addBuffs.Count; j++)
+                {
+                    AddBuffModel addBuff = damageInfo.model.addBuffs[j];
+                    SkillLocate.Skill.CreateBuff(damageInfo.attacker, damageInfo.target, addBuff);
+                }
+                //移除
+                damageCom.RemoveDamageInfo(damageInfo);
             }
         }
 

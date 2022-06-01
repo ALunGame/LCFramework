@@ -1,4 +1,5 @@
 ﻿using Demo.Com;
+using Demo.System;
 using LCECS;
 using LCECS.Core;
 using LCSkill;
@@ -15,8 +16,6 @@ namespace Demo.Skill.Timeline
 
         public override void Enter(TimelineObj timelineObj)
         {
-            ECSLocate.Log.Log("SkillTimeline_PlayAnim>>>>", timelineObj.ower.EntityId);
-
             if (timelineObj.ower == null)
                 return;
             Entity entity = ECSLocate.ECS.GetEntity(timelineObj.ower.EntityId);
@@ -26,6 +25,19 @@ namespace Demo.Skill.Timeline
             }
             AnimCom animCom = entity.GetCom<AnimCom>();
             animCom.SetReqAnim(animName);
+        }
+
+        public override void Exit(TimelineObj timelineObj)
+        {
+            if (timelineObj.ower == null)
+                return;
+            Entity entity = ECSLocate.ECS.GetEntity(timelineObj.ower.EntityId);
+            if (entity == null)
+            {
+                return;
+            }
+            AnimCom animCom = entity.GetCom<AnimCom>();
+            animCom.SetReqAnim(AnimSystem.IdleState);
         }
     }
 

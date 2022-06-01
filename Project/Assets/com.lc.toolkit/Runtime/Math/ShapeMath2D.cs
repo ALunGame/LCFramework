@@ -194,6 +194,20 @@ namespace LCToolkit
         }
 
         /// <summary>
+        /// X轴翻折
+        /// </summary>
+        public static void AABBFlipX(Vector2 min, Vector2 max, out Vector2 aabbMin, out Vector2 aabbMax)
+        {
+            Vector2[] vertices = new Vector2[4];
+            GetVerticesAABB(min, max, vertices);
+            for (int i = 0; i < vertices.Length; i++)
+            {
+                vertices[i] = new Vector2(vertices[i].x * -1, vertices[i].y);
+            }
+            GetBoundingAABB(vertices, out aabbMin, out aabbMax);
+        }
+
+        /// <summary>
         /// 获得矩形四个顶点
         /// </summary>
         public static unsafe void GetVerticesAABBUnsafe(Vector2 min, Vector2 max, Vector2* vertices)

@@ -12,6 +12,7 @@ namespace Demo.Com
     /// </summary>
     public enum InputAction
     {
+        None,
         Move,
         Skill,
     }
@@ -44,6 +45,12 @@ namespace Demo.Com
             LastAction = CurrAction;
             CurrAction = action;
             Param = param;
+        }
+
+        public void ClearAction()
+        {
+            LastAction = CurrAction;
+            CurrAction = InputAction.None;
         }
     } 
 }

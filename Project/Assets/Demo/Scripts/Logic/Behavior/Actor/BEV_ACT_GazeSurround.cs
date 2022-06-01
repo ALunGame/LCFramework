@@ -21,7 +21,6 @@ namespace Demo.Behavior
             gazeSurroundCom.gazeUid = gazeUid;
             gazeSurroundCom.gazeRange = gazeRange;
             gazeSurroundCom.Enable();
-            Debug.LogError("BEV_ACT_GazeSurround>>>>OnEnter");
         }
 
         protected override int OnRunning(NodeData wData)
@@ -32,10 +31,12 @@ namespace Demo.Behavior
         protected override void OnExit(NodeData wData, int runningStatus)
         {
             EntityWorkData workData = wData as EntityWorkData;
+
             //组件
+            AnimCom animCom = workData.MEntity.GetCom<AnimCom>();
+            animCom.SetDefaultAnim();
             GazeSurroundCom gazeSurroundCom = workData.MEntity.GetCom<GazeSurroundCom>();
             gazeSurroundCom.Disable();
-            Debug.LogError("BEV_ACT_GazeSurround>>>>OnExit");
         }
     }
 }

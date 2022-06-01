@@ -66,6 +66,8 @@ namespace Demo.Behavior
             SkillCom skillCom = workData.MEntity.GetCom<SkillCom>();
             if (userData.skillId == "-1" || skillCom.CheckSkillIsFinish(userData.skillId))
             {
+                Debug.LogError("完成》》》》》" + userData.skillId);
+                Debug.LogError("完成》》》》》" + skillCom.CheckSkillIsFinish(userData.skillId));
                 return NodeState.FINISHED;
             }
             else
@@ -82,6 +84,8 @@ namespace Demo.Behavior
             userData.skillId = "-1";
 
             //打断移动
+            SkillCom skillCom = workData.MEntity.GetCom<SkillCom>();
+            skillCom.StopSkill();
             AnimCom animCom = workData.MEntity.GetCom<AnimCom>();
             if (animCom != null)
             {

@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using LCSkill;
-using DG.Tweening;
+﻿using DG.Tweening;
 using LCECS.Core;
 using LCMap;
+using LCSkill;
 using UnityEngine;
 
 namespace Demo.Skill.Buff
@@ -16,12 +11,16 @@ namespace Demo.Skill.Buff
     /// </summary>
     public class SkillBuffBeHurtShake : BuffBeHurtFunc
     {
+        public float shakeTime;
+
         public override void Execute(BuffObj buff, ref AddDamageInfo damageInfo, SkillCom attacker)
         {
             SkillCom skillCom = damageInfo.target;
             ActorObj actorObj = LCMap.MapLocate.Map.GetActor(skillCom.EntityId);
+
             GameObject displayGo = actorObj.GetDisplayGo();
-            displayGo.transform.DOShakePosition(0.3f);
+            displayGo.transform.DOComplete(false);
+            displayGo.transform.DOPunchPosition(new Vector3(-0.2f * actorObj.GetDirValue(), 0,0), shakeTime, 1, 0);
         }
     }
 
@@ -34,12 +33,15 @@ namespace Demo.Skill.Buff
 
         public override void Execute(BuffObj buff, ref AddDamageInfo damageInfo, SkillCom attacker)
         {
+            Debug.LogWarning("受伤暂停决策>>>>>");
+
             SkillCom skillCom = damageInfo.target;
             Entity entity = LCECS.ECSLocate.ECS.GetEntity(skillCom.EntityId);
             entity.PauseEntityDec();
             float timeCount = pauseTime;
             DOTween.To(() => timeCount, a => timeCount = a, 0.1f, pauseTime).OnComplete(new TweenCallback(delegate
             {
+                Debug.LogWarning("受伤开启决策>>>>>");
                 entity.ResumeEntityDec();
             }));
         }

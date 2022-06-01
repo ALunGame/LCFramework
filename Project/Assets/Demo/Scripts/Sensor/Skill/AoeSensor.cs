@@ -14,7 +14,10 @@ namespace Demo
     {
         public override bool CheckActorInRange(AoeObj aoeObj, ActorObj actor)
         {
-            return false;
+            Shape checkShape = aoeObj.CalcArea();
+            Entity entity = ECSLocate.ECS.GetEntity(actor.Uid);
+            Shape body = EntityGetter.GetEntityColliderShape(entity);
+            return checkShape.Intersects(body);
         }
 
         public override bool CheckBulletInRange(AoeObj aoeObj, BulletObj bullet)

@@ -12,6 +12,9 @@ namespace LCDialog.DialogGraph
     [CreateAssetMenu(fileName = "Dialog组", menuName = "配置组/Dialog组", order = 1)]
     public class DialogGraphGroupAsset : BaseGraphGroupAsset<DialogGraphAsset>
     {
+        [Header("对话类型")]
+        public DialogType dialogType;
+
         public override string DisplayName => "Dialog";
 
         public override void OnClickCreateBtn()
@@ -20,60 +23,75 @@ namespace LCDialog.DialogGraph
             {
                 string assetName = "dialog_" + x;
                 DialogGraphAsset asset = CreateGraph(assetName) as DialogGraphAsset;
+                asset.dialogType = dialogType;
             });
         }
 
         public override void ExportGraph(List<InternalBaseGraphAsset> assets)
         {
+            Dictionary<DialogType, List<DialogGraphAsset>> dialogGroupDict = new Dictionary<DialogType, List<DialogGraphAsset>>();
             for (int i = 0; i < assets.Count; i++)
             {
                 if (assets[i] is DialogGraphAsset)
                 {
                     DialogGraphAsset asset = assets[i] as DialogGraphAsset;
-
-                    BaseGraph graphData = asset.DeserializeGraph();
-
-                    //运行时数据结构
-                    DialogModel model = SerializeToDialogModel(graphData, asset);
-
-                    string filePath = DialogDef.GetDialogCnfPath();
-                    IOHelper.WriteText(JsonMapper.ToJson(model), filePath);
-
-                    Debug.Log($"Dialog配置生成成功>>>>{filePath}");
+                    if (!dialogGroupDict.ContainsKey(asset.dialogType))
+                        dialogGroupDict.Add(asset.dialogType, new List<DialogGraphAsset>());
+                    dialogGroupDict[asset.dialogType].Add(asset);
                 }
+            }
+
+            foreach (var item in dialogGroupDict)
+            {
+                TBDialogCnf cnfTab = new TBDialogCnf();
+
+                List<DialogModel> dialogs = new List<DialogModel>();
+
+                DialogType dialogType = item.Key;
+                List<DialogGraphAsset> dialogAssets = item.Value;
+                foreach (var dialogAsset in dialogAssets)
+                {
+                    BaseGraph graphData = dialogAsset.DeserializeGraph();
+                    dialogs.AddRange(SerializeToDialogModel(graphData, dialogAsset));
+                }
+
+                for (int i = 0; i < dialogs.Count; i++)
+                {
+                    DialogModel tModel = dialogs[i];
+                    if (cnfTab.ContainsKey(tModel.id))
+                    {
+                        Debug.LogError($"Dialog配置生成失败，重复的对话Id>>>>{tModel.id}");
+                        return;
+                    }
+                    else
+                    {
+                        cnfTab.Add(tModel.id, tModel);
+                    }
+                }
+
+                string filePath = DialogDef.GetDialogCnfPath(dialogType);
+                IOHelper.WriteText(JsonMapper.ToJson(cnfTab), filePath);
+                Debug.Log($"对话生成成功》》》{filePath}");
             }
 
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
         }
 
-        private DialogModel SerializeToDialogModel(BaseGraph graph, DialogGraphAsset asset)
+        private List<DialogModel> SerializeToDialogModel(BaseGraph graph, DialogGraphAsset asset)
         {
+            List<DialogModel> models = new List<DialogModel>();
             List<Dialog_Node> rootNodes = NodeHelper.GetNodes<Dialog_Node>(graph);
             if (rootNodes.Count <= 0)
             {
                 Debug.LogError($"试图序列化出错，没有根节点");
+                return models;
             }
-            Dialog_Node node = rootNodes[0];
-
-            DialogModel aoeModel = new DialogModel();
-            // aoeModel.id = asset.aoeId;
-            // aoeModel.asset = node.asset;
-            // aoeModel.areaShape = node.areaShape;
-            // aoeModel.tickTime = node.tickTime;
-
-            // aoeModel.moveFunc = node.GetMoveFunc(); 
-            // aoeModel.onCreateFunc = node.GetOnCreateFuncs();
-            // aoeModel.onTickFunc = node.GetOnTickFuncs();
-            // aoeModel.onRemovedFunc = node.GetOnRemovedFuncs();
-
-            // aoeModel.onActorEnterFunc = node.GetOnActorEnterFuncs();
-            // aoeModel.onActorLeaveFunc = node.GetOnActorLeaveFuncs();
-
-            // aoeModel.onBulletEnterFunc = node.GetOnBulletEnterFuncs();
-            // aoeModel.onBulletLeaveFunc = node.GetOnBulletLeaveFuncs();
-
-            return aoeModel;
+            for (int i = 0; i < rootNodes.Count; i++)
+            {
+                models.Add(rootNodes[i].GetDialogModel());
+            }
+            return models;
         }
     }
 }

@@ -14,14 +14,14 @@ namespace LCDialog
         public int id;
 
         /// <summary>
-        /// 是否可以重复选择
-        /// </summary>
-        public bool canRepeat;
-
-        /// <summary>
         /// 选项内容
         /// </summary>
         public string content;
+
+        /// <summary>
+        /// 返回第几步对话
+        /// </summary>
+        public int backToStep;
 
         /// <summary>
         /// 点击选项调用
@@ -110,14 +110,19 @@ namespace LCDialog
         public string Uid { get; private set; }
 
         /// <summary>
-        /// 对话Id
+        /// 对话类型
         /// </summary>
-        public int Id { get; private set; }
+        public DialogType DialogType;
 
         /// <summary>
         /// 数据
         /// </summary>
         public DialogModel Model;
+
+        /// <summary>
+        /// 对话Id
+        /// </summary>
+        public int DialogId { get; private set; }
 
         /// <summary>
         /// 当前对话第几步
@@ -133,6 +138,30 @@ namespace LCDialog
         /// 对话目标
         /// </summary>
         public List<ActorObj> Targets { get; private set; }
+
+        public DialogObj(string uid, DialogType dialogType, int dialogId,int dialogStep, DialogModel model)
+        {
+            this.Uid = uid;
+            this.DialogType = dialogType;
+            this.DialogId = dialogId;
+            this.CurrStep = dialogStep;
+            this.Model = model;
+        }
+
+        public void SetSponsor(ActorObj actor)
+        {
+            Sponsor = actor;
+        }
+
+        public void SetTargets(List<ActorObj> actors)
+        {
+            Targets = actors;
+        }
+
+        public void SetStep(int step)
+        {
+            CurrStep = step;
+        }
     }
 
     /// <summary>
@@ -151,6 +180,11 @@ namespace LCDialog
         public List<ActorObj> Targets;
 
         /// <summary>
+        /// 对话类型
+        /// </summary>
+        public DialogType DialogType;
+
+        /// <summary>
         /// 对话Id
         /// </summary>
         public int DialogId;
@@ -160,10 +194,26 @@ namespace LCDialog
         /// </summary>
         public int DialogStep;
 
-        public AddDialogInfo(int dialogId,int dialogStep)
+        /// <summary>
+        /// 对话影响的演员Uids
+        /// </summary>
+        public List<int> ActorUids;
+
+        public AddDialogInfo(DialogType dialogType,int dialogId,int dialogStep)
         {
+            this.DialogType = dialogType;
             this.DialogId = dialogId;
             this.DialogStep = dialogStep;
+        }
+
+        public override string ToString()
+        {
+            if (Sponsor == null)
+            {
+                return $"{DialogType}_{DialogId}";
+            }
+            ActorObj sponsor = Sponsor;
+            return $"{DialogType}_{DialogId}_{sponsor.Uid}";
         }
     }
 }

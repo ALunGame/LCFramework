@@ -1,17 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
-using DG.Tweening;
-
-namespace LCUI
+﻿namespace LCUI
 {
     public class UIPanel<T> : InternalUIPanel where T : UIModel, new()
     {
-        private T bindmodel;
-
         /// <summary>
         /// 绑定数据
         /// </summary>
@@ -19,37 +9,67 @@ namespace LCUI
         { 
             get 
             {
-                if (bindmodel == null)
+                if (_Model == null)
                 {
-                    bindmodel = new T();
+                    _Model = new T();
                 }
-                return bindmodel; 
+                return (T)_Model; 
             } 
         }
 
         /// <summary>
         /// 创建时初始化
         /// </summary>
-        public void Awake()
+        public override void Awake()
         {
+            base.Awake();
+            for (int i = 0; i < Glues.Count; i++)
+            {
+                Glues[i].OnAwake(this);
+            }
             OnAwake();
         }
 
         /// <summary>
         /// 显示
         /// </summary>
-        public void Show()
+        public override void Show()
         {
+            base.Show();
+            for (int i = 0; i < Glues.Count; i++)
+            {
+                Glues[i].OnBeforeShow(this);
+            }
             OnShow();
+            for (int i = 0; i < Glues.Count; i++)
+            {
+                Glues[i].OnAfterShow(this);
+            }
         }
 
         /// <summary>
         /// 隐藏
         /// </summary>
-        public void Hide()
+        public override void Hide()
         {
+            base.Hide();
             BindModel.ClearEvent();
+            for (int i = 0; i < Glues.Count; i++)
+            {
+                Glues[i].OnHide(this);
+            }
             OnHide();
+        }
+
+        public override void Destroy()
+        {
+            base.Destroy();
+            BindModel.ClearEvent();
+            for (int i = 0; i < Glues.Count; i++)
+            {
+                Glues[i].OnDestroy(this);
+            }
+            OnDestroy();
         }
 
         #region Virtual
@@ -74,6 +94,14 @@ namespace LCUI
         /// 隐藏
         /// </summary>
         public virtual void OnHide()
+        {
+
+        }
+
+        /// <summary>
+        /// 隐藏
+        /// </summary>
+        public virtual void OnDestroy()
         {
 
         }

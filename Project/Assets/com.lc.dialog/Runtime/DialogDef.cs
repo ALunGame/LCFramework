@@ -16,14 +16,22 @@ namespace LCDialog
         /// </summary>
         public const string DialogRootPath = CnfRootPath + "Dialog/";
 
-        public static string GetDialogCnfName()
+        public static string GetDialogCnfName(DialogType dialogType)
         {
-            return ConfigDef.GetCnfNoExName("Dialog");
+            return ConfigDef.GetCnfNoExName($"{dialogType}Dialog");
         }
 
-        public static string GetDialogCnfPath()
+        public static string GetDialogCnfPath(DialogType dialogType)
         {
-            return DialogRootPath + ConfigDef.GetCnfName("Dialog");
+            return DialogRootPath + ConfigDef.GetCnfName($"{dialogType}Dialog");
         }
+    }
+
+    public enum DialogType
+    {
+        /// <summary>
+        /// 人物气泡对话
+        /// </summary>
+        Bubble,
     }
 }

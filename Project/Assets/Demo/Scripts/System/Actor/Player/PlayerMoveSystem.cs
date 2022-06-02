@@ -55,13 +55,15 @@ namespace Demo.System
                 default:
                     break;
             }
+            Vector2 gVector = new Vector2(0, GravitySystem._G);
+
             if (moveCom.Rig.velocity.y < 0)
             {
-                moveCom.Rig.velocity += Definition.Gravity * 1.5f * massValue * Time.deltaTime;
+                moveCom.Rig.velocity += gVector * 1.5f * massValue * Time.deltaTime;
             }
             else if (moveCom.Rig.velocity.y > 0)
             {
-                moveCom.Rig.velocity += Definition.Gravity * 1 * massValue * Time.deltaTime;
+                moveCom.Rig.velocity += gVector * 1 * massValue * Time.deltaTime;
             }
         }
 

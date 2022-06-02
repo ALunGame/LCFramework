@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using LCToolkit;
-using LCLoad;
 
 namespace LCUI
 {
@@ -10,71 +8,137 @@ namespace LCUI
     /// </summary>
     public class InternalUIPanel
     {
+        #region 配置字段
+
+        private UICanvasType _CanvasType;
+        /// <summary>
+        /// 画布类型
+        /// </summary>
+        public virtual UICanvasType CanvasType
+        {
+            get { return _CanvasType; }
+            set { _CanvasType = value; }
+        }
+
+        private UILayer _Layer;
+        /// <summary>
+        /// 层级
+        /// </summary>
+        public virtual UILayer Layer
+        {
+            get { return _Layer; }
+            set { _Layer = value; }
+        }
+
+        private UIShowRule _DefaultShowRule;
+        /// <summary>
+        /// 默认显示规则
+        /// </summary>
+        public virtual UIShowRule DefaultShowRule
+        {
+            get { return _DefaultShowRule; }
+            set { _DefaultShowRule = value; }
+        }
+
+        private string _UIPrefabName;
+        /// <summary>
+        /// 默认预制体名
+        /// </summary>
+        public virtual string UIPrefabName
+        {
+            get { return _UIPrefabName; }
+            set { _UIPrefabName = value; }
+        }
+
+        #endregion
+
+        #region 界面数据
+
+        protected UIModel _Model;
+        public UIModel Model { get { return _Model; } }
+
+        #endregion
+
+        #region 内部字段
+
         /// <summary>
         /// 界面节点
         /// </summary>
         public Transform transform { get; private set; }
 
-        #region Cache
+        public RectTransform rectTransform { get; private set; }
 
-        private List<UICacheItem> cacheItems = new List<UICacheItem>();
+        public void SetTransform(Transform trans)
+        {
+            transform = trans;
+            rectTransform = trans.GetComponent<RectTransform>();
+        }
+
+        #endregion
+
+        #region 胶水字段
+
+        private List<UIGlue> glues = new List<UIGlue>();
+
+        public IReadOnlyList <UIGlue> Glues { get => glues;}
+
+        public void AddGlue(UIGlue glue)
+        {
+            if (glues.Contains(glue))
+            {
+                return;
+            }
+            glues.Add(glue);
+        }
+
+        #endregion
+
+        #region 生命周期
 
         /// <summary>
-        /// 添加缓存对象，将会在界面关闭时自动回收
+        /// 创建时初始化
         /// </summary>
-        /// <param name="cacheItem"></param>
-        public void AddCacheItem(UICacheItem cacheItem)
+        public virtual void Awake()
         {
-            if (!cacheItems.Contains(cacheItem))
-                return;
-            cacheItems.Add(cacheItem);
+            if (transform != null)
+            {
+                transform.gameObject.SetActive(true);
+            }
         }
 
-        public void RecycleCaches()
+        /// <summary>
+        /// 显示
+        /// </summary>
+        public virtual void Show()
         {
-            for (int i = 0; i < cacheItems.Count; i++)
+            if (transform != null)
             {
-                cacheItems[i].RecycleAll();
+                transform.gameObject.SetActive(true);
+            }
+        }
+
+        /// <summary>
+        /// 隐藏
+        /// </summary>
+        public virtual void Hide()
+        {
+            if (transform != null)
+            {
+                transform.gameObject.SetActive(false);
+            }
+        }
+
+        /// <summary>
+        /// 销毁
+        /// </summary>
+        public virtual void Destroy()
+        {
+            if (transform!=null)
+            {
+                GameObject.Destroy(transform);
             }
         }
 
         #endregion
-
-        #region Create
-
-        public Transform CreatePanelTrans()
-        {
-            if (AttributeHelper.TryGetTypeAttribute<UIPanelAttribute>(this.GetType(),out var attr))
-            {
-                GameObject goAsset = LoadHelper.LoadPrefab(attr.UIPrefabName);
-                if (goAsset == null)
-                {
-                    LCUI.UILocate.Log.LogError("创建界面出错，没有对应预制体", this.GetType(), attr.UIPrefabName);
-                    return null;
-                }
-                GameObject uiPanel = GameObject.Instantiate(goAsset);
-                transform = uiPanel.transform;
-                return transform;
-            }
-            else
-            {
-                LCUI.UILocate.Log.LogError("创建界面出错，必须声明 UIPanelAttribute 属性才能创建", this.GetType());
-                return null;
-            }
-        }
-
-        public Transform CreatePanelTrans(Transform panelTrans)
-        {
-            transform = panelTrans;
-            return transform;
-        }
-
-        #endregion
-
-
-        public void Clear()
-        {
-            RecycleCaches();
-        }
     }
 }

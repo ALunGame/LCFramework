@@ -34,8 +34,8 @@ namespace LCDialog.DialogGraph
         [InputPort("父节点", BasePort.Capacity.Single)]
         public DialogDisposeData parentNode;
 
-        [NodeValue("是否可以重复选择")]
-        public bool canRepeat = true;
+        [NodeValue("返回第几步对话")]
+        public int backToStep = -1;
 
         [NodeValue("选项内容")]
         public string content = "";
@@ -46,8 +46,8 @@ namespace LCDialog.DialogGraph
         public DialogDisposeModel GetDisposeModel()
         {
             DialogDisposeModel model = new DialogDisposeModel();
-            model.canRepeat = canRepeat;
             model.content = content;
+            model.backToStep = backToStep;
 
             //函数
             model.onChooseFuncs = new List<DialogDisposeFunc>();

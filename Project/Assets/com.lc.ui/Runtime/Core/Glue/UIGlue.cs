@@ -6,15 +6,15 @@ namespace LCUI
 {
     public class UIGlue
     {
+        protected InternalUIPanel _Panel;
+
         public virtual void OnAwake(InternalUIPanel panel)
         {
+            this._Panel = panel;
+            this._Panel.AddGlue(this);
         }
 
         public virtual void OnBeforeShow(InternalUIPanel panel)
-        {
-        }
-
-        public virtual void OnShow(InternalUIPanel panel)
         {
         }
 
@@ -23,6 +23,11 @@ namespace LCUI
         }
 
         public virtual void OnHide(InternalUIPanel panel)
+        {
+
+        }
+
+        public virtual void OnDestroy(InternalUIPanel panel)
         {
 
         }

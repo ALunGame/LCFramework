@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: UIPrefab
+  m_EditorClassIdentifier: 
+  m_GroupName: UIPrefab
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 0e682df9f30dd684381a8523a578d6f3
+  m_SerializeEntries:
+  - m_GUID: 236067bb1498136438c809159b6ec52f
+    m_Address: BubbleDialogChoosePanel
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f4e2daa12ebd2ce449365896dbe69020
+    m_Address: BubbleDialogCom
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: c106a54d1dad7c34dbca1e47199c97a1, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 41355b49bc203da47802bd1031c07e7a, type: 2}
+    - {fileID: 11400000, guid: 661e8a1870405674d82213ed0bc9fb56, type: 2}

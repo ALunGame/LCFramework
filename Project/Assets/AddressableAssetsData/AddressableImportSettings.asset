@@ -134,3 +134,23 @@ MonoBehaviour:
     groupTemplateApplicationMode: 1
     simplified: 1
     addressReplacement: 
+  - path: ^Assets/Demo/Asset/UI/Prefabs/[^\x22]+/*.prefab
+    matchType: 1
+    groupName: UIPrefab
+    LabelMode: 1
+    labelRefs: []
+    dynamicLabels: []
+    groupTemplate: {fileID: 11400000, guid: afd24fc416a2d11478e3db337d942408, type: 2}
+    groupTemplateApplicationMode: 1
+    simplified: 1
+    addressReplacement: 
+  - path: ^Assets/Demo/Asset/UI/Textures/Static/[$a-zA-Z]+
+    matchType: 1
+    groupName: UITexturesStatic
+    LabelMode: 1
+    labelRefs: []
+    dynamicLabels: []
+    groupTemplate: {fileID: 11400000, guid: afd24fc416a2d11478e3db337d942408, type: 2}
+    groupTemplateApplicationMode: 1
+    simplified: 0
+    addressReplacement: 

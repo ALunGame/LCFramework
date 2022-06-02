@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: UITexturesStatic-dialog_bg_name.png
+  m_EditorClassIdentifier: 
+  m_GroupName: UITexturesStatic-dialog_bg_name.png
+  m_Data:
+    m_SerializedData: []
+  m_GUID: ae093a2176441f2408db08c629182432
+  m_SerializeEntries: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: c106a54d1dad7c34dbca1e47199c97a1, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: c6c51b8502a6c8549922053747ec91cf, type: 2}
+    - {fileID: 11400000, guid: 45b0986a4e0cc3b4c9421b04134f5225, type: 2}

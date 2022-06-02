@@ -8,7 +8,8 @@ namespace Demo.System
 {
     public class GravitySystem : BaseSystem
     {
-        private float _G = -0.98f;
+        public const float _G = -0.98f;
+
         protected override List<Type> RegListenComs()
         {
             return new List<Type>() {typeof(GravityCom), typeof(TransformCom), typeof(Collider2DCom)};

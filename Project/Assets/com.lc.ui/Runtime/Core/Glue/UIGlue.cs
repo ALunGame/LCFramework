@@ -11,7 +11,6 @@ namespace LCUI
         public virtual void OnAwake(InternalUIPanel panel)
         {
             this._Panel = panel;
-            this._Panel.AddGlue(this);
         }
 
         public virtual void OnBeforeShow(InternalUIPanel panel)

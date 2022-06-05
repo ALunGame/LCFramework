@@ -56,6 +56,12 @@ namespace LCUI
         public T GetPanelModel<T>(UIPanelId panelId) where T : UIModel
         {
             InternalUIPanel panel = GetPanel(panelId);
+
+            if (!activePanelDict.ContainsKey(panelId) && !cachePanelDict.ContainsKey(panelId))
+            {
+                cachePanelDict.Add(panelId, panel);
+            }
+
             return (T)panel.Model;
         }
 
@@ -133,7 +139,6 @@ namespace LCUI
             if (panel.transform != null)
                 return;
             UIPanelCreater.CreateUIPanelTrans(panel);
-            panel.Awake();
         }
 
         #endregion

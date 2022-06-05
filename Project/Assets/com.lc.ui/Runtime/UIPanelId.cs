@@ -15,5 +15,10 @@ namespace LCUI
         /// 战斗界面
         /// </summary>
         FightUI,
+
+        /// <summary>
+        /// 气泡选项界面
+        /// </summary>
+        BubbleDialogChoosePanel,
     }
 }

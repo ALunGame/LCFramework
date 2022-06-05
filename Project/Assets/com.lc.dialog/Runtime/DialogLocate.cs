@@ -11,9 +11,11 @@ namespace LCDialog
 
         public static IDialogDisplayServer Display;
 
+        public static IDialogServer Dialog = new DialogServer();
+
         public static void Init()
         {
-
+            Config.Init();
         }
 
         public static void SetDisplayServer(IDialogDisplayServer displayServer)
@@ -23,7 +25,7 @@ namespace LCDialog
 
         public static void Clear()
         {
-
+            Config.Clear();
         }
     }
 }

@@ -559,7 +559,7 @@ namespace LCJson
                             }
                         }
 
-                      ((IDictionary)instance).Add(
+                        ((IDictionary)instance).Add(
                           property, ReadValue(
                               t_data.ElementType, reader));
                     }

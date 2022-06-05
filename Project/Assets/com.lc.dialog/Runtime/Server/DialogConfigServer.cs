@@ -21,7 +21,12 @@ namespace LCDialog
                 }
                 else
                 {
-                    TBDialogCnf cnf = JsonMapper.ToObject<TBDialogCnf>(jsonStr);
+                    TBDialogCnf cnf = new TBDialogCnf();
+                    List<DialogModel> dialogs = JsonMapper.ToObject<List<DialogModel>>(jsonStr);
+                    for (int i = 0; i < dialogs.Count; i++)
+                    {
+                        cnf.Add(dialogs[i].id, dialogs[i]);
+                    }
                     configDict.Add((DialogType)item, cnf);
                 }
             }

@@ -12,12 +12,28 @@ namespace LCUI
         /// </summary>
         public List<IBindable> BindFields { get => bindFields; }
 
-        /// <summary>
-        /// 添加绑定字段
-        /// </summary>
-        public void AddBindable(IBindable bindable)
+
+        public UIModel()
         {
-            bindFields.Add(bindable);
+            foreach (var item in ReflectionHelper.GetFieldInfos(this.GetType()))
+            {
+                object value = item.GetValue(this);
+                if (value != null && value is IBindable)
+                {
+                    bindFields.Add((IBindable)value);
+                }
+            }
+        }
+
+        /// <summary>
+        /// 刷新绑定
+        /// </summary>
+        public void RefreshBindable()
+        {
+            for (int i = 0; i < bindFields.Count; i++)
+            {
+                bindFields[i].ValueChanged();
+            }
         }
 
         /// <summary>

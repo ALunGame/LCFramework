@@ -1,4 +1,5 @@
 ﻿using LCDialog;
+using LCMap;
 using System;
 using System.Collections.Generic;
 
@@ -6,24 +7,29 @@ namespace Demo.Dialog
 {
     public class DialogDisplayServer : IDialogDisplayServer
     {
-        public void OnClickDispose(DialogObj dialog, int disposeId)
+        public Dictionary<DialogType, IDialogDisplayServer> displayDict = new Dictionary<DialogType, IDialogDisplayServer>() 
         {
-            throw new NotImplementedException();
-        }
-
-        public void OnCloseDialog(DialogObj dialog)
-        {
-            throw new NotImplementedException();
-        }
+            {DialogType.Bubble,new BubbleDialogDisplay()},
+        };
 
         public void OnCreateDialog(DialogObj dialog, List<int> actorUids)
         {
-            throw new NotImplementedException();
+            displayDict[dialog.DialogType].OnCreateDialog(dialog, actorUids);
         }
 
         public void OnPlayDialog(DialogObj dialog, DialogStepModel stepModel)
         {
-            throw new NotImplementedException();
+            displayDict[dialog.DialogType].OnPlayDialog(dialog, stepModel);
+        }
+
+        public void OnClickDispose(DialogObj dialog, int disposeId)
+        {
+            displayDict[dialog.DialogType].OnClickDispose(dialog, disposeId);
+        }
+
+        public void OnCloseDialog(DialogObj dialog)
+        {
+            displayDict[dialog.DialogType].OnCloseDialog(dialog);
         }
     }
 }

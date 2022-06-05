@@ -5,6 +5,7 @@ using LCSkill;
 using System;
 using UnityEngine;
 using LCMap;
+using LCDialog;
 
 namespace Demo
 {
@@ -74,6 +75,9 @@ namespace Demo
         {
             MapLocate.Map.Enter(1001);
             _DecCenter.Start_ThreadUpdate();
+
+            string uid = DialogLocate.Dialog.CreateDialog(new AddDialogInfo(DialogType.Bubble, 1001, 1));
+            DialogLocate.Dialog.Play(uid);
         }
 
         private void Update()

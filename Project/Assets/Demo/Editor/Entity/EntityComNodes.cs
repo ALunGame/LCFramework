@@ -68,6 +68,20 @@ namespace Demo
         }
     }
 
+    [NodeMenuItem("演员/气泡组件")]
+    public class Entity_Node_BubbleCom : Entity_ComNode
+    {
+        public override string Title { get => "气泡组件"; set => base.Title = value; }
+        public override string Tooltip { get => "气泡组件"; set => base.Tooltip = value; }
+        public override Type RuntimeNode => typeof(BubbleCom);
+
+        public override BaseCom CreateRuntimeNode()
+        {
+            BubbleCom bubbleCom = new BubbleCom();
+            return bubbleCom;
+        }
+    }
+
     [NodeMenuItem("演员/阵营组件")]
     public class Entity_Node_CampCom : Entity_ComNode
     {

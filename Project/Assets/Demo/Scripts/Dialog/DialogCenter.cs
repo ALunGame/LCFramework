@@ -11,6 +11,11 @@ namespace Demo.Dialog
             DialogLocate.SetDisplayServer(new DialogDisplayServer());
         }
 
+        private void Start()
+        {
+
+        }
+
         private void OnDestroy()
         {
             DialogLocate.Clear();

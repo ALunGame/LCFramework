@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using LCToolkit;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace LCUI
@@ -6,7 +7,7 @@ namespace LCUI
     /// <summary>
     /// UI面板
     /// </summary>
-    public class InternalUIPanel
+    public abstract class InternalUIPanel
     {
         #region 配置字段
 
@@ -54,8 +55,7 @@ namespace LCUI
 
         #region 界面数据
 
-        protected UIModel _Model;
-        public UIModel Model { get { return _Model; } }
+        public abstract UIModel Model { get; }
 
         #endregion
 
@@ -82,18 +82,21 @@ namespace LCUI
 
         public IReadOnlyList <UIGlue> Glues { get => glues;}
 
-        public void AddGlue(UIGlue glue)
-        {
-            if (glues.Contains(glue))
-            {
-                return;
-            }
-            glues.Add(glue);
-        }
-
         #endregion
 
         #region 生命周期
+
+        public InternalUIPanel()
+        {
+            foreach (var item in ReflectionHelper.GetFieldInfos(this.GetType()))
+            {
+                object value = item.GetValue(this);
+                if (value != null && value is UIGlue)
+                {
+                    glues.Add((UIGlue)value);
+                }
+            }
+        }
 
         /// <summary>
         /// 创建时初始化
@@ -114,6 +117,7 @@ namespace LCUI
             if (transform != null)
             {
                 transform.gameObject.SetActive(true);
+                transform.SetAsLastSibling();
             }
         }
 

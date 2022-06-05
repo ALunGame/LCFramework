@@ -43,6 +43,7 @@ namespace LCDialog.DialogGraph
 
             foreach (var item in dialogGroupDict)
             {
+                
                 TBDialogCnf cnfTab = new TBDialogCnf();
 
                 List<DialogModel> dialogs = new List<DialogModel>();
@@ -70,7 +71,7 @@ namespace LCDialog.DialogGraph
                 }
 
                 string filePath = DialogDef.GetDialogCnfPath(dialogType);
-                IOHelper.WriteText(JsonMapper.ToJson(cnfTab), filePath);
+                IOHelper.WriteText(JsonMapper.ToJson(dialogs), filePath);
                 Debug.Log($"对话生成成功》》》{filePath}");
             }
 

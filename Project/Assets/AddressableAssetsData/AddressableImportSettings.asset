@@ -144,7 +144,7 @@ MonoBehaviour:
     groupTemplateApplicationMode: 1
     simplified: 1
     addressReplacement: 
-  - path: ^Assets/Demo/Asset/UI/Textures/Static/[$a-zA-Z]+
+  - path: ^Assets/Demo/Asset/UI/Textures/Static/[$a-zA-Z]+$
     matchType: 1
     groupName: UITexturesStatic
     LabelMode: 1

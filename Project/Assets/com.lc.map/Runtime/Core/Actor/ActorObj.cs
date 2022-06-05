@@ -50,6 +50,14 @@ namespace LCMap
         /// <summary>
         /// 实体配置Id
         /// </summary>
+        [Header("状态节点")]
+        [ReadOnly]
+        [SerializeField]
+        private GameObject StateGo;
+
+        /// <summary>
+        /// 实体配置Id
+        /// </summary>
         [Header("表现节点")]
         [ReadOnly]
         [SerializeField]
@@ -196,6 +204,8 @@ namespace LCMap
                 followTrans = transform;
             CameraFollowGo = followTrans.gameObject;
 
+            StateGo = stateTrans.gameObject;
+
             //更新碰撞
             UpdateCollider();
             OnDisplayGoChange?.Invoke(this);
@@ -212,6 +222,15 @@ namespace LCMap
         #endregion
 
         #region Get
+
+        /// <summary>
+        /// 状态节点
+        /// </summary>
+        /// <returns></returns>
+        public GameObject GetStateGo()
+        {
+            return StateGo;
+        }
 
         /// <summary>
         /// 表现节点

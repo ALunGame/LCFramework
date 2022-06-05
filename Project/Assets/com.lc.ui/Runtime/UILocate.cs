@@ -11,6 +11,7 @@
         public static void Init()
         {
             UI = new UIServer();
+            UI.Init();
             Log = new UILogServer();
         }
 

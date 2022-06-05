@@ -14,13 +14,13 @@ namespace LCDialog
         //对话字典
         private Dictionary<string, DialogObj> dialogObjs = new Dictionary<string, DialogObj>();
 
-        public void CreateDialog(AddDialogInfo addDialogInfo)
+        public string CreateDialog(AddDialogInfo addDialogInfo)
         {
             string uid = CalcDialogUid(addDialogInfo);
             if (dialogObjs.ContainsKey(uid))
             {
                 DialogLocate.Log.LogError("创建对话失败>>>>Uid重复", uid);
-                return;
+                return "";
             }
             if (DialogLocate.Config.GetDialogModel(addDialogInfo.DialogType, addDialogInfo.DialogId, out var model))
             {
@@ -30,7 +30,7 @@ namespace LCDialog
                     if (speakIngActors.Contains(actorUids[i]))
                     {
                         DialogLocate.Log.Log("创建对话失败>>>>对话需要的演员正在对话", uid, actorUids[i]);
-                        return;
+                        return "";
                     }
                 }
                 DialogObj dialogObj = new DialogObj(uid, addDialogInfo.DialogType, addDialogInfo.DialogId, addDialogInfo.DialogStep, model);
@@ -38,10 +38,12 @@ namespace LCDialog
                 dialogObj.SetTargets(addDialogInfo.Targets);
                 dialogObjs.Add(uid, dialogObj);
                 DialogLocate.Display.OnCreateDialog(dialogObj, actorUids);
+                return uid;
             }
             else
             {
                 DialogLocate.Log.LogError("创建对话失败>>>>没有配置", uid);
+                return "";
             }
         }
 
@@ -81,6 +83,7 @@ namespace LCDialog
             }
             DialogObj dialog = dialogObjs[uid];
             dialog.SetStep(dialog.CurrStep + 1);
+            Play(uid);
         }
 
         public void Close(string uid)

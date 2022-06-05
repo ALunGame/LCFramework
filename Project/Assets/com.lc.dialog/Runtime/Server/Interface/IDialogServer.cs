@@ -12,7 +12,7 @@ namespace LCDialog
         /// 创建一个对话
         /// </summary>
         /// <param name="addDialogInfo"></param>
-        void CreateDialog(AddDialogInfo addDialogInfo);
+        string CreateDialog(AddDialogInfo addDialogInfo);
 
         /// <summary>
         /// 播放对话

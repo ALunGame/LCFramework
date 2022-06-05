@@ -16,24 +16,24 @@ namespace LCUI
         /// <param name="panel"></param>
         /// <param name="trans"></param>
         /// <returns></returns>
-        public static RectTransform CreateUIPanelTrans(InternalUIPanel panel)
+        public static void CreateUIPanelTrans(InternalUIPanel panel)
         {
             RectTransform panelRootTrans = UILocate.UICenter.GetUILayerTrans(panel.Layer, panel.CanvasType);
             if (panelRootTrans == null)
             {
                 UILocate.Log.LogError("创建界面节点失败,没有找到层级节点>>>", panel.Layer, panel.CanvasType);
-                return null;
+                return;
             }
             if (string.IsNullOrEmpty(panel.UIPrefabName))
             {
                 UILocate.Log.LogError("创建界面节点失败,没有声明预制体>>>",panel.UIPrefabName);
-                return null;
+                return;
             }
             GameObject goAsset = LoadHelper.LoadPrefab(panel.UIPrefabName);
             if (goAsset == null)
             {
                 UILocate.Log.LogError("创建界面节点失败,没有找到预制体>>>", panel.UIPrefabName);
-                return null;
+                return;
             }
             GameObject panGo = GameObject.Instantiate(goAsset);
             panGo.transform.SetParent(panelRootTrans, false);
@@ -41,8 +41,7 @@ namespace LCUI
 
             //设置节点
             panel.SetTransform(panGo.transform);
-
-            return panGo.GetComponent<RectTransform>();
+            panel.Awake();
         }
 
         /// <summary>
@@ -51,16 +50,16 @@ namespace LCUI
         /// <param name="panel"></param>
         /// <param name="trans"></param>
         /// <returns></returns>
-        public static RectTransform CreateUIPanelTrans(InternalUIPanel panel,RectTransform panelTrans)
+        public static void CreateUIPanelTrans(InternalUIPanel panel,Transform panelTrans)
         {
             if (panelTrans == null)
             {
                 UILocate.Log.LogError("创建界面节点失败,没有节点>>>");
-                return null;
+                return;
             }
             //设置节点
             panel.SetTransform(panelTrans.transform);
-            return panelTrans;
+            panel.Awake();
         }
     }
 }

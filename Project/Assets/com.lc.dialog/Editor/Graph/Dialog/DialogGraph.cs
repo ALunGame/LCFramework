@@ -42,6 +42,7 @@ namespace LCDialog.DialogGraph
             NodeTypes.Clear();
             NodeTypes.Add(typeof(Dialog_Node));
             NodeTypes.Add(typeof(Dialog_SpeakerNode));
+            NodeTypes.Add(typeof(Dialog_DisposeStepNode));
             AddNodes<Dialog_Node>();
 
             NodeTypes.Add(typeof(Dialog_StepNode));

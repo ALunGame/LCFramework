@@ -2,25 +2,30 @@
 {
     public class UIPanel<T> : InternalUIPanel where T : UIModel, new()
     {
+
+        private T bindModel;
+
         /// <summary>
         /// 绑定数据
         /// </summary>
-        public T BindModel
+        public ref T BindModel
         { 
             get 
             {
-                if (_Model == null)
+                if (bindModel == null)
                 {
-                    _Model = new T();
+                    bindModel = new T();
                 }
-                return (T)_Model; 
+                return ref bindModel; 
             } 
         }
+
+        public override UIModel Model => BindModel;
 
         /// <summary>
         /// 创建时初始化
         /// </summary>
-        public override void Awake()
+        public sealed override void Awake()
         {
             base.Awake();
             for (int i = 0; i < Glues.Count; i++)
@@ -33,7 +38,7 @@
         /// <summary>
         /// 显示
         /// </summary>
-        public override void Show()
+        public sealed override void Show()
         {
             base.Show();
             for (int i = 0; i < Glues.Count; i++)
@@ -41,6 +46,7 @@
                 Glues[i].OnBeforeShow(this);
             }
             OnShow();
+            BindModel.RefreshBindable();
             for (int i = 0; i < Glues.Count; i++)
             {
                 Glues[i].OnAfterShow(this);
@@ -50,7 +56,7 @@
         /// <summary>
         /// 隐藏
         /// </summary>
-        public override void Hide()
+        public sealed override void Hide()
         {
             base.Hide();
             BindModel.ClearEvent();
@@ -61,7 +67,7 @@
             OnHide();
         }
 
-        public override void Destroy()
+        public sealed override void Destroy()
         {
             base.Destroy();
             BindModel.ClearEvent();
@@ -105,6 +111,8 @@
         {
 
         }
+
+
 
         #endregion
     }

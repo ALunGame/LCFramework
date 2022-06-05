@@ -14,6 +14,7 @@ namespace LCUI
 
         public override void OnAwake(InternalUIPanel panel)
         {
+            base.OnAwake(panel);
             RefreshBind();
         }
 

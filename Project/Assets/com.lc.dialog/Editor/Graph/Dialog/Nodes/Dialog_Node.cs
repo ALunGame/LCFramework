@@ -1,4 +1,5 @@
-﻿using LCNode;
+﻿using LCMap;
+using LCNode;
 using LCNode.Model;
 using System.Collections.Generic;
 using UnityEngine;
@@ -88,24 +89,14 @@ namespace LCDialog.DialogGraph
         public abstract DialogStepFunc CreateFunc();
     }
 
-    public class DialogSpeakerData { }
-
     /// <summary>
     /// 对话说话的说话演员
     /// </summary>
     [NodeMenuItem("说话对象")]
-    public class Dialog_SpeakerNode : BaseNode
+    public class Dialog_SpeakerNode : Map_ActorNode
     {
-        [NodeValue("说话对象Id")]
-        public int speakerId = 0;
-
         [OutputPort("父节点", BasePort.Capacity.Single, BasePort.Orientation.Vertical)]
-        public DialogSpeakerData parentNode;
-
-        public int GetSpeakerId()
-        {
-            return speakerId;
-        }
+        public MapActorData parentNode;
     }
 
 
@@ -131,8 +122,8 @@ namespace LCDialog.DialogGraph
         [InputPort("父节点", BasePort.Capacity.Single)]
         public DialogStepData parentNode;
 
-        [InputPort("说话的对象", BasePort.Capacity.Multi, BasePort.Orientation.Vertical)]
-        public DialogSpeakerData speaker;
+        [InputPort("说话的对象", BasePort.Capacity.Single, BasePort.Orientation.Vertical)]
+        public MapActorData speaker;
 
         /// <summary>
         /// 谈话内容
@@ -160,10 +151,7 @@ namespace LCDialog.DialogGraph
             List<Dialog_SpeakerNode> speakerNodes = NodeHelper.GetNodeOutNodes<Dialog_SpeakerNode>(Owner, this, "说话的对象");
             if (speakerNodes.Count > 0)
             {
-                for (int i = 0; i < speakerNodes.Count; i++)
-                {
-                    model.speakers.Add(speakerNodes[i].GetSpeakerId());
-                }
+                model.speakers = speakerNodes[0].GetActorIds();
             }
 
             //函数
@@ -194,7 +182,7 @@ namespace LCDialog.DialogGraph
         public DialogStepData parentNode;
 
         [InputPort("说话的对象", BasePort.Capacity.Multi, BasePort.Orientation.Vertical)]
-        public DialogSpeakerData speaker;
+        public MapActorData speaker;
 
         [NodeValue("说话的对象类型", "当指定说话对象此字段无效")]
         public Dialog_StepNode.SpeakerType speakerType = Dialog_StepNode.SpeakerType.无;
@@ -220,10 +208,7 @@ namespace LCDialog.DialogGraph
             List<Dialog_SpeakerNode> speakerNodes = NodeHelper.GetNodeOutNodes<Dialog_SpeakerNode>(Owner, this, "说话的对象");
             if (speakerNodes.Count > 0)
             {
-                for (int i = 0; i < speakerNodes.Count; i++)
-                {
-                    model.speakers.Add(speakerNodes[i].GetSpeakerId());
-                }
+                model.speakers = speakerNodes[0].GetActorIds();
             }
 
             //分支

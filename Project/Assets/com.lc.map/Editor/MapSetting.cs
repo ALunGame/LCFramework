@@ -97,7 +97,7 @@ namespace LCMap
         public static List<ED_MapCom> GetAllMaps()
         {
             List<ED_MapCom> maps = new List<ED_MapCom>();
-            string[] tileAssetPath = new string[] { setting.MapSearchPath };
+            string[] tileAssetPath = new string[] { Setting.MapSearchPath };
             string[] guids = AssetDatabase.FindAssets("t:Prefab", tileAssetPath);
             foreach (var guid in guids)
             {

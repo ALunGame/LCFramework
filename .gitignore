@@ -22,6 +22,7 @@ ExportedObj/
 *.svd
 *.vsconfig
 *.bak
+*.dwlt
 
 # Unity3D generated meta files
 *.pidb.meta

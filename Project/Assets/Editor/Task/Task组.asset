@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a513205062770864caa1925733596e19, type: 3}
   m_Name: Test
   m_EditorClassIdentifier: 
-  serializedGraph: '{"mType":"LCTask.TaskGraph.TaskGraph","pos":{"mType":"UnityEngine.Vector3","x":-584.0,"y":-144.0,"z":0.0},"zoom":{"mType":"UnityEngine.Vector3","x":2.0,"y":2.0,"z":1.0},"nodes":{"mType":"System.Collections.Generic.Dictionary`2[[System.String,
+  serializedGraph: '{"mType":"LCTask.TaskGraph.TaskGraph","pos":{"mType":"UnityEngine.Vector3","x":-439.0,"y":53.0,"z":0.0},"zoom":{"mType":"UnityEngine.Vector3","x":1.7490062713623,"y":1.7490062713623,"z":1.0},"nodes":{"mType":"System.Collections.Generic.Dictionary`2[[System.String,
     mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089],[LCNode.Model.BaseNode,
-    Assembly-CSharp-Editor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]","24fe2923-c0d9-4b3d-aa31-9caa8a885eef":{"mType":"LCTask.TaskGraph.Task_AcceptNode","taskId":1001,"conditionFuncs":null,"target":null,"targetDisplayFuncs":null,"actionFuncs":null,"guid":"24fe2923-c0d9-4b3d-aa31-9caa8a885eef","position":{"mType":"UnityEngine.Vector2","x":405.0,"y":153.0}}},"connections":[]}'
+    Assembly-CSharp-Editor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]","24fe2923-c0d9-4b3d-aa31-9caa8a885eef":{"mType":"LCTask.TaskGraph.Task_AcceptNode","taskId":1001,"conditionFuncs":null,"target":null,"targetDisplayFuncs":null,"actionFuncs":null,"actionSuccess":null,"actionFail":null,"guid":"24fe2923-c0d9-4b3d-aa31-9caa8a885eef","position":{"mType":"UnityEngine.Vector2","x":652.0,"y":102.0}},"3cd2f3a1-cb94-4e4e-99e2-6e0333b0acb0":{"mType":"LCTask.TaskGraph.Task_TargetNode","parentNode":null,"actorIds":[],"mapId":1,"guid":"3cd2f3a1-cb94-4e4e-99e2-6e0333b0acb0","position":{"mType":"UnityEngine.Vector2","x":413.0,"y":102.0}}},"connections":[{"mType":"LCNode.Model.BaseConnection","from":"24fe2923-c0d9-4b3d-aa31-9caa8a885eef","fromPortName":"\u9636\u6BB5\u76EE\u6807","to":"3cd2f3a1-cb94-4e4e-99e2-6e0333b0acb0","toPortName":"\u7236\u8282\u70B9"}]}'
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0

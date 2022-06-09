@@ -88,26 +88,7 @@ namespace LCTask.TaskGraph
     /// </summary>
     public abstract class Task_ActionFuncNode : BaseNode
     {
-        public override string Title { get => "任务行为函数"; set => base.Title = value; }
-        public override string Tooltip { get => "任务行为函数"; set => base.Tooltip = value; }
-
-        [InputPort("父节点", BasePort.Capacity.Single)]
-        public Task_ActionFuncData parentNode;
-
-        [InputPort("下一个行为", BasePort.Capacity.Single)]
-        public Task_ActionFuncData nextNode;
-
-        public List<TaskActionFunc> GetFuncs()
-        {
-            List<TaskActionFunc> funcs = new List<TaskActionFunc>();
-            funcs.Add(CreateFunc());
-            List<Task_ActionFuncNode> nextNodes = NodeHelper.GetNodeOutNodes<Task_ActionFuncNode>(Owner, this, "下一个行为");
-            if (nextNodes.Count > 0)
-            {
-                funcs.AddRange(nextNodes[0].GetFuncs());
-            }
-            return funcs;
-        }
+        public abstract List<TaskActionFunc> GetFuncs();
 
         public abstract TaskActionFunc CreateFunc();
     }
@@ -115,7 +96,7 @@ namespace LCTask.TaskGraph
     /// <summary>
     /// 任务通用行为
     /// </summary>
-    public abstract class Task_CommonActionFuncNode
+    public abstract class Task_CommonActionFuncNode : Task_ActionFuncNode
     {
         public override string Title { get => "任务通用行为"; set => base.Title = value; }
         public override string Tooltip { get => "任务通用行为"; set => base.Tooltip = value; }
@@ -126,7 +107,7 @@ namespace LCTask.TaskGraph
         [InputPort("下一个行为", BasePort.Capacity.Single)]
         public Task_ActionFuncData nextNode;
 
-        public List<TaskActionFunc> GetFuncs()
+        public override List<TaskActionFunc> GetFuncs()
         {
             List<TaskActionFunc> funcs = new List<TaskActionFunc>();
             funcs.Add(CreateFunc());
@@ -137,44 +118,30 @@ namespace LCTask.TaskGraph
             }
             return funcs;
         }
-
-        public abstract TaskActionFunc CreateFunc();
     }
-
-    public class Task_AcceptActionFuncData : Task_ActionFuncData { }
 
     /// <summary>
     /// 任务接受行为函数
     /// </summary>
-    public abstract class Task_AcceptActionFuncNode : BaseNode
+    public abstract class Task_AcceptActionFuncNode : Task_ActionFuncNode
     {
         public override string Title { get => "任务接受行为函数"; set => base.Title = value; }
         public override string Tooltip { get => "任务接受行为函数"; set => base.Tooltip = value; }
 
         [InputPort("父节点", BasePort.Capacity.Single)]
-        public Task_AcceptActionFuncData parentNode;
-
-        public abstract List<TaskActionFunc> GetFuncs();
-
-        public abstract TaskActionFunc CreateFunc();
-    }
-
-    public class Task_ExecuteActionFuncData : Task_ActionFuncData { }
+        public Task_ActionFuncData parentNode;
+    } 
 
     /// <summary>
     /// 任务提交行为函数
     /// </summary>
-    public abstract class Task_ExecuteActionFuncNode : BaseNode
+    public abstract class Task_ExecuteActionFuncNode : Task_ActionFuncNode
     {
         public override string Title { get => "任务提交行为函数"; set => base.Title = value; }
         public override string Tooltip { get => "任务提交行为函数"; set => base.Tooltip = value; }
 
         [InputPort("父节点", BasePort.Capacity.Single)]
-        public Task_ExecuteActionFuncData parentNode;
-
-        public abstract List<TaskActionFunc> GetFuncs();
-
-        public abstract TaskActionFunc CreateFunc();
+        public Task_ActionFuncData parentNode;
     }
     #endregion
 
@@ -197,6 +164,15 @@ namespace LCTask.TaskGraph
 
         [InputPort("阶段目标表现", BasePort.Capacity.Single)]
         public Task_DisplayFuncData targetDisplayFuncs;
+
+        [OutputPort("阶段行为", BasePort.Capacity.Single)]
+        public Task_ActionFuncData actionFuncs;
+
+        [OutputPort("阶段成功", BasePort.Capacity.Single)]
+        public Task_ActionFuncData actionSuccess;
+
+        [OutputPort("阶段失败", BasePort.Capacity.Single)]
+        public Task_ActionFuncData actionFail;
 
         public int GetTargetMapId()
         {
@@ -238,53 +214,57 @@ namespace LCTask.TaskGraph
             return null;
         }
 
+        #region 行为
+
+        public List<TaskActionFunc> GetActionFuncs()
+        {
+            List<Task_ActionFuncNode> actNodes = NodeHelper.GetNodeOutNodes<Task_ActionFuncNode>(Owner, this, "阶段行为");
+            if (actNodes.Count > 0)
+            {
+                return actNodes[0].GetFuncs();
+            }
+            return null;
+        }
+
+        public List<TaskActionFunc> GetActionSuccessFuncs()
+        {
+            List<Task_ActionFuncNode> actNodes = NodeHelper.GetNodeOutNodes<Task_ActionFuncNode>(Owner, this, "阶段成功");
+            if (actNodes.Count > 0)
+            {
+                return actNodes[0].GetFuncs();
+            }
+            return null;
+        }
+
+        public List<TaskActionFunc> GetActionFailFuncs()
+        {
+            List<Task_ActionFuncNode> actNodes = NodeHelper.GetNodeOutNodes<Task_ActionFuncNode>(Owner, this, "阶段失败");
+            if (actNodes.Count > 0)
+            {
+                return actNodes[0].GetFuncs();
+            }
+            return null;
+        }
+        #endregion
+
         public TaskContent GetContent()
         {
-            TaskContent content = CreateContent();
+            TaskContent content = new TaskContent();
             content.mapId = GetTargetMapId();
             content.actorIds = GetTargetActorIds();
             content.displayFuncs = GetDisplayFuncs();
             content.conditionFuncs = GetConditionFuncs();
+            content.actionFuncs = GetActionFuncs();
+            content.actionSuccess = GetActionSuccessFuncs();
+            content.actionFail = GetActionFailFuncs();
             return content;
         }
-
-        public abstract TaskContent CreateContent();
     }
 
     [NodeMenuItem("任务接受")]
     public class Task_AcceptNode : Task_Node
     {
         public override string Title { get => $"接受{taskId}任务"; set => base.Title = value; }
-
-        [OutputPort("接受行为", BasePort.Capacity.Single)]
-        public Task_AcceptActionFuncData actionFuncs;
-
-        [OutputPort("接受成功", BasePort.Capacity.Single)]
-        public Task_ActionFuncData actionSuccess;
-
-        [OutputPort("接受失败", BasePort.Capacity.Single)]
-        public Task_ActionFuncData actionFail;
-
-        public List<TaskActionFunc> GetActionFuncs()
-        {
-            List<BaseNode> actNodes = NodeHelper.GetNodeOutNodes(Owner, this, "接受行为");
-            if (actNodes.Count > 0)
-            {
-                BaseNode actNode = actNodes[0];
-                if (actNode is Task_ActionFuncNode)
-                {
-
-                }
-                return actNodes[0].;
-            }
-            return null;
-        }
-
-        public override TaskContent CreateContent()
-        {
-            TaskContent content = new TaskContent();
-            content.actionFuncs = 
-        }
     }
 
     [NodeMenuItem("任务提交")]
@@ -292,13 +272,5 @@ namespace LCTask.TaskGraph
     {
         public override string Title { get => $"提交{taskId}任务"; set => base.Title = value; }
 
-        [OutputPort("提交行为", BasePort.Capacity.Single)]
-        public Task_ExecuteActionFuncData actionFuncs;
-
-        [OutputPort("提交成功", BasePort.Capacity.Single)]
-        public Task_ActionFuncData actionSuccess;
-
-        [OutputPort("提交失败", BasePort.Capacity.Single)]
-        public Task_ActionFuncData actionFail;
     }
 }

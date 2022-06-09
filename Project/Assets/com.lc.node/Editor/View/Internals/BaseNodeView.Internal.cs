@@ -82,6 +82,7 @@ namespace LCNode.View
         }
 
         #region Initialization
+
         public void SetUp(BaseNode node, BaseGraphView graphView)
         {
             Model = node;
@@ -106,6 +107,16 @@ namespace LCNode.View
             //子类初始化
             OnInitialized();
         }
+
+        #endregion
+
+        #region 点击菜单
+
+        public virtual void CreateSelectMenu(DropdownMenu dropdownMenu)
+        {
+
+        }
+
         #endregion
 
         #region 端口初始化
@@ -141,8 +152,6 @@ namespace LCNode.View
             {
                 AddPortView(port);
             }
-
-            
         }
 
         #endregion

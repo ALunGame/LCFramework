@@ -47,12 +47,25 @@ namespace LCNode.View
                 evt.menu.AppendSeparator();
             }
 
-            if (evt.target is Node || evt.target is Edge)
+            if (evt.target is Node)
             {
                 evt.menu.AppendAction("复制", delegate
                 {
                     DuplicateSelection();
                 });
+
+                BaseNodeView nodeView = (BaseNodeView)evt.target;
+                nodeView.CreateSelectMenu(evt.menu);
+
+                evt.menu.AppendSeparator();
+            }
+            if (evt.target is Edge)
+            {
+                evt.menu.AppendAction("复制", delegate
+                {
+                    DuplicateSelection();
+                });
+
                 evt.menu.AppendSeparator();
             }
         }

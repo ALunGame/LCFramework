@@ -1,18 +1,11 @@
+using LCNode.Model;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TaskGraphAsset : MonoBehaviour
+namespace LCTask.TaskGraph
 {
-    // Start is called before the first frame update
-    void Start()
+    public class TaskGraphAsset : BaseGraphAsset<TaskGraph>
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    } 
 }

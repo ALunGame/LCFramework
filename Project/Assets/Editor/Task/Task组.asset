@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-6468328638970223216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a513205062770864caa1925733596e19, type: 3}
+  m_Name: Test
+  m_EditorClassIdentifier: 
+  serializedGraph: '{"mType":"LCTask.TaskGraph.TaskGraph","pos":{"mType":"UnityEngine.Vector3","x":-584.0,"y":-144.0,"z":0.0},"zoom":{"mType":"UnityEngine.Vector3","x":2.0,"y":2.0,"z":1.0},"nodes":{"mType":"System.Collections.Generic.Dictionary`2[[System.String,
+    mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089],[LCNode.Model.BaseNode,
+    Assembly-CSharp-Editor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]","24fe2923-c0d9-4b3d-aa31-9caa8a885eef":{"mType":"LCTask.TaskGraph.Task_AcceptNode","taskId":1001,"conditionFuncs":null,"target":null,"targetDisplayFuncs":null,"actionFuncs":null,"guid":"24fe2923-c0d9-4b3d-aa31-9caa8a885eef","position":{"mType":"UnityEngine.Vector2","x":405.0,"y":153.0}}},"connections":[]}'
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40c7267031c0b494da1f4ccfee566cfd, type: 3}
+  m_Name: "Task\u7EC4"
+  m_EditorClassIdentifier: 

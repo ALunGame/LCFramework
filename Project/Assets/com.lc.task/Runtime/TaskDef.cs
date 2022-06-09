@@ -2,17 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TaskDef : MonoBehaviour
+namespace LCTask
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
+    /// <summary>
+    /// 任务条件关系
+    /// </summary>
+    public enum ConditionType
     {
-        
-    }
+        AND,
+        OR,
+    } 
 }

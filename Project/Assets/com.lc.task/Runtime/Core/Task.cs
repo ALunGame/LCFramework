@@ -1,7 +1,5 @@
 using LCMap;
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace LCTask
 {
@@ -32,12 +30,23 @@ namespace LCTask
     }
 
     /// <summary>
-    /// 任务目标
+    /// 任务内容
     /// </summary>
-    public struct TaskTarget
+    public class TaskContent
     {
         public int mapId;
-        public List<int> actorIds;
+
+        public List<int> actorIds = new List<int>();
+
+        public List<TaskTargetDisplayFunc> displayFuncs = new List<TaskTargetDisplayFunc>();
+
+        public List<TaskConditionFunc> conditionFuncs = new List<TaskConditionFunc>();
+
+        public List<TaskActionFunc> actionFuncs = new List<TaskActionFunc>();
+
+        public List<TaskActionFunc> actionSuccess = new List<TaskActionFunc>();
+
+        public List<TaskActionFunc> actionFail = new List<TaskActionFunc>();
     }
 
     /// <summary>
@@ -61,11 +70,14 @@ namespace LCTask
         public List<int> unlockTasks;
 
         /// <summary>
-        /// 接受目标
+        /// 接受
         /// </summary>
-        public TaskTarget acceptTarget;
+        public TaskContent accept;
 
-
+        /// <summary>
+        /// 提交
+        /// </summary>
+        public TaskContent execute;
     } 
 
     /// <summary>
@@ -77,6 +89,11 @@ namespace LCTask
         /// 任务Id
         /// </summary>
         public int TaskId { get; private set; }
+
+        /// <summary>
+        /// 任务阶段
+        /// </summary>
+        public TaskStage Stage { get; private set; }
 
         /// <summary>
         /// 数据

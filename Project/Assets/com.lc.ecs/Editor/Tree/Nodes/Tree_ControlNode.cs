@@ -52,7 +52,7 @@ namespace LCECS.Tree
 
         public override string Tooltip { get => "并行执行子节点"; set => base.Tooltip = value; }
 
-        [OutputPort("子节点", BasePort.Capacity.Multi, BasePort.Orientation.Vertical)]
+        [OutputPort("子节点", BasePort.Capacity.Multi, BasePort.Orientation.Vertical, setIndex = true)]
         public NodeData childNodes;
 
         [NodeValue("检测类型", "AND:全部通过 OR:一个通过")]
@@ -82,7 +82,7 @@ namespace LCECS.Tree
 
         public override string Tooltip { get => "随机选择执行其中一个子节点"; set => base.Tooltip = value; }
 
-        [OutputPort("子节点", BasePort.Capacity.Multi, BasePort.Orientation.Vertical)]
+        [OutputPort("子节点", BasePort.Capacity.Multi, BasePort.Orientation.Vertical, setIndex = true)]
         public NodeData childNodes;
 
         protected override void OnEnabled()
@@ -104,7 +104,7 @@ namespace LCECS.Tree
 
         public override string Tooltip { get => "顺序选择执行其中一个子节点"; set => base.Tooltip = value; }
 
-        [OutputPort("子节点", BasePort.Capacity.Multi, BasePort.Orientation.Vertical)]
+        [OutputPort("子节点", BasePort.Capacity.Multi, BasePort.Orientation.Vertical, setIndex = true)]
         public NodeData childNodes;
 
         protected override void OnEnabled()
@@ -127,7 +127,7 @@ namespace LCECS.Tree
 
         public override string Tooltip { get => "顺序执行子节点"; set => base.Tooltip = value; }
 
-        [OutputPort("子节点", BasePort.Capacity.Multi, BasePort.Orientation.Vertical)]
+        [OutputPort("子节点", BasePort.Capacity.Multi, BasePort.Orientation.Vertical, setIndex = true)]
         public NodeData childNodes;
 
         protected override void OnEnabled()

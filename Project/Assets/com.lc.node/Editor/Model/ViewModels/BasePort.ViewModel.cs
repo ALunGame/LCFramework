@@ -38,6 +38,7 @@ namespace LCNode.Model
                     break;
             }
             OnEnabled();
+            RefreshIndex();
         }
 
         #region API
@@ -46,6 +47,7 @@ namespace LCNode.Model
             connections.Add(connection);
             Resort();
             onConnected?.Invoke(connection);
+            RefreshIndex();
         }
 
         public void DisconnectTo(BaseConnection connection)
@@ -53,6 +55,7 @@ namespace LCNode.Model
             connections.Remove(connection);
             Resort();
             onDisconnected?.Invoke(connection);
+            RefreshIndex();
         }
 
         /// <summary> 强制重新排序 </summary>
@@ -60,7 +63,55 @@ namespace LCNode.Model
         {
             connections.QuickSort(comparer);
             onSorted?.Invoke();
+            RefreshIndex();
         }
+
+        public void RefreshIndex()
+        {
+            if (!setIndex)
+                return;
+            if (connections == null || connections.Count <= 0)
+                return;
+            if (direction == Direction.Input)
+                RefreshInIndex();
+            else if (direction == Direction.Output)
+                RefreshOutIndex();
+        }
+
+        private void RefreshOutIndex()
+        {
+            for (int i = 0; i < connections.Count; i++)
+            {
+                BaseConnection connect = connections[i];
+                BaseNode node = connect.ToNode;
+                if (node != null)
+                {
+                    node.inIndex = i;
+                    if (node.OnTitleChanged != null)
+                    {
+                        node?.OnTitleChanged(node.Title);
+                    }
+                }
+            }
+        }
+
+        private void RefreshInIndex()
+        {
+            for (int i = 0; i < connections.Count; i++)
+            {
+                BaseConnection connect = connections[i];
+                BaseNode node = connect.FromNode;
+                if (node != null)
+                {
+                    node.outIndex = i;
+                    if (node.OnTitleChanged != null)
+                    {
+                        node?.OnTitleChanged(node.Title);
+                    }
+                }
+            }
+        }
+
 
         #endregion
 

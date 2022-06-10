@@ -45,7 +45,7 @@ namespace LCDialog.DialogGraph
         [NodeValue("选项内容")]
         public string content = "";
 
-        [OutputPort("当点击选项时", BasePort.Capacity.Multi)]
+        [OutputPort("当点击选项时", BasePort.Capacity.Multi, setIndex = true)]
         public DialogDisposeFuncData onChooseFunc;
 
         public DialogDisposeModel GetDisposeModel()
@@ -99,7 +99,6 @@ namespace LCDialog.DialogGraph
         public MapActorData parentNode;
     }
 
-
     public class DialogStepData { }
 
     /// <summary>
@@ -136,7 +135,7 @@ namespace LCDialog.DialogGraph
         [NodeValue("动画")]
         public string anim = "";
 
-        [OutputPort("当播放对话时", BasePort.Capacity.Multi)]
+        [OutputPort("当播放对话时", BasePort.Capacity.Multi, setIndex = true)]
         public DialogStepFuncData onPlayFunc;
 
         public DialogStepModel GetStepModel()
@@ -181,7 +180,7 @@ namespace LCDialog.DialogGraph
         [InputPort("父节点", BasePort.Capacity.Single)]
         public DialogStepData parentNode;
 
-        [InputPort("说话的对象", BasePort.Capacity.Multi, BasePort.Orientation.Vertical)]
+        [InputPort("说话的对象", BasePort.Capacity.Single, BasePort.Orientation.Vertical)]
         public MapActorData speaker;
 
         [NodeValue("说话的对象类型", "当指定说话对象此字段无效")]
@@ -190,10 +189,10 @@ namespace LCDialog.DialogGraph
         [NodeValue("动画")]
         public string anim = "";
 
-        [OutputPort("当播放对话时", BasePort.Capacity.Multi)]
+        [OutputPort("当播放对话时", BasePort.Capacity.Multi, setIndex = true)]
         public DialogStepFuncData onPlayFunc;
 
-        [OutputPort("对话选项", BasePort.Capacity.Multi)]
+        [OutputPort("对话选项", BasePort.Capacity.Multi, setIndex = true)]
         public DialogDisposeData disposes;
 
         public DialogStepModel GetStepModel()
@@ -248,7 +247,7 @@ namespace LCDialog.DialogGraph
         [NodeValue("对话Id")]
         public int id;
 
-        [OutputPort("对话步骤", BasePort.Capacity.Multi)]
+        [OutputPort("对话步骤", BasePort.Capacity.Multi, setIndex = true)]
         public DialogStepData steps;
 
         public DialogModel GetDialogModel()

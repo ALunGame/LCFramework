@@ -2,17 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TaskLocate : MonoBehaviour
+namespace LCTask
 {
-    // Start is called before the first frame update
-    void Start()
+    public static class TaskLocate
     {
-        
-    }
+        public static TaskLogServer Log = new TaskLogServer();
+        public static TaskConfigServer Config = new TaskConfigServer();
+        public static ITaskServer Task;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+        public static void Init()
+        {
+            Task = new TaskServer();
+        }
+
+        public static void Clear()
+        {
+
+        }
+    } 
 }

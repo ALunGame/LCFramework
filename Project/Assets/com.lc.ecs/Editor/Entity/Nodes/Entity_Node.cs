@@ -38,7 +38,7 @@ namespace LCECS.EntityGraph
         public override string Tooltip { get => "实体配置"; set => base.Tooltip = value; }
         public override Color TitleColor { get => Color.white; set => base.TitleColor = value; }
 
-        [OutputPort("组件列表", BasePort.Capacity.Multi, BasePort.Orientation.Vertical)]
+        [OutputPort("组件列表", BasePort.Capacity.Multi, BasePort.Orientation.Vertical,setIndex = true)]
         public EntityComData coms;
 
         [NodeValue("实体名")]

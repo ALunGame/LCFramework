@@ -1,18 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using LCToolkit.Server;
 
-public class TaskLogServer : MonoBehaviour
+namespace LCTask
 {
-    // Start is called before the first frame update
-    void Start()
+    public class TaskLogServer : BaseLogServer
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public override string LogTag => "[Task]";
     }
 }

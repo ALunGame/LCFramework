@@ -114,27 +114,27 @@ namespace LCSkill.AoeGraph
         [OutputPort("移动函数", BasePort.Capacity.Single)]
         public AoeMoveFuncData moveFunc;
 
-        [OutputPort("当创建时", BasePort.Capacity.Multi)]
+        [OutputPort("当创建时", BasePort.Capacity.Multi, setIndex = true)]
         public AoeLifeCycleFuncData onCreateFunc;
 
-        [OutputPort("在TickTime间隔执行", BasePort.Capacity.Multi)]
+        [OutputPort("在TickTime间隔执行", BasePort.Capacity.Multi, setIndex = true)]
         public AoeLifeCycleFuncData onTickFunc;
 
-        [OutputPort("当被移除时", BasePort.Capacity.Multi)]
+        [OutputPort("当被移除时", BasePort.Capacity.Multi, setIndex = true)]
         public AoeLifeCycleFuncData onRemovedFunc;
 
         #region 进入离开
 
-        [OutputPort("当演员进入时", BasePort.Capacity.Multi)]
+        [OutputPort("当演员进入时", BasePort.Capacity.Multi, setIndex = true)]
         public AoeActorEnterFuncData onActorEnterFunc;
 
-        [OutputPort("当演员离开时", BasePort.Capacity.Multi)]
+        [OutputPort("当演员离开时", BasePort.Capacity.Multi, setIndex = true)]
         public AoeActorLeaveFuncData onActorLeaveFunc;
 
-        [OutputPort("当子弹进入时", BasePort.Capacity.Multi)]
+        [OutputPort("当子弹进入时", BasePort.Capacity.Multi, setIndex = true)]
         public AoeBulletEnterFuncData onBulletEnterFunc;
 
-        [OutputPort("当子弹离开时", BasePort.Capacity.Multi)]
+        [OutputPort("当子弹离开时", BasePort.Capacity.Multi, setIndex = true)]
         public AoeBulletLeaveFuncData onBulletLeaveFunc;
 
         #endregion

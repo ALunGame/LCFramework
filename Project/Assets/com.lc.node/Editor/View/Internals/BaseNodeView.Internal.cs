@@ -90,7 +90,7 @@ namespace LCNode.View
 
             // 初始化
             base.SetPosition(new Rect(Model.Position == default ? Vector2.zero : Model.Position, GetPosition().size));
-            title = Model.Title;
+            OnTitleChanged(Model.Title);
             tooltip = Model.Tooltip;
             titleContainer.style.backgroundColor = Model.TitleColor;
             TitleLabel.style.color = Model.TitleColor.GetLuminance() > 0.5f && Model.TitleColor.a > 0.5f ? Color.black : Color.white * 0.9f;
@@ -269,6 +269,16 @@ namespace LCNode.View
 
         void OnTitleChanged(string title)
         {
+            if (Model.inIndex != -1)
+            {
+                title = $"({Model.inIndex}) {title}";
+            }
+
+            if (Model.outIndex != -1)
+            {
+                title = $"{title} ({Model.outIndex})";
+            }
+
             base.title = title;
         }
         void OnTooltipChanged(string title)

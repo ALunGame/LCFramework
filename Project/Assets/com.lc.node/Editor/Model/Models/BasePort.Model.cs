@@ -55,13 +55,17 @@ namespace LCNode.Model
         //端口值类型
         public readonly Type type;
 
-        public BasePort(string name, Orientation orientation, Direction direction, Capacity capacity, Type type = null)
+        //该端口设置索引
+        public readonly bool setIndex;
+
+        public BasePort(string name, Orientation orientation, Direction direction, Capacity capacity, Type type = null, bool setIndex = false)
         {
             this.name = name;
             this.orientation = orientation;
             this.direction = direction;
             this.capacity = capacity;
             this.type = type == null ? typeof(object) : type;
+            this.setIndex = setIndex;
         }
     }
 }

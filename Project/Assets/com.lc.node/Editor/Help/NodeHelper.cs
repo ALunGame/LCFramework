@@ -69,6 +69,14 @@ namespace LCNode
                     }
                 }
             }
+            childNodes.Sort((a, b) =>
+            {
+                if (a.inIndex == b.inIndex)
+                    return 1;
+                if (a.inIndex > b.inIndex)
+                    return 1;
+                return -1;
+            });
             return childNodes;
         }
 
@@ -114,6 +122,14 @@ namespace LCNode
                     }
                 }
             }
+            childNodes.Sort((a, b) =>
+            {
+                if (a.outIndex == b.outIndex)
+                    return 1;
+                if (a.outIndex > b.outIndex)
+                    return 1;
+                return -1;
+            });
             return childNodes;
         }
     }

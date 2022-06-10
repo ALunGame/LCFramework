@@ -115,9 +115,9 @@ namespace LCNode.Model
                     continue;
                 BasePort port = null;
                 if (AttributeHelper.TryGetFieldAttribute(item, out InputPortAttribute inputAttr))
-                    port = new BasePort(inputAttr.name, inputAttr.orientation, inputAttr.direction, inputAttr.capacity, item.FieldType);
+                    port = new BasePort(inputAttr.name, inputAttr.orientation, inputAttr.direction, inputAttr.capacity, item.FieldType, inputAttr.setIndex);
                 if (AttributeHelper.TryGetFieldAttribute(item, out OutputPortAttribute outputAttr))
-                    port = new BasePort(outputAttr.name, outputAttr.orientation, outputAttr.direction, outputAttr.capacity, item.FieldType);
+                    port = new BasePort(outputAttr.name, outputAttr.orientation, outputAttr.direction, outputAttr.capacity, item.FieldType, outputAttr.setIndex);
                 if (port != null)
                 {
                     AddPort(port);

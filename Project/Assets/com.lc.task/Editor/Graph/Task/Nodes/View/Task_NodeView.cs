@@ -5,6 +5,7 @@ using UnityEngine.UIElements;
 
 namespace LCTask.TaskGraph
 {
+    [CustomNodeView(typeof(Task_Node))]
     public class Task_NodeView : BaseNodeView
     {
         public Task_NodeView()

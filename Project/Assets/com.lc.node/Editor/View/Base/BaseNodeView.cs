@@ -52,6 +52,7 @@ namespace LCNode
         public Orientation orientation;
         public Direction direction = Direction.Input;
         public Capacity capacity;
+        public bool setIndex = false;
 
         /// <summary>
         /// 输入端口
@@ -59,11 +60,31 @@ namespace LCNode
         /// <param name="name">端口名</param>
         /// <param name="capacity">单个还是多个</param>
         /// <param name="orientation">水平还是竖直排列</param>
+        /// <param name="setIndex">该端口设置索引</param>
         public InputPortAttribute(string name, Capacity capacity, Orientation orientation = Orientation.Horizontal)
         {
             this.name = name;
             this.capacity = capacity;
             this.orientation = orientation;
+            if (capacity == Capacity.Multi)
+            {
+                this.setIndex = true;
+            }
+        }
+
+        /// <summary>
+        /// 输入端口
+        /// </summary>
+        /// <param name="name">端口名</param>
+        /// <param name="capacity">单个还是多个</param>
+        /// <param name="orientation">水平还是竖直排列</param>
+        /// <param name="setIndex">该端口设置索引</param>
+        public InputPortAttribute(string name, Capacity capacity, bool setIndex, Orientation orientation = Orientation.Horizontal)
+        {
+            this.name = name;
+            this.capacity = capacity;
+            this.orientation = orientation;
+            this.setIndex = setIndex;
         }
     }
 
@@ -77,6 +98,7 @@ namespace LCNode
         public Orientation orientation;
         public Direction direction = Direction.Output;
         public Capacity capacity;
+        public bool setIndex = false;
 
         /// <summary>
         /// 输出端口
@@ -89,6 +111,25 @@ namespace LCNode
             this.name = name;
             this.capacity = capacity;
             this.orientation = orientation;
+            if (capacity == Capacity.Multi)
+            {
+                this.setIndex = true;
+            }
+        }
+
+        /// <summary>
+        /// 输出端口
+        /// </summary>
+        /// <param name="name">端口名</param>
+        /// <param name="capacity">单个还是多个</param>
+        /// <param name="orientation">水平还是竖直排列</param>
+        /// <param name="setIndex">该端口设置索引</param>
+        public OutputPortAttribute(string name, Capacity capacity, bool setIndex, Orientation orientation = Orientation.Horizontal)
+        {
+            this.name        = name;
+            this.capacity    = capacity;
+            this.orientation = orientation;
+            this.setIndex    = setIndex;
         }
     }
 }

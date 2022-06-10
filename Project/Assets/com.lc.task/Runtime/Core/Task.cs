@@ -105,4 +105,24 @@ namespace LCTask
         /// </summary>
         public List<ActorObj> Targets { get; private set; }
     }
+
+    public class TaskExecute
+    {
+        private bool isExecuting;
+        private TaskContent content;
+
+        public bool CheckCanExecute()
+        {
+            if (isExecuting)
+                return true;
+            if (content.conditionFuncs == null || content.conditionFuncs.Count <= 0)
+                return true;
+            
+        }
+
+        private bool CheckCondition()
+        {
+
+        }
+    }
 }

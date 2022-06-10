@@ -12,7 +12,7 @@ namespace LCECS.Tree
 
     public abstract class Tree_BaseNode : BaseNode
     {
-        [InputPort("前提", BasePort.Capacity.Multi)]
+        [InputPort("前提", BasePort.Capacity.Multi, setIndex = true)]
         public PremiseData premise;
 
         protected override void OnEnabled()

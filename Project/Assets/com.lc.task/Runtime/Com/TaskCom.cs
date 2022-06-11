@@ -8,24 +8,29 @@ namespace LCTask
     public class TaskCom : BaseCom
     {
         [NonSerialized]
-        private List<TaskObj> tasks = new List<TaskObj>();
+        private Dictionary<int, TaskObj> tasks = new Dictionary<int, TaskObj>();
 
-        public IReadOnlyList<TaskObj> Tasks { get => tasks; }
+        public IReadOnlyDictionary<int, TaskObj> Tasks { get => tasks; }
 
-        public void AddTask(TaskObj aoeObj)
+        public void AddTask(TaskObj taskObj)
         {
-            tasks.Add(aoeObj);
+            if (tasks.ContainsKey(taskObj.TaskId))
+                return;
+            tasks.Add(taskObj.TaskId, taskObj);
         }
 
-        public void RemoveTask(TaskObj aoeObj)
+        public void RemoveTask(int pTaskId)
         {
-            for (int i = 0; i < tasks.Count; i++)
-            {
-                if (tasks[i].Equals(aoeObj))
-                {
-                    tasks.RemoveAt(i);
-                }
-            }
+            if (!tasks.ContainsKey(pTaskId))
+                return;
+            tasks.Remove(pTaskId);
+        }
+
+        public TaskObj GetTask(int pTaskId)
+        {
+            if (!tasks.ContainsKey(pTaskId))
+                return null;
+            return tasks[pTaskId];
         }
     }
 }

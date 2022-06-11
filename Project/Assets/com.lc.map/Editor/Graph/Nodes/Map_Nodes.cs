@@ -6,7 +6,7 @@ namespace LCMap
 {
     public enum MapNodeId
     {
-        所有地图    = 1,           
+        所有地图    = -1,           
     }
 
     public class MapActorData { }

@@ -8,7 +8,7 @@ namespace LCTask
     {
         public static TaskLogServer Log = new TaskLogServer();
         public static TaskConfigServer Config = new TaskConfigServer();
-        public static ITaskServer Task;
+        public static TaskServer Task;
 
         public static void Init()
         {

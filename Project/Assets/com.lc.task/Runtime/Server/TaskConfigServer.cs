@@ -6,5 +6,10 @@ namespace LCTask
 {
     public class TaskConfigServer
     {
+        public bool GetTaskModel(int pTaskId,out TaskModel model)
+        {
+            model = default;
+            return false;
+        }
     } 
 }

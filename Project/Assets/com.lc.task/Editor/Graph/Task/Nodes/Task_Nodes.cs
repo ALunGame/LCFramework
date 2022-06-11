@@ -63,6 +63,28 @@ namespace LCTask.TaskGraph
 
     #endregion
 
+    #region 任务监听函数
+
+    public class Task_ListenFuncData { }
+    /// <summary>
+    /// 任务监听函数
+    /// </summary>
+    public abstract class Task_ListenFuncNode : Map_ActorNode
+    {
+        [OutputPort("父节点", BasePort.Capacity.Single)]
+        public Task_ListenFuncData parentNode;
+
+        public TaskListenFunc GetFunc()
+        {
+            TaskListenFunc func = CreateFunc();
+            return func;
+        }
+
+        public abstract TaskListenFunc CreateFunc();
+    }
+
+    #endregion
+
     #region 任务行为函数
 
     public class Task_ActionFuncData { }
@@ -89,9 +111,22 @@ namespace LCTask.TaskGraph
         public Task_ActionFuncData parentNode;
     }
 
+    public class Task_SuccessActionFuncData : Task_ActionFuncData { }
+
+    /// <summary>
+    /// 任务阶段行为执行成功行为
+    /// 1，主要用于获得道具这种
+    /// </summary>
+    public abstract class Task_SuccessActionFuncNode : Task_ActionFuncNode
+    {
+        [InputPort("父节点", BasePort.Capacity.Single)]
+        public Task_SuccessActionFuncData parentNode;
+    }
+
     public class Task_AcceptActionFuncData : Task_ActionFuncData { }
     /// <summary>
     /// 任务接受行为函数
+    /// 1，用于只能在接受阶段执行的行为
     /// </summary>
     public abstract class Task_AcceptActionFuncNode : Task_ActionFuncNode
     {
@@ -102,6 +137,7 @@ namespace LCTask.TaskGraph
     public class Task_ExecuteActionFuncData : Task_ActionFuncData { }
     /// <summary>
     /// 任务提交行为函数
+    /// 1，用于只能在提交阶段执行的行为
     /// </summary>
     public abstract class Task_ExecuteActionFuncNode : Task_ActionFuncNode
     {
@@ -200,11 +236,32 @@ namespace LCTask.TaskGraph
         [OutputPort("接受行为", BasePort.Capacity.Multi)]
         public Task_AcceptActionFuncData actionFuncs;
 
+        [OutputPort("接受监听", BasePort.Capacity.Multi)]
+        public Task_ListenFuncData actionListenFuncs;
+
         [OutputPort("接受成功", BasePort.Capacity.Multi)]
-        public Task_ActionFuncData actionSuccess;
+        public Task_SuccessActionFuncData actionSuccess;
 
         [OutputPort("接受失败", BasePort.Capacity.Multi)]
         public Task_ActionFuncData actionFail;
+
+        #region 监听
+
+        private List<TaskListenFunc> GetActionListenFuncs()
+        {
+            List<TaskListenFunc> funcs = new List<TaskListenFunc>();
+            List<Task_ListenFuncNode> nodes = NodeHelper.GetNodeOutNodes<Task_ListenFuncNode>(Owner, this, "接受监听");
+            if (nodes.Count > 0)
+            {
+                for (int i = 0; i < nodes.Count; i++)
+                {
+                    funcs.Add(nodes[i].GetFunc());
+                }
+            }
+            return funcs;
+        }
+
+        #endregion
 
         #region 行为
 
@@ -256,11 +313,11 @@ namespace LCTask.TaskGraph
         {
             TaskContent content = new TaskContent();
             content.actionFuncs = GetActionFuncs();
+            content.actionListenFuncs = GetActionListenFuncs();
             content.actionSuccess = GetActionSuccessFuncs();
             content.actionFail = GetActionFailFuncs();
             return content;
         }
-
     }
 
     [NodeMenuItem("任务提交")]
@@ -271,11 +328,33 @@ namespace LCTask.TaskGraph
         [OutputPort("提交行为", BasePort.Capacity.Multi)]
         public Task_ExecuteActionFuncData actionFuncs;
 
+        [OutputPort("提交监听", BasePort.Capacity.Multi)]
+        public Task_ListenFuncData actionListenFuncs;
+
         [OutputPort("提交成功", BasePort.Capacity.Multi)]
-        public Task_ActionFuncData actionSuccess;
+        public Task_SuccessActionFuncData actionSuccess;
 
         [OutputPort("提交失败", BasePort.Capacity.Multi)]
         public Task_ActionFuncData actionFail;
+
+
+        #region 监听
+
+        private List<TaskListenFunc> GetActionListenFuncs()
+        {
+            List<TaskListenFunc> funcs = new List<TaskListenFunc>();
+            List<Task_ListenFuncNode> nodes = NodeHelper.GetNodeOutNodes<Task_ListenFuncNode>(Owner, this, "接受监听");
+            if (nodes.Count > 0)
+            {
+                for (int i = 0; i < nodes.Count; i++)
+                {
+                    funcs.Add(nodes[i].GetFunc());
+                }
+            }
+            return funcs;
+        }
+
+        #endregion
 
         #region 行为
 
@@ -327,6 +406,7 @@ namespace LCTask.TaskGraph
         {
             TaskContent content = new TaskContent();
             content.actionFuncs = GetActionFuncs();
+            content.actionListenFuncs = GetActionListenFuncs();
             content.actionSuccess = GetActionSuccessFuncs();
             content.actionFail = GetActionFailFuncs();
             return content;

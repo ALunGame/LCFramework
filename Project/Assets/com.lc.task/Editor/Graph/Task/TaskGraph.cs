@@ -35,6 +35,7 @@ namespace LCTask.TaskGraph
             AddNodes<Task_Node>();
 
             NodeTypes.Add(typeof(Task_TargetNode));
+            NodeTypes.Add(typeof(Task_BranchNode));
 
             AddNodes<Task_TargetDisplayFuncNode>();
             AddNodes<Task_ConditionFuncNode>();

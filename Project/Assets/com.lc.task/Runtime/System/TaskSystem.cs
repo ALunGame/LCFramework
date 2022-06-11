@@ -20,7 +20,11 @@ namespace LCTask
 
         private void DealTask(TaskCom taskCom)
         {
-            
+            foreach (int taskId in new List<int>(taskCom.Tasks.Keys))
+            {
+                TaskObj taskObj = taskCom.Tasks[taskId];
+                taskObj.GroupExecute.Execute();
+            }
         }
     }
 }

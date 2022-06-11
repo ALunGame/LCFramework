@@ -221,6 +221,7 @@ namespace LCNode.View
                 {
                     graphView.CommandDispacter.Do(new ConnectCommand(graphView.Model, waitConnectNode, waitConnectPortName, createNode, portName));
                 }
+                waitConnectNode.Ports[waitConnectPortName].RefreshIndex();
             }
             else
             {

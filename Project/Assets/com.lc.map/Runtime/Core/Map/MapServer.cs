@@ -53,7 +53,7 @@ namespace LCMap
 
         public ActorObj PlayerActor { get; private set; }
 
-        public int currMapId;
+        private int currMapId;
         /// <summary>
         /// 当前地图Id
         /// </summary>
@@ -102,6 +102,8 @@ namespace LCMap
                 MapLocate.Log.LogError("进入地图失败,没有对应配置", mapId);
                 return;
             }
+
+            this.currMapId = mapId;
 
             //区域
             for (int i = 0; i < mapModel.areas.Count; i++)

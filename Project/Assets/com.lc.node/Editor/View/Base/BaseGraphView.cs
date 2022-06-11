@@ -227,7 +227,7 @@ namespace LCNode.View
             }
 
             //是否可以强转
-            if (toType.IsReallyAssignableFrom(fromType))
+            if (toType.IsAssignableFrom(fromType))
                 return true;
 
             return false;

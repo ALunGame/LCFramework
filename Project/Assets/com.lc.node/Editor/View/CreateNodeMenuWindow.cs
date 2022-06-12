@@ -215,11 +215,11 @@ namespace LCNode.View
                 string portName = nodePortNameMap[searchTreeEntry.userData as Type];
                 if (checkInPort)
                 {
-                    graphView.CommandDispacter.Do(new ConnectCommand(graphView.Model, createNode, portName, waitConnectNode, waitConnectPortName));
+                    graphView.CommandDispacter.Do(new ConnectCommand(graphView.Model, waitConnectNode, waitConnectPortName, createNode, portName));
                 }
                 else
                 {
-                    graphView.CommandDispacter.Do(new ConnectCommand(graphView.Model, waitConnectNode, waitConnectPortName, createNode, portName));
+                    graphView.CommandDispacter.Do(new ConnectCommand(graphView.Model, createNode, portName, waitConnectNode, waitConnectPortName));
                 }
                 waitConnectNode.Ports[waitConnectPortName].RefreshIndex();
             }

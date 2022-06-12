@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using LCToolkit.ViewModel;
 using LCJson;
+using UnityEngine;
 
 namespace LCNode.Model
 {
@@ -87,6 +88,8 @@ namespace LCNode.Model
                 if (node != null)
                 {
                     node.inIndex = i;
+                    Debug.LogWarning($"InIndex{node.GetType().Name}--{node.outIndex}");
+
                     if (node.OnTitleChanged != null)
                     {
                         node?.OnTitleChanged(node.Title);
@@ -104,6 +107,7 @@ namespace LCNode.Model
                 if (node != null)
                 {
                     node.outIndex = i;
+                    Debug.LogWarning($"OutIndex{node.GetType().Name}--{node.outIndex}");
                     if (node.OnTitleChanged != null)
                     {
                         node?.OnTitleChanged(node.Title);

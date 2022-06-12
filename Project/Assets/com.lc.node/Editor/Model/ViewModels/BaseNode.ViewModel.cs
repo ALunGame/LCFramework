@@ -130,6 +130,19 @@ namespace LCNode.Model
             OnInitialized();
         }
 
+        #region Display
+
+        public void RefreshTitle()
+        {
+            if (OnTooltipChanged == null)
+            {
+                return;
+            }
+            OnTooltipChanged?.Invoke(Title);
+        }
+
+        #endregion
+
         #region API
         public IEnumerable<BaseNode> GetConnections(string portName)
         {

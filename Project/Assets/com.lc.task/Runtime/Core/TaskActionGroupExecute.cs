@@ -41,7 +41,7 @@ namespace LCTask
         {
             if (currActions == null || currActions.Count < 0)
             {
-                OnActionListFinish(TaskActionState.Finished);
+                ActionGroupFinish(TaskActionState.Finished);
                 return;
             }
             for (int i = 0; i < currActions.Count; i++)
@@ -50,32 +50,32 @@ namespace LCTask
                 if (actionFunc.ActionState == TaskActionState.Running)
                 {
                     actionFunc.Running();
-                    return;
+                    if (!actionFunc.IsLegal(actionFunc.ActionState))
+                    {
+                        TaskLocate.Log.LogError("行为非法执行>>>>", actionFunc.ActionState, actionFunc.GetType().Name);
+                        ActionGroupFinish(actionFunc.ActionState);
+                        return;
+                    }
                 }
                 if (actionFunc.ActionState == TaskActionState.Finished)
                 {
                     int nextIndex = i + 1;
                     if (nextIndex > currActions.Count)
                     {
-                        OnActionListFinish(TaskActionState.Finished);
+                        ActionGroupFinish(TaskActionState.Finished);
                         return;
                     }
                     TaskActionFunc nextAct = currActions[nextIndex];
                     if (nextAct.ActionState == TaskActionState.Wait)
                     {
                         nextAct.Start(taskObj);
-                        return;
+                        if (!nextAct.IsLegal(nextAct.ActionState))
+                        {
+                            TaskLocate.Log.LogError("分支行为非法执行>>>>", nextAct.ActionState, nextAct.GetType().Name);
+                            ActionGroupFinish(actionFunc.ActionState);
+                            return;
+                        }
                     }
-                }
-                if (actionFunc.ActionState == TaskActionState.Fail)
-                {
-                    OnActionListFinish(TaskActionState.Fail);
-                    return;
-                }
-                if (actionFunc.ActionState == TaskActionState.Error)
-                {
-                    OnActionListFinish(TaskActionState.Error);
-                    return;
                 }
             }
         }
@@ -108,50 +108,6 @@ namespace LCTask
                 {
                     currActionListenFuncs[i].Listen(taskObj);
                 }
-            }
-        }
-
-        private void OnActionListFinish(TaskActionState actionState)
-        {
-            if (actionState == TaskActionState.Error)
-            {
-                ActionGroupFinish(TaskActionState.Error);
-                return;
-            }
-
-            //行为失败，执行行为失败表现
-            if (actionState == TaskActionState.Fail)
-            {
-                if (actionGroup == ActionGroup.Act)
-                {
-                    ChangeActionGroup(ActionGroup.ActFail);
-                }
-                else
-                {
-                    ActionGroupFinish(TaskActionState.Fail);
-                }
-                return;
-            }
-
-            //行为成功，执行行为成功表现
-            if (actionState == TaskActionState.Finished)
-            {
-                if (actionGroup == ActionGroup.Act)
-                {
-                    ChangeActionGroup(ActionGroup.ActSucess);
-                }
-                else
-                {
-                    if (actionGroup == ActionGroup.ActFail)
-                    {
-                        ActionGroupFinish(TaskActionState.Fail);
-                    }
-                    else
-                    {
-                        ActionGroupFinish(TaskActionState.Finished);
-                    }
-                }
-                return;
             }
         }
 

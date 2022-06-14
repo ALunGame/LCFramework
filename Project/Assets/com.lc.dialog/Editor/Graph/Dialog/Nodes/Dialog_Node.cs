@@ -101,11 +101,32 @@ namespace LCDialog.DialogGraph
 
     public class DialogStepData { }
 
+    public abstract class Dialog_BaseStepNode : BaseNode
+    {
+        [InputPort("父节点", BasePort.Capacity.Single)]
+        public DialogStepData parentNode;
+
+        [OutputPort("下一步", BasePort.Capacity.Single)]
+        public DialogStepData nextStep;
+
+        public void GetNextStep(Dialog_BaseStepNode node, ref List<Dialog_BaseStepNode> resNodes)
+        {
+            resNodes.Add(node);
+            List<Dialog_BaseStepNode> nodes = NodeHelper.GetNodeOutNodes<Dialog_BaseStepNode>(Owner, node, "下一步");
+            if (nodes.Count > 0)
+            {
+                GetNextStep(nodes[0], ref resNodes);
+            }
+        }
+
+        public abstract DialogStepModel GetStepModel();
+    }
+
     /// <summary>
     /// 对话步骤
     /// </summary>
     [NodeMenuItem("步骤")]
-    public class Dialog_StepNode : BaseNode
+    public class Dialog_StepNode : Dialog_BaseStepNode
     {
         public enum SpeakerType
         {
@@ -117,9 +138,6 @@ namespace LCDialog.DialogGraph
         public override string Title { get => "对话步骤"; set => base.Title = value; }
         public override Color TitleColor { get => Color.green; set => base.TitleColor = value; }
         public override string Tooltip { get => "对话步骤"; set => base.Tooltip = value; }
-
-        [InputPort("父节点", BasePort.Capacity.Single)]
-        public DialogStepData parentNode;
 
         [InputPort("说话的对象", BasePort.Capacity.Single, BasePort.Orientation.Vertical)]
         public MapActorData speaker;
@@ -138,7 +156,7 @@ namespace LCDialog.DialogGraph
         [OutputPort("当播放对话时", BasePort.Capacity.Multi, setIndex = true)]
         public DialogStepFuncData onPlayFunc;
 
-        public DialogStepModel GetStepModel()
+        public override DialogStepModel GetStepModel()
         {
             DialogStepModel model = new DialogStepModel();
             model.content = content;
@@ -171,14 +189,11 @@ namespace LCDialog.DialogGraph
     /// 对话选项
     /// </summary>
     [NodeMenuItem("选项步骤")]
-    public class Dialog_DisposeStepNode : BaseNode
+    public class Dialog_DisposeStepNode : Dialog_BaseStepNode
     {
         public override string Title { get => "选项步骤"; set => base.Title = value; }
         public override Color TitleColor { get => Color.red; set => base.TitleColor = value; }
         public override string Tooltip { get => "选项步骤"; set => base.Tooltip = value; }
-
-        [InputPort("父节点", BasePort.Capacity.Single)]
-        public DialogStepData parentNode;
 
         [InputPort("说话的对象", BasePort.Capacity.Single, BasePort.Orientation.Vertical)]
         public MapActorData speaker;
@@ -195,7 +210,7 @@ namespace LCDialog.DialogGraph
         [OutputPort("对话选项", BasePort.Capacity.Multi, setIndex = true)]
         public DialogDisposeData disposes;
 
-        public DialogStepModel GetStepModel()
+        public override DialogStepModel GetStepModel()
         {
             DialogStepModel model = new DialogStepModel();
             model.content = "";
@@ -247,7 +262,7 @@ namespace LCDialog.DialogGraph
         [NodeValue("对话Id")]
         public int id;
 
-        [OutputPort("对话步骤", BasePort.Capacity.Multi, setIndex = true)]
+        [OutputPort("对话步骤", BasePort.Capacity.Single)]
         public DialogStepData steps;
 
         public DialogModel GetDialogModel()
@@ -257,21 +272,19 @@ namespace LCDialog.DialogGraph
 
             //步骤
             model.steps = new List<DialogStepModel>();
-            List<BaseNode> childNodes = NodeHelper.GetNodeOutNodes(Owner, this, "对话步骤");
-            for (int i = 0; i < childNodes.Count; i++)
+
+            List<Dialog_BaseStepNode> resNodes = new List<Dialog_BaseStepNode>();
+            List<Dialog_BaseStepNode> nodes = NodeHelper.GetNodeOutNodes<Dialog_BaseStepNode>(Owner, this, "对话步骤");
+            if (nodes.Count > 0)
             {
-                if (childNodes[i] is Dialog_StepNode)
-                {
-                    DialogStepModel stepModel = ((Dialog_StepNode)childNodes[i]).GetStepModel();
-                    stepModel.step = i + 1;
-                    model.steps.Add(stepModel);
-                }
-                else if (childNodes[i] is Dialog_DisposeStepNode)
-                {
-                    DialogStepModel stepModel = ((Dialog_DisposeStepNode)childNodes[i]).GetStepModel();
-                    stepModel.step = i + 1;
-                    model.steps.Add(stepModel);
-                }
+                nodes[0].GetNextStep(nodes[0], ref resNodes);
+            }
+
+            for (int i = 0; i < resNodes.Count; i++)
+            {
+                DialogStepModel stepModel = resNodes[i].GetStepModel();
+                stepModel.step = i + 1;
+                model.steps.Add(stepModel);
             }
             return model;
         }

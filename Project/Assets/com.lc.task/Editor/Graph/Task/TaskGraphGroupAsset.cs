@@ -14,5 +14,12 @@ namespace LCTask.TaskGraph
         {
             throw new System.NotImplementedException();
         }
+
+        private List<int> GetUnlockTasks(TaskContent taskContent)
+        {
+            List<int> unlockTasks = new List<int>();
+
+
+        }
     } 
 }

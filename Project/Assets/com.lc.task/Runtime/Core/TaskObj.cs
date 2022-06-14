@@ -30,108 +30,6 @@ namespace LCTask
     }
 
     /// <summary>
-    /// 任务内容
-    /// </summary>
-    public class TaskContent
-    {
-        public int mapId;
-
-        public List<int> actorIds = new List<int>();
-
-        public List<TaskTargetDisplayFunc> displayFuncs = new List<TaskTargetDisplayFunc>();
-
-        public List<TaskConditionFunc> conditionFuncs = new List<TaskConditionFunc>();
-
-        public List<TaskActionFunc> actionFuncs = new List<TaskActionFunc>();
-
-        public List<TaskListenFunc> actionListenFuncs = new List<TaskListenFunc>();
-
-        public List<TaskActionFunc> actionSuccess = new List<TaskActionFunc>();
-
-        public List<TaskActionFunc> actionFail = new List<TaskActionFunc>();
-
-        #region 条件
-
-        public bool CheckCondition(TaskObj pTaskObj)
-        {
-            if (conditionFuncs == null || conditionFuncs.Count <= 0)
-                return true;
-            return checkCondition(0, pTaskObj);
-        }
-
-        private bool checkCondition(int pConIndex, TaskObj pTaskObj)
-        {
-            if (pConIndex < 0 || conditionFuncs.Count >= pConIndex)
-                return true;
-            TaskConditionFunc confunc = conditionFuncs[pConIndex];
-            bool trueValue = confunc.CheckTure(pTaskObj);
-            trueValue = confunc.checkValue == trueValue ? true : false;
-
-            //下一个
-            int nextIndex = pConIndex + 1;
-            if (nextIndex < 0 || conditionFuncs.Count >= nextIndex)
-                return trueValue;
-            else
-            {
-                if (confunc.conditionType == ConditionType.AND)
-                {
-                    return trueValue && checkCondition(nextIndex, pTaskObj);
-                }
-                else if (confunc.conditionType == ConditionType.OR)
-                {
-                    return trueValue || checkCondition(nextIndex, pTaskObj);
-                }
-            }
-            return trueValue;
-        }
-
-        #endregion
-
-        /// <summary>
-        /// 检测是否可以自动执行
-        /// </summary>
-        /// <param name="pTaskObj"></param>
-        /// <returns></returns>
-        public bool CheckAutoExecute()
-        {
-            if (mapId == MapLocate.AllMapId && actorIds.Count <= 0)
-                return true;
-            return false;
-        }
-    }
-
-    /// <summary>
-    /// 任务配置数据
-    /// </summary>
-    public struct TaskModel
-    {
-        /// <summary>
-        /// 任务Id
-        /// </summary>
-        public int id;
-
-        /// <summary>
-        /// 前置解锁任务
-        /// </summary>
-        public List<int> preUnlockTasks;
-
-        /// <summary>
-        /// 解锁任务
-        /// </summary>
-        public List<int> unlockTasks;
-
-        /// <summary>
-        /// 接受
-        /// </summary>
-        public TaskContent accept;
-
-        /// <summary>
-        /// 提交
-        /// </summary>
-        public TaskContent execute;
-    } 
-
-    /// <summary>
     /// 运行时创建的任务对象
     /// </summary>
     public class TaskObj
@@ -145,11 +43,6 @@ namespace LCTask
         /// 任务阶段
         /// </summary>
         public TaskStage Stage { get; private set; }
-
-        /// <summary>
-        /// 选择的分支Id
-        /// </summary>
-        public int SelBranchId { get; private set; }
 
         /// <summary>
         /// 数据
@@ -166,12 +59,39 @@ namespace LCTask
         /// </summary>
         public TaskActionGroupExecute GroupExecute { get; private set; }
 
+        #region 分支
+
+        /// <summary>
+        /// 选择的分支Id
+        /// </summary>
+        public int SelBranchId { get; private set; }
+
+        /// <summary>
+        /// 分支
+        /// </summary>
+        public TaskBranchFunc BranchFunc { get; private set; }
+
+        #endregion
+
         public TaskObj(int taskId, TaskModel model)
         {
             this.TaskId  = taskId;
             this.Stage   = TaskStage.None;
             this.Model   = model;
             this.GroupExecute = new TaskActionGroupExecute(this);
+
+            if (model.execute != null)
+            {
+                for (int i = 0; i < model.execute.actionFuncs.Count; i++)
+                {
+                    TaskActionFunc actFunc = model.execute.actionFuncs[i];
+                    if (actFunc is TaskBranchFunc)
+                    {
+                        BranchFunc = (TaskBranchFunc)actFunc;
+                        break;
+                    }
+                }
+            }
         }
 
         /// <summary>
@@ -247,14 +167,43 @@ namespace LCTask
             return true;
         }
 
+        #region 分支
+
         /// <summary>
         /// 设置选择分支
         /// </summary>
         /// <param name="pBranchId"></param>
         public void SetSelBranchId(int pBranchId)
         {
+            if (BranchFunc == null)
+            {
+                TaskLocate.Log.LogError("选择分支出错,没有分支", TaskId, pBranchId);
+                return;
+            }
+            if (BranchFunc.GetBranch(pBranchId) == null)
+            {
+                TaskLocate.Log.LogError("选择分支出错,没有分支", TaskId, pBranchId);
+                return;
+            }
             SelBranchId = pBranchId;
+        } 
+
+        /// <summary>
+        /// 检测分支条件
+        /// </summary>
+        /// <param name="pBranchId"></param>
+        /// <returns></returns>
+        public bool CheckBranchCondition(int pBranchId)
+        {
+            if (BranchFunc == null)
+            {
+                TaskLocate.Log.LogError("选择分支出错,没有分支", TaskId, pBranchId);
+                return false;
+            }
+            return BranchFunc.CheckCondition(pBranchId, this);
         }
+
+        #endregion
 
         #region 目标
 

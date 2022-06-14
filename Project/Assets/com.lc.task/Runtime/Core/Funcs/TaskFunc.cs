@@ -89,8 +89,7 @@ namespace LCTask
             if (actionState != TaskActionState.Wait)
                 return;
             this.taskObj = taskObj;
-            actionState = TaskActionState.Running;
-            OnStart(taskObj);
+            actionState = OnStart(taskObj);
         }
 
         /// <summary>
@@ -98,7 +97,9 @@ namespace LCTask
         /// </summary>
         public void Running()
         {
-            OnRunning(taskObj);
+            if (actionState == TaskActionState.Finished)
+                return;
+            actionState = OnRunning(taskObj);
         }
 
         /// <summary>
@@ -127,13 +128,13 @@ namespace LCTask
         /// 开始执行行为时
         /// </summary>
         /// <param name="taskObj"></param>
-        protected abstract void OnStart(TaskObj taskObj);
+        protected abstract TaskActionState OnStart(TaskObj taskObj);
 
         /// <summary>
         /// 运行中每帧调用，注意性能
         /// </summary>
         /// <returns></returns>
-        protected virtual void OnRunning(TaskObj taskObj) { }
+        protected virtual TaskActionState OnRunning(TaskObj taskObj) { return TaskActionState.Finished; }
 
         /// <summary>
         /// 清理时
@@ -141,34 +142,15 @@ namespace LCTask
         /// <returns></returns>
         protected abstract void OnClear(TaskObj taskObj);
 
-        /// <summary>
-        /// 行为完成
-        /// </summary>
-        /// <returns></returns>
-        protected void Finish()
+        protected bool IsFinish(TaskActionState actionState)
         {
-            actionState = TaskActionState.Finished;
-            Clear();
+            return actionState == TaskActionState.Finished; 
         }
 
-        /// <summary>
-        /// 行为失败
-        /// </summary>
-        /// <returns></returns>
-        protected void Fail()
+        public bool IsLegal(TaskActionState actionState)
         {
-            actionState = TaskActionState.Fail;
-            Clear();
+            return actionState != TaskActionState.Fail && actionState != TaskActionState.Error;
         }
 
-        /// <summary>
-        /// 行为错误
-        /// </summary>
-        /// <returns></returns>
-        protected void Error()
-        {
-            actionState = TaskActionState.Error;
-            Clear();
-        }
     }
 }

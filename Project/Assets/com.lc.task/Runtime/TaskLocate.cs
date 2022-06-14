@@ -10,6 +10,17 @@ namespace LCTask
         public static TaskConfigServer Config = new TaskConfigServer();
         public static TaskServer Task;
 
+        private static TaskGameData gameData;
+        public static TaskGameData GameData 
+        { 
+            get 
+            { 
+                if (gameData == null)
+                    gameData = LCToolkit.ToolkitLocate.GameData.GetGameData<TaskGameData>();
+                return gameData; 
+            } 
+        }
+
         public static void Init()
         {
             Task = new TaskServer();
@@ -17,7 +28,7 @@ namespace LCTask
 
         public static void Clear()
         {
-
+            gameData = null;
         }
     } 
 }

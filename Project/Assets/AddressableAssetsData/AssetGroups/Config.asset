@@ -133,6 +133,10 @@ MonoBehaviour:
     m_Address: TbBubbleDialog
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 03aa3bc5cb8330d44b3305ebd47ee4d9
+    m_Address: TbTask
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: c106a54d1dad7c34dbca1e47199c97a1, type: 2}
   m_SchemaSet:

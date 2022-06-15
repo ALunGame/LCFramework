@@ -37,3 +37,6 @@ MonoBehaviour:
   - typeName: DialogGraphGroupAsset
     typeFullName: LCDialog.DialogGraph.DialogGraphGroupAsset
     searchPath: Assets/Editor/Dialog
+  - typeName: TaskGraphGroupAsset
+    typeFullName: LCTask.TaskGraph.TaskGraphGroupAsset
+    searchPath: Assets/Editor/Task

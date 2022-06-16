@@ -23,6 +23,10 @@ namespace LCMap
         [SerializeField]
         public ConfigAssetGroup ActorGroup = null;
 
+        [Header("演员模板")]
+        [SerializeField]
+        public GameObject ActorTemplate = null;
+
         #region Static
 
         private static MapSetting setting;

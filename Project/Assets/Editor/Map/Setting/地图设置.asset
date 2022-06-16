@@ -15,3 +15,5 @@ MonoBehaviour:
   MapSearchPath: Assets/Editor/Map/Maps/
   MapExportSavePath: Assets/Demo/Asset/Config/Map/
   ActorGroup: {fileID: 11400000, guid: 36540241def0a9f4b89b1efe7b77b5f7, type: 2}
+  ActorTemplate: {fileID: 7971203850483905969, guid: 7ded76cab1442f74480315eaae8ad28c,
+    type: 3}

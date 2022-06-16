@@ -2,31 +2,13 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-namespace Game.AutoCreate
+namespace LCToolkit
 {
     /// <summary>
     /// 自动创建碰撞区域
     /// </summary>
-    public class CreatePolygonCollider2DArea
+    public static class AutoCreatePolygonCollider2D
     {
-        [MenuItem("CONTEXT/MeshFilter/创建碰撞区域")]
-        private static void CONTEXT_MeshFilter_right_btn()
-        {
-            CreatePolygonCollider2DByMesh();
-		}
-
-		[MenuItem("CONTEXT/SpriteRenderer/创建碰撞区域")]
-		private static void CONTEXT_SpriteRenderer_right_btn()
-		{
-            CreatePolygonCollider2DBySprite();
-		}
-
-        [MenuItem("CONTEXT/SkeletonMecanim/创建碰撞区域")]
-        private static void CONTEXT_Ske_right_btn()
-        {
-            CreatePolygonCollider2DBySkeletonAnim();
-        }
-
         //边
         struct Edge2D
 		{
@@ -55,11 +37,13 @@ namespace Game.AutoCreate
 			}
 		}
 
-		private const string clickGoName = "ClickBox";
+		private const string defaultClickGoName = "ClickBox";
 
-		public static void CreatePolygonCollider2DByMesh(GameObject go = null)
+		public static GameObject CreatePolygonCollider2DByMesh(GameObject go = null,string colliderName = null)
         {
-			GameObject selGo = go??Selection.activeGameObject;
+            string clickGoName = colliderName ?? defaultClickGoName;
+
+            GameObject selGo = go??Selection.activeGameObject;
 			MeshFilter filter = selGo.GetComponent<MeshFilter>();
 
 			PolygonCollider2D polyCollider = null;
@@ -85,10 +69,14 @@ namespace Game.AutoCreate
 			var edges = BuildEdgesFromMesh(filter);
 			var paths = BuildColliderPaths(edges);
 			ApplyPathsToPolygonCollider(paths, polyCollider);
-		}
+            polyCollider.transform.SetParent(selGo.transform);
+            return polyCollider.gameObject;
+        }
 
-        public static void CreatePolygonCollider2DBySprite(GameObject go = null)
+        public static GameObject CreatePolygonCollider2DBySprite(GameObject go = null, string colliderName = null)
         {
+            string clickGoName = colliderName ?? defaultClickGoName;
+
             GameObject selGo = go??Selection.activeGameObject;
             SpriteRenderer spriteRenderer = selGo.GetComponent<SpriteRenderer>();
 
@@ -113,10 +101,14 @@ namespace Game.AutoCreate
             var edges = BuildEdgesFromSprite(spriteRenderer);
             var paths = BuildColliderPaths(edges);
             ApplyPathsToPolygonCollider(paths, polyCollider);
+            polyCollider.transform.SetParent(selGo.transform);
+
+            return polyCollider.gameObject;
         }
 
-        public static void CreatePolygonCollider2DBySkeletonAnim(GameObject go = null)
+        public static GameObject CreatePolygonCollider2DBySkeletonAnim(GameObject go = null, string colliderName = null)
         {
+            string clickGoName = colliderName ?? defaultClickGoName;
             GameObject selGo = go??Selection.activeGameObject;
             MeshFilter filter = selGo.GetComponent<MeshFilter>();
 
@@ -143,6 +135,9 @@ namespace Game.AutoCreate
             var edges = BuildEdgesFromSkeletonAnim(filter);
             var paths = BuildColliderPaths(edges);
             ApplyPathsToPolygonCollider(paths, polyCollider);
+            polyCollider.transform.SetParent(selGo.transform);
+
+            return polyCollider.gameObject;
         }
 
         /// <summary>

@@ -1,10 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
-using UnityEngine;
+﻿using LC2DAnim;
 using System.IO;
-using UnityEditor.Animations;
-using LC2DAnim;
+using UnityEditor;
 
 /// <summary>
 /// 自动创建2D动画以及状态机（指定规则）

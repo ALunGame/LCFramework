@@ -25,6 +25,10 @@ MonoBehaviour:
     m_Address: Assets/Demo/Asset/Maps/Common/Tile
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 3767d7ed7cf0d6d48abe67e88fa3fe0d
+    m_Address: Assets/Demo/Asset/Maps/1/Tile
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: c106a54d1dad7c34dbca1e47199c97a1, type: 2}
   m_SchemaSet:

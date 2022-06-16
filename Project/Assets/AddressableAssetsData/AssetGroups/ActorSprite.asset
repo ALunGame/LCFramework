@@ -25,6 +25,14 @@ MonoBehaviour:
     m_Address: Assets/Demo/Asset/Actors/Player/1001/Sprite
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 59df872393fe38e49841b6e1c8e946bf
+    m_Address: Assets/Demo/Asset/Actors/Item/Sprite
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 2198f46d7dd227346915307ad1475b7c
+    m_Address: Assets/Demo/Asset/Actors/Building/Sprite
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: c106a54d1dad7c34dbca1e47199c97a1, type: 2}
   m_SchemaSet:

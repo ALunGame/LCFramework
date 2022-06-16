@@ -25,6 +25,14 @@ MonoBehaviour:
     m_Address: Assets/Demo/Asset/Actors/Player/1001/Anim
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: c6fa318361e8bf54488d90a34190941f
+    m_Address: Assets/Demo/Asset/Actors/Item/Anim
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: e39f318a07955424ba75d26a133f8650
+    m_Address: Assets/Demo/Asset/Actors/Building/Anim
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: c106a54d1dad7c34dbca1e47199c97a1, type: 2}
   m_SchemaSet:

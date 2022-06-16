@@ -25,6 +25,22 @@ MonoBehaviour:
     m_Address: Actor_101
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 45f82f7381bd94f4dab5c5cdf1fac2c0
+    m_Address: Item_ChestIron_5003
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 8daf16007984b734199961bf26cabfb2
+    m_Address: Item_ChestGold_5004
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 811bef5335f21fd488bbb96f380d116d
+    m_Address: Item_ChestSilver_5002
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f482ff72b22d5a340b182d084327f019
+    m_Address: Item_ChestWooden_5001
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: c106a54d1dad7c34dbca1e47199c97a1, type: 2}
   m_SchemaSet:

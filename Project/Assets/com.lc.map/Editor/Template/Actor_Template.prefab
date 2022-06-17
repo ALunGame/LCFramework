@@ -91,7 +91,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7971203849927371166}
-  - component: {fileID: 1257630922578991887}
   m_Layer: 0
   m_Name: Default
   m_TagString: Untagged
@@ -117,24 +116,6 @@ Transform:
   m_Father: {fileID: 7971203849644106661}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1257630922578991887
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7971203849927371167}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5d81b40b632ccb41a5c4d231fca6855, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lockPos: 1
-  lockPosValue: {x: 0, y: 0, z: 0}
-  lockRoate: 0
-  lockRoateValue: {x: 0, y: 0, z: 0}
-  lockScale: 0
-  lockScaleValue: {x: 1, y: 1, z: 1}
 --- !u!1 &7971203850483905969
 GameObject:
   m_ObjectHideFlags: 0
@@ -208,6 +189,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7971203851038138419}
   - component: {fileID: 8070929267245048473}
+  - component: {fileID: 8959703750816007984}
   m_Layer: 0
   m_Name: Display
   m_TagString: Untagged
@@ -248,3 +230,15 @@ MonoBehaviour:
   lockRoateValue: {x: 0, y: 0, z: 0}
   lockScale: 0
   lockScaleValue: {x: 1, y: 1, z: 1}
+--- !u!114 &8959703750816007984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7971203851038138420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99fbbed70f8e7e24bb510c0f1a6253ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

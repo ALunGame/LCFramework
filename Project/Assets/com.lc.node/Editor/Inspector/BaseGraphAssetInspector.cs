@@ -1,10 +1,9 @@
 ﻿using LCNode.Model;
 using LCNode.Model.Internal;
 using LCNode.View;
+using LCToolkit;
 using UnityEditor;
 using UnityEngine;
-using LCToolkit;
-using LCToolkit;
 
 namespace LCNode.Inspector
 {

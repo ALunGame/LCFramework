@@ -21,6 +21,14 @@ MonoBehaviour:
     m_Address: 1001_Env
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 6912254b81256764a84ac28bd932a458
+    m_Address: map_fence_1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 5301ebe95c6d4ea4eaefdeec957feb31
+    m_Address: map_building_stall
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: c106a54d1dad7c34dbca1e47199c97a1, type: 2}
   m_SchemaSet:

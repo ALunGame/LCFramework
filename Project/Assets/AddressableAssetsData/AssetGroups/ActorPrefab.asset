@@ -21,24 +21,144 @@ MonoBehaviour:
     m_Address: Actor_1005
     m_ReadOnly: 0
     m_SerializedLabels: []
-  - m_GUID: 6a01ab910f559064eb633ba634aca85e
-    m_Address: Actor_101
+  - m_GUID: 1d438343638600d4d93fd15ffea5c598
+    m_Address: Actor_Main
     m_ReadOnly: 0
     m_SerializedLabels: []
-  - m_GUID: 45f82f7381bd94f4dab5c5cdf1fac2c0
-    m_Address: Item_ChestIron_5003
+  - m_GUID: 27d3db4d98cfb054c8d60bf832a835ef
+    m_Address: Actor_tx_item_road_lamp
     m_ReadOnly: 0
     m_SerializedLabels: []
-  - m_GUID: 8daf16007984b734199961bf26cabfb2
-    m_Address: Item_ChestGold_5004
+  - m_GUID: 24bf3a7c8ee5dc34a857a08ce8f9717e
+    m_Address: Actor_tx_item_chest_iron
     m_ReadOnly: 0
     m_SerializedLabels: []
-  - m_GUID: 811bef5335f21fd488bbb96f380d116d
-    m_Address: Item_ChestSilver_5002
+  - m_GUID: 6b1065084cc27f94b8798fa8790b74ef
+    m_Address: Actor_tx_item_chest_silver
     m_ReadOnly: 0
     m_SerializedLabels: []
-  - m_GUID: f482ff72b22d5a340b182d084327f019
-    m_Address: Item_ChestWooden_5001
+  - m_GUID: 6e6596820e6e3cc419de139033bf1f09
+    m_Address: Actor_tx_item_chest_wooden
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: a2a09d1d33903f04690c6861ff0bd6bc
+    m_Address: Actor_tx_item_chest_golden
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 82257cba53983a04589d31de357bf75e
+    m_Address: Actor_tx_item_crate_small
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: b9b0dcd3cb4223445b12311c10339107
+    m_Address: Actor_tx_item_crate_large
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 5f5b79d3a1c168c42ba602ab887ec4bf
+    m_Address: Actor_tx_item_pot_a
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ec2d48b4081e1444093448eff1e17795
+    m_Address: Actor_tx_item_pot_b
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: dfc30ade7485a274295e7a88e91067c2
+    m_Address: Actor_tx_item_barrel
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 020291f1240b3194b87d938de9e6993c
+    m_Address: Actor_tx_item_pot_c
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: a9d7681122522494893ea00f03176e9c
+    m_Address: Actor_tx_item_bush_a
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f994901a0c985df48bc6dd34069f9812
+    m_Address: Actor_tx_item_grass_a
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 311899c859e1002428e160eda9b895c3
+    m_Address: Actor_tx_item_gunny_bag_a
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 406fd6f63fd99974484e1993edf55afe
+    m_Address: Actor_tx_item_grass_e
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: d999094b1e214734da3f702af1b82390
+    m_Address: Actor_tx_item_training_dummy
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 6d2c1725440c7bb448b2a81f228b704b
+    m_Address: Actor_tx_item_grass_b
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 574005dbd518d3b45bf0bbbabf599ddc
+    m_Address: Actor_tx_item_tree_b
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 37de16fc12df6c1448fc585b3544cdb9
+    m_Address: Actor_tx_item_anvil
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 663516fa35ee2cc42b15398a9b9b7fa8
+    m_Address: Actor_tx_item_hay_pile
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 9927c0ce60ff67c44abc1e64150b55d0
+    m_Address: Actor_tx_item_bush_c
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: b465490e544b9f34b84735f775c0a8a5
+    m_Address: Actor_tx_item_wood_logs
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 42f9e49ca3c608f42ba6d582ee17a28a
+    m_Address: Actor_tx_item_spike
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 5aa46289ebe300d4a83531f1cc10b962
+    m_Address: Actor_tx_item_bucket
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 988ca1e445f2486429fb6b3359d30dd0
+    m_Address: Actor_tx_item_scarecrow
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 835e9510fb2edad4d9c6bc6519e694c7
+    m_Address: Actor_tx_item_gunny_bag_b
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 443216e6e4a8b904e8d5bffd38c87be0
+    m_Address: Actor_tx_item_grass_f
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 5bb315aa267410f4ca17fc852129813e
+    m_Address: Actor_tx_item_tree_a
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 9423d67342b33be4e9112b8217b31c32
+    m_Address: Actor_tx_item_grass_d
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 541a823f4392c9c4f97538dc7f2c5e61
+    m_Address: Actor_tx_item_hay_bale
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 66e28776755b0f340912013e28519883
+    m_Address: Actor_tx_item_grass_c
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 658ed32289850a240b6dcc07dd4591f7
+    m_Address: Actor_tx_item_bush_b
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 60480db6bb6b31541b66e43de0c6b9cc
+    m_Address: Actor_tx_item_well
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: d01b55c73b6cdf6468433bdba6a10de8
+    m_Address: Actor_map_building_campfire
     m_ReadOnly: 0
     m_SerializedLabels: []
   m_ReadOnly: 0

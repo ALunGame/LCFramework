@@ -59,9 +59,54 @@ namespace Demo
             AssetDatabase.Refresh();
         }
 
-        public static void AutoCreateActorItem()
-        {
 
+
+        [MenuItem("GameObject/重新引用图片")]
+        public static void RefreshSprite()
+        {
+            GameObject selGo = Selection.activeGameObject;
+            if (selGo == null)
+                return;
+            List<SpriteRenderer> sprites = new List<SpriteRenderer>();
+            if (selGo.GetComponent<SpriteRenderer>()!=null)
+            {
+                sprites.Add(selGo.GetComponent<SpriteRenderer>());
+            }
+            foreach (var sprite in selGo.GetComponentsInChildren<SpriteRenderer>())
+            {
+                sprites.Add(sprite);
+            }
+
+            Object[] allAsset = AssetDatabase.LoadAllAssetsAtPath("Assets/Demo/Asset/Actors/Item/Sprite/tx_item.png");
+            foreach (var sprite in sprites)
+            {
+                string newName = GetAssetName(sprite.sprite.name);
+                foreach (var asset in allAsset)
+                {
+                    if (asset.name == newName)
+                    {
+                        sprite.name = asset.name;
+                        sprite.sprite = (Sprite)asset;
+                        break;
+                    }
+                }
+            }
+        }
+
+        private static string GetAssetName(string oldName)
+        {
+            string name = oldName;
+            name = name.Replace("TX Village Props", "");
+            string[] endNames = name.Split(' ');
+            string endName = "tx_item";
+            foreach (var item in endNames)
+            {
+                if (!string.IsNullOrEmpty(item))
+                {
+                    endName = endName + "_" + item.ToLower();
+                }
+            }
+            return endName;
         }
     }
 }

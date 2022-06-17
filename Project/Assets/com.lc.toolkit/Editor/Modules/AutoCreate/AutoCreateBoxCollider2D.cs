@@ -38,6 +38,7 @@ namespace LCToolkit
             boxCollider.offset = copyCollider2D.offset;
 
             boxCollider.transform.SetParent(selGo.transform);
+            boxCollider.isTrigger = true;
 
             GameObject.DestroyImmediate(copyCollider2D);
 

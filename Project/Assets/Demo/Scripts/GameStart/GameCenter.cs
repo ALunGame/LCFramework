@@ -59,6 +59,10 @@ namespace Demo
         [SerializeField]
         private SystemSortAsset systemSortAsset;
 
+        [Header("测试地图")]
+        [SerializeField]
+        private int testMapId;
+
         private DecisionCenter _DecCenter = new DecisionCenter();
         private ECSCenter _EcsCenter = new ECSCenter();
         private KeyDoubleClick LeftKey = new KeyDoubleClick(KeyCode.A);
@@ -73,7 +77,7 @@ namespace Demo
 
         private void Start()
         {
-            MapLocate.Map.Enter(1001);
+            MapLocate.Map.Enter(testMapId);
             _DecCenter.Start_ThreadUpdate();
 
             string uid = DialogLocate.Dialog.CreateDialog(new AddDialogInfo(DialogType.Bubble, 1001, 1));

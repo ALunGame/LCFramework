@@ -27,4 +27,4 @@ MonoBehaviour:
   m_Name: "\u901A\u7528"
   m_EditorClassIdentifier: 
   cnfTypeFullName: LCMap.ActorCnf
-  serializedText: '[{"mType":"LCMap.ActorCnf","id":101,"isPlayer":true,"name":"\u73A9\u5BB6","entityId":1,"prefab":{"mType":"LCToolkit.UnityObjectAsset","ObjName":"Actor_101","ObjPath":"Assets/Demo/Asset/Actors/Player/1001/Prefab/Actor_101.prefab"}},{"mType":"LCMap.ActorCnf","id":105,"isPlayer":false,"name":"\u654C\u4EBA","entityId":2,"prefab":{"mType":"LCToolkit.UnityObjectAsset","ObjName":"Actor_1005","ObjPath":"Assets/Demo/Asset/Actors/Monster/1005/Prefab/Actor_1005.prefab"}}]'
+  serializedText: '[{"mType":"LCMap.ActorCnf","id":101,"isPlayer":true,"name":"\u73A9\u5BB6","entityId":1,"prefab":{"mType":"LCToolkit.UnityObjectAsset","assetType":0,"ObjName":"Actor_Main","ObjPath":"Assets/Demo/Asset/Actors/Player/1001/Prefab/Actor_Main.prefab"}},{"mType":"LCMap.ActorCnf","id":105,"isPlayer":false,"name":"\u654C\u4EBA","entityId":2,"prefab":{"mType":"LCToolkit.UnityObjectAsset","assetType":0,"ObjName":"Actor_1005","ObjPath":"Assets/Demo/Asset/Actors/Monster/1005/Prefab/Actor_1005.prefab"}}]'

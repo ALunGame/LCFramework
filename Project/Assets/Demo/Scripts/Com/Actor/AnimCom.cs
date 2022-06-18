@@ -52,7 +52,7 @@ namespace Demo.Com
 
         private void OnDisplayGoChange(ActorObj actorObj)
         {
-            Transform animTrans = actorObj.GetDisplayGo().transform.Find("Anim");
+            Transform animTrans = actorObj.GetDisplayGo().transform;
             if (animTrans == null)
             {
                 Anim = null;

@@ -3,6 +3,7 @@ using System.IO;
 using UnityEditor;
 using UnityEditor.Animations;
 using UnityEngine;
+using System.Linq;
 
 namespace Demo.AutoCreate
 {
@@ -54,12 +55,9 @@ namespace Demo.AutoCreate
 
             AnimatorController animatorController = AnimatorController.CreateAnimatorControllerAtPath(controllerPath);
 
-            string animClipTmpPath = selPath + "/Temp";
-            Directory.CreateDirectory(animClipTmpPath);
-
             foreach (var clip in animClips)
             {
-                if (LoopStateNames.Contains(clip.name))
+                if (LoopStateNames.Any(x => clip.name.Contains(x)))
                 {
                     SerializedObject serializedClip = new SerializedObject(clip);
                     AnimationClipSettings clipSettings = AnimationUtility.GetAnimationClipSettings(clip);

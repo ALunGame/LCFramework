@@ -5,144 +5,205 @@ using UnityEditor;
 using UnityEditor.Animations;
 using UnityEngine;
 
-namespace Assets.Demo.Editor._2DAnim.Editor
+namespace Demo.AutoCreate
 {
     public class AutoSetAnimController
     {
-        private static AnimatorController SelAnim = null;
-
-        //默认入口状态
-        private static string EntryStateName = "idle";
-
-
-
-        //默认其他状态
-        private static List<string> DefaultStateNames = new List<string>() { "idle", "walk", "run" };
-
-        //循环动画片段
-        private static List<string> LoopClipNames = new List<string>() { "idle", "walk", "run" };
-
-        //自定义状态动画名
-        private static List<string> CustomStateClipNames = new List<string>();
+        private static List<AnimatorController>  selAnimControllers = new List<AnimatorController>();
 
         [MenuItem("Assets/自动设置动画状态机")]
         public static void Create2DAnim()
         {
-            CreateAnim();
+            foreach (var item in selAnimControllers)
+            {
+                SetAnimatorController(item);
+            }
+            AssetDatabase.SaveAssets();
+            AssetDatabase.Refresh();
         }
 
         [MenuItem("Assets/自动设置动画状态机", true)]
         public static bool Create2DAnimValidate()
         {
-            return CheckCanOpenCreate2DAnimPanel();
-        }
-
-        private static bool CheckCanOpenCreate2DAnimPanel()
-        {
-            //只选中一个
-            string[] guidArray = Selection.assetGUIDs;
-            if (guidArray == null || guidArray.Length != 1)
+            Object[] guidArray = Selection.objects;
+            selAnimControllers.Clear();
+            foreach (var obj in guidArray)
             {
-                return false;
-            }
-
-            //必须是AnimatorController
-            string path = AssetDatabase.GUIDToAssetPath(guidArray[0]);
-            AnimatorController animatorController = AssetDatabase.LoadAssetAtPath<AnimatorController>(path);
-            if (animatorController == null)
-            {
-                SelAnim = null;
-                return false;
-            }
-
-            SelAnim = animatorController;
-            return true;
-        }
-
-        private static void CreateAnim()
-        {
-            string controllerPath = AssetDatabase.GetAssetPath(SelAnim);
-            UnityEngine.Object[] objs = AssetDatabase.LoadAllAssetsAtPath(controllerPath);
-            CollectLoopAnim(objs);
-            var clipList = new List<AnimationClip>();
-
-            foreach (var o in objs)
-            {
-                if (o is AnimationClip)
+                if (obj is AnimatorController)
                 {
-                    var clip = o as AnimationClip;
-                    if (CheckIsLoopClip(clip))
-                    {
-                        SerializedObject serializedClip = new SerializedObject(clip);
-                        AnimationClipSettings clipSettings = AnimationUtility.GetAnimationClipSettings(clip);
-                        clipSettings.loopTime = true;
-                        AnimationUtility.SetAnimationClipSettings(clip, clipSettings);
+                    selAnimControllers.Add(obj as AnimatorController);
+                }
+            }
+            return selAnimControllers.Count > 0;
+        }
 
-                        serializedClip.ApplyModifiedProperties();
-                        EditorUtility.SetDirty(o);
+        class AnimLayerInfo
+        {
+            public AnimationClip defaultClip;
+            public List<AnimationClip> otherClips;
+
+            private AnimatorState defaultState;
+
+            public AnimLayerInfo(List<AnimationClip> clips)
+            {
+                defaultClip = clips.FirstOrDefault(x => GetStateName(x) == "idle");
+                if (defaultClip == null)
+                    defaultClip = clips.FirstOrDefault(x => GetStateName(x).Contains("idle"));
+                if (defaultClip == null)
+                {
+                    Debug.LogError("没有默认状态");
+                    return;
+                }
+                otherClips = clips.Where(x => x.name != defaultClip.name).ToList();
+            }
+
+            public void CreateAnimParameter(AnimatorController controller)
+            {
+                controller.AddParameter(GetStateName(defaultClip), AnimatorControllerParameterType.Bool);
+                foreach (var item in otherClips)
+                {
+                    string stateName = GetStateName(item);
+                    controller.AddParameter(stateName, AnimatorControllerParameterType.Trigger);
+
+                    if (item.isLooping)
+                        controller.AddParameter(stateName + "_state", AnimatorControllerParameterType.Bool);
+                }
+            }
+
+            public void ConnectAnimClips(AnimatorControllerLayer layer)
+            {
+                AnimatorStateMachine sm = layer.stateMachine;
+                sm.anyStatePosition     = new Vector2(sm.entryPosition.x + 600, sm.entryPosition.y - 200);
+                sm.anyStateTransitions  = null;
+                sm.entryTransitions     = null;
+                sm.states               = null;
+
+                ConnectDefaultClip(sm);
+
+                for (int i = 0; i < otherClips.Count; i++)
+                {
+                    AnimationClip clip = otherClips[i];
+                    int stateIndex = i + 1;
+                    if (clip.isLooping)
+                    {
+                        ConnectLoopClip(sm, clip, stateIndex);
                     }
-                    clipList.Add(clip);
-                }
-            }
-
-            CreateAnimatorController(SelAnim, clipList);
-
-            AssetDatabase.SaveAssets();
-            AssetDatabase.Refresh();
-        }
-
-        private static bool CheckIsLoopClip(AnimationClip clip)
-        {
-            for (int i = 0; i < LoopClipNames.Count; i++)
-            {
-                if (clip.name.Contains(LoopClipNames[i]))
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        private static void CollectLoopAnim(UnityEngine.Object[] objs)
-        {
-            CustomStateClipNames.Clear();
-            var clipList = new List<AnimationClip>();
-
-            foreach (var o in objs)
-            {
-                if (o is AnimationClip)
-                {
-                    var clip = o as AnimationClip;
-                    SerializedObject serializedClip = new SerializedObject(clip);
-                    AnimationClipSettings clipSettings = AnimationUtility.GetAnimationClipSettings(clip);
-                    if (clipSettings.loopTime)
+                    else
                     {
-                        CustomStateClipNames.Add(clip.name);
+                        ConnectTriggerClip(sm, clip, stateIndex);
                     }
                 }
             }
+
+            private void ConnectDefaultClip(AnimatorStateMachine sm)
+            {
+                float posX = sm.entryPosition.x;
+                float posY = sm.entryPosition.y - 200;
+                Vector2 statePos = new Vector2(posX, posY);
+
+                string stateName = GetStateName(defaultClip);
+                AnimatorState defaultState = sm.AddState(stateName, statePos);
+                defaultState.motion = defaultClip;
+
+                ConnectAnyStateByBool(sm, defaultState, stateName);
+
+                this.defaultState = defaultState;
+            }
+
+            private void ConnectLoopClip(AnimatorStateMachine sm, AnimationClip clip, int stateIndex)
+            {
+                float posX = sm.anyStatePosition.x - 300;
+                float posY = sm.anyStatePosition.y + 100 * stateIndex;
+                Vector2 statePos = new Vector2(posX, posY);
+
+                string stateName = GetStateName(clip);
+                AnimatorState newState = sm.AddState(stateName, statePos);
+                newState.motion = clip;
+
+                AnimatorStateTransition stateTransition = ConnectAnyStateByTrigger(sm, newState, stateName + "_state");
+                stateTransition.AddCondition(AnimatorConditionMode.If, 0, stateName);
+                ConnectIdleStateByBool(newState, defaultState, stateName + "_state");
+            }
+
+            private void ConnectTriggerClip(AnimatorStateMachine sm, AnimationClip clip, int stateIndex)
+            {
+                float posX = sm.anyStatePosition.x - 300;
+                float posY = sm.anyStatePosition.y + 100 * stateIndex;
+                Vector2 statePos = new Vector2(posX, posY);
+
+                string stateName = GetStateName(clip);
+                AnimatorState newState = sm.AddState(stateName, statePos);
+                newState.motion = clip;
+
+                ConnectAnyStateByTrigger(sm, newState, stateName);
+                ConnectIdleStateByTrigger(newState, defaultState);
+            }
+
+            private AnimatorStateTransition ConnectAnyStateByBool(AnimatorStateMachine sm, AnimatorState newState, string condName)
+            {
+                AnimatorStateTransition _transition = sm.AddAnyStateTransition(newState);
+                _transition.AddCondition(AnimatorConditionMode.If, 0, condName);
+                _transition.hasExitTime = false;
+                _transition.canTransitionToSelf = false;
+                _transition.offset = 0;
+                _transition.duration = 0;
+                return _transition;
+            }
+
+            private AnimatorStateTransition ConnectAnyStateByTrigger(AnimatorStateMachine sm, AnimatorState newState, string condName)
+            {
+                AnimatorStateTransition _transition = sm.AddAnyStateTransition(newState);
+                _transition.AddCondition(AnimatorConditionMode.If, 0, condName);
+                _transition.hasExitTime = false;
+                _transition.canTransitionToSelf = true;
+                _transition.offset = 0;
+                _transition.duration = 0;
+                return _transition;
+            }
+
+            private void ConnectIdleStateByBool(AnimatorState newState, AnimatorState entryState, string condName)
+            {
+                if (newState == null || entryState == null)
+                    return;
+                AnimatorStateTransition _transition = newState.AddTransition(entryState);
+                _transition.AddCondition(AnimatorConditionMode.IfNot, 0, condName);
+                _transition.hasExitTime = true;
+                _transition.offset = 0;
+                _transition.duration = 0;
+            }
+
+            private void ConnectIdleStateByTrigger(AnimatorState newState, AnimatorState entryState)
+            {
+                if (newState == null || entryState == null)
+                    return;
+                AnimatorStateTransition _transition = newState.AddTransition(entryState);
+                _transition.hasExitTime = true;
+                _transition.offset = 0;
+                _transition.duration = 0;
+            }
+
+            private string GetStateName(AnimationClip clip)
+            {
+                (string, string) data = CalcLayerAndStateName(clip);
+                return data.Item2;
+            }
         }
 
-        private static bool CheckIsStateClip(string clipName)
+        private static void SetAnimatorController(AnimatorController animatorController)
         {
-            for (int i = 0; i < DefaultStateNames.Count; i++)
+            string controllerPath = AssetDatabase.GetAssetPath(animatorController);
+            Object[] objs = AssetDatabase.LoadAllAssetsAtPath(controllerPath);
+
+            List<AnimationClip> clips = new List<AnimationClip>();
+            foreach (var item in objs)
             {
-                if (clipName.Contains(DefaultStateNames[i]))
+                if (item is AnimationClip)
                 {
-                    return true;
+                    clips.Add(item as AnimationClip);
                 }
             }
+            animatorController.parameters = null;
 
-            if (CustomStateClipNames.Contains(clipName))
-            {
-                return true;
-            }
-            return false;
-        }
-
-        //创建动画控制器
-        private static void CreateAnimatorController(AnimatorController animatorController, List<AnimationClip> clips)
-        {
             AnimatorControllerLayer layer = animatorController.layers[0];
             AnimatorStateMachine sm = layer.stateMachine;
             sm.anyStatePosition = new Vector2(0, 0);
@@ -152,347 +213,30 @@ namespace Assets.Demo.Editor._2DAnim.Editor
             sm.entryTransitions = null;
             sm.states = null;
 
-            Dictionary<string, List<AnimationClip>> groupClipDict = CollectAllClips(clips);
-            Vector2 startPos = new Vector2(sm.anyStatePosition.x, sm.anyStatePosition.y + 300);
-            int posIndex = 0;
-
-            if (!groupClipDict.ContainsKey(EntryStateName))
-            {
-                Debug.LogError($"当前没有 {EntryStateName} 默认入口");
-                return;
-            }
-            //参数
-            CreateAnimatorControllerParameter(animatorController, groupClipDict);
-
-            Dictionary<string, List<AnimationClip>> orderGroupDict = new Dictionary<string, List<AnimationClip>>();
-            orderGroupDict.Add(EntryStateName, groupClipDict[EntryStateName]);
-            foreach (var item in groupClipDict)
-            {
-                if (item.Key != EntryStateName)
-                {
-                    orderGroupDict.Add(item.Key, item.Value);
-                }
-            }
-
-            //状态节点
-            AnimatorState entryState = null;
-            foreach (var item in orderGroupDict)
-            {
-                bool isState = CheckIsStateClip(item.Key);
-
-                Vector2 statePos = startPos;
-                if (posIndex != 0)
-                {
-                    statePos = new Vector2(startPos.x + 300, startPos.y + posIndex * 100);
-                }
-
-                if (item.Key == EntryStateName)
-                {
-                    statePos = new Vector2(sm.entryPosition.x, sm.anyStatePosition.y);
-                    (AnimatorState, AnimatorState) itemStateGroup = CreateGroupState(sm, item.Key, item.Value, statePos, isState);
-                    entryState = itemStateGroup.Item1;
-                    sm.entryTransitions = null;
-                    //sm.AddEntryTransition(entryState);
-                    sm.defaultState = entryState;
-                }
-                else
-                {
-                    (AnimatorState, AnimatorState) itemStateGroup = CreateGroupState(sm, item.Key, item.Value, statePos, isState, entryState);
-                }
-
-                posIndex++;
-            }
-
-            //CreateAllState(sm, clips);
-
-            AssetDatabase.SaveAssets();
-            AssetDatabase.Refresh();
-        }
-
-        private static Dictionary<string, List<AnimationClip>> CollectAllClips(List<AnimationClip> clips)
-        {
-            Dictionary<string, List<AnimationClip>> clipDict = new Dictionary<string, List<AnimationClip>>();
-
+            List<AnimationClip> layerClips = new List<AnimationClip>();
             for (int i = 0; i < clips.Count; i++)
             {
                 AnimationClip clip = clips[i];
-                //子状态
-                if (clip.name.Contains("_"))
-                    continue;
-                if (clipDict.ContainsKey(clip.name))
+                (string, string) layerStateStr = CalcLayerAndStateName(clip);
+                if (layerStateStr.Item1 == "" || layerStateStr.Item1 == "side")
                 {
-                    Debug.LogError("动画Clip重复或重名：" + clip.name);
-                    continue;
-                }
-                clipDict.Add(clip.name, new List<AnimationClip>());
-                clipDict[clip.name].Add(clip);
-
-                //找到子
-                IEnumerable<AnimationClip> childClips = clips.Where(x => x.name.Contains(clip.name) && !x.name.Equals(clip.name) && x.name.Contains("_"));
-                if (childClips != null)
-                {
-                    AnimationClip[] tempClip = new AnimationClip[10];
-                    foreach (var item in childClips)
-                    {
-                        AnimationClip childClip = item;
-                        int index = 0;
-                        if (int.TryParse(childClip.name.Replace(clip.name + "_", ""), out index))
-                        {
-                            tempClip[index] = childClip;
-                        }
-                    }
-                    for (int j = 0; j < tempClip.Length; j++)
-                    {
-                        if (tempClip[j] != null)
-                        {
-                            clipDict[clip.name].Add(tempClip[j]);
-                        }
-                    }
+                    layerClips.Add(clip);
                 }
             }
-
-            return clipDict;
+            AnimLayerInfo animLayer = new AnimLayerInfo(layerClips);
+            animLayer.CreateAnimParameter(animatorController);
+            animLayer.ConnectAnimClips(layer);
         }
 
-        private static void CreateAnimatorControllerParameter(AnimatorController animatorController, Dictionary<string, List<AnimationClip>> groupDict)
+        private static (string, string) CalcLayerAndStateName(AnimationClip clip)
         {
-            animatorController.parameters = null;
-            foreach (var item in groupDict)
+            if (!clip.name.Contains("_"))
             {
-                bool isState = CheckIsStateClip(item.Key);
-                if (isState && item.Key.Equals(EntryStateName))
-                {
-                    animatorController.AddParameter(item.Key, AnimatorControllerParameterType.Bool);
-                }
-                else
-                {
-                    animatorController.AddParameter(item.Key, AnimatorControllerParameterType.Trigger);
-                }
-                if (isState && !item.Key.Equals(EntryStateName))
-                {
-                    animatorController.AddParameter(item.Key + "_state", AnimatorControllerParameterType.Bool);
-                }
+                return new("", clip.name);
             }
+            string[] strs = clip.name.Split("_");
+            return new(strs[0], strs[1]);
         }
 
-        private static (AnimatorState, AnimatorState) CreateGroupState(AnimatorStateMachine stateMachine, string groupName, List<AnimationClip> groupClips, Vector2 startPos, bool isBoolState, AnimatorState entryState = null)
-        {
-            AnimatorState startState = null;
-            AnimatorState endState = null;
-            List<AnimatorState> groupStates = new List<AnimatorState>();
-
-            bool isLoop = isBoolState || groupName.Contains(EntryStateName);
-
-            if (groupClips.Count == 1)
-            {
-                Vector2 statePos = new Vector2(startPos.x + 300, startPos.y);
-                AnimationClip clip = groupClips[0];
-                AnimatorState newState = stateMachine.AddState(clip.name, statePos);
-                newState.motion = clip;
-
-                //临时代码
-                if (isLoop)
-                {
-                    string transName = groupName == EntryStateName ? groupName : groupName + "_state";
-                    if (groupName == EntryStateName)
-                    {
-                        transName = groupName;
-                    }
-                    else
-                    {
-                        transName = groupName + "_state";
-                    }
-
-                    if (transName.Contains("_state"))
-                    {
-                        AnimatorStateTransition stateTransition = ConnectAnyStateByTrigger(stateMachine, newState, groupName);
-                        stateTransition.AddCondition(AnimatorConditionMode.If, 0, transName);
-                        ConnectIdleStateByBool(newState, entryState, transName);
-                    }
-                    else
-                    {
-                        ConnectAnyState(stateMachine, newState, transName);
-                        ConnectIdleStateByBool(newState, entryState, transName);
-                    }
-                }
-                else
-                {
-                    ConnectAnyStateByTrigger(stateMachine, newState, groupName);
-                    ConnectIdleState(newState, entryState);
-                }
-
-                startState = newState;
-            }
-            else
-            {
-                for (int i = 0; i < groupClips.Count; i++)
-                {
-                    AnimationClip clip = groupClips[i];
-                    if (clip == null)
-                    {
-                        continue;
-                    }
-                    Vector2 statePos = new Vector2(startPos.x + 300 * i, startPos.y);
-                    AnimatorState newState = stateMachine.AddState(clip.name, statePos);
-                    newState.motion = clip;
-                    groupStates.Add(newState);
-
-                    //与上一个相连
-                    int lastIndex = i - 1;
-                    if (lastIndex >= 0 && lastIndex < groupClips.Count - 1)
-                    {
-                        AnimatorState lastState = groupStates[i - 1];
-
-                        //Tigger最后一个
-                        if (!isBoolState && i == groupClips.Count - 1)
-                        {
-                            //ConnectOtherStateByBool(lastState, newState, groupName + "_state");
-                            ConnectOtherState(lastState, newState);
-                        }
-                        else
-                        {
-                            ConnectOtherState(lastState, newState);
-                        }
-
-                        //Debug.LogError($" aaaaaaaa  {isBoolState} {lastIndex} {groupClips.Count - 1}");
-                    }
-
-                    //起始状态---连Any
-                    if (i == 0)
-                    {
-                        if (isBoolState)
-                        {
-                            ConnectAnyState(stateMachine, newState, groupName);
-                        }
-                        else
-                        {
-                            ConnectAnyStateByTrigger(stateMachine, newState, groupName);
-                        }
-                        startState = newState;
-                    }
-
-                    //结束状态---连Idle
-                    if (i == groupClips.Count - 1)
-                    {
-                        if (isBoolState)
-                        {
-                            ConnectIdleStateByBool(newState, entryState, groupName);
-                        }
-                        else
-                        {
-                            ConnectIdleState(newState, entryState);
-                        }
-                    }
-
-                    //Debug.LogError($"ccc {i} {groupClips.Count - 1} {entryState}");
-                }
-            }
-
-            //设置下循环
-            if (groupClips.Count >= 3)
-            {
-                for (int i = 0; i < groupClips.Count; i++)
-                {
-                    AnimationClip clip = groupClips[i];
-                    SerializedObject serializedClip = new SerializedObject(clip);
-                    AnimationClipSettings clipSettings = AnimationUtility.GetAnimationClipSettings(clip);
-
-                    //默认倒数第二个循环
-                    if (i == groupClips.Count - 2)
-                    {
-                        clipSettings.loopTime = true;
-                    }
-                    else
-                    {
-                        clipSettings.loopTime = false;
-                    }
-                    AnimationUtility.SetAnimationClipSettings(clip, clipSettings);
-                    serializedClip.ApplyModifiedProperties();
-                    EditorUtility.SetDirty(clip);
-                }
-            }
-
-            //非常之临时
-            if (groupClips.Count == 1 && isLoop)
-            {
-                AnimationClip clip = groupClips[0];
-                SerializedObject serializedClip = new SerializedObject(clip);
-                AnimationClipSettings clipSettings = AnimationUtility.GetAnimationClipSettings(clip);
-
-                //默认倒数第二个循环
-                clipSettings.loopTime = true;
-                AnimationUtility.SetAnimationClipSettings(clip, clipSettings);
-                serializedClip.ApplyModifiedProperties();
-                EditorUtility.SetDirty(clip);
-            }
-
-            return (startState, endState);
-        }
-
-        private static void ConnectAnyState(AnimatorStateMachine stateMachine, AnimatorState newState, string condName)
-        {
-            AnimatorStateTransition _animatorStateTransition = stateMachine.AddAnyStateTransition(newState);
-            _animatorStateTransition.AddCondition(AnimatorConditionMode.If, 0, condName);
-            _animatorStateTransition.hasExitTime = false;
-            _animatorStateTransition.canTransitionToSelf = false;
-            _animatorStateTransition.offset = 0;
-            _animatorStateTransition.duration = 0;
-        }
-
-        private static AnimatorStateTransition ConnectAnyStateByTrigger(AnimatorStateMachine stateMachine, AnimatorState newState, string condName)
-        {
-            AnimatorStateTransition _animatorStateTransition = stateMachine.AddAnyStateTransition(newState);
-            _animatorStateTransition.AddCondition(AnimatorConditionMode.If, 0, condName);
-            _animatorStateTransition.hasExitTime = false;
-            _animatorStateTransition.canTransitionToSelf = true;
-            _animatorStateTransition.offset = 0;
-            _animatorStateTransition.duration = 0;
-            return _animatorStateTransition;
-        }
-
-        private static void ConnectOtherState(AnimatorState state, AnimatorState toConnectState)
-        {
-            if (state == null || toConnectState == null)
-                return;
-            AnimatorStateTransition _animatorStateTransition = state.AddTransition(toConnectState);
-            _animatorStateTransition.hasExitTime = true;
-            _animatorStateTransition.offset = 0;
-            _animatorStateTransition.duration = 0;
-        }
-
-        private static void ConnectOtherStateByBool(AnimatorState state, AnimatorState toConnectState, string condName)
-        {
-            if (state == null || toConnectState == null)
-                return;
-            AnimatorStateTransition _animatorStateTransition = state.AddTransition(toConnectState);
-            _animatorStateTransition.AddCondition(AnimatorConditionMode.IfNot, 0, condName);
-            _animatorStateTransition.hasExitTime = true;
-            _animatorStateTransition.offset = 0;
-            _animatorStateTransition.duration = 0;
-        }
-
-        private static void ConnectIdleStateByBool(AnimatorState newState, AnimatorState entryState, string condName)
-        {
-            if (newState == null || entryState == null)
-                return;
-            AnimatorStateTransition _animatorStateTransition = newState.AddTransition(entryState);
-            if (newState.name != EntryStateName)
-            {
-                _animatorStateTransition.AddCondition(AnimatorConditionMode.IfNot, 0, condName);
-            }
-            _animatorStateTransition.hasExitTime = true;
-            _animatorStateTransition.offset = 0;
-            _animatorStateTransition.duration = 0;
-        }
-
-        private static void ConnectIdleState(AnimatorState newState, AnimatorState entryState)
-        {
-            if (newState == null || entryState == null)
-                return;
-            AnimatorStateTransition _animatorStateTransition = newState.AddTransition(entryState);
-            _animatorStateTransition.hasExitTime = true;
-            _animatorStateTransition.offset = 0;
-            _animatorStateTransition.duration = 0;
-        }
     }
 }

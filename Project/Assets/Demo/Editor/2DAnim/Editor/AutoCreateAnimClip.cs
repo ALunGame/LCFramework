@@ -8,7 +8,8 @@ namespace Demo.AutoCreate
     public static class AutoCreateAnimClip 
     {
         //关键帧间隔时间
-        private const float KeyframeTime = 0.1f;
+        private const float KeyframeTime = 0.03f;
+        private const float FrameRate = 30f;
 
         public static List<AnimationClip> CreateAnimClips(string spritePath)
         {
@@ -66,11 +67,11 @@ namespace Demo.AutoCreate
             {
                 Sprite sprite = AssetDatabase.LoadAssetAtPath<Sprite>(imagePath[i]);
                 keyFrames[i] = new ObjectReferenceKeyframe();
-                keyFrames[i].time = KeyframeTime * i;
+                keyFrames[i].time  = KeyframeTime * i;
                 keyFrames[i].value = sprite;
             }
             //动画帧率，30比较合适
-            clip.frameRate = 30;
+            clip.frameRate = FrameRate;
 
             AnimationUtility.SetObjectReferenceCurve(clip, curveBinding, keyFrames);
             return clip;

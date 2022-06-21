@@ -134,9 +134,9 @@ namespace Demo
                     {
                         FileInfo fileInfo = new FileInfo(item);
 
-                        string imgName = Path.GetFileName(item);
-                        string index   = imgName.Substring(imgName.LastIndexOf("_") + 1);
-                        string newImgName = $"{fileName}_{dirName}_{animName}_{index}";
+                        //string imgName = Path.GetFileName(item);
+                        //string index   = imgName.Substring(imgName.LastIndexOf("_") + 1);
+                        //string newImgName = $"{fileName}_{dirName}_{animName}_{index}";
 
                         string assetPath = fileInfo.FullName.Substring(fileInfo.FullName.IndexOf("Assets"));
                         TextureImporter textureImporter = AssetImporter.GetAtPath(assetPath) as TextureImporter;
@@ -146,8 +146,8 @@ namespace Demo
                         textureImporter.SetTextureSettings(tis);
                         textureImporter.SaveAndReimport();
 
-                        string newImgPath = Path.Combine(fileInfo.DirectoryName, newImgName);
-                        fileInfo.MoveTo(newImgPath);
+                        //string newImgPath = Path.Combine(fileInfo.DirectoryName, newImgName);
+                        //fileInfo.MoveTo(newImgPath);
                     }
                 }
             }

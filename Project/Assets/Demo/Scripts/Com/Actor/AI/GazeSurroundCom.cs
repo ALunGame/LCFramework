@@ -13,7 +13,7 @@ namespace Demo.Com
         /// 注视的实体Uid
         /// </summary>
         [NonSerialized]
-        public int gazeUid;
+        public string gazeUid;
 
         [NonSerialized]
         public DirType moveDir = DirType.None;

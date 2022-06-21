@@ -14,7 +14,7 @@ namespace Demo.Behavior
             EntityWorkData workData = wData as EntityWorkData;
             //参数
             ParamData paramData = workData.GetParam();
-            int gazeUid = paramData.GetInt();
+            string gazeUid = paramData.GetString();
             Vector2 gazeRange = paramData.GetVect2();
             //组件
             GazeSurroundCom gazeSurroundCom = workData.MEntity.GetCom<GazeSurroundCom>();

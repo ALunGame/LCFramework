@@ -8,23 +8,54 @@ namespace Demo
 {
     #region 演员
 
-    [NodeMenuItem("演员/属性组件")]
-    public class Entity_Node_PropertyCom : Entity_ComNode
+    [NodeMenuItem("演员/基础属性组件")]
+    public class Entity_Node_BasePropertyCom : Entity_ComNode
     {
-        public override string Title { get => "属性组件"; set => base.Title = value; }
-        public override string Tooltip { get => "属性组件"; set => base.Tooltip = value; }
-        public override Type RuntimeNode => typeof(PropertyCom);
+        public override string Title { get => "基础属性组件"; set => base.Title = value; }
+        public override string Tooltip { get => "基础属性组件"; set => base.Tooltip = value; }
+        public override Type RuntimeNode => typeof(PlayerPropertyCom);
 
+        [NodeValue("食物")]
+        public PropertyInfo Food = PropertyInfo.Zero;
 
         [NodeValue("生命")]
         public PropertyInfo Hp = PropertyInfo.Zero;
-        [NodeValue("魔法")]
-        public PropertyInfo Mp = PropertyInfo.Zero;
+
         [NodeValue("攻击")]
         public PropertyInfo Attack = PropertyInfo.Zero;
 
         [NodeValue("移动速度")]
         public PropertyInfo MoveSpeed = PropertyInfo.Zero;
+
+        [NodeValue("行动速度")]
+        public PropertyInfo ActionSpeed = PropertyInfo.Zero;
+
+        protected override void OnEnabled()
+        {
+            base.OnEnabled();
+        }
+
+        public override BaseCom CreateRuntimeNode()
+        {
+            BasePropertyCom propertyCom = new BasePropertyCom();
+            propertyCom.Food = Food;
+            propertyCom.Hp = Hp;
+            propertyCom.Attack = Attack;
+            propertyCom.MoveSpeed = MoveSpeed;
+            propertyCom.ActionSpeed = ActionSpeed;
+            return propertyCom;
+        }
+    }
+
+    [NodeMenuItem("演员/玩家属性组件")]
+    public class Entity_Node_PropertyCom : Entity_ComNode
+    {
+        public override string Title { get => "玩家属性组件"; set => base.Title = value; }
+        public override string Tooltip { get => "玩家属性组件"; set => base.Tooltip = value; }
+        public override Type RuntimeNode => typeof(PlayerPropertyCom);
+
+        [NodeValue("魔法")]
+        public PropertyInfo Mp = PropertyInfo.Zero;
 
         [NodeValue("跳跃速度")]
         public PropertyInfo JumpSpeed = PropertyInfo.Zero;
@@ -42,14 +73,10 @@ namespace Demo
 
         public override BaseCom CreateRuntimeNode()
         {
-            PropertyCom propertyCom = new PropertyCom();
-            propertyCom.Hp = Hp;
+            PlayerPropertyCom propertyCom = new PlayerPropertyCom();
             propertyCom.Mp = Mp;
-            propertyCom.Attack = Attack;
-            propertyCom.MoveSpeed = MoveSpeed;
             propertyCom.JumpSpeed = JumpSpeed;
             propertyCom.ClimbSpeed = ClimbSpeed;
-            propertyCom.ActionSpeed = ActionSpeed;
             return propertyCom;
         }
     }

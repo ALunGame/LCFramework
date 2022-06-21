@@ -69,16 +69,16 @@ namespace LCMap
         {
         }
 
-        public int CalcActorUid()
+        public string CalcActorUid()
         {
             int uid = startUid + 1;
             if (uid >= endUid)
             {
                 Debug.LogError($"Uid生成失败，超过最大配额{uid}");
-                return 0;
+                return "";
             }
             startUid = uid;
-            return uid;
+            return $"actor_{uid}";
         }
 
         public ED_MapAreaCom GetArea(int index = -1)
@@ -130,7 +130,7 @@ namespace LCMap
             }
 
             ED_ActorCom actorCom = MapEditorDef.CreateActorGo();
-            actorCom.Init(CalcActorUid(), actorData.id, actorData.name, actorData.isPlayer, this);
+            actorCom.Init(CalcActorUid(), actorData.id, actorData.name, actorData.type, this);
 
             //预制体
             if (actorData.prefab != null)
@@ -183,7 +183,7 @@ namespace LCMap
             {
                 for (int j = 0; j < mapData.areas[i].actors.Count; j++)
                 {
-                    if (mapData.areas[i].actors[j].isMainActor)
+                    if (mapData.areas[i].actors[j].type == ActorType.Player)
                     {
                         if (mapData.mainActor!=null)
                         {

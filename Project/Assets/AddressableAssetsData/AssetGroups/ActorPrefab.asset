@@ -161,6 +161,10 @@ MonoBehaviour:
     m_Address: Actor_map_building_campfire
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 6944aae5d32ab1943bcfbf7f437e2408
+    m_Address: Actor_Item
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: c106a54d1dad7c34dbca1e47199c97a1, type: 2}
   m_SchemaSet:

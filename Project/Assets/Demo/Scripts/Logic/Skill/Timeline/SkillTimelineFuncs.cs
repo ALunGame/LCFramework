@@ -18,7 +18,7 @@ namespace Demo.Skill.Timeline
         {
             if (timelineObj.ower == null)
                 return;
-            Entity entity = ECSLocate.ECS.GetEntity(timelineObj.ower.EntityId);
+            Entity entity = ECSLocate.ECS.GetEntity(timelineObj.ower.EntityUid);
             if (entity == null)
             {
                 return;
@@ -31,7 +31,7 @@ namespace Demo.Skill.Timeline
         {
             if (timelineObj.ower == null)
                 return;
-            Entity entity = ECSLocate.ECS.GetEntity(timelineObj.ower.EntityId);
+            Entity entity = ECSLocate.ECS.GetEntity(timelineObj.ower.EntityUid);
             if (entity == null)
             {
                 return;
@@ -56,7 +56,7 @@ namespace Demo.Skill.Timeline
         {
             if (timelineObj.ower == null)
                 return;
-            Entity entity = ECSLocate.ECS.GetEntity(timelineObj.ower.EntityId);
+            Entity entity = ECSLocate.ECS.GetEntity(timelineObj.ower.EntityUid);
             if (entity == null)
                 return;
             TransformCom transformCom = entity.GetCom<TransformCom>();

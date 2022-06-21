@@ -13,6 +13,33 @@ namespace LCMap
         Right,
     }
 
+    /// <summary>
+    /// 演员类型
+    /// </summary>
+    public enum ActorType
+    {
+        /// <summary>
+        /// 村民
+        /// </summary>
+        Villager,
+        /// <summary>
+        /// 动物
+        /// </summary>
+        Animal,
+        /// <summary>
+        /// 怪物
+        /// </summary>
+        Monster,
+        /// <summary>
+        /// 玩家
+        /// </summary>
+        Player,
+        /// <summary>
+        /// 物品
+        /// </summary>
+        Item,
+    }
+
     public class ActorObj : MonoBehaviour
     {
         private ActorModel model;
@@ -27,12 +54,17 @@ namespace LCMap
         /// <summary>
         /// 唯一Id
         /// </summary>
-        public int Uid { get; private set; }
+        public string Uid { get; private set; }
 
         /// <summary>
         /// 配置Id
         /// </summary>
         public int Id { get; private set; }
+
+        /// <summary>
+        /// 演员类型
+        /// </summary>
+        public ActorType Type { get; private set; }
 
         /// <summary>
         /// 实体配置Id
@@ -97,7 +129,7 @@ namespace LCMap
             entity = ECSLocate.ECS.CreateEntity(this);
 
             //设置玩家
-            if (model.isMainActor)
+            if (model.type == ActorType.Player)
             {
                 ECSLocate.Player.SetPlayerEntity(entity);
             }

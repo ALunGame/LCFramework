@@ -183,9 +183,9 @@ namespace LCMap
                     if (actorModel != null)
                     {
                         ActorModel actorData = new ActorModel();
-                        actorData.uid = defaultActorUid--;
-                        actorData.id = actorModel.id;
-                        actorData.pos = ED_ActorCom.HandlePos(transform.position);
+                        actorData.uid   = $"actor_{defaultActorUid--}";
+                        actorData.id    = actorModel.id;
+                        actorData.pos   = ED_ActorCom.HandlePos(transform.position);
                         actorData.roate = ED_ActorCom.HandlePos(transform.localEulerAngles);
                         actorData.scale = ED_ActorCom.HandlePos(transform.localScale);
                         actorData.isActive = gameObject.activeSelf;

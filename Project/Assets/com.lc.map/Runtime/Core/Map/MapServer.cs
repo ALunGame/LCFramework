@@ -148,7 +148,7 @@ namespace LCMap
             return null;
         }
 
-        public ActorObj GetActor(int uid)
+        public ActorObj GetActor(string uid)
         {
             if (PlayerActor!=null && PlayerActor.Uid == uid)
             {

@@ -29,7 +29,7 @@ namespace Demo
         {
             List<ActorObj> result = new List<ActorObj>();
 
-            int uid             = aoeObj.ower.EntityId;
+            string uid          = aoeObj.ower.EntityUid;
             ActorObj actor      = MapLocate.Map.GetActor(uid);
             Entity selfEntity   = ECSLocate.ECS.GetEntity(uid);
             CampCom selfCampCom = selfEntity.GetCom<CampCom>();
@@ -52,7 +52,7 @@ namespace Demo
             //µÐ¶ÔÑÝÔ±
             foreach (var item in actor.Area.Actors)
             {
-                if (item.Key == aoeObj.ower.EntityId)
+                if (item.Key == aoeObj.ower.EntityUid)
                     continue;
                 Entity entity = ECSLocate.ECS.GetEntity(item.Key);
                 if (entity != null)

@@ -17,7 +17,7 @@ namespace Demo
     {
         [Header("选择显示的绘制")]
         public ShapeRenderType selType = ShapeRenderType.警戒范围;
-        public Dictionary<ShapeRenderType,Dictionary<int,Shape>> shapeDict = new Dictionary<ShapeRenderType,Dictionary<int,Shape>>();
+        public Dictionary<ShapeRenderType,Dictionary<string,Shape>> shapeDict = new Dictionary<ShapeRenderType,Dictionary<string, Shape>>();
         private Vector2[] renderCache;
 
         private void Awake()
@@ -25,14 +25,14 @@ namespace Demo
             GameLocate.SetShapeRenderCom(this);
         }
 
-        public void AddShape(ShapeRenderType renderType,int entityUid,Shape shape)
+        public void AddShape(ShapeRenderType renderType,string entityUid,Shape shape)
         {
 #if !UNITY_EDITOR
             return;
 #endif
             if (!shapeDict.ContainsKey(renderType))
             {
-                shapeDict.Add(renderType, new Dictionary<int, Shape>());
+                shapeDict.Add(renderType, new Dictionary<string, Shape>());
             }
             if (!shapeDict[renderType].ContainsKey(entityUid))
             {
@@ -44,7 +44,7 @@ namespace Demo
             }
         }
 
-        public void RemoveShape(ShapeRenderType renderType, int entityUid)
+        public void RemoveShape(ShapeRenderType renderType, string entityUid)
         {
 #if !UNITY_EDITOR
             return;

@@ -37,11 +37,11 @@ namespace LCMap
     public class ActorModel
     {
         //唯一Id
-        public int uid;
+        public string uid;
         //配置Id
         public int id;
-        //主角
-        public bool isMainActor;
+        //演员类型
+        public ActorType type;
         //位置
         public Vector3 pos;
         //旋转

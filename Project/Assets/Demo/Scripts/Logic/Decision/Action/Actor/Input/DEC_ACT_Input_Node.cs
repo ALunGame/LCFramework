@@ -43,11 +43,11 @@ namespace Demo.Decision
                     break;
                 case InputAction.Move:
                     paramData.SetVect2(inputCom.Param.GetVect2());
-                    ECSLayerLocate.Request.PushRequest(workData.MEntity.GetHashCode(), RequestId.Move, paramData);
+                    ECSLayerLocate.Request.PushRequest(workData.MEntity.Uid, RequestId.Move, paramData);
                     return;
                 case InputAction.Skill:
                     paramData.SetString(inputCom.Param.GetString());
-                    ECSLayerLocate.Request.PushRequest(workData.MEntity.GetHashCode(), RequestId.PushSkill, paramData);
+                    ECSLayerLocate.Request.PushRequest(workData.MEntity.Uid, RequestId.PushSkill, paramData);
                     return;
                 default:
                     break;

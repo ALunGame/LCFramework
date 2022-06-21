@@ -39,8 +39,8 @@ namespace Demo.Decision
             //检测保存的
             if (wData.Blackboard.ContainsKey(EnemyInAttackRangeKey))
             {
-                int saveEntityId = (int)wData.Blackboard[EnemyInAttackRangeKey];
-                Entity saveEntity = LCECS.ECSLocate.ECS.GetEntity(saveEntityId);
+                string saveEntityUid = (string)wData.Blackboard[EnemyInAttackRangeKey];
+                Entity saveEntity = LCECS.ECSLocate.ECS.GetEntity(saveEntityUid);
                 if (saveEntity == null)
                 {
                     wData.Blackboard.Remove(EnemyInAttackRangeKey);

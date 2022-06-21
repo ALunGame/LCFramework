@@ -33,6 +33,42 @@ MonoBehaviour:
     m_Address: Assets/Demo/Asset/Actors/Building/Sprite
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 1eb77795cec35c7459c7e32c046ec3f2
+    m_Address: Assets/Demo/Asset/Actors/Villagers/villager1/Sprite
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: e3849c322297c1a4195bc51a5f173f57
+    m_Address: Assets/Demo/Asset/Actors/Villagers/villager2/Sprite
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: a81a650afd19f3744ba472276c7fb712
+    m_Address: Assets/Demo/Asset/Actors/Villagers/villager3/Sprite
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: cb7db792eb8354d41a4f2b5367407386
+    m_Address: Assets/Demo/Asset/Actors/Villagers/villager4/Sprite
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: adc4a12d47b02344c9ebdc63e3570d10
+    m_Address: Assets/Demo/Asset/Actors/Villagers/villager5/Sprite
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: b3a25968d32593e45a9c76b5d2843286
+    m_Address: Assets/Demo/Asset/Actors/Villagers/villager6/Sprite
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 4c3abe9378ecb7241a844cca643e002d
+    m_Address: Assets/Demo/Asset/Actors/Villagers/villager7/Sprite
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 5b367f9fcf784074aafc1efd42018b90
+    m_Address: Assets/Demo/Asset/Actors/Villagers/villager8/Sprite
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 72f1bbd79c224314cbcea9d20f9e1e9c
+    m_Address: Assets/Demo/Asset/Actors/Villagers/villager9/Sprite
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: c106a54d1dad7c34dbca1e47199c97a1, type: 2}
   m_SchemaSet:

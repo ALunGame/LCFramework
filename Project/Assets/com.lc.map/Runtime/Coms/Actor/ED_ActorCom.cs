@@ -16,7 +16,7 @@ namespace LCMap
         [ReadOnly]
         [SerializeField]
         [Header("演员Uid")]
-        public int UId;
+        public string UId;
 
         [ReadOnly]
         [SerializeField]
@@ -30,8 +30,8 @@ namespace LCMap
 
         [ReadOnly]
         [SerializeField]
-        [Header("是不是主角")]
-        public bool IsMainActor;
+        [Header("演员类型")]
+        public ActorType Type;
 
         [SerializeField]
         [Header("表现状态名")]
@@ -50,12 +50,12 @@ namespace LCMap
         [SerializeField]
         private ED_MapCom mapCom;
 
-        public void Init(int uid, int id, string actorName, bool isMainActor, ED_MapCom mapCom)
+        public void Init(string uid, int id, string actorName, ActorType type, ED_MapCom mapCom)
         {
             this.UId = uid;
             this.Id = id;
             this.ActorName = actorName;
-            IsMainActor = isMainActor;
+            this.Type = type;
             this.mapCom = mapCom;
             SetGoName();
         }
@@ -127,8 +127,8 @@ namespace LCMap
             actorData.pos = HandlePos(transform.position);
             actorData.roate = HandlePos(transform.localEulerAngles);
             actorData.scale = HandlePos(transform.localScale);
-            actorData.isActive = IsMainActor? true : gameObject.activeSelf;
-            actorData.isMainActor = IsMainActor;
+            actorData.isActive = Type == ActorType.Player ? true : gameObject.activeSelf;
+            actorData.type = Type;
             actorData.stateName = stateName;
 
             //路径

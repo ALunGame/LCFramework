@@ -43,12 +43,12 @@ namespace LCECS.Layer.Decision
         /// <summary>
         /// 获得决策实体
         /// </summary>
-        public EntityWorkData GetEntity(int entityId)
+        public EntityWorkData GetEntity(string uid)
         {
             for (int i = 0; i < EntityList.Count; i++)
             {
                 EntityWorkData workData = EntityList[i];
-                if (workData.MEntity.GetHashCode() == entityId)
+                if (workData.MEntity.Uid == uid)
                 {
                     return workData;
                 }
@@ -59,12 +59,12 @@ namespace LCECS.Layer.Decision
         /// <summary>
         /// 删除决策实体
         /// </summary>
-        public void RemoveEntity(int entityId)
+        public void RemoveEntity(string uid)
         {
             for (int i = 0; i < EntityList.Count; i++)
             {
                 EntityWorkData workData = EntityList[i];
-                if (workData.MEntity.GetHashCode() == entityId)
+                if (workData.MEntity.Uid == uid)
                 {
                     EntityList.RemoveAt(i);
                     return;

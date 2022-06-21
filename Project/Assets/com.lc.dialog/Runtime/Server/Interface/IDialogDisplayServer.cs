@@ -14,7 +14,7 @@ namespace LCDialog
         /// </summary>
         /// <param name="dialog">对话对象</param>
         /// <param name="actorUids">对话参与的演员Uid</param>
-        void OnCreateDialog(DialogObj dialog, List<int> actorUids);
+        void OnCreateDialog(DialogObj dialog, List<string> actorUids);
 
         /// <summary>
         /// 当播放一个对话

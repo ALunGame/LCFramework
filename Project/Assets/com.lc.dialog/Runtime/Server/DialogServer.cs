@@ -10,7 +10,7 @@ namespace LCDialog
     public class DialogServer : IDialogServer
     {
         //正在说话的演员列表
-        private List<int> speakIngActors = new List<int>();
+        private List<string> speakIngActors = new List<string>();
         //对话字典
         private Dictionary<string, DialogObj> dialogObjs = new Dictionary<string, DialogObj>();
 
@@ -24,7 +24,7 @@ namespace LCDialog
             }
             if (DialogLocate.Config.GetDialogModel(addDialogInfo.DialogType, addDialogInfo.DialogId, out var model))
             {
-                List<int> actorUids = GetDialogActorUids(addDialogInfo, model);
+                List<string> actorUids = GetDialogActorUids(addDialogInfo, model);
                 for (int i = 0; i < actorUids.Count; i++)
                 {
                     if (speakIngActors.Contains(actorUids[i]))
@@ -166,9 +166,9 @@ namespace LCDialog
         /// <param name="addDialogInfo"></param>
         /// <param name="dialogModel"></param>
         /// <returns></returns>
-        private List<int> GetDialogActorUids(AddDialogInfo addDialogInfo, DialogModel dialogModel)
+        private List<string> GetDialogActorUids(AddDialogInfo addDialogInfo, DialogModel dialogModel)
         {
-            List<int> actorUids = new List<int>();
+            List<string> actorUids = new List<string>();
             if (addDialogInfo.Sponsor != null)
                 actorUids.Add(addDialogInfo.Sponsor.Uid);
             if (addDialogInfo.Targets != null && addDialogInfo.Targets.Count > 0)

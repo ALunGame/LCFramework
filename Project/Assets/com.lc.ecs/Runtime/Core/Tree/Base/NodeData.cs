@@ -8,7 +8,7 @@ namespace LCECS.Core.Tree.Base
     /// </summary>
     public class NodeData : AnyData
     {
-        public int Id = 0;
+        public string Uid = "";
         public Dictionary<string, NodeContext> Context;
 
         /// <summary>
@@ -16,9 +16,9 @@ namespace LCECS.Core.Tree.Base
         /// </summary>
         public Dictionary<string, object> Blackboard;
 
-        public NodeData(int id)
+        public NodeData(string uId)
         {
-            Id = id;
+            Uid = uId;
             Context = new Dictionary<string, NodeContext>();
             Blackboard = new Dictionary<string, object>();
         }

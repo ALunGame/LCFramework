@@ -48,10 +48,10 @@ namespace LCECS.Server.Layer
             return sort.sort;
         }
         
-        public void PushRequest(int entityId, RequestId reqId, ParamData paramData)
+        public void PushRequest(string uid, RequestId reqId, ParamData paramData)
         {
             //数据
-            EntityWorkData workData = ECSLayerLocate.Info.GetEntityWorkData(entityId);
+            EntityWorkData workData = ECSLayerLocate.Info.GetEntityWorkData(uid);
             if (workData == null)
             {
                 return;

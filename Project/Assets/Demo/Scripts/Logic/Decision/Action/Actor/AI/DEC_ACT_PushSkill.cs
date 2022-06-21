@@ -17,7 +17,7 @@ namespace Demo.Decision
         {
             paramData.SetString(skillId);
             EntityWorkData workData = wData as EntityWorkData;
-            LCECS.ECSLayerLocate.Request.PushRequest(workData.MEntity.GetHashCode(), LCECS.RequestId.PushSkill, paramData);
+            LCECS.ECSLayerLocate.Request.PushRequest(workData.MEntity.Uid, LCECS.RequestId.PushSkill, paramData);
         }
 
         protected override int OnRunning(NodeData wData)

@@ -11,32 +11,37 @@ namespace Demo
     {
         public override object OnGUI(Rect _position, GUIContent _label)
         {
-            base.OnGUI(_position, _label);
-
-            Rect preRect = new Rect(0, _position.y, _position.width / 3, _position.height);
-
-            var target  = Target as PropertyInfo;
-            GUILayoutExtension.VerticalGroup(() =>
+            EditorGUILayout.LabelField(_label);
+            float preWidth = 100;
+            var target = Target as PropertyInfo;
+            GUILayoutExtension.HorizontalGroup(() =>
             {
-                int maxValue = EditorGUILayout.IntField(GUIHelper.TextContent("Max:", $"{_label.text}最大值"), target.Max);
+                EditorGUILayout.LabelField("Curr:", EditorStylesExtension.MiddleLabelStyle, GUILayout.Width(preWidth));
+                EditorGUILayout.LabelField("Max:", EditorStylesExtension.MiddleLabelStyle, GUILayout.Width(preWidth));
+                EditorGUILayout.LabelField("Min:", EditorStylesExtension.MiddleLabelStyle, GUILayout.Width(preWidth));
+            }, EditorStylesExtension.NullStyle, GUILayout.Width(_position.width));
+
+            GUILayoutExtension.HorizontalGroup(() =>
+            {
+                int currValue = EditorGUILayout.IntField(target.Curr, GUILayout.Width(preWidth));
+                if (currValue != target.Curr)
+                    target.Curr = currValue;
+
+                int maxValue = EditorGUILayout.IntField(target.Max, GUILayout.Width(preWidth));
                 if (maxValue != target.Max)
                     target.SetMax(maxValue);
 
-                int minValue = EditorGUILayout.IntField(GUIHelper.TextContent("Min:", $"{_label.text}最小值"), target.Min);
+                int minValue = EditorGUILayout.IntField(target.Min, GUILayout.Width(preWidth));
                 if (minValue != target.Min)
                     target.SetMin(minValue);
-
-                int currValue = EditorGUILayout.IntField(GUIHelper.TextContent("Curr:", $"{_label.text}初始值"), target.Curr);
-                if (currValue != target.Curr)
-                    target.Curr = currValue;
-            });
+            }, GUILayout.Width(_position.width));
 
             return Target;
         }
 
         public override float GetHeight()
         {
-            return 15*3;
+            return 15;
         }
     }
 }

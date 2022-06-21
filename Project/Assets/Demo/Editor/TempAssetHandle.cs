@@ -7,7 +7,7 @@ namespace Demo
 {
     public static class TempAssetHandle
     {
-        [MenuItem("Assets/重命名切图")]
+        //[MenuItem("Assets/重命名切图")]
         public static void Create2DAnim()
         {
             Object[] guidArray = Selection.objects;
@@ -59,9 +59,7 @@ namespace Demo
             AssetDatabase.Refresh();
         }
 
-
-
-        [MenuItem("GameObject/重新引用图片")]
+        //[MenuItem("GameObject/重新引用图片")]
         public static void RefreshSprite()
         {
             GameObject selGo = Selection.activeGameObject;
@@ -107,6 +105,52 @@ namespace Demo
                 }
             }
             return endName;
+        }
+
+        [MenuItem("Assets/村民贴图")]
+        public static void RefreshVillagers()
+        {
+            Object[] guidArray = Selection.objects;
+            foreach (var villagerRootUid in guidArray)
+            {
+                string foldPath = AssetDatabase.GetAssetPath(villagerRootUid);
+                HandleVillagerPath(foldPath);
+            }
+            AssetDatabase.SaveAssets();
+            AssetDatabase.Refresh();
+        }
+
+        private static void HandleVillagerPath(string foldPath)
+        {
+            string fileName = Path.GetFileName(foldPath);
+            string animRootPath = foldPath + "/Sprite";
+            foreach (var dirAnimPath in Directory.GetDirectories(animRootPath))
+            {
+                string dirName = Path.GetFileName(dirAnimPath).ToLower();
+                foreach (var animPath in Directory.GetDirectories(dirAnimPath))
+                {
+                    string animName = Path.GetFileName(animPath).Trim().ToLower();
+                    foreach (var item in Directory.GetFiles(animPath, "*.png"))
+                    {
+                        FileInfo fileInfo = new FileInfo(item);
+
+                        string imgName = Path.GetFileName(item);
+                        string index   = imgName.Substring(imgName.LastIndexOf("_") + 1);
+                        string newImgName = $"{fileName}_{dirName}_{animName}_{index}";
+
+                        string assetPath = fileInfo.FullName.Substring(fileInfo.FullName.IndexOf("Assets"));
+                        TextureImporter textureImporter = AssetImporter.GetAtPath(assetPath) as TextureImporter;
+                        TextureImporterSettings tis = new TextureImporterSettings();
+                        textureImporter.ReadTextureSettings(tis);
+                        tis.spritePixelsPerUnit = 160;
+                        textureImporter.SetTextureSettings(tis);
+                        textureImporter.SaveAndReimport();
+
+                        string newImgPath = Path.Combine(fileInfo.DirectoryName, newImgName);
+                        fileInfo.MoveTo(newImgPath);
+                    }
+                }
+            }
         }
     }
 }

@@ -12,7 +12,7 @@ namespace Demo.Dialog
             {DialogType.Bubble,new BubbleDialogDisplay()},
         };
 
-        public void OnCreateDialog(DialogObj dialog, List<int> actorUids)
+        public void OnCreateDialog(DialogObj dialog, List<string> actorUids)
         {
             displayDict[dialog.DialogType].OnCreateDialog(dialog, actorUids);
         }

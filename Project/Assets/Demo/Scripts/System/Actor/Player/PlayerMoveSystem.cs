@@ -11,12 +11,12 @@ namespace Demo.System
     {
         protected override List<Type> RegListenComs()
         {
-            return new List<Type>() { typeof(PropertyCom), typeof(PlayerMoveCom), typeof(AnimCom), typeof(Collider2DCom) };
+            return new List<Type>() { typeof(PlayerPropertyCom), typeof(PlayerMoveCom), typeof(AnimCom), typeof(Collider2DCom) };
         }
 
         protected override void HandleComs(List<BaseCom> comList)
         {
-            PropertyCom propertyCom = GetCom<PropertyCom>(comList[0]);
+            PlayerPropertyCom propertyCom = GetCom<PlayerPropertyCom>(comList[0]);
             PlayerMoveCom moveCom = GetCom<PlayerMoveCom>(comList[1]);
 
             if (moveCom.ReqMove != Vector3.zero)
@@ -37,7 +37,7 @@ namespace Demo.System
             HandleMoveAnim(comList);
         }
 
-        private void HandleGravitySpeed(PlayerMoveCom moveCom, PropertyCom propertyCom)
+        private void HandleGravitySpeed(PlayerMoveCom moveCom, PlayerPropertyCom propertyCom)
         {
             float massValue = 0;
             switch (moveCom.CurrMoveType)

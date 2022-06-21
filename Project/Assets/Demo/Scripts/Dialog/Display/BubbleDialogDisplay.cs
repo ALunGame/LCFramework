@@ -13,7 +13,7 @@ namespace Demo.Dialog
     {
         private Dictionary<string, List<BubbleDialogCom>> bubbleComDict = new Dictionary<string, List<BubbleDialogCom>>();
 
-        public void OnCreateDialog(DialogObj dialog, List<int> actorUids)
+        public void OnCreateDialog(DialogObj dialog, List<string> actorUids)
         {
             
         }

@@ -21,7 +21,7 @@ namespace LCECS.Data
         //请求参数
         private Queue<ParamData> ParamQueue = new Queue<ParamData>();
 
-        public EntityWorkData(int id, Entity entity) : base(id)
+        public EntityWorkData(string uId, Entity entity) : base(uId)
         {
             MEntity = entity;
         }

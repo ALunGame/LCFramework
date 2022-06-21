@@ -12,16 +12,16 @@ namespace Demo.System
 
         protected override List<Type> RegListenComs()
         {
-            return new List<Type>() { typeof(GazeSurroundCom), typeof(TransformCom), typeof(PropertyCom), };
+            return new List<Type>() { typeof(GazeSurroundCom), typeof(TransformCom), typeof(BasePropertyCom), };
         }
 
         protected override void HandleComs(List<BaseCom> comList)
         {
             GazeSurroundCom gazeSurroundCom = GetCom<GazeSurroundCom>(comList[0]);
             TransformCom transCom = GetCom<TransformCom>(comList[1]);
-            PropertyCom propertyCom = GetCom<PropertyCom>(comList[2]);
+            BasePropertyCom propertyCom = GetCom<BasePropertyCom>(comList[2]);
 
-            if (gazeSurroundCom.gazeUid <= 0)
+            if (gazeSurroundCom.gazeUid == "")
                 return;
             Entity gazeEntity = ECSLocate.ECS.GetEntity(gazeSurroundCom.gazeUid);
             if (gazeEntity == null)

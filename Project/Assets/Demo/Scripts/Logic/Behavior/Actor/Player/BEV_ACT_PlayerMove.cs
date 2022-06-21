@@ -35,7 +35,8 @@ namespace Demo.Behavior
             PlayerMoveCom moveCom       = workData.MEntity.GetCom<PlayerMoveCom>();
             TransformCom transCom       = workData.MEntity.GetCom<TransformCom>();    
             Collider2DCom collider2DCom = workData.MEntity.GetCom<Collider2DCom>();
-            PropertyCom propertyCom     = workData.MEntity.GetCom<PropertyCom>();
+            BasePropertyCom propertyCom     = workData.MEntity.GetCom<BasePropertyCom>();
+            PlayerPropertyCom playerPropertyCom     = workData.MEntity.GetCom<PlayerPropertyCom>();
 
             //跳跃阶段重置
             ResetJumpStep(moveCom, collider2DCom);
@@ -64,17 +65,17 @@ namespace Demo.Behavior
                 case MoveType.Jump:
                     moveCom.JumpStep ++;
                     moveCom.ReqMoveSpeed = 0;
-                    moveCom.ReqJumpSpeed = propertyCom.JumpSpeed.Curr * inputMove.y;
+                    moveCom.ReqJumpSpeed = playerPropertyCom.JumpSpeed.Curr * inputMove.y;
                     break;
                 case MoveType.Climb:
                     inputMove.x = inputMove.x < 0 ? -inputMove.x : inputMove.x;
                     moveCom.ReqMoveSpeed = 0;
-                    moveCom.ReqJumpSpeed = propertyCom.ClimbSpeed.Curr * inputMove.x;
+                    moveCom.ReqJumpSpeed = playerPropertyCom.ClimbSpeed.Curr * inputMove.x;
                     break;
                 case MoveType.ClimbJump:
                     int moveValue = inputMove.x < 0 ? -1 : 1;
                     moveCom.ReqMoveSpeed = propertyCom.MoveSpeed.Curr * moveValue;
-                    moveCom.ReqJumpSpeed = propertyCom.ClimbSpeed.Curr;
+                    moveCom.ReqJumpSpeed = playerPropertyCom.ClimbSpeed.Curr;
                     break;
                 case MoveType.GrabWall:
                     moveCom.ReqMoveSpeed = 0;

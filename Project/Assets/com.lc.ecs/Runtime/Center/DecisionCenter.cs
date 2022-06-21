@@ -64,11 +64,11 @@ namespace LCECS
                 }
             }
 
-            public void RemoveEntity(int decId, int entityId)
+            public void RemoveEntity(int decId, string uid)
             {
                 lock (lockObj)
                 {
-                    server.RemoveDecisionEntity(decId, entityId);
+                    server.RemoveDecisionEntity(decId, uid);
                 }
             }
         }
@@ -126,7 +126,7 @@ namespace LCECS
         private ThreadDecisionServerObj highThreadServer;
         private ThreadDecisionServerObj midThreadServer;
         private ThreadDecisionServerObj lowThreadServer;
-        private Dictionary<int, DecisionGroup> decDict = new Dictionary<int, DecisionGroup>();
+        private Dictionary<string, DecisionGroup> decDict = new Dictionary<string, DecisionGroup>();
 
         public void Init()
         {
@@ -166,11 +166,11 @@ namespace LCECS
             }
         }
 
-        public void AddEntityDecision(DecisionGroup decisionGroup, int decId, int entityId)
+        public void AddEntityDecision(DecisionGroup decisionGroup, int decId, string uid)
         {
-            EntityWorkData entityWorkData = ECSLayerLocate.Info.GetEntityWorkData(entityId);
+            EntityWorkData entityWorkData = ECSLayerLocate.Info.GetEntityWorkData(uid);
             //清理旧的
-            RemoveEntityDecision(decId, entityWorkData.Id);
+            RemoveEntityDecision(decId, entityWorkData.Uid);
             //加新的
             BaseDecisionServerObj newServer = GetServer(decisionGroup);
             if (!newServer.HasTree(decId))
@@ -183,17 +183,17 @@ namespace LCECS
                 newServer.AddTree(tree);
             }
             newServer.AddEntity(decId, entityWorkData);
-            decDict.Add(entityWorkData.Id, decisionGroup);
+            decDict.Add(entityWorkData.Uid, decisionGroup);
         }
 
-        public void RemoveEntityDecision(int decId, int entityId)
+        public void RemoveEntityDecision(int decId, string uid)
         {
             //清理旧的
-            if (decDict.ContainsKey(entityId))
+            if (decDict.ContainsKey(uid))
             {
-                BaseDecisionServerObj server = GetServer(decDict[entityId]);
-                server.RemoveEntity(decId, entityId);
-                decDict.Remove(entityId);
+                BaseDecisionServerObj server = GetServer(decDict[uid]);
+                server.RemoveEntity(decId, uid);
+                decDict.Remove(uid);
             }
         }
 

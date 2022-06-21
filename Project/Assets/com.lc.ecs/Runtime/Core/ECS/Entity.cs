@@ -7,11 +7,11 @@ namespace LCECS.Core
 {
     public sealed class Entity
     {
-        private int uid;
+        private string uid;
         /// <summary>
         /// 唯一Id
         /// </summary>
-        public int Uid { get => uid; }
+        public string Uid { get => uid; }
 
         private int id;
         /// <summary>
@@ -96,15 +96,9 @@ namespace LCECS.Core
         /// 创建实体初始化
         /// </summary>
         /// <param name="uid">实体唯一Id</param>
-        public void Init(int uid)
+        public void Init(string uid)
         {
             this.uid = uid;
-            //if (Go == null && !string.IsNullOrEmpty(goAssetPath))
-            //{
-            //    GameObject prefab = (GameObject)ECSLocate.Factory.GetProduct<Object>(FactoryType.Asset, null, goAssetPath);
-            //    GameObject go = Object.Instantiate(prefab);
-            //    SetEntityGo(go);
-            //}
         }
 
         /// <summary>
@@ -145,7 +139,19 @@ namespace LCECS.Core
 
         public override int GetHashCode()
         {
-            return uid;
+            return base.GetHashCode();
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null)
+                return false;
+            if (obj is Entity)
+            {
+                Entity other = (Entity)obj;
+                return other.Uid == Uid;
+            }
+            return false;
         }
 
         #endregion

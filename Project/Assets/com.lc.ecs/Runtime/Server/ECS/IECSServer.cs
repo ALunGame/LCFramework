@@ -31,26 +31,26 @@ namespace LCECS.Server.ECS
         /// <param name="id">配置Id</param>
         /// <param name="go"></param>
         /// <returns></returns>
-        Entity CreateEntity(int uid, int id, GameObject go);
+        Entity CreateEntity(string uid, int id, GameObject go);
 
         /// <summary>
         /// 获得实体
         /// </summary>
         /// <param name="uid"></param>
         /// <returns></returns>
-        Entity GetEntity(int uid);
+        Entity GetEntity(string uid);
 
         /// <summary>
         /// 获得所有实体
         /// </summary>
         /// <returns></returns>
-        Dictionary<int, Entity> GetAllEntitys();
+        Dictionary<string, Entity> GetAllEntitys();
 
         /// <summary>
         /// 检测系统是否检测该实体
         /// </summary>
         /// <param name="entityId"></param>
-        void CheckEntityInSystem(int uid);
+        void CheckEntityInSystem(string uid);
 
         /// <summary>
         /// 注册在Update中更新的系统

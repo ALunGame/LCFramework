@@ -220,10 +220,10 @@ namespace LCSkill
                     newShape.Scale(size);
                 if (follow)
                 {
-                    ActorObj actorObj = MapLocate.Map.GetActor(ower.EntityId);
+                    ActorObj actorObj = MapLocate.Map.GetActor(ower.EntityUid);
                     if (actorObj == null)
                     {
-                        SkillLocate.Log.LogError("计算区域出错,没有跟随对象>>", model.id, ower.EntityId);
+                        SkillLocate.Log.LogError("计算区域出错,没有跟随对象>>", model.id, ower.EntityUid);
                     }
                     if (actorObj.GetDir() == DirType.Left)
                         newShape.FlipX();

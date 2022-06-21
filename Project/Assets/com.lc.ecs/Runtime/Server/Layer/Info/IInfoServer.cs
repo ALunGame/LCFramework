@@ -10,10 +10,10 @@ namespace LCECS.Server.Layer
 
         T GetSensor<T>(SensorType key) where T : ISensor;
 
-        void AddEntityWorkData(int entityId, EntityWorkData data);
+        void AddEntityWorkData(string uid, EntityWorkData data);
 
-        EntityWorkData GetEntityWorkData(int entityId);
+        EntityWorkData GetEntityWorkData(string uid);
 
-        void RemoveEntityWorkData(int entityId);
+        void RemoveEntityWorkData(string uid);
     }
 }

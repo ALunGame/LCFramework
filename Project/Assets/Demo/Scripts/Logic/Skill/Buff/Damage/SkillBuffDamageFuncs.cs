@@ -16,7 +16,7 @@ namespace Demo.Skill.Buff
         public override void Execute(BuffObj buff, ref AddDamageInfo damageInfo, SkillCom attacker)
         {
             SkillCom skillCom = damageInfo.target;
-            ActorObj actorObj = LCMap.MapLocate.Map.GetActor(skillCom.EntityId);
+            ActorObj actorObj = LCMap.MapLocate.Map.GetActor(skillCom.EntityUid);
 
             GameObject displayGo = actorObj.GetDisplayGo();
             displayGo.transform.DOComplete(false);
@@ -36,7 +36,7 @@ namespace Demo.Skill.Buff
             Debug.LogWarning("受伤暂停决策>>>>>");
 
             SkillCom skillCom = damageInfo.target;
-            Entity entity = LCECS.ECSLocate.ECS.GetEntity(skillCom.EntityId);
+            Entity entity = LCECS.ECSLocate.ECS.GetEntity(skillCom.EntityUid);
             entity.PauseEntityDec();
             float timeCount = pauseTime;
             DOTween.To(() => timeCount, a => timeCount = a, 0.1f, pauseTime).OnComplete(new TweenCallback(delegate

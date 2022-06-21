@@ -14,7 +14,7 @@ namespace LCECS.Server.Player
         {
             playerEntity = entity;
             playerGo = entity.Go;
-            playerWorkData = ECSLayerLocate.Info.GetEntityWorkData(entity.GetHashCode());
+            playerWorkData = ECSLayerLocate.Info.GetEntityWorkData(entity.Uid);
         }
 
         public Entity GetPlayerEntity()
@@ -35,7 +35,7 @@ namespace LCECS.Server.Player
         //请求
         public void PushPlayerReq(RequestId reqId, ParamData param)
         {
-            ECSLayerLocate.Request.PushRequest(playerEntity.GetHashCode(), reqId, param);
+            ECSLayerLocate.Request.PushRequest(playerEntity.Uid, reqId, param);
         }
     }
 }

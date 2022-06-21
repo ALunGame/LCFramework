@@ -13,8 +13,8 @@ namespace LCMap
         [ConfigKey(1,"演员Id")]
         public int id = 0;
 
-        [ConfigValue("是不是玩家")]
-        public bool isPlayer = false;
+        [ConfigValue("演员类型")]
+        public ActorType type = ActorType.Villager;
 
         [ConfigValue("演员名")]
         public string name = "";

@@ -41,7 +41,7 @@ namespace Demo.Decision
             paramData.SetVect2(gazeRange);
 
             EntityWorkData workData = wData as EntityWorkData;
-            LCECS.ECSLayerLocate.Request.PushRequest(workData.MEntity.GetHashCode(), LCECS.RequestId.GazeSurround, paramData);
+            LCECS.ECSLayerLocate.Request.PushRequest(workData.MEntity.Uid, LCECS.RequestId.GazeSurround, paramData);
         }
 
         protected override int OnRunning(NodeData wData)

@@ -36,23 +36,22 @@ namespace LCECS.Server.Layer
                 desDict.Add(decTree.TreeId, decTree);
 
             //删除已经存在的
-            int entityId = workData.MEntity.GetHashCode();
-            List<DecisionTree> trees = DecisionHasEntity(entityId);
+            List<DecisionTree> trees = DecisionHasEntity(workData.MEntity.Uid);
             for (int i = 0; i < trees.Count; i++)
             {
-                trees[i].RemoveEntity(entityId);
+                trees[i].RemoveEntity(workData.MEntity.Uid);
             }
 
             //加入新的
             decTree.AddEntity(workData);
         }
 
-        public void RemoveDecisionEntity(int decId, int entityId)
+        public void RemoveDecisionEntity(int decId, string uid)
         {
             if (!desDict.ContainsKey(decId))
                 return;
             DecisionTree decision = desDict[decId];
-            decision.RemoveEntity(entityId);
+            decision.RemoveEntity(uid);
         }
 
         public bool HasTree(int decId)
@@ -72,12 +71,12 @@ namespace LCECS.Server.Layer
         /// 获得其他包含此实体的决策树
         /// </summary>
         /// <returns></returns>
-        private List<DecisionTree> DecisionHasEntity(int entityId)
+        private List<DecisionTree> DecisionHasEntity(string uid)
         {
             List<DecisionTree> trees = new List<DecisionTree>();
             foreach (DecisionTree item in desDict.Values)
             {
-                if (item.GetEntity(entityId) != null)
+                if (item.GetEntity(uid) != null)
                 {
                     trees.Add(item);
                 }

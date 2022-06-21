@@ -6,7 +6,7 @@ namespace LCECS.Core
     public class BaseCom
     {
         [NonSerialized]
-        private int entityId = 0;
+        private string entityUid = "";
         [NonSerialized]
         private int entityCnfId = 0;
 
@@ -17,12 +17,12 @@ namespace LCECS.Core
         public bool IsActive { get => isActive;}
 
         public int EntityCnfId { get => entityCnfId;}
-        public int EntityId { get => entityId;}
+        public string EntityUid { get => entityUid; }
 
         //初始化（首次添加调用）
         public void Init(Entity entity)
         {
-            this.entityId = entity.Uid;
+            this.entityUid = entity.Uid;
             this.entityCnfId = entity.Id;
             OnEnable();
             OnInit(entity.Go);
@@ -40,7 +40,7 @@ namespace LCECS.Core
         {
             isActive = true;
             OnEnable();
-            ECSLocate.ECS.CheckEntityInSystem(entityId);
+            ECSLocate.ECS.CheckEntityInSystem(EntityUid);
         }
 
         //实体本身禁用
@@ -55,7 +55,7 @@ namespace LCECS.Core
         {
             isActive = false;
             OnDisable();
-            ECSLocate.ECS.CheckEntityInSystem(entityId);
+            ECSLocate.ECS.CheckEntityInSystem(EntityUid);
         }
 
         //初始化（首次添加调用）

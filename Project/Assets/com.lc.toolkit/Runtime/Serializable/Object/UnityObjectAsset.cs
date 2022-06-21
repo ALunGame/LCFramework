@@ -42,6 +42,7 @@ namespace LCToolkit
         {
             GameObj,
             AnimClip,
+            Sprite,
         }
 
         public UnityObject GetObj()
@@ -61,6 +62,9 @@ namespace LCToolkit
                     break;
                 case AssetType.AnimClip:
                     objType = typeof(AnimationClip);
+                    break;
+                case AssetType.Sprite:
+                    objType = typeof(Sprite);
                     break;
                 default:
                     break;

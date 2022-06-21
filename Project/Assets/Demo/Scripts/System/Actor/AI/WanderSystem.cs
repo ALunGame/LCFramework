@@ -6,11 +6,14 @@ using UnityEngine;
 
 namespace Demo.System
 {
+    /// <summary>
+    /// 徘徊系统
+    /// </summary>
     public class WanderSystem : BaseSystem
     {
         protected override List<Type> RegListenComs()
         {
-            return new List<Type>() { typeof(WanderCom), typeof(TransformCom), typeof(Collider2DCom), typeof(PropertyCom),  };
+            return new List<Type>() { typeof(WanderCom), typeof(TransformCom), typeof(Collider2DCom), typeof(BasePropertyCom),  };
         }
 
         protected override void HandleComs(List<BaseCom> comList)
@@ -18,7 +21,7 @@ namespace Demo.System
             WanderCom wanderCom = GetCom<WanderCom>(comList[0]);
             TransformCom transCom = GetCom<TransformCom>(comList[1]);
             Collider2DCom collider2DCom = GetCom<Collider2DCom>(comList[2]);
-            PropertyCom propertyCom = GetCom<PropertyCom>(comList[3]);
+            BasePropertyCom propertyCom = GetCom<BasePropertyCom>(comList[3]);
 
             wanderCom.WanderDir = CalcWanderMoveDir(transCom,wanderCom, collider2DCom);
 

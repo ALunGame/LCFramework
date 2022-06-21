@@ -23,7 +23,7 @@ namespace LCECS.Server.ECS
         private Entity world;
 
         //实体列表
-        private Dictionary<int, Entity> entityDict = new Dictionary<int, Entity>();
+        private Dictionary<string, Entity> entityDict = new Dictionary<string, Entity>();
 
         //所有Update系统
         private List<BaseSystem> systemUpdateList = new List<BaseSystem>();
@@ -44,10 +44,10 @@ namespace LCECS.Server.ECS
         }
 
         //添加实体
-        private void AddEntity(int id, Entity entity)
+        private void AddEntity(string uid, Entity entity)
         {
-            if (!entityDict.ContainsKey(id))
-                entityDict.Add(id, entity);
+            if (!entityDict.ContainsKey(uid))
+                entityDict.Add(uid, entity);
         }
 
         //检测系统是否检测该实体
@@ -75,7 +75,7 @@ namespace LCECS.Server.ECS
 
             //创建实体数据流
             EntityWorkData entityWorkData = new EntityWorkData(entity.Uid, entity);
-            entityWorkData.Id = entity.Uid;
+            entityWorkData.Uid = entity.Uid;
             ECSLayerLocate.Info.AddEntityWorkData(entity.Uid, entityWorkData);
             ECSLocate.DecCenter.AddEntityDecision(entity.DecGroup, entity.DecTreeId, entity.Uid);
         }
@@ -92,14 +92,14 @@ namespace LCECS.Server.ECS
             if (world == null)
             {
                 ActorModel worldActor = new ActorModel();
-                worldActor.uid = -999;
-                worldActor.id = -999;
+                worldActor.uid = "world_999";
+                worldActor.id  = -999;
 
                 GameObject worldGo = new GameObject("<------------EntityWorld---------->");
                 ActorObj actorObj = worldGo.AddComponent<ActorObj>();
                 actorObj.Init(worldActor, -999);
 
-                world = GetEntity(-999);
+                world = GetEntity("world_999");
             }
             return world;
         }
@@ -127,7 +127,7 @@ namespace LCECS.Server.ECS
             return entity;
         }
 
-        public Entity CreateEntity(int uid, int id, GameObject go)
+        public Entity CreateEntity(string uid, int id, GameObject go)
         {
             //配置数据
             string entityStr = GetEntityCnf(id);
@@ -151,17 +151,17 @@ namespace LCECS.Server.ECS
             return entity;
         }
 
-        public Entity GetEntity(int uid)
+        public Entity GetEntity(string uid)
         {
             return entityDict[uid];
         }
 
-        public Dictionary<int, Entity> GetAllEntitys()
+        public Dictionary<string, Entity> GetAllEntitys()
         {
             return entityDict;
         }
 
-        public void CheckEntityInSystem(int uid)
+        public void CheckEntityInSystem(string uid)
         {
             Entity entity = GetEntity(uid);
             if (entity == null)

@@ -11,7 +11,7 @@ namespace LCECS.Server.Layer
     public class InfoServer : IInfoServer
     {
         private Dictionary<int, ISensor> SensorDict = new Dictionary<int, ISensor>();
-        private Dictionary<int, EntityWorkData> WorkDataDict = new Dictionary<int, EntityWorkData>();
+        private Dictionary<string, EntityWorkData> WorkDataDict = new Dictionary<string, EntityWorkData>();
 
         private void RegAllSensor()
         {
@@ -53,29 +53,29 @@ namespace LCECS.Server.Layer
             return GetSensor<T>((int) key);
         }
         
-        public void AddEntityWorkData(int entityId, EntityWorkData data)
+        public void AddEntityWorkData(string uid, EntityWorkData data)
         {
-            if (WorkDataDict.ContainsKey(entityId))
+            if (WorkDataDict.ContainsKey(uid))
             {
                 return;
             }
-            WorkDataDict.Add(entityId, data);
+            WorkDataDict.Add(uid, data);
         }
 
-        public EntityWorkData GetEntityWorkData(int entityId)
+        public EntityWorkData GetEntityWorkData(string uid)
         {
-            if (WorkDataDict.ContainsKey(entityId))
+            if (WorkDataDict.ContainsKey(uid))
             {
-                return WorkDataDict[entityId];
+                return WorkDataDict[uid];
             }
             return null;
         }
 
-        public void RemoveEntityWorkData(int entityId)
+        public void RemoveEntityWorkData(string uid)
         {
-            if (WorkDataDict.ContainsKey(entityId))
+            if (WorkDataDict.ContainsKey(uid))
             {
-                WorkDataDict.Remove(entityId);
+                WorkDataDict.Remove(uid);
             }
         }
     }

@@ -22,7 +22,7 @@ namespace LCMap
         public GameObject AreaEnvGo;
 
         public GameObject ActorRootGo;
-        public Dictionary<int, ActorObj> Actors = new Dictionary<int, ActorObj>();
+        public Dictionary<string, ActorObj> Actors = new Dictionary<string, ActorObj>();
 
         public CinemachineVirtualCamera FollowCamera;
         public CinemachineVirtualCamera DragCamera;
@@ -92,7 +92,7 @@ namespace LCMap
             Actors.Add(actor.uid, actorObj);
         }
 
-        public ActorObj GetActor(int uid)
+        public ActorObj GetActor(string uid)
         {
             if (!Actors.ContainsKey(uid))
             {

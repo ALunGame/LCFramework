@@ -29,7 +29,7 @@ MonoBehaviour:
   m_Name: behavior_StopBev
   m_EditorClassIdentifier: 
   serializedGraph: 
-  ReqId: 0
+  ReqId: 5
 --- !u!114 &-3757094016919443214
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -46,6 +46,36 @@ MonoBehaviour:
     mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089],[LCNode.Model.BaseNode,
     Assembly-CSharp-Editor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]","5d93b549-8e08-41cd-8232-3857a0dd2e34":{"mType":"LCECS.Tree.Tree_RootNode","childNode":null,"premise":null,"guid":"5d93b549-8e08-41cd-8232-3857a0dd2e34","position":{"mType":"UnityEngine.Vector2","x":829.0,"y":106.0}},"9af74832-f402-4015-92b3-5cf7252859f5":{"mType":"Demo.Tree.Tree_Bev_Act_Move","node":null,"premise":null,"guid":"9af74832-f402-4015-92b3-5cf7252859f5","position":{"mType":"UnityEngine.Vector2","x":829.0,"y":246.0}}},"connections":[{"mType":"LCNode.Model.BaseConnection","from":"5d93b549-8e08-41cd-8232-3857a0dd2e34","fromPortName":"\u5B50\u8282\u70B9","to":"9af74832-f402-4015-92b3-5cf7252859f5","toPortName":"\u8282\u70B9"}]}'
   ReqId: 1
+--- !u!114 &-3353161150702035217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5a129348ce8e4346a4ecfce78a2c916, type: 3}
+  m_Name: behavior_None
+  m_EditorClassIdentifier: 
+  serializedGraph: 
+  ReqId: 0
+--- !u!114 &-997306003983763597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5a129348ce8e4346a4ecfce78a2c916, type: 3}
+  m_Name: behavior_Collect
+  m_EditorClassIdentifier: 
+  serializedGraph: '{"mType":"LCECS.Tree.Behavior","pos":{"mType":"UnityEngine.Vector3","x":-449.0,"y":-79.0,"z":0.0},"zoom":{"mType":"UnityEngine.Vector3","x":1.7490062713623,"y":1.7490062713623,"z":1.0},"nodes":{"mType":"System.Collections.Generic.Dictionary`2[[System.String,
+    mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089],[LCNode.Model.BaseNode,
+    Assembly-CSharp-Editor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]","45e92c21-a773-4a2f-99dd-7facb7a22674":{"mType":"LCECS.Tree.Tree_RootNode","childNode":null,"premise":null,"guid":"45e92c21-a773-4a2f-99dd-7facb7a22674","position":{"mType":"UnityEngine.Vector2","x":619.0,"y":62.0},"inIndex":-1,"outIndex":-1},"ffbf2fb9-3da9-47aa-832c-e6eccf84c6fa":{"mType":"Demo.Tree.Tree_Bev_Act_Collect","node":null,"premise":null,"guid":"ffbf2fb9-3da9-47aa-832c-e6eccf84c6fa","position":{"mType":"UnityEngine.Vector2","x":619.0,"y":202.0},"inIndex":-1,"outIndex":-1}},"connections":[{"mType":"LCNode.Model.BaseConnection","from":"45e92c21-a773-4a2f-99dd-7facb7a22674","fromPortName":"\u5B50\u8282\u70B9","to":"ffbf2fb9-3da9-47aa-832c-e6eccf84c6fa","toPortName":"\u8282\u70B9"}]}'
+  ReqId: 6
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0

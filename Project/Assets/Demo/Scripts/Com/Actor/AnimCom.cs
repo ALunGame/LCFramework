@@ -9,16 +9,11 @@ using LCToolkit;
 
 namespace Demo.Com
 {
-    public enum AnimDefaultState
+    public enum AnimLayer
     {
-        Idle,
-        Run,
-        Dead,
-        JumpUp,
-        JumpDown,
-        Dash,
-        Climb,
-        DoTrigger,                //正在执行触发动画
+        Front,
+        Back,
+        Side,
     }
 
     [Serializable]
@@ -34,16 +29,21 @@ namespace Demo.Com
         public Animator Anim;
 
         [NonSerialized]
+        public AnimatorOverride AnimOverride;
+
+        [NonSerialized]
         public List<string> AnimParamList = new List<string>();
 
-        //[NonSerialized]
-        //private string ReqAnimName = AnimSystem.IdleState;
         [NonSerialized]
         private BindableValue<string> ReqAnimName = new BindableValue<string>();
+
+        [NonSerialized]
+        private BindableValue<AnimLayer> ReqAnimLayer = new BindableValue<AnimLayer>();
 
         protected override void OnInit(GameObject go)
         {
             ReqAnimName.Value = AnimSystem.IdleState;
+            ReqAnimLayer.Value = AnimLayer.Side;
 
             ActorObj actorObj = go.GetComponent<ActorObj>();
             actorObj.OnDisplayGoChange += OnDisplayGoChange;
@@ -56,11 +56,13 @@ namespace Demo.Com
             if (animTrans == null)
             {
                 Anim = null;
+                AnimOverride = null;
                 AnimParamList = new List<string>();
             }
             else
             {
                 Anim = animTrans.GetComponent<Animator>();
+                AnimOverride = animTrans.GetComponent<AnimatorOverride>();
                 AnimParamList = AnimHelp.GetAllParamNames(Anim);
             }
         }
@@ -70,9 +72,10 @@ namespace Demo.Com
             ReqAnimName.Value = AnimSystem.IdleState;
         }
 
-        public void SetReqAnim(string animName)
+        public void SetReqAnim(string animName, AnimLayer layer = AnimLayer.Side)
         {
             ReqAnimName.Value = animName;
+            ReqAnimLayer.Value = layer;
         }
 
         public string GetReqAnim()
@@ -88,6 +91,16 @@ namespace Demo.Com
         public void ClearReqAnimChangeCallBack()
         {
             ReqAnimName.ClearChangedEvent();
+        }
+
+        public void RegReqAnimLayerChange(Action<AnimLayer> callBack)
+        {
+            ReqAnimLayer.RegisterValueChangedEvent(callBack);
+        }
+
+        public void ClearReqAnimLayerChangeCallBack()
+        {
+            ReqAnimLayer.ClearChangedEvent();
         }
     }
 }

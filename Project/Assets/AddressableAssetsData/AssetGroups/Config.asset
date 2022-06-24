@@ -141,6 +141,46 @@ MonoBehaviour:
     m_Address: TbMap_1
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: de1634844c75b844fa4049be6d290901
+    m_Address: TbMapRoadCnf
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: d891a1f66ff958943ba6ea501c591edd
+    m_Address: TbMap_101
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ae304de389e5eba49920ccb6c02ea4cc
+    m_Address: TbItemCnf
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 0cf807da5902e3e46b3490b7534b51cf
+    m_Address: TbEntity_501
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 7cc2756735febe445bb5af53564d7cb8
+    m_Address: TbEntity_201
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 84ca51398f004f44bbcad986f416b131
+    m_Address: TbDecision_201
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: c08faa99f6226054ebed5d76e73914f7
+    m_Address: TbBehavior_Collect
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 6317a0eeff50d90428e97dbd15f679b5
+    m_Address: TbDecision_-999
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 3d5f2b0d121b4dd448744f1e356d4d6a
+    m_Address: TbBehavior_StopBev
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: cab5610210d7b214f90e6d9f9506ba05
+    m_Address: TbEntity_0
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: c106a54d1dad7c34dbca1e47199c97a1, type: 2}
   m_SchemaSet:

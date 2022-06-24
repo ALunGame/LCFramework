@@ -4,6 +4,8 @@ using UnityEditor;
 using UnityEngine;
 using LCToolkit;
 using UnityEngine.Tilemaps;
+using LCJson;
+using Demo.System;
 
 namespace Demo
 {
@@ -19,7 +21,6 @@ namespace Demo
     public class MapRoadTileConfig : ScriptableObject
     {
         public List<MapRoadTileInfo> tiles = new List<MapRoadTileInfo>();
-
 
         [MenuItem("CONTEXT/Tilemap/导出地图道路")]
         private static void CONTEXT_MeshFilter_right_btn()
@@ -53,14 +54,13 @@ namespace Demo
                         Sprite sprite = tilemap.GetSprite(tilePos);
                         if (sprite!=null && mapRoadDict.ContainsKey(sprite.name))
                         {
+                            Vector2 worldPos = tilemap.CellToWorld(tilePos).ToVector2(); 
                             MapRoadTileInfo info = mapRoadDict[sprite.name];
-                            MapRoadCnf cnf = new MapRoadCnf();
-                            cnf.tilePos = new Vector2Int(tilePos.x, tilePos.y);
-                            cnf.roadPos = tilemap.CellToWorld(tilePos).ToVector2() + info.roadPos;
-
-                            Debug.Log($">>>{tilemap.CellToWorld(tilePos).ToVector2()}");
-
-                            cnf.roadAnim = info.animName.Trim();
+                            MapRoadCnf cnf       = new MapRoadCnf();
+                            cnf.tileWorldPos     = new Vector2Int((int)worldPos.x, (int)worldPos.y);
+                            cnf.roadPos          = cnf.tileWorldPos + info.roadPos;
+                            cnf.roadAnim         = info.animName.Replace(" ","");
+                            Debug.Log($"WorldPos:{cnf.tileWorldPos}");
                             roadCnfs.Add(cnf);
                         }
                     }
@@ -70,13 +70,18 @@ namespace Demo
                 for (int i = 0; i < roadCnfs.Count; i++)
                 {
                     MapRoadCnf cnf = roadCnfs[i];
-                    GameObject roadGo = new GameObject($"{cnf.tilePos}");
+                    GameObject roadGo = new GameObject($"{cnf.tileWorldPos}");
                     roadGo.transform.SetParent(roadRoot.transform);
                     roadGo.transform.position = cnf.roadPos;
                     
                     EditorSelectIcon.SetIcon(roadGo, EditorSelectIcon.Icon.CircleBlue);
-                    //roadGo.ta
                 }
+
+                string jsonStr = JsonMapper.ToJson(roadCnfs);
+                IOHelper.WriteText(jsonStr, WayPointMoveSystem.CnfSavePath);
+                Debug.Log("》》》》》" + WayPointMoveSystem.CnfSavePath);
+                AssetDatabase.SaveAssets();
+                AssetDatabase.Refresh();
             });
         }
 

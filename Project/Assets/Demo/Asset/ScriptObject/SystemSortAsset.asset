@@ -16,14 +16,26 @@ MonoBehaviour:
   - typeName: AnimSystem
     typeFullName: Demo.System.AnimSystem
     sort: 0
+  - typeName: WayPointMoveSystem
+    typeFullName: Demo.System.WayPointMoveSystem
+    sort: 9
   - typeName: Collider2DSystem
     typeFullName: Demo.System.Collider2DSystem
+    sort: 10
+  - typeName: HealthSystem
+    typeFullName: Demo.System.HealthSystem
     sort: 10
   - typeName: WanderSystem
     typeFullName: Demo.System.WanderSystem
     sort: 11
+  - typeName: DayNightSystem
+    typeFullName: Demo.System.DayNightSystem
+    sort: 11
   - typeName: GravitySystem
     typeFullName: Demo.System.GravitySystem
+    sort: 12
+  - typeName: TaskSystem
+    typeFullName: LCTask.TaskSystem
     sort: 12
   - typeName: TransformSystem
     typeFullName: Demo.System.TransformSystem

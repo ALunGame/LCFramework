@@ -42,6 +42,18 @@ namespace Demo.Tree
         }
     }
 
+    [NodeMenuItem("演员/AI/采集")]
+    public class Tree_Bev_Act_Collect : Base_BEV_ACT_Node
+    {
+        public override string Title { get => "采集"; set => base.Title = value; }
+
+        public override Node CreateRuntimeNode()
+        {
+            BEV_ACT_Collect node = new BEV_ACT_Collect();
+            return node;
+        }
+    }
+
     [NodeMenuItem("演员/释放技能")]
     public class Tree_Bev_Act_PushSkill : Base_BEV_ACT_Node
     {

@@ -52,12 +52,20 @@ namespace Demo.System
                     PlayTriggerAnim(animCom, reqAnim);
                 }
             });
+
+            animCom.RegReqAnimLayerChange((AnimLayer layer) =>
+            {
+                if (animCom.AnimOverride == null)
+                    return;
+                animCom.AnimOverride.SetAnimLayer(layer.ToString().ToLower());
+            });
         }
 
         protected override void OnRemoveCheckComs(List<BaseCom> comList)
         {
             AnimCom animCom = GetCom<AnimCom>(comList[0]);
             animCom.ClearReqAnimChangeCallBack();
+            animCom.ClearReqAnimLayerChangeCallBack();
         }
 
         private bool CheckIsLoopAnim(AnimCom animCom,string animName)

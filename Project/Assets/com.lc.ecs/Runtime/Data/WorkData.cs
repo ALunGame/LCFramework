@@ -30,7 +30,7 @@ namespace LCECS.Data
         {
             if (MEntity.Equals(ECSLocate.Player.GetPlayerEntity()))
             {
-                ECSLocate.Log.LogWarning("ChangeRequestId>>>>", reqId);
+                //ECSLocate.Log.LogWarning("ChangeRequestId>>>>", reqId);
             }
             CurrReqId = reqId;
             ParamQueue.Clear();

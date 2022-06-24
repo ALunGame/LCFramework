@@ -43,3 +43,8 @@ MonoBehaviour:
     sort: -99
     isCover: 1
     isCustom: 0
+  - key: Collect
+    name: Collect
+    sort: -1
+    isCover: 0
+    isCustom: 0

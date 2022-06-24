@@ -37,6 +37,10 @@ namespace LCECS
         /// </summary>
 		StopBev,
 
+        /// <summary>
+        /// Collect
+        /// </summary>
+		Collect,
     }
 }
 

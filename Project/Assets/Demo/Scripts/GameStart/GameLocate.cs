@@ -6,6 +6,7 @@ namespace Demo
 {
     public static class GameLocate
     {
+        public static GameLogServer Log = new GameLogServer();
         public static GameCenter Center { get; private set; }
         public static ShapeRenderCom ShapeRender { get; private set; }
         private static InputCom _InputCom = null;

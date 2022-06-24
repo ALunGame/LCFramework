@@ -12,19 +12,19 @@ namespace Demo.System
 
         protected override List<Type> RegListenComs()
         {
-            dayNightCom = LCECS.ECSLocate.ECS.GetWorld().GetCom<DayNightCom>();
-            dayNightCom.RegStageChange((stage) =>
-            {
-                if (stage == DayNightStage.NightFull)
-                    needCostFood = true;
-            });
+            //dayNightCom = LCECS.ECSLocate.ECS.GetWorld().GetCom<DayNightCom>();
+            //dayNightCom.RegStageChange((stage) =>
+            //{
+            //    if (stage == DayNightStage.NightFull)
+            //        needCostFood = true;
+            //});
             return new List<Type>() {typeof(BasePropertyCom)};
         }
 
         protected override void HandleComs(List<BaseCom> comList)
         {
-            BasePropertyCom basePropertyCom = GetCom<BasePropertyCom>(comList[0]);
-            HandleCostFood(basePropertyCom);
+            //BasePropertyCom basePropertyCom = GetCom<BasePropertyCom>(comList[0]);
+            //HandleCostFood(basePropertyCom);
         }
 
         private void HandleCostFood(BasePropertyCom basePropertyCom)

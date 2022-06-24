@@ -126,6 +126,7 @@ namespace Demo
         {
             _DecCenter.Init();
             _EcsCenter.Init(requestSortAsset, systemSortAsset);
+            ECSLocate.ECS.GetWorld();
         }
 
         /// <summary>

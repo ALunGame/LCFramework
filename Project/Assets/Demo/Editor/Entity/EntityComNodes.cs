@@ -222,6 +222,38 @@ namespace Demo
         }
     }
 
+    [NodeMenuItem("演员/AI/采集组件")]
+    public class Entity_Node_CollectCom : Entity_ComNode
+    {
+        public override string Title { get => "采集组件"; set => base.Title = value; }
+        public override string Tooltip { get => "采集组件"; set => base.Tooltip = value; }
+        public override Type RuntimeNode => typeof(CollectCom);
+
+        [NodeValue("采集的木匾演员Id")]
+        public int collectTargetActorId;
+
+        public override BaseCom CreateRuntimeNode()
+        {
+            CollectCom com = new CollectCom();
+            com.collectActorId = collectTargetActorId;
+            return com;
+        }
+    }
+
+    [NodeMenuItem("演员/AI/道路移动组件")]
+    public class Entity_Node_WayPointMoveCom : Entity_ComNode
+    {
+        public override string Title { get => "道路移动组件"; set => base.Title = value; }
+        public override string Tooltip { get => "道路移动组件"; set => base.Tooltip = value; }
+        public override Type RuntimeNode => typeof(WayPointMoveCom);
+
+        public override BaseCom CreateRuntimeNode()
+        {
+            WayPointMoveCom com = new WayPointMoveCom();
+            return com;
+        }
+    }
+
     #endregion
 
     #endregion

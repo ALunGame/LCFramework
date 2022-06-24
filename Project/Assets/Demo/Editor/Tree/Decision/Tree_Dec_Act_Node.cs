@@ -98,7 +98,19 @@ namespace Demo.Tree
             node.skillId = skillId;
             return node;
         }
-    } 
+    }
+
+    [NodeMenuItem("演员/AI/采集")]
+    public class Tree_Dec_Act_Collect : Base_DEC_Act_Node
+    {
+        public override string Title { get => "采集"; set => base.Title = value; }
+
+        public override Node CreateRuntimeNode()
+        {
+            DEC_ACT_Collect node = new DEC_ACT_Collect();
+            return node;
+        }
+    }
 
     #endregion
 }

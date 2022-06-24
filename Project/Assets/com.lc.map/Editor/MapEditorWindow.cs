@@ -1,7 +1,6 @@
 ﻿using LCJson;
 using LCToolkit;
 using System.Collections.Generic;
-using System.IO;
 using UnityEditor;
 using UnityEngine;
 
@@ -11,7 +10,7 @@ namespace LCMap
     {
         private static GUIHelper.ContextDataCache ContextDataCache = new GUIHelper.ContextDataCache();
 
-        private static List<ActorCnf> ActorCnfs = new List<ActorCnf>();
+        private static Dictionary<string, List<ActorCnf>> ActorDict = new Dictionary<string, List<ActorCnf>>();
 
         [MenuItem("地图/编辑", true)]
         public static bool CheckHasSetting()
@@ -38,12 +37,19 @@ namespace LCMap
 
         private void Refresh()
         {
-            ActorCnfs = MapSetting.GetActorCnfs();
+            ActorDict = MapSetting.GetActorGroups();
+            ActorFoldoutDict.Clear();
+            foreach (var item in ActorDict)
+            {
+                ActorFoldoutDict.Add(item.Key,false);
+            }
             maps = MapSetting.GetAllMaps();
         }
 
         private float BtnWidth = 100;
         private float BtnHeight = 50;
+        private Dictionary<string, bool> ActorFoldoutDict = new Dictionary<string, bool>();
+        private Vector2 scrollPos = Vector2.zero;
         private void OnGUI()
         {
             if (!ContextDataCache.TryGetContextData<GUIStyle>("BigLabel", out var bigLabel))
@@ -60,6 +66,11 @@ namespace LCMap
             {
                 string selMap = currSelMap == null ? "Null" : currSelMap.mapId.ToString();
                 GUILayout.Label($"当前地图:{selMap}", bigLabel.value);
+
+                if (GUILayout.Button("刷新", GUILayout.Width(BtnWidth), GUILayout.Height(BtnHeight)))
+                {
+                    Refresh();
+                }
 
                 if (GUILayout.Button("加载地图", GUILayout.Width(BtnWidth), GUILayout.Height(BtnHeight)))
                 {
@@ -103,7 +114,7 @@ namespace LCMap
 
                 if (GUILayout.Button("导出所有配置", GUILayout.Width(BtnWidth), GUILayout.Height(BtnHeight)))
                 {
-                    ED_MapCom.ActorCnfs = MapEditorWindow.ActorCnfs;
+                    ED_MapCom.ActorCnfs = MapSetting.GetActorCnfs();
                     List<ED_MapCom> maps = MapSetting.GetAllMaps();
                     for (int i = 0; i < maps.Count; i++)
                     {
@@ -129,16 +140,27 @@ namespace LCMap
                 GUILayoutExtension.VerticalGroup(() =>
                 {
                     GUILayout.Label("演员列表", bigLabel.value);
-                    for (int i = 0; i < ActorCnfs.Count; i++)
+                    GUILayoutExtension.ScrollView(ref scrollPos, () =>
                     {
-                        if (GUILayout.Button($"{ActorCnfs[i].name}-{ActorCnfs[i].id}", GUILayout.Width(100), GUILayout.Height(BtnHeight)))
+                        foreach (var item in ActorDict)
                         {
-                            ED_ActorCom actorCom = currSelMap.CreateActor(ActorCnfs[i]);
-                            Selection.activeObject = actorCom;
+                            string groupName = item.Key;
+                            ActorFoldoutDict[groupName] = EditorGUILayout.Foldout(ActorFoldoutDict[groupName], groupName);
+                            if (ActorFoldoutDict[groupName])
+                            {
+                                List<ActorCnf> actors = item.Value;
+                                for (int i = 0; i < actors.Count; i++)
+                                {
+                                    if (GUILayout.Button($"{actors[i].name}-{actors[i].id}", GUILayout.Width(100), GUILayout.Height(BtnHeight)))
+                                    {
+                                        ED_ActorCom actorCom = currSelMap.CreateActor(actors[i]);
+                                        Selection.activeObject = actorCom;
+                                    }
+                                }
+                            }
                         }
-                    }
-                },GUILayout.Width(50));
-                
+                    });
+                },GUILayout.Width(200));
             });
         }
 

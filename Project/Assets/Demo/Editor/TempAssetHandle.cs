@@ -126,28 +126,28 @@ namespace Demo
             string animRootPath = foldPath + "/Sprite";
             foreach (var dirAnimPath in Directory.GetDirectories(animRootPath))
             {
-                string dirName = Path.GetFileName(dirAnimPath).ToLower();
+                string dirName = Path.GetFileName(dirAnimPath).Replace(" ","").ToLower();
                 foreach (var animPath in Directory.GetDirectories(dirAnimPath))
                 {
-                    string animName = Path.GetFileName(animPath).Trim().ToLower();
+                    string animName = Path.GetFileName(animPath).Replace(" ", "").ToLower();
                     foreach (var item in Directory.GetFiles(animPath, "*.png"))
                     {
                         FileInfo fileInfo = new FileInfo(item);
 
-                        //string imgName = Path.GetFileName(item);
-                        //string index   = imgName.Substring(imgName.LastIndexOf("_") + 1);
-                        //string newImgName = $"{fileName}_{dirName}_{animName}_{index}";
+                        string imgName = Path.GetFileName(item);
+                        string index = imgName.Substring(imgName.LastIndexOf("_") + 1);
+                        string newImgName = $"{fileName}_{dirName}_{animName}_{index}";
 
                         string assetPath = fileInfo.FullName.Substring(fileInfo.FullName.IndexOf("Assets"));
                         TextureImporter textureImporter = AssetImporter.GetAtPath(assetPath) as TextureImporter;
                         TextureImporterSettings tis = new TextureImporterSettings();
                         textureImporter.ReadTextureSettings(tis);
-                        tis.spritePixelsPerUnit = 160;
+                        tis.spritePixelsPerUnit = 128;
                         textureImporter.SetTextureSettings(tis);
                         textureImporter.SaveAndReimport();
 
-                        //string newImgPath = Path.Combine(fileInfo.DirectoryName, newImgName);
-                        //fileInfo.MoveTo(newImgPath);
+                        string newImgPath = Path.Combine(fileInfo.DirectoryName, newImgName);
+                        fileInfo.MoveTo(newImgPath);
                     }
                 }
             }

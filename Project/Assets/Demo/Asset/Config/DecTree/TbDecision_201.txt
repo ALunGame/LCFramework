@@ -1,0 +1,1 @@
+﻿{"mType":"LCECS.Layer.Decision.DecisionTree","treeId":201,"tree":{"mType":"LCECS.Core.Tree.Nodes.NodeRoot","Uid":"a51f64aa-98af-4f17-b90f-ca7df39bfa45","childNodes":[{"mType":"Demo.Decision.DEC_ACT_Collect","Uid":"8f3a21c7-bb55-43c3-902d-e7dbab8801e5","childNodes":null,"nodePremise":null}],"nodePremise":null},"EntityList":[]}

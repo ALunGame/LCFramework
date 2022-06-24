@@ -165,6 +165,70 @@ MonoBehaviour:
     m_Address: Actor_Item
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: da7680c4e9bb5404ca1c6f47509eff49
+    m_Address: Actor_villager1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: cd5aaa8fa34ce66479a7a4eec5e90df4
+    m_Address: Actor_villager2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 5205883266de555448069bf4f49ec824
+    m_Address: Actor_villager3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: d288cc76411159a4195ebb0bb0f39277
+    m_Address: Actor_villager4
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: bb5bc683c51e08b4d8a6cb55063cdf6b
+    m_Address: Actor_villager5
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 3eb8315f658fc1d4594041d054a59ca9
+    m_Address: Actor_villager6
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 5e23e302955a1f84eb4a6e276d9f0fa4
+    m_Address: Actor_villager7
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 80647a0cbf5607c4fa6622b10ddc2834
+    m_Address: Actor_villager8
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 0507e9d1b305ec0458b3dbcb116c92c8
+    m_Address: Actor_villager9
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 5a932d1b41e8a3a42b3ab1313aef4e77
+    m_Address: Actor_map101_house_wood
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: bb8759452de604148840ec0fe69f5863
+    m_Address: Actor_tx_map101_tree_1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 824dca8099392c74f80bbc3144ed957a
+    m_Address: Actor_tx_map101_tree_6
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 1f21a50e8ee103d42bde176db7e3b40a
+    m_Address: Actor_tx_map101_tree_5
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 7cad62a68a76f824bb7ac39a3b85d812
+    m_Address: Actor_tx_map101_tree_4
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: fb479b78cfd09814b9820c52a784589f
+    m_Address: Actor_tx_map101_tree_2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 8cdde22aa2249644c82ea2666f901e45
+    m_Address: Actor_tx_map101_tree_3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: c106a54d1dad7c34dbca1e47199c97a1, type: 2}
   m_SchemaSet:

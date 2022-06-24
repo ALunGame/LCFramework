@@ -93,6 +93,23 @@ namespace LCMap
             return configs;
         }
 
+        public static Dictionary<string, List<ActorCnf>> GetActorGroups()
+        {
+            if (setting.ActorGroup == null)
+            {
+                Debug.LogError("没有设置演员组>>>");
+                return new Dictionary<string, List<ActorCnf>>();
+            }
+            Dictionary<string, List<ActorCnf>> dict = new Dictionary<string, List<ActorCnf>>();
+            List<ConfigAsset> assets = setting.ActorGroup.GetAllAsset();
+            foreach (var asset in assets)
+            {
+                List<ActorCnf> datas = asset.Load<ActorCnf>();
+                dict.Add(asset.name, datas);
+            }
+            return dict;
+        }
+
         public static string GetMapModelSavePath(string mapId)
         {
             return setting.MapExportSavePath + ConfigDef.GetCnfName("Map_" + mapId);

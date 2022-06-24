@@ -228,7 +228,7 @@ namespace Demo.AutoCreate
             animLayer.ConnectAnimClips(layer);
         }
 
-        private static (string, string) CalcLayerAndStateName(AnimationClip clip)
+        public static (string, string) CalcLayerAndStateName(AnimationClip clip)
         {
             if (!clip.name.Contains("_"))
             {

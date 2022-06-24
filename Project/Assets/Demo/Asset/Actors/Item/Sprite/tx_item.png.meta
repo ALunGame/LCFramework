@@ -465,7 +465,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -3672,8 +3672,8 @@ TextureImporter:
       tx_item_barricade: 21300214
       tx_item_fence_a_rail_a: 21300030
       tx_item_pumpkin_b: 21300258
-      tx_item_grass_c: 21300098
       tx_item_stall_fruit_b: 21300208
+      tx_item_grass_c: 21300098
       tx_item_arrow Hit: 21300158
       tx_item_clother_hanger_pillar_b: 21300232
       tx_item_sword: 21300166

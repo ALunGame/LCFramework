@@ -89,6 +89,8 @@ namespace LCECS.Core.Tree.Base
         //检测子节点索引是否合法
         public bool IsIndexValid(int index)
         {
+            if (childNodes == null)
+                return false;
             return index >= 0 && index < childNodes.Count;
         }
 

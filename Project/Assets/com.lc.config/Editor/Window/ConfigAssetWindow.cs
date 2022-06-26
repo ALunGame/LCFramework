@@ -1,6 +1,7 @@
 using LCToolkit;
 using LCToolkit.Command;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 using UnityEditor;
@@ -110,7 +111,15 @@ namespace LCConfig
 
         private Rect GetFieldRect(FieldInfo field)
         {
-            float height = GUIExtension.GetHeight(field.FieldType, GUIHelper.TextContent(""));
+            float height = 0;
+            if (typeof(IList).IsAssignableFrom(field.FieldType))
+            {
+                height = GUIExtension.GetHeight(typeof(string), GUIHelper.TextContent(""));
+            }
+            else
+            {
+                height = GUIExtension.GetHeight(field.FieldType, GUIHelper.TextContent(""));
+            }
             return EditorGUILayout.GetControlRect(true, height);
         }
 
@@ -177,12 +186,22 @@ namespace LCConfig
                             foreach (var fieldInfo in fields.Keys)
                             {
                                 object value = fieldInfo.GetValue(config);
-                                //float height = GUIExtension.GetHeight(fieldInfo.FieldType, value, GUIHelper.TextContent(""));
-                                object newValue = GUIExtension.DrawField(GetFieldRect(fieldInfo), value, GUIHelper.TextContent(""));
-                                if (newValue == null || !newValue.Equals(value))
+                                if (typeof(IList).IsAssignableFrom(fieldInfo.FieldType))
                                 {
-                                    CommandDispacter.Do(new ChangeValueCommand(config, fieldInfo, newValue));
+                                    if (GUI.Button(GetFieldRect(fieldInfo), $"{fieldInfo.Name}列表"))
+                                    {
+                                        InspectorExtension.DrawObjectInInspector($"{fieldInfo.Name}列表", value);
+                                    }
                                 }
+                                else
+                                {
+                                    object newValue = GUIExtension.DrawField(GetFieldRect(fieldInfo), value, GUIHelper.TextContent(""));
+                                    if (newValue == null || !newValue.Equals(value))
+                                    {
+                                        CommandDispacter.Do(new ChangeValueCommand(config, fieldInfo, newValue));
+                                    }
+                                }
+
                             }
                             GUI.color = Color.white;
                         });

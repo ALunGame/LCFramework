@@ -2,6 +2,8 @@
 using System.Collections;
 using UnityEngine;
 using LCToolkit;
+using System.Collections.Generic;
+using LCECS.Core;
 
 namespace LCMap
 {
@@ -24,6 +26,9 @@ namespace LCMap
 
         [ConfigValue("演员预制体")]
         public UnityObjectAsset prefab = new UnityObjectAsset();
+
+        [ConfigValue("组件配置")]
+        public List<BaseCom> comCnfs = new List<BaseCom>();
 
         public IConfig Clone()
         {

@@ -213,6 +213,47 @@ namespace LCToolkit
         /// </summary>
         /// <param name="itemList">菜单选项</param>
         /// <param name="selCallBack">选择回调</param>
+        public static void Menu<T>(List<T> itemList, Action<T> selCallBack)
+        {
+            GenericMenu menu = new GenericMenu();
+            for (int i = 0; i < itemList.Count; i++)
+            {
+                AddMenuItem(menu, itemList[i], itemList[i].ToString(),selCallBack);
+            }
+            menu.ShowAsContext();
+        }
+
+        private static void AddMenuItem<T>(GenericMenu menu, T obj, string item,Action<T> selCallBack)
+        {
+            menu.AddItem(new GUIContent(item), false, (x) =>
+            {
+                if (selCallBack != null)
+                {
+                    selCallBack((T)x);
+                }
+            }, obj);
+        }
+
+        /// <summary>
+        /// 菜单
+        /// </summary>
+        /// <param name="itemList">菜单选项</param>
+        /// <param name="selCallBack">选择回调</param>
+        public static void Menu<T>(List<T> itemList, Action<T> selCallBack,Func<T,string> menuName)
+        {
+            GenericMenu menu = new GenericMenu();
+            for (int i = 0; i < itemList.Count; i++)
+            {
+                AddMenuItem(menu, itemList[i], menuName(itemList[i]), selCallBack);
+            }
+            menu.ShowAsContext();
+        }
+
+        /// <summary>
+        /// 菜单
+        /// </summary>
+        /// <param name="itemList">菜单选项</param>
+        /// <param name="selCallBack">选择回调</param>
         public static void Menu(List<string> itemList, Action<int> selCallBack)
         {
             GenericMenu menu = new GenericMenu();

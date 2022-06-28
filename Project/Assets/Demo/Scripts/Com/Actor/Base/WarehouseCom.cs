@@ -1,21 +1,9 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using LCECS.Core;
 
-namespace Assets.Demo.Scripts.Com.Actor.Base
+namespace Demo.Com
 {
-    public class WarehouseCom : MonoBehaviour
+    public class WarehouseCom : BaseCom
     {
-
-        // Use this for initialization
-        void Start()
-        {
-
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
+        public BagItem item = new BagItem();
     }
 }

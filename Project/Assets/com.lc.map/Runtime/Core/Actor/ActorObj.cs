@@ -39,6 +39,10 @@ namespace LCMap
         /// 物品
         /// </summary>
         Item,
+        /// <summary>
+        /// 建筑 
+        /// </summary>
+        Building,
     }
 
     public class ActorObj : MonoBehaviour

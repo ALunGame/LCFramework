@@ -114,6 +114,42 @@ namespace Demo
         }
     }
 
+    [NodeMenuItem("演员/建筑/仓库组件")]
+    public class Entity_Node_WarehouseCom : Entity_ComNode
+    {
+        public override string Title { get => "仓库组件"; set => base.Title = value; }
+        public override string Tooltip { get => "仓库组件"; set => base.Tooltip = value; }
+        public override Type RuntimeNode => typeof(WarehouseCom);
+
+        [NodeValue("存放物品")]
+        public BagItem item = new BagItem();
+
+        public override BaseCom CreateRuntimeNode()
+        {
+            WarehouseCom warehouseCom = new WarehouseCom();
+            warehouseCom.item = item;
+            return warehouseCom;
+        }
+    }
+
+    [NodeMenuItem("演员/建筑/建筑组件")]
+    public class Entity_Node_BuildingCom : Entity_ComNode
+    {
+        public override string Title { get => "建筑组件"; set => base.Title = value; }
+        public override string Tooltip { get => "建筑组件"; set => base.Tooltip = value; }
+        public override Type RuntimeNode => typeof(BuildingCom);
+
+        [NodeValue("拥有者演员Id")]
+        public List<int> owerActorIds = new List<int>();
+
+        public override BaseCom CreateRuntimeNode()
+        {
+            BuildingCom com = new BuildingCom();
+            com.owerActorIds = owerActorIds;
+            return com;
+        }
+    }
+
     [NodeMenuItem("演员/气泡组件")]
     public class Entity_Node_BubbleCom : Entity_ComNode
     {

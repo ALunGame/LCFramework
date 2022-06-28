@@ -7,32 +7,45 @@ namespace Demo
     {
         public int id;
         public int cnt;
-        public int maxCnt;
+
+        /// <summary>
+        /// -1无限
+        /// </summary>
+        public int maxCnt = -1;
+
+        public bool Add(int itemCnt)
+        {
+            int resCnt = cnt + itemCnt;
+            if (maxCnt != -1 && resCnt > maxCnt)
+                return false;
+            cnt = resCnt;
+            return true;
+        }
+
+        public bool Remove(int itemCnt)
+        {
+            int resCnt = cnt - itemCnt;
+            if (resCnt < 0)
+                return false;
+            cnt = resCnt;
+            return true;
+        }
+
+        public bool CheckIsOutMax()
+        {
+            if (maxCnt == -1)
+                return false;
+            return maxCnt >= cnt;
+        }
     }
 
     public class BagCom : BaseCom
     {
         public List<BagItem> itemlist = new List<BagItem>();
 
-        public void AddItem(int itemId,int itemCnt)
+        public bool AddItem(int itemId,int itemCnt)
         {
-            for (int i = 0; i < itemlist.Count; i++)
-            {
-                if (itemlist[i].id == itemId)
-                {
-                    int resCnt = itemlist[i].cnt + itemCnt;
-                    if (resCnt > itemlist[i].maxCnt)
-                    {
-                        return;
-                    }
-                    itemlist[i].cnt = resCnt;
-                    return;
-                }
-            }
-            BagItem bagItem = new BagItem();
-            bagItem.id = itemId;
-            bagItem.cnt = itemCnt;
-            itemlist.Add(bagItem);
+            return GetBagItem(itemId).Add(itemCnt);
         }
 
         public BagItem GetBagItem(int itemId)
@@ -44,37 +57,21 @@ namespace Demo
                     return item;
                 }
             }
-            return null;
+            BagItem bagItem = new BagItem();
+            bagItem.id      = itemId;
+            bagItem.cnt     = 0;
+            itemlist.Add(bagItem);
+            return bagItem;
         }
 
         public bool RemoveItem(int itemId, int itemCnt)
         {
-            for (int i = 0; i < itemlist.Count; i++)
-            {
-                if (itemlist[i].id == itemId)
-                {
-                    if (itemlist[i].cnt < itemCnt)
-                    {
-                        return false;
-                    }
-                    else
-                    {
-                        itemlist[i].cnt -= itemCnt;
-                        return true;
-                    }
-                }
-            }
-            return false;
+            return GetBagItem(itemId).Remove(itemCnt);
         }
 
         public bool CheckItemIsOutMax(int itemId)
         {
-            BagItem bagItem = GetBagItem(itemId);
-            if (bagItem == null)
-            {
-                return false;
-            }
-            return bagItem.cnt>=bagItem.maxCnt;
+            return GetBagItem(itemId).CheckIsOutMax();
         }
     }
 }

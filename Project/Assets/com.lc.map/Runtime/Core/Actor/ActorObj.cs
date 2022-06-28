@@ -3,6 +3,7 @@ using LCECS;
 using LCECS.Core;
 using LCToolkit;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace LCMap
@@ -71,33 +72,23 @@ namespace LCMap
         /// </summary>
         public int EntityId { get; private set; }
 
-        /// <summary>
-        /// 实体配置Id
-        /// </summary>
+
+
         [Header("表现状态名")]
         [ReadOnly]
         [SerializeField]
         private string DisplayStateName;
 
-        /// <summary>
-        /// 实体配置Id
-        /// </summary>
         [Header("状态节点")]
         [ReadOnly]
         [SerializeField]
         private GameObject StateGo;
 
-        /// <summary>
-        /// 实体配置Id
-        /// </summary>
         [Header("表现节点")]
         [ReadOnly]
         [SerializeField]
         private GameObject DisplayGo;
 
-        /// <summary>
-        /// 实体配置Id
-        /// </summary>
         [Header("相机跟随节点")]
         [ReadOnly]
         [SerializeField]
@@ -110,10 +101,17 @@ namespace LCMap
 
         private Entity entity;
 
+        public Entity Entity { get => entity;}
+
         public void Init(ActorModel model,MapArea mapArea)
         {
             Area = mapArea;
-            Init(model, Config.ActorCnf[model.id].entityId);
+            ActorCnf actorCnf = Config.ActorCnf[model.id];
+            foreach (var item in actorCnf.interactions)
+            {
+                AddInteractive(item);
+            }
+            Init(model, actorCnf.entityId);
         }
 
         public void Init(ActorModel model,int entityId)
@@ -175,6 +173,89 @@ namespace LCMap
                 item.OnDrawGizmos();
             }
         }
+
+        #region 交互
+
+        /// <summary>
+        /// 交互
+        /// </summary>
+        public List<ActorInteractive> Interactions { get; private set; }
+
+        /// <summary>
+        /// 当前正在执行的交互
+        /// </summary>
+        public ActorInteractive CurrInteractive { get; private set; }
+
+        /// <summary>
+        /// 添加交互
+        /// </summary>
+        /// <param name="interactive"></param>
+        public void AddInteractive(ActorInteractive interactive)
+        {
+            if (Interactions == null)
+                Interactions = new List<ActorInteractive>();
+            foreach (var item in Interactions)
+            {
+                if (item.GetType() == interactive.GetType())
+                {
+                    MapLocate.Log.LogError("添加交互出错,重复的交互",interactive.GetType());
+                    return;
+                }
+            }
+            interactive.Init(this);
+            Interactions.Add(interactive);
+        }
+
+        /// <summary>
+        /// 删除交互
+        /// </summary>
+        /// <param name="interactive"></param>
+        public void RemoveInteractive(ActorInteractive interactive)
+        {
+            if (Interactions == null)
+                return;
+            Interactions.Remove(interactive);
+        }
+
+        /// <summary>
+        /// 执行交互
+        /// </summary>
+        /// <param name="interactive"></param>
+        public void ExecuteInteractive<T>(ActorObj executeActor) where T : ActorInteractive
+        {
+            ExecuteInteractive(typeof(T), executeActor);    
+        }
+
+        /// <summary>
+        /// 执行交互
+        /// </summary>
+        /// <param name="interactive"></param>
+        public void ExecuteInteractive(Type type, ActorObj executeActor)
+        {
+            if (CurrInteractive != null)
+            {
+                MapLocate.Log.LogError("执行交互出错,当前正常执行交互", CurrInteractive.GetType());
+                return;
+            }
+            if (Interactions == null)
+                return;
+            foreach (var item in Interactions)
+            {
+                if (item.GetType() == type)
+                {
+                    item.Execute(executeActor);
+                    return;
+                }
+            }
+            MapLocate.Log.LogError("执行交互出错,没有该交互", type);
+        }
+
+        public void SetCurrInteractive(ActorInteractive interactive)
+        {
+            CurrInteractive = interactive;
+        }
+
+        #endregion
 
         #region Misc
 

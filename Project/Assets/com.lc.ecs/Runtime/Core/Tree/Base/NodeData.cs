@@ -23,6 +23,13 @@ namespace LCECS.Core.Tree.Base
             Blackboard = new Dictionary<string, object>();
         }
 
+        public void AddBlackboardValue(string key, object value)
+        {
+            if (Blackboard.ContainsKey(key))
+                Blackboard.Remove(key);
+            Blackboard.Add(key, value);
+        }
+
         ~NodeData()
         {
             Context = null;

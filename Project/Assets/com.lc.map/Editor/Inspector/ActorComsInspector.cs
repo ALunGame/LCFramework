@@ -3,9 +3,8 @@ using LCToolkit;
 using LCToolkit.Core;
 using System;
 using System.Collections.Generic;
-using UnityEditor;
-using UnityEngine;
 using System.Linq;
+using UnityEngine;
 
 namespace LCMap
 {

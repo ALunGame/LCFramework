@@ -28,7 +28,7 @@ namespace Demo
 
         public bool CalcRoadPos(Vector3 pos,out Vector2Int roadPos)
         {
-            int posX = (int)pos.x;
+            int posX = (int)Mathf.RoundToInt(pos.x);
             int posY = (int)(pos.y - 0.3);
             roadPos = new Vector2Int(posX, posY);
             if (Exist(roadPos))

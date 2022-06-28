@@ -3,6 +3,7 @@ using LCECS.Core;
 using LCECS.EntityGraph;
 using LCNode;
 using System;
+using System.Collections.Generic;
 
 namespace Demo
 {
@@ -92,6 +93,24 @@ namespace Demo
         {
             AnimCom animCom = new AnimCom();
             return animCom;
+        }
+    }
+
+    [NodeMenuItem("演员/背包组件")]
+    public class Entity_Node_BagCom : Entity_ComNode
+    {
+        public override string Title { get => "背包组件"; set => base.Title = value; }
+        public override string Tooltip { get => "背包组件"; set => base.Tooltip = value; }
+        public override Type RuntimeNode => typeof(BagCom);
+
+        [NodeValue("默认物品")]
+        public List<BagItem> items = new List<BagItem>();
+
+        public override BaseCom CreateRuntimeNode()
+        {
+            BagCom bagCom = new BagCom();
+            bagCom.itemlist = items;
+            return bagCom;
         }
     }
 

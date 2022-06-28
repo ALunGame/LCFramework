@@ -79,7 +79,7 @@ namespace Demo.Com
                 branchWayBackPath.Clear();
                 branchMovedPoints.Clear();
 
-                Debug.Log($"设置路径移动信息>>>>>Curr:{currTargetPos} End:{endTargetPos}");
+                Debug.Log($"设置路径移动信息>>>>>Pos:{trans.position}Curr:{currTargetPos} End:{endTargetPos}");
             }
         }
 

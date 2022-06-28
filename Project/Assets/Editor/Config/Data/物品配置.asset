@@ -1,19 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-5763331606300993869
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8640a39169edcbb47a35d93e0758b63b, type: 3}
-  m_Name: "\u57FA\u7840\u7269\u54C1"
-  m_EditorClassIdentifier: 
-  cnfTypeFullName: Demo.Config.ItemCnf
-  serializedText: 
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28,3 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   configTypeName: ItemCnf
   configTypeFullName: Demo.Config.ItemCnf
+--- !u!114 &4764609681914006321
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8640a39169edcbb47a35d93e0758b63b, type: 3}
+  m_Name: "\u57FA\u7840\u8D44\u6E90"
+  m_EditorClassIdentifier: 
+  cnfTypeFullName: Demo.Config.ItemCnf
+  serializedText: '[{"mType":"Demo.Config.ItemCnf","id":401,"name":"\u6728\u6750","sprite":{"mType":"LCToolkit.UnityObjectAsset","assetType":2,"ObjName":"","ObjPath":""}}]'

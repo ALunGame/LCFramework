@@ -193,6 +193,10 @@ namespace LCToolkit
             {
                 return EditorGUI.GetPropertyHeight(SerializedPropertyType.ObjectReference, label);
             }
+            if (typeof(UnityObjectAsset).IsAssignableFrom(type))
+            {
+                return EditorGUI.GetPropertyHeight(SerializedPropertyType.ObjectReference, label);
+            }
             if (ObjectDrawer.CheckHasCustomDrawer(type))
             {
                 return ObjectDrawer.GetHeight(type);

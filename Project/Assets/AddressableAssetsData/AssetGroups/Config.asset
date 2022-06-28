@@ -181,6 +181,10 @@ MonoBehaviour:
     m_Address: TbEntity_0
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 1592af2a3a38f1f4a8bf726f283a7d8d
+    m_Address: TbEntity_401
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: c106a54d1dad7c34dbca1e47199c97a1, type: 2}
   m_SchemaSet:

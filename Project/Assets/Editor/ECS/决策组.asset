@@ -54,7 +54,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecc61672c6779a34ba5b8ab1411b819d, type: 3}
   m_Name: decision_201
   m_EditorClassIdentifier: 
-  serializedGraph: '{"mType":"LCECS.Tree.Decision","pos":{"mType":"UnityEngine.Vector3","x":267.0,"y":80.0,"z":0.0},"zoom":{"mType":"UnityEngine.Vector3","x":2.0,"y":2.0,"z":1.0},"nodes":{"mType":"System.Collections.Generic.Dictionary`2[[System.String,
+  serializedGraph: '{"mType":"LCECS.Tree.Decision","pos":{"mType":"UnityEngine.Vector3","x":292.0,"y":32.0,"z":0.0},"zoom":{"mType":"UnityEngine.Vector3","x":2.0,"y":2.0,"z":1.0},"nodes":{"mType":"System.Collections.Generic.Dictionary`2[[System.String,
     mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089],[LCNode.Model.BaseNode,
     Assembly-CSharp-Editor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]","a51f64aa-98af-4f17-b90f-ca7df39bfa45":{"mType":"LCECS.Tree.Tree_RootNode","childNode":null,"premise":null,"guid":"a51f64aa-98af-4f17-b90f-ca7df39bfa45","position":{"mType":"UnityEngine.Vector2","x":177.0,"y":-45.0},"inIndex":-1,"outIndex":-1},"8f3a21c7-bb55-43c3-902d-e7dbab8801e5":{"mType":"Demo.Tree.Tree_Dec_Act_Collect","node":null,"premise":null,"guid":"8f3a21c7-bb55-43c3-902d-e7dbab8801e5","position":{"mType":"UnityEngine.Vector2","x":177.0,"y":124.0},"inIndex":-1,"outIndex":-1}},"connections":[{"mType":"LCNode.Model.BaseConnection","from":"a51f64aa-98af-4f17-b90f-ca7df39bfa45","fromPortName":"\u5B50\u8282\u70B9","to":"8f3a21c7-bb55-43c3-902d-e7dbab8801e5","toPortName":"\u8282\u70B9"}]}'
   TreeId: 201

@@ -27,12 +27,25 @@ namespace LCMap
         [ConfigValue("演员预制体")]
         public UnityObjectAsset prefab = new UnityObjectAsset();
 
+        [ConfigValue("默认交互")]
+        public List<ActorInteractive> interactions = new List<ActorInteractive>();
+
+        [ConfigValue("交互范围")]
+        public float interactiveRange = 1;
+
         [ConfigValue("组件配置")]
         public List<BaseCom> comCnfs = new List<BaseCom>();
 
         public IConfig Clone()
         {
             ActorCnf cnf = new ActorCnf();
+            cnf.id = id++;
+            cnf.type = type;
+            cnf.name = name;
+            cnf.entityId = entityId;
+            cnf.prefab = prefab;
+            cnf.interactions = interactions;
+            cnf.comCnfs = comCnfs;
             return cnf;
         }
     }

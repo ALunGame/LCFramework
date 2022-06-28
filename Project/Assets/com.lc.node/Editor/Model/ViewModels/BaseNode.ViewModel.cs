@@ -194,6 +194,14 @@ namespace LCNode.Model
             ports.Remove(port.name);
             onPortRemoved?.Invoke(port);
         }
+
+        public BasePort.Direction GetPortDirection(string portName)
+        {
+            if (!Ports.TryGetValue(portName, out var port))
+                return BasePort.Direction.Input;
+            return port.direction;
+        }
+
         #endregion
 
         #region Overrides

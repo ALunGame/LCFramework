@@ -143,13 +143,13 @@ namespace LCNode.View
             BasePortView portView = port as BasePortView;
             waitConnectNode = portView.Model.Owner;
             waitConnectPortName = portView.Model.name;
-            bool checkInPort = ConnectionFilter.input == null ? true : false;
+            bool checkInPort = waitConnectNode.GetPortDirection(waitConnectPortName) == BasePort.Direction.Input ? true : false;
 
             foreach (var item in nodePortMap)
             {
                 Type nodeType = item.Key;
                 PortInfo portInfo = item.Value;
-                CollectNodePortName(portView.Model, nodeType, portInfo, checkInPort);
+                CollectNodePortName(portView.Model, nodeType, portInfo, !checkInPort);
             }
 
             //创建菜单
@@ -215,11 +215,11 @@ namespace LCNode.View
                 string portName = nodePortNameMap[searchTreeEntry.userData as Type];
                 if (checkInPort)
                 {
-                    graphView.CommandDispacter.Do(new ConnectCommand(graphView.Model, waitConnectNode, waitConnectPortName, createNode, portName));
+                    graphView.CommandDispacter.Do(new ConnectCommand(graphView.Model, createNode, portName, waitConnectNode, waitConnectPortName));
                 }
                 else
                 {
-                    graphView.CommandDispacter.Do(new ConnectCommand(graphView.Model, createNode, portName, waitConnectNode, waitConnectPortName));
+                    graphView.CommandDispacter.Do(new ConnectCommand(graphView.Model, waitConnectNode, waitConnectPortName, createNode, portName));
                 }
                 waitConnectNode.Ports[waitConnectPortName].RefreshIndex();
             }

@@ -83,7 +83,7 @@ namespace Demo.System
 
         private bool CheckMoveFinish(WayPointMoveCom wayPointMoveCom, AnimCom animCom)
         {
-            if (Vector2.Distance(wayPointMoveCom.trans.position, wayPointMoveCom.currRoadCnf.roadPos) <= 0.1f)
+            if (Vector2.Distance(wayPointMoveCom.trans.position, wayPointMoveCom.currRoadCnf.roadPos) <= 0.02f)
             {
                 //完成
                 if (wayPointMoveCom.currTargetPos.Equals(wayPointMoveCom.endTargetPos))
@@ -184,9 +184,9 @@ namespace Demo.System
             int checkX = 0;
             int checkY = 0;
             if (endPos.x != currPos.x)
-                checkX = endPos.x > currPos.x ? 1 : 1;
+                checkX = endPos.x > currPos.x ? 1 : -1;
             if (endPos.y != currPos.y)
-                checkY = endPos.y > currPos.y ? 1 : 1;
+                checkY = endPos.y > currPos.y ? 1 : -1;
 
             Vector2Int checkPos = new Vector2Int(currPos.x + checkX, currPos.y + checkY);
             if (nearlist.Contains(checkPos))

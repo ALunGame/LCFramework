@@ -273,6 +273,21 @@ namespace LCECS.Core
             coms.Remove(typeName);
         }
 
+        /// <summary>
+        /// 覆盖实体组件
+        /// </summary>
+        /// <param name="com"></param>
+        public void CoverCom(BaseCom com)
+        {
+            BaseCom oldCom = GetCom(com.GetType().FullName);
+            if (oldCom == null)
+            {
+                ECSLocate.Log.LogError("覆盖实体组件失败，没有对应组件>>>>>>>", com);
+                return;
+            }
+            coms[com.GetType().FullName] = com;
+        }
+
         #endregion
 
         /// <summary>

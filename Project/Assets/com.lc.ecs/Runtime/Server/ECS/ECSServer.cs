@@ -114,8 +114,20 @@ namespace LCECS.Server.ECS
                 return null;
             }
 
-            //创建实体
+            //解析实体
             Entity entity = JsonMapper.ToObject<Entity>(entityStr);
+
+            //覆盖
+            if (LCConfig.Config.ActorCnf.ContainsKey(actorObj.Id))
+            {
+                //组件
+                ActorCnf actorCnf = LCConfig.Config.ActorCnf[actorObj.Id];
+                foreach (var item in actorCnf.comCnfs)
+                {
+                    entity.CoverCom(item);
+                }
+            }
+
             entity.SetEntityGo(actorObj.gameObject);
             entity.Init(actorObj.Uid);
             foreach (BaseCom com in entity.GetComs())

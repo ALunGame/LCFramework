@@ -56,6 +56,17 @@ namespace Demo.Tree
         }
     }
 
+    [NodeMenuItem("演员/AI/移动到存储建筑")]
+    public class Tree_Bev_Act_MoveToStorage : Base_BEV_ACT_Node
+    {
+        public override string Title { get => "移动到存储建筑"; set => base.Title = value; }
+
+        public override Node CreateRuntimeNode()
+        {
+            BEV_ACT_MoveToStorageActor node = new BEV_ACT_MoveToStorageActor();
+            return node;
+        }
+    }
 
     [NodeMenuItem("演员/AI/播放交互动画")]
     public class Tree_Bev_Act_PlayInteractiveAnim : Base_BEV_ACT_Node

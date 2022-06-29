@@ -1,1 +1,1 @@
-﻿{"mType":"LCECS.Layer.Behavior.BehaviorTree","reqId":0,"tree":{"mType":"LCECS.Core.Tree.Nodes.NodeRoot","Uid":"77b767ee-e4c8-4cb2-9725-8c1588147ca9","childNodes":null,"nodePremise":null},"HandleList":[]}
+﻿{"mType":"LCECS.Layer.Behavior.BehaviorTree","reqId":0,"tree":{"mType":"LCECS.Core.Tree.Nodes.NodeRoot","Uid":"4a122d8e-b09e-4385-bb4b-d731048cad60","childNodes":null,"nodePremise":null},"HandleList":[]}

@@ -1,4 +1,5 @@
 ﻿using Demo.Com;
+using Demo.Server;
 using LCECS;
 using LCECS.Data;
 
@@ -7,13 +8,19 @@ namespace Demo
     public static class GameLocate
     {
         public static GameLogServer Log = new GameLogServer();
+
         public static GameCenter Center { get; private set; }
+
         public static ShapeRenderCom ShapeRender { get; private set; }
+
         private static InputCom _InputCom = null;
+
+        public static WorkServer WorkServer { get; private set; }
 
         public static void Init(GameCenter center)
         {
             Center = center;
+            WorkServer = new WorkServer();
         }
 
         public static void Clear()

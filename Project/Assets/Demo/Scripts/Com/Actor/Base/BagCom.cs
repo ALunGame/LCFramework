@@ -13,6 +13,18 @@ namespace Demo
         /// </summary>
         public int maxCnt = -1;
 
+        public BagItem()
+        {
+
+        }
+
+        public BagItem(int id,int cnt,int maxCnt)
+        {
+            this.id = id;
+            this.cnt = cnt;
+            this.maxCnt = maxCnt;
+        }
+
         public bool Add(int itemCnt)
         {
             int resCnt = cnt + itemCnt;
@@ -31,11 +43,21 @@ namespace Demo
             return true;
         }
 
+        public int GetLeftCnt()
+        {
+            return maxCnt - cnt;
+        }
+
         public bool CheckIsOutMax()
         {
             if (maxCnt == -1)
                 return false;
-            return maxCnt >= cnt;
+            return cnt >= maxCnt;
+        }
+
+        public override string ToString()
+        {
+            return $"Id:{id} Cnt:{cnt} Max:{maxCnt}";
         }
     }
 

@@ -71,6 +71,7 @@ namespace Demo
 
         private void Awake()
         {
+            GameLocate.Init(this);
             DontDestroyOnLoad(this);
             Init();
         }
@@ -80,8 +81,10 @@ namespace Demo
             MapLocate.Map.Enter(testMapId);
             _DecCenter.Start_ThreadUpdate();
 
-            string uid = DialogLocate.Dialog.CreateDialog(new AddDialogInfo(DialogType.Bubble, 1001, 1));
-            DialogLocate.Dialog.Play(uid);
+            GameLocate.WorkServer.AfterMapInit();
+
+            //string uid = DialogLocate.Dialog.CreateDialog(new AddDialogInfo(DialogType.Bubble, 1001, 1));
+            //DialogLocate.Dialog.Play(uid);
         }
 
         private void Update()

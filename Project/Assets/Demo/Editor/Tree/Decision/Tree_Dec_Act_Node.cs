@@ -112,5 +112,17 @@ namespace Demo.Tree
         }
     }
 
+    [NodeMenuItem("演员/AI/存储")]
+    public class Tree_Dec_Act_Storage : Base_DEC_Act_Node
+    {
+        public override string Title { get => "存储"; set => base.Title = value; }
+
+        public override Node CreateRuntimeNode()
+        {
+            DEC_ACT_Storage node = new DEC_ACT_Storage();
+            return node;
+        }
+    }
+
     #endregion
 }

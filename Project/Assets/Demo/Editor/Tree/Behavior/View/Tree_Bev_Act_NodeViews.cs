@@ -14,6 +14,7 @@ namespace Demo.Tree
         public static Dictionary<string,Type> interactiveDict = new Dictionary<string, Type>()
         {
             {"采集",typeof(CollectInteractive)},
+            {"存储",typeof(StorageInteractive)},
         };
 
         private Button btnSelInteractive;

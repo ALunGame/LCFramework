@@ -114,24 +114,6 @@ namespace Demo
         }
     }
 
-    [NodeMenuItem("演员/建筑/仓库组件")]
-    public class Entity_Node_WarehouseCom : Entity_ComNode
-    {
-        public override string Title { get => "仓库组件"; set => base.Title = value; }
-        public override string Tooltip { get => "仓库组件"; set => base.Tooltip = value; }
-        public override Type RuntimeNode => typeof(WarehouseCom);
-
-        [NodeValue("存放物品")]
-        public BagItem item = new BagItem();
-
-        public override BaseCom CreateRuntimeNode()
-        {
-            WarehouseCom warehouseCom = new WarehouseCom();
-            warehouseCom.item = item;
-            return warehouseCom;
-        }
-    }
-
     [NodeMenuItem("演员/建筑/建筑组件")]
     public class Entity_Node_BuildingCom : Entity_ComNode
     {
@@ -139,13 +121,13 @@ namespace Demo
         public override string Tooltip { get => "建筑组件"; set => base.Tooltip = value; }
         public override Type RuntimeNode => typeof(BuildingCom);
 
-        [NodeValue("拥有者演员Id")]
-        public List<int> owerActorIds = new List<int>();
+        [NodeValue("存储的物品")]
+        public List<BagItem> storageItems = new List<BagItem>();
 
         public override BaseCom CreateRuntimeNode()
         {
             BuildingCom com = new BuildingCom();
-            com.owerActorIds = owerActorIds;
+            com.storageItems = storageItems;
             return com;
         }
     }
@@ -195,7 +177,6 @@ namespace Demo
             return collider2DCom;
         }
     }
-
 
     [NodeMenuItem("演员/移动组件")]
     public class Entity_Node_MoveCom : Entity_ComNode
@@ -247,6 +228,49 @@ namespace Demo
         }
     }
 
+
+    [NodeMenuItem("演员/工作/工人组件")]
+    public class Entity_Node_WorkerCom : Entity_ComNode
+    {
+        public override string Title { get => "工人组件"; set => base.Title = value; }
+        public override string Tooltip { get => "工人组件"; set => base.Tooltip = value; }
+        public override Type RuntimeNode => typeof(WorkerCom);
+
+        /// <summary>
+        /// 管理者演员
+        /// </summary>
+        [NodeValue("管理者演员Id")]
+        public int managerActorId;
+
+        public override BaseCom CreateRuntimeNode()
+        {
+            WorkerCom com = new WorkerCom();
+            com.managerActorId = managerActorId;
+            return com;
+        }
+    }
+
+    [NodeMenuItem("演员/工作/管理者组件")]
+    public class Entity_Node_ManagerCom : Entity_ComNode
+    {
+        public override string Title { get => "管理者组件"; set => base.Title = value; }
+        public override string Tooltip { get => "管理者组件"; set => base.Tooltip = value; }
+        public override Type RuntimeNode => typeof(ManagerCom);
+
+        /// <summary>
+        /// 管理者演员
+        /// </summary>
+        [NodeValue("建筑演员Id")]
+        public int buildingActorId;
+
+        public override BaseCom CreateRuntimeNode()
+        {
+            ManagerCom com = new ManagerCom();
+            com.buildingActorId = buildingActorId;
+            return com;
+        }
+    }
+
     #region AI
 
     [NodeMenuItem("演员/AI/徘徊组件")]
@@ -287,10 +311,14 @@ namespace Demo
         [NodeValue("采集的木匾演员Id")]
         public int collectTargetActorId;
 
+        [NodeValue("采集最大数量")]
+        public int collectMaxCnt;
+
         public override BaseCom CreateRuntimeNode()
         {
             CollectCom com = new CollectCom();
             com.collectActorId = collectTargetActorId;
+            com.collectMaxCnt = collectMaxCnt;
             return com;
         }
     }

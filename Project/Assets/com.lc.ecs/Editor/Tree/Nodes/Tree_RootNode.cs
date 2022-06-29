@@ -30,7 +30,7 @@ namespace LCECS.Tree
                 return nodePremise;
             }
 
-            List<Tree_PremiseNode> nodes = NodeHelper.GetNodeOutNodes<Tree_PremiseNode>(Owner, this);
+            List<Tree_PremiseNode> nodes = NodeHelper.GetNodeInNodes<Tree_PremiseNode>(Owner, this);
             if (nodes.Count<=0)
                 return null;
             NodePremise startPremise = null;

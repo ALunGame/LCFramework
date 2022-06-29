@@ -16,6 +16,22 @@ MonoBehaviour:
     mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089],[LCNode.Model.BaseNode,
     Assembly-CSharp-Editor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]","9156d442-3f5c-42b0-8777-b288a3c99b53":{"mType":"LCECS.Tree.Tree_RootNode","childNode":null,"premise":null,"guid":"9156d442-3f5c-42b0-8777-b288a3c99b53","position":{"mType":"UnityEngine.Vector2","x":384.0,"y":10.0}},"ede67e78-a470-4c7e-b223-27d305bf7336":{"mType":"Demo.Tree.Tree_Bev_Act_GazeSurround","node":null,"premise":null,"guid":"ede67e78-a470-4c7e-b223-27d305bf7336","position":{"mType":"UnityEngine.Vector2","x":386.0,"y":216.0}}},"connections":[{"mType":"LCNode.Model.BaseConnection","from":"9156d442-3f5c-42b0-8777-b288a3c99b53","fromPortName":"\u5B50\u8282\u70B9","to":"ede67e78-a470-4c7e-b223-27d305bf7336","toPortName":"\u8282\u70B9"}]}'
   ReqId: 4
+--- !u!114 &-8097162208622539828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5a129348ce8e4346a4ecfce78a2c916, type: 3}
+  m_Name: behavior_Storage
+  m_EditorClassIdentifier: 
+  serializedGraph: '{"mType":"LCECS.Tree.Behavior","pos":{"mType":"UnityEngine.Vector3","x":-41.0,"y":52.0,"z":0.0},"zoom":{"mType":"UnityEngine.Vector3","x":1.0,"y":1.0,"z":1.0},"nodes":{"mType":"System.Collections.Generic.Dictionary`2[[System.String,
+    mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089],[LCNode.Model.BaseNode,
+    Assembly-CSharp-Editor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]","7bbd75b5-f64a-45f7-95c8-f4a991c2398a":{"mType":"LCECS.Tree.Tree_RootNode","childNode":null,"premise":null,"guid":"7bbd75b5-f64a-45f7-95c8-f4a991c2398a","position":{"mType":"UnityEngine.Vector2","x":565.0,"y":61.0},"inIndex":-1,"outIndex":-1},"c412dda2-f104-41c9-9470-4c264c23b562":{"mType":"LCECS.Tree.Tree_SequenceNode","childNodes":null,"parentNode":null,"premise":null,"guid":"c412dda2-f104-41c9-9470-4c264c23b562","position":{"mType":"UnityEngine.Vector2","x":565.0,"y":192.0},"inIndex":-1,"outIndex":-1},"9fa5128c-a15e-4b52-a5f8-8de4afbdb141":{"mType":"Demo.Tree.Tree_Bev_Act_MoveToStorage","node":null,"premise":null,"guid":"9fa5128c-a15e-4b52-a5f8-8de4afbdb141","position":{"mType":"UnityEngine.Vector2","x":406.0,"y":393.0},"inIndex":0,"outIndex":-1},"8de84784-cc8e-41c3-9442-d5a6270b168f":{"mType":"Demo.Tree.Tree_Bev_Act_ExecuteInteractive","interactiveName":"\u5B58\u50A8","node":null,"premise":null,"guid":"8de84784-cc8e-41c3-9442-d5a6270b168f","position":{"mType":"UnityEngine.Vector2","x":693.0,"y":370.0},"inIndex":1,"outIndex":-1}},"connections":[{"mType":"LCNode.Model.BaseConnection","from":"7bbd75b5-f64a-45f7-95c8-f4a991c2398a","fromPortName":"\u5B50\u8282\u70B9","to":"c412dda2-f104-41c9-9470-4c264c23b562","toPortName":"\u7236\u8282\u70B9"},{"mType":"LCNode.Model.BaseConnection","from":"c412dda2-f104-41c9-9470-4c264c23b562","fromPortName":"\u5B50\u8282\u70B9","to":"9fa5128c-a15e-4b52-a5f8-8de4afbdb141","toPortName":"\u8282\u70B9"},{"mType":"LCNode.Model.BaseConnection","from":"c412dda2-f104-41c9-9470-4c264c23b562","fromPortName":"\u5B50\u8282\u70B9","to":"8de84784-cc8e-41c3-9442-d5a6270b168f","toPortName":"\u8282\u70B9"}]}'
+  ReqId: 7
 --- !u!114 &-5336443824566880440
 MonoBehaviour:
   m_ObjectHideFlags: 0

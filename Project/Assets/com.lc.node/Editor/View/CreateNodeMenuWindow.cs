@@ -111,9 +111,9 @@ namespace LCNode.View
             waitConnectNode = null;
             waitConnectPortName = null;
 
-            void CollectNodePortName(BasePort checkPort, Type nodeType, PortInfo portInfo, bool checkInPort)
+            void CollectNodePortName(BasePort checkPort, Type nodeType, PortInfo portInfo, bool isInPort)
             {
-                if (checkInPort)
+                if (isInPort)
                 {
                     for (int i = 0; i < portInfo.InPorts.Count; i++)
                     {
@@ -143,7 +143,7 @@ namespace LCNode.View
             BasePortView portView = port as BasePortView;
             waitConnectNode = portView.Model.Owner;
             waitConnectPortName = portView.Model.name;
-            bool checkInPort = waitConnectNode.GetPortDirection(waitConnectPortName) == BasePort.Direction.Input ? true : false;
+            checkInPort = waitConnectNode.GetPortDirection(waitConnectPortName) == BasePort.Direction.Input ? true : false;
 
             foreach (var item in nodePortMap)
             {

@@ -183,6 +183,39 @@ namespace LCECS.Core
         }
 
         /// <summary>
+        /// 检测组件
+        /// </summary>
+        /// <param name="comName">FullName</param>
+        /// <returns></returns>
+        public bool HasCom(string comName)
+        {
+            return coms.ContainsKey(comName);
+        }
+
+        /// <summary>
+        /// 检测组件
+        /// </summary>
+        /// <param name="comName">FullName</param>
+        /// <returns></returns>
+        public bool HasCom(BaseCom checkCom)
+        {
+            return coms.ContainsKey(checkCom.GetType().FullName);
+        }
+
+        /// <summary>
+        /// 获得组件
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        public T GetOrCreateCom<T>() where T : BaseCom,new()
+        {
+            string typeName = typeof(T).FullName;
+            if (!HasCom(typeName))
+                coms.Add(typeName,new T());
+            return coms[typeName] as T;
+        }
+
+        /// <summary>
         /// 获得组件
         /// </summary>
         /// <typeparam name="T"></typeparam>

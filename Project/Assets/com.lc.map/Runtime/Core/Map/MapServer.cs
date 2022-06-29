@@ -4,6 +4,7 @@ using UnityEngine;
 using LCLoad;
 using LCToolkit;
 using Demo;
+using LCECS.Core;
 
 namespace LCMap
 {
@@ -21,9 +22,9 @@ namespace LCMap
                 if (mapRoot == null)
                 {
                     GameObject root = new GameObject("MapRoot");
-                    root.transform.localPosition = Vector3.zero;
-                    root.transform.localRotation = Quaternion.identity;
-                    root.transform.localScale = Vector3.one;
+                    root.transform.localPosition    = Vector3.zero;
+                    root.transform.localRotation    = Quaternion.identity;
+                    root.transform.localScale       = Vector3.one;
                     mapRoot = root;
                 }
                 return mapRoot;
@@ -42,9 +43,9 @@ namespace LCMap
                 if (playerRoot == null)
                 {
                     GameObject root = new GameObject("PlayerRoot");
-                    root.transform.localPosition = Vector3.zero;
-                    root.transform.localRotation = Quaternion.identity;
-                    root.transform.localScale = Vector3.one;
+                    root.transform.localPosition    = Vector3.zero;
+                    root.transform.localRotation    = Quaternion.identity;
+                    root.transform.localScale       = Vector3.one;
                     playerRoot = root;
                 }
                 return playerRoot;
@@ -81,6 +82,7 @@ namespace LCMap
         public Dictionary<int, MapArea> areaDict = new Dictionary<int, MapArea>();
         //地图配置
         private Dictionary<int, MapModel> mapCnf = new Dictionary<int, MapModel>();
+
         private MapModel GetMapCnf(int mapId)
         {
             if (mapCnf.ContainsKey(mapId))
@@ -185,6 +187,29 @@ namespace LCMap
                 }
             }
             return actors;
+        }
+
+        public ActorObj GetActor(int actorId)
+        {
+            List<ActorObj> actors = GetActors(actorId);
+            if (actors.Count == 0)
+                return null;
+            return actors[0];
+        }
+
+        public IEnumerable<ActorObj> GetActors(string comTypeFullName)
+        {
+            if (PlayerActor.Entity.HasCom(comTypeFullName))
+                yield return PlayerActor;
+
+            foreach (var item in areaDict)
+            {
+                foreach (var actor in item.Value.Actors.Values)
+                {
+                    if (actor.Entity.HasCom(comTypeFullName))
+                        yield return actor;
+                }
+            }
         }
 
         private void CreateMainActor(ActorModel actor)

@@ -41,6 +41,11 @@ namespace LCECS
         /// Collect
         /// </summary>
 		Collect,
+
+        /// <summary>
+        /// Storage
+        /// </summary>
+        Storage,
     }
 }
 

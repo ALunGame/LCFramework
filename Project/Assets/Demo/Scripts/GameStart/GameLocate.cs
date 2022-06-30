@@ -17,17 +17,20 @@ namespace Demo
 
         public static WorkServer WorkServer { get; private set; }
 
+        public static TimerServer TimerServer { get; private set; }
+
         public static void Init(GameCenter center)
         {
             Center = center;
             WorkServer = new WorkServer();
+            TimerServer = new TimerServer();
         }
 
         public static void Clear()
         {
-            Center = null;
+            Center      = null;
             ShapeRender = null;
-            _InputCom = null;
+            _InputCom   = null;
         }
 
         public static void SetShapeRenderCom(ShapeRenderCom shapeRenderCom)

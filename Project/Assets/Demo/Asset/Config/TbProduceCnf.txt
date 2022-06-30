@@ -1,0 +1,1 @@
+﻿[{"mType":"Demo.Config.ProduceCnf","id":1,"time":1,"produceItems":[{"mType":"Demo.BagItem","id":402,"cnt":1,"maxCnt":-1}],"costItems":[{"mType":"Demo.BagItem","id":401,"cnt":1,"maxCnt":-1}]}]

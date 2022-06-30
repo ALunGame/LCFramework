@@ -40,6 +40,9 @@ MonoBehaviour:
   - typeName: TransformSystem
     typeFullName: Demo.System.TransformSystem
     sort: 13
+  - typeName: TimerSystem
+    typeFullName: Demo.System.TimerSystem
+    sort: 13
   - typeName: FollowCameraSystem
     typeFullName: Demo.System.FollowCameraSystem
     sort: 14

@@ -3,6 +3,7 @@ using LCECS.Core;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 namespace Demo.System
 {
@@ -45,6 +46,5 @@ namespace Demo.System
             }
             return currStage + 1;
         }
-
     }
 }

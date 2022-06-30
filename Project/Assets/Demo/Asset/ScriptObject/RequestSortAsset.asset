@@ -48,3 +48,13 @@ MonoBehaviour:
     sort: -1
     isCover: 0
     isCustom: 0
+  - key: Storage
+    name: Storage
+    sort: -1
+    isCover: 0
+    isCustom: 0
+  - key: Produce
+    name: Produce
+    sort: -2
+    isCover: 0
+    isCustom: 0

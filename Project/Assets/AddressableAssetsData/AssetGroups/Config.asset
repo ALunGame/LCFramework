@@ -197,6 +197,18 @@ MonoBehaviour:
     m_Address: TbBehavior_Storage
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 7a0a4a329e9745d4387fb5f26c7262b3
+    m_Address: TbDecision_202
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 3d13a12093581bf439324390b2325d9e
+    m_Address: TbBehavior_Produce
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 9e5b4914010e7754b9f9649aea8ba8be
+    m_Address: TbProduceCnf
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: c106a54d1dad7c34dbca1e47199c97a1, type: 2}
   m_SchemaSet:

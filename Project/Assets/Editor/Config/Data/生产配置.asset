@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-3978737809638206169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8640a39169edcbb47a35d93e0758b63b, type: 3}
+  m_Name: "\u57FA\u7840\u8D44\u6E90\u751F\u4EA7"
+  m_EditorClassIdentifier: 
+  cnfTypeFullName: Demo.Config.ProduceCnf
+  serializedText: '[{"mType":"Demo.Config.ProduceCnf","id":1,"time":1,"produceItems":[{"mType":"Demo.BagItem","id":402,"cnt":1,"maxCnt":-1}],"costItems":[{"mType":"Demo.BagItem","id":401,"cnt":1,"maxCnt":-1}]}]'
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35e3ea5984c9a354baaeb5a6f358ecc9, type: 3}
+  m_Name: "\u751F\u4EA7\u914D\u7F6E"
+  m_EditorClassIdentifier: 
+  configTypeName: ProduceCnf
+  configTypeFullName: Demo.Config.ProduceCnf

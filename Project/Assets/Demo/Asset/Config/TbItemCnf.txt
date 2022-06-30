@@ -1,1 +1,1 @@
-﻿[{"mType":"Demo.Config.ItemCnf","id":401,"name":"\u6728\u6750","sprite":{"mType":"LCToolkit.UnityObjectAsset","assetType":2,"ObjName":"","ObjPath":""}}]
+﻿[{"mType":"Demo.Config.ItemCnf","id":401,"name":"\u6728\u6750","sprite":{"mType":"LCToolkit.UnityObjectAsset","assetType":2,"ObjName":"","ObjPath":""}},{"mType":"Demo.Config.ItemCnf","id":402,"name":"\u6728\u677F","sprite":{"mType":"LCToolkit.UnityObjectAsset","assetType":2,"ObjName":"","ObjPath":""}}]

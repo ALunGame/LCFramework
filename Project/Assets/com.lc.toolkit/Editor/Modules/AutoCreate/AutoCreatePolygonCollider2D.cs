@@ -70,8 +70,6 @@ namespace LCToolkit
 			var paths = BuildColliderPaths(edges);
 			ApplyPathsToPolygonCollider(paths, polyCollider);
             polyCollider.transform.SetParent(selGo.transform);
-            polyCollider.isTrigger = true;
-
             return polyCollider.gameObject;
         }
 
@@ -104,7 +102,6 @@ namespace LCToolkit
             var paths = BuildColliderPaths(edges);
             ApplyPathsToPolygonCollider(paths, polyCollider);
             polyCollider.transform.SetParent(selGo.transform);
-            polyCollider.isTrigger = true;
             return polyCollider.gameObject;
         }
 
@@ -138,8 +135,6 @@ namespace LCToolkit
             var paths = BuildColliderPaths(edges);
             ApplyPathsToPolygonCollider(paths, polyCollider);
             polyCollider.transform.SetParent(selGo.transform);
-            polyCollider.isTrigger = true;
-
             return polyCollider.gameObject;
         }
 

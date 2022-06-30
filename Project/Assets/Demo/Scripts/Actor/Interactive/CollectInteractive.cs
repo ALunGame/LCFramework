@@ -1,5 +1,4 @@
-﻿using Demo.Com;
-using DG.Tweening;
+﻿using DG.Tweening;
 using LCMap;
 using UnityEngine;
 
@@ -20,9 +19,9 @@ namespace Demo
         protected override void OnExecute(ActorObj executeActor)
         {
             BagCom owerBagCom = actor.Entity.GetCom<BagCom>();
-            CollectCom executeBagCom = executeActor.Entity.GetCom<CollectCom>();
+            BagCom executeBagCom = executeActor.Entity.GetCom<BagCom>();
 
-            if (executeBagCom.collectItem.CheckIsOutMax())
+            if (executeBagCom.CheckItemIsOutMax(collectId))
             {
                 GameLocate.Log.LogError("采集失败，超过上限", collectId, collectCnt);
                 ExecuteFinish();
@@ -36,7 +35,7 @@ namespace Demo
                 return;
             }
 
-            executeBagCom.collectItem.Add(collectCnt);
+            executeBagCom.AddItem(collectId,collectCnt);
             actor.GetStateGo().transform.DOComplete(false);
             actor.GetStateGo().transform.DOPunchPosition(new Vector3(-0.2f * actor.GetDirValue(), 0, 0), 0.1f, 1, 0);
             ExecuteFinish();

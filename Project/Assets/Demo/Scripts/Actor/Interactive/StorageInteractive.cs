@@ -7,17 +7,21 @@ namespace Demo
     {
         protected override void OnExecute(ActorObj executeActor)
         {
-            BuildingCom owerBuildingCom    = actor.Entity.GetCom<BuildingCom>();
-            CollectCom executeCollectCom   = executeActor.Entity.GetCom<CollectCom>();
+            BuildingCom owerBuildingCom     = actor.Entity.GetCom<BuildingCom>();
+            BagCom owerBuildingBagCom       = actor.Entity.GetCom<BagCom>();
 
-            if (executeCollectCom.collectItem.cnt <= 0)
+            CollectCom executeCollectCom    = executeActor.Entity.GetCom<CollectCom>();
+            BagCom executeBagCom            = executeActor.Entity.GetCom<BagCom>();
+
+            BagItem storageItem = executeBagCom.GetBagItem(executeCollectCom.collectActorId);
+            if (storageItem.cnt <= 0)
             {
-                GameLocate.Log.LogError("存储失败，没有物品", executeCollectCom.collectItem);
+                GameLocate.Log.LogError("存储失败，没有物品", executeCollectCom.collectActorId);
                 ExecuteFinish();
                 return;
             }
 
-            executeCollectCom.collectItem = owerBuildingCom.Storage(executeActor, executeCollectCom.collectItem);
+            executeBagCom.CoverItem(owerBuildingCom.Storage(executeActor, storageItem, owerBuildingBagCom));
             ExecuteFinish();
         }
     }

@@ -44,7 +44,7 @@ namespace Demo.Tree
 
     #region 交互
 
-    [NodeMenuItem("演员/AI/移动到采集点")]
+    [NodeMenuItem("演员/工作/移动到采集点")]
     public class Tree_Bev_Act_MoveToCollect : Base_BEV_ACT_Node
     {
         public override string Title { get => "移动到采集点"; set => base.Title = value; }
@@ -56,7 +56,7 @@ namespace Demo.Tree
         }
     }
 
-    [NodeMenuItem("演员/AI/移动到存储建筑")]
+    [NodeMenuItem("演员/工作/移动到存储建筑")]
     public class Tree_Bev_Act_MoveToStorage : Base_BEV_ACT_Node
     {
         public override string Title { get => "移动到存储建筑"; set => base.Title = value; }
@@ -68,7 +68,19 @@ namespace Demo.Tree
         }
     }
 
-    [NodeMenuItem("演员/AI/播放交互动画")]
+    [NodeMenuItem("演员/工作/移动到生产建筑")]
+    public class Tree_Bev_Act_MoveToProduce : Base_BEV_ACT_Node
+    {
+        public override string Title { get => "移动到生产建筑"; set => base.Title = value; }
+
+        public override Node CreateRuntimeNode()
+        {
+            BEV_ACT_MoveToProduceActor node = new BEV_ACT_MoveToProduceActor();
+            return node;
+        }
+    }
+
+    [NodeMenuItem("演员/交互/播放交互动画")]
     public class Tree_Bev_Act_PlayInteractiveAnim : Base_BEV_ACT_Node
     {
         public override string Title { get => "播放交互动画"; set => base.Title = value; }
@@ -88,10 +100,10 @@ namespace Demo.Tree
         }
     }
 
-    [NodeMenuItem("演员/AI/执行交互")]
+    [NodeMenuItem("演员/交互/执行交互")]
     public class Tree_Bev_Act_ExecuteInteractive : Base_BEV_ACT_Node
     {
-        public override string Title { get => "移动到采集点"; set => base.Title = value; }
+        public override string Title { get => $"执行{interactiveName}交互"; set => base.Title = value; }
 
         public string interactiveName;
 

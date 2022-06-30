@@ -15,14 +15,17 @@ namespace Demo.Com
         public ActorObj buildingActor;
         [NonSerialized]
         public BuildingCom buildingCom;
+        [NonSerialized]
+        public BagCom buildingBagCom;
 
         [NonSerialized]
         public Dictionary<int, List<ActorObj>> workers = new Dictionary<int, List<ActorObj>>();
 
         public void SetBuilding()
         {
-            buildingActor = MapLocate.Map.GetActor(buildingActorId);
-            buildingCom   = buildingActor.Entity.GetCom<BuildingCom>();
+            buildingActor       = MapLocate.Map.GetActor(buildingActorId);
+            buildingCom         = buildingActor.Entity.GetCom<BuildingCom>();
+            buildingBagCom      = buildingActor.Entity.GetCom<BagCom>();
 
             List<ActorObj> actors = new List<ActorObj>();
             foreach (var item in workers)
@@ -30,7 +33,7 @@ namespace Demo.Com
 
             workers.Clear();
 
-            foreach (var item in buildingCom.storageItems)
+            foreach (var item in buildingBagCom.itemlist)
                 workers.Add(item.id, new List<ActorObj>());
 
             foreach (var item in actors)
@@ -53,7 +56,7 @@ namespace Demo.Com
             if (workers[findKey].Contains(workerActor))
                 return;
             workers[findKey].Add(workerActor);
-            workerActor.Entity.GetOrCreateCom<CollectCom>().ChangeCollectActorId(findKey);
+            workerActor.Entity.GetOrCreateCom<CollectCom>().collectActorId = findKey;
         }
 
         public void RemoveWorker(ActorObj workerActor)

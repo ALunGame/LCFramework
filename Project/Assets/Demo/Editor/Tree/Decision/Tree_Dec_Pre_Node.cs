@@ -66,4 +66,40 @@ namespace Demo.Tree
     }
 
     #endregion
+
+    #region 生产
+
+    [NodeMenuItem("演员/生产/检测是否可以生产")]
+    public class Tree_Dec_Pre_CheckCanProduce : Base_DEC_PRE_Node
+    {
+        public override string Title { get => "检测是否可以生产"; set => base.Title = value; }
+
+        public override NodePremise CreateRuntimeNode()
+        {
+            DEC_PRE_CheckCanProduce premise = new DEC_PRE_CheckCanProduce();
+            return premise;
+        }
+    }
+
+    #endregion
+
+    #region 全局
+
+    [NodeMenuItem("全局/检测昼夜阶段")]
+    public class Tree_Dec_Pre_CheckDayNightStage : Base_DEC_PRE_Node
+    {
+        public override string Title { get => "检测昼夜阶段"; set => base.Title = value; }
+
+        [NodeValue("检测昼夜阶段")]
+        public DayNightStage checkStage;
+
+        public override NodePremise CreateRuntimeNode()
+        {
+            DEC_PRE_CheckDayNightStage premise = new DEC_PRE_CheckDayNightStage();
+            premise.checkStage = checkStage;
+            return premise;
+        }
+    }
+
+    #endregion
 }

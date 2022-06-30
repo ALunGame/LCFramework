@@ -82,7 +82,7 @@ namespace Demo
             _DecCenter.Start_ThreadUpdate();
 
             GameLocate.WorkServer.AfterMapInit();
-
+            GameLocate.TimerServer.Init();
             //string uid = DialogLocate.Dialog.CreateDialog(new AddDialogInfo(DialogType.Bubble, 1001, 1));
             //DialogLocate.Dialog.Play(uid);
         }

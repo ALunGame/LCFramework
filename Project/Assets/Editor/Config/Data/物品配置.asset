@@ -27,4 +27,4 @@ MonoBehaviour:
   m_Name: "\u57FA\u7840\u8D44\u6E90"
   m_EditorClassIdentifier: 
   cnfTypeFullName: Demo.Config.ItemCnf
-  serializedText: '[{"mType":"Demo.Config.ItemCnf","id":401,"name":"\u6728\u6750","sprite":{"mType":"LCToolkit.UnityObjectAsset","assetType":2,"ObjName":"","ObjPath":""}}]'
+  serializedText: '[{"mType":"Demo.Config.ItemCnf","id":401,"name":"\u6728\u6750","sprite":{"mType":"LCToolkit.UnityObjectAsset","assetType":2,"ObjName":"","ObjPath":""}},{"mType":"Demo.Config.ItemCnf","id":402,"name":"\u6728\u677F","sprite":{"mType":"LCToolkit.UnityObjectAsset","assetType":2,"ObjName":"","ObjPath":""}}]'

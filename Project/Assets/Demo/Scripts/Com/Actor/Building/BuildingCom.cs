@@ -34,17 +34,16 @@ namespace Demo.Com
         [NonSerialized]
         public Dictionary<string, List<StorageRecord>> stealRecords = new Dictionary<string, List<StorageRecord>>();
 
-        //存储的物品
-        public List<BagItem> storageItems   = new List<BagItem>();
-
         /// <summary>
         /// 存储
         /// </summary>
-        /// <param name="actor"></param>
+        /// <param name="actor">存储的演员</param>
+        /// <param name="bagItem">存储的物品</param>
+        /// <param name="bagCom">存储的背包</param>
         /// <param name="bagItem">返回剩余的物品</param>
-        public BagItem Storage(ActorObj actor, BagItem bagItem)
+        public BagItem Storage(ActorObj actor, BagItem bagItem, BagCom bagCom)
         {
-            foreach (var item in storageItems)
+            foreach (var item in bagCom.itemlist)
             {
                 if (item.id == bagItem.id)
                 {

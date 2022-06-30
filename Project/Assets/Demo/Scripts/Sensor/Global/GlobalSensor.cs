@@ -18,5 +18,22 @@ namespace Demo
         /// 当前跟随演员
         /// </summary>
         public BindableValue<ActorObj> FollowActor = new BindableValue<ActorObj>();
+
+        private DayNightCom dayNightCom;
+        public DayNightCom GetDayNightCom()
+        {
+            if (dayNightCom == null)
+                dayNightCom = ECSLocate.ECS.GetWorld().GetCom<DayNightCom>();
+            return dayNightCom;
+        }
+
+        /// <summary>
+        /// 获得当前昼夜阶段
+        /// </summary>
+        /// <returns></returns>
+        public DayNightStage CurrDayNightStage()
+        {
+            return GetDayNightCom().GetStage();
+        }
     }
 }

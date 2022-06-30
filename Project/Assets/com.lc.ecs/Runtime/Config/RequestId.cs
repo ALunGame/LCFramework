@@ -46,6 +46,11 @@ namespace LCECS
         /// Storage
         /// </summary>
         Storage,
+
+        /// <summary>
+        /// Produce
+        /// </summary>
+        Produce,
     }
 }
 

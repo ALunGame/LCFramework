@@ -71,7 +71,7 @@ namespace LCToolkit.Server
         public void LogR(string log, params object[] args)
         {
 #if UNITY_EDITOR
-            PrintLog(LogType.LogWarn, log, args);
+            PrintLog(LogType.LogError, log, args);
 #endif
         }
 

@@ -34,7 +34,10 @@ namespace Demo.System
         private bool CheckCollider(Vector2 point)
         {
             Collider2D[] results = new Collider2D[4];
-            int colliderCnt  = Physics2D.OverlapCircleNonAlloc(point, CollisionRadius, results, LayerMask.GetMask("Map"));
+            int colliderCnt = Physics2D.OverlapCircleNonAlloc(point, CollisionRadius, results, LayerMask.GetMask("Map"));
+
+            //RaycastHit2D[] results = new RaycastHit2D[4];
+            //int colliderCnt  = Physics2D.CircleCastNonAlloc(point, CollisionRadius,Vector2.zero, results, LayerMask.GetMask("Map"));
             return colliderCnt > 0;
         }
     }

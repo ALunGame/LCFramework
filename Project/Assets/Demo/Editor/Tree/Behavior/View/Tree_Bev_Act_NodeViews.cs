@@ -15,6 +15,7 @@ namespace Demo.Tree
         {
             {"采集",typeof(CollectInteractive)},
             {"存储",typeof(StorageInteractive)},
+            {"生产",typeof(ProduceInteractive)},
         };
 
         private Button btnSelInteractive;

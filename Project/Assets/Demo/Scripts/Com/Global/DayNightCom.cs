@@ -1,7 +1,10 @@
-﻿using LCECS.Core;
+﻿using DG.Tweening;
+using LCECS.Core;
 using LCToolkit;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 namespace Demo.Com
 {
@@ -28,6 +31,13 @@ namespace Demo.Com
         Night,
     }
 
+    public class DayNightStageInfo
+    {
+        public DayNightStage stage;
+        public float intensity;
+        public Color color;
+    }
+
     /// <summary>
     /// 昼夜组件
     /// </summary>
@@ -36,22 +46,39 @@ namespace Demo.Com
         /// <summary>
         /// 早晨总时长
         /// </summary>
+        [NonSerialized]
         public int MorningTotalSecond   = 60;
         /// <summary>
         /// 白天总时长
         /// </summary>
+        [NonSerialized]
         public int DayTotalSecond       = 1200;
         /// <summary>
         /// 黄昏总时长
         /// </summary>
+        [NonSerialized]
         public int NightFullTotalSecond = 60;
         /// <summary>
         /// 夜晚总时长
         /// </summary>
+        [NonSerialized]
         public int NightTotalSecond     = 540;
+
 
         [NonSerialized]
         private BindableValue<DayNightStage> currStage = new BindableValue<DayNightStage>();
+
+        [NonSerialized]
+        public Light2D GlobalLight;
+        [NonSerialized]
+        public Tween Tw_GlobalLightIntensity;
+        [NonSerialized]
+        public Tween Tw_GlobalLightColor;
+        [NonSerialized]
+        public float GlobalLightFadeTime = 30;  //全局灯光渐变时间
+
+
+        public List<DayNightStageInfo> stageInfos = new List<DayNightStageInfo>();
 
         /// <summary>
         /// 当前阶段剩余时间
@@ -61,8 +88,10 @@ namespace Demo.Com
         protected override void OnInit(GameObject go)
         {
             base.OnInit(go);
+            GlobalLight = GameLocate.Center.GetComponentInChildren<Light2D>();
             currStage.SetValueWithoutNotify(DayNightStage.Morning);
             CurrStageLeftTime = GetStageTotalSecond(DayNightStage.Morning);
+            SetLight(GetStage());
         }
 
         #region Set
@@ -83,8 +112,27 @@ namespace Demo.Com
         {
             if (currStage.Value == stage)
                 return;
+            GameLocate.Log.LogWarning($"昼夜变化{currStage.Value}>>>{stage}");
             currStage.Value   = stage;
             CurrStageLeftTime = GetStageTotalSecond(stage);
+            PlayStageLight(stage);
+        }
+
+        private void PlayStageLight(DayNightStage stage)
+        {
+            DayNightStageInfo stageInfo = GetStageInfo(stage);
+            Tw_GlobalLightColor.Complete(false);
+            Tw_GlobalLightIntensity.Complete(false);
+
+            Tw_GlobalLightColor = DOTween.To(() => GlobalLight.color, x => GlobalLight.color = x, stageInfo.color, GlobalLightFadeTime);
+            Tw_GlobalLightIntensity = DOTween.To(() => GlobalLight.intensity, x => GlobalLight.intensity = x, stageInfo.intensity, GlobalLightFadeTime);
+        }
+
+        private void SetLight(DayNightStage stage)
+        {
+            DayNightStageInfo stageInfo = GetStageInfo(stage);
+            GlobalLight.color = stageInfo.color;
+            GlobalLight.intensity = stageInfo.intensity;
         }
 
         #endregion
@@ -92,7 +140,7 @@ namespace Demo.Com
         #region Get
 
         /// <summary>
-        /// 设置昼夜阶段
+        /// 获得当前昼夜阶段
         /// </summary>
         public DayNightStage GetStage()
         {
@@ -120,6 +168,24 @@ namespace Demo.Com
                     break;
             }
             return 0;
+        }
+
+        /// <summary>
+        /// 获得昼夜阶段信息
+        /// </summary>
+        /// <param name="stage"></param>
+        /// <returns></returns>
+        public DayNightStageInfo GetStageInfo(DayNightStage stage)
+        {
+            for (int i = 0; i < stageInfos.Count; i++)
+            {
+                if (stageInfos[i].stage == stage)
+                {
+                    return stageInfos[i];
+                }
+            }
+            GameLocate.Log.LogError("获得昼夜阶段信息出错，没有该阶段信息", stage);
+            return stageInfos[0];
         }
 
         #endregion

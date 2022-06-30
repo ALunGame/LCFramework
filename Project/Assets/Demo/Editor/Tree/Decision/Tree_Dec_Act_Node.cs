@@ -125,4 +125,24 @@ namespace Demo.Tree
     }
 
     #endregion
+
+    #region 基础
+
+    [NodeMenuItem("演员/基础/发送请求")]
+    public class Tree_Dec_Act_PushRequset : Base_DEC_Act_Node
+    {
+        public override string Title { get => $"发送请求{requestId}"; set => base.Title = value; }
+
+        [NodeValue("请求Id")]
+        public RequestId requestId;
+
+        public override Node CreateRuntimeNode()
+        {
+            DEC_ACT_PushRequset node = new DEC_ACT_PushRequset();
+            node.requestId = requestId;
+            return node;
+        }
+    }
+
+    #endregion
 }

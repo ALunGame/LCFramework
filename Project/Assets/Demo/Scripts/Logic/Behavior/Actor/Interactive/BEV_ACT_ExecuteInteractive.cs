@@ -34,6 +34,9 @@ namespace Demo.Behavior
             //目标演员
             ActorObj targetActor = LCMap.MapLocate.Map.GetActor(wData.Blackboard[BEV_BlackboardKey.InteractiveActorUid].ToString());
             targetActor.ExecuteInteractive(Type.GetType(interactiveTypeName), actorObj);
+
+            GameLocate.Log.LogR("开始执行交互", wData.Uid, userData.currExecuteTypeName);
+
         }
 
         protected override int OnRunning(NodeData wData)
@@ -47,8 +50,10 @@ namespace Demo.Behavior
 
             if (targetActor.CurrInteractive == null)
                 return NodeState.FINISHED;
-            if (targetActor.CurrInteractive.GetType().Name == userData.currExecuteTypeName)
+            if (targetActor.CurrInteractive.GetType().FullName == userData.currExecuteTypeName)
                 return NodeState.EXECUTING;
+            GameLocate.Log.LogR("执行交互完成", wData.Uid, targetActor.CurrInteractive.GetType().FullName, userData.currExecuteTypeName);
+
             return NodeState.FINISHED;
         }
 
@@ -57,6 +62,8 @@ namespace Demo.Behavior
             //获取环境数据
             NodeActionContext context = GetContext<NodeActionContext>(wData);
             ExecuteInteractiveData userData = context.GetUserData<ExecuteInteractiveData>();
+            GameLocate.Log.LogR("执行交互结束", wData.Uid, userData.currExecuteTypeName);
+
             userData.currExecuteTypeName = "";
         }
     }

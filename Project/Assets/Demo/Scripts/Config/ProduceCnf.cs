@@ -9,7 +9,7 @@ namespace Demo.Config
         [ConfigKey(1, "生产Id")]
         public int id;
 
-        [ConfigKey(1, "生产时间")]
+        [ConfigValue("生产时间")]
         public float time;
 
         [ConfigValue("生产物品")]
@@ -23,6 +23,22 @@ namespace Demo.Config
             ProduceCnf cnf = new ProduceCnf();
             cnf.id = id++;
             return cnf;
+        }
+
+        public bool CheckCanMake(Dictionary<int, int> itemDict)
+        {
+            foreach (var costItem in costItems)
+            {
+                if (itemDict.ContainsKey(costItem.id))
+                {
+                    int cnt = itemDict[costItem.id];
+                    if (cnt < costItem.cnt)
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
         }
     }
 }

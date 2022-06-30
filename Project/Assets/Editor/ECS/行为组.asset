@@ -120,6 +120,22 @@ MonoBehaviour:
     mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089],[LCNode.Model.BaseNode,
     Assembly-CSharp-Editor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]","36cf82fd-22cd-4f65-8557-1d9bc62760cd":{"mType":"LCECS.Tree.Tree_RootNode","childNode":null,"premise":null,"guid":"36cf82fd-22cd-4f65-8557-1d9bc62760cd","position":{"mType":"UnityEngine.Vector2","x":349.0,"y":-25.0}},"c7669bfa-5add-48c5-bcee-c8d963310ea2":{"mType":"Demo.Tree.Tree_Bev_Act_PushSkill","node":null,"premise":null,"guid":"c7669bfa-5add-48c5-bcee-c8d963310ea2","position":{"mType":"UnityEngine.Vector2","x":335.0,"y":121.0}}},"connections":[{"mType":"LCNode.Model.BaseConnection","from":"36cf82fd-22cd-4f65-8557-1d9bc62760cd","fromPortName":"\u5B50\u8282\u70B9","to":"c7669bfa-5add-48c5-bcee-c8d963310ea2","toPortName":"\u8282\u70B9"}]}'
   ReqId: 2
+--- !u!114 &1058956805112325390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5a129348ce8e4346a4ecfce78a2c916, type: 3}
+  m_Name: behavior_Produce
+  m_EditorClassIdentifier: 
+  serializedGraph: '{"mType":"LCECS.Tree.Behavior","pos":{"mType":"UnityEngine.Vector3","x":-283.0,"y":-46.0,"z":0.0},"zoom":{"mType":"UnityEngine.Vector3","x":1.52087497711182,"y":1.52087497711182,"z":1.0},"nodes":{"mType":"System.Collections.Generic.Dictionary`2[[System.String,
+    mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089],[LCNode.Model.BaseNode,
+    Assembly-CSharp-Editor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]","8990d4f3-d123-457f-8ad7-217f5dc8c430":{"mType":"LCECS.Tree.Tree_RootNode","childNode":null,"premise":null,"guid":"8990d4f3-d123-457f-8ad7-217f5dc8c430","position":{"mType":"UnityEngine.Vector2","x":565.0,"y":7.0},"inIndex":-1,"outIndex":-1},"2ead56db-a96f-4032-b113-2f7fca9d8aae":{"mType":"LCECS.Tree.Tree_SequenceNode","childNodes":null,"parentNode":null,"premise":null,"guid":"2ead56db-a96f-4032-b113-2f7fca9d8aae","position":{"mType":"UnityEngine.Vector2","x":547.0,"y":137.0},"inIndex":-1,"outIndex":-1},"ca539119-9d66-401e-bc8f-79806c426502":{"mType":"Demo.Tree.Tree_Bev_Act_MoveToProduce","node":null,"premise":null,"guid":"ca539119-9d66-401e-bc8f-79806c426502","position":{"mType":"UnityEngine.Vector2","x":316.0,"y":289.0},"inIndex":0,"outIndex":-1},"6e498cfd-5878-4a70-9717-589a2bbd5047":{"mType":"Demo.Tree.Tree_Bev_Act_PlayInteractiveAnim","animTime":0.3,"animCnt":1,"node":null,"premise":null,"guid":"6e498cfd-5878-4a70-9717-589a2bbd5047","position":{"mType":"UnityEngine.Vector2","x":497.0,"y":282.0},"inIndex":1,"outIndex":-1},"870b01cc-de8a-4511-bbb4-6f523ebcba18":{"mType":"Demo.Tree.Tree_Bev_Act_ExecuteInteractive","interactiveName":"\u751F\u4EA7","node":null,"premise":null,"guid":"870b01cc-de8a-4511-bbb4-6f523ebcba18","position":{"mType":"UnityEngine.Vector2","x":687.0,"y":289.0},"inIndex":2,"outIndex":-1}},"connections":[{"mType":"LCNode.Model.BaseConnection","from":"8990d4f3-d123-457f-8ad7-217f5dc8c430","fromPortName":"\u5B50\u8282\u70B9","to":"2ead56db-a96f-4032-b113-2f7fca9d8aae","toPortName":"\u7236\u8282\u70B9"},{"mType":"LCNode.Model.BaseConnection","from":"2ead56db-a96f-4032-b113-2f7fca9d8aae","fromPortName":"\u5B50\u8282\u70B9","to":"ca539119-9d66-401e-bc8f-79806c426502","toPortName":"\u8282\u70B9"},{"mType":"LCNode.Model.BaseConnection","from":"2ead56db-a96f-4032-b113-2f7fca9d8aae","fromPortName":"\u5B50\u8282\u70B9","to":"6e498cfd-5878-4a70-9717-589a2bbd5047","toPortName":"\u8282\u70B9"},{"mType":"LCNode.Model.BaseConnection","from":"2ead56db-a96f-4032-b113-2f7fca9d8aae","fromPortName":"\u5B50\u8282\u70B9","to":"870b01cc-de8a-4511-bbb4-6f523ebcba18","toPortName":"\u8282\u70B9"}]}'
+  ReqId: 8
 --- !u!114 &4408885604435871415
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -87,6 +87,11 @@ namespace Demo.Com
             timerInfos.Remove(timerInfo);
         }
 
-
+        public void AddTimer(TimerInfo timerInfo)
+        {
+            if (timerInfos.Contains(timerInfo))
+                timerInfos.Remove(timerInfo);
+            timerInfos.Add(timerInfo);
+        }
     } 
 }

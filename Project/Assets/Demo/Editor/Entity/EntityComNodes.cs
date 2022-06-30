@@ -121,13 +121,9 @@ namespace Demo
         public override string Tooltip { get => "建筑组件"; set => base.Tooltip = value; }
         public override Type RuntimeNode => typeof(BuildingCom);
 
-        [NodeValue("存储的物品")]
-        public List<BagItem> storageItems = new List<BagItem>();
-
         public override BaseCom CreateRuntimeNode()
         {
             BuildingCom com = new BuildingCom();
-            com.storageItems = storageItems;
             return com;
         }
     }
@@ -229,48 +225,6 @@ namespace Demo
     }
 
 
-    [NodeMenuItem("演员/工作/工人组件")]
-    public class Entity_Node_WorkerCom : Entity_ComNode
-    {
-        public override string Title { get => "工人组件"; set => base.Title = value; }
-        public override string Tooltip { get => "工人组件"; set => base.Tooltip = value; }
-        public override Type RuntimeNode => typeof(WorkerCom);
-
-        /// <summary>
-        /// 管理者演员
-        /// </summary>
-        [NodeValue("管理者演员Id")]
-        public int managerActorId;
-
-        public override BaseCom CreateRuntimeNode()
-        {
-            WorkerCom com = new WorkerCom();
-            com.managerActorId = managerActorId;
-            return com;
-        }
-    }
-
-    [NodeMenuItem("演员/工作/管理者组件")]
-    public class Entity_Node_ManagerCom : Entity_ComNode
-    {
-        public override string Title { get => "管理者组件"; set => base.Title = value; }
-        public override string Tooltip { get => "管理者组件"; set => base.Tooltip = value; }
-        public override Type RuntimeNode => typeof(ManagerCom);
-
-        /// <summary>
-        /// 管理者演员
-        /// </summary>
-        [NodeValue("建筑演员Id")]
-        public int buildingActorId;
-
-        public override BaseCom CreateRuntimeNode()
-        {
-            ManagerCom com = new ManagerCom();
-            com.buildingActorId = buildingActorId;
-            return com;
-        }
-    }
-
     #region AI
 
     [NodeMenuItem("演员/AI/徘徊组件")]
@@ -333,6 +287,73 @@ namespace Demo
         public override BaseCom CreateRuntimeNode()
         {
             WayPointMoveCom com = new WayPointMoveCom();
+            return com;
+        }
+    }
+
+    #endregion
+
+    #region 工作
+
+    [NodeMenuItem("演员/工作/工人组件")]
+    public class Entity_Node_WorkerCom : Entity_ComNode
+    {
+        public override string Title { get => "工人组件"; set => base.Title = value; }
+        public override string Tooltip { get => "工人组件"; set => base.Tooltip = value; }
+        public override Type RuntimeNode => typeof(WorkerCom);
+
+        /// <summary>
+        /// 管理者演员
+        /// </summary>
+        [NodeValue("管理者演员Id")]
+        public int managerActorId;
+
+        public override BaseCom CreateRuntimeNode()
+        {
+            WorkerCom com = new WorkerCom();
+            com.managerActorId = managerActorId;
+            return com;
+        }
+    }
+
+    [NodeMenuItem("演员/工作/管理者组件")]
+    public class Entity_Node_ManagerCom : Entity_ComNode
+    {
+        public override string Title { get => "管理者组件"; set => base.Title = value; }
+        public override string Tooltip { get => "管理者组件"; set => base.Tooltip = value; }
+        public override Type RuntimeNode => typeof(ManagerCom);
+
+        /// <summary>
+        /// 管理者演员
+        /// </summary>
+        [NodeValue("建筑演员Id")]
+        public int buildingActorId;
+
+        public override BaseCom CreateRuntimeNode()
+        {
+            ManagerCom com = new ManagerCom();
+            com.buildingActorId = buildingActorId;
+            return com;
+        }
+    }
+
+    [NodeMenuItem("演员/工作/生产组件")]
+    public class Entity_Node_ProduceCom : Entity_ComNode
+    {
+        public override string Title { get => "生产组件"; set => base.Title = value; }
+        public override string Tooltip { get => "生产组件"; set => base.Tooltip = value; }
+        public override Type RuntimeNode => typeof(ProduceCom);
+
+        /// <summary>
+        /// 生产id
+        /// </summary>
+        [NodeValue("生产id")]
+        public List<int> produceIds = new List<int>();
+
+        public override BaseCom CreateRuntimeNode()
+        {
+            ProduceCom com = new ProduceCom();
+            com.produceIds = produceIds;
             return com;
         }
     }
@@ -423,6 +444,38 @@ namespace Demo
         public override BaseCom CreateRuntimeNode()
         {
             InputCom com = new InputCom();
+            return com;
+        }
+    }
+
+    [NodeMenuItem("全局/计时器组件")]
+    public class Entity_Node_TimerCom : Entity_ComNode
+    {
+        public override string Title { get => "计时器组件"; set => base.Title = value; }
+        public override string Tooltip { get => "计时器组件"; set => base.Tooltip = value; }
+        public override Type RuntimeNode => typeof(TimerCom);
+
+        public override BaseCom CreateRuntimeNode()
+        {
+            TimerCom com = new TimerCom();
+            return com;
+        }
+    }
+
+    [NodeMenuItem("全局/昼夜组件")]
+    public class Entity_Node_DayNightCom : Entity_ComNode
+    {
+        public override string Title { get => "昼夜组件"; set => base.Title = value; }
+        public override string Tooltip { get => "昼夜组件"; set => base.Tooltip = value; }
+        public override Type RuntimeNode => typeof(DayNightCom);
+
+        [NodeValue("昼夜阶段信息")]
+        public List<DayNightStageInfo> stageInfos = new List<DayNightStageInfo>();
+
+        public override BaseCom CreateRuntimeNode()
+        {
+            DayNightCom com = new DayNightCom();
+            com.stageInfos = stageInfos;
             return com;
         }
     }

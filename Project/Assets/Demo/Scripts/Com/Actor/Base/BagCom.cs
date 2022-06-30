@@ -95,5 +95,16 @@ namespace Demo
         {
             return GetBagItem(itemId).CheckIsOutMax();
         }
+
+        public void CoverItem(BagItem bagItem)
+        {
+            for (int i = 0; i < itemlist.Count; i++)
+            {
+                if (itemlist[i].id == bagItem.id)
+                {
+                    itemlist[i] = bagItem;
+                }
+            }
+        }
     }
 }

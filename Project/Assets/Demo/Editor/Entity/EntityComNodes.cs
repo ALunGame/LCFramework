@@ -121,9 +121,13 @@ namespace Demo
         public override string Tooltip { get => "建筑组件"; set => base.Tooltip = value; }
         public override Type RuntimeNode => typeof(BuildingCom);
 
+        [NodeValue("建筑类型")]
+        public BuildingType buildingType;
+
         public override BaseCom CreateRuntimeNode()
         {
             BuildingCom com = new BuildingCom();
+            com.buildingType = buildingType;
             return com;
         }
     }

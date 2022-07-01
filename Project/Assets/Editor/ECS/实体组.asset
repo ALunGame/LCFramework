@@ -152,6 +152,24 @@ MonoBehaviour:
   entityId: 202
   decTree: 202
   decGroup: 0
+--- !u!114 &7651210657294502954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff61f231dc79c984c8042c61b477a480, type: 3}
+  m_Name: entity_320
+  m_EditorClassIdentifier: 
+  serializedGraph: '{"mType":"LCECS.EntityGraph.EntityGraph","pos":{"mType":"UnityEngine.Vector3","x":-231.0,"y":123.0,"z":0.0},"zoom":{"mType":"UnityEngine.Vector3","x":1.0,"y":1.0,"z":1.0},"nodes":{"mType":"System.Collections.Generic.Dictionary`2[[System.String,
+    mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089],[LCNode.Model.BaseNode,
+    Assembly-CSharp-Editor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]","161dcee5-8b8b-4a06-83ae-6b328d1c51dd":{"mType":"LCECS.EntityGraph.Entity_Node","coms":null,"name":"\u6751\u6C11\u4F11\u606F\u5EFA\u7B51","guid":"161dcee5-8b8b-4a06-83ae-6b328d1c51dd","position":{"mType":"UnityEngine.Vector2","x":542.0,"y":239.0},"inIndex":-1,"outIndex":-1},"6d15c72a-917a-437d-aaa8-908e92ac6b1c":{"mType":"Demo.Entity_Node_BuildingCom","buildingType":1,"parentNode":null,"isActive":true,"guid":"6d15c72a-917a-437d-aaa8-908e92ac6b1c","position":{"mType":"UnityEngine.Vector2","x":364.0,"y":395.0},"inIndex":0,"outIndex":-1},"b0bb69e6-d74e-45ec-8b8d-cc93e6f9818c":{"mType":"Demo.Entity_Node_TransformCom","Dir":2,"parentNode":null,"isActive":true,"guid":"b0bb69e6-d74e-45ec-8b8d-cc93e6f9818c","position":{"mType":"UnityEngine.Vector2","x":651.0,"y":395.0},"inIndex":1,"outIndex":-1}},"connections":[{"mType":"LCNode.Model.BaseConnection","from":"161dcee5-8b8b-4a06-83ae-6b328d1c51dd","fromPortName":"\u7EC4\u4EF6\u5217\u8868","to":"6d15c72a-917a-437d-aaa8-908e92ac6b1c","toPortName":"\u7236\u8282\u70B9"},{"mType":"LCNode.Model.BaseConnection","from":"161dcee5-8b8b-4a06-83ae-6b328d1c51dd","fromPortName":"\u7EC4\u4EF6\u5217\u8868","to":"b0bb69e6-d74e-45ec-8b8d-cc93e6f9818c","toPortName":"\u7236\u8282\u70B9"}]}'
+  entityId: 320
+  decTree: 0
+  decGroup: 1
 --- !u!114 &7813292520208408211
 MonoBehaviour:
   m_ObjectHideFlags: 0

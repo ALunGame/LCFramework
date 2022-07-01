@@ -15,7 +15,7 @@ MonoBehaviour:
   requests:
   - key: None
     name: None
-    sort: 0
+    sort: 12
     isCover: 0
     isCustom: 0
   - key: Move
@@ -56,5 +56,15 @@ MonoBehaviour:
   - key: Produce
     name: Produce
     sort: -2
+    isCover: 0
+    isCustom: 0
+  - key: Rest
+    name: Rest
+    sort: 11
+    isCover: 0
+    isCustom: 0
+  - key: ActorSetActive
+    name: ActorSetActive
+    sort: 11
     isCover: 0
     isCustom: 0

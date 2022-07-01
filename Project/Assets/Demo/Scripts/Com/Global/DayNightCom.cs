@@ -89,8 +89,8 @@ namespace Demo.Com
         {
             base.OnInit(go);
             GlobalLight = GameLocate.Center.GetComponentInChildren<Light2D>();
-            currStage.SetValueWithoutNotify(DayNightStage.Morning);
-            CurrStageLeftTime = GetStageTotalSecond(DayNightStage.Morning);
+            currStage.SetValueWithoutNotify(DayNightStage.NightFull);
+            CurrStageLeftTime = GetStageTotalSecond(DayNightStage.NightFull);
             SetLight(GetStage());
         }
 

@@ -5,10 +5,27 @@ using LCNode;
 
 namespace Demo.Tree
 {
-    [NodeMenuItem("演员/移动")]
+    [NodeMenuItem("演员/基础/设置演员显示隐藏")]
+    public class Tree_Bev_Act_SetActorActive : Base_BEV_ACT_Node
+    {
+        public override string Title { get => "设置演员显示隐藏"; set => base.Title = value; }
+
+        [NodeValue("显示")]
+        public bool isActive = false;
+
+        public override Node CreateRuntimeNode()
+        {
+            BEV_ACT_SetActorActive node = new BEV_ACT_SetActorActive();
+            node.isActive = isActive;
+            return node;
+        }
+
+    }
+
+    [NodeMenuItem("演员/玩家/玩家移动")]
     public class Tree_Bev_Act_Move : Base_BEV_ACT_Node
     {
-        public override string Title { get => "移动"; set => base.Title = value; }
+        public override string Title { get => "玩家移动"; set => base.Title = value; }
 
         public override Node CreateRuntimeNode()
         {
@@ -78,6 +95,19 @@ namespace Demo.Tree
             BEV_ACT_MoveToProduceActor node = new BEV_ACT_MoveToProduceActor();
             return node;
         }
+    }
+
+    [NodeMenuItem("演员/工作/移动到休息建筑")]
+    public class Tree_Bev_Act_MoveToRestBuildingActor : Base_BEV_ACT_Node
+    {
+        public override string Title { get => "移动到休息建筑"; set => base.Title = value; }
+
+        public override Node CreateRuntimeNode()
+        {
+            BEV_ACT_MoveToRestBuildingActor node = new BEV_ACT_MoveToRestBuildingActor();
+            return node;
+        }
+
     }
 
     [NodeMenuItem("演员/交互/播放交互动画")]

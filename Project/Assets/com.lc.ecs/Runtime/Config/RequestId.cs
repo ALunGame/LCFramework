@@ -51,6 +51,16 @@ namespace LCECS
         /// Produce
         /// </summary>
         Produce,
+
+        /// <summary>
+        /// Rest
+        /// </summary>
+        Rest,
+
+        /// <summary>
+        /// Sleep
+        /// </summary>
+        Sleep,
     }
 }
 

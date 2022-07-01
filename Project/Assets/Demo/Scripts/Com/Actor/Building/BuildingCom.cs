@@ -17,6 +17,18 @@ namespace Demo.Com
         }
     }
 
+    public enum BuildingType
+    {
+        /// <summary>
+        /// 村庄生产
+        /// </summary>
+        Village_Factory,
+
+        /// <summary>
+        /// 村庄休息
+        /// </summary>
+        Village_Rest,
+    }
 
     public class BuildingCom : BaseCom
     {
@@ -25,6 +37,11 @@ namespace Demo.Com
 
         [NonSerialized]
         public List<ActorObj> owerActors    = new List<ActorObj>();
+
+        /// <summary>
+        /// 建筑类型
+        /// </summary>
+        public BuildingType buildingType;
 
         //存储记录
         [NonSerialized]

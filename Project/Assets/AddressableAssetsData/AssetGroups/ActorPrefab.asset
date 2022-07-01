@@ -157,8 +157,8 @@ MonoBehaviour:
     m_Address: Actor_tx_item_well
     m_ReadOnly: 0
     m_SerializedLabels: []
-  - m_GUID: d01b55c73b6cdf6468433bdba6a10de8
-    m_Address: Actor_map_building_campfire
+  - m_GUID: 0b342201d03cd9c44a2ebfeeef633261
+    m_Address: Actor_tx_map101_soldierFactoryHouse
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: 6944aae5d32ab1943bcfbf7f437e2408
@@ -201,8 +201,8 @@ MonoBehaviour:
     m_Address: Actor_villager9
     m_ReadOnly: 0
     m_SerializedLabels: []
-  - m_GUID: 5a932d1b41e8a3a42b3ab1313aef4e77
-    m_Address: Actor_map101_house_wood
+  - m_GUID: 283684d1bb4291348a32252418a6bb78
+    m_Address: Actor_tx_map101_oreFactoryHouse
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: bb8759452de604148840ec0fe69f5863
@@ -227,6 +227,62 @@ MonoBehaviour:
     m_SerializedLabels: []
   - m_GUID: 8cdde22aa2249644c82ea2666f901e45
     m_Address: Actor_tx_map101_tree_3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 0b4b1fca696144543bc203555d78d051
+    m_Address: Actor_tx_map101_barShopHouse
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 2aeae79d9dce23149aa7e7da1356cfe9
+    m_Address: Actor_tx_map101_weaponFactoryHouse
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ed8093ca34beda14eb3962ec0951d8a0
+    m_Address: Actor_tx_map101_restHouse04
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 0dba6b88d391f0748abbd02560bbb1d8
+    m_Address: Actor_tx_map101_towerHouse
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: b1658d5c86563014894cba3a1ab924d2
+    m_Address: Actor_tx_map101_villageHeadHouse
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: d9c487cbba4f95d4b9dc5465dfb08388
+    m_Address: Actor_tx_map101_restHouse05
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 76fb87a258952914ba2009104fb8365a
+    m_Address: Actor_tx_map101_studyHouse
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: a45ec480fd93d9e44bc4fd2c563ad16e
+    m_Address: Actor_tx_map101_plantFactoryHouse
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: def7f84b6bf6aaf4ea1b64372a778669
+    m_Address: Actor_tx_map101_restHouse03
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 9f0ef0472aeefb34faba6f699b2f2875
+    m_Address: Actor_tx_map101_restHouse02
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: afaf1f3b4eaa11648881039c6680b9e7
+    m_Address: Actor_tx_map101_baseShopHouse
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f94752a70626fc24e92d4bbef854ad5c
+    m_Address: Actor_tx_map101_foodShopHouse
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: a2d8ab585588ecf4cb38b70ce6531fd8
+    m_Address: Actor_tx_map101_secretShopHouse
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 45b43c9340c677341b0049f38ff7ccdb
+    m_Address: Actor_tx_map101_restHouse01
     m_ReadOnly: 0
     m_SerializedLabels: []
   m_ReadOnly: 0

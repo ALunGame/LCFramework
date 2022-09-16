@@ -11,7 +11,6 @@ namespace LCMap
     public class MapServer
     {
         private GameObject mapRoot;
-
         /// <summary>
         /// 地图根节点
         /// </summary>
@@ -32,7 +31,6 @@ namespace LCMap
         }
 
         private GameObject playerRoot;
-
         /// <summary>
         /// 玩家根节点
         /// </summary>
@@ -78,6 +76,8 @@ namespace LCMap
             }
         }
 
+        private int currMaxActorUid;
+
         //地图区域
         public Dictionary<int, MapArea> areaDict = new Dictionary<int, MapArea>();
         //地图配置
@@ -106,6 +106,7 @@ namespace LCMap
             }
 
             this.currMapId = mapId;
+            this.currMaxActorUid = mapModel.currMaxActorUid;
 
             //区域
             for (int i = 0; i < mapModel.areas.Count; i++)
@@ -212,6 +213,12 @@ namespace LCMap
             }
         }
 
+        public ActorObj CreateActor(ActorModel actorModel, MapArea mapArea)
+        {
+            actorModel.uid = CalcCreateActorUid();
+            return mapArea.CreateActorObj(actorModel);
+        }
+
         private void CreateMainActor(ActorModel actor)
         {
             ActorCnf actorCnf = Config.ActorCnf[actor.id];
@@ -227,6 +234,14 @@ namespace LCMap
 
             //跟随
             LCECS.ECSLayerLocate.Info.GetSensor<GlobalSensor>(LCECS.SensorType.Global).FollowActor.Value = PlayerActor;
+        }
+
+
+
+        private string CalcCreateActorUid()
+        {
+            currMaxActorUid++;
+            return "createActor" + currMaxActorUid.ToString();
         }
     }
 }

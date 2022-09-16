@@ -285,6 +285,10 @@ MonoBehaviour:
     m_Address: Actor_tx_map101_restHouse01
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 5104ccd1dc698ec47a48a20ba4799dc3
+    m_Address: Actor_tx_map101_villagerSpawnPoint
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: c106a54d1dad7c34dbca1e47199c97a1, type: 2}
   m_SchemaSet:

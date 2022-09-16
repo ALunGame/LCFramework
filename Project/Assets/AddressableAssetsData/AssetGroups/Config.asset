@@ -225,6 +225,18 @@ MonoBehaviour:
     m_Address: TbBehavior_Sleep
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 4ae114dbf60e7494aaa8af7bc378ec36
+    m_Address: TbEntity_340
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 808211cb701031c42b4d5582820d38b4
+    m_Address: TbEntity_220
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 31d5aa51216279a4699c9f53fd21b402
+    m_Address: TbDecision_220
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: c106a54d1dad7c34dbca1e47199c97a1, type: 2}
   m_SchemaSet:

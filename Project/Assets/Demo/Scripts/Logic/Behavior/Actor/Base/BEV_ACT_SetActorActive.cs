@@ -11,11 +11,14 @@ namespace Demo.Behavior
     public class BEV_ACT_SetActorActive : NodeAction
     {
         public bool isActive = false;
+        public string stateName = "";
 
         protected override void OnEnter(NodeData wData)
         {
             ActorObj actor = LCMap.MapLocate.Map.GetActor(wData.Uid);
             actor.gameObject.SetActive(isActive);
+            if (!string.IsNullOrEmpty(stateName))
+                actor.SetDisplayGo(stateName);
         }
 
         protected override int OnRunning(NodeData wData)

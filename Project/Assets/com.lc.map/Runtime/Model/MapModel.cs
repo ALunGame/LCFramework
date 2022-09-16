@@ -10,6 +10,7 @@ namespace LCMap
     public class MapModel
     {
         public int mapId;
+        public int currMaxActorUid;
         public ActorModel mainActor = null;
         public List<AreaModel> areas = new List<AreaModel>();
     }
@@ -59,6 +60,13 @@ namespace LCMap
 
         public ActorModel()
         {
+        }
+
+        public ActorModel(int id,ActorType actorType, Vector3 pos)
+        {
+            this.id = id;
+            this.type = actorType;  
+            this.pos = pos;
         }
     }
 

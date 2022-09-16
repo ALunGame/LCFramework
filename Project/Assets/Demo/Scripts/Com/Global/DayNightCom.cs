@@ -64,7 +64,6 @@ namespace Demo.Com
         [NonSerialized]
         public int NightTotalSecond     = 540;
 
-
         [NonSerialized]
         private BindableValue<DayNightStage> currStage = new BindableValue<DayNightStage>();
 

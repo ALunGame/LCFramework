@@ -1,4 +1,5 @@
-﻿using LCECS.Core;
+﻿using Demo.Server;
+using LCECS.Core;
 using LCMap;
 using System;
 
@@ -9,6 +10,8 @@ namespace Demo.Com
     /// </summary>
     public class WorkerCom : BaseCom
     {
+
+        public WorkType workType;
         public int managerActorId;
 
         [NonSerialized]

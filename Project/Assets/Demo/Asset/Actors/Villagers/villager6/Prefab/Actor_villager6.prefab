@@ -379,7 +379,7 @@ GameObject:
   - component: {fileID: 6204094695724276767}
   - component: {fileID: 6204094695724276765}
   - component: {fileID: 6204094695724276764}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BodyCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}

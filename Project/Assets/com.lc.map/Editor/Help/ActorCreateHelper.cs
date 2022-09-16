@@ -56,7 +56,7 @@ namespace LCMap
 
             GameObject bodyBox = AutoCreateBoxCollider2D.CreateBoxCollider2DBySprite(imgTrans.gameObject, "BodyCollider");
             bodyBox.AddComponent<LockTransCom>();
-            clickBox.layer = LayerMask.NameToLayer("ActorBody");
+            bodyBox.layer = LayerMask.NameToLayer("ActorBody");
 
             imgTrans.GetComponent<ActorDisplay>().RefreshDisplayOffset();
             return newActor;

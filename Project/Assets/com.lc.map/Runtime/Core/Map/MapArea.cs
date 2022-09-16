@@ -75,7 +75,7 @@ namespace LCMap
             CameraColliderRootTrans = camRootTrans.Find("CameraColliders");
         }
 
-        private void CreateActorObj(ActorModel actor)
+        public ActorObj CreateActorObj(ActorModel actor)
         {
             ActorCnf actorCnf = Config.ActorCnf[actor.id];
 
@@ -90,6 +90,8 @@ namespace LCMap
 
             //保存
             Actors.Add(actor.uid, actorObj);
+
+            return actorObj;
         }
 
         public ActorObj GetActor(string uid)

@@ -1,5 +1,6 @@
 ﻿using LCNode.Model;
 using LCNode.Model.Internal;
+using LCNode.View;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -154,6 +155,12 @@ namespace LCNode
             Selection.activeObject = setting;
         }
 
+        [MenuItem("视图/列表")]
+        public static void OpenList()
+        {
+            GraphListWindow.Open();
+        }
+
         [MenuItem("视图/导出所有配置", true)]
         public static bool ExportAllCheck()
         {
@@ -163,7 +170,16 @@ namespace LCNode
         [MenuItem("视图/导出所有配置")]
         public static void ExportAll()
         {
-            Dictionary<Type, InternalGraphGroupAsset> groupDict = new Dictionary<Type, InternalGraphGroupAsset>();
+            Dictionary<Type, InternalGraphGroupAsset> groupDict = GetGroups();
+            foreach (var item in groupDict)
+            {
+                item.Value.OnClickExport();
+            }
+        }
+
+        public static Dictionary<Type, InternalGraphGroupAsset> GetGroups()
+        {
+            var groupDict = new Dictionary<Type, InternalGraphGroupAsset>();
             foreach (var item in Setting.groupPaths)
             {
                 var list = Setting.GetGroups(item.searchPath);
@@ -175,10 +191,7 @@ namespace LCNode
                     }
                 }
             }
-            foreach (var item in groupDict)
-            {
-                item.Value.OnClickExport();
-            }
+            return groupDict;
         }
 
         #endregion

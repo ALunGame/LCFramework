@@ -79,6 +79,12 @@ namespace LCConfig
             });
         }
 
+        [MenuItem("配置/列表")]
+        public static void OpenList()
+        {
+            ConfigAssetListWindow.Open();
+        }
+
         [MenuItem("配置/导出", true)]
         public static bool CheckExport()
         {
@@ -107,7 +113,7 @@ namespace LCConfig
                     foreach (var item in config.GetAllAsset())
                     {
                         List<IConfig> datas = item.Load();
-                        if (datas!=null)
+                        if (datas != null)
                         {
                             configs.AddRange(datas);
                         }
@@ -180,6 +186,29 @@ namespace LCConfig
                 }
             }
             return assets;
+        }
+
+        /// <summary>
+        /// 获得所有配置
+        /// </summary>
+        /// <returns></returns>
+        public static Dictionary<string, ConfigAssetGroup> GetAllConfigGroups()
+        {
+            string[] tileAssetPath = new string[] { Setting.ConfigSearchPath };
+            string[] guids = AssetDatabase.FindAssets("t:ScriptableObject", tileAssetPath);
+
+            Dictionary<string, ConfigAssetGroup> configDict = new Dictionary<string, ConfigAssetGroup>();
+
+            foreach (var guid in guids)
+            {
+                string path = AssetDatabase.GUIDToAssetPath(guid);
+                ConfigAssetGroup config = AssetDatabase.LoadAssetAtPath<ConfigAssetGroup>(path);
+                if (!string.IsNullOrEmpty(config.configTypeName))
+                {
+                    configDict.Add(config.name, config);
+                }
+            }
+            return configDict;
         }
 
         #endregion

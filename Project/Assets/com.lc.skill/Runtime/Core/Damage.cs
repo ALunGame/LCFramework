@@ -107,7 +107,7 @@ namespace LCSkill
 
         public override string ToString()
         {
-            return string.Format("{0}->{1}",attacker.EntityCnfId, target.EntityCnfId);
+            return string.Format("{0}->{1}",attacker.EntityUid, target.EntityUid);
         }
     }
 }

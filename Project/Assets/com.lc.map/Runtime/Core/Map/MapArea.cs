@@ -14,7 +14,7 @@ namespace LCMap
     {
         public int Id;
 
-        public AreaModel Model;
+        public AreaInfo Model;
 
         public Rect Rect;
 
@@ -22,14 +22,14 @@ namespace LCMap
         public GameObject AreaEnvGo;
 
         public GameObject ActorRootGo;
-        public Dictionary<string, ActorObj> Actors = new Dictionary<string, ActorObj>();
+        public Dictionary<string, Actor> Actors = new Dictionary<string, Actor>();
 
         public CinemachineVirtualCamera FollowCamera;
         public CinemachineVirtualCamera DragCamera;
         public GameObject DragTarget;
         public Transform CameraColliderRootTrans;
 
-        public MapArea(AreaModel model)
+        public MapArea(AreaInfo model)
         {
             this.Id = model.areaId;
             this.Model = model;
@@ -48,15 +48,15 @@ namespace LCMap
 
             InitArea();
 
-            //演员
+            //演员根节点
             ActorRootGo = new GameObject("ActorRootGo");
             ActorRootGo.transform.SetParent(AreaRootGo.transform);
             ActorRootGo.transform.Reset();
 
             for (int i = 0; i < Model.actors.Count; i++)
             {
-                ActorModel actorModel = Model.actors[i];
-                CreateActorObj(actorModel);
+                ActorInfo actorModel = Model.actors[i];
+                CreateActor(actorModel);
             }
             return AreaRootGo;
         }
@@ -75,26 +75,17 @@ namespace LCMap
             CameraColliderRootTrans = camRootTrans.Find("CameraColliders");
         }
 
-        public ActorObj CreateActorObj(ActorModel actor)
+        public Actor CreateActor(ActorInfo actor)
         {
-            ActorCnf actorCnf = Config.ActorCnf[actor.id];
-
-            //预制体
-            GameObject assetGo = LoadHelper.LoadPrefab(actorCnf.prefab.ObjName);
-            GameObject actorGo = GameObject.Instantiate(assetGo);
-            actorGo.transform.SetParent(ActorRootGo.transform);
-
-            //添加组件
-            ActorObj actorObj = actorGo.AddComponent<ActorObj>();
-            actorObj.Init(actor,this);
-
+            Actor tActor = ActorCreator.CreateEntity(actor);
+            ActorCreator.CreateGo(tActor);
             //保存
-            Actors.Add(actor.uid, actorObj);
-
-            return actorObj;
+            Actors.Add(actor.uid, tActor);
+            tActor.Go.transform.SetParent(ActorRootGo.transform);
+            return tActor;
         }
 
-        public ActorObj GetActor(string uid)
+        public Actor GetActor(string uid)
         {
             if (!Actors.ContainsKey(uid))
             {

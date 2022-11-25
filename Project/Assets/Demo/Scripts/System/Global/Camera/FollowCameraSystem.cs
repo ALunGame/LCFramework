@@ -38,11 +38,11 @@ namespace Demo.System
             followCameraCom.CMCamera = area.FollowCamera;
         }
 
-        private void HandleFollowActorChange(ActorObj obj)
+        private void HandleFollowActorChange(Actor obj)
         {
             if (followCameraCom == null)
                 return;
-            followCameraCom.CMCamera.Follow = obj.GetFollowGo().transform;
+            followCameraCom.CMCamera.Follow = obj.DisplayCom.CameraFollowGo.transform;
         }
     }
 }

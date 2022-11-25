@@ -13,7 +13,7 @@ namespace LCMap
     public class Map_ActorNodeView : BaseNodeView
     {
         private static List<ActorCnf> actorCnfs = null;
-        private static Dictionary<int, MapModel> mapCnfs = null;
+        private static Dictionary<int, MapInfo> mapCnfs = null;
 
         private Button btnAddActor;
         private Button btnClearActor;
@@ -27,13 +27,13 @@ namespace LCMap
             }
             if (mapCnfs == null)
             {
-                mapCnfs = new Dictionary<int, MapModel>();
+                mapCnfs = new Dictionary<int, MapInfo>();
                 List<ED_MapCom> maps = MapSetting.GetAllMaps();
                 for (int i = 0; i < maps.Count; i++)
                 {
                     string filePath = MapSetting.GetMapModelSavePath(maps[i].mapId.ToString());
                     string jsonStr = IOHelper.ReadText(filePath);
-                    MapModel mapModel = JsonMapper.ToObject<MapModel>(jsonStr);
+                    MapInfo mapModel = JsonMapper.ToObject<MapInfo>(jsonStr);
                     mapCnfs.Add(maps[i].mapId, mapModel);
                 }
             }
@@ -211,11 +211,11 @@ namespace LCMap
             }
             else
             {
-                MapModel mapModel = mapCnfs[(int)node.mapId];
+                MapInfo mapModel = mapCnfs[(int)node.mapId];
                 actors.Add(mapModel.mainActor.id);
                 for (int i = 0; i < mapModel.areas.Count; i++)
                 {
-                    AreaModel area = mapModel.areas[i];
+                    AreaInfo area = mapModel.areas[i];
                     for (int j = 0; j < area.actors.Count; j++)
                     {
                         int tId = area.actors[j].id;

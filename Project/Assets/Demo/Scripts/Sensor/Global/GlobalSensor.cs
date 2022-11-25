@@ -17,7 +17,7 @@ namespace Demo
         /// <summary>
         /// 当前跟随演员
         /// </summary>
-        public BindableValue<ActorObj> FollowActor = new BindableValue<ActorObj>();
+        public BindableValue<Actor> FollowActor = new BindableValue<Actor>();
 
         private DayNightCom dayNightCom;
         public DayNightCom GetDayNightCom()

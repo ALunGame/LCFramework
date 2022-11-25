@@ -6,6 +6,7 @@ using System;
 using UnityEngine;
 using LCMap;
 using LCDialog;
+using LCECS.Core;
 
 namespace Demo
 {
@@ -129,7 +130,12 @@ namespace Demo
         {
             _DecCenter.Init();
             _EcsCenter.Init(requestSortAsset, systemSortAsset);
-            ECSLocate.ECS.GetWorld();
+
+            //创建世界实体
+            Entity worldEntity = ECSLocate.ECS.CreateEntity("world_999", -999);
+            if (worldEntity.GetCom(out BindGoCom bindGoCom))
+                bindGoCom.SetBindGo(new GameObject("<------------EntityWorld---------->"));
+            ECSLocate.ECS.SetWorld(worldEntity);
         }
 
         /// <summary>

@@ -133,14 +133,14 @@ namespace Demo.Tree
     [NodeMenuItem("演员/交互/执行交互")]
     public class Tree_Bev_Act_ExecuteInteractive : Base_BEV_ACT_Node
     {
-        public override string Title { get => $"执行{interactiveName}交互"; set => base.Title = value; }
+        public override string Title { get => $"执行{interactiveType}交互"; set => base.Title = value; }
 
-        public string interactiveName;
+        public InteractiveType interactiveType;
 
         public override Node CreateRuntimeNode()
         {
             BEV_ACT_ExecuteInteractive node = new BEV_ACT_ExecuteInteractive();
-            node.interactiveTypeName = Tree_Bev_Act_ExecuteInteractiveView.interactiveDict[interactiveName].FullName;
+            node.interactiveType = interactiveType;
             return node;
         }
     }

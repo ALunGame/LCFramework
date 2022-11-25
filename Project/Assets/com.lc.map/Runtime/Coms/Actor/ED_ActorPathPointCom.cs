@@ -32,7 +32,7 @@ namespace LCMap
 
         public override object ExportData()
         {
-            ActorPointModel pointData = new ActorPointModel();
+            ActorPointInfo pointData = new ActorPointInfo();
             pointData.runAnimName = runAnimName;
             pointData.waitTime = waitTime;
             pointData.waitAnimName = waitAnimName;

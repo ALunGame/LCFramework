@@ -1,5 +1,6 @@
 ﻿using Demo.Com;
 using Demo.System;
+using LCECS.Core;
 using LCECS.Core.Tree;
 using LCECS.Core.Tree.Base;
 using LCECS.Core.Tree.Nodes.Action;
@@ -22,10 +23,10 @@ namespace Demo.Behavior
 
             //组件
             WayPointMoveCom wayPointMoveCom = workData.MEntity.GetCom<WayPointMoveCom>();
-            List<ActorObj> homeActors = new List<ActorObj>();
+            List<Actor> homeActors = new List<Actor>();
             foreach (var item in MapLocate.Map.GetActors(typeof(BuildingCom).FullName))
             {
-                BuildingCom buildingCom = item.Entity.GetCom<BuildingCom>();
+                BuildingCom buildingCom = item.GetCom<BuildingCom>();
                 if (buildingCom.buildingType == BuildingType.Village_Rest)
                     homeActors.Add(item);
             }
@@ -36,20 +37,20 @@ namespace Demo.Behavior
                 return;
             }
 
-            ActorObj selHomeActor = homeActors[Random.Range(0, homeActors.Count)];
+            Actor selHomeActor = homeActors[Random.Range(0, homeActors.Count)];
 
-            ActorObj actor      = LCMap.MapLocate.Map.GetActor(wData.Uid);
+            Actor actor      = LCMap.MapLocate.Map.GetActor(wData.Uid);
             ActorCnf actorCnf   = LCConfig.Config.ActorCnf[actor.Id];
 
-            TransformCom targetTransformCom = selHomeActor.Entity.GetCom<TransformCom>();
-            TransformCom transformCom = workData.MEntity.GetCom<TransformCom>();
-            if (Vector2.Distance(targetTransformCom.GetPos(), transformCom.GetPos()) <= actorCnf.interactiveRange)
+            TransCom targetTransformCom = selHomeActor.GetCom<TransCom>();
+            TransCom transformCom = workData.MEntity.GetCom<TransCom>();
+            if (Vector2.Distance(targetTransformCom.Pos, transformCom.Pos) <= actorCnf.interactiveRange)
             {
                 wayPointMoveCom.currRoadCnf = null;
                 return;
             }
 
-            if (WayPointMoveSystem.RoadCnf.CalcRoadPos(selHomeActor.transform.position, out var endPos))
+            if (WayPointMoveSystem.RoadCnf.CalcRoadPos(selHomeActor.Pos, out var endPos))
             {
                 wayPointMoveCom.SetWayPointTarget(endPos);
             }

@@ -12,35 +12,35 @@ namespace Demo.Com
     {
         public int buildingActorId;
         [NonSerialized]
-        public ActorObj buildingActor;
+        public Actor buildingActor;
         [NonSerialized]
         public BuildingCom buildingCom;
         [NonSerialized]
         public BagCom buildingBagCom;
 
         [NonSerialized]
-        public Dictionary<int, List<ActorObj>> workers = new Dictionary<int, List<ActorObj>>();
+        public Dictionary<int, List<Actor>> workers = new Dictionary<int, List<Actor>>();
 
         public void SetBuilding()
         {
             buildingActor       = MapLocate.Map.GetActor(buildingActorId);
-            buildingCom         = buildingActor.Entity.GetCom<BuildingCom>();
-            buildingBagCom      = buildingActor.Entity.GetCom<BagCom>();
+            buildingCom         = buildingActor.GetCom<BuildingCom>();
+            buildingBagCom      = buildingActor.GetCom<BagCom>();
 
-            List<ActorObj> actors = new List<ActorObj>();
+            List<Actor> actors = new List<Actor>();
             foreach (var item in workers)
                 actors.AddRange(item.Value);
 
             workers.Clear();
 
             foreach (var item in buildingBagCom.itemlist)
-                workers.Add(item.id, new List<ActorObj>());
+                workers.Add(item.id, new List<Actor>());
 
             foreach (var item in actors)
                 AddWorker(item);
         }
 
-        public void AddWorker(ActorObj workerActor)
+        public void AddWorker(Actor workerActor)
         {
             int findKey  = 0;
             int actorCnt = 999;
@@ -56,10 +56,10 @@ namespace Demo.Com
             if (workers[findKey].Contains(workerActor))
                 return;
             workers[findKey].Add(workerActor);
-            workerActor.Entity.GetOrCreateCom<CollectCom>().collectActorId = findKey;
+            workerActor.GetOrCreateCom<CollectCom>().collectActorId = findKey;
         }
 
-        public void RemoveWorker(ActorObj workerActor)
+        public void RemoveWorker(Actor workerActor)
         {
             foreach (var item in workers)
             {

@@ -38,13 +38,13 @@ namespace LCECS.Core
             List<BaseCom> listenComs = new List<BaseCom>();
 
             //实体关闭
-            if (entity.IsEnable == false)
+            if (entity.IsActive == false)
                 check = false;
             else
             {
                 for (int i = 0; i < ListenComs.Count; i++)
                 {
-                    string typeName = ListenComs[i].FullName;
+                    string typeName = ListenComs[i].Name;
                     BaseCom com = entity.GetCom(typeName);
 
                     //没有这个组件直接返回（因为组件没有删除，只有激活于禁用）

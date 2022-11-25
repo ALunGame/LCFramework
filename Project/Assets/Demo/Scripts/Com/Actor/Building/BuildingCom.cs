@@ -36,7 +36,7 @@ namespace Demo.Com
         public List<int> owerActorIds       = new List<int>();
 
         [NonSerialized]
-        public List<ActorObj> owerActors    = new List<ActorObj>();
+        public List<Actor> owerActors    = new List<Actor>();
 
         /// <summary>
         /// 建筑类型
@@ -58,7 +58,7 @@ namespace Demo.Com
         /// <param name="bagItem">存储的物品</param>
         /// <param name="bagCom">存储的背包</param>
         /// <param name="bagItem">返回剩余的物品</param>
-        public BagItem Storage(ActorObj actor, BagItem bagItem, BagCom bagCom)
+        public BagItem Storage(Actor actor, BagItem bagItem, BagCom bagCom)
         {
             foreach (var item in bagCom.itemlist)
             {
@@ -89,7 +89,7 @@ namespace Demo.Com
             return bagItem;
         }
 
-        private void AddStorageRecord(ActorObj actor, int itemId,int itemCnt)
+        private void AddStorageRecord(Actor actor, int itemId,int itemCnt)
         {
             if (!stealRecords.ContainsKey(actor.Uid))
             {

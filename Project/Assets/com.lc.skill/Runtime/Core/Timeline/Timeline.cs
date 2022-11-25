@@ -92,6 +92,11 @@ namespace LCSkill
         /// </summary>
         public bool isFinish = false;
 
+        /// <summary>
+        /// Timeline的一些参数
+        /// </summary>
+        public Dictionary<string, object> timelineParam = new Dictionary<string, object>();
+
         public TimelineObj(string skillId, TimelineModel model, SkillCom ower)
         {
             this.skillId = skillId;

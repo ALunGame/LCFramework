@@ -1,137 +1,87 @@
 ﻿using System.Collections.Generic;
-using UnityEngine;
-using LCJson;
-using System;
 
 namespace LCECS.Core
 {
-    public sealed class Entity
+    public class Entity
     {
-        private string uid;
-        /// <summary>
-        /// 唯一Id
-        /// </summary>
-        public string Uid { get => uid; }
+        public string Uid { get; protected set; } = "";
 
-        private int id;
-        /// <summary>
-        /// 配置Id
-        /// </summary>
-        public int Id { get => id; }
+        public int EntityId;
 
-        private string name;
-        /// <summary>
-        /// 实体名
-        /// </summary>
-        public string Name { get => name; }
+        public bool isActive = false;
+        public bool IsActive { 
+            get 
+            { 
+                return isActive; 
+            }
+            set
+            {
+                if (value)
+                {
+                    Enable();
+                }
+                else
+                {
+                    Disable();
+                }
+            } 
+        }
 
-        private DecisionGroup decGroup = DecisionGroup.HighThread;
-        /// <summary>
-        /// 决策组
-        /// </summary>
-        public DecisionGroup DecGroup { get => decGroup; }
-
-        private int decTreeId = 0;
-        /// <summary>
-        /// 决策树Id
-        /// </summary>
-        public int DecTreeId { get => decTreeId; }
-
-        [NonSerialized]
-        private GameObject go;
-        /// <summary>
-        /// 实体节点（当然可以没有）
-        /// </summary>
-        public GameObject Go { get => go; }
-
-        /// <summary>
-        /// 实体是否开启
-        /// </summary>
-        public bool IsEnable { get; private set; } = true;
-
-        /// <summary>
-        /// 组件
-        /// </summary>
         private Dictionary<string, BaseCom> coms = new Dictionary<string, BaseCom>();
 
-#if UNITY_EDITOR
-        [JsonIgnore]
-        public List<string> Systems = new List<string>();
-        //获得所有组件名
-        public HashSet<string> GetAllComStr()
+        public Entity(string uid)
         {
-            return new HashSet<string>(coms.Keys);
-        }
-#endif
-
-        public Entity()
-        {
-
-        }
-
-        public Entity(int id, DecisionGroup decGroup,string name,int treeId,List<BaseCom> coms)
-        {
-            this.id = id;   
-            this.decTreeId = treeId;
-            this.name = name;
-            this.decGroup = decGroup;
-            for (int i = 0; i < coms.Count; i++)
-            {
-                this.coms.Add(coms[i].GetType().FullName, coms[i]);
-            }
-        }
-
-        /// <summary>
-        /// 设置实体节点
-        /// </summary>
-        /// <param name="go"></param>
-        public void SetEntityGo(GameObject go)
-        {
-            this.go = go;
+            Uid = uid;
         }
 
         #region 生命周期
 
-        /// <summary>
-        /// 创建实体初始化
-        /// </summary>
-        /// <param name="uid">实体唯一Id</param>
-        public void Init(string uid)
+        public void Init()
         {
-            this.uid = uid;
+            OnInit();
         }
 
-        /// <summary>
-        /// 设置实体开启
-        /// 1，System检测是否还需要关注这个实体
-        /// 2，决策层尝试添加这个实体
-        /// </summary>
+        protected virtual void OnInit() { }
+
         public void Enable()
         {
-            IsEnable = true;
+            isActive = true;
             foreach (BaseCom com in coms.Values)
             {
-                com.EntityEnable();
+                com.Enable(false);
             }
             ECSLocate.ECS.CheckEntityInSystem(Uid);
-            ECSLocate.DecCenter.AddEntityDecision(DecGroup, DecTreeId, Uid);
+            OnEnable();
         }
 
-        /// <summary>
-        /// 设置实体关闭
-        /// 1，System检测是否还需要关注这个实体
-        /// 2，决策层删除这个实体
-        /// </summary>
+        protected virtual void OnEnable() { }
+
         public void Disable()
         {
-            IsEnable = false;
+            isActive = false;
             foreach (BaseCom com in coms.Values)
             {
-                com.EntityDisable();
+                com.Disable(false);
             }
             ECSLocate.ECS.CheckEntityInSystem(Uid);
-            ECSLocate.DecCenter.RemoveEntityDecision(DecTreeId, Uid);
+            OnDisable();
         }
+
+        protected virtual void OnDisable() { }
+
+        public void Destroy()
+        {
+            IsActive = false;
+            foreach (BaseCom com in coms.Values)
+            {
+                com.Destroy(false);
+            }
+            ECSLocate.ECS.CheckEntityInSystem(Uid);
+            OnDisable();
+            OnDestroy();
+        }
+
+        protected virtual void OnDestroy() { }
 
         #endregion
 
@@ -158,10 +108,6 @@ namespace LCECS.Core
 
         #region 组件相关
 
-        /// <summary>
-        /// 获得所有组件
-        /// </summary>
-        /// <returns></returns>
         public IEnumerable<BaseCom> GetComs()
         {
             foreach (var item in coms.Values)
@@ -170,149 +116,85 @@ namespace LCECS.Core
             }
         }
 
-        /// <summary>
-        /// 通过类型名获得组件
-        /// </summary>
-        /// <param name="comName">FullName</param>
-        /// <returns></returns>
-        public BaseCom GetCom(string comName)
+        public bool HasCom(string comFullName)
         {
-            if (!coms.ContainsKey(comName))
-                return null;
-            return coms[comName];
+            return coms.ContainsKey(comFullName);
         }
 
-        /// <summary>
-        /// 检测组件
-        /// </summary>
-        /// <param name="comName">FullName</param>
-        /// <returns></returns>
-        public bool HasCom(string comName)
-        {
-            return coms.ContainsKey(comName);
-        }
-
-        /// <summary>
-        /// 检测组件
-        /// </summary>
-        /// <param name="comName">FullName</param>
-        /// <returns></returns>
         public bool HasCom(BaseCom checkCom)
         {
-            return coms.ContainsKey(checkCom.GetType().FullName);
+            return coms.ContainsKey(checkCom.GetType().Name);
         }
 
-        /// <summary>
-        /// 获得组件
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <returns></returns>
-        public T GetOrCreateCom<T>() where T : BaseCom,new()
+        public T GetOrCreateCom<T>() where T : BaseCom, new()
         {
-            string typeName = typeof(T).FullName;
+            string typeName = typeof(T).Name;
             if (!HasCom(typeName))
-                coms.Add(typeName,new T());
+            {
+                T newCom = new T();
+                newCom.Init(this);
+                coms.Add(typeName, newCom);
+            }
             return coms[typeName] as T;
         }
 
-        /// <summary>
-        /// 获得组件
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <returns></returns>
-        public T GetCom<T>() where T : BaseCom
+        public BaseCom GetCom(string comFullName)
         {
-            string typeName = typeof(T).FullName;
-            if (!coms.ContainsKey(typeName))
+            if (!coms.ContainsKey(comFullName))
                 return null;
-            return coms[typeName] as T;
+            return coms[comFullName];
         }
 
-        /// <summary>
-        /// 添加组件
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="com"></param>
-        public void AddCom<T>(T com) where T : BaseCom
-        {
-            string typeName = typeof(T).FullName;
-
-            if (coms.ContainsKey(typeName))
-                return;
-
-            //调用函数
-            if (!com.IsActive)
-                com.Enable();
-
-            //保存数据
-            coms.Add(typeName, com);
-        }
-
-        /// <summary>
-        /// 添加组件
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="com"></param>
-        public void AddCom(BaseCom com)
-        {
-            string fullName = com.GetType().FullName;
-            if (coms.ContainsKey(fullName))
-                return;
-
-            //调用函数
-            if (!com.IsActive)
-                com.Enable();
-
-            //保存数据
-            coms.Add(fullName, com);
-        }
-
-        /// <summary>
-        /// 删除组件
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="com"></param>
-        public void RemoveCom<T>() where T : BaseCom
+        public T GetCom<T>() where T : BaseCom
         {
             string typeName = typeof(T).Name;
             if (!coms.ContainsKey(typeName))
-                return;
-
-            //调用函数
-            BaseCom com = coms[typeName];
-            if (com.IsActive)
-                com.Disable();
-
-            //清除数据
-            coms.Remove(typeName);
+                return null;
+            return coms[typeName] as T;
         }
 
-        /// <summary>
-        /// 删除组件
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="com"></param>
-        public void RemoveCom(string typeName)
+        public bool GetCom<T>(out T outCom) where T : BaseCom
         {
+            string typeName = typeof(T).Name;
             if (!coms.ContainsKey(typeName))
+            {
+                outCom = null;
+                return false;
+            }
+            outCom = (T)coms[typeName];
+            return true;
+        }
+
+        public T AddCom<T>(T com) where T : BaseCom
+        {
+            string typeName = typeof(T).Name;
+
+            if (HasCom(typeName))
+                return GetCom<T>();
+
+            //保存数据
+            coms.Add(typeName, com);
+            com.Init(this);
+            return com;
+        }
+
+        public void RemoveCom<T>() where T : BaseCom
+        {
+            string typeName = typeof(T).Name;
+            if (!HasCom(typeName))
                 return;
 
             //调用函数
             BaseCom com = coms[typeName];
-            if (com.IsActive)
-                com.Disable();
+            com.Destroy();
 
             //清除数据
             coms.Remove(typeName);
         }
 
-        /// <summary>
-        /// 覆盖实体组件
-        /// </summary>
-        /// <param name="com"></param>
         public void CoverCom(BaseCom com)
         {
-            BaseCom oldCom = GetCom(com.GetType().FullName);
+            BaseCom oldCom = GetCom(com.GetType().Name);
             if (oldCom == null)
             {
                 ECSLocate.Log.LogError("覆盖实体组件失败，没有对应组件>>>>>>>", com);
@@ -322,15 +204,5 @@ namespace LCECS.Core
         }
 
         #endregion
-
-        /// <summary>
-        /// 改变决策树
-        /// </summary>
-        public void ChangeDecTree(DecisionGroup decGroup,int treeId)
-        {
-            this.decTreeId = treeId;
-            this.decGroup = decGroup;
-            ECSLocate.DecCenter.AddEntityDecision(decGroup, decTreeId, uid);
-        }
     }
 }

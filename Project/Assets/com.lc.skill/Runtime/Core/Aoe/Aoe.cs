@@ -178,7 +178,7 @@ namespace LCSkill
         /// <summary>
         /// 现在aoe范围内的所有演员
         /// </summary>
-        public List<ActorObj> actorInRange = new List<ActorObj>();
+        public List<Actor> actorInRange = new List<Actor>();
 
         /// <summary>
         /// 现在aoe范围内的所有子弹
@@ -220,14 +220,14 @@ namespace LCSkill
                     newShape.Scale(size);
                 if (follow)
                 {
-                    ActorObj actorObj = MapLocate.Map.GetActor(ower.EntityUid);
+                    Actor actorObj = MapLocate.Map.GetActor(ower.EntityUid);
                     if (actorObj == null)
                     {
                         SkillLocate.Log.LogError("计算区域出错,没有跟随对象>>", model.id, ower.EntityUid);
                     }
-                    if (actorObj.GetDir() == DirType.Left)
+                    if (actorObj.Roate.y != 0)
                         newShape.FlipX();
-                    newShape.Translate(actorObj.transform.position);
+                    newShape.Translate(actorObj.Pos);
                 }
                 return newShape;
             }

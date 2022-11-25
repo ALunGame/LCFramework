@@ -16,9 +16,9 @@ namespace Demo.Skill.Buff
         public override void Execute(BuffObj buff, ref AddDamageInfo damageInfo, SkillCom attacker)
         {
             SkillCom skillCom = damageInfo.target;
-            ActorObj actorObj = LCMap.MapLocate.Map.GetActor(skillCom.EntityUid);
+            Actor actorObj = LCMap.MapLocate.Map.GetActor(skillCom.EntityUid);
 
-            GameObject displayGo = actorObj.GetDisplayGo();
+            GameObject displayGo = actorObj.DisplayCom.DisplayGo;
             displayGo.transform.DOComplete(false);
             displayGo.transform.DOPunchPosition(new Vector3(-0.2f * actorObj.GetDirValue(), 0,0), shakeTime, 1, 0);
         }

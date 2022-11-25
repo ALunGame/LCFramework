@@ -9,7 +9,7 @@ namespace LCSkill
     {
         public AddAoeModel addAoe;
 
-        public override void Execute(BulletObj bullet, ActorObj actor)
+        public override void Execute(BulletObj bullet, Actor actor)
         {
             SkillLocate.Skill.CreateAoe(bullet.ower, addAoe);
         }

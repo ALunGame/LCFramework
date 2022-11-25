@@ -27,7 +27,7 @@ namespace LCECS.EntityGraph
             //查看所有节点
             ToolbarButton btnSelEntity = new ToolbarButton()
             {
-                text = graph.RunningTimeEntity == null ? "选择实体" : graph.RunningTimeEntity.Go.name,
+                text = graph.RunningTimeEntity == null ? "选择实体" : graph.RunningTimeEntity.Uid,
                 tooltip = "选择实体"
             };
             btnSelEntity.clicked += () =>
@@ -47,10 +47,17 @@ namespace LCECS.EntityGraph
             List<Entity> entities = new List<Entity>();
             foreach (var item in ECSLocate.ECS.GetAllEntitys())
             {
-                if (item.Value.Id == entityId)
+                if (item.Value.EntityId == entityId)
                 {
                     entities.Add(item.Value);
-                    selStrs.Add(item.Value.Go.name);
+                    if (item.Value.GetCom(out BindGoCom bindGoCom))
+                    {
+                        selStrs.Add(bindGoCom.Go.name);
+                    }
+                    else
+                    {
+                        selStrs.Add(item.Value.Uid);
+                    }
                 }
             }
 
@@ -58,7 +65,7 @@ namespace LCECS.EntityGraph
             {
                 EntityGraph graph = Graph as EntityGraph;
                 graph.RunningTimeEntity = entities[x];
-                btnSelEntity.text = graph.RunningTimeEntity.Go.name;
+                btnSelEntity.text = selStrs[x];
             });
         }
     }

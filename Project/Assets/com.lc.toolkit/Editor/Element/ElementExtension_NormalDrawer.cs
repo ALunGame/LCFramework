@@ -1,6 +1,4 @@
-﻿using LCToolkit.Element;
-using System;
-using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -8,9 +6,6 @@ using System.Reflection;
 using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
-using UnityObject = UnityEngine.Object;
-using LCToolkit;
-using LCToolkit;
 
 namespace LCToolkit
 {
@@ -58,6 +53,23 @@ namespace LCToolkit
         public static INotifyValueChanged<T> CreateField<T>(T value, string label = null)
         {
             return CreateField(value != null ? value.GetType() : typeof(T), label) as INotifyValueChanged<T>;
+        }
+
+        public static bool CheckHasDrawer(Type t)
+        {
+            Type drawerType;
+
+            fieldDrawers.TryGetValue(t, out drawerType);
+
+            if (drawerType == null)
+                drawerType = fieldDrawers.FirstOrDefault(kp => kp.Key.IsReallyAssignableFrom(t)).Value;
+
+            if (drawerType == null)
+            {
+                return false;
+            }
+
+            return true;
         }
 
         public static VisualElement CreateField(Type t, string label)

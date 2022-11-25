@@ -1,5 +1,6 @@
 ﻿using Demo.Com;
 using Demo.System;
+using LCECS.Core;
 using LCECS.Core.Tree;
 using LCECS.Core.Tree.Base;
 using LCECS.Core.Tree.Nodes.Action;
@@ -22,7 +23,7 @@ namespace Demo.Behavior
             //组件
             CollectCom collectCom = workData.MEntity.GetCom<CollectCom>();
             WayPointMoveCom wayPointMoveCom = workData.MEntity.GetCom<WayPointMoveCom>();
-            List<ActorObj> actors = MapLocate.Map.GetActors(collectCom.collectActorId);
+            List<Actor> actors = MapLocate.Map.GetActors(collectCom.collectActorId);
 
             if (actors.Count <= 0)
             {
@@ -30,17 +31,17 @@ namespace Demo.Behavior
                 return;
             }
 
-            ActorObj actor = LCMap.MapLocate.Map.GetActor(wData.Uid);
+            Actor actor = LCMap.MapLocate.Map.GetActor(wData.Uid);
             ActorCnf actorCnf = LCConfig.Config.ActorCnf[actor.Id];
-            TransformCom targetTransformCom = actors[0].Entity.GetCom<TransformCom>();
-            TransformCom transformCom = workData.MEntity.GetCom<TransformCom>();
-            if (Vector2.Distance(targetTransformCom.GetPos(), transformCom.GetPos()) <= actorCnf.interactiveRange)
+            TransCom targetTransformCom = actors[0].GetCom<TransCom>();
+            TransCom transformCom = workData.MEntity.GetCom<TransCom>();
+            if (Vector2.Distance(targetTransformCom.Pos ,transformCom.Pos) <= actorCnf.interactiveRange)
             {
                 wayPointMoveCom.currRoadCnf = null;
                 return;
             }
 
-            if (WayPointMoveSystem.RoadCnf.CalcRoadPos(actors[0].transform.position, out var endPos))
+            if (WayPointMoveSystem.RoadCnf.CalcRoadPos(actors[0].Pos, out var endPos))
             {
                 wData.AddBlackboardValue(BEV_BlackboardKey.InteractiveActorUid, actors[0].Uid);
                 wayPointMoveCom.SetWayPointTarget(endPos);

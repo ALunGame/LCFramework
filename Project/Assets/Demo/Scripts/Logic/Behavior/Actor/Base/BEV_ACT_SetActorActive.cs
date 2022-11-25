@@ -15,10 +15,10 @@ namespace Demo.Behavior
 
         protected override void OnEnter(NodeData wData)
         {
-            ActorObj actor = LCMap.MapLocate.Map.GetActor(wData.Uid);
-            actor.gameObject.SetActive(isActive);
+            Actor actor = LCMap.MapLocate.Map.GetActor(wData.Uid);
+            actor.IsActive = isActive;
             if (!string.IsNullOrEmpty(stateName))
-                actor.SetDisplayGo(stateName);
+                actor.DisplayCom.SetState(stateName);
         }
 
         protected override int OnRunning(NodeData wData)

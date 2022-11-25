@@ -89,7 +89,7 @@ namespace Demo.System
             UpdateAreas(dragCameraCom);
         }
 
-        private void HandleFollowActorChange(ActorObj actor)
+        private void HandleFollowActorChange(Actor actor)
         {
         }
 
@@ -149,10 +149,10 @@ namespace Demo.System
 
         private void OnBeginDrag(DragCameraCom dragCameraCom, PointerEventData eventData)
         {
-            ActorObj followActor = globalSensor.FollowActor.Value;
+            Actor followActor = globalSensor.FollowActor.Value;
             if (followActor == null)
                 return;
-            Vector3 followPos = followActor.GetFollowGo().transform.position;
+            Vector3 followPos = followActor.DisplayCom.CameraFollowGo.transform.position;
             SetCameraPos(dragCameraCom, new Vector2(followPos.x, followPos.y));
         }
 

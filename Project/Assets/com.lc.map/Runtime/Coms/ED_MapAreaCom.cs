@@ -122,7 +122,7 @@ namespace LCMap
         {
             UpdateRect();
 
-            AreaModel areaModel = new AreaModel();
+            AreaInfo areaModel = new AreaInfo();
             areaModel.pos = transform.localPosition;
             areaModel.rect = areaRect;
             areaModel.areaPrefab = AreaEnv.name;
@@ -134,15 +134,15 @@ namespace LCMap
                 for (int i = 0; i < actorComs.Length; i++)
                 {
                     ED_ActorCom tActorCom = actorComs[i];
-                    areaModel.actors.Add((ActorModel)tActorCom.ExportData());
+                    areaModel.actors.Add((ActorInfo)tActorCom.ExportData());
                 }
             }
 
             //地图默认演员
-            List<ActorModel> mapActors = CollectMapDefaultActors(tmpAreaEnv);
+            List<ActorInfo> mapActors = CollectMapDefaultActors(tmpAreaEnv);
             if (mapActors != null && mapActors.Count > 0)
             {
-                foreach (ActorModel actorData in mapActors)
+                foreach (ActorInfo actorData in mapActors)
                 {
                     areaModel.actors.Add(actorData);
                 }
@@ -155,7 +155,7 @@ namespace LCMap
                 for (int i = 0; i < triggerComs.Length; i++)
                 {
                     ED_MapTriggerCom tTriggerCom = triggerComs[i];
-                    areaModel.triggers.Add(i + 1, (MapTriggerModel)tTriggerCom.ExportData());
+                    areaModel.triggers.Add(i + 1, (MapTriggerInfo)tTriggerCom.ExportData());
                 }
             }
 
@@ -163,7 +163,7 @@ namespace LCMap
         }
 
         private int defaultActorUid = -100;
-        private List<ActorModel> CollectMapDefaultActors(GameObject mapGo)
+        private List<ActorInfo> CollectMapDefaultActors(GameObject mapGo)
         {
             defaultActorUid = -100;
             if (mapGo == null)
@@ -171,7 +171,7 @@ namespace LCMap
                 Debug.LogError("地图导出失败，没有地图预制体" + name);
                 return null;
             }
-            List<ActorModel> actors = new List<ActorModel>();
+            List<ActorInfo> actors = new List<ActorInfo>();
 
             Transform actorRoot = mapGo.transform.Find("DefaultActor");
             if (actorRoot != null)
@@ -182,7 +182,7 @@ namespace LCMap
                     ActorCnf actorModel = ED_MapCom.GetActorCnf(actor.name);
                     if (actorModel != null)
                     {
-                        ActorModel actorData = new ActorModel();
+                        ActorInfo actorData = new ActorInfo();
                         actorData.uid   = $"actor_{defaultActorUid--}";
                         actorData.id    = actorModel.id;
                         actorData.pos   = ED_ActorCom.HandlePos(transform.position);

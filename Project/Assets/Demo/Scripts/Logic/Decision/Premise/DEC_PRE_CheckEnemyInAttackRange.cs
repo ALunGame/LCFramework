@@ -22,17 +22,18 @@ namespace Demo.Decision
         public override bool OnMakeTrue(NodeData wData)
         {
             EntityWorkData workData = wData as EntityWorkData;
-            TransformCom selfTransCom = workData.MEntity.GetCom<TransformCom>();
-            ActorObj actor = MapLocate.Map.GetActor(workData.MEntity.Uid);
+            TransCom selfTransCom = workData.MEntity.GetCom<TransCom>();
+            Actor actor = MapLocate.Map.GetActor(workData.MEntity.Uid);
+            MapArea mapArea = MapLocate.Map.GetAreaByActor(actor);
             CampCom selfCampCom = workData.MEntity.GetCom<CampCom>();
-            if (actor == null || actor.Area == null)
+            if (actor == null || mapArea == null)
                 return false;
 
             if (selfCampCom == null || selfCampCom.Camp == CampType.Neutral)
                 return false;
 
             Shape checkShape = checkRange;
-            checkShape.Translate(selfTransCom.GetPos());
+            checkShape.Translate(selfTransCom.Pos);
 
             GameLocate.ShapeRender.AddShape(ShapeRenderType.攻击范围, workData.MEntity.Uid, checkShape);
 
@@ -60,8 +61,8 @@ namespace Demo.Decision
             Entity playerEntity = LCECS.ECSLocate.Player.GetPlayerEntity();
             if (playerEntity != null)
             {
-                TransformCom transCom = playerEntity.GetCom<TransformCom>();
-                if (checkShape.ContainPoint(transCom.GetPos()))
+                TransCom transCom = playerEntity.GetCom<TransCom>();
+                if (checkShape.ContainPoint(transCom.Pos))
                 {
                     wData.Blackboard.Add(EnemyInAttackRangeKey, playerEntity.Uid);
                     return true;
@@ -69,7 +70,7 @@ namespace Demo.Decision
             }
 
             //敌对演员
-            foreach (var item in actor.Area.Actors.Keys)
+            foreach (var item in mapArea.Actors.Keys)
             {
                 if (item == workData.MEntity.Uid)
                 {
@@ -81,8 +82,8 @@ namespace Demo.Decision
                     CampCom campCom = entity.GetCom<CampCom>();
                     if (campCom != null && campCom.Camp != selfCampCom.Camp)
                     {
-                        TransformCom transCom = entity.GetCom<TransformCom>();
-                        if (checkShape.ContainPoint(transCom.GetPos()))
+                        TransCom transCom = entity.GetCom<TransCom>();
+                        if (checkShape.ContainPoint(transCom.Pos))
                         {
                             wData.Blackboard.Add(EnemyInAttackRangeKey, entity.Uid);
                             return true;
@@ -97,9 +98,9 @@ namespace Demo.Decision
         private Shape GetEntityColliderShape(Entity entity)
         {
             Collider2DCom collider2DCom = entity.GetCom<Collider2DCom>();
-            TransformCom transCom = entity.GetCom<TransformCom>();
+            TransCom transCom = entity.GetCom<TransCom>();
             Shape shape = collider2DCom.colliderShape;
-            shape.Translate(transCom.GetPos());
+            shape.Translate(transCom.Pos);
             return shape;
         }
     }

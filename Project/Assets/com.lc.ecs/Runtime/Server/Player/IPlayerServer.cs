@@ -9,8 +9,6 @@ namespace LCECS.Server.Player
     /// </summary>
     public interface IPlayerServer
     {
-        GameObject GetPalyerGo();
-
         void SetPlayerEntity(Entity entity);
 
         Entity GetPlayerEntity();

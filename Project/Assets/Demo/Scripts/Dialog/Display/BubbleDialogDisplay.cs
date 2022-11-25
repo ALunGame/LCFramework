@@ -32,7 +32,7 @@ namespace Demo.Dialog
             }
 
             //展示新的
-            List<ActorObj> actors = new List<ActorObj>();
+            List<Actor> actors = new List<Actor>();
             if (stepModel.speakers != null && stepModel.speakers.Count > 0)
             {
                 for (int i = 0; i < stepModel.speakers.Count; i++)
@@ -57,7 +57,7 @@ namespace Demo.Dialog
             bool hasPlayer = false;
             for (int i = 0; i < actors.Count; i++)
             {
-                ActorObj actor = actors[i];
+                Actor actor = actors[i];
 
                 Entity entity = ECSLocate.ECS.GetEntity(actor.Uid);
                 BubbleCom bubbleCom = entity.GetCom<BubbleCom>();

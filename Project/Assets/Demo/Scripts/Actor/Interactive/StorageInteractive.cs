@@ -5,24 +5,26 @@ namespace Demo
 {
     public class StorageInteractive : ActorInteractive
     {
-        protected override void OnExecute(ActorObj executeActor)
-        {
-            BuildingCom owerBuildingCom     = actor.Entity.GetCom<BuildingCom>();
-            BagCom owerBuildingBagCom       = actor.Entity.GetCom<BagCom>();
+        private int _type = (int)InteractiveType.Storage;
+        public override int Type { get => _type; }
 
-            CollectCom executeCollectCom    = executeActor.Entity.GetCom<CollectCom>();
-            BagCom executeBagCom            = executeActor.Entity.GetCom<BagCom>();
+        protected override bool OnExecute(Actor executeActor)
+        {
+            BuildingCom owerBuildingCom     = actor.GetCom<BuildingCom>();
+            BagCom owerBuildingBagCom       = actor.GetCom<BagCom>();
+
+            CollectCom executeCollectCom    = executeActor.GetCom<CollectCom>();
+            BagCom executeBagCom            = executeActor.GetCom<BagCom>();
 
             BagItem storageItem = executeBagCom.GetBagItem(executeCollectCom.collectActorId);
             if (storageItem.cnt <= 0)
             {
                 GameLocate.Log.LogError("存储失败，没有物品", executeCollectCom.collectActorId);
-                ExecuteFinish();
-                return;
+                return true;
             }
 
             executeBagCom.CoverItem(owerBuildingCom.Storage(executeActor, storageItem, owerBuildingBagCom));
-            ExecuteFinish();
+            return true;
         }
     }
 }

@@ -12,15 +12,19 @@ namespace Demo.System
 
         protected override List<Type> RegListenComs()
         {
-            return new List<Type>() {typeof(GravityCom), typeof(TransformCom), typeof(Collider2DCom)};
+            return new List<Type>() {typeof(GravityCom), typeof(TransCom), typeof(Collider2DCom) };
         }
 
         protected override void HandleComs(List<BaseCom> comList)
         {
             GravityCom gravityCom = GetCom<GravityCom>(comList[0]);
-            TransformCom transCom = GetCom<TransformCom>(comList[1]);
+            TransCom transCom = GetCom<TransCom>(comList[1]);
+            
+            Vector3 waitPos;
+            transCom.HasWaitPos(out waitPos);
+
             float yDelta = gravityCom.Mass * _G * Time.deltaTime;
-            transCom.ReqMove = new Vector3(transCom.ReqMove.x, transCom.ReqMove.y + yDelta);
+            transCom.WaitSetPos(new Vector3(waitPos.x, waitPos.y + yDelta));
         }
     } 
 }

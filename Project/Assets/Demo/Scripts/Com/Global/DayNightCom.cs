@@ -84,9 +84,8 @@ namespace Demo.Com
         /// </summary>
         public float CurrStageLeftTime { get; private set; }
 
-        protected override void OnInit(GameObject go)
+        protected override void OnInit(Entity pEntity)
         {
-            base.OnInit(go);
             GlobalLight = GameLocate.Center.GetComponentInChildren<Light2D>();
             currStage.SetValueWithoutNotify(DayNightStage.NightFull);
             CurrStageLeftTime = GetStageTotalSecond(DayNightStage.NightFull);

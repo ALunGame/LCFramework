@@ -1,4 +1,5 @@
 ﻿using Demo.Com;
+using LCECS.Core;
 using LCECS.Core.Tree.Base;
 using LCECS.Core.Tree.Nodes.Action;
 using LCECS.Data;
@@ -33,7 +34,7 @@ namespace Demo.Behavior
 
             //组件
             PlayerMoveCom moveCom       = workData.MEntity.GetCom<PlayerMoveCom>();
-            TransformCom transCom       = workData.MEntity.GetCom<TransformCom>();    
+            TransCom transCom       = workData.MEntity.GetCom<TransCom>();    
             Collider2DCom collider2DCom = workData.MEntity.GetCom<Collider2DCom>();
             BasePropertyCom propertyCom     = workData.MEntity.GetCom<BasePropertyCom>();
             PlayerPropertyCom playerPropertyCom     = workData.MEntity.GetCom<PlayerPropertyCom>();
@@ -282,12 +283,12 @@ namespace Demo.Behavior
 
         #region 方向
 
-        private void HandleMoveDir(PlayerMoveCom moveCom, TransformCom transCom)
+        private void HandleMoveDir(PlayerMoveCom moveCom, TransCom transCom)
         {
             if (moveCom.ReqMoveSpeed == 0)
                 return;
             DirType dirType = moveCom.ReqMoveSpeed >0 ? DirType.Right: DirType.Left;
-            transCom.ReqDir = dirType;
+            transCom.Roate(dirType);
         }
 
         #endregion

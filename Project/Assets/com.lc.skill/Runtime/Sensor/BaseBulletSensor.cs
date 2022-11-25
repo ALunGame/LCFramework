@@ -11,6 +11,6 @@ namespace LCSkill
         /// </summary>
         /// <param name="bulletObj"></param>
         /// <returns></returns>
-        public abstract List<ActorObj> GetHitActors(BulletObj bulletObj);
+        public abstract List<Actor> GetHitActors(BulletObj bulletObj);
     }
 }

@@ -9,27 +9,28 @@ namespace Demo
     {
         public int repairValue = 1;
 
-        protected override void OnExecute(ActorObj executeActor)
+        private int _type = (int)InteractiveType.Repair;
+        public override int Type { get => _type; }
+
+        protected override bool OnExecute(Actor executeActor)
         {
-            BasePropertyCom owerPropertyCom = actor.Entity.GetCom<BasePropertyCom>();
+            BasePropertyCom owerPropertyCom = actor.GetCom<BasePropertyCom>();
 
             if (owerPropertyCom.Hp.Curr >= owerPropertyCom.Hp.Max)
             {
                 GameLocate.Log.LogError("修复失败，生命值已满", actor);
-                ExecuteFinish();
-                return;
+                return true;
             }
 
-            ExecuteRepair(executeActor);
+            return ExecuteRepair(executeActor);
         }
 
-        private void ExecuteRepair(ActorObj executeActor)
+        private bool ExecuteRepair(Actor executeActor)
         {
-            BasePropertyCom owerPropertyCom = actor.Entity.GetCom<BasePropertyCom>();
+            BasePropertyCom owerPropertyCom = actor.GetCom<BasePropertyCom>();
             if (owerPropertyCom.Hp.Curr >= owerPropertyCom.Hp.Max)
             {
-                ExecuteFinish();
-                return;
+                return true;
             }
 
             owerPropertyCom.Hp.Curr = owerPropertyCom.Hp.Curr + repairValue;
@@ -39,6 +40,7 @@ namespace Demo
             {
                 ExecuteRepair(executeActor);
             });
+            return false;
         }
     }
 }

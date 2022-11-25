@@ -1,5 +1,6 @@
 ﻿using Demo.Com;
 using Demo.System;
+using LCECS.Core;
 using LCECS.Core.Tree;
 using LCECS.Core.Tree.Base;
 using LCECS.Core.Tree.Nodes.Action;
@@ -30,11 +31,10 @@ namespace Demo.Behavior
             userData.skillId = skillId;
 
             //打断移动
-            TransformCom transformCom = workData.MEntity.GetCom<TransformCom>();
+            TransCom transformCom = workData.MEntity.GetCom<TransCom>();
             if (transformCom != null)
             {
-                transformCom.ReqMove = Vector3.zero;
-                transformCom.ReqDir  = DirType.None;
+                transformCom.ClearWaitTransData();
             }
             PlayerMoveCom moveCom = workData.MEntity.GetCom<PlayerMoveCom>();
             if (moveCom != null)

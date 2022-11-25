@@ -13,6 +13,11 @@ namespace LCECS.EntityGraph
     [CreateAssetMenu(fileName = "实体组", menuName = "配置组/实体组", order = 1)]
     public class EntityGraphGroupAsset : BaseGraphGroupAsset<EntityGraphAsset>
     {
+        //实体模板
+        [SerializeField]
+        [HideInInspector]
+        public EntityGraphAsset entity_template;
+
         public override string DisplayName => "实体配置";
 
         public override void OnClickCreateBtn()
@@ -26,6 +31,16 @@ namespace LCECS.EntityGraph
             });
         }
 
+        public override InternalBaseGraphAsset CreateGraph(string name)
+        {
+            InternalBaseGraphAsset asset = base.CreateGraph(name);
+            if (entity_template!=null)
+            {
+                ((EntityGraphAsset)asset).SetSerializedStr(entity_template.GetSerializedStr());
+            }
+            return asset;
+        }
+
         public override void ExportGraph(List<InternalBaseGraphAsset> assets)
         {
             for (int i = 0; i < assets.Count; i++)
@@ -34,17 +49,17 @@ namespace LCECS.EntityGraph
                 BaseGraph graphData = entityAsset.DeserializeGraph();
 
                 //运行时数据结构
-                Entity model = SerializeToEntityModel(graphData, entityAsset);
+                List<BaseCom> coms = SerializeToEntityComs(graphData, entityAsset);
 
                 string filePath = ECSDefPath.GetEntityPath(entityAsset.entityId);
-                IOHelper.WriteText(JsonMapper.ToJson(model), filePath);
+                IOHelper.WriteText(JsonMapper.ToJson(coms), filePath);
                 Debug.Log($"实体配置生成成功>>>>{filePath}");
             }
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
         }
 
-        private Entity SerializeToEntityModel(BaseGraph graph, EntityGraphAsset entityAsset)
+        private List<BaseCom> SerializeToEntityComs(BaseGraph graph, EntityGraphAsset entityAsset)
         {
             List<Entity_Node> rootNodes = NodeHelper.GetNodes<Entity_Node>(graph);
             if (rootNodes.Count <= 0)
@@ -52,8 +67,7 @@ namespace LCECS.EntityGraph
                 Debug.LogError($"试图序列化出错，没有根节点");
             }
             List<BaseCom> coms = rootNodes[0].GetModel();
-            Entity model = new Entity(entityAsset.entityId, entityAsset.decGroup, rootNodes[0].name, entityAsset.decTree, coms);
-            return model;
+            return coms;
         }
     }
 }

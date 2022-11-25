@@ -22,7 +22,7 @@ namespace LCSkill
     {
         public AddBuffModel addBuff;
 
-        public override void Execute(AoeObj aoe, List<ActorObj> actors)
+        public override void Execute(AoeObj aoe, List<Actor> actors)
         {
 
         }
@@ -35,7 +35,7 @@ namespace LCSkill
     {
         public AddBuffModel addBuff;
 
-        public override void Execute(AoeObj aoe, List<ActorObj> actors)
+        public override void Execute(AoeObj aoe, List<Actor> actors)
         {
 
         }

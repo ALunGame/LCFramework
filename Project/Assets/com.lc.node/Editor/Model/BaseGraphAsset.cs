@@ -35,6 +35,17 @@ namespace LCNode.Model
         {
             return DeserializeGraph() as GraphClass;
         }
+
+        public string GetSerializedStr()
+        {
+            return string.Copy(serializedGraph);
+        }
+
+        public void SetSerializedStr(string str)
+        {
+            serializedGraph = str;
+        }
+
         #endregion
     }
 }

@@ -10,7 +10,7 @@ namespace Demo
     [WorldSensor(SensorType.Skill_Bullet)]
     public class BulletSensor : BaseBulletSensor
     {
-        public override List<ActorObj> GetHitActors(BulletObj bulletObj)
+        public override List<Actor> GetHitActors(BulletObj bulletObj)
         {
             throw new global::System.NotImplementedException();
         }

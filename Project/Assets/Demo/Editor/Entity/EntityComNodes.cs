@@ -215,15 +215,15 @@ namespace Demo
     {
         public override string Title { get => "变换组件"; set => base.Title = value; }
         public override string Tooltip { get => "变换组件"; set => base.Tooltip = value; }
-        public override Type RuntimeNode => typeof(TransformCom);
+        public override Type RuntimeNode => typeof(TransCom);
 
         [NodeValue("正方向")]
         public DirType Dir = DirType.Right;
 
         public override BaseCom CreateRuntimeNode()
         {
-            TransformCom com = new TransformCom();
-            com.ForwardDir = Dir;
+            TransCom com = new TransCom();
+            //com.ForwardDir = Dir;
             return com;
         }
     }

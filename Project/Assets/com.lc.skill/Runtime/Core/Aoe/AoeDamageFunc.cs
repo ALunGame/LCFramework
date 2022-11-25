@@ -23,7 +23,7 @@ namespace LCSkill
     {
         public DamageModel damage;
 
-        public override void Execute(AoeObj aoe, List<ActorObj> actors)
+        public override void Execute(AoeObj aoe, List<Actor> actors)
         {
             for (int i = 0; i < actors.Count; i++)
             {
@@ -40,7 +40,7 @@ namespace LCSkill
     {
         public DamageModel damage;
 
-        public override void Execute(AoeObj aoe, List<ActorObj> actors)
+        public override void Execute(AoeObj aoe, List<Actor> actors)
         {
             for (int i = 0; i < actors.Count; i++)
             {

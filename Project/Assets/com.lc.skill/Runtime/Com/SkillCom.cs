@@ -33,7 +33,7 @@ namespace LCSkill
         /// </summary>
         private List<TimelineObj> timelines = new List<TimelineObj>();
 
-        protected override void OnInit(GameObject go)
+        protected override void OnInit(Entity pEntity)
         {
             for (int i = 0; i < initialBuffs.Count; i++)
             {
@@ -43,7 +43,7 @@ namespace LCSkill
                 addBuffModel.durationSetType = true;
                 addBuffModel.duration = 1;
                 addBuffModel.isPermanent = true;
-                SkillLocate.Skill.CreateBuff(this,this, addBuffModel);
+                SkillLocate.Skill.CreateBuff(this, this, addBuffModel);
             }
             for (int i = 0; i < initialSkills.Count; i++)
             {

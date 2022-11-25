@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using LCLoad;
 using LCJson;
+using LCECS;
 
 namespace Demo.System
 {
@@ -34,7 +35,7 @@ namespace Demo.System
                 }
             }
 
-            return new List<Type>() { typeof(WayPointMoveCom), typeof(AnimCom), typeof(BasePropertyCom), typeof(TransformCom) };
+            return new List<Type>() { typeof(WayPointMoveCom), typeof(AnimCom), typeof(BasePropertyCom), typeof(TransCom) };
         }
 
         protected override void HandleComs(List<BaseCom> comList)
@@ -42,7 +43,7 @@ namespace Demo.System
             WayPointMoveCom wayPointMoveCom = GetCom<WayPointMoveCom>(comList[0]);
             AnimCom animCom = GetCom<AnimCom>(comList[1]);
             BasePropertyCom propertyCom = GetCom<BasePropertyCom>(comList[2]);
-            TransformCom transCom = GetCom<TransformCom>(comList[3]);
+            TransCom transCom = GetCom<TransCom>(comList[3]);
 
             if (wayPointMoveCom.currRoadCnf == null)
                 return;
@@ -53,7 +54,7 @@ namespace Demo.System
             }
             else
             {
-                Vector2 selfPos = transCom.GetPos();
+                Vector2 selfPos = transCom.Pos;
                 Vector2 targetPos = wayPointMoveCom.currRoadCnf.roadPos;
 
                 DirType dir = DirType.Right;
@@ -75,8 +76,7 @@ namespace Demo.System
 
                 //位移
                 Vector3 delta = new Vector3(dir == DirType.Right ? 1 : -1, yDir, 0);
-                delta = delta * propertyCom.MoveSpeed.Curr * Time.deltaTime;
-                transCom.Translate(delta);
+                transCom.MoveDir(delta, propertyCom.MoveSpeed.Curr);
             }
         }
 

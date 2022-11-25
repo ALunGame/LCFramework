@@ -121,7 +121,7 @@ namespace LCMap
 
         public override object ExportData()
         {
-            ActorModel actorData = new ActorModel();
+            ActorInfo actorData = new ActorInfo();
             actorData.uid = UId;
             actorData.id = Id;
             actorData.pos = HandlePos(transform.position);
@@ -137,7 +137,7 @@ namespace LCMap
             {
                 for (int i = 0; i < pathComs.Length; i++)
                 {
-                    actorData.paths.Add((ActorPathModel)pathComs[i].ExportData());
+                    actorData.paths.Add((ActorPathInfo)pathComs[i].ExportData());
                 }
             }
 

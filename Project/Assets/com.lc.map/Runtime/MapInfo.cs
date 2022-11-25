@@ -7,18 +7,18 @@ namespace LCMap
     /// <summary>
     /// 导出的地图配置数据
     /// </summary>
-    public class MapModel
+    public class MapInfo
     {
         public int mapId;
         public int currMaxActorUid;
-        public ActorModel mainActor = null;
-        public List<AreaModel> areas = new List<AreaModel>();
+        public ActorInfo mainActor = null;
+        public List<AreaInfo> areas = new List<AreaInfo>();
     }
 
     /// <summary>
     /// 区域配置数据
     /// </summary>
-    public class AreaModel
+    public class AreaInfo
     {
         public int areaId;
         public Vector3 pos;
@@ -26,16 +26,16 @@ namespace LCMap
 
         public string areaPrefab;
 
-        public List<ActorModel> actors = new List<ActorModel>();
-        public Dictionary<int, MapTriggerModel> triggers = new Dictionary<int, MapTriggerModel>();
+        public List<ActorInfo> actors = new List<ActorInfo>();
+        public Dictionary<int, MapTriggerInfo> triggers = new Dictionary<int, MapTriggerInfo>();
     }
 
-    public class MapTriggerModel
+    public class MapTriggerInfo
     {
         public List<Vector2> points;
     }
 
-    public class ActorModel
+    public class ActorInfo
     {
         //唯一Id
         public string uid;
@@ -54,15 +54,15 @@ namespace LCMap
         //状态名
         public string stateName;
         //路径
-        public List<ActorPathModel> paths = new List<ActorPathModel>();
+        public List<ActorPathInfo> paths = new List<ActorPathInfo>();
         //交互点
         public Vector2 interactivePoint = Vector2.zero;
 
-        public ActorModel()
+        public ActorInfo()
         {
         }
 
-        public ActorModel(int id,ActorType actorType, Vector3 pos)
+        public ActorInfo(int id,ActorType actorType, Vector3 pos)
         {
             this.id = id;
             this.type = actorType;  
@@ -70,15 +70,15 @@ namespace LCMap
         }
     }
 
-    public class ActorPathModel
+    public class ActorPathInfo
     {
         public bool defaultPath = false;
         public bool closePath = false;
         public float pathSpeed = 0;
-        public List<ActorPointModel> points = new List<ActorPointModel>();
+        public List<ActorPointInfo> points = new List<ActorPointInfo>();
     }
 
-    public class ActorPointModel
+    public class ActorPointInfo
     {
         public Vector3 point;
 

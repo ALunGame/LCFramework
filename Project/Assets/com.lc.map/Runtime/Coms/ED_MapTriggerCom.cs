@@ -27,7 +27,7 @@ namespace LCMap
 
         public override object ExportData()
         {
-            MapTriggerModel triggerData = new MapTriggerModel();
+            MapTriggerInfo triggerData = new MapTriggerInfo();
             Vector2[] points = GetPolygonCollider2DPoints(transform);
             if (points != null)
             {

@@ -40,19 +40,24 @@ namespace Demo.Com
         [NonSerialized]
         private BindableValue<AnimLayer> ReqAnimLayer = new BindableValue<AnimLayer>();
 
-        protected override void OnInit(GameObject go)
+        protected override void OnInit(Entity pEntity)
         {
             ReqAnimName.Value = AnimSystem.IdleState;
             ReqAnimLayer.Value = AnimLayer.Side;
 
-            ActorObj actorObj = go.GetComponent<ActorObj>();
-            actorObj.OnDisplayGoChange += OnDisplayGoChange;
-            OnDisplayGoChange(actorObj);
+            ActorDisplayCom displayCom = pEntity.GetCom<ActorDisplayCom>();
+            if (displayCom != null)
+            {
+                displayCom.RegStateChange((stateName) =>
+                {
+                    OnDisplayGoChange(displayCom.DisplayGo);
+                });
+            }
         }
 
-        private void OnDisplayGoChange(ActorObj actorObj)
+        private void OnDisplayGoChange(GameObject displayGo)
         {
-            Transform animTrans = actorObj.GetDisplayGo().transform;
+            Transform animTrans = displayGo.transform;
             if (animTrans == null)
             {
                 Anim = null;

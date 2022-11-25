@@ -53,14 +53,17 @@ namespace Demo.Com
         [NonSerialized]
         public Vector3 ReqMove;
 
-        protected override void OnInit(GameObject go)
-        {
-            Rig = go.GetComponent<Rigidbody2D>();
-        }
 
-        private void OnDisplayGoChange(GameObject displayGo)
+        protected override void OnInit(Entity pEntity)
         {
-            Rig = displayGo.transform.Find("Collider").GetComponent<Rigidbody2D>();
+            BindGoCom bindGoCom = pEntity.GetCom<BindGoCom>();
+            if (bindGoCom != null)
+            {
+                bindGoCom.RegGoChange((go) =>
+                {
+                    Rig = go.GetComponent<Rigidbody2D>();
+                });
+            }
         }
     }
 }

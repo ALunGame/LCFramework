@@ -28,8 +28,8 @@ namespace Demo.Server
             if (stage == DayNightStage.Morning)
             {
                 int actorIdIndex        = Random.Range(0, createActors.Count);
-                Vector3 createPos       = MapLocate.Map.GetActor(341).transform.position;
-                ActorModel actorModel   = new ActorModel(createActors[actorIdIndex], ActorType.Villager, createPos);
+                Vector3 createPos       = MapLocate.Map.GetActor(341).Pos;
+                ActorInfo actorModel   = new ActorInfo(createActors[actorIdIndex], ActorType.Villager, createPos);
                 MapLocate.Map.CreateActor(actorModel, MapLocate.Map.CurrArea);
             }
         }
@@ -37,26 +37,26 @@ namespace Demo.Server
 
         public void AfterMapInit()
         {
-            foreach (ActorObj managerActor in MapLocate.Map.GetActors(typeof(ManagerCom).FullName))
+            foreach (Actor managerActor in MapLocate.Map.GetActors(typeof(ManagerCom).FullName))
             {
-                SetManagerBuilding(managerActor.Entity.GetCom<ManagerCom>());
+                SetManagerBuilding(managerActor.GetCom<ManagerCom>());
             }
-            foreach (ActorObj workerActor in MapLocate.Map.GetActors(typeof(WorkerCom).FullName))
+            foreach (Actor workerActor in MapLocate.Map.GetActors(typeof(WorkerCom).FullName))
             {
-                AddWorker(workerActor.Entity.GetCom<WorkerCom>());
+                AddWorker(workerActor.GetCom<WorkerCom>());
             }
         }
 
         public void AddWorker(WorkerCom workerCom)
         {
-            ActorObj managerActor  = MapLocate.Map.GetActor(workerCom.managerActorId);
+            Actor managerActor  = MapLocate.Map.GetActor(workerCom.managerActorId);
             if (managerActor == null)
                 return;
 
             workerCom.managerActor = managerActor;
 
-            ActorObj workerActor   = MapLocate.Map.GetActor(workerCom.EntityUid);
-            ManagerCom managerCom  = managerActor.Entity.GetCom<ManagerCom>();
+            Actor workerActor   = MapLocate.Map.GetActor(workerCom.EntityUid);
+            ManagerCom managerCom  = managerActor.GetCom<ManagerCom>();
             managerCom.RemoveWorker(workerActor);
             managerCom.AddWorker(workerActor);
         }

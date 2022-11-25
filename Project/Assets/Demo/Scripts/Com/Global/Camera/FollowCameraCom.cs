@@ -17,10 +17,5 @@ namespace Demo.Com
         /// </summary>
         [NonSerialized]
         public CinemachineVirtualCamera CMCamera;
-
-        protected override void OnInit(GameObject go)
-        {
-            
-        }
     }
 }

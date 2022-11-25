@@ -50,7 +50,7 @@ namespace LCMap
             }
         }
 
-        public ActorObj PlayerActor { get; private set; }
+        public Actor PlayerActor { get; private set; }
 
         private int currMapId;
         /// <summary>
@@ -81,9 +81,9 @@ namespace LCMap
         //地图区域
         public Dictionary<int, MapArea> areaDict = new Dictionary<int, MapArea>();
         //地图配置
-        private Dictionary<int, MapModel> mapCnf = new Dictionary<int, MapModel>();
+        private Dictionary<int, MapInfo> mapCnf = new Dictionary<int, MapInfo>();
 
-        private MapModel GetMapCnf(int mapId)
+        private MapInfo GetMapCnf(int mapId)
         {
             if (mapCnf.ContainsKey(mapId))
             {
@@ -91,14 +91,14 @@ namespace LCMap
             }
             string mapAssetName = ConfigDef.GetCnfNoExName("Map_" + mapId);
             string jsonStr = LoadHelper.LoadString(mapAssetName);
-            MapModel model = LCJson.JsonMapper.ToObject<MapModel>(jsonStr);
+            MapInfo model = LCJson.JsonMapper.ToObject<MapInfo>(jsonStr);
             mapCnf.Add(mapId, model);
             return model;
         }
 
         public void Enter(int mapId)
         {
-            MapModel mapModel = GetMapCnf(mapId);
+            MapInfo mapModel = GetMapCnf(mapId);
             if (mapModel == null)
             {
                 MapLocate.Log.LogError("进入地图失败,没有对应配置", mapId);
@@ -151,13 +151,30 @@ namespace LCMap
             return null;
         }
 
-        public ActorObj GetActor(string uid)
+        //获得演员所在区域
+        public MapArea GetAreaByActor(Actor pActor)
+        {
+            if (PlayerActor != null && PlayerActor.Uid == pActor.Uid)
+            {
+                return GetPosArea(PlayerActor.Pos);
+            }
+            foreach (var item in areaDict)
+            {
+                if (item.Value.GetActor(pActor.Uid)!=null)
+                {
+                    return item.Value;
+                }
+            }
+            return null;
+        }
+
+        public Actor GetActor(string uid)
         {
             if (PlayerActor!=null && PlayerActor.Uid == uid)
             {
                 return PlayerActor;
             }
-            ActorObj actorObj = null;
+            Actor actorObj = null;
             foreach (var item in areaDict)
             {
                 actorObj = item.Value.GetActor(uid);
@@ -169,9 +186,9 @@ namespace LCMap
             return actorObj;
         }
 
-        public List<ActorObj> GetActors(int actorId)
+        public List<Actor> GetActors(int actorId)
         {
-            List<ActorObj> actors = new List<ActorObj>();
+            List<Actor> actors = new List<Actor>();
             if (PlayerActor != null && PlayerActor.Id == actorId)
             {
                 actors.Add(PlayerActor);
@@ -190,53 +207,45 @@ namespace LCMap
             return actors;
         }
 
-        public ActorObj GetActor(int actorId)
+        public Actor GetActor(int actorId)
         {
-            List<ActorObj> actors = GetActors(actorId);
+            List<Actor> actors = GetActors(actorId);
             if (actors.Count == 0)
                 return null;
             return actors[0];
         }
 
-        public IEnumerable<ActorObj> GetActors(string comTypeFullName)
+        public IEnumerable<Actor> GetActors(string comTypeFullName)
         {
-            if (PlayerActor.Entity.HasCom(comTypeFullName))
+            if (PlayerActor.HasCom(comTypeFullName))
                 yield return PlayerActor;
 
             foreach (var item in areaDict)
             {
                 foreach (var actor in item.Value.Actors.Values)
                 {
-                    if (actor.Entity.HasCom(comTypeFullName))
+                    if (actor.HasCom(comTypeFullName))
                         yield return actor;
                 }
             }
         }
 
-        public ActorObj CreateActor(ActorModel actorModel, MapArea mapArea)
+        public Actor CreateActor(ActorInfo actorModel, MapArea mapArea)
         {
             actorModel.uid = CalcCreateActorUid();
-            return mapArea.CreateActorObj(actorModel);
+            return mapArea.CreateActor(actorModel);
         }
 
-        private void CreateMainActor(ActorModel actor)
+        private void CreateMainActor(ActorInfo actor)
         {
-            ActorCnf actorCnf = Config.ActorCnf[actor.id];
+            Actor tActor = ActorCreator.CreateEntity(actor);
+            ActorCreator.CreateGo(tActor);
+            tActor.Go.transform.SetParent(PlayerRoot.transform);
 
-            //预制体
-            GameObject assetGo = LoadHelper.LoadPrefab(actorCnf.prefab.ObjName);
-            GameObject actorGo = GameObject.Instantiate(assetGo);
-            actorGo.transform.SetParent(PlayerRoot.transform);
-
-            //添加组件
-            PlayerActor = actorGo.AddComponent<ActorObj>();
-            PlayerActor.Init(actor, currArea);
-
-            //跟随
+            //保存
+            PlayerActor = tActor;
             LCECS.ECSLayerLocate.Info.GetSensor<GlobalSensor>(LCECS.SensorType.Global).FollowActor.Value = PlayerActor;
         }
-
-
 
         private string CalcCreateActorUid()
         {

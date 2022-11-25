@@ -52,7 +52,7 @@ namespace LCTask
         /// <summary>
         /// 当前任务阶段目标
         /// </summary>
-        public List<ActorObj> Targets { get; private set; }
+        public List<Actor> Targets { get; private set; }
 
         /// <summary>
         /// 阶段行为组执行

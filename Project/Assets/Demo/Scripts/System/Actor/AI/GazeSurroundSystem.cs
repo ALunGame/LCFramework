@@ -12,13 +12,13 @@ namespace Demo.System
 
         protected override List<Type> RegListenComs()
         {
-            return new List<Type>() { typeof(GazeSurroundCom), typeof(TransformCom), typeof(BasePropertyCom), };
+            return new List<Type>() { typeof(GazeSurroundCom), typeof(TransCom), typeof(BasePropertyCom), };
         }
 
         protected override void HandleComs(List<BaseCom> comList)
         {
             GazeSurroundCom gazeSurroundCom = GetCom<GazeSurroundCom>(comList[0]);
-            TransformCom transCom = GetCom<TransformCom>(comList[1]);
+            TransCom transCom = GetCom<TransCom>(comList[1]);
             BasePropertyCom propertyCom = GetCom<BasePropertyCom>(comList[2]);
 
             if (gazeSurroundCom.gazeUid == "")
@@ -27,20 +27,18 @@ namespace Demo.System
             if (gazeEntity == null)
                 return;
 
-            Vector2 selfPos = transCom.GetPos();
-            Vector2 targetPos = gazeEntity.GetCom<TransformCom>().GetPos();
+            Vector2 selfPos = transCom.Pos;
+            Vector2 targetPos = gazeEntity.GetCom<TransCom>().Pos;
 
             //方向
             if (selfPos.x - targetPos.x > 0)
-                transCom.ReqDir = DirType.Left;
+                transCom.Roate(DirType.Left);
             else
-                transCom.ReqDir = DirType.Right;
+                transCom.Roate(DirType.Right);
 
             //移动
             gazeSurroundCom.moveDir = CalcWanderMoveDir(selfPos, gazeSurroundCom, targetPos);
-            Vector3 delta = new Vector3(gazeSurroundCom.moveDir == DirType.Right ? 1 : -1, 0, 0);
-            delta = delta * propertyCom.MoveSpeed.Curr * Time.deltaTime;
-            transCom.ReqMove = delta;
+            transCom.MoveDir(gazeSurroundCom.moveDir, propertyCom.MoveSpeed.Curr);
         }
 
         public DirType CalcWanderMoveDir(Vector2 selfPos, GazeSurroundCom gazeSurroundCom, Vector2 targetPos)

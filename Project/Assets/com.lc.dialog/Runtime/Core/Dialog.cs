@@ -132,12 +132,12 @@ namespace LCDialog
         /// <summary>
         /// 对话的发起者
         /// </summary>
-        public ActorObj Sponsor { get; private set; }
+        public Actor Sponsor { get; private set; }
 
         /// <summary>
         /// 对话目标
         /// </summary>
-        public List<ActorObj> Targets { get; private set; }
+        public List<Actor> Targets { get; private set; }
 
         public DialogObj(string uid, DialogType dialogType, int dialogId,int dialogStep, DialogModel model)
         {
@@ -148,12 +148,12 @@ namespace LCDialog
             this.Model = model;
         }
 
-        public void SetSponsor(ActorObj actor)
+        public void SetSponsor(Actor actor)
         {
             Sponsor = actor;
         }
 
-        public void SetTargets(List<ActorObj> actors)
+        public void SetTargets(List<Actor> actors)
         {
             Targets = actors;
         }
@@ -172,12 +172,12 @@ namespace LCDialog
         /// <summary>
         /// 对话的发起者（可以为空）
         /// </summary>
-        public ActorObj Sponsor;
+        public Actor Sponsor;
 
         /// <summary>
         /// 对话的目标（可以为空）
         /// </summary>
-        public List<ActorObj> Targets;
+        public List<Actor> Targets;
 
         /// <summary>
         /// 对话类型
@@ -212,7 +212,7 @@ namespace LCDialog
             {
                 return $"{DialogType}_{DialogId}";
             }
-            ActorObj sponsor = Sponsor;
+            Actor sponsor = Sponsor;
             return $"{DialogType}_{DialogId}_{sponsor.Uid}";
         }
     }

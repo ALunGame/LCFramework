@@ -132,10 +132,10 @@ namespace LCSkill
         private void UpdateActors(AoeObj aoeObj)
         {
             //离开的演员
-            List<ActorObj> leaveActors = new List<ActorObj>();
+            List<Actor> leaveActors = new List<Actor>();
             for (int i = 0; i < aoeObj.actorInRange.Count; i++)
             {
-                ActorObj actor = aoeObj.actorInRange[i];
+                Actor actor = aoeObj.actorInRange[i];
                 if (!Sensor.CheckActorInRange(aoeObj, actor))
                     leaveActors.Add(actor);
             }
@@ -144,7 +144,7 @@ namespace LCSkill
             ExecuteActorLeaveFunc(aoeObj, leaveActors);
 
             //新进入的演员
-            List<ActorObj> enterActors = new List<ActorObj>();
+            List<Actor> enterActors = new List<Actor>();
             foreach (var item in Sensor.GetActorsInRange(aoeObj))
             {
                 if (aoeObj.actorInRange.IndexOf(item) < 0)
@@ -155,7 +155,7 @@ namespace LCSkill
                 aoeObj.actorInRange.Add(enterActors[a]);
         }
 
-        private void ExecuteActorLeaveFunc(AoeObj aoeObj, List<ActorObj> leaveActors)
+        private void ExecuteActorLeaveFunc(AoeObj aoeObj, List<Actor> leaveActors)
         {
             if (aoeObj.model.onActorLeaveFunc == null || aoeObj.model.onActorLeaveFunc.Count <= 0)
             {
@@ -168,7 +168,7 @@ namespace LCSkill
             }
         }
 
-        private void ExecuteActorEnterFunc(AoeObj aoeObj, List<ActorObj> enterActors)
+        private void ExecuteActorEnterFunc(AoeObj aoeObj, List<Actor> enterActors)
         {
             if (aoeObj.model.onActorEnterFunc == null || aoeObj.model.onActorEnterFunc.Count <= 0)
             {

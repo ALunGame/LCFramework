@@ -161,9 +161,9 @@ namespace LCMap
 
         #region 数据导出
 
-        public MapModel ExportData()
+        public MapInfo ExportData()
         {
-            MapModel mapData = new MapModel();
+            MapInfo mapData = new MapInfo();
             mapData.mapId = mapId;
 
             for (int i = 0; i < AreaRoot.transform.childCount; i++)
@@ -171,7 +171,7 @@ namespace LCMap
                 ED_MapAreaCom areaCom = AreaRoot.transform.GetChild(i).GetComponent<ED_MapAreaCom>();
                 if (areaCom != null)
                 {
-                    AreaModel areaModel = (AreaModel)areaCom.ExportData();
+                    AreaInfo areaModel = (AreaInfo)areaCom.ExportData();
                     areaModel.areaId = i;
                     mapData.areas.Add(areaModel);
                 }

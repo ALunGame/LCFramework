@@ -8,7 +8,7 @@ using LCJson;
 
 namespace LCECS
 {
-    public enum DecisionGroup
+    public enum DecisionThread
     {
         MainThread,     //主线程（Unity）
         HighThread,     //高刷新线程
@@ -126,7 +126,7 @@ namespace LCECS
         private ThreadDecisionServerObj highThreadServer;
         private ThreadDecisionServerObj midThreadServer;
         private ThreadDecisionServerObj lowThreadServer;
-        private Dictionary<string, DecisionGroup> decDict = new Dictionary<string, DecisionGroup>();
+        private Dictionary<string, DecisionThread> decDict = new Dictionary<string, DecisionThread>();
 
         public void Init()
         {
@@ -166,7 +166,7 @@ namespace LCECS
             }
         }
 
-        public void AddEntityDecision(DecisionGroup decisionGroup, int decId, string uid)
+        public void AddEntityDecision(DecisionThread decisionGroup, int decId, string uid)
         {
             EntityWorkData entityWorkData = ECSLayerLocate.Info.GetEntityWorkData(uid);
             //清理旧的
@@ -197,17 +197,17 @@ namespace LCECS
             }
         }
 
-        private BaseDecisionServerObj GetServer(DecisionGroup group)
+        private BaseDecisionServerObj GetServer(DecisionThread group)
         {
             switch (group)
             {
-                case DecisionGroup.MainThread:
+                case DecisionThread.MainThread:
                     return mainServer;
-                case DecisionGroup.HighThread:
+                case DecisionThread.HighThread:
                     return highThreadServer;
-                case DecisionGroup.MidThread:
+                case DecisionThread.MidThread:
                     return midThreadServer;
-                case DecisionGroup.LowThread:
+                case DecisionThread.LowThread:
                     return lowThreadServer;
                 default:
                     break;

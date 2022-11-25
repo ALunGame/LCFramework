@@ -16,29 +16,31 @@ namespace Demo
         /// </summary>
         public int collectCnt;
 
-        protected override void OnExecute(ActorObj executeActor)
+        private int _type = (int)InteractiveType.Collect;
+        public override int Type { get => _type;}
+
+        protected override bool OnExecute(Actor executeActor)
         {
-            BagCom owerBagCom = actor.Entity.GetCom<BagCom>();
-            BagCom executeBagCom = executeActor.Entity.GetCom<BagCom>();
+            BagCom owerBagCom = actor.GetCom<BagCom>();
+            BagCom executeBagCom = executeActor.GetCom<BagCom>();
 
             if (executeBagCom.CheckItemIsOutMax(collectId))
             {
                 GameLocate.Log.LogError("采集失败，超过上限", collectId, collectCnt);
-                ExecuteFinish();
-                return;
+                return true;
             }
 
             if (!owerBagCom.RemoveItem(collectId,collectCnt))
             {
                 GameLocate.Log.LogError("采集失败，库存不足",collectId,collectCnt);
-                ExecuteFinish();
-                return;
+                return true;
             }
 
             executeBagCom.AddItem(collectId,collectCnt);
             actor.GetStateGo().transform.DOComplete(false);
             actor.GetStateGo().transform.DOPunchPosition(new Vector3(-0.2f * actor.GetDirValue(), 0, 0), 0.1f, 1, 0);
-            ExecuteFinish();
+
+            return true;
         }
     }
 }

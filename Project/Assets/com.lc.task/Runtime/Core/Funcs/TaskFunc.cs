@@ -8,8 +8,8 @@ namespace LCTask
     /// </summary>
     public abstract class TaskTargetDisplayFunc
     {
-        public abstract void Execute(TaskObj taskObj, List<ActorObj> targets);
-        public abstract void Clear(TaskObj taskObj, List<ActorObj> targets);
+        public abstract void Execute(TaskObj taskObj, List<Actor> targets);
+        public abstract void Clear(TaskObj taskObj, List<Actor> targets);
     }
 
     /// <summary>

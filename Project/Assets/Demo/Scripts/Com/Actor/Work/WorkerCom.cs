@@ -15,6 +15,6 @@ namespace Demo.Com
         public int managerActorId;
 
         [NonSerialized]
-        public ActorObj managerActor;
+        public Actor managerActor;
     }
 }

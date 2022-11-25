@@ -43,9 +43,16 @@ namespace Demo.Com
         [NonSerialized]
         public Transform trans;
 
-        protected override void OnInit(GameObject go)
+        protected override void OnInit(Entity pEntity)
         {
-            trans = go.transform;
+            BindGoCom bindGoCom = pEntity.GetCom<BindGoCom>();
+            if (bindGoCom!=null)
+            {
+                bindGoCom.RegGoChange((go) =>
+                {
+                    trans = go.transform;
+                });
+            }
         }
 
         public bool CheckIsFinish()

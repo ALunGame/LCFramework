@@ -60,7 +60,7 @@ namespace LCMap
 
         public override object ExportData()
         {
-            ActorPathModel pathData = new ActorPathModel();
+            ActorPathInfo pathData = new ActorPathInfo();
             pathData.defaultPath = defaultPath;
             pathData.closePath = closePath;
             pathData.pathSpeed = pathSpeed;
@@ -71,7 +71,7 @@ namespace LCMap
                 for (int i = 0; i < pointComs.Length; i++)
                 {
                     ED_ActorPathPointCom tPointCom = pointComs[i];
-                    pathData.points.Add((ActorPointModel)tPointCom.ExportData());
+                    pathData.points.Add((ActorPointInfo)tPointCom.ExportData());
                 }
             }
 

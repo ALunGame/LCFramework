@@ -131,14 +131,14 @@ namespace LCSkill
     /// </summary>
     public class BulletHitRecord
     {
-        public ActorObj target;
+        public Actor target;
 
         /// <summary>
         /// 多久之后还能再次命中，单位秒
         /// </summary>
         public float timeToCanHit;
 
-        public BulletHitRecord(ActorObj actor, float timeToCanHit)
+        public BulletHitRecord(Actor actor, float timeToCanHit)
         {
             this.target = actor;
             this.timeToCanHit = timeToCanHit;
@@ -235,7 +235,7 @@ namespace LCSkill
         /// <summary>
         /// 子弹正在追踪的目标
         /// </summary>
-        public ActorObj followActor = null;
+        public Actor followActor = null;
 
         /// <summary>
         /// 子弹传入的参数，逻辑用的到的临时记录

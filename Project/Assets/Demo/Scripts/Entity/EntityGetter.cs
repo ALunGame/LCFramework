@@ -14,9 +14,9 @@ namespace Demo
         public static Shape GetEntityColliderShape(this Entity entity)
         {
             Collider2DCom collider2DCom = entity.GetCom<Collider2DCom>();
-            TransformCom transCom = entity.GetCom<TransformCom>();
+            TransCom transCom = entity.GetCom<TransCom>();
             Shape shape = collider2DCom.colliderShape;
-            shape.Translate(transCom.GetPos());
+            shape.Translate(transCom.Pos);
             return shape;
         }
     }

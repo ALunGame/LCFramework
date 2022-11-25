@@ -42,7 +42,7 @@ namespace LCSkill
         /// </summary>
         /// <param name="aoe">aoe对象</param>
         /// <param name="actors">新进入的演员</param>
-        public abstract void Execute(AoeObj aoe, List<ActorObj> actors);
+        public abstract void Execute(AoeObj aoe, List<Actor> actors);
     }
 
     /// <summary>
@@ -55,7 +55,7 @@ namespace LCSkill
         /// </summary>
         /// <param name="aoe">aoe对象</param>
         /// <param name="actors">离开的演员</param>
-        public abstract void Execute(AoeObj aoe, List<ActorObj> actors);
+        public abstract void Execute(AoeObj aoe, List<Actor> actors);
     }
 
     #endregion

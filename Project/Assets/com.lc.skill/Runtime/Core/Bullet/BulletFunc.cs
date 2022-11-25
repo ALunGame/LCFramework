@@ -27,7 +27,7 @@ namespace LCSkill
         /// <param name="bullet">bullet对象</param>
         /// <param name="moveTime">bullet移动时间</param>
         /// <param name="target">bullet跟踪对象,如果不是跟踪不使用</param>
-        public abstract BulletMoveInfo Execute(BulletObj bullet, float moveTime, ActorObj target = null);
+        public abstract BulletMoveInfo Execute(BulletObj bullet, float moveTime, Actor target = null);
     }
 
 
@@ -40,7 +40,7 @@ namespace LCSkill
         /// 执行函数
         /// </summary>
         /// <param name="bullet">bullet对象</param>
-        public abstract ActorObj Execute(BulletObj bullet);
+        public abstract Actor Execute(BulletObj bullet);
     }
 
     /// <summary>
@@ -53,6 +53,6 @@ namespace LCSkill
         /// </summary>
         /// <param name="bullet">bullet对象</param>
         /// <param name="actor">击中的对象</param>
-        public abstract void Execute(BulletObj bullet, ActorObj actor);
+        public abstract void Execute(BulletObj bullet, Actor actor);
     }
 }

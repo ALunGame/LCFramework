@@ -12,26 +12,36 @@ namespace LCECS.Server.ECS
     public interface IECSServer : IServer
     {
         /// <summary>
-        /// 获得世界实体
+        /// 获得实体组件配置模板
         /// </summary>
+        /// <param name="pCnfId"></param>
         /// <returns></returns>
-        Entity GetWorld();
-
-        /// <summary>
-        /// 创建演员实体
-        /// </summary>
-        /// <param name="actorObj"></param>
-        /// <returns></returns>
-        Entity CreateEntity(ActorObj actorObj);
+        List<BaseCom> GetEntityComsModel(int pCnfId);
 
         /// <summary>
         /// 创建实体
         /// </summary>
-        /// <param name="uid"></param>
-        /// <param name="id">配置Id</param>
-        /// <param name="go"></param>
+        /// <param name="pUid">实体Uid</param>
+        /// <param name="pEntityId">实体配置Id</param>
+        Entity CreateEntity(string pUid, int pEntityId);
+
+        /// <summary>
+        /// 添加实体
+        /// </summary>
+        /// <param name="entity"></param>
+        void AddEntity(Entity entity);
+
+        /// <summary>
+        /// 设置世界实体
+        /// </summary>
+        /// <param name="pWorld"></param>
+        void SetWorld(Entity pWorld);
+
+        /// <summary>
+        /// 获得世界实体
+        /// </summary>
         /// <returns></returns>
-        Entity CreateEntity(string uid, int id, GameObject go);
+        Entity GetWorld();
 
         /// <summary>
         /// 获得实体

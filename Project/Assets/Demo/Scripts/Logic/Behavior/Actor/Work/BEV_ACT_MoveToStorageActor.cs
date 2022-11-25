@@ -1,5 +1,6 @@
 ﻿using Demo.Com;
 using Demo.System;
+using LCECS.Core;
 using LCECS.Core.Tree;
 using LCECS.Core.Tree.Base;
 using LCECS.Core.Tree.Nodes.Action;
@@ -28,19 +29,19 @@ namespace Demo.Behavior
                 return;
             }
 
-            ActorObj buildingActor = workerCom.managerActor.Entity.GetCom<ManagerCom>().buildingActor;
-            ActorObj actor         = LCMap.MapLocate.Map.GetActor(wData.Uid);
+            Actor buildingActor = workerCom.managerActor.GetCom<ManagerCom>().buildingActor;
+            Actor actor         = LCMap.MapLocate.Map.GetActor(wData.Uid);
             ActorCnf actorCnf      = LCConfig.Config.ActorCnf[actor.Id];
 
-            TransformCom targetTransformCom = buildingActor.Entity.GetCom<TransformCom>();
-            TransformCom transformCom = workData.MEntity.GetCom<TransformCom>();
-            if (Vector2.Distance(targetTransformCom.GetPos(), transformCom.GetPos()) <= actorCnf.interactiveRange)
+            TransCom targetTransformCom = buildingActor.GetCom<TransCom>();
+            TransCom transformCom = workData.MEntity.GetCom<TransCom>();
+            if (Vector2.Distance(targetTransformCom.Pos, transformCom.Pos) <= actorCnf.interactiveRange)
             {
                 wayPointMoveCom.currRoadCnf = null;
                 return;
             }
 
-            if (WayPointMoveSystem.RoadCnf.CalcRoadPos(buildingActor.transform.position, out var endPos))
+            if (WayPointMoveSystem.RoadCnf.CalcRoadPos(buildingActor.Pos, out var endPos))
             {
                 wData.AddBlackboardValue(BEV_BlackboardKey.InteractiveActorUid, buildingActor.Uid);
                 wayPointMoveCom.SetWayPointTarget(endPos);

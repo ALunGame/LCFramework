@@ -8,12 +8,6 @@ using UnityEngine;
 
 namespace LCMap
 {
-    public enum DirType
-    {
-        Left,
-        Right,
-    }
-
     /// <summary>
     /// 演员类型
     /// </summary>
@@ -45,11 +39,14 @@ namespace LCMap
         Building,
     }
 
-    public class ActorObj : MonoBehaviour
-    {
-        private ActorModel model;
 
-        public ActorModel Model { get => model;}
+    /*
+    
+        public class Actor : MonoBehaviour
+    {
+        private ActorInfo model;
+
+        public ActorInfo Model { get => model;}
 
         /// <summary>
         /// 所属的区域
@@ -101,13 +98,13 @@ namespace LCMap
         /// <summary>
         /// 当表现节点改变
         /// </summary>
-        public event Action<ActorObj> OnDisplayGoChange;
+        public event Action<Actor> OnDisplayGoChange;
 
         private Entity entity;
 
         public Entity Entity { get => entity;}
 
-        public void Init(ActorModel model,MapArea mapArea)
+        public void Init(ActorInfo model,MapArea mapArea)
         {
             Area = mapArea;
             ActorCnf actorCnf = Config.ActorCnf[model.id];
@@ -118,7 +115,7 @@ namespace LCMap
             Init(model, actorCnf.entityId);
         }
 
-        public void Init(ActorModel model,int entityId)
+        public void Init(ActorInfo model,int entityId)
         {
             this.model      = model;
             this.Uid        = Model.uid;
@@ -225,7 +222,7 @@ namespace LCMap
         /// 执行交互
         /// </summary>
         /// <param name="interactive"></param>
-        public void ExecuteInteractive<T>(ActorObj executeActor) where T : ActorInteractive
+        public void ExecuteInteractive<T>(Actor executeActor) where T : ActorInteractive
         {
             ExecuteInteractive(typeof(T), executeActor);    
         }
@@ -234,7 +231,7 @@ namespace LCMap
         /// 执行交互
         /// </summary>
         /// <param name="interactive"></param>
-        public void ExecuteInteractive(Type type, ActorObj executeActor)
+        public void ExecuteInteractive(Type type, Actor executeActor)
         {
             if (CurrInteractive != null)
             {
@@ -434,4 +431,6 @@ namespace LCMap
         #endregion
 
     }
+    */
+
 }

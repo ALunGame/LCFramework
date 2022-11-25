@@ -7,13 +7,11 @@ namespace LCECS.Server.Player
     public class PlayerServer : IPlayerServer
     {
         private Entity playerEntity;
-        private GameObject playerGo;
         private EntityWorkData playerWorkData;
 
         public void SetPlayerEntity(Entity entity)
         {
             playerEntity = entity;
-            playerGo = entity.Go;
             playerWorkData = ECSLayerLocate.Info.GetEntityWorkData(entity.Uid);
         }
 
@@ -25,11 +23,6 @@ namespace LCECS.Server.Player
         public EntityWorkData GetPlayerWorkData()
         {
             return playerWorkData;
-        }
-
-        public GameObject GetPalyerGo()
-        {
-            return playerGo;
         }
 
         //请求

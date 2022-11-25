@@ -13,19 +13,24 @@ namespace Demo.Com
         private BubbleDialogCom bubbleCom;
         private Transform bubbleRoot;
 
-        protected override void OnInit(GameObject go)
+        protected override void OnInit(Entity pEntity)
         {
-            ActorObj actorObj = go.GetComponent<ActorObj>();
-            actorObj.OnDisplayGoChange += OnDisplayGoChange;
-            OnDisplayGoChange(actorObj);
+            ActorDisplayCom displayCom = pEntity.GetCom<ActorDisplayCom>();
+            if (displayCom != null)
+            {
+                displayCom.RegStateChange((stateName) =>
+                {
+                    OnDisplayGoChange(displayCom.StateGo);
+                });
+            }
         }
 
-        private void OnDisplayGoChange(ActorObj actorObj)
+        private void OnDisplayGoChange(GameObject pStateGo)
         {
-            bubbleRoot = actorObj.GetStateGo().transform.Find("BubbleRoot");
+            bubbleRoot = pStateGo.transform.Find("BubbleRoot");
             if (bubbleRoot == null)
             {
-                bubbleRoot = actorObj.GetStateGo().transform;
+                bubbleRoot = pStateGo.transform;
             }
             if (bubbleCom != null)
             {

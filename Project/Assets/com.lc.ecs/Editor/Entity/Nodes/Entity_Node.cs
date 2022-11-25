@@ -59,4 +59,47 @@ namespace LCECS.EntityGraph
             return coms;
         }
     }
+
+
+    [NodeMenuItem("实体/基础/节点绑定组件")]
+    public class Entity_Entity_BindGoCom : Entity_ComNode
+    {
+        public override string Title { get => "节点绑定组件"; set => base.Title = value; }
+        public override string Tooltip { get => "节点绑定组件"; set => base.Tooltip = value; }
+        public override Type RuntimeNode => typeof(BindGoCom);
+
+        public override BaseCom CreateRuntimeNode()
+        {
+            BindGoCom com = new BindGoCom();
+            return com;
+        }
+    }
+
+    [NodeMenuItem("实体/基础/决策组件")]
+    public class Entity_Entity_DecisionCom : Entity_ComNode
+    {
+        public override string Title { get => "决策组件"; set => base.Title = value; }
+        public override string Tooltip { get => "决策组件"; set => base.Tooltip = value; }
+        public override Type RuntimeNode => typeof(DecisionCom);
+
+        public override BaseCom CreateRuntimeNode()
+        {
+            DecisionCom com = new DecisionCom();
+            return com;
+        }
+    }
+
+    [NodeMenuItem("实体/基础/位置组件")]
+    public class Entity_Entity_TransCom : Entity_ComNode
+    {
+        public override string Title { get => "位置组件"; set => base.Title = value; }
+        public override string Tooltip { get => "位置组件"; set => base.Tooltip = value; }
+        public override Type RuntimeNode => typeof(TransCom);
+
+        public override BaseCom CreateRuntimeNode()
+        {
+            TransCom com = new TransCom();
+            return com;
+        }
+    }
 }

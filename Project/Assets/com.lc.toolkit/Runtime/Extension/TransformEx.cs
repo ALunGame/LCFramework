@@ -5,6 +5,24 @@ namespace LCToolkit
 {
     public static class TransformEx
     {
+        public static void SetActive(this Transform pTrans, bool pActive, string pPath = "")
+        {
+            if (pTrans == null)
+                return;
+            pTrans.gameObject.SetActive(pActive, pPath);
+        }
+
+        public static bool Find(this Transform pTrans, string pPath,out Transform pFindTrans)
+        {
+            pFindTrans = null;
+            if (pTrans == null)
+                return false;
+            pFindTrans = pTrans.Find(pPath);
+            if (pFindTrans == null)
+                return false;
+            return true;
+        }
+
         /// <summary>
         /// 重置位置,旋转,缩放,
         /// </summary>

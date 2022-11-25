@@ -55,7 +55,7 @@ namespace LCSkill
                 }
                 else
                 {
-                    List<ActorObj> hitActors = Sensor.GetHitActors(bulletObj);
+                    List<Actor> hitActors = Sensor.GetHitActors(bulletObj);
                     for (int a = 0; a < hitActors.Count; a++)
                     {
                         if (CheckInHitRecord(bulletObj,hitActors[a]))
@@ -64,7 +64,7 @@ namespace LCSkill
                         bulletObj.model.hitTimes -= 1;
 
                         //执行击中函数
-                        ActorObj hitActor = hitActors[a];
+                        Actor hitActor = hitActors[a];
                         ExecuteHitActorFunc(bulletObj,hitActor);
 
                         //记录击中记录
@@ -97,7 +97,7 @@ namespace LCSkill
             }
         }
 
-        private bool CheckInHitRecord(BulletObj bulletObj, ActorObj actor)
+        private bool CheckInHitRecord(BulletObj bulletObj, Actor actor)
         {
             for (int i = 0; i < bulletObj.hitRecords.Count; i++)
             {
@@ -136,7 +136,7 @@ namespace LCSkill
             }
         }
 
-        private void ExecuteHitActorFunc(BulletObj bulletObj, ActorObj actor)
+        private void ExecuteHitActorFunc(BulletObj bulletObj, Actor actor)
         {
             if (bulletObj.model.onHitFunc == null || bulletObj.model.onHitFunc.Count <= 0)
             {

@@ -14,7 +14,7 @@ namespace LCSkill
         /// </summary>
         /// <param name="aoeObj"></param>
         /// <returns></returns>
-        public abstract List<ActorObj> GetActorsInRange(AoeObj aoeObj);
+        public abstract List<Actor> GetActorsInRange(AoeObj aoeObj);
 
         /// <summary>
         /// 检测演员是否在范围内
@@ -22,7 +22,7 @@ namespace LCSkill
         /// <param name="aoeObj"></param>
         /// <param name="actor"></param>
         /// <returns></returns>
-        public abstract bool CheckActorInRange(AoeObj aoeObj,ActorObj actor);
+        public abstract bool CheckActorInRange(AoeObj aoeObj,Actor actor);
 
         /// <summary>
         /// 获取Aoe范围内的子弹

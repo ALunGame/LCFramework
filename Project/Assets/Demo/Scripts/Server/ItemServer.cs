@@ -11,20 +11,20 @@ namespace Demo.Server
         private string itemPrefab = "Actor_Item";
         private GameObject itemRoot;
 
-        public ActorObj CreateItem(int itemId,int itemCnt,Vector3 itemPos)
+        public Actor CreateItem(int itemId,int itemCnt,Vector3 itemPos)
         {
             if (itemRoot == null)
                 itemRoot = new GameObject("ItemList");
 
-            ActorModel itemActor = new ActorModel();
+            ActorInfo itemActor = new ActorInfo();
             itemActor.uid = $"item_{startUid--}";
             itemActor.id  = entityId;
 
             GameObject itemAsset = LoadHelper.LoadPrefab(itemPrefab);
             GameObject itemGo    = GameObject.Instantiate(itemAsset, itemRoot.transform);
             itemGo.transform.position = itemPos;
-            ActorObj actorObj    = itemGo.AddComponent<ActorObj>();
-            actorObj.Init(itemActor, entityId);
+            Actor actorObj    = ActorCreator.CreateEntity(itemActor);
+            actorObj.SetBindGo(itemGo);
 
             return actorObj;
         }

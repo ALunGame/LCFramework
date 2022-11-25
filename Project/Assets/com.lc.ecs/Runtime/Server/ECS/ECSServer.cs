@@ -18,6 +18,7 @@ namespace LCECS.Server.ECS
     {
         //实体配置
         private Dictionary<int, string> entityCnf = new Dictionary<int, string>();
+        private Dictionary<int, string> entityComsCnf = new Dictionary<int, string>();
 
         //世界实体
         private Entity world;
@@ -30,25 +31,6 @@ namespace LCECS.Server.ECS
 
         //所有FixedUpdate系统
         private List<BaseSystem> systemFixedUpdateList = new List<BaseSystem>();
-
-        //获得实体配置
-        private string GetEntityCnf(int entityConfId)
-        {
-            if (entityCnf.ContainsKey(entityConfId))
-            {
-                return entityCnf[entityConfId];
-            }
-            string jsonStr = LoadHelper.LoadString(ECSDefPath.GetEntityCnfName(entityConfId));
-            entityCnf.Add(entityConfId, jsonStr);
-            return jsonStr;
-        }
-
-        //添加实体
-        private void AddEntity(string uid, Entity entity)
-        {
-            if (!entityDict.ContainsKey(uid))
-                entityDict.Add(uid, entity);
-        }
 
         //检测系统是否检测该实体
         private void CheckEntityInSystem(Entity entity)
@@ -64,11 +46,71 @@ namespace LCECS.Server.ECS
             }
         }
 
-        //初始化实体（所有的实体生成都会走）
-        private void InitEntity(Entity entity)
+        public void Init()
         {
+            
+        }
+
+        #region Entity
+
+        public void SetWorld(Entity pWorld)
+        {
+            world = pWorld;
+        }
+
+        public Entity GetWorld()
+        {
+            if (world == null)
+            {
+                ActorInfo worldActor = new ActorInfo();
+                worldActor.uid = "world_999";
+                worldActor.id  = -999;
+
+                world = ActorCreator.CreateEntity(worldActor);
+                ((Actor)world).SetBindGo(new GameObject("<------------EntityWorld---------->"));
+            }
+            return world;
+        }
+
+        public List<BaseCom> GetEntityComsModel(int pCnfId)
+        {
+            string jsonStr;
+            if (entityComsCnf.ContainsKey(pCnfId))
+                jsonStr = entityComsCnf[pCnfId];
+            else
+            {
+                jsonStr = LoadHelper.LoadString(ECSDefPath.GetEntityCnfName(pCnfId));
+                entityComsCnf.Add(pCnfId, jsonStr);
+            }
+            return JsonMapper.ToObject<List<BaseCom>>(jsonStr);
+        }
+
+        public Entity CreateEntity(string pUid,int pEntityId)
+        {
+            List<BaseCom> resComs = GetEntityComsModel(pEntityId);
+            Entity entity = new Actor(pUid);
+
+            //组件
+            for (int i = 0; i < resComs.Count; i++)
+            {
+                entity.AddCom(resComs[i]);
+            }
+
             //保存
-            AddEntity(entity.Uid, entity);
+            AddEntity(entity);
+
+            return entity;
+        }
+
+        public void AddEntity(Entity entity)
+        {
+            if (entityDict.ContainsKey(entity.Uid))
+            {
+                ECSLocate.Log.LogError("保存实体失败，重复的Uid", entity.Uid);
+                return;
+            }
+
+            entityDict.Add(entity.Uid, entity);
 
             //系统检测
             CheckEntityInSystem(entity);
@@ -77,90 +119,6 @@ namespace LCECS.Server.ECS
             EntityWorkData entityWorkData = new EntityWorkData(entity.Uid, entity);
             entityWorkData.Uid = entity.Uid;
             ECSLayerLocate.Info.AddEntityWorkData(entity.Uid, entityWorkData);
-            ECSLocate.DecCenter.AddEntityDecision(entity.DecGroup, entity.DecTreeId, entity.Uid);
-        }
-
-        public void Init()
-        {
-            
-        }
-
-        #region Entity
-
-        public Entity GetWorld()
-        {
-            if (world == null)
-            {
-                ActorModel worldActor = new ActorModel();
-                worldActor.uid = "world_999";
-                worldActor.id  = -999;
-
-                GameObject worldGo = new GameObject("<------------EntityWorld---------->");
-                ActorObj actorObj = worldGo.AddComponent<ActorObj>();
-                actorObj.Init(worldActor, -999);
-
-                world = GetEntity("world_999");
-            }
-            return world;
-        }
-
-        public Entity CreateEntity(ActorObj actorObj)
-        {
-            //配置数据
-            string entityStr = GetEntityCnf(actorObj.EntityId);
-            if (string.IsNullOrEmpty(entityStr))
-            {
-                ECSLocate.Log.LogError("实体配置数据不存在>>>>>>>", actorObj.EntityId);
-                return null;
-            }
-
-            //解析实体
-            Entity entity = JsonMapper.ToObject<Entity>(entityStr);
-
-            //覆盖
-            if (LCConfig.Config.ActorCnf.ContainsKey(actorObj.Id))
-            {
-                //组件
-                ActorCnf actorCnf = LCConfig.Config.ActorCnf[actorObj.Id];
-                foreach (var item in actorCnf.comCnfs)
-                {
-                    entity.CoverCom(item);
-                }
-            }
-
-            entity.SetEntityGo(actorObj.gameObject);
-            entity.Init(actorObj.Uid);
-            foreach (BaseCom com in entity.GetComs())
-            {
-                com.Init(entity);
-            }
-
-            InitEntity(entity);
-            return entity;
-        }
-
-        public Entity CreateEntity(string uid, int id, GameObject go)
-        {
-            //配置数据
-            string entityStr = GetEntityCnf(id);
-            if (string.IsNullOrEmpty(entityStr))
-            {
-                ECSLocate.Log.LogError("实体配置数据不存在>>>>>>>", id);
-                return null;
-            }
-
-            //创建实体
-            Entity entity = JsonMapper.ToObject<Entity>(entityStr);
-            entity.SetEntityGo(go);
-            entity.Init(uid);
-            foreach (BaseCom com in entity.GetComs())
-            {
-                com.Init(entity);
-            }
-
-            InitEntity(entity);
-
-            return entity;
         }
 
         public Entity GetEntity(string uid)

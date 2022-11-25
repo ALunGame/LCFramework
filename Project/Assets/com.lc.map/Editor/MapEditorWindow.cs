@@ -120,7 +120,7 @@ namespace LCMap
                     {
                         GameObject mapGo = GameObject.Instantiate(maps[i].gameObject);
                         ED_MapCom eD_MapCom = mapGo.GetComponent<ED_MapCom>();
-                        MapModel model = eD_MapCom.ExportData();
+                        MapInfo model = eD_MapCom.ExportData();
 
                         string filePath = MapSetting.GetMapModelSavePath(model.mapId.ToString());
                         IOHelper.WriteText(JsonMapper.ToJson(model), filePath);

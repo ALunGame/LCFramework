@@ -7,27 +7,28 @@ namespace Demo
 {
     public class ProduceInteractive : ActorInteractive
     {
-        protected override void OnExecute(ActorObj executeActor)
+        private int _type = (int)InteractiveType.Produce;
+        public override int Type { get => _type; }
+
+        protected override bool OnExecute(Actor executeActor)
         {
            
-            ManagerCom managerCom   = actor.Entity.GetCom<ManagerCom>();
-            ProduceCom produceCom   = actor.Entity.GetCom<ProduceCom>();
+            ManagerCom managerCom   = actor.GetCom<ManagerCom>();
+            ProduceCom produceCom   = actor.GetCom<ProduceCom>();
 
             BagCom bagCom           = managerCom.buildingBagCom;
 
             if (produceCom.currProduces.Count != 0)
             {
                 GameLocate.Log.LogError("生产失败，当前还有生产的物品", actor);
-                ExecuteFinish();
-                return;
+                return true;
             }
 
             List<int> resProduces = produceCom.GetCanMakeProduceIds(bagCom);
             if (resProduces.Count == 0)
             {
                 GameLocate.Log.LogError("生产失败，当前没有可以生产的物品", actor);
-                ExecuteFinish();
-                return;
+                return true;
             }
 
             //扣除物品
@@ -55,10 +56,12 @@ namespace Demo
                     produceCom.currProduces.Remove(produceId);
                     if (produceCom.currProduces.Count == 0)
                     {
-                        ExecuteFinish();
+                        Finish();
                     }
                 });
             }
+
+            return false;
         }
     }
 }

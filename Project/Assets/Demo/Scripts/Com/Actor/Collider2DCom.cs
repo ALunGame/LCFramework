@@ -64,12 +64,16 @@ namespace Demo.Com
         [NonSerialized]
         public Transform trans;
 
-        protected override void OnInit(GameObject go)
+        protected override void OnInit(Entity pEntity)
         {
-            ActorObj actorObj = go.GetComponent<ActorObj>();
-            trans = go.transform;
-            actorObj.OnDisplayGoChange += OnDisplayGoChange;
-            OnDisplayGoChange(actorObj);
+            ActorDisplayCom displayCom = pEntity.GetCom<ActorDisplayCom>();
+            if (displayCom != null)
+            {
+                displayCom.RegStateChange((stateName) =>
+                {
+                    OnDisplayGoChange(displayCom);
+                });
+            }
         }
 
         private Vector2 GetColliderOffset(BoxCollider2D collider2D)
@@ -77,9 +81,9 @@ namespace Demo.Com
             return new Vector2(collider2D.bounds.center.x, collider2D.bounds.center.y) - trans.position.ToVector2();
         }
 
-        private void OnDisplayGoChange(ActorObj actorGo)
+        private void OnDisplayGoChange(ActorDisplayCom pDisplayCom)
         {
-            collider2D     = actorGo.GetBodyCollider();
+            collider2D = pDisplayCom.BodyCollider;
             Vector2 offset = GetColliderOffset(collider2D);
 
             UpCheckPoint    = new Vector2(offset.x, offset.y + collider2D.bounds.extents.y + CollisionOffset);

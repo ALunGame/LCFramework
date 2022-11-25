@@ -1,5 +1,6 @@
 ﻿using Demo.Com;
 using Demo.System;
+using LCECS.Core;
 using LCECS.Core.Tree;
 using LCECS.Core.Tree.Base;
 using LCECS.Core.Tree.Nodes.Action;
@@ -18,10 +19,10 @@ namespace Demo.Behavior
 
             //组件
             WayPointMoveCom wayPointMoveCom = workData.MEntity.GetCom<WayPointMoveCom>();
-            List<ActorObj> buildingActors = new List<ActorObj>();
+            List<Actor> buildingActors = new List<Actor>();
             foreach (var item in MapLocate.Map.GetActors(typeof(BuildingCom).FullName))
             {
-                BasePropertyCom propertyCom = item.Entity.GetCom<BasePropertyCom>();
+                BasePropertyCom propertyCom = item.GetCom<BasePropertyCom>();
                 if (propertyCom.Hp.Curr < propertyCom.Hp.Max)
                     buildingActors.Add(item);
             }
@@ -32,20 +33,20 @@ namespace Demo.Behavior
                 return;
             }
 
-            ActorObj actor              = LCMap.MapLocate.Map.GetActor(wData.Uid);
+            Actor actor              = LCMap.MapLocate.Map.GetActor(wData.Uid);
             ActorCnf actorCnf           = LCConfig.Config.ActorCnf[actor.Id];
-            TransformCom transformCom   = workData.MEntity.GetCom<TransformCom>();
+            TransCom transformCom   = workData.MEntity.GetCom<TransCom>();
 
-            ActorObj selBuildingActor   = buildingActors[Random.Range(0, buildingActors.Count)];
-            TransformCom targetTransformCom = selBuildingActor.Entity.GetCom<TransformCom>();
+            Actor selBuildingActor   = buildingActors[Random.Range(0, buildingActors.Count)];
+            TransCom targetTransformCom = selBuildingActor.GetCom<TransCom>();
 
-            if (Vector2.Distance(targetTransformCom.GetPos(), transformCom.GetPos()) <= actorCnf.interactiveRange)
+            if (Vector2.Distance(targetTransformCom.Pos, transformCom.Pos) <= actorCnf.interactiveRange)
             {
                 wayPointMoveCom.currRoadCnf = null;
                 return;
             }
 
-            if (WayPointMoveSystem.RoadCnf.CalcRoadPos(targetTransformCom.GetPos(), out var endPos))
+            if (WayPointMoveSystem.RoadCnf.CalcRoadPos(targetTransformCom.Pos, out var endPos))
             {
                 wData.AddBlackboardValue(BEV_BlackboardKey.InteractiveActorUid, selBuildingActor.Uid);
                 wayPointMoveCom.SetWayPointTarget(endPos);

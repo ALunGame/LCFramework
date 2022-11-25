@@ -12,7 +12,7 @@ namespace Demo
     [WorldSensor(SensorType.Skill_Aoe)]
     public class AoeSensor : BaseAoeSensor
     {
-        public override bool CheckActorInRange(AoeObj aoeObj, ActorObj actor)
+        public override bool CheckActorInRange(AoeObj aoeObj, Actor actor)
         {
             Shape checkShape = aoeObj.CalcArea();
             Entity entity = ECSLocate.ECS.GetEntity(actor.Uid);
@@ -25,14 +25,14 @@ namespace Demo
             return false;
         }
 
-        public override List<ActorObj> GetActorsInRange(AoeObj aoeObj)
+        public override List<Actor> GetActorsInRange(AoeObj aoeObj)
         {
-            List<ActorObj> result = new List<ActorObj>();
+            List<Actor> result = new List<Actor>();
 
             string uid          = aoeObj.ower.EntityUid;
-            ActorObj actor      = MapLocate.Map.GetActor(uid);
-            Entity selfEntity   = ECSLocate.ECS.GetEntity(uid);
-            CampCom selfCampCom = selfEntity.GetCom<CampCom>();
+            Actor actor      = MapLocate.Map.GetActor(uid);
+            MapArea mapArea = MapLocate.Map.GetAreaByActor(actor);
+            CampCom selfCampCom = actor.GetCom<CampCom>();
 
             Shape checkShape    = aoeObj.CalcArea();
 
@@ -50,7 +50,7 @@ namespace Demo
 
 
             //µÐ¶ÔÑÝÔ±
-            foreach (var item in actor.Area.Actors)
+            foreach (var item in mapArea.Actors)
             {
                 if (item.Key == aoeObj.ower.EntityUid)
                     continue;

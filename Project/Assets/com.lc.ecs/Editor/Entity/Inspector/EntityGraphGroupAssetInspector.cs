@@ -62,9 +62,8 @@ namespace LCECS.EntityGraph
             {
                 if (GUILayout.Button("创建实体模板", GUILayout.Height(50)))
                 {
-                    EntityGraphAsset asset = CreateInstance<EntityGraphAsset>();
-                    asset.name = "Template";
-                    groupAsset.entity_template = asset;
+                    groupAsset.entity_template = CreateInstance<EntityGraphAsset>();
+                    EditorUtility.SetDirty(groupAsset.entity_template);
                     EditorUtility.SetDirty(groupAsset);
                     AssetDatabase.SaveAssets();
                     AssetDatabase.Refresh();

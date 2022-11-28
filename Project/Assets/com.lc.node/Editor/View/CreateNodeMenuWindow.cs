@@ -6,6 +6,7 @@ using System.Reflection;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UIElements;
+using System.Linq;
 
 namespace LCNode.View
 {
@@ -25,6 +26,18 @@ namespace LCNode.View
 
         public void Initialize(BaseGraphView _graphView, IEnumerable<Type> nodeTypes)
         {
+            //排序
+            Dictionary<string, Type> titlelist = new Dictionary<string, Type>();
+            foreach (var item in nodeTypes)
+            {
+                Type nodeType = item;
+                NodeMenuItemAttribute attr;
+                AttributeHelper.TryGetTypeAttribute(nodeType, out attr);
+                titlelist.Add(attr.title, nodeType);
+            }
+            titlelist = titlelist.OrderBy(value => value.Key).ToDictionary(r => r.Key, r => r.Value);
+            nodeTypes = titlelist.Values.ToList();
+
             graphView = _graphView;
             this.nodeTypes = nodeTypes;
             this.nodePortMap.Clear();
@@ -104,6 +117,8 @@ namespace LCNode.View
         private string waitConnectPortName = null;
         private bool checkInPort = false;
         private Dictionary<Type, string> nodePortNameMap = new Dictionary<Type, string>();
+
+       
         //创建连接菜单
         private void CreateEdgeNodeMenu(List<SearchTreeEntry> tree)
         {

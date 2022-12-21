@@ -1,0 +1,229 @@
+﻿
+{
+    "mType" : "LCMap.MapInfo",
+    "mapId" : 0,
+    "currMaxActorUid" : 0,
+    "mainActor"       : {
+        "mType" : "LCMap.ActorInfo",
+        "uid"   : "actor_40002",
+        "id"    : 101,
+        "type"  : 3,
+        "pos"   : {
+            "mType" : "UnityEngine.Vector3",
+            "x"     : -40.3899993896484,
+            "y"     : 1.01999998092651,
+            "z"     : 0.0
+        },
+        "roate" : {
+            "mType" : "UnityEngine.Vector3",
+            "x"     : 0.0,
+            "y"     : 0.0,
+            "z"     : 0.0
+        },
+        "scale" : {
+            "mType" : "UnityEngine.Vector3",
+            "x"     : 1.0,
+            "y"     : 1.0,
+            "z"     : 1.0
+        },
+        "isActive" : true,
+        "stateName" : "Default",
+        "paths"     : [
+        ],
+        "interactivePoint" : {
+            "mType" : "UnityEngine.Vector2",
+            "x"     : 0.0,
+            "y"     : 0.0
+        }
+    },
+    "areas"           : [
+        {
+            "mType" : "LCMap.AreaInfo",
+            "areaId" : 0,
+            "pos"    : {
+                "mType" : "UnityEngine.Vector3",
+                "x"     : 0.0,
+                "y"     : 0.0,
+                "z"     : 0.0
+            },
+            "rect"   : {
+                "mType" : "UnityEngine.Rect",
+                "x"     : -500.0,
+                "y"     : -500.0,
+                "width" : 1000.0,
+                "height" : 1000.0
+            },
+            "areaPrefab" : "Map000_Env",
+            "actors"     : [
+                {
+                    "mType" : "LCMap.ActorInfo",
+                    "uid"   : "actor_40003",
+                    "id"    : 301,
+                    "type"  : 5,
+                    "pos"   : {
+                        "mType" : "UnityEngine.Vector3",
+                        "x"     : -161.5,
+                        "y"     : 1.02999997138977,
+                        "z"     : 0.0
+                    },
+                    "roate" : {
+                        "mType" : "UnityEngine.Vector3",
+                        "x"     : 0.0,
+                        "y"     : 0.0,
+                        "z"     : 0.0
+                    },
+                    "scale" : {
+                        "mType" : "UnityEngine.Vector3",
+                        "x"     : 1.0,
+                        "y"     : 1.0,
+                        "z"     : 1.0
+                    },
+                    "isActive" : true,
+                    "stateName" : "Default",
+                    "paths"     : [
+                    ],
+                    "interactivePoint" : {
+                        "mType" : "UnityEngine.Vector2",
+                        "x"     : 0.0,
+                        "y"     : 0.0
+                    }
+                },
+                {
+                    "mType" : "LCMap.ActorInfo",
+                    "uid"   : "actor_40004",
+                    "id"    : 302,
+                    "type"  : 5,
+                    "pos"   : {
+                        "mType" : "UnityEngine.Vector3",
+                        "x"     : -79.6999969482422,
+                        "y"     : 1.0,
+                        "z"     : 0.0
+                    },
+                    "roate" : {
+                        "mType" : "UnityEngine.Vector3",
+                        "x"     : 0.0,
+                        "y"     : 0.0,
+                        "z"     : 0.0
+                    },
+                    "scale" : {
+                        "mType" : "UnityEngine.Vector3",
+                        "x"     : 1.0,
+                        "y"     : 1.0,
+                        "z"     : 1.0
+                    },
+                    "isActive" : true,
+                    "stateName" : "Default",
+                    "paths"     : [
+                    ],
+                    "interactivePoint" : {
+                        "mType" : "UnityEngine.Vector2",
+                        "x"     : 0.0,
+                        "y"     : 0.0
+                    }
+                },
+                {
+                    "mType" : "LCMap.ActorInfo",
+                    "uid"   : "actor_40005",
+                    "id"    : 210,
+                    "type"  : 0,
+                    "pos"   : {
+                        "mType" : "UnityEngine.Vector3",
+                        "x"     : -149.960006713867,
+                        "y"     : 0.990000009536743,
+                        "z"     : 0.0
+                    },
+                    "roate" : {
+                        "mType" : "UnityEngine.Vector3",
+                        "x"     : 0.0,
+                        "y"     : 0.0,
+                        "z"     : 0.0
+                    },
+                    "scale" : {
+                        "mType" : "UnityEngine.Vector3",
+                        "x"     : 1.0,
+                        "y"     : 1.0,
+                        "z"     : 1.0
+                    },
+                    "isActive" : true,
+                    "stateName" : "Default",
+                    "paths"     : [
+                    ],
+                    "interactivePoint" : {
+                        "mType" : "UnityEngine.Vector2",
+                        "x"     : 0.0,
+                        "y"     : 0.0
+                    }
+                },
+                {
+                    "mType" : "LCMap.ActorInfo",
+                    "uid"   : "actor_40006",
+                    "id"    : 401,
+                    "type"  : 5,
+                    "pos"   : {
+                        "mType" : "UnityEngine.Vector3",
+                        "x"     : -184.210006713867,
+                        "y"     : 0.949999988079071,
+                        "z"     : 0.0
+                    },
+                    "roate" : {
+                        "mType" : "UnityEngine.Vector3",
+                        "x"     : 0.0,
+                        "y"     : 0.0,
+                        "z"     : 0.0
+                    },
+                    "scale" : {
+                        "mType" : "UnityEngine.Vector3",
+                        "x"     : 1.0,
+                        "y"     : 1.0,
+                        "z"     : 1.0
+                    },
+                    "isActive" : true,
+                    "stateName" : "Default",
+                    "paths"     : [
+                    ],
+                    "interactivePoint" : {
+                        "mType" : "UnityEngine.Vector2",
+                        "x"     : 0.0,
+                        "y"     : 0.0
+                    }
+                },
+                {
+                    "mType" : "LCMap.ActorInfo",
+                    "uid"   : "actor_40007",
+                    "id"    : 201,
+                    "type"  : 0,
+                    "pos"   : {
+                        "mType" : "UnityEngine.Vector3",
+                        "x"     : -156.589996337891,
+                        "y"     : 1.00999999046326,
+                        "z"     : 0.0
+                    },
+                    "roate" : {
+                        "mType" : "UnityEngine.Vector3",
+                        "x"     : 0.0,
+                        "y"     : 0.0,
+                        "z"     : 0.0
+                    },
+                    "scale" : {
+                        "mType" : "UnityEngine.Vector3",
+                        "x"     : 1.0,
+                        "y"     : 1.0,
+                        "z"     : 1.0
+                    },
+                    "isActive" : true,
+                    "stateName" : "Default",
+                    "paths"     : [
+                    ],
+                    "interactivePoint" : {
+                        "mType" : "UnityEngine.Vector2",
+                        "x"     : 0.0,
+                        "y"     : 0.0
+                    }
+                }
+            ],
+            "triggers"   : {
+                "mType" : "System.Collections.Generic.Dictionary`2[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089],[LCMap.MapTriggerInfo, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"
+            }
+        }
+    ]
+}

@@ -17,21 +17,21 @@ namespace Demo
         public string animName;
     }
 
-    [CreateAssetMenu(fileName = "µØÍ¼µÀÂ·ÍßÆ¬ÅäÖÃ", menuName = "ÓÎÏ·/µØÍ¼µÀÂ·ÍßÆ¬ÅäÖÃ", order = 1)]
+    [CreateAssetMenu(fileName = "åœ°å›¾é“è·¯ç“¦ç‰‡é…ç½®", menuName = "æ¸¸æˆ/åœ°å›¾é“è·¯ç“¦ç‰‡é…ç½®", order = 1)]
     public class MapRoadTileConfig : ScriptableObject
     {
         public List<MapRoadTileInfo> tiles = new List<MapRoadTileInfo>();
 
-        [MenuItem("CONTEXT/Tilemap/µ¼³öµØÍ¼µÀÂ·")]
+        [MenuItem("CONTEXT/Tilemap/å¯¼å‡ºåœ°å›¾é“è·¯")]
         private static void CONTEXT_MeshFilter_right_btn()
         {
-            MapRoadTileConfig roadTileConfig = AssetDatabase.LoadAssetAtPath<MapRoadTileConfig>("Assets/Demo/Editor/MapRoadTile/µØÍ¼µÀÂ·ÍßÆ¬ÅäÖÃ.asset");
+            MapRoadTileConfig roadTileConfig = AssetDatabase.LoadAssetAtPath<MapRoadTileConfig>("Assets/Demo/Editor/MapRoadTile/åœ°å›¾é“è·¯ç“¦ç‰‡é…ç½®.asset");
             Dictionary<string, MapRoadTileInfo> mapRoadDict = new Dictionary<string, MapRoadTileInfo>();
             foreach (MapRoadTileInfo tile in roadTileConfig.tiles)
             {
                 if (mapRoadDict.ContainsKey(tile.sprite.name))
                 {
-                    Debug.LogError("ÖØ¸´µÄµØÍ¼µÀÂ·" + tile.sprite.name);
+                    Debug.LogError("é‡å¤çš„åœ°å›¾é“è·¯" + tile.sprite.name);
                 }
                 else
                 {
@@ -40,7 +40,7 @@ namespace Demo
             }
 
 
-            MiscHelper.Input("ÊäÈëµØÍ¼Id", (x) =>
+            MiscHelper.Input("è¾“å…¥åœ°å›¾Id", (x) =>
             {
                 GameObject selGo = Selection.activeGameObject;
                 Tilemap tilemap = selGo.GetComponent<Tilemap>();
@@ -79,7 +79,7 @@ namespace Demo
 
                 string jsonStr = JsonMapper.ToJson(roadCnfs);
                 IOHelper.WriteText(jsonStr, WayPointMoveSystem.CnfSavePath);
-                Debug.Log("¡·¡·¡·¡·¡·" + WayPointMoveSystem.CnfSavePath);
+                Debug.Log("ã€‹ã€‹ã€‹ã€‹ã€‹" + WayPointMoveSystem.CnfSavePath);
                 AssetDatabase.SaveAssets();
                 AssetDatabase.Refresh();
             });

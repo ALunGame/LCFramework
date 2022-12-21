@@ -7,7 +7,7 @@ namespace LCECS.Tree
 {
     public class DecisionAsset : BaseGraphAsset<Decision>
     {
-        [Header("¾ö²ßÊ÷Id")]
+        [Header("å†³ç­–æ ‘Id")]
         public int TreeId;
     }
 }

@@ -8,7 +8,7 @@ namespace LCTask
     /// </summary>
     public class TaskActionGroupExecute
     {
-        enum ActionGroup
+        public enum ActionGroup
         {
             Act,
             ActSucess,
@@ -29,24 +29,37 @@ namespace LCTask
             this.taskObj = pTaskObj; 
         }
 
-        public void SetContent(TaskContent content, Action<TaskActionState> finishCallBack)
+        public void SetContent(TaskContent content, Action<TaskActionState> pFinishCallBack)
         {
             Clear();
             currContent = content;
+            finishCallBack = pFinishCallBack; 
             ExecuteListenFuncs();
-            ChangeActionGroup(ActionGroup.Act);
         }
 
         public void Execute()
         {
-            if (currActions == null || currActions.Count < 0)
+            if (currActions == null || currActions.Count <= 0)
             {
                 ActionGroupFinish(TaskActionState.Finished);
                 return;
             }
+            //执行第一个
+            TaskActionFunc firstActionFunc = currActions[0];
+            if (firstActionFunc.ActionState == TaskActionState.Wait)
+            {
+                firstActionFunc.Start(taskObj);
+                if (!firstActionFunc.IsLegal(firstActionFunc.ActionState))
+                {
+                    TaskLocate.Log.LogError("行为非法执行>>>>", firstActionFunc.ActionState, firstActionFunc.GetType().Name);
+                    ActionGroupFinish(firstActionFunc.ActionState);
+                    return;
+                }
+            }
             for (int i = 0; i < currActions.Count; i++)
             {
                 TaskActionFunc actionFunc = currActions[i];
+                
                 if (actionFunc.ActionState == TaskActionState.Running)
                 {
                     actionFunc.Running();
@@ -57,10 +70,11 @@ namespace LCTask
                         return;
                     }
                 }
+                
                 if (actionFunc.ActionState == TaskActionState.Finished)
                 {
                     int nextIndex = i + 1;
-                    if (nextIndex > currActions.Count)
+                    if (nextIndex >= currActions.Count)
                     {
                         ActionGroupFinish(TaskActionState.Finished);
                         return;
@@ -71,7 +85,7 @@ namespace LCTask
                         nextAct.Start(taskObj);
                         if (!nextAct.IsLegal(nextAct.ActionState))
                         {
-                            TaskLocate.Log.LogError("分支行为非法执行>>>>", nextAct.ActionState, nextAct.GetType().Name);
+                            TaskLocate.Log.LogError("行为非法执行>>>>", nextAct.ActionState, nextAct.GetType().Name);
                             ActionGroupFinish(actionFunc.ActionState);
                             return;
                         }
@@ -111,7 +125,7 @@ namespace LCTask
             }
         }
 
-        private void ChangeActionGroup(ActionGroup pGroup)
+        public void ChangeActionGroup(ActionGroup pGroup)
         {
             actionGroup = pGroup;
             currActions = GetActionsByGroup(actionGroup);

@@ -5,11 +5,11 @@ namespace LCToolkit
 {
     public static class TransformEx
     {
-        public static void SetActive(this Transform pTrans, bool pActive, string pPath = "")
+        public static void SetActive(this Transform pTrans,string pPath, bool pActive)
         {
             if (pTrans == null)
                 return;
-            pTrans.gameObject.SetActive(pActive, pPath);
+            pTrans.gameObject.SetActive(pPath, pActive);
         }
 
         public static bool Find(this Transform pTrans, string pPath,out Transform pFindTrans)

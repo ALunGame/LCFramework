@@ -28,7 +28,7 @@ namespace LCECS.Server.Player
         //请求
         public void PushPlayerReq(RequestId reqId, ParamData param)
         {
-            ECSLayerLocate.Request.PushRequest(playerEntity.Uid, reqId, param);
+            //ECSLayerLocate.Request.PushRequest(playerEntity.Uid, reqId, param);
         }
     }
 }

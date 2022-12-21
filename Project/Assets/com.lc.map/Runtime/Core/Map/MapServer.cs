@@ -1,4 +1,5 @@
-﻿using LCConfig;
+﻿using System;
+using LCConfig;
 using System.Collections.Generic;
 using UnityEngine;
 using LCLoad;
@@ -77,35 +78,38 @@ namespace LCMap
         }
 
         private int currMaxActorUid;
+        
 
         //地图区域
         public Dictionary<int, MapArea> areaDict = new Dictionary<int, MapArea>();
         //地图配置
         private Dictionary<int, MapInfo> mapCnf = new Dictionary<int, MapInfo>();
 
-        private MapInfo GetMapCnf(int mapId)
+        private Action enterFinishCallBack;
+
+        private MapInfo GetMapCnf(int pMapId)
         {
-            if (mapCnf.ContainsKey(mapId))
+            if (mapCnf.ContainsKey(pMapId))
             {
-                return mapCnf[mapId];
+                return mapCnf[pMapId];
             }
-            string mapAssetName = ConfigDef.GetCnfNoExName("Map_" + mapId);
+            string mapAssetName = ConfigDef.GetCnfNoExName("Map_" + pMapId);
             string jsonStr = LoadHelper.LoadString(mapAssetName);
             MapInfo model = LCJson.JsonMapper.ToObject<MapInfo>(jsonStr);
-            mapCnf.Add(mapId, model);
+            mapCnf.Add(pMapId, model);
             return model;
         }
 
-        public void Enter(int mapId)
+        public void Enter(int pMapId,Action pFinishCallBack)
         {
-            MapInfo mapModel = GetMapCnf(mapId);
+            MapInfo mapModel = GetMapCnf(pMapId);
             if (mapModel == null)
             {
-                MapLocate.Log.LogError("进入地图失败,没有对应配置", mapId);
+                MapLocate.Log.LogError("进入地图失败,没有对应配置", pMapId);
                 return;
             }
 
-            this.currMapId = mapId;
+            this.currMapId = pMapId;
             this.currMaxActorUid = mapModel.currMaxActorUid;
 
             //区域
@@ -123,6 +127,9 @@ namespace LCMap
 
             //创建主角
             CreateMainActor(mapModel.mainActor);
+
+            enterFinishCallBack = pFinishCallBack;
+            enterFinishCallBack?.Invoke();
         }
 
         public void Exit()
@@ -238,8 +245,7 @@ namespace LCMap
 
         private void CreateMainActor(ActorInfo actor)
         {
-            Actor tActor = ActorCreator.CreateEntity(actor);
-            ActorCreator.CreateGo(tActor);
+            Actor tActor = ActorCreator.CreateActor(actor);
             tActor.Go.transform.SetParent(PlayerRoot.transform);
 
             //保存

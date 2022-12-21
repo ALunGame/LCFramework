@@ -5,25 +5,25 @@ using System.Collections.Generic;
 
 namespace LCTask.TaskGraph
 {
-    #region ÈÎÎñÌõ¼şº¯Êı
+    #region ä»»åŠ¡æ¡ä»¶å‡½æ•°
 
     public class Task_ConditionFuncData { }
     /// <summary>
-    /// ÈÎÎñÌõ¼şº¯Êı
+    /// ä»»åŠ¡æ¡ä»¶å‡½æ•°
     /// </summary>
     public abstract class Task_ConditionFuncNode : BaseNode
     {
-        public override string Title { get => "ÈÎÎñÌõ¼şº¯Êı"; set => base.Title = value; }
-        public override string Tooltip { get => "ÈÎÎñÌõ¼şº¯Êı"; set => base.Tooltip = value; }
+        public override string Title { get => "ä»»åŠ¡æ¡ä»¶å‡½æ•°"; set => base.Title = value; }
+        public override string Tooltip { get => "ä»»åŠ¡æ¡ä»¶å‡½æ•°"; set => base.Tooltip = value; }
 
-        [OutputPort("¸¸½Úµã", BasePort.Capacity.Single)]
+        [OutputPort("çˆ¶èŠ‚ç‚¹", BasePort.Capacity.Single)]
         public Task_ConditionFuncData parentNode;
 
-        [NodeValue("Ìõ¼şÖµ")]
+        [NodeValue("æ¡ä»¶å€¼Öµ")]
         public bool checkValue = true;
 
-        [NodeValue("ÓëÏÂÒ»¸öÌõ¼ş¹ØÏµ")]
-        public ConditionType conditionType = ConditionType.AND;
+        [NodeValue("ä¸ä¸‹ä¸€ä¸ªæ¡ä»¶å…³ç³»")]
+        public ConditionRelated conditionType = ConditionRelated.AND;
 
         public TaskConditionFunc GetFunc()
         {
@@ -38,18 +38,18 @@ namespace LCTask.TaskGraph
 
     #endregion
 
-    #region ÈÎÎñÄ¿±ê±íÏÖº¯Êı
+    #region ä»»åŠ¡ç›®æ ‡è¡¨ç°å‡½æ•°
 
     public class Task_DisplayFuncData { }
     /// <summary>
-    /// ÈÎÎñÄ¿±ê±íÏÖº¯Êı
+    /// ä»»åŠ¡ç›®æ ‡è¡¨ç°å‡½æ•°
     /// </summary>
     public abstract class Task_TargetDisplayFuncNode : BaseNode
     {
-        public override string Title { get => "ÈÎÎñ±íÏÖº¯Êı"; set => base.Title = value; }
-        public override string Tooltip { get => "ÈÎÎñ±íÏÖº¯Êı"; set => base.Tooltip = value; }
+        public override string Title { get => "ä»»åŠ¡è¡¨ç°å‡½æ•°"; set => base.Title = value; }
+        public override string Tooltip { get => "ä»»åŠ¡è¡¨ç°å‡½æ•°"; set => base.Tooltip = value; }
 
-        [OutputPort("¸¸½Úµã", BasePort.Capacity.Single)]
+        [OutputPort("çˆ¶èŠ‚ç‚¹", BasePort.Capacity.Single)]
         public Task_DisplayFuncData parentNode;
 
         public TaskTargetDisplayFunc GetFunc()
@@ -63,15 +63,15 @@ namespace LCTask.TaskGraph
 
     #endregion
 
-    #region ÈÎÎñ¼àÌıº¯Êı
+    #region ä»»åŠ¡ç›‘å¬å‡½æ•°
 
     public class Task_ListenFuncData { }
     /// <summary>
-    /// ÈÎÎñ¼àÌıº¯Êı
+    /// ä»»åŠ¡ç›‘å¬å‡½æ•°
     /// </summary>
     public abstract class Task_ListenFuncNode : Map_ActorNode
     {
-        [OutputPort("¸¸½Úµã", BasePort.Capacity.Single)]
+        [OutputPort("çˆ¶èŠ‚ç‚¹", BasePort.Capacity.Single)]
         public Task_ListenFuncData parentNode;
 
         public TaskListenFunc GetFunc()
@@ -85,11 +85,11 @@ namespace LCTask.TaskGraph
 
     #endregion
 
-    #region ÈÎÎñĞĞÎªº¯Êı
+    #region ä»»åŠ¡è¡Œä¸ºå‡½æ•°
 
     public class Task_ActionFuncData { }
     /// <summary>
-    /// ÈÎÎñÍ¨ÓÃĞĞÎª
+    /// ä»»åŠ¡é€šç”¨è¡Œä¸º
     /// </summary>
     public abstract class Task_ActionFuncNode : BaseNode
     {
@@ -103,54 +103,54 @@ namespace LCTask.TaskGraph
     }
 
     /// <summary>
-    /// ÈÎÎñÍ¨ÓÃĞĞÎª
+    /// ä»»åŠ¡é€šç”¨è¡Œä¸º
     /// </summary>
     public abstract class Task_CommonActionFuncNode : Task_ActionFuncNode
     {
-        [InputPort("¸¸½Úµã", BasePort.Capacity.Single)]
+        [InputPort("çˆ¶èŠ‚ç‚¹", BasePort.Capacity.Single)]
         public Task_ActionFuncData parentNode;
     }
 
     public class Task_SuccessActionFuncData : Task_ActionFuncData { }
 
     /// <summary>
-    /// ÈÎÎñ½×¶ÎĞĞÎªÖ´ĞĞ³É¹¦ĞĞÎª
-    /// 1£¬Ö÷ÒªÓÃÓÚ»ñµÃµÀ¾ßÕâÖÖ
+    /// ä»»åŠ¡é˜¶æ®µè¡Œä¸º æ‰§è¡ŒæˆåŠŸè¡Œä¸º
+    /// 1ï¼Œä¸»è¦ç”¨äºè·å¾—é“å…·è¿™ç§
     /// </summary>
     public abstract class Task_SuccessActionFuncNode : Task_ActionFuncNode
     {
-        [InputPort("¸¸½Úµã", BasePort.Capacity.Single)]
+        [InputPort("çˆ¶èŠ‚ç‚¹", BasePort.Capacity.Single)]
         public Task_SuccessActionFuncData parentNode;
     }
 
     public class Task_AcceptActionFuncData : Task_ActionFuncData { }
     /// <summary>
-    /// ÈÎÎñ½ÓÊÜĞĞÎªº¯Êı
-    /// 1£¬ÓÃÓÚÖ»ÄÜÔÚ½ÓÊÜ½×¶ÎÖ´ĞĞµÄĞĞÎª
+    /// ä»»åŠ¡æ¥å—è¡Œä¸ºå‡½æ•°
+    /// 1ï¼Œç”¨äºåªèƒ½åœ¨æ¥å—é˜¶æ®µæ‰§è¡Œçš„è¡Œä¸º
     /// </summary>
     public abstract class Task_AcceptActionFuncNode : Task_ActionFuncNode
     {
-        [InputPort("¸¸½Úµã", BasePort.Capacity.Single)]
+        [InputPort("çˆ¶èŠ‚ç‚¹", BasePort.Capacity.Single)]
         public Task_AcceptActionFuncData parentNode;
     }
 
     public class Task_ExecuteActionFuncData : Task_ActionFuncData { }
     /// <summary>
-    /// ÈÎÎñÌá½»ĞĞÎªº¯Êı
-    /// 1£¬ÓÃÓÚÖ»ÄÜÔÚÌá½»½×¶ÎÖ´ĞĞµÄĞĞÎª
+    /// ä»»åŠ¡æäº¤è¡Œä¸ºå‡½æ•°
+    /// 1ï¼Œç”¨äºåªèƒ½åœ¨æäº¤é˜¶æ®µæ‰§è¡Œçš„è¡Œä¸º
     /// </summary>
     public abstract class Task_ExecuteActionFuncNode : Task_ActionFuncNode
     {
-        [InputPort("¸¸½Úµã", BasePort.Capacity.Single)]
+        [InputPort("çˆ¶èŠ‚ç‚¹", BasePort.Capacity.Single)]
         public Task_ExecuteActionFuncData parentNode;
     }
 
     #endregion
 
-    [NodeMenuItem("ÈÎÎñÄ¿±ê")]
+    [NodeMenuItem("ä»»åŠ¡ç›®æ ‡")]
     public class Task_TargetNode : Map_ActorNode
     {
-        [OutputPort("¸¸½Úµã", BasePort.Capacity.Single)]
+        [OutputPort("çˆ¶èŠ‚ç‚¹", BasePort.Capacity.Single)]
         public MapActorData parentNode;
     }
 
@@ -158,18 +158,18 @@ namespace LCTask.TaskGraph
     {
         public int taskId;
 
-        [InputPort("½×¶ÎÌõ¼ş", BasePort.Capacity.Multi)]
+        [InputPort("é˜¶æ®µæ¡ä»¶", BasePort.Capacity.Multi)]
         public Task_ConditionFuncData conditionFuncs;
 
-        [InputPort("½×¶ÎÄ¿±ê", BasePort.Capacity.Single)]
+        [InputPort("é˜¶æ®µç›®æ ‡", BasePort.Capacity.Single)]
         public MapActorData target;
 
-        [InputPort("½×¶ÎÄ¿±ê±íÏÖ", BasePort.Capacity.Multi)]
+        [InputPort("é˜¶æ®µç›®æ ‡è¡¨ç°", BasePort.Capacity.Multi)]
         public Task_DisplayFuncData targetDisplayFuncs;
 
         public int GetTargetMapId()
         {
-            List<Task_TargetNode> targetNodes = NodeHelper.GetNodeOutNodes<Task_TargetNode>(Owner, this, "½×¶ÎÄ¿±ê");
+            List<Task_TargetNode> targetNodes = NodeHelper.GetNodeOutNodes<Task_TargetNode>(Owner, this, "é˜¶æ®µç›®æ ‡");
             if (targetNodes.Count > 0)
             {
                 return (int)targetNodes[0].mapId;
@@ -179,7 +179,7 @@ namespace LCTask.TaskGraph
 
         public List<int> GetTargetActorIds()
         {
-            List<Task_TargetNode> targetNodes = NodeHelper.GetNodeOutNodes<Task_TargetNode>(Owner, this, "½×¶ÎÄ¿±ê");
+            List<Task_TargetNode> targetNodes = NodeHelper.GetNodeOutNodes<Task_TargetNode>(Owner, this, "é˜¶æ®µç›®æ ‡");
             if (targetNodes.Count > 0)
             {
                 return targetNodes[0].GetActorIds();
@@ -190,7 +190,7 @@ namespace LCTask.TaskGraph
         public List<TaskConditionFunc> GetConditionFuncs()
         {
             List<TaskConditionFunc> funcs = new List<TaskConditionFunc>();
-            List<Task_ConditionFuncNode> conditionNodes = NodeHelper.GetNodeOutNodes<Task_ConditionFuncNode>(Owner, this, "½×¶ÎÌõ¼ş");
+            List<Task_ConditionFuncNode> conditionNodes = NodeHelper.GetNodeOutNodes<Task_ConditionFuncNode>(Owner, this, "é˜¶æ®µæ¡ä»¶");
             if (conditionNodes.Count > 0)
             {
                 for (int i = 0; i < conditionNodes.Count; i++)
@@ -204,7 +204,7 @@ namespace LCTask.TaskGraph
         public List<TaskTargetDisplayFunc> GetDisplayFuncs()
         {
             List<TaskTargetDisplayFunc> funcs = new List<TaskTargetDisplayFunc>();
-            List<Task_TargetDisplayFuncNode> nodes = NodeHelper.GetNodeOutNodes<Task_TargetDisplayFuncNode>(Owner, this, "½×¶ÎÄ¿±ê±íÏÖ");
+            List<Task_TargetDisplayFuncNode> nodes = NodeHelper.GetNodeOutNodes<Task_TargetDisplayFuncNode>(Owner, this, "é˜¶æ®µç›®æ ‡è¡¨ç°");
             if (nodes.Count > 0)
             {
                 for (int i = 0; i < nodes.Count; i++)
@@ -228,29 +228,29 @@ namespace LCTask.TaskGraph
         public abstract TaskContent CreateContent();
     }
 
-    [NodeMenuItem("ÈÎÎñ½ÓÊÜ")]
+    [NodeMenuItem("ä»»åŠ¡æ¥å—")]
     public class Task_AcceptNode : Task_Node
     {
-        public override string Title { get => $"½ÓÊÜ{taskId}ÈÎÎñ"; set => base.Title = value; }
+        public override string Title { get => $"æ¥å—{taskId}ä»»åŠ¡"; set => base.Title = value; }
 
-        [OutputPort("½ÓÊÜĞĞÎª", BasePort.Capacity.Multi)]
+        [OutputPort("æ¥å—è¡Œä¸º", BasePort.Capacity.Multi)]
         public Task_AcceptActionFuncData actionFuncs;
 
-        [OutputPort("½ÓÊÜ¼àÌı", BasePort.Capacity.Multi)]
+        [OutputPort("æ¥å—ç›‘å¬", BasePort.Capacity.Multi)]
         public Task_ListenFuncData actionListenFuncs;
 
-        [OutputPort("½ÓÊÜ³É¹¦", BasePort.Capacity.Multi)]
+        [OutputPort("æ¥å—æˆåŠŸ", BasePort.Capacity.Multi)]
         public Task_SuccessActionFuncData actionSuccess;
 
-        [OutputPort("½ÓÊÜÊ§°Ü", BasePort.Capacity.Multi)]
+        [OutputPort("æ¥å—å¤±è´¥", BasePort.Capacity.Multi)]
         public Task_ActionFuncData actionFail;
 
-        #region ¼àÌı
+        #region ç›‘å¬
 
         private List<TaskListenFunc> GetActionListenFuncs()
         {
             List<TaskListenFunc> funcs = new List<TaskListenFunc>();
-            List<Task_ListenFuncNode> nodes = NodeHelper.GetNodeOutNodes<Task_ListenFuncNode>(Owner, this, "½ÓÊÜ¼àÌı");
+            List<Task_ListenFuncNode> nodes = NodeHelper.GetNodeOutNodes<Task_ListenFuncNode>(Owner, this, "æ¥å—ç›‘å¬");
             if (nodes.Count > 0)
             {
                 for (int i = 0; i < nodes.Count; i++)
@@ -263,12 +263,12 @@ namespace LCTask.TaskGraph
 
         #endregion
 
-        #region ĞĞÎª
+        #region è¡Œä¸º
 
         public List<TaskActionFunc> GetActionFuncs()
         {
             List<TaskActionFunc> funcs = new List<TaskActionFunc>();
-            List<Task_ActionFuncNode> nodes = NodeHelper.GetNodeOutNodes<Task_ActionFuncNode>(Owner, this, "½ÓÊÜĞĞÎª");
+            List<Task_ActionFuncNode> nodes = NodeHelper.GetNodeOutNodes<Task_ActionFuncNode>(Owner, this, "æ¥å—è¡Œä¸º");
             if (nodes.Count > 0)
             {
                 for (int i = 0; i < nodes.Count; i++)
@@ -282,7 +282,7 @@ namespace LCTask.TaskGraph
         public List<TaskActionFunc> GetActionSuccessFuncs()
         {
             List<TaskActionFunc> funcs = new List<TaskActionFunc>();
-            List<Task_ActionFuncNode> nodes = NodeHelper.GetNodeOutNodes<Task_ActionFuncNode>(Owner, this, "½ÓÊÜ³É¹¦");
+            List<Task_ActionFuncNode> nodes = NodeHelper.GetNodeOutNodes<Task_ActionFuncNode>(Owner, this, "æ¥å—æˆåŠŸ");
             if (nodes.Count > 0)
             {
                 for (int i = 0; i < nodes.Count; i++)
@@ -296,7 +296,7 @@ namespace LCTask.TaskGraph
         public List<TaskActionFunc> GetActionFailFuncs()
         {
             List<TaskActionFunc> funcs = new List<TaskActionFunc>();
-            List<Task_ActionFuncNode> nodes = NodeHelper.GetNodeOutNodes<Task_ActionFuncNode>(Owner, this, "½ÓÊÜÊ§°Ü");
+            List<Task_ActionFuncNode> nodes = NodeHelper.GetNodeOutNodes<Task_ActionFuncNode>(Owner, this, "æ¥å—å¤±è´¥");
             if (nodes.Count > 0)
             {
                 for (int i = 0; i < nodes.Count; i++)
@@ -320,30 +320,30 @@ namespace LCTask.TaskGraph
         }
     }
 
-    [NodeMenuItem("ÈÎÎñÌá½»")]
+    [NodeMenuItem("ä»»åŠ¡æäº¤")]
     public class Task_ExecuteNode : Task_Node
     {
-        public override string Title { get => $"Ìá½»{taskId}ÈÎÎñ"; set => base.Title = value; }
+        public override string Title { get => $"æäº¤{taskId}ä»»åŠ¡"; set => base.Title = value; }
 
-        [OutputPort("Ìá½»ĞĞÎª", BasePort.Capacity.Multi)]
+        [OutputPort("æäº¤è¡Œä¸º", BasePort.Capacity.Multi)]
         public Task_ExecuteActionFuncData actionFuncs;
 
-        [OutputPort("Ìá½»¼àÌı", BasePort.Capacity.Multi)]
+        [OutputPort("æäº¤ç›‘å¬", BasePort.Capacity.Multi)]
         public Task_ListenFuncData actionListenFuncs;
 
-        [OutputPort("Ìá½»³É¹¦", BasePort.Capacity.Multi)]
+        [OutputPort("æäº¤æˆåŠŸ", BasePort.Capacity.Multi)]
         public Task_SuccessActionFuncData actionSuccess;
 
-        [OutputPort("Ìá½»Ê§°Ü", BasePort.Capacity.Multi)]
+        [OutputPort("æäº¤å¤±è´¥", BasePort.Capacity.Multi)]
         public Task_ActionFuncData actionFail;
 
 
-        #region ¼àÌı
+        #region ç›‘å¬
 
         private List<TaskListenFunc> GetActionListenFuncs()
         {
             List<TaskListenFunc> funcs = new List<TaskListenFunc>();
-            List<Task_ListenFuncNode> nodes = NodeHelper.GetNodeOutNodes<Task_ListenFuncNode>(Owner, this, "½ÓÊÜ¼àÌı");
+            List<Task_ListenFuncNode> nodes = NodeHelper.GetNodeOutNodes<Task_ListenFuncNode>(Owner, this, "æ¥å—ç›‘å¬");
             if (nodes.Count > 0)
             {
                 for (int i = 0; i < nodes.Count; i++)
@@ -356,12 +356,12 @@ namespace LCTask.TaskGraph
 
         #endregion
 
-        #region ĞĞÎª
+        #region è¡Œä¸º
 
         public List<TaskActionFunc> GetActionFuncs()
         {
             List<TaskActionFunc> funcs = new List<TaskActionFunc>();
-            List<Task_ActionFuncNode> nodes = NodeHelper.GetNodeOutNodes<Task_ActionFuncNode>(Owner, this, "Ìá½»ĞĞÎª");
+            List<Task_ActionFuncNode> nodes = NodeHelper.GetNodeOutNodes<Task_ActionFuncNode>(Owner, this, "æäº¤è¡Œä¸º");
             if (nodes.Count > 0)
             {
                 for (int i = 0; i < nodes.Count; i++)
@@ -375,7 +375,7 @@ namespace LCTask.TaskGraph
         public List<TaskActionFunc> GetActionSuccessFuncs()
         {
             List<TaskActionFunc> funcs = new List<TaskActionFunc>();
-            List<Task_ActionFuncNode> nodes = NodeHelper.GetNodeOutNodes<Task_ActionFuncNode>(Owner, this, "Ìá½»³É¹¦");
+            List<Task_ActionFuncNode> nodes = NodeHelper.GetNodeOutNodes<Task_ActionFuncNode>(Owner, this, "æäº¤æˆåŠŸ");
             if (nodes.Count > 0)
             {
                 for (int i = 0; i < nodes.Count; i++)
@@ -389,7 +389,7 @@ namespace LCTask.TaskGraph
         public List<TaskActionFunc> GetActionFailFuncs()
         {
             List<TaskActionFunc> funcs = new List<TaskActionFunc>();
-            List<Task_ActionFuncNode> nodes = NodeHelper.GetNodeOutNodes<Task_ActionFuncNode>(Owner, this, "Ìá½»Ê§°Ü");
+            List<Task_ActionFuncNode> nodes = NodeHelper.GetNodeOutNodes<Task_ActionFuncNode>(Owner, this, "æäº¤å¤±è´¥");
             if (nodes.Count > 0)
             {
                 for (int i = 0; i < nodes.Count; i++)

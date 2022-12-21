@@ -1,8 +1,10 @@
-﻿using LCECS.Core;
+﻿using Demo;
+using LCECS.Core;
 using LCECS.Data;
 using LCJson;
 using LCLoad;
 using LCMap;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -66,8 +68,7 @@ namespace LCECS.Server.ECS
                 worldActor.uid = "world_999";
                 worldActor.id  = -999;
 
-                world = ActorCreator.CreateEntity(worldActor);
-                ((Actor)world).SetBindGo(new GameObject("<------------EntityWorld---------->"));
+                world = ActorCreator.CreateActor(worldActor,new GameObject("<------------EntityWorld---------->"));
             }
             return world;
         }
@@ -88,7 +89,7 @@ namespace LCECS.Server.ECS
         public Entity CreateEntity(string pUid,int pEntityId)
         {
             List<BaseCom> resComs = GetEntityComsModel(pEntityId);
-            Entity entity = new Actor(pUid);
+            Entity entity = new Entity(pUid);
 
             //组件
             for (int i = 0; i < resComs.Count; i++)
@@ -112,13 +113,19 @@ namespace LCECS.Server.ECS
 
             entityDict.Add(entity.Uid, entity);
 
-            //系统检测
-            CheckEntityInSystem(entity);
+            //实体初始化
+            entity.Init();
 
             //创建实体数据流
             EntityWorkData entityWorkData = new EntityWorkData(entity.Uid, entity);
             entityWorkData.Uid = entity.Uid;
             ECSLayerLocate.Info.AddEntityWorkData(entity.Uid, entityWorkData);
+
+            //组件Awake
+            foreach (var item in entity.GetComs())
+            {
+                item.Awake(entity);
+            }
         }
 
         public Entity GetEntity(string uid)

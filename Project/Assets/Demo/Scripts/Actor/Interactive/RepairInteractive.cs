@@ -16,7 +16,7 @@ namespace Demo
         {
             BasePropertyCom owerPropertyCom = actor.GetCom<BasePropertyCom>();
 
-            if (owerPropertyCom.Hp.Curr >= owerPropertyCom.Hp.Max)
+            if (owerPropertyCom.Hp.Curr >= owerPropertyCom.Hp.Total)
             {
                 GameLocate.Log.LogError("修复失败，生命值已满", actor);
                 return true;
@@ -28,7 +28,7 @@ namespace Demo
         private bool ExecuteRepair(Actor executeActor)
         {
             BasePropertyCom owerPropertyCom = actor.GetCom<BasePropertyCom>();
-            if (owerPropertyCom.Hp.Curr >= owerPropertyCom.Hp.Max)
+            if (owerPropertyCom.Hp.Curr >= owerPropertyCom.Hp.Total)
             {
                 return true;
             }

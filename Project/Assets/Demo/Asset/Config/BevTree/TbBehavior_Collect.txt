@@ -1,1 +1,44 @@
-﻿{"mType":"LCECS.Layer.Behavior.BehaviorTree","reqId":6,"tree":{"mType":"LCECS.Core.Tree.Nodes.NodeRoot","Uid":"45e92c21-a773-4a2f-99dd-7facb7a22674","childNodes":[{"mType":"LCECS.Core.Tree.Nodes.Control.NodeControlSequence","Uid":"11af10ce-7bbe-4667-81c9-b33e553f1dcf","childNodes":[{"mType":"Demo.Behavior.BEV_ACT_MoveToCollectActor","Uid":"5d67a7aa-61dc-4c96-8991-9fa45c9f9cd3","childNodes":null,"nodePremise":null},{"mType":"Demo.Behavior.BEV_ACT_PlayInteractiveAnim","animTime":0.3,"animCnt":3,"Uid":"99e30166-0f85-4bba-9703-72a66e02f510","childNodes":null,"nodePremise":null},{"mType":"Demo.Behavior.BEV_ACT_ExecuteInteractive","interactiveType":0,"Uid":"62096ac9-5f6f-4e6b-a1a3-c8bc578093d5","childNodes":null,"nodePremise":null}],"nodePremise":null}],"nodePremise":null},"HandleList":[]}
+﻿
+[
+    {
+        "mType" : "LCECS.Layer.Behavior.BehaviorTree",
+        "reqId" : 6,
+        "tree"  : {
+            "mType" : "LCECS.Core.Tree.Nodes.NodeRoot",
+            "Uid"   : "45e92c21-a773-4a2f-99dd-7facb7a22674",
+            "childNodes" : [
+                {
+                    "mType" : "LCECS.Core.Tree.Nodes.Control.NodeControlSequence",
+                    "Uid"   : "11af10ce-7bbe-4667-81c9-b33e553f1dcf",
+                    "childNodes" : [
+                        {
+                            "mType" : "Demo.Behavior.BEV_ACT_MoveToCollectActor",
+                            "Uid"   : "5d67a7aa-61dc-4c96-8991-9fa45c9f9cd3",
+                            "childNodes" : null,
+                            "nodePremise" : null
+                        },
+                        {
+                            "mType" : "Demo.Behavior.BEV_ACT_PlayInteractiveAnim",
+                            "animTime" : 0.3,
+                            "animCnt"  : 3,
+                            "Uid"      : "99e30166-0f85-4bba-9703-72a66e02f510",
+                            "childNodes" : null,
+                            "nodePremise" : null
+                        },
+                        {
+                            "mType" : "Demo.Behavior.BEV_ACT_ExecuteInteractive",
+                            "interactiveType" : 0,
+                            "Uid"             : "62096ac9-5f6f-4e6b-a1a3-c8bc578093d5",
+                            "childNodes"      : null,
+                            "nodePremise"     : null
+                        }
+                    ],
+                    "nodePremise" : null
+                }
+            ],
+            "nodePremise" : null
+        },
+        "HandleList" : [
+        ]
+    }
+]

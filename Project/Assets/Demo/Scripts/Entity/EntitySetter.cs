@@ -13,11 +13,11 @@ namespace Demo
         /// </summary>
         public static void PauseEntityDec(this Entity entity)
         {
-            if (entity.GetCom(out DecisionCom outCom))
-            {
-                ECSLocate.DecCenter.RemoveEntityDecision(outCom.DecisionId, entity.Uid);
-            }
-            ECSLayerLocate.Request.PushRequest(entity.Uid, RequestId.StopBev, new ParamData());
+            // if (entity.GetCom(out DecisionCom outCom))
+            // {
+            //     ECSLocate.DecCenter.RemoveEntityDecision(outCom.DecisionId, entity.Uid);
+            // }
+            // ECSLayerLocate.Request.PushRequest(entity.Uid, RequestId.StopBev, new ParamData());
         }
 
         /// <summary>
@@ -25,13 +25,13 @@ namespace Demo
         /// </summary>
         public static void ResumeEntityDec(this Entity entity)
         {
-            EntityWorkData workData = ECSLayerLocate.Info.GetEntityWorkData(entity.Uid);
-            workData.ChangeRequestId(RequestId.None);
-
-            if (entity.GetCom(out DecisionCom outCom))
-            {
-                ECSLocate.DecCenter.AddEntityDecision(outCom.DecisionThread, outCom.DecisionId, entity.Uid);
-            }
+            // EntityWorkData workData = ECSLayerLocate.Info.GetEntityWorkData(entity.Uid);
+            // workData.ChangeRequestId(RequestId.None);
+            //
+            // if (entity.GetCom(out DecisionCom outCom))
+            // {
+            //     ECSLocate.DecCenter.AddEntityDecision(outCom.DecisionThread, outCom.DecisionId, entity.Uid);
+            // }
         }
     }
 }

@@ -6,20 +6,20 @@ namespace LCUI
 {
     public class UIServer : IUIServer
     {
-        //½çÃæºÍÀàĞÍµÄÓ³Éä
+        //ç•Œé¢å’Œç±»å‹çš„æ˜ å°„
         private Dictionary<UIPanelId,Type> panelTypeDict = new Dictionary<UIPanelId,Type>();
 
-        //½çÃæ¹æÔò
+        //ç•Œé¢è§„åˆ™
         private List<UIRule> rules = new List<UIRule>();
 
-        //¼¤»îµÄ½çÃæ
+        //æ¿€æ´»çš„ç•Œé¢
         private Dictionary<UIPanelId, InternalUIPanel> activePanelDict = new Dictionary<UIPanelId, InternalUIPanel>();
 
-        //½çÃæ»º´æ
+        //ç•Œé¢ç¼“å­˜
         private Dictionary<UIPanelId, InternalUIPanel> cachePanelDict = new Dictionary<UIPanelId, InternalUIPanel>();
 
         /// <summary>
-        /// ËùÓĞµÄ¼¤»î½çÃæ
+        /// æ‰€æœ‰çš„æ¿€æ´»ç•Œé¢
         /// </summary>
         public IReadOnlyDictionary<UIPanelId, InternalUIPanel> ActivePanelDict { get => activePanelDict; }
 
@@ -35,7 +35,7 @@ namespace LCUI
                 {
                     if (panelTypeDict.ContainsKey(attr.PanelId))
                     {
-                        UILocate.Log.LogError("ÉùÃ÷µÄUIIdÖØ¸´>>>", item, attr.PanelId);
+                        UILocate.Log.LogError("å£°æ˜çš„UIIdé‡å¤>>>", item, attr.PanelId);
                         continue;
                     }
                     panelTypeDict.Add(attr.PanelId, item);
@@ -105,12 +105,12 @@ namespace LCUI
             }
         }
 
-        #region ´´½¨½çÃæ
+        #region åˆ›å»ºç•Œé¢
 
         /// <summary>
-        /// »ñµÃ½çÃæ
+        /// è·å¾—ç•Œé¢
         /// </summary>
-        /// <param name="panelId">½çÃæId</param>
+        /// <param name="panelId">ç•Œé¢Id</param>
         /// <returns></returns>
         private InternalUIPanel GetPanel(UIPanelId panelId)
         {
@@ -122,7 +122,7 @@ namespace LCUI
 
             if (!panelTypeDict.ContainsKey(panelId))
             {
-                UILocate.Log.LogError("½çÃæÃ»ÓĞ°ó¶¨>>>", panelId);
+                UILocate.Log.LogError("ç•Œé¢æ²¡æœ‰ç»‘å®š>>>", panelId);
                 return null;
             }
 
@@ -132,7 +132,7 @@ namespace LCUI
         }
 
         /// <summary>
-        /// ´´½¨½çÃæ½Úµã
+        /// åˆ›å»ºç•Œé¢èŠ‚ç‚¹
         /// </summary>
         private void CreatePanelTrans(InternalUIPanel panel)
         {
@@ -143,28 +143,28 @@ namespace LCUI
 
         #endregion
 
-        #region ½çÃæÏÔÊ¾
+        #region ç•Œé¢æ˜¾ç¤º
 
         private void ExecuteShowPanel(UIPanelId panelId,InternalUIPanel panel)
         {
-            //·ÅÈëActive
+            //æ”¾å…¥Active
             if (!activePanelDict.ContainsKey(panelId))
                 activePanelDict.Add(panelId, panel);
 
-            //ÒÆ³ıCache
+            //ç§»é™¤Cache
             if (cachePanelDict.ContainsKey(panelId))
                 cachePanelDict.Remove(panelId);
 
-            //³¢ÊÔ´´½¨
+            //å°è¯•åˆ›å»º
             CreatePanelTrans(panel);
 
-            //µ÷ÓÃÏÔÊ¾
+            //è°ƒç”¨æ˜¾ç¤º
             panel.Show();
         }
 
         #endregion
 
-        #region ½çÃæÒş²Ø
+        #region ç•Œé¢éšè—
 
         private InternalUIPanel ExecuteHidePanel(UIPanelId panelId)
         {
@@ -173,11 +173,11 @@ namespace LCUI
             InternalUIPanel panel = activePanelDict[panelId];
             activePanelDict.Remove(panelId);
 
-            //ÒÆ³ıCache
+            //ç§»é™¤Cache
             if (!cachePanelDict.ContainsKey(panelId))
                 cachePanelDict.Add(panelId, panel);
 
-            //µ÷ÓÃÏÔÊ¾
+            //è°ƒç”¨æ˜¾ç¤º
             panel.Hide();
 
             return panel;
@@ -185,7 +185,7 @@ namespace LCUI
 
         #endregion
 
-        #region »ØÊÕ³Ø
+        #region å›æ”¶æ± 
 
         public void PushInCache(UIPanelId panelId, InternalUIPanel panel)
         {

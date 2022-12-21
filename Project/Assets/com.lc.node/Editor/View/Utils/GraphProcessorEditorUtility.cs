@@ -66,6 +66,35 @@ namespace LCNode.View.Utils
         }
         #endregion
 
+        #region GroupViewTypeCache
+
+        static Dictionary<Type, Type> GroupViewTypeCache;
+
+        public static Type GetGroupViewType(Type groupType)
+        {
+            if (GroupViewTypeCache == null)
+            {
+                GroupViewTypeCache = new Dictionary<Type, Type>();
+                foreach (var type in TypeCache.GetTypesDerivedFrom<BaseGroupView>())
+                {
+                    if (type.IsAbstract) continue;
+                    foreach (var att in AttributeHelper.GetTypeAttributes(type, true))
+                    {
+                        if (att is CustomGroupViewAttribute sAtt)
+                            GroupViewTypeCache[sAtt.targetNodeType] = type;
+                    }
+                }
+            }
+            if (GroupViewTypeCache.TryGetValue(groupType, out Type groupViewType))
+                return groupViewType;
+            if (groupType.BaseType != null)
+                return GetGroupViewType(groupType.BaseType);
+            else
+                return typeof(BaseGroupView);
+        }
+
+        #endregion
+
         #region NodeNames
 
         public static string GetDisplayName(string fieldName)

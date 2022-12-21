@@ -41,9 +41,6 @@ namespace LCECS.EntityGraph
         [OutputPort("组件列表", BasePort.Capacity.Multi, BasePort.Orientation.Vertical,setIndex = true)]
         public EntityComData coms;
 
-        [NodeValue("实体名")]
-        public string name = "";
-
         public List<BaseCom> GetModel()
         {
             List<BaseCom> coms = new List<BaseCom>();
@@ -82,9 +79,17 @@ namespace LCECS.EntityGraph
         public override string Tooltip { get => "决策组件"; set => base.Tooltip = value; }
         public override Type RuntimeNode => typeof(DecisionCom);
 
+        [NodeValue("决策树Id")]
+        public int decisionId = 0;
+
+        [NodeValue("决策树执行线程")]
+        public DecisionThread decisionThread = DecisionThread.MainThread;
+
         public override BaseCom CreateRuntimeNode()
         {
             DecisionCom com = new DecisionCom();
+            com.DecisionId = decisionId;
+            com.DecisionThread = decisionThread;
             return com;
         }
     }

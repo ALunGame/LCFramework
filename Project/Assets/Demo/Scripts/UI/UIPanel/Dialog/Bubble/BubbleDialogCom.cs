@@ -14,27 +14,27 @@ namespace Demo.UI
     public class BubbleDialogComModel : UIModel
     {
         /// <summary>
-        /// ¶Ô»°±íÇé
+        /// å¯¹è¯è¡¨æƒ…
         /// </summary>
         public BindableValue<EmojiType> emoji = new BindableValue<EmojiType>();
 
         /// <summary>
-        /// ¶Ô»°ÈËÃû×Ö
+        /// å¯¹è¯äººåå­—
         /// </summary>
         public BindableValue<string> name = new BindableValue<string>();
 
         /// <summary>
-        /// ¶Ô»°ÄÚÈİ
+        /// å¯¹è¯å†…å®¹
         /// </summary>
         public BindableValue<string> content = new BindableValue<string>();
 
         /// <summary>
-        /// ÕıÔÚ²¥·Å¶¯»­
+        /// æ­£åœ¨æ’­æ”¾åŠ¨ç”»
         /// </summary>
         public BindableValue<bool> isPlaying = new BindableValue<bool>();
 
         /// <summary>
-        /// ¶¯»­
+        /// åŠ¨ç”»
         /// </summary>
         public Tween contentTween;
     }

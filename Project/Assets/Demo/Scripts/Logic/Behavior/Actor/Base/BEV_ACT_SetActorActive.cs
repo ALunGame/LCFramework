@@ -1,4 +1,4 @@
-﻿using LCECS.Core.Tree;
+using LCECS.Core.Tree;
 using LCECS.Core.Tree.Base;
 using LCECS.Core.Tree.Nodes.Action;
 using LCMap;

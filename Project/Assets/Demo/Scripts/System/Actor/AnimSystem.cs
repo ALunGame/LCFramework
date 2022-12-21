@@ -1,4 +1,4 @@
-﻿using Demo.Com;
+using Demo.Com;
 using Demo.Help;
 using LCECS.Core;
 using System;
@@ -10,7 +10,7 @@ namespace Demo.System
     {
         public const string IdleState = "idle";
 
-        protected override List<Type> RegListenComs()
+        protected override List<Type> RegContainListenComs()
         {
             return new List<Type>() { typeof(AnimCom)};
         }
@@ -63,9 +63,6 @@ namespace Demo.System
 
         protected override void OnRemoveCheckComs(List<BaseCom> comList)
         {
-            AnimCom animCom = GetCom<AnimCom>(comList[0]);
-            animCom.ClearReqAnimChangeCallBack();
-            animCom.ClearReqAnimLayerChangeCallBack();
         }
 
         private bool CheckIsLoopAnim(AnimCom animCom,string animName)

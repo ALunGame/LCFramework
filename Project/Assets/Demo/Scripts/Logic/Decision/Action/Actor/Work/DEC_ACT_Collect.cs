@@ -1,4 +1,4 @@
-﻿using LCECS.Core.Tree;
+using LCECS.Core.Tree;
 using LCECS.Core.Tree.Base;
 using LCECS.Core.Tree.Nodes.Action;
 using LCECS.Data;
@@ -16,7 +16,7 @@ namespace Demo.Decision
         protected override void OnEnter(NodeData wData)
         {
             EntityWorkData workData = wData as EntityWorkData;
-            LCECS.ECSLayerLocate.Request.PushRequest(workData.MEntity.Uid, LCECS.RequestId.Collect, paramData);
+            //LCECS.ECSLayerLocate.Request.PushRequest(workData.MEntity.Uid, LCECS.RequestId.Collect, paramData);
             GameLocate.Log.Log("采集>>>>>");
         }
 

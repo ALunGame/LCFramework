@@ -30,7 +30,25 @@ namespace LCECS.Core
                 OnDisable();
         }
 
+        /// <summary>
+        /// 初始化，这时候其他组件可能尚未添加
+        /// </summary>
+        /// <param name="pEntity"></param>
         protected virtual void OnInit(Entity pEntity)
+        {
+
+        }
+
+        public void Awake(Entity pEntity)
+        {
+            OnAwake(pEntity);
+        }
+
+        /// <summary>
+        /// 组件启动，这时候所有组件都被添加完毕
+        /// </summary>
+        /// <param name="pEntity"></param>
+        protected virtual void OnAwake(Entity pEntity)
         {
 
         }

@@ -1,4 +1,4 @@
-﻿using LCNode.Model;
+using LCNode.Model;
 using UnityEngine;
 
 namespace LCSkill.BulletGraph

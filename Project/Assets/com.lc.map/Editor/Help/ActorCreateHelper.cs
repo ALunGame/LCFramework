@@ -9,7 +9,7 @@ namespace LCMap
     {
         private static List<Sprite> actorSprites = new List<Sprite>();
 
-        [MenuItem("Assets/Actor/通过Sprite创建演员")]
+        [MenuItem("Assets/Actor/閫氳繃Sprite鍒涘缓婕斿憳")]
         public static void Create2DAnim()
         {
             foreach (var item in actorSprites)
@@ -18,7 +18,7 @@ namespace LCMap
             }
         }
 
-        [MenuItem("Assets/Actor/通过Sprite创建演员", true)]
+        [MenuItem("Assets/Actor/閫氳繃Sprite鍒涘缓婕斿憳", true)]
         public static bool Create2DAnimValidate()
         {
             Object[] guidArray = Selection.objects;

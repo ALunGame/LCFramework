@@ -77,8 +77,7 @@ namespace LCMap
 
         public Actor CreateActor(ActorInfo actor)
         {
-            Actor tActor = ActorCreator.CreateEntity(actor);
-            ActorCreator.CreateGo(tActor);
+            Actor tActor = ActorCreator.CreateActor(actor);
             //保存
             Actors.Add(actor.uid, tActor);
             tActor.Go.transform.SetParent(ActorRootGo.transform);

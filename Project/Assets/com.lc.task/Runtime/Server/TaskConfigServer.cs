@@ -14,7 +14,7 @@ namespace LCTask
             string jsonStr   = LoadHelper.LoadString(assetName);
             if (string.IsNullOrEmpty(jsonStr))
             {
-                TaskLocate.Log.LogError("任务配置加载失败没有资源", assetName);
+                TaskLocate.Log.LogError("浠诲姟閰嶇疆鍔犺浇澶辫触娌℃湁璧勬簮", assetName);
             }
             else
             {
@@ -36,7 +36,7 @@ namespace LCTask
             model = default;
             if (!configDict.ContainsKey(pTaskId))
             {
-                TaskLocate.Log.LogError("没有任务配置", pTaskId);
+                TaskLocate.Log.LogError("娌℃湁浠诲姟閰嶇疆", pTaskId);
                 return false;
             }
             model = configDict[pTaskId];

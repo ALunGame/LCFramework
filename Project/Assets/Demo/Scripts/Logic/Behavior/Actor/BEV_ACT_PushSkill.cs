@@ -22,39 +22,39 @@ namespace Demo.Behavior
 
         protected override void OnEnter(NodeData wData)
         {
-            EntityWorkData workData = wData as EntityWorkData;
-            string skillId = workData.GetParam().GetString();
-
-            //获取环境数据
-            NodeActionContext context = GetContext<NodeActionContext>(wData);
-            PushSkillData userData = context.GetUserData<PushSkillData>();
-            userData.skillId = skillId;
-
-            //打断移动
-            TransCom transformCom = workData.MEntity.GetCom<TransCom>();
-            if (transformCom != null)
-            {
-                transformCom.ClearWaitTransData();
-            }
-            PlayerMoveCom moveCom = workData.MEntity.GetCom<PlayerMoveCom>();
-            if (moveCom != null)
-            {
-                moveCom.HasNoReqMove = true;
-                moveCom.Rig.velocity = Vector2.zero;
-            }
-
-            //释放技能
-            SkillCom skillCom = workData.MEntity.GetCom<SkillCom>();
-            if (skillCom.ReleaseSkill(skillId))
-            {
-                userData.skillId = skillId;
-                LCECS.ECSLocate.Log.Log("释放技能成功>>>>>", skillId);
-            }
-            else
-            {
-                userData.skillId = "-1";
-                LCECS.ECSLocate.Log.LogError("释放技能失败>>>>>", skillId);
-            }
+            // EntityWorkData workData = wData as EntityWorkData;
+            // string skillId = workData.GetParam().GetString();
+            //
+            // //获取环境数据
+            // NodeActionContext context = GetContext<NodeActionContext>(wData);
+            // PushSkillData userData = context.GetUserData<PushSkillData>();
+            // userData.skillId = skillId;
+            //
+            // //打断移动
+            // TransCom transformCom = workData.MEntity.GetCom<TransCom>();
+            // if (transformCom != null)
+            // {
+            //     transformCom.ClearWaitTransData();
+            // }
+            // PlayerMoveCom moveCom = workData.MEntity.GetCom<PlayerMoveCom>();
+            // if (moveCom != null)
+            // {
+            //     moveCom.HasNoReqMove = true;
+            //     moveCom.Rig.velocity = Vector2.zero;
+            // }
+            //
+            // //释放技能
+            // SkillCom skillCom = workData.MEntity.GetCom<SkillCom>();
+            // if (skillCom.ReleaseSkill(skillId))
+            // {
+            //     userData.skillId = skillId;
+            //     LCECS.ECSLocate.Log.Log("释放技能成功>>>>>", skillId);
+            // }
+            // else
+            // {
+            //     userData.skillId = "-1";
+            //     LCECS.ECSLocate.Log.LogError("释放技能失败>>>>>", skillId);
+            // }
         }
 
         protected override int OnRunning(NodeData wData)

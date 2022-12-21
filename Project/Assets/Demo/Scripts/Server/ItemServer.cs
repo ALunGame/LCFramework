@@ -1,4 +1,4 @@
-﻿using LCLoad;
+using LCLoad;
 using LCMap;
 using UnityEngine;
 
@@ -23,8 +23,7 @@ namespace Demo.Server
             GameObject itemAsset = LoadHelper.LoadPrefab(itemPrefab);
             GameObject itemGo    = GameObject.Instantiate(itemAsset, itemRoot.transform);
             itemGo.transform.position = itemPos;
-            Actor actorObj    = ActorCreator.CreateEntity(itemActor);
-            actorObj.SetBindGo(itemGo);
+            Actor actorObj    = ActorCreator.CreateActor(itemActor,itemGo);
 
             return actorObj;
         }

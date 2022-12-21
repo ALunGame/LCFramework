@@ -21,7 +21,7 @@ namespace Demo.Decision
             EntityWorkData workData = wData as EntityWorkData;
             paramData.SetFloat(WanderRange);
 
-            LCECS.ECSLayerLocate.Request.PushRequest(workData.MEntity.Uid, LCECS.RequestId.Wander, paramData);
+            //LCECS.ECSLayerLocate.Request.PushRequest(workData.MEntity.Uid, LCECS.RequestId.Wander, paramData);
         }
 
         protected override int OnRunning(NodeData wData)

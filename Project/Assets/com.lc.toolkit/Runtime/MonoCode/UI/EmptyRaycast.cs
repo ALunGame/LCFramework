@@ -4,7 +4,7 @@ using UnityEngine;
 namespace LCToolkit
 {
     /// <summary>
-    /// ¿ÕµÄÊÂ¼ş½ÓÊÕÆ÷
+    /// ç©ºçš„äº‹ä»¶æ¥æ”¶å™¨
     /// </summary>
     [RequireComponent(typeof(CanvasRenderer))]
     public class EmptyRaycast : MaskableGraphic

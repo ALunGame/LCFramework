@@ -1,4 +1,4 @@
-﻿using LCNode;
+using LCNode;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;

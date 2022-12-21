@@ -31,6 +31,19 @@ namespace LCECS.Tree
         private void CollectNodeTypes()
         {
             NodeTypes.Clear();
+            foreach (var type in ReflectionHelper.GetChildTypes<Tree_PremiseNode>())
+            {
+                if (type.IsAbstract)
+                    continue;
+                if (!AttributeHelper.TryGetTypeAttribute(type, out NodeMenuItemAttribute attr))
+                    continue;
+                if (type == typeof(Tree_PremiseNode))
+                    continue;
+                if (type.BaseType == typeof(Base_BEV_PRE_Node))
+                    continue;
+                if (!NodeTypes.Contains(type))
+                    NodeTypes.Add(type);
+            }
             foreach (var type in ReflectionHelper.GetChildTypes<Tree_BaseNode>())
             {
                 if (type.IsAbstract)

@@ -179,12 +179,12 @@ namespace LCMap
                 for (int i = 0; i < actorRoot.childCount; i++)
                 {
                     Transform actor = actorRoot.GetChild(i).transform;
-                    ActorCnf actorModel = ED_MapCom.GetActorCnf(actor.name);
-                    if (actorModel != null)
+                    ActorCnf actorCnf = ED_MapCom.GetActorCnf(actor.name);
+                    if (actorCnf != null)
                     {
                         ActorInfo actorData = new ActorInfo();
                         actorData.uid   = $"actor_{defaultActorUid--}";
-                        actorData.id    = actorModel.id;
+                        actorData.id    = actorCnf.id;
                         actorData.pos   = ED_ActorCom.HandlePos(transform.position);
                         actorData.roate = ED_ActorCom.HandlePos(transform.localEulerAngles);
                         actorData.scale = ED_ActorCom.HandlePos(transform.localScale);

@@ -48,8 +48,9 @@ namespace LCECS.Server.Layer
             return sort.sort;
         }
         
-        public void PushRequest(string uid, RequestId reqId, ParamData paramData)
+        public void PushRequest(string uid, RequestData requestData)
         {
+            RequestId reqId = requestData.ReqId;
             //数据
             EntityWorkData workData = ECSLayerLocate.Info.GetEntityWorkData(uid);
             if (workData == null)
@@ -59,7 +60,7 @@ namespace LCECS.Server.Layer
 
             if (workData.CurrReqId == reqId)
             {
-                workData.AddParam(paramData);
+                workData.AddParam(requestData);
                 return;
             }
 
@@ -70,7 +71,7 @@ namespace LCECS.Server.Layer
             //请求不需要自身处理
             if (pushRequest == null)
             {
-                ChangeRequest(workData, reqId, paramData);
+                ChangeRequest(workData, reqId, requestData);
             }
             else
             {
@@ -83,13 +84,13 @@ namespace LCECS.Server.Layer
                     if (workData.CurrReqId != selfSwId)
                     {
                         workData.ChangeRequestId(reqId);
-                        workData.AddParam(paramData);
+                        workData.AddParam(requestData);
                     }
                 }
                 else
                 {
                     //自身判断也需要权重置换规则
-                    ChangeRequest(workData, reqId, paramData);
+                    ChangeRequest(workData, reqId, requestData);
                 }
             }
 
@@ -100,12 +101,12 @@ namespace LCECS.Server.Layer
             ECSLayerLocate.Behavior.ReqBev(workData, oldReqId);
         }
 
-        private void ChangeRequest(EntityWorkData workData, RequestId reqId, ParamData paramData)
+        private void ChangeRequest(EntityWorkData workData, RequestId reqId, RequestData requestData)
         {
             if (workData.CurrReqId == RequestId.None)
             {
                 workData.ChangeRequestId(reqId);
-                workData.AddParam(paramData);
+                workData.AddParam(requestData);
             }
             else
             {
@@ -116,7 +117,7 @@ namespace LCECS.Server.Layer
                 if (pushSort == ECSDefinition.REForceSwithWeight)
                 {
                     workData.ChangeRequestId(reqId);
-                    workData.AddParam(paramData);
+                    workData.AddParam(requestData);
                 }
                 else
                 {
@@ -124,7 +125,7 @@ namespace LCECS.Server.Layer
                     if (pushSort < curSort)
                     {
                         workData.ChangeRequestId(reqId);
-                        workData.AddParam(paramData);
+                        workData.AddParam(requestData);
                     }
                 }
             }

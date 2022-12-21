@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -28,6 +29,7 @@ namespace LCNode.View
         public CommandDispatcher CommandDispacter { get; private set; }
         public UnityObject GraphAsset { get { return GraphWindow.GraphAsset; } }
         public Dictionary<string, BaseNodeView> NodeViews { get; private set; } = new Dictionary<string, BaseNodeView>();
+        public Dictionary<BaseGroup, BaseGroupView> GroupViews { get; private set; } = new Dictionary<BaseGroup, BaseGroupView>();
 
         public BaseGraph Model { get; set; }
 
@@ -58,6 +60,8 @@ namespace LCNode.View
 
         IEnumerator Initialize()
         {
+            UpdateInspector();
+            
             // 初始化
             viewTransform.position = Model.Pos == default ? Vector3.zero : Model.Pos;
             viewTransform.scale = Model.Zoom == default ? Vector3.one : Model.Zoom;
@@ -70,8 +74,9 @@ namespace LCNode.View
 
             yield return GraphWindow.StartCoroutine(GenerateNodeViews());
             yield return GraphWindow.StartCoroutine(LinkNodeViews());
+            yield return GraphWindow.StartCoroutine(GenerateGroupViews());
 
-            UpdateInspector();
+
             OnInitialized();
         }
 
@@ -115,6 +120,22 @@ namespace LCNode.View
                     yield return null;
             }
         }
+        
+        
+        /// <summary> 生成所有GroupView </summary>
+        IEnumerator GenerateGroupViews()
+        {
+            int step = 0;
+            foreach (var group in Model.Groups)
+            {
+                if (group == null) continue;
+                AddGroupView(group);
+                step++;
+                if (step % 10 == 0)
+                    yield return null;
+            }
+        }
+        
         #endregion
 
         #region 数据监听回调
@@ -139,6 +160,18 @@ namespace LCNode.View
         void OnNodeRemoved(BaseNode node)
         {
             RemoveNodeView(NodeViews[node.GUID]);
+            SetDirty();
+        }
+        
+        void OnGroupAdded(BaseGroup group)
+        {
+            AddGroupView(group);
+            SetDirty();
+        }
+
+        void OnGroupRemoved(BaseGroup group)
+        {
+            RemoveGroupView(GroupViews[group]);
             SetDirty();
         }
 
@@ -168,6 +201,9 @@ namespace LCNode.View
             Model.onNodeAdded += OnNodeAdded;
             Model.onNodeRemoved += OnNodeRemoved;
 
+            Model.OnGroupAdded += OnGroupAdded;
+            Model.OnGroupRemoved += OnGroupRemoved;
+            
             Model.onConnected += OnConnected;
             Model.onDisconnected += OnDisconnected;
         }
@@ -187,6 +223,9 @@ namespace LCNode.View
             Model.onNodeAdded -= OnNodeAdded;
             Model.onNodeRemoved -= OnNodeRemoved;
 
+            Model.OnGroupAdded -= OnGroupAdded;
+            Model.OnGroupRemoved -= OnGroupRemoved;
+            
             Model.onConnected -= OnConnected;
             Model.onDisconnected -= OnDisconnected;
         }
@@ -201,7 +240,9 @@ namespace LCNode.View
                 CommandDispacter.BeginGroup();
                 // 当节点移动之后，与之连接的接口重新排序
                 Dictionary<BaseNode, Vector2> newPos = new Dictionary<BaseNode, Vector2>();
+                Dictionary<BaseGroup, Vector2> groupNewPos = new Dictionary<BaseGroup, Vector2>();
                 HashSet<BasePort> ports = new HashSet<BasePort>();
+                
                 changes.movedElements.RemoveAll(element =>
                 {
                     switch (element)
@@ -224,13 +265,27 @@ namespace LCNode.View
                                 }
                             }
                             return true;
+                        case BaseGroupView groupView:
+                            groupNewPos[groupView.Model] = groupView.GetPosition().position;
+                            return true;
                         default:
                             break;
                     }
                     return false;
                 });
 
+                foreach (var pair in groupNewPos)
+                {
+                    foreach (var nodeGUID in pair.Key.Nodes)
+                    {
+                        var node = Model.Nodes[nodeGUID];
+                        var nodeView = NodeViews[nodeGUID];
+                        newPos[node] = nodeView.GetPosition().position;
+                    }
+                }
+                
                 CommandDispacter.Do(new MoveNodesCommand(newPos));
+                CommandDispacter.Do(new MoveGroupsCommand(groupNewPos));
                 // 排序
                 foreach (var port in ports)
                 {
@@ -267,6 +322,10 @@ namespace LCNode.View
                         case BaseNodeView nodeView:
                             if (nodeView.selected)
                                 CommandDispacter.Do(new RemoveNodeCommand(Model, nodeView.Model));
+                            return true;
+                        case BaseGroupView groupView:
+                            if (groupView.selected)
+                                CommandDispacter.Do(new RemoveGroupCommand(Model, groupView.Model));
                             return true;
                     }
                     return false;
@@ -320,6 +379,25 @@ namespace LCNode.View
         {
             RemoveElement(nodeView);
             NodeViews.Remove(nodeView.Model.GUID);
+        }
+        
+        public BaseGroupView AddGroupView(BaseGroup group)
+        {
+            Type groupViewType = GetGroupViewType(group);
+            BaseGroupView groupView = Activator.CreateInstance(groupViewType) as BaseGroupView;
+            groupView.SetUp(group, this);
+            groupView.BindingProperties();
+            GroupViews[group] = groupView;
+            AddElement(groupView);
+            return groupView;
+        }
+
+        public void RemoveGroupView(BaseGroupView groupView)
+        {
+            groupView.UnBindingProperties();
+            groupView.RemoveElementsWithoutNotification(groupView.containedElements.ToArray());
+            RemoveElement(groupView);
+            GroupViews.Remove(groupView.Model);
         }
 
         public BaseConnectionView ConnectView(BaseNodeView from, BaseNodeView to, BaseConnection connection)

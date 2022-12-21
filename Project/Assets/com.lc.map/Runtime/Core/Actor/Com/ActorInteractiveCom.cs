@@ -48,32 +48,46 @@ namespace LCMap
 
         }
 
-        //判断交互是否可以执行
-        public bool Evaluate(Actor pActor)
+        /// <summary>
+        /// 判断交互是否可以执行
+        /// </summary>
+        /// <param name="pInteractiveActor">交互的演员</param>
+        /// <returns></returns>
+        public bool Evaluate(Actor pInteractiveActor)
         {
             if (actor == null || actor.IsActive == false)
                 return false;
             if (interactiveCom == null || interactiveCom.IsActive == false)
                 return false;
-            return OnEvaluate(pActor);
+            return OnEvaluate(pInteractiveActor);
         }
 
-        protected virtual bool OnEvaluate(Actor pActor)
+        /// <summary>
+        /// 判断交互是否可以执行
+        /// </summary>
+        /// <param name="pInteractiveActor">交互的演员</param>
+        /// <returns></returns>
+        protected virtual bool OnEvaluate(Actor pInteractiveActor)
         {
             return true;
         }
 
-        public bool Execute(Actor pActor)
+        /// <summary>
+        /// 执行交互
+        /// </summary>
+        /// <param name="pInteractiveActor">交互的演员</param>
+        /// <returns></returns>
+        public bool Execute(Actor pInteractiveActor)
         {
-            return OnExecute(pActor);
+            return OnExecute(pInteractiveActor);
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="pActor"></param>
+        /// <param name="pInteractiveActor">交互的演员</param>
         /// <returns>返回是否完成交互</returns>
-        protected virtual bool OnExecute(Actor pActor)
+        protected virtual bool OnExecute(Actor pInteractiveActor)
         {
             return false;
         }
@@ -86,6 +100,11 @@ namespace LCMap
 
     public class ActorInteractiveCom : BaseCom
     {
+        /// <summary>
+        /// 交互范围
+        /// </summary>
+        public float interactiveDis = 2;
+
         [NonSerialized]
         private Entity entity;
         [NonSerialized]
@@ -94,13 +113,14 @@ namespace LCMap
         private bool isExecuting = false;
         [NonSerialized]
         private string executingKey = "";
+        [NonSerialized]
+        private Action executeFinishCallBack;
 
         public bool IsExecuting { get { return isExecuting; } }
         public string ExecutingKey { get { return executingKey; } }
 
         protected override void OnInit(Entity entity)
         {
-            base.OnInit(entity);
             this.entity = entity;   
         }
 
@@ -169,7 +189,7 @@ namespace LCMap
             return null;
         }
 
-        public void Execute(Actor pActor, ActorInteractive pInteractive)
+        public void Execute(Actor pActor, ActorInteractive pInteractive, Action pExecuteFinishCallBack = null)
         {
             if (isExecuting)
             {
@@ -189,6 +209,7 @@ namespace LCMap
             }
             isExecuting = true;
             executingKey = pInteractive.GetHasKey();
+            executeFinishCallBack = pExecuteFinishCallBack;
             if (tInteractive.Execute(pActor))
                 ExecuteFinish();
         }
@@ -197,6 +218,9 @@ namespace LCMap
         {
             isExecuting = false;
             executingKey = "";
+            Action func = executeFinishCallBack;
+            executeFinishCallBack = null;
+            func?.Invoke();
         }
 
         protected override void OnDisable()

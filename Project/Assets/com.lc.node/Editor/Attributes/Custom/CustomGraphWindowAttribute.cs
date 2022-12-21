@@ -3,7 +3,7 @@ using System;
 namespace LCNode
 {
     /// <summary>
-    /// ×Ô¶¨Òå´°¿ÚÏÔÊ¾ÊÓÍ¼
+    /// è‡ªå®šä¹‰è§†å›¾æ˜¾ç¤º
     /// </summary>
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = false, Inherited = false)]
     public class CustomGraphWindowAttribute : Attribute
@@ -13,7 +13,7 @@ namespace LCNode
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="targetGraphType">ÊÓÍ¼Àà</param>
+        /// <param name="targetGraphType">è§†å›¾ç±»åž‹</param>
         public CustomGraphWindowAttribute(Type targetGraphType)
         {
             this.targetGraphType = targetGraphType;

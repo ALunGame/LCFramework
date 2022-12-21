@@ -1,4 +1,4 @@
-﻿using LCNode.Model;
+using LCNode.Model;
 using LCToolkit;
 
 namespace LCDialog.DialogGraph

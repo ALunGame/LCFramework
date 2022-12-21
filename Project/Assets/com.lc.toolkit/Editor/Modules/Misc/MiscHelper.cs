@@ -1,12 +1,16 @@
 ﻿using LCToolkit.Misc;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.WSA;
+using Application = UnityEngine.Application;
 using Object = System.Object;
 using UnityObject = UnityEngine.Object;
 
@@ -375,10 +379,29 @@ namespace LCToolkit
             {
                 folderPath = EditorUtility.OpenFolderPanel($"{label}目录选择", Application.dataPath, string.Empty);
                 if (!string.IsNullOrEmpty(folderPath))
-                    folderPath = folderPath.Substring(folderPath.IndexOf("Assets"));
+                {
+                    if (folderPath.IndexOf("Assets") != -1)
+                    {
+                        folderPath = folderPath.Substring(folderPath.IndexOf("Assets"));
+                    }
+                    else
+                    {
+                        folderPath = IOHelper.GetRelativePath(Environment.CurrentDirectory, folderPath);
+                    }
+                }
             }
             EditorGUILayout.EndHorizontal();
             return folderPath;
+        }
+
+        /// <summary>
+        /// 打开文件夹
+        /// </summary>
+        /// <param name="pDirPath"></param>
+        public static void OpenDirectory(string pDirPath)
+        {
+            string fullPath = Path.GetFullPath(pDirPath);
+            Process.Start(fullPath);
         }
 
         #endregion

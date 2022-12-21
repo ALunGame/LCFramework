@@ -10,13 +10,13 @@ namespace Demo.Behavior
     {
         protected override void OnEnter(NodeData wData)
         {
-            EntityWorkData workData = wData as EntityWorkData;
-            //参数
-            float wanderRange = workData.GetParam().GetFloat();
-            //组件
-            WanderCom wanderCom = workData.MEntity.GetCom<WanderCom>();
-            wanderCom.WanderRange = wanderRange;
-            wanderCom.Enable();
+            // EntityWorkData workData = wData as EntityWorkData;
+            // //参数
+            // float wanderRange = workData.GetParam().GetFloat();
+            // //组件
+            // WanderCom wanderCom = workData.MEntity.GetCom<WanderCom>();
+            // wanderCom.WanderRange = wanderRange;
+            // wanderCom.Enable();
         }
 
         protected override int OnRunning(NodeData wData)

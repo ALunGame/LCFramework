@@ -1,4 +1,4 @@
-﻿using LCSkill;
+using LCSkill;
 using UnityEngine;
 
 namespace Demo

@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using UnityEngine;
 using System.Collections.Generic;
 using System;
@@ -126,7 +126,7 @@ namespace LCToolkit
         #region Public
 
         /// <summary>
-        /// 注册添加
+        /// 娉ㄥ唽娣诲姞
         /// </summary>
         /// <param name="onItemAdd"></param>
         public void RegisterAdd(Action<T> onItemAdd)
@@ -135,7 +135,7 @@ namespace LCToolkit
         }
 
         /// <summary>
-        /// 删除添加
+        /// 鍒犻櫎娣诲姞
         /// </summary>
         /// <param name="onItemAdd"></param>
         public void UnregisterAdd(Action<T> onItemAdd)
@@ -144,7 +144,7 @@ namespace LCToolkit
         }
 
         /// <summary>
-        /// 注册插入
+        /// 娉ㄥ唽鎻掑叆
         /// </summary>
         /// <param name="onItemAdd"></param>
         public void RegisterInserted(Action<T> onItemAdd)
@@ -153,7 +153,7 @@ namespace LCToolkit
         }
 
         /// <summary>
-        /// 删除插入
+        /// 鍒犻櫎鎻掑叆
         /// </summary>
         /// <param name="onItemAdd"></param>
         public void UnregisterInserted(Action<T> onItemAdd)
@@ -162,7 +162,7 @@ namespace LCToolkit
         }
 
         /// <summary>
-        /// 注册移除
+        /// 娉ㄥ唽绉婚櫎
         /// </summary>
         /// <param name="onItemAdd"></param>
         public void RegisterRemove(Action<T> onItemAdd)
@@ -171,7 +171,7 @@ namespace LCToolkit
         }
 
         /// <summary>
-        /// 删除移除
+        /// 鍒犻櫎绉婚櫎
         /// </summary>
         /// <param name="onItemAdd"></param>
         public void UnregisterRemove(Action<T> onItemAdd)
@@ -180,7 +180,7 @@ namespace LCToolkit
         }
 
         /// <summary>
-        /// 注册改变
+        /// 娉ㄥ唽鏀瑰彉
         /// </summary>
         /// <param name="onItemAdd"></param>
         public void RegisterItemChange(Action<T> onItemAdd)
@@ -189,7 +189,7 @@ namespace LCToolkit
         }
 
         /// <summary>
-        /// 删除改变
+        /// 鍒犻櫎鏀瑰彉
         /// </summary>
         /// <param name="onItemAdd"></param>
         public void UnregisterItemChange(Action<T> onItemAdd)
@@ -199,7 +199,7 @@ namespace LCToolkit
 
 
         /// <summary>
-        /// 注册清空
+        /// 娉ㄥ唽娓呯┖
         /// </summary>
         /// <param name="onItemAdd"></param>
         public void RegisterClear(Action<T> onItemAdd)
@@ -208,7 +208,7 @@ namespace LCToolkit
         }
 
         /// <summary>
-        /// 删除清空
+        /// 鍒犻櫎娓呯┖
         /// </summary>
         /// <param name="onItemAdd"></param>
         public void UnregisterClear(Action<T> onItemAdd)

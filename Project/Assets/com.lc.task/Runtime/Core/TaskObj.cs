@@ -4,70 +4,91 @@ using System.Collections.Generic;
 namespace LCTask
 {
     /// <summary>
-    /// ÈÎÎñ½×¶Î
+    /// ä»»åŠ¡ç­‰å¾…çŠ¶æ€
+    /// </summary>
+    public enum TaskWaitState
+    {
+        None,
+        /// <summary>
+        /// ç­‰å¾…æ¥å—
+        /// </summary>
+        Accept,
+        /// <summary>
+        /// ç­‰å¾…æäº¤
+        /// </summary>
+        Execute,
+    }
+    
+    /// <summary>
+    /// ä»»åŠ¡é˜¶æ®µ
     /// </summary>
     public enum TaskStage
     {
         /// <summary>
-        /// ÉĞÎ´¿ªÊ¼
+        /// å°šæœªå¼€å§‹
         /// </summary>
         None,
 
         /// <summary>
-        /// ½ÓÊÜ£¬ÅĞ¶Ï½ÓÊÜÌõ¼ş£¬Ö´ĞĞ½ÓÊÜĞĞÎª
+        /// æ¥å—ï¼Œåˆ¤æ–­æ¥å—æ¡ä»¶ï¼Œæ‰§è¡Œæ¥å—è¡Œä¸º
         /// </summary>
         Accept,
 
         /// <summary>
-        /// Ìá½»£¬ÅĞ¶ÏÌá½»Ìõ¼ş£¬Ö´ĞĞÌá½»ĞĞÎª
+        /// æäº¤ï¼Œåˆ¤æ–­æäº¤æ¡ä»¶ï¼Œæ‰§è¡Œæäº¤è¡Œä¸º
         /// </summary>
         Execute,
 
         /// <summary>
-        /// ÈÎÎñÍê³É
+        /// ä»»åŠ¡å®Œæˆ
         /// </summary>
         Finish,
     }
 
     /// <summary>
-    /// ÔËĞĞÊ±´´½¨µÄÈÎÎñ¶ÔÏó
+    /// è¿è¡Œæ—¶åˆ›å»ºçš„ä»»åŠ¡å¯¹è±¡
     /// </summary>
     public class TaskObj
     {
         /// <summary>
-        /// ÈÎÎñId
+        /// ä»»åŠ¡Id
         /// </summary>
         public int TaskId { get; private set; }
+        
+        /// <summary>
+        /// ç­‰å¾…çŠ¶æ€
+        /// </summary>
+        public TaskWaitState WaitState { get; private set; }
 
         /// <summary>
-        /// ÈÎÎñ½×¶Î
+        /// ä»»åŠ¡é˜¶æ®µ
         /// </summary>
         public TaskStage Stage { get; private set; }
 
         /// <summary>
-        /// Êı¾İ
+        /// æ•°æ®
         /// </summary>
         public TaskModel Model;
 
         /// <summary>
-        /// µ±Ç°ÈÎÎñ½×¶ÎÄ¿±ê
+        /// å½“å‰ä»»åŠ¡é˜¶æ®µç›®æ ‡
         /// </summary>
         public List<Actor> Targets { get; private set; }
 
         /// <summary>
-        /// ½×¶ÎĞĞÎª×éÖ´ĞĞ
+        /// é˜¶æ®µè¡Œä¸ºç»„æ‰§è¡Œ
         /// </summary>
         public TaskActionGroupExecute GroupExecute { get; private set; }
 
-        #region ·ÖÖ§
+        #region åˆ†æ”¯
 
         /// <summary>
-        /// Ñ¡ÔñµÄ·ÖÖ§Id
+        /// é€‰æ‹©çš„åˆ†æ”¯Id
         /// </summary>
         public int SelBranchId { get; private set; }
 
         /// <summary>
-        /// ·ÖÖ§
+        /// åˆ†æ”¯
         /// </summary>
         public TaskBranchFunc BranchFunc { get; private set; }
 
@@ -76,6 +97,7 @@ namespace LCTask
         public TaskObj(int taskId, TaskModel model)
         {
             this.TaskId  = taskId;
+            this.WaitState   = TaskWaitState.None;
             this.Stage   = TaskStage.None;
             this.Model   = model;
             this.GroupExecute = new TaskActionGroupExecute(this);
@@ -95,7 +117,23 @@ namespace LCTask
         }
 
         /// <summary>
-        /// ¼ì²âµ±Ç°½×¶ÎÈÎÎñÌõ¼ş
+        /// è®¾ç½®ä»»åŠ¡ç­‰å¾…çŠ¶æ€
+        /// </summary>
+        /// <param name="pState"></param>
+        public void SetWaitState(TaskWaitState pState)
+        {
+            this.WaitState = pState;
+            if (pState == TaskWaitState.None)
+            {
+                return;
+            }
+
+            TaskStage tStage = pState == TaskWaitState.Accept ? TaskStage.Accept : TaskStage.Execute;
+            ExecuteTargetsDisplay(tStage);
+        }
+
+        /// <summary>
+        /// æ£€æµ‹å½“å‰é˜¶æ®µä»»åŠ¡æ¡ä»¶
         /// </summary>
         /// <returns></returns>
         public bool CheckCondition(TaskStage stage)
@@ -105,91 +143,116 @@ namespace LCTask
         }
 
         /// <summary>
-        /// Ö´ĞĞÈÎÎñÄ¿±ê±íÏÖ
+        /// æ‰§è¡Œä»»åŠ¡ç›®æ ‡è¡¨ç°
         /// </summary>
         public void ExecuteTargetsDisplay(TaskStage stage)
         {
             ClearTargetsDisplay();
             TaskContent content = GetContentByStage(stage);
-            //ÕÒµ½ĞÂµÄ
+            //æ‰¾åˆ°æ–°çš„
             if (content.mapId == MapLocate.AllMapId || content.mapId == MapLocate.Map.CurrMapId)
             {
-                for (int i = 0; i < content.actorIds.Count; i++)
+                if (content.actorIds!=null)
                 {
-                    Targets.AddRange(MapLocate.Map.GetActors(content.actorIds[i]));
+                    for (int i = 0; i < content.actorIds.Count; i++)
+                    {
+                        Targets.AddRange(MapLocate.Map.GetActors(content.actorIds[i]));
+                    }
                 }
+                
             }
-            for (int i = 0; i < content.displayFuncs.Count; i++)
-                content.displayFuncs[i].Execute(this, Targets);
+
+            if (content.displayFuncs!=null)
+            {
+                for (int i = 0; i < content.displayFuncs.Count; i++)
+                    content.displayFuncs[i].Execute(this, Targets);
+            }
+            
         }
 
         /// <summary>
-        /// ½ÓÊÜ
+        /// æ¥å—
         /// </summary>
         /// <returns></returns>
         public bool Accept()
         {
             if (Stage == TaskStage.Accept)
             {
-                TaskLocate.Log.Log($"ÎŞ·¨½ÓÊÜÈÎÎñ{TaskId},µ±Ç°ÈÎÎñÕıÔÚ½ÓÊÜÖĞ>>>");
+                TaskLocate.Log.Log($"æ— æ³•æ¥å—ä»»åŠ¡{TaskId},å½“å‰ä»»åŠ¡æ­£åœ¨æ¥å—ä¸­>>>");
                 return false;
             }
             if (!CheckCondition(TaskStage.Accept))
             {
-                TaskLocate.Log.Log($"ÎŞ·¨½ÓÊÜÈÎÎñ{TaskId},µ±Ç°ÈÎÎñÌõ¼şÎ´Âú×ã>>>");
+                TaskLocate.Log.Log($"æ— æ³•æ¥å—ä»»åŠ¡{TaskId},å½“å‰ä»»åŠ¡æ¡ä»¶æœªæ»¡è¶³>>>");
                 return false;
             }
             Stage = TaskStage.Accept;
             TaskContent content = GetContentByStage(Stage);
             GroupExecute.SetContent(content, OnActionGroupFinish);
+            GroupExecute.ChangeActionGroup(TaskActionGroupExecute.ActionGroup.Act);
             return true;
         }
 
         /// <summary>
-        /// Ìá½»
+        /// æäº¤
         /// </summary>
         /// <returns></returns>
         public bool Execute()
         {
             if (Stage == TaskStage.Execute)
             {
-                TaskLocate.Log.Log($"ÎŞ·¨Ìá½»ÈÎÎñ{TaskId},µ±Ç°ÈÎÎñÕıÔÚÌá½»ÖĞ>>>");
+                TaskLocate.Log.Log($"æ— æ³•æäº¤ä»»åŠ¡{TaskId},å½“å‰ä»»åŠ¡æ­£åœ¨æäº¤ä¸­>>>");
                 return false;
             }
             if (!CheckCondition(TaskStage.Execute))
             {
-                TaskLocate.Log.Log($"ÎŞ·¨Ìá½»ÈÎÎñ{TaskId},µ±Ç°ÈÎÎñÌõ¼şÎ´Âú×ã>>>");
+                TaskLocate.Log.Log($"æ— æ³•æäº¤ä»»åŠ¡{TaskId},å½“å‰ä»»åŠ¡æ¡ä»¶æœªæ»¡è¶³>>>");
                 return false;
             }
             Stage = TaskStage.Execute;
             TaskContent content = GetContentByStage(Stage);
             GroupExecute.SetContent(content, OnActionGroupFinish);
+            GroupExecute.ChangeActionGroup(TaskActionGroupExecute.ActionGroup.Act);
             return true;
         }
 
-        #region ·ÖÖ§
+        /// <summary>
+        /// ä»»åŠ¡å®Œæˆ
+        /// </summary>
+        public void ExecuteFinishActions()
+        {
+            TaskLocate.Log.Log($"ä»»åŠ¡å®Œæˆ{TaskId},æ‰§è¡Œå®Œæˆè¡Œä¸º>>>");
+            Stage = TaskStage.Finish;
+            //æ‰§è¡Œè¡¨ç°
+            TaskContent content = GetContentByStage(TaskStage.Execute);
+            GroupExecute.SetContent(content,OnActionGroupFinish);
+            GroupExecute.ChangeActionGroup(TaskActionGroupExecute.ActionGroup.ActSucess);
+        }
+
+        
+        #region åˆ†æ”¯
 
         /// <summary>
-        /// ÉèÖÃÑ¡Ôñ·ÖÖ§
+        /// è®¾ç½®é€‰æ‹©åˆ†æ”¯
         /// </summary>
         /// <param name="pBranchId"></param>
         public void SetSelBranchId(int pBranchId)
         {
             if (BranchFunc == null)
             {
-                TaskLocate.Log.LogError("Ñ¡Ôñ·ÖÖ§³ö´í,Ã»ÓĞ·ÖÖ§", TaskId, pBranchId);
+                TaskLocate.Log.LogError("é€‰æ‹©åˆ†æ”¯å‡ºé”™,æ²¡æœ‰åˆ†æ”¯Ö§", TaskId, pBranchId);
                 return;
             }
             if (BranchFunc.GetBranch(pBranchId) == null)
             {
-                TaskLocate.Log.LogError("Ñ¡Ôñ·ÖÖ§³ö´í,Ã»ÓĞ·ÖÖ§", TaskId, pBranchId);
+                TaskLocate.Log.LogError("é€‰æ‹©åˆ†æ”¯å‡ºé”™,æ²¡æœ‰åˆ†æ”¯Ö§", TaskId, pBranchId);
                 return;
             }
             SelBranchId = pBranchId;
         } 
 
         /// <summary>
-        /// ¼ì²â·ÖÖ§Ìõ¼ş
+        /// æ£€æµ‹åˆ†æ”¯æ¡ä»¶
         /// </summary>
         /// <param name="pBranchId"></param>
         /// <returns></returns>
@@ -197,7 +260,7 @@ namespace LCTask
         {
             if (BranchFunc == null)
             {
-                TaskLocate.Log.LogError("Ñ¡Ôñ·ÖÖ§³ö´í,Ã»ÓĞ·ÖÖ§", TaskId, pBranchId);
+                TaskLocate.Log.LogError("é€‰æ‹©åˆ†æ”¯å‡ºé”™,æ²¡æœ‰åˆ†æ”¯Ö§", TaskId, pBranchId);
                 return false;
             }
             return BranchFunc.CheckCondition(pBranchId, this);
@@ -205,15 +268,15 @@ namespace LCTask
 
         #endregion
 
-        #region Ä¿±ê
+        #region ç›®æ ‡
 
         /// <summary>
-        /// ÇåÀíÈÎÎñÄ¿±ê±íÏÖ
+        /// æ¸…ç†ä»»åŠ¡ç›®æ ‡è¡¨ç°
         /// </summary>
         private void ClearTargetsDisplay()
         {
             TaskContent content = GetContentByStage(Stage);
-            //ÇåÀíµ±Ç°
+            //æ¸…ç†å½“å‰
             if (content == null)
                 return;
             for (int i = 0; i < content.displayFuncs.Count; i++)
@@ -222,6 +285,17 @@ namespace LCTask
         }
 
         #endregion
+
+        /// <summary>
+        /// æ£€æµ‹æ˜¯å¦å¯ä»¥è‡ªåŠ¨æ‰§è¡Œè¯¥é˜¶æ®µ
+        /// </summary>
+        /// <param name="pStage"></param>
+        /// <returns></returns>
+        public bool CheckCanAutoDoStage(TaskStage pStage)
+        {
+            TaskContent content = GetContentByStage(pStage);
+            return content.CheckAutoExecute();
+        }
 
         private TaskContent GetContentByStage(TaskStage pStage)
         {
@@ -240,12 +314,18 @@ namespace LCTask
         {
             if (actionState == TaskActionState.Error)
             {
-                TaskLocate.Log.LogError($"ÈÎÎñ{Stage}½×¶ÎÖ´ĞĞ³ö´í>>>");
+                TaskLocate.Log.LogError($"ä»»åŠ¡{TaskId}->{Stage}é˜¶æ®µæ‰§è¡Œå‡ºé”™>>>");
                 return;
             }
+
+            if (Stage == TaskStage.Finish)
+            {
+                TaskLocate.Task.RemoveTask(TaskId);
+            }
+            
             if (actionState == TaskActionState.Fail)
             {
-                TaskLocate.Log.Log($"ÈÎÎñ{Stage}½×¶ÎÖ´ĞĞÊ§°Ü!,¼ì²âÊÇ·ñ¿ÉÒÔ×Ô¶¯ÔÙ´ÎÖ´ĞĞ´Ë½×¶Î");
+                TaskLocate.Log.Log($"ä»»åŠ¡{TaskId}->{Stage}é˜¶æ®µæ‰§è¡Œå¤±è´¥!,æ£€æµ‹æ˜¯å¦å¯ä»¥è‡ªåŠ¨å†æ¬¡æ‰§è¡Œæ­¤é˜¶æ®µ");
                 TaskContent content = GetContentByStage(Stage);
                 bool autoExecute = content.CheckAutoExecute();
                 if (Stage == TaskStage.Accept)
@@ -256,6 +336,7 @@ namespace LCTask
                     else
                     {
                         ExecuteTargetsDisplay(TaskStage.Accept);
+                        GroupExecute.ChangeActionGroup(TaskActionGroupExecute.ActionGroup.ActFail);
                     }
                 }
                 if (Stage == TaskStage.Execute)
@@ -266,28 +347,31 @@ namespace LCTask
                     else
                     {
                         ExecuteTargetsDisplay(TaskStage.Execute);
+                        GroupExecute.ChangeActionGroup(TaskActionGroupExecute.ActionGroup.ActFail);
                     }
                 }
                 return;
             }
             if (actionState == TaskActionState.Finished)
             {
-                TaskLocate.Log.Log($"ÈÎÎñ{Stage}½×¶ÎÖ´ĞĞÍê³É!,¼ì²âÏÂÒ»½×¶ÎÊÇ·ñ¿ÉÒÔ×Ô¶¯Ö´ĞĞ");
-                TaskStage nextStage = Stage == TaskStage.Accept ? TaskStage.Execute : TaskStage.Finish;
-                if (nextStage == TaskStage.Execute)
+                TaskLocate.Log.Log($"ä»»åŠ¡{TaskId}->{Stage}é˜¶æ®µæ‰§è¡Œå®Œæˆ!,æ£€æµ‹ä¸‹ä¸€é˜¶æ®µæ˜¯å¦å¯ä»¥è‡ªåŠ¨æ‰§è¡Œ");
+                if (Stage == TaskStage.Accept)
                 {
-                    TaskContent content = GetContentByStage(Stage);
+                    TaskContent content = GetContentByStage(TaskStage.Execute);
                     bool autoExecute    = content.CheckAutoExecute();
                     if (autoExecute)
                         Execute();
                     else
                     {
+                        GroupExecute.ChangeActionGroup(TaskActionGroupExecute.ActionGroup.ActSucess);
                         ExecuteTargetsDisplay(TaskStage.Execute);
                     }
                 }
-                if (nextStage == TaskStage.Finish)
+                else if (Stage == TaskStage.Execute)
                 {
-                    TaskLocate.Task.OnTaskFinish(TaskId);
+                    //ä¿å­˜æ•°æ®
+                    TaskLocate.Task.FinishTask(TaskId);
+
                 }
             }
         }
@@ -316,17 +400,17 @@ namespace LCTask
             bool trueValue = confunc.CheckTure(taskObj);
             trueValue      = confunc.checkValue == trueValue ? true : false;
 
-            //ÏÂÒ»¸ö
+            //ä¸‹ä¸€ä¸ª
             int nextIndex = pConIndex + 1;
             if (nextIndex < 0 || content.conditionFuncs.Count >= nextIndex)
                 return trueValue;
             else
             {
-                if (confunc.conditionType == ConditionType.AND)
+                if (confunc.conditionType == ConditionRelated.AND)
                 {
                     return trueValue && CheckCondition(nextIndex);
                 }
-                else if (confunc.conditionType == ConditionType.OR)
+                else if (confunc.conditionType == ConditionRelated.OR)
                 {
                     return trueValue || CheckCondition(nextIndex);
                 }

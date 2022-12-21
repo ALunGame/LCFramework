@@ -6,6 +6,17 @@ using UnityEngine;
 namespace LCECS.Data
 {
     /// <summary>
+    /// 请求数据
+    /// </summary>
+    public abstract class RequestData
+    {
+        /// <summary>
+        /// 请求Id
+        /// </summary>
+        public abstract RequestId ReqId { get;}
+    }
+    
+    /// <summary>
     /// 实体数据流
     /// </summary>
     public class EntityWorkData : NodeData
@@ -18,8 +29,8 @@ namespace LCECS.Data
         //当前请求数量
         public int CurrReqCnt { get; private set; }
 
-        //请求参数
-        private Queue<ParamData> ParamQueue = new Queue<ParamData>();
+        //请求数据
+        private Queue<RequestData> requestDataQueue = new Queue<RequestData>();
 
         public EntityWorkData(string uId, Entity entity) : base(uId)
         {
@@ -33,23 +44,23 @@ namespace LCECS.Data
                 //ECSLocate.Log.LogWarning("ChangeRequestId>>>>", reqId);
             }
             CurrReqId = reqId;
-            ParamQueue.Clear();
+            requestDataQueue.Clear();
             CurrReqCnt = 0;
         }
 
-        public void AddParam(ParamData param)
+        public void AddParam(RequestData param)
         {
             CurrReqCnt++;
             if (param == null)
                 return;
-            ParamQueue.Enqueue(param);
+            requestDataQueue.Enqueue(param);
         }
 
-        public ParamData GetParam()
+        public T GetParam<T>() where T : RequestData
         {
-            if (ParamQueue.Count <= 0)
+            if (requestDataQueue.Count <= 0)
                 return null;
-            return ParamQueue.Dequeue();
+            return requestDataQueue.Dequeue() as T;
         }
 
         public void RemoveCurrReqCnt()

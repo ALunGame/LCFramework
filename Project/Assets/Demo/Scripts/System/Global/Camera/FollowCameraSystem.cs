@@ -9,10 +9,9 @@ namespace Demo.System
     public class FollowCameraSystem : BaseSystem
     {
         private GlobalSensor globalSensor;
-        private bool _InitEvent = false;
         private FollowCameraCom followCameraCom;
 
-        protected override List<Type> RegListenComs()
+        protected override List<Type> RegContainListenComs()
         {
             globalSensor = LCECS.ECSLayerLocate.Info.GetSensor<GlobalSensor>(LCECS.SensorType.Global);
             globalSensor.CurrArea.RegisterValueChangedEvent(HandleCurrAreaChange);
@@ -20,27 +19,27 @@ namespace Demo.System
             return new List<Type>() { typeof(FollowCameraCom) };
         }
 
+        protected override void OnAddCheckComs(List<BaseCom> comList)
+        {
+            followCameraCom = GetCom<FollowCameraCom>(comList[0]);
+            HandleCurrAreaChange(globalSensor.CurrArea.Value);
+            HandleFollowActorChange(globalSensor.FollowActor.Value);
+        }
+
         protected override void HandleComs(List<BaseCom> comList)
         {
-            if (!_InitEvent)
-            {
-                followCameraCom = GetCom<FollowCameraCom>(comList[0]);
-                HandleCurrAreaChange(globalSensor.CurrArea.Value);
-                HandleFollowActorChange(globalSensor.FollowActor.Value);
-                _InitEvent = true;
-            }
         }
 
         private void HandleCurrAreaChange(MapArea area)
         {
-            if (followCameraCom == null)
+            if (followCameraCom == null || area == null)
                 return;
             followCameraCom.CMCamera = area.FollowCamera;
         }
 
         private void HandleFollowActorChange(Actor obj)
         {
-            if (followCameraCom == null)
+            if (followCameraCom == null || obj == null)
                 return;
             followCameraCom.CMCamera.Follow = obj.DisplayCom.CameraFollowGo.transform;
         }

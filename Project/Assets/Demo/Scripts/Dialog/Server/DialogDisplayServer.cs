@@ -1,4 +1,4 @@
-﻿using LCDialog;
+using LCDialog;
 using LCMap;
 using System;
 using System.Collections.Generic;

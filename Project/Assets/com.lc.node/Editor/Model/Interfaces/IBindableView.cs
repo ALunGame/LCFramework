@@ -1,4 +1,4 @@
-﻿using LCToolkit.ViewModel;
+using LCToolkit.ViewModel;
 
 namespace LCNode.Model
 {

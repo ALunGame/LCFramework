@@ -33,7 +33,8 @@ namespace LCNode.View
                 Type nodeType = item;
                 NodeMenuItemAttribute attr;
                 AttributeHelper.TryGetTypeAttribute(nodeType, out attr);
-                titlelist.Add(attr.title, nodeType);
+                if (!titlelist.ContainsKey(attr.title))
+                    titlelist.Add(attr.title, nodeType);
             }
             titlelist = titlelist.OrderBy(value => value.Key).ToDictionary(r => r.Key, r => r.Value);
             nodeTypes = titlelist.Values.ToList();

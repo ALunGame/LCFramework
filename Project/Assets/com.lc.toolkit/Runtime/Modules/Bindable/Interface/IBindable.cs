@@ -5,12 +5,12 @@ namespace LCToolkit
     public interface IBindable
     {
         /// <summary>
-        /// Öµ¸Ä±ä
+        /// å€¼æ”¹å˜
         /// </summary>
         void ValueChanged();
 
         /// <summary>
-        /// ÇåÀíÊÂ¼ş
+        /// æ¸…ç†äº‹ä»¶
         /// </summary>
         void ClearChangedEvent();
     }

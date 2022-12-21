@@ -1,0 +1,25 @@
+﻿
+[
+    {
+        "mType" : "Demo.Config.ItemRepairCnf",
+        "id"    : 301,
+        "repairs" : [
+            {
+                "mType" : "Config.ItemInfo",
+                "itemId" : 402,
+                "itemCnt" : 1
+            }
+        ]
+    },
+    {
+        "mType" : "Demo.Config.ItemRepairCnf",
+        "id"    : 302,
+        "repairs" : [
+            {
+                "mType" : "Config.ItemInfo",
+                "itemId" : 402,
+                "itemCnt" : 1
+            }
+        ]
+    }
+]

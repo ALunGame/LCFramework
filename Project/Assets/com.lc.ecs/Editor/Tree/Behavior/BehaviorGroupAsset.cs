@@ -7,6 +7,7 @@ using UnityEditor;
 using UnityEngine;
 using System.Collections.Generic;
 using System;
+using LCECS.Core.Tree.Base;
 
 namespace LCECS.Tree
 {
@@ -39,10 +40,15 @@ namespace LCECS.Tree
                 BaseGraph graphData = behaviorAsset.DeserializeGraph();
 
                 //运行时数据结构
-                BehaviorTree model = new BehaviorTree(behaviorAsset.ReqId, SerializeHelp.SerializeToTree(graphData));
+                List<Node> trees = SerializeHelp.SerializeToTrees(graphData);
+                List<BehaviorTree> models = new List<BehaviorTree>();
+                for (int j = 0; j < trees.Count; j++)
+                {
+                    models.Add(new BehaviorTree(behaviorAsset.ReqId,trees[j]));
+                }
 
                 string filePath = ECSDefPath.GetBevTreePath(behaviorAsset.ReqId);
-                IOHelper.WriteText(JsonMapper.ToJson(model), filePath);
+                IOHelper.WriteText(JsonMapper.ToJson(models), filePath);
                 Debug.Log($"行为树生成成功>>>>{filePath}");
             }
             

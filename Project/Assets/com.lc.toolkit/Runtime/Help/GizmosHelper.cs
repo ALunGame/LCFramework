@@ -7,6 +7,11 @@ namespace LCToolkit
     /// </summary>
     public static class GizmosHelper
     {
+        public static void DrawBounds(Bounds bounds, Color color)
+        {
+            DrawRect(bounds.ToRect(), color);
+        }
+        
         public static void DrawRect(Rect rect, Color color)
         {
             Vector3[] line = new Vector3[5];

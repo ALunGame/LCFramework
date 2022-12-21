@@ -6,5 +6,8 @@ namespace LCTask
 {
     public interface ITaskServer
     {
+        void Init();
+
+        void Clear();
     } 
 }

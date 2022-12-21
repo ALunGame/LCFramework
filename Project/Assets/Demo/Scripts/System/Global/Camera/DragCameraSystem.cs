@@ -17,7 +17,7 @@ namespace Demo.System
         private DragCameraCom dragCameraCom;
         private FollowCameraCom followCameraCom;
 
-        protected override List<Type> RegListenComs()
+        protected override List<Type> RegContainListenComs()
         {
             globalSensor = LCECS.ECSLayerLocate.Info.GetSensor<GlobalSensor>(LCECS.SensorType.Global);
             globalSensor.CurrArea.RegisterValueChangedEvent(HandleCurrAreaChange);

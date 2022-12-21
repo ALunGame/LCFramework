@@ -20,6 +20,9 @@ namespace LCNode.Model
 
         public event Action<BaseConnection> onConnected;
         public event Action<BaseConnection> onDisconnected;
+        
+        public event Action<BaseGroup> OnGroupAdded;
+        public event Action<BaseGroup> OnGroupRemoved;
         #endregion
 
         #region Properties
@@ -36,6 +39,10 @@ namespace LCNode.Model
         public IReadOnlyDictionary<string, BaseNode> Nodes
         {
             get { return nodes; }
+        }
+        public IReadOnlyList<BaseGroup> Groups
+        {
+            get { return groups; }
         }
         public IReadOnlyList<BaseConnection> Connections
         {
@@ -87,6 +94,18 @@ namespace LCNode.Model
             this[POS_NAME] = new BindableProperty<Vector3>(() => pos, v => pos = v);
             this[ZOOM_NAME] = new BindableProperty<Vector3>(() => zoom, v => zoom = v);
 
+            for (int i = 0; i < groups.Count; i++)
+            {
+                var group = groups[i];
+                if (group == null)
+                {
+                    groups.RemoveAt(i--);
+                    continue;
+                }
+                group.Enable(this);
+                groups.Add(group);
+            }
+            
             OnEnabled();
         }
 
@@ -223,6 +242,25 @@ namespace LCNode.Model
         {
             Disconnect(node.Ports[portName]);
         }
+        
+        public void AddGroup(BaseGroup group)
+        {
+            if (groups.Contains(group))
+                return;
+            groups.Add(group);
+            group.Enable(this);
+            OnGroupAdded?.Invoke(group);
+        }
+        
+
+        public void RemoveGroup(BaseGroup group)
+        {
+            bool removed = groups.Remove(group);
+            groups.Remove(group);
+            if (removed)
+                OnGroupRemoved?.Invoke(group);
+        }
+        
         #endregion
 
         #region Overrides

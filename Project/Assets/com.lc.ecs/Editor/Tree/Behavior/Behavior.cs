@@ -28,6 +28,20 @@ namespace LCECS.Tree
 
         private void CollectNodeTypes()
         {
+            NodeTypes.Clear();
+            foreach (var type in ReflectionHelper.GetChildTypes<Tree_PremiseNode>())
+            {
+                if (type.IsAbstract)
+                    continue;
+                if (!AttributeHelper.TryGetTypeAttribute(type, out NodeMenuItemAttribute attr))
+                    continue;
+                if (type == typeof(Tree_PremiseNode))
+                    continue;
+                if (type.BaseType == typeof(Base_DEC_PRE_Node))
+                    continue;
+                if (!NodeTypes.Contains(type))
+                    NodeTypes.Add(type);
+            }
             foreach (var type in ReflectionHelper.GetChildTypes<Tree_BaseNode>())
             {
                 if (type.IsAbstract)
@@ -38,7 +52,8 @@ namespace LCECS.Tree
                     continue;
                 if (type.BaseType == typeof(Base_DEC_Act_Node))
                     continue;
-                NodeTypes.Add(type);
+                if (!NodeTypes.Contains(type))
+                    NodeTypes.Add(type);
             }
             foreach (var type in ReflectionHelper.GetChildTypes<Base_BEV_PRE_Node>())
             {
@@ -48,9 +63,9 @@ namespace LCECS.Tree
                     continue;
                 if (type == typeof(Tree_RootNode))
                     continue;
-                NodeTypes.Add(type);
+                if (!NodeTypes.Contains(type))
+                    NodeTypes.Add(type);
             }
-
             foreach (var type in ReflectionHelper.GetChildTypes<Base_BEV_ACT_Node>())
             {
                 if (type.IsAbstract)
@@ -59,7 +74,8 @@ namespace LCECS.Tree
                     continue;
                 if (type == typeof(Tree_RootNode))
                     continue;
-                NodeTypes.Add(type);
+                if (!NodeTypes.Contains(type))
+                    NodeTypes.Add(type);
             }
         }
 

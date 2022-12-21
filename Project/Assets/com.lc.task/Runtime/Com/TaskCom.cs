@@ -1,4 +1,4 @@
-﻿using LCECS;
+using LCECS;
 using LCECS.Core;
 using System;
 using System.Collections.Generic;
@@ -11,6 +11,11 @@ namespace LCTask
         private Dictionary<int, TaskObj> tasks = new Dictionary<int, TaskObj>();
 
         public IReadOnlyDictionary<int, TaskObj> Tasks { get => tasks; }
+
+        protected override void OnAwake(Entity pEntity)
+        {
+            TaskLocate.Task.SetTaskCom(this);
+        }
 
         public void AddTask(TaskObj taskObj)
         {

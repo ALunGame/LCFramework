@@ -1,4 +1,4 @@
-﻿using Demo.Com;
+using Demo.Com;
 using LCECS;
 using LCECS.Core.Tree;
 using LCECS.Core.Tree.Base;
@@ -42,12 +42,11 @@ namespace Demo.Decision
                 case InputAction.None:
                     break;
                 case InputAction.Move:
-                    paramData.SetVect2(inputCom.Param.GetVect2());
-                    ECSLayerLocate.Request.PushRequest(workData.MEntity.Uid, RequestId.Move, paramData);
+                    ECSLayerLocate.Request.PushRequest(workData.MEntity.Uid, inputCom.Param);
                     return;
                 case InputAction.Skill:
-                    paramData.SetString(inputCom.Param.GetString());
-                    ECSLayerLocate.Request.PushRequest(workData.MEntity.Uid, RequestId.PushSkill, paramData);
+                    // paramData.SetString(inputCom.Param.GetString());
+                    // ECSLayerLocate.Request.PushRequest(workData.MEntity.Uid, RequestId.PushSkill, paramData);
                     return;
                 default:
                     break;

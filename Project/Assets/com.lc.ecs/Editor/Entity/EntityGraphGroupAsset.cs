@@ -13,12 +13,30 @@ namespace LCECS.EntityGraph
     [CreateAssetMenu(fileName = "实体组", menuName = "配置组/实体组", order = 1)]
     public class EntityGraphGroupAsset : BaseGraphGroupAsset<EntityGraphAsset>
     {
-        //实体模板
-        [SerializeField]
-        [HideInInspector]
-        public EntityGraphAsset entity_template;
-
         public override string DisplayName => "实体配置";
+
+        public void CreateTemplateGraph()
+        {
+            if (CheckHasGraph("实体模板"))
+            {
+                return;
+            }
+            EntityGraphAsset asset = CreateGraph("实体模板") as EntityGraphAsset;
+            asset.name = "实体模板";
+        }
+
+        public EntityGraphAsset GetTemplateGraph()
+        {
+            List<InternalBaseGraphAsset> graphs = GetAllGraph();
+            for (int i = 0; i < graphs.Count; i++)
+            {
+                if (graphs[i].name == "实体模板")
+                {
+                    return graphs[i] as EntityGraphAsset;
+                }
+            }
+            return null;
+        }
 
         public override void OnClickCreateBtn()
         {
@@ -34,9 +52,10 @@ namespace LCECS.EntityGraph
         public override InternalBaseGraphAsset CreateGraph(string name)
         {
             InternalBaseGraphAsset asset = base.CreateGraph(name);
-            if (entity_template!=null)
+            EntityGraphAsset tmpGraph = GetTemplateGraph();
+            if (tmpGraph != null)
             {
-                ((EntityGraphAsset)asset).SetSerializedStr(entity_template.GetSerializedStr());
+                ((EntityGraphAsset)asset).SetSerializedStr(tmpGraph.GetSerializedStr());
             }
             return asset;
         }
@@ -46,6 +65,10 @@ namespace LCECS.EntityGraph
             for (int i = 0; i < assets.Count; i++)
             {
                 EntityGraphAsset entityAsset = assets[i] as EntityGraphAsset;
+                if (entityAsset.name == "实体模板")
+                {
+                    continue;
+                }
                 BaseGraph graphData = entityAsset.DeserializeGraph();
 
                 //运行时数据结构

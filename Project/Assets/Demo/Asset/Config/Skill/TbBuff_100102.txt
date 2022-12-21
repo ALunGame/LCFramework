@@ -1,1 +1,37 @@
-﻿{"mType":"LCSkill.BuffModel","id":"100102","name":"buff_100102","tags":null,"priority":1,"maxStack":1,"tickTime":-1,"onFreedFunc":null,"onOccurFunc":[],"onTickFunc":[],"onRemovedFunc":[],"onHurtFunc":[],"onBeHurtFunc":[{"mType":"LCSkill.BuffBeHurtDamageFunc","damage":{"mType":"LCSkill.DamageModel","damages":[],"addBuffs":[]},"damageSet":true,"damageSelf":false}],"onKilledFunc":[],"onBeKilledFunc":[]}
+﻿
+{
+    "mType" : "LCSkill.BuffModel",
+    "id"    : "100102",
+    "name"  : "buff_100102",
+    "tags"  : null,
+    "priority" : 1,
+    "maxStack" : 1,
+    "tickTime" : -1,
+    "onFreedFunc" : null,
+    "onOccurFunc" : [
+    ],
+    "onTickFunc"  : [
+    ],
+    "onRemovedFunc" : [
+    ],
+    "onHurtFunc"    : [
+    ],
+    "onBeHurtFunc"  : [
+        {
+            "mType" : "LCSkill.BuffBeHurtDamageFunc",
+            "damage" : {
+                "mType" : "LCSkill.DamageModel",
+                "damages" : [
+                ],
+                "addBuffs" : [
+                ]
+            },
+            "damageSet" : true,
+            "damageSelf" : false
+        }
+    ],
+    "onKilledFunc"  : [
+    ],
+    "onBeKilledFunc" : [
+    ]
+}

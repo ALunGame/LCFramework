@@ -1,4 +1,4 @@
-﻿using Demo.Com;
+using Demo.Com;
 using LCECS.Core;
 using System;
 using System.Collections.Generic;
@@ -9,7 +9,7 @@ namespace Demo.System
 {
     public class PlayerMoveSystem : BaseSystem
     {
-        protected override List<Type> RegListenComs()
+        protected override List<Type> RegContainListenComs()
         {
             return new List<Type>() { typeof(PlayerPropertyCom), typeof(PlayerMoveCom), typeof(AnimCom), typeof(Collider2DCom) };
         }
@@ -73,7 +73,7 @@ namespace Demo.System
             AnimCom animCom = GetCom<AnimCom>(comList[2]);
             Collider2DCom collider2DCom = GetCom<Collider2DCom>(comList[3]);
 
-            //地面
+            //鍦伴潰
             if (collider2DCom.Collider.Down)
             {
                 if (moveCom.Rig.velocity.y > 0)
@@ -99,8 +99,8 @@ namespace Demo.System
                     animCom.SetReqAnim("climb");
                     return;
                 }
-                //空中
-                if (collider2DCom.Collider.IsNull() || collider2DCom.Collider.Up)
+                //绌轰腑
+                if (collider2DCom.Collider.IsNull || collider2DCom.Collider.Up)
                 {
                     if (moveCom.Rig.velocity.y > 0)
                     {

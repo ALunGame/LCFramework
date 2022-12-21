@@ -1,7 +1,7 @@
 namespace LCConfig
 {
     /// <summary>
-    /// 表明是配置项
+    /// 琛ㄦ槑鏄厤缃」
     /// </summary>
     public interface IConfig
     {

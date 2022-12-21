@@ -118,7 +118,15 @@ namespace LCECS.EntityGraph
                 EditorGUI.BeginDisabledGroup(true);
                 foreach (var item in noSerFields)
                 {
-                    GUILayoutExtension.DrawField(item.FieldType, item.GetValue(baseCom), GraphProcessorEditorUtility.GetDisplayName(item.Name), "");
+                    object value = item.GetValue(baseCom);
+                    if (value == null)
+                    {
+                        GUILayoutExtension.DrawField(item.FieldType, item.GetValue(baseCom), GraphProcessorEditorUtility.GetDisplayName(item.Name), "");
+                    }
+                    else
+                    {
+                        GUILayoutExtension.DrawField(value.GetType(), item.GetValue(baseCom), GraphProcessorEditorUtility.GetDisplayName(item.Name), "");
+                    }
                 }
                 EditorGUI.EndDisabledGroup();
             }

@@ -41,6 +41,9 @@ namespace LCECS.Core
             OnInit();
         }
 
+        /// <summary>
+        /// 所有组件添加完毕
+        /// </summary>
         protected virtual void OnInit() { }
 
         public void Enable()
@@ -138,11 +141,11 @@ namespace LCECS.Core
             return coms[typeName] as T;
         }
 
-        public BaseCom GetCom(string comFullName)
+        public BaseCom GetCom(string comName)
         {
-            if (!coms.ContainsKey(comFullName))
+            if (!coms.ContainsKey(comName))
                 return null;
-            return coms[comFullName];
+            return coms[comName];
         }
 
         public T GetCom<T>() where T : BaseCom
@@ -167,7 +170,7 @@ namespace LCECS.Core
 
         public T AddCom<T>(T com) where T : BaseCom
         {
-            string typeName = typeof(T).Name;
+            string typeName = com.GetType().Name;
 
             if (HasCom(typeName))
                 return GetCom<T>();
@@ -200,7 +203,7 @@ namespace LCECS.Core
                 ECSLocate.Log.LogError("覆盖实体组件失败，没有对应组件>>>>>>>", com);
                 return;
             }
-            coms[com.GetType().FullName] = com;
+            coms[com.GetType().Name] = com;
         }
 
         #endregion

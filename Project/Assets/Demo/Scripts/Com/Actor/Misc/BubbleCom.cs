@@ -1,4 +1,4 @@
-﻿using Demo.UI;
+using Demo.UI;
 using LCECS.Core;
 using LCLoad;
 using LCMap;
@@ -13,7 +13,7 @@ namespace Demo.Com
         private BubbleDialogCom bubbleCom;
         private Transform bubbleRoot;
 
-        protected override void OnInit(Entity pEntity)
+        protected override void OnAwake(Entity pEntity)
         {
             ActorDisplayCom displayCom = pEntity.GetCom<ActorDisplayCom>();
             if (displayCom != null)

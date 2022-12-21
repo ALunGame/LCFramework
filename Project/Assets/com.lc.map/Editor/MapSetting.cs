@@ -1,6 +1,7 @@
 ﻿using LCConfig;
 using System.Collections.Generic;
 using System.IO;
+using LCConfig.Excel;
 using UnityEditor;
 using UnityEngine;
 
@@ -18,11 +19,7 @@ namespace LCMap
         [Header("地图导出保存路径")]
         [SerializeField]
         public string MapExportSavePath = "Assets/Resources/Config/Map/";
-
-        [Header("演员配置组")]
-        [SerializeField]
-        public ConfigAssetGroup ActorGroup = null;
-
+        
         [Header("演员模板")]
         [SerializeField]
         public GameObject ActorTemplate = null;
@@ -76,38 +73,14 @@ namespace LCMap
 
         public static List<ActorCnf> GetActorCnfs()
         {
-            if (setting.ActorGroup == null)
-            {
-                Debug.LogError("没有设置演员组>>>");
-                return new List<ActorCnf>();
-            }
-            List<ActorCnf> configs = new List<ActorCnf>();
-            foreach (var item in setting.ActorGroup.GetAllAsset())
-            {
-                List<ActorCnf> datas = item.Load<ActorCnf>();
-                if (datas != null)
-                {
-                    configs.AddRange(datas);
-                }
-            }
-            return configs;
+            return ExcelReadCtrl.GetConfig<ActorCnf>();
         }
 
         public static Dictionary<string, List<ActorCnf>> GetActorGroups()
         {
-            if (setting.ActorGroup == null)
-            {
-                Debug.LogError("没有设置演员组>>>");
-                return new Dictionary<string, List<ActorCnf>>();
-            }
-            Dictionary<string, List<ActorCnf>> dict = new Dictionary<string, List<ActorCnf>>();
-            List<ConfigAsset> assets = setting.ActorGroup.GetAllAsset();
-            foreach (var asset in assets)
-            {
-                List<ActorCnf> datas = asset.Load<ActorCnf>();
-                dict.Add(asset.name, datas);
-            }
-            return dict;
+            Dictionary<string, List<ActorCnf>> actorMap = new Dictionary<string, List<ActorCnf>>();
+            actorMap.Add("All",ExcelReadCtrl.GetConfig<ActorCnf>());
+            return actorMap;
         }
 
         public static string GetMapModelSavePath(string mapId)

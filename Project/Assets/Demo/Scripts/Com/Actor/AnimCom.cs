@@ -40,7 +40,7 @@ namespace Demo.Com
         [NonSerialized]
         private BindableValue<AnimLayer> ReqAnimLayer = new BindableValue<AnimLayer>();
 
-        protected override void OnInit(Entity pEntity)
+        protected override void OnAwake(Entity pEntity)
         {
             ReqAnimName.Value = AnimSystem.IdleState;
             ReqAnimLayer.Value = AnimLayer.Side;
@@ -72,6 +72,18 @@ namespace Demo.Com
             }
         }
 
+        protected override void OnDestroy()
+        {
+            ReqAnimName.ClearChangedEvent();
+            ReqAnimLayer.ClearChangedEvent();
+        }
+
+        protected override void OnDisable()
+        {
+            ReqAnimName.ClearChangedEvent();
+            ReqAnimLayer.ClearChangedEvent();
+        }
+
         public void SetDefaultAnim()
         {
             ReqAnimName.Value = AnimSystem.IdleState;
@@ -93,19 +105,9 @@ namespace Demo.Com
             ReqAnimName.RegisterValueChangedEvent(callBack);
         }
 
-        public void ClearReqAnimChangeCallBack()
-        {
-            ReqAnimName.ClearChangedEvent();
-        }
-
         public void RegReqAnimLayerChange(Action<AnimLayer> callBack)
         {
             ReqAnimLayer.RegisterValueChangedEvent(callBack);
-        }
-
-        public void ClearReqAnimLayerChangeCallBack()
-        {
-            ReqAnimLayer.ClearChangedEvent();
         }
     }
 }

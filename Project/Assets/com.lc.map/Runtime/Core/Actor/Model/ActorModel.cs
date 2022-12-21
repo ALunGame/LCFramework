@@ -75,6 +75,7 @@ namespace LCMap
 
         [NonSerialized]
         private ActorInteractiveCom interactiveCom;
+        public ActorInteractiveCom InteractiveCom { get { return interactiveCom; } }
 
         public Actor(string uid) : base(uid)
         {
@@ -110,17 +111,17 @@ namespace LCMap
             interactiveCom.Remove(pInteractive);
         }
 
-        public void ExecuteInteractive(Actor pActor, ActorInteractive pInteractive)
+        public void ExecuteInteractive(Actor pActor, ActorInteractive pInteractive, Action pExecuteFinishCallBack = null)
         {
-            interactiveCom.Execute(pActor, pInteractive);
+            interactiveCom.Execute(pActor, pInteractive, pExecuteFinishCallBack);
         }
 
-        public void ExecuteInteractive(Actor pActor, InteractiveType pInteractiveType)
+        public void ExecuteInteractive(Actor pActor, InteractiveType pInteractiveType, Action pExecuteFinishCallBack = null)
         {
             ActorInteractive interactive = interactiveCom.Get(pInteractiveType);
             if (interactive != null)
             {
-                ExecuteInteractive(pActor, interactive);
+                ExecuteInteractive(pActor, interactive, pExecuteFinishCallBack);
             }
         }
 

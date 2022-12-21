@@ -23,7 +23,7 @@ namespace LCMap
         {
             if (actorCnfs == null)
             {
-                actorCnfs = ConfigSetting.GetConfigAssets<ActorCnf>();
+                actorCnfs = MapSetting.GetActorCnfs();
             }
             if (mapCnfs == null)
             {
@@ -39,11 +39,11 @@ namespace LCMap
             }
 
             btnAddActor = new Button();
-            btnAddActor.text = "Ìí¼ÓÑÝÔ±";
+            btnAddActor.text = "æ·»åŠ æ¼”å‘˜";
             controlsContainer.Add(btnAddActor);
 
             btnClearActor = new Button();
-            btnClearActor.text = "Çå¿ÕÑÝÔ±";
+            btnClearActor.text = "æ¸…ç©ºæ¼”å‘˜";
             outputContainer.Add(btnClearActor);
         }
 
@@ -89,7 +89,7 @@ namespace LCMap
                 inputContainer.Add(selActorBtn);
 
                 delActorBtn = new Button();
-                delActorBtn.text = "É¾³ý";
+                delActorBtn.text = "åˆ é™¤";
                 delActorBtn.clicked += () =>
                 {
                     OnClickRemoveActor(actorId);
@@ -176,7 +176,7 @@ namespace LCMap
             }
             if (leftActorId == -1)
             {
-                Debug.LogError($"Ìí¼ÓÑÝÔ±³ö´í£¬ËùÓÐÑÝÔ±Ìí¼ÓÍêÁË");
+                Debug.LogError($"æ·»åŠ æ¼”å‘˜å‡ºé”™ï¼Œæ‰€æœ‰æ¼”å‘˜æ·»åŠ å®Œäº†");
                 return;
             }
             node.actorIds.Add(leftActorId);
@@ -201,7 +201,7 @@ namespace LCMap
         {
             Map_ActorNode node = Model as Map_ActorNode;
             List<int> actors = new List<int>();
-            if (node.mapId == MapNodeId.ËùÓÐµØÍ¼)
+            if (node.mapId == MapNodeId.æ‰€æœ‰åœ°å›¾)
             {
                 for (int i = 0; i < actorCnfs.Count; i++)
                 {

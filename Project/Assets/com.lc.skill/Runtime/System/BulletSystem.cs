@@ -13,7 +13,7 @@ namespace LCSkill
     {
         private BaseBulletSensor Sensor;
 
-        protected override List<Type> RegListenComs()
+        protected override List<Type> RegContainListenComs()
         {
             Sensor = LCECS.ECSLayerLocate.Info.GetSensor<BaseBulletSensor>(LCECS.SensorType.Skill_Bullet);
             return new List<Type>() { typeof(BulletCom) };

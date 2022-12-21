@@ -1,4 +1,4 @@
-﻿using LCDialog;
+using LCDialog;
 using UnityEngine;
 
 namespace Demo.Dialog

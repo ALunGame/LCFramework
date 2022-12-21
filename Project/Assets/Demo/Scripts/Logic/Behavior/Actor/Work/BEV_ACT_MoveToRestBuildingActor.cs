@@ -19,41 +19,41 @@ namespace Demo.Behavior
 
         protected override void OnEnter(NodeData wData)
         {
-            EntityWorkData workData = wData as EntityWorkData;
-
-            //组件
-            WayPointMoveCom wayPointMoveCom = workData.MEntity.GetCom<WayPointMoveCom>();
-            List<Actor> homeActors = new List<Actor>();
-            foreach (var item in MapLocate.Map.GetActors(typeof(BuildingCom).FullName))
-            {
-                BuildingCom buildingCom = item.GetCom<BuildingCom>();
-                if (buildingCom.buildingType == BuildingType.Village_Rest)
-                    homeActors.Add(item);
-            }
-
-            if (homeActors.Count <= 0)
-            {
-                wayPointMoveCom.currRoadCnf = null;
-                return;
-            }
-
-            Actor selHomeActor = homeActors[Random.Range(0, homeActors.Count)];
-
-            Actor actor      = LCMap.MapLocate.Map.GetActor(wData.Uid);
-            ActorCnf actorCnf   = LCConfig.Config.ActorCnf[actor.Id];
-
-            TransCom targetTransformCom = selHomeActor.GetCom<TransCom>();
-            TransCom transformCom = workData.MEntity.GetCom<TransCom>();
-            if (Vector2.Distance(targetTransformCom.Pos, transformCom.Pos) <= actorCnf.interactiveRange)
-            {
-                wayPointMoveCom.currRoadCnf = null;
-                return;
-            }
-
-            if (WayPointMoveSystem.RoadCnf.CalcRoadPos(selHomeActor.Pos, out var endPos))
-            {
-                wayPointMoveCom.SetWayPointTarget(endPos);
-            }
+            // EntityWorkData workData = wData as EntityWorkData;
+            //
+            // //组件
+            // WayPointMoveCom wayPointMoveCom = workData.MEntity.GetCom<WayPointMoveCom>();
+            // List<Actor> homeActors = new List<Actor>();
+            // foreach (var item in MapLocate.Map.GetActors(typeof(BuildingCom).FullName))
+            // {
+            //     BuildingCom buildingCom = item.GetCom<BuildingCom>();
+            //     if (buildingCom.buildingType == BuildingType.Village_Rest)
+            //         homeActors.Add(item);
+            // }
+            //
+            // if (homeActors.Count <= 0)
+            // {
+            //     wayPointMoveCom.currRoadCnf = null;
+            //     return;
+            // }
+            //
+            // Actor selHomeActor = homeActors[Random.Range(0, homeActors.Count)];
+            //
+            // Actor actor      = LCMap.MapLocate.Map.GetActor(wData.Uid);
+            // ActorCnf actorCnf   = LCConfig.Config.ActorCnf[actor.Id];
+            //
+            // TransCom targetTransformCom = selHomeActor.GetCom<TransCom>();
+            // TransCom transformCom = workData.MEntity.GetCom<TransCom>();
+            // if (Vector2.Distance(targetTransformCom.Pos, transformCom.Pos) <= actorCnf.interactiveRange)
+            // {
+            //     wayPointMoveCom.currRoadCnf = null;
+            //     return;
+            // }
+            //
+            // if (WayPointMoveSystem.RoadCnf.CalcRoadPos(selHomeActor.Pos, out var endPos))
+            // {
+            //     wayPointMoveCom.SetWayPointTarget(endPos);
+            // }
         }
 
         protected override int OnRunning(NodeData wData)

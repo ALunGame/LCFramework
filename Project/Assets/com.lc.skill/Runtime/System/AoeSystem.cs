@@ -13,7 +13,7 @@ namespace LCSkill
     {
         private BaseAoeSensor Sensor;
 
-        protected override List<Type> RegListenComs()
+        protected override List<Type> RegContainListenComs()
         {
             Sensor = LCECS.ECSLayerLocate.Info.GetSensor<BaseAoeSensor>(LCECS.SensorType.Skill_Aoe);
             return new List<Type>() { typeof(AoeCom) };

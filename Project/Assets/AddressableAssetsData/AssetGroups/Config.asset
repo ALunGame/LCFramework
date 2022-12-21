@@ -25,14 +25,6 @@ MonoBehaviour:
     m_Address: TbEntity_1
     m_ReadOnly: 0
     m_SerializedLabels: []
-  - m_GUID: d28ccd173e4cc7e4c9ed2a3cedb7253c
-    m_Address: TbTestConfig
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 676d23ee48666284185f5c9e1a78f7bb
-    m_Address: TbActorCnf
-    m_ReadOnly: 0
-    m_SerializedLabels: []
   - m_GUID: f720e0866b0c7c3479868b9d497ebdf4
     m_Address: TbBehavior_Move
     m_ReadOnly: 0
@@ -141,16 +133,8 @@ MonoBehaviour:
     m_Address: TbMap_1
     m_ReadOnly: 0
     m_SerializedLabels: []
-  - m_GUID: de1634844c75b844fa4049be6d290901
-    m_Address: TbMapRoadCnf
-    m_ReadOnly: 0
-    m_SerializedLabels: []
   - m_GUID: d891a1f66ff958943ba6ea501c591edd
     m_Address: TbMap_101
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: ae304de389e5eba49920ccb6c02ea4cc
-    m_Address: TbItemCnf
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: 0cf807da5902e3e46b3490b7534b51cf
@@ -205,10 +189,6 @@ MonoBehaviour:
     m_Address: TbBehavior_Produce
     m_ReadOnly: 0
     m_SerializedLabels: []
-  - m_GUID: 9e5b4914010e7754b9f9649aea8ba8be
-    m_Address: TbProduceCnf
-    m_ReadOnly: 0
-    m_SerializedLabels: []
   - m_GUID: e8415552aeba0614793d8fc58a75c81c
     m_Address: TbEntity_320
     m_ReadOnly: 0
@@ -235,6 +215,54 @@ MonoBehaviour:
     m_SerializedLabels: []
   - m_GUID: 31d5aa51216279a4699c9f53fd21b402
     m_Address: TbDecision_220
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 724daa6bf2b40804fa9e84f380ec92be
+    m_Address: TbMap_0
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 6059c3ed41c245e4d80ebdbe3633dc2c
+    m_Address: TbBehavior_MoveToActor
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 04ef3f05b3e938445b673209681d17dd
+    m_Address: TbItemRepairCnf
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 676d23ee48666284185f5c9e1a78f7bb
+    m_Address: TbActorCnf
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ae304de389e5eba49920ccb6c02ea4cc
+    m_Address: TbItemCnf
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 6127bb1265a2dac468b5eae81d0d70d6
+    m_Address: TbEventCnf
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 235657deb75138049b8c57fe0bcaa157
+    m_Address: TbTest
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 4abfccde0253f9e4bae265d17779dd91
+    m_Address: TbItemRecipeCnf
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: de1634844c75b844fa4049be6d290901
+    m_Address: TbMapRoadCnf
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 2813bd6e09a873f4ba497d7815104dab
+    m_Address: TbEntity_210
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 13c0979f48773114a8f8ca947cff8858
+    m_Address: TbBehavior_InputMove
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 62c0c1209fb66c143be45be8f61477b1
+    m_Address: TbActorBasePropertyCnf
     m_ReadOnly: 0
     m_SerializedLabels: []
   m_ReadOnly: 0

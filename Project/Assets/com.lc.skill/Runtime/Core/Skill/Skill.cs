@@ -5,7 +5,7 @@ using UnityEngine;
 namespace LCSkill
 {
     /// <summary>
-    /// Ìõ¼ş¹ØÏµ
+    /// æ¡ä»¶å…³ç³»
     /// </summary>
     public enum ConditionRelateType
     {
@@ -14,7 +14,7 @@ namespace LCSkill
     }
 
     /// <summary>
-    /// ¼¼ÄÜÌõ¼ş
+    /// æŠ€èƒ½æ¡ä»¶
     /// </summary>
     public abstract class SkillCondition
     {
@@ -34,7 +34,7 @@ namespace LCSkill
         }
 
         /// <summary>
-        /// Ìõ¼şÊÇ·ñÂú×ã
+        /// æ¡ä»¶æ˜¯å¦æ»¡è¶³
         /// </summary>
         /// <returns></returns>
         public bool IsTrue()
@@ -62,71 +62,71 @@ namespace LCSkill
     }
 
     /// <summary>
-    /// ¼¼ÄÜÏûºÄ
+    /// æŠ€èƒ½æ¶ˆè€—
     /// </summary>
     public class SkillCost
     {
         /// <summary>
-        /// ÏûºÄÀàĞÍ
+        /// æ¶ˆè€—ç±»å‹
         /// </summary>
         public int costType;
         
         /// <summary>
-        /// ÏûºÄÊıÁ¿
+        /// æ¶ˆè€—æ•°é‡
         /// </summary>
         public int costValue;
     }
 
     /// <summary>
-    /// ÅäÖÃµÄSkillÊı¾İ½á¹¹
+    /// é…ç½®çš„Skillæ•°æ®ç»“æ„
     /// </summary>
     public struct SkillModel
     {
         /// <summary>
-        /// ¼¼ÄÜId
+        /// æŠ€èƒ½Id
         /// </summary>
         public string id;
 
         /// <summary>
-        /// ¼¼ÄÜÃû
+        /// æŠ€èƒ½å
         /// </summary>
         public string name;
 
         /// <summary>
-        /// ¼¼ÄÜÌõ¼ş
+        /// æŠ€èƒ½æ¡ä»¶
         /// </summary>
         public SkillCondition condition;
 
         /// <summary>
-        /// ¼¼ÄÜÏûºÄ
+        /// æŠ€èƒ½æ¶ˆè€—
         /// </summary>
         public List<SkillCost> costs;
 
         /// <summary>
-        /// ¼¼ÄÜĞ§¹û
+        /// æŠ€èƒ½æ•ˆæœ
         /// </summary>
         public string timeline;
 
         /// <summary>
-        /// Ñ§»á¼¼ÄÜÊ±£¬»ñµÃµÄBuff
+        /// å­¦ä¼šæŠ€èƒ½æ—¶ï¼Œè·å¾—çš„Buff
         /// </summary>
         public List<AddBuffModel> addBuffs;
     } 
 
     /// <summary>
-    /// ÔËĞĞÊ±´´½¨µÄ¼¼ÄÜ¶ÔÏó
+    /// è¿è¡Œæ—¶åˆ›å»ºçš„æŠ€èƒ½å¯¹è±¡
     /// </summary>
     public class SkillObj
     {
         public SkillModel model;
 
         /// <summary>
-        /// ¼¼ÄÜµÈ¼¶
+        /// æŠ€èƒ½ç­‰çº§
         /// </summary>
         public int level;
 
         /// <summary>
-        /// ÀäÈ´Ê±¼ä
+        /// å†·å´æ—¶é—´
         /// </summary>
         public float coldDown;
 

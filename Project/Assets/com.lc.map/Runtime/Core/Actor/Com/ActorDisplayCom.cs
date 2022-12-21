@@ -2,6 +2,7 @@
 using LCToolkit;
 using System;
 using UnityEngine;
+using static UnityEngine.EventSystems.EventTrigger;
 
 namespace LCMap
 {
@@ -30,9 +31,9 @@ namespace LCMap
         //检测区域
         public BoxCollider2D BodyCollider { get; private set; }
 
-        protected override void OnInit(Entity entity)
+        protected override void OnAwake(Entity pEntity)
         {
-            BindGoCom bindGoCom = entity.GetCom<BindGoCom>();
+            BindGoCom bindGoCom = pEntity.GetCom<BindGoCom>();
             if (bindGoCom != null)
             {
                 bindGoCom.RegGoChange(OnBindGoChange);
@@ -43,6 +44,7 @@ namespace LCMap
         {
             bindGo = pGo;
             ChangeState(stateName.Value);
+            stateName.ValueChanged();
         }
 
         private void ChangeState(string pStateName)
@@ -64,12 +66,19 @@ namespace LCMap
                 DisplayGo = bindGo.gameObject;
                 CameraFollowGo = bindGo.gameObject;
                 UpdateCollider();
+                stateName.Value = bindGo.name;
                 return;
             }
 
             //隐藏旧的
-            stateRoot.SetActive(false, stateName.Value);
-
+            stateRoot.SetActive(stateName.Value,false);
+            
+            //没有这个状态走第一个默认
+            if (!stateRoot.Find(pStateName,out Transform checkTrans))
+            {
+                pStateName = stateRoot.GetChild(0).name;
+            }
+            
             //赋值新的
             if (stateRoot.Find(pStateName,out Transform newStateTrans))
             {
@@ -86,6 +95,8 @@ namespace LCMap
                     CameraFollowGo = newCMFollowTrans.gameObject;
                 else
                     CameraFollowGo = StateGo;
+
+                StateGo.SetActive(true);
             }
             else
             {
@@ -122,6 +133,19 @@ namespace LCMap
             if (stateName.Value == pStateName)
                 return;
             ChangeState(pStateName);
+        }
+
+        public bool HasState(string pStateName)
+        {
+            if (bindGo.Find(StateRootName, out Transform stateRoot))
+            {
+                if (stateRoot.Find(pStateName, out Transform newStateTrans))
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         public void RegStateChange(Action<string> callBack)

@@ -1,1 +1,48 @@
-﻿[{"mType":"LCTask.TaskModel","id":10001,"preUnlockTasks":null,"unlockTasks":null,"accept":{"mType":"LCTask.TaskContent","mapId":0,"actorIds":null,"displayFuncs":[],"conditionFuncs":[],"actionListenFuncs":[],"actionFuncs":[],"actionSuccess":[],"actionFail":[]},"execute":{"mType":"LCTask.TaskContent","mapId":0,"actorIds":null,"displayFuncs":[],"conditionFuncs":[],"actionListenFuncs":[],"actionFuncs":[],"actionSuccess":[],"actionFail":[]}},{"mType":"LCTask.TaskModel","id":111,"preUnlockTasks":null,"unlockTasks":null,"accept":{"mType":"LCTask.TaskContent","mapId":0,"actorIds":null,"displayFuncs":[],"conditionFuncs":[],"actionListenFuncs":[],"actionFuncs":[],"actionSuccess":[],"actionFail":[]},"execute":{"mType":"LCTask.TaskContent","mapId":0,"actorIds":null,"displayFuncs":[],"conditionFuncs":[],"actionListenFuncs":[],"actionFuncs":[],"actionSuccess":[],"actionFail":[]}}]
+﻿
+[
+    {
+        "mType" : "LCTask.TaskModel",
+        "id"    : 10001,
+        "preUnlockTasks" : null,
+        "unlockTasks"    : null,
+        "accept"         : {
+            "mType" : "LCTask.TaskContent",
+            "mapId" : 0,
+            "actorIds" : null,
+            "displayFuncs" : [
+            ],
+            "conditionFuncs" : [
+            ],
+            "actionListenFuncs" : [
+            ],
+            "actionFuncs"       : [
+                {
+                    "mType" : "Demo.Task.TaskRepairActorCmdFunc",
+                    "actorId" : 301,
+                    "needWait" : false
+                }
+            ],
+            "actionSuccess"     : [
+            ],
+            "actionFail"        : [
+            ]
+        },
+        "execute"        : {
+            "mType" : "LCTask.TaskContent",
+            "mapId" : 0,
+            "actorIds" : null,
+            "displayFuncs" : [
+            ],
+            "conditionFuncs" : [
+            ],
+            "actionListenFuncs" : [
+            ],
+            "actionFuncs"       : [
+            ],
+            "actionSuccess"     : [
+            ],
+            "actionFail"        : [
+            ]
+        }
+    }
+]

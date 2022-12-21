@@ -1,4 +1,4 @@
-﻿using Demo.Com;
+using Demo.Com;
 using LCECS;
 using LCECS.Core.Tree;
 using LCECS.Core.Tree.Base;

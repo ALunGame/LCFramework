@@ -36,12 +36,12 @@ namespace Demo.Decision
             GazeSurroundData context = GetContext<GazeSurroundData>(wData);
             context.Timer = NodeTime.TotalTime;
 
-            int followEntityUid = (int)wData.Blackboard[DEC_PRE_CheckEnemyInAttackRange.EnemyInAttackRangeKey];
-            paramData.SetInt(followEntityUid);
-            paramData.SetVect2(gazeRange);
-
-            EntityWorkData workData = wData as EntityWorkData;
-            LCECS.ECSLayerLocate.Request.PushRequest(workData.MEntity.Uid, LCECS.RequestId.GazeSurround, paramData);
+            // int followEntityUid = (int)wData.Blackboard[DEC_PRE_CheckEnemyInAttackRange.EnemyInAttackRangeKey];
+            // paramData.SetInt(followEntityUid);
+            // paramData.SetVect2(gazeRange);
+            //
+            // EntityWorkData workData = wData as EntityWorkData;
+            // LCECS.ECSLayerLocate.Request.PushRequest(workData.MEntity.Uid, LCECS.RequestId.GazeSurround, paramData);
         }
 
         protected override int OnRunning(NodeData wData)

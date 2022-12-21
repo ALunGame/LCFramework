@@ -6,18 +6,18 @@ namespace LCMap
 {
     public enum MapNodeId
     {
-        ËùÓÐµØÍ¼    = -1,           
+        æ‰€æœ‰åœ°å›¾    = -1,           
     }
 
     public class MapActorData { }
     public class Map_ActorNode : BaseNode
     {
-        public override string Title { get => "ÑÝÔ±"; set => base.Title = value; }
+        public override string Title { get => "æ¼”å‘˜"; set => base.Title = value; }
 
         public List<int> actorIds = new List<int>();
 
-        [NodeValue("µØÍ¼Id")]
-        public MapNodeId mapId = MapNodeId.ËùÓÐµØÍ¼;
+        [NodeValue("åœ°å›¾Id")]
+        public MapNodeId mapId = MapNodeId.æ‰€æœ‰åœ°å›¾;
 
         public List<int> GetActorIds()
         {

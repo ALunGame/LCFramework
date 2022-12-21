@@ -9,7 +9,7 @@ using UnityEngine;
 
 namespace LCTask.TaskGraph
 {
-    [CreateAssetMenu(fileName = "Task×é", menuName = "ÅäÖÃ×é/Task×é", order = 1)]
+    [CreateAssetMenu(fileName = "Taskç»„", menuName = "é…ç½®ç»„/Taskç»„", order = 1)]
     public class TaskGraphGroupAsset : BaseGraphGroupAsset<TaskGraphAsset>
     {
         public override string DisplayName => "Task";
@@ -54,7 +54,7 @@ namespace LCTask.TaskGraph
                         {
                             if (resModels[i].id == item.id)
                             {
-                                Debug.LogError("ÖØ¸´µÄÈÎÎñId>>>>>" + item.id);
+                                Debug.LogError("é‡å¤çš„ä»»åŠ¡Id>>>>>" + item.id);
                                 return;
                             }
                         }
@@ -67,7 +67,7 @@ namespace LCTask.TaskGraph
 
             string filePath = TaskDef.GetTaskCnfPath();
             IOHelper.WriteText(JsonMapper.ToJson(resModels), filePath);
-            Debug.Log($"ÈÎÎñÉú³É³É¹¦¡·¡·¡·{filePath}");
+            Debug.Log($"ä»»åŠ¡ç”ŸæˆæˆåŠŸã€‹ã€‹ã€‹{filePath}");
 
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
@@ -80,7 +80,7 @@ namespace LCTask.TaskGraph
             List<Task_ExecuteNode> executeNodes = NodeHelper.GetNodes<Task_ExecuteNode>(graph);
             if (acceptNodes.Count <= 0 || executeNodes.Count<=0)
             {
-                Debug.LogError($"ÊÔÍ¼ĞòÁĞ»¯³ö´í£¬Ã»ÓĞ¸ù½Úµã");
+                Debug.LogError($"è¯•å›¾åºåˆ—åŒ–å‡ºé”™ï¼Œæ²¡æœ‰æ ¹èŠ‚ç‚¹");
                 return models;
             }
 

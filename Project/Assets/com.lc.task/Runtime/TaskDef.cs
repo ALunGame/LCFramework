@@ -6,9 +6,9 @@ using UnityEngine;
 namespace LCTask
 {
     /// <summary>
-    /// ÈÎÎñÌõ¼ş¹ØÏµ
+    /// ä»»åŠ¡æ¡ä»¶å…³ç³»
     /// </summary>
-    public enum ConditionType
+    public enum ConditionRelated
     {
         AND,
         OR,
@@ -19,7 +19,7 @@ namespace LCTask
         public const string CnfRootPath = "Assets/Demo/Asset/Config/";
 
         /// <summary>
-        /// ¶Ô»°¸ùÄ¿Â¼
+        /// å¯¹è¯æ ¹ç›®å½•
         /// </summary>
         public const string DialogRootPath = CnfRootPath + "Task/";
 

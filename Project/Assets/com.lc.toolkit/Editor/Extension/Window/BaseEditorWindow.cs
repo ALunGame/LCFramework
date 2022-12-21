@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using UnityEditor;
 using UnityEngine;
 using LCToolkit.Core;

@@ -1,4 +1,4 @@
-﻿using LCToolkit.Server;
+using LCToolkit.Server;
 
 namespace Demo
 {

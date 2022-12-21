@@ -5,11 +5,11 @@ using UnityEngine;
 namespace LCToolkit
 {
     /// <summary>
-    /// ×Ô¶¯´´½¨Åö×²ÇøÓò
+    /// è‡ªåŠ¨åˆ›å»ºç¢°æ’åŒºåŸŸ
     /// </summary>
     public static class AutoCreatePolygonCollider2D
     {
-        //±ß
+        //è¾¹
         struct Edge2D
 		{
 
@@ -139,10 +139,10 @@ namespace LCToolkit
         }
 
         /// <summary>
-        /// Í¨¹ımeshÈ¥ÕÒËùÓĞµÄ±ß£¬´æµ½Ò»¸ö×ÖµäÀï
-        /// Èç¹û int = 1 ÔòÖ¤Ã÷ÊÇ±ßÔµµÄ±ß£¬Èç¹û int = 2 ÔòÖ¤Ã÷ÔòÊÇ¹«ÓÃµÄ£¨²»ÊÇ±ßÔµ£©
+        /// é€šè¿‡meshå»æ‰¾æ‰€æœ‰çš„è¾¹ï¼Œå­˜åˆ°ä¸€ä¸ªå­—å…¸é‡Œ
+        /// å¦‚æœ int = 1 åˆ™è¯æ˜æ˜¯è¾¹ç¼˜çš„è¾¹ï¼Œå¦‚æœ int = 2 åˆ™è¯æ˜åˆ™æ˜¯å…¬ç”¨çš„ï¼ˆä¸æ˜¯è¾¹ç¼˜ï¼‰
         /// </summary>
-        /// <returns>·µ»Ø´æEdge2DµÄ×Öµä</returns>
+        /// <returns>è¿”å›å­˜Edge2Dçš„å­—å…¸</returns>
         private static Dictionary<Edge2D, int> BuildEdgesFromMesh(MeshFilter filter)
 		{
 			var mesh = filter.sharedMesh;
@@ -181,10 +181,10 @@ namespace LCToolkit
 		}
 
         /// <summary>
-		/// Í¨¹ıSpriteRendererÈ¥ÕÒËùÓĞµÄ±ß£¬´æµ½Ò»¸ö×ÖµäÀï
-		/// Èç¹û int = 1 ÔòÖ¤Ã÷ÊÇ±ßÔµµÄ±ß£¬Èç¹û int = 2 ÔòÖ¤Ã÷ÔòÊÇ¹«ÓÃµÄ£¨²»ÊÇ±ßÔµ£©
+		/// é€šè¿‡SpriteRendererå»æ‰¾æ‰€æœ‰çš„è¾¹ï¼Œå­˜åˆ°ä¸€ä¸ªå­—å…¸é‡Œ
+		/// å¦‚æœ int = 1 åˆ™è¯æ˜æ˜¯è¾¹ç¼˜çš„è¾¹ï¼Œå¦‚æœ int = 2 åˆ™è¯æ˜åˆ™æ˜¯å…¬ç”¨çš„ï¼ˆä¸æ˜¯è¾¹ç¼˜ï¼‰
 		/// </summary>
-		/// <returns>·µ»Ø´æEdge2DµÄ×Öµä</returns>
+		/// <returns>è¿”å›å­˜Edge2Dçš„å­—å…¸</returns>
         private static Dictionary<Edge2D, int> BuildEdgesFromSprite(SpriteRenderer spriteRenderer)
         {
             if (spriteRenderer == null)
@@ -221,9 +221,9 @@ namespace LCToolkit
         }
 
         /// <summary>
-        /// ¹Ç÷À¶¯»­Ö±½ÓÊÇÕÒ×î´óµÄÇøÓò
+        /// éª¨éª¼åŠ¨ç”»ç›´æ¥æ˜¯æ‰¾æœ€å¤§çš„åŒºåŸŸ
         /// </summary>
-        /// <returns>·µ»Ø´æEdge2DµÄ×Öµä</returns>
+        /// <returns>è¿”å›å­˜Edge2Dçš„å­—å…¸</returns>
         private static Dictionary<Edge2D, int> BuildEdgesFromSkeletonAnim(MeshFilter filter)
         {
             var mesh = filter.sharedMesh;
@@ -255,7 +255,7 @@ namespace LCToolkit
                     maxYPos = checkVert.y;
             }
 
-            //ĞŞ¸´Æ«ÒÆ
+            //ä¿®å¤åç§»
             minYPos = 0;
 
             Edge2D[] faceEdges;
@@ -276,7 +276,7 @@ namespace LCToolkit
             return edges;
         }
 
-        #region ÓÅ»¯Åö×²ÏßÌõ
+        #region ä¼˜åŒ–ç¢°æ’çº¿æ¡
 
         private static List<Vector2[]> BuildColliderPaths(Dictionary<Edge2D, int> allEdges)
         {
@@ -350,10 +350,10 @@ namespace LCToolkit
         }
 
         /// <summary>
-        /// È¡µ½±ßÔµµÄ±ß£¨¼´×ÖµäÖĞint = 1µÄÖµ£©
+        /// å–åˆ°è¾¹ç¼˜çš„è¾¹ï¼ˆå³å­—å…¸ä¸­int = 1çš„å€¼ï¼‰
         /// </summary>
         /// <param name="allEdges"></param>
-        /// <returns>±ßÔµµÄ±ß</returns>
+        /// <returns>è¾¹ç¼˜çš„è¾¹</returns>
         private static List<Edge2D> GetOuterEdges(Dictionary<Edge2D, int> allEdges)
         {
             var outerEdges = new List<Edge2D>();
@@ -408,7 +408,7 @@ namespace LCToolkit
         #endregion
 
         /// <summary>
-        /// ¶Ô¶à±ßĞÎÅö×²ÌåÉèÖÃÂ·¾¶
+        /// å¯¹å¤šè¾¹å½¢ç¢°æ’ä½“è®¾ç½®è·¯å¾„
         /// </summary>
         /// <param name="paths"></param>
         private static void ApplyPathsToPolygonCollider(List<Vector2[]> paths, PolygonCollider2D polyCollider)

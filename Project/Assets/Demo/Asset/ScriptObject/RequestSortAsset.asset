@@ -25,12 +25,12 @@ MonoBehaviour:
     isCustom: 0
   - key: PushSkill
     name: PushSkill
-    sort: -3
+    sort: -4
     isCover: 0
     isCustom: 0
   - key: Wander
     name: "\u5F98\u5F8A"
-    sort: -1
+    sort: -2
     isCover: 0
     isCustom: 0
   - key: GazeSurround
@@ -45,17 +45,17 @@ MonoBehaviour:
     isCustom: 0
   - key: Collect
     name: Collect
-    sort: -1
+    sort: -2
     isCover: 0
     isCustom: 0
   - key: Storage
     name: Storage
-    sort: -1
+    sort: -3
     isCover: 0
     isCustom: 0
   - key: Produce
     name: Produce
-    sort: -2
+    sort: -3
     isCover: 0
     isCustom: 0
   - key: Rest
@@ -66,5 +66,20 @@ MonoBehaviour:
   - key: ActorSetActive
     name: ActorSetActive
     sort: 11
+    isCover: 0
+    isCustom: 0
+  - key: Sleep
+    name: Sleep
+    sort: 11
+    isCover: 0
+    isCustom: 0
+  - key: MoveToActor
+    name: MoveToActor
+    sort: -4
+    isCover: 0
+    isCustom: 0
+  - key: InputMove
+    name: InputMove
+    sort: -4
     isCover: 0
     isCustom: 0

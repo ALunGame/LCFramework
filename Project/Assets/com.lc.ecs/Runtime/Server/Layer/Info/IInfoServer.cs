@@ -1,4 +1,4 @@
-﻿using LCECS.Core;
+using LCECS.Core;
 using LCECS.Data;
 using LCECS.Layer.Info;
 

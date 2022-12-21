@@ -72,6 +72,109 @@ namespace LCNode.Model
         }
     }
 
+    #region Group
+
+    public class AddGroupCommand : ICommand
+    {
+        public BaseGraph graph;
+        public BaseGroup group;
+
+        public AddGroupCommand(BaseGraph graph, BaseGroup group)
+        {
+            this.graph = graph;
+            this.group = group;
+        }
+
+        public void Do()
+        {
+            graph.AddGroup(group);
+        }
+
+        public void Undo()
+        {
+            graph.RemoveGroup(group);
+        }
+    }
+
+    public class RemoveGroupCommand : ICommand
+    {
+        public BaseGraph graph;
+        public BaseGroup group;
+
+        public RemoveGroupCommand(BaseGraph graph, BaseGroup group)
+        {
+            this.graph = graph;
+            this.group = group;
+        }
+
+        public void Do()
+        {
+            graph.RemoveGroup(group);
+        }
+
+        public void Undo()
+        {
+            graph.AddGroup(group);
+        }
+    }
+
+    public class MoveGroupsCommand : ICommand
+    {
+        Dictionary<BaseGroup, Vector2> oldPos = new Dictionary<BaseGroup, Vector2>();
+        Dictionary<BaseGroup, Vector2> newPos = new Dictionary<BaseGroup, Vector2>();
+
+        public MoveGroupsCommand(Dictionary<BaseGroup, Vector2> groups)
+        {
+            this.newPos = groups;
+            foreach (var pair in groups)
+            {
+                oldPos[pair.Key] = pair.Key.Position;
+            }
+        }
+
+        public void Do()
+        {
+            foreach (var pair in newPos)
+            {
+                pair.Key.Position = pair.Value;
+            }
+        }
+
+        public void Undo()
+        {
+            foreach (var pair in oldPos)
+            {
+                pair.Key.Position = pair.Value;
+            }
+        }
+    }
+
+    public class RenameGroupCommand : ICommand
+    {
+        public BaseGroup group;
+        public string oldName;
+        public string newName;
+
+        public RenameGroupCommand(BaseGroup group, string newName)
+        {
+            this.group = group;
+            this.oldName = group.GroupName;
+            this.newName = newName;
+        }
+
+        public void Do()
+        {
+            group.GroupName = newName;
+        }
+
+        public void Undo()
+        {
+            group.GroupName = oldName;
+        }
+    }
+
+    #endregion
+
     public class AddPortCommand : ICommand
     {
         BaseNode node;
@@ -454,4 +557,6 @@ namespace LCNode.Model
             OnUndoFunc?.Invoke(oldValue);
         }
     }
+    
+    
 }

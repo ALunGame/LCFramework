@@ -28,76 +28,111 @@ namespace Demo.Behavior
         protected override void OnEnter(NodeData wData)
         {
             EntityWorkData workData = wData as EntityWorkData;
-
+            
             //参数
-            Vector2 inputMove = workData.GetParam().GetVect2();
-
+            Vector2 inputMove = workData.GetParam<RequestInputMove>().inputMove;
+            
             //组件
-            PlayerMoveCom moveCom       = workData.MEntity.GetCom<PlayerMoveCom>();
-            TransCom transCom       = workData.MEntity.GetCom<TransCom>();    
+            TransCom transCom = workData.MEntity.GetCom<TransCom>();
+            PlayerCom playerCom = workData.MEntity.GetCom<PlayerCom>();
+            MoveCom moveCom = workData.MEntity.GetCom<MoveCom>();
+            BasePropertyCom propertyCom = workData.MEntity.GetCom<BasePropertyCom>();
             Collider2DCom collider2DCom = workData.MEntity.GetCom<Collider2DCom>();
-            BasePropertyCom propertyCom     = workData.MEntity.GetCom<BasePropertyCom>();
-            PlayerPropertyCom playerPropertyCom     = workData.MEntity.GetCom<PlayerPropertyCom>();
-
-            //跳跃阶段重置
-            ResetJumpStep(moveCom, collider2DCom);
-
-            if (CheckMoveTypeInCD(moveCom))
+            
+            //重置跳跃记录
+            if (collider2DCom.Collider.Down)
             {
-                moveCom.HasNoReqMove = true;
-                return;
+                playerCom.JumpStep.Curr = 0;
             }
-            else
+            
+            //X
+            moveCom.Move(propertyCom.MoveSpeed.Curr * inputMove.x);
+            
+            //Y
+            if (inputMove.y > 0)
             {
-                moveCom.HasNoReqMove = false;
-            }
-
-            MoveType moveType = CalcMoveType(collider2DCom, moveCom, inputMove);
-            switch (moveType)
-            {
-                case MoveType.None:
-                    moveCom.ReqMoveSpeed = 0;
-                    moveCom.ReqJumpSpeed = 0;
-                    break;
-                case MoveType.Run:
-                    moveCom.ReqMoveSpeed = propertyCom.MoveSpeed.Curr * inputMove.x;
-                    moveCom.ReqJumpSpeed = 0;
-                    break;
-                case MoveType.Jump:
-                    moveCom.JumpStep ++;
-                    moveCom.ReqMoveSpeed = 0;
-                    moveCom.ReqJumpSpeed = playerPropertyCom.JumpSpeed.Curr * inputMove.y;
-                    break;
-                case MoveType.Climb:
-                    inputMove.x = inputMove.x < 0 ? -inputMove.x : inputMove.x;
-                    moveCom.ReqMoveSpeed = 0;
-                    moveCom.ReqJumpSpeed = playerPropertyCom.ClimbSpeed.Curr * inputMove.x;
-                    break;
-                case MoveType.ClimbJump:
-                    int moveValue = inputMove.x < 0 ? -1 : 1;
-                    moveCom.ReqMoveSpeed = propertyCom.MoveSpeed.Curr * moveValue;
-                    moveCom.ReqJumpSpeed = playerPropertyCom.ClimbSpeed.Curr;
-                    break;
-                case MoveType.GrabWall:
-                    moveCom.ReqMoveSpeed = 0;
-                    moveCom.ReqJumpSpeed = 0;
-                    break;
-                default:
-                    break;
-            }
-
-            ClampMoveSpeed(moveCom, collider2DCom);
-            HandleMoveTypeCD(moveType, moveCom);
-            HandleMoveDir(moveCom, transCom);
-
-            //记录状态
-            moveCom.CurrMoveType = moveType;
-            if (inputMove.y!=0)
-            {
-                Debug.LogWarningFormat("BEV_ACT_Move>>>>>{0}--ReqMoveSpeed：{1}--ReqJumpSpeed：{2}", moveType.ToString(), moveCom.ReqMoveSpeed, moveCom.ReqJumpSpeed);
+                playerCom.JumpStep.Curr++;
+                if (!playerCom.JumpStep.CheckOutTotal())
+                {
+                    moveCom.Jump(500);
+                }
             }
         }
 
+        //protected override void OnEnter(NodeData wData)
+        //{
+        //    EntityWorkData workData = wData as EntityWorkData;
+
+        //    //参数
+        //    Vector2 inputMove = workData.GetParam().GetVect2();
+
+        //    //组件
+        //    PlayerMoveCom moveCom       = workData.MEntity.GetCom<PlayerMoveCom>();
+        //    TransCom transCom       = workData.MEntity.GetCom<TransCom>();    
+        //    Collider2DCom collider2DCom = workData.MEntity.GetCom<Collider2DCom>();
+        //    BasePropertyCom propertyCom     = workData.MEntity.GetCom<BasePropertyCom>();
+        //    PlayerPropertyCom playerPropertyCom     = workData.MEntity.GetCom<PlayerPropertyCom>();
+
+        //    //跳跃阶段重置
+        //    ResetJumpStep(moveCom, collider2DCom);
+
+        //    if (CheckMoveTypeInCD(moveCom))
+        //    {
+        //        moveCom.HasNoReqMove = true;
+        //        return;
+        //    }
+        //    else
+        //    {
+        //        moveCom.HasNoReqMove = false;
+        //    }
+
+        //    MoveType moveType = CalcMoveType(collider2DCom, moveCom, inputMove);
+        //    switch (moveType)
+        //    {
+        //        case MoveType.None:
+        //            moveCom.ReqMoveSpeed = 0;
+        //            moveCom.ReqJumpSpeed = 0;
+        //            break;
+        //        case MoveType.Run:
+        //            moveCom.ReqMoveSpeed = propertyCom.MoveSpeed.Curr * inputMove.x;
+        //            moveCom.ReqJumpSpeed = 0;
+        //            break;
+        //        case MoveType.Jump:
+        //            moveCom.JumpStep ++;
+        //            moveCom.ReqMoveSpeed = 0;
+        //            moveCom.ReqJumpSpeed = playerPropertyCom.JumpSpeed.Curr * inputMove.y;
+        //            break;
+        //        case MoveType.Climb:
+        //            inputMove.x = inputMove.x < 0 ? -inputMove.x : inputMove.x;
+        //            moveCom.ReqMoveSpeed = 0;
+        //            moveCom.ReqJumpSpeed = playerPropertyCom.ClimbSpeed.Curr * inputMove.x;
+        //            break;
+        //        case MoveType.ClimbJump:
+        //            int moveValue = inputMove.x < 0 ? -1 : 1;
+        //            moveCom.ReqMoveSpeed = propertyCom.MoveSpeed.Curr * moveValue;
+        //            moveCom.ReqJumpSpeed = playerPropertyCom.ClimbSpeed.Curr;
+        //            break;
+        //        case MoveType.GrabWall:
+        //            moveCom.ReqMoveSpeed = 0;
+        //            moveCom.ReqJumpSpeed = 0;
+        //            break;
+        //        default:
+        //            break;
+        //    }
+
+        //    ClampMoveSpeed(moveCom, collider2DCom);
+        //    HandleMoveTypeCD(moveType, moveCom);
+        //    HandleMoveDir(moveCom, transCom);
+
+        //    //记录状态
+        //    moveCom.CurrMoveType = moveType;
+        //    if (inputMove.y!=0)
+        //    {
+        //        Debug.LogWarningFormat("BEV_ACT_Move>>>>>{0}--ReqMoveSpeed：{1}--ReqJumpSpeed：{2}", moveType.ToString(), moveCom.ReqMoveSpeed, moveCom.ReqJumpSpeed);
+        //    }
+        //}
+
+        #region Old
         //重置跳跃阶段
         private void ResetJumpStep(PlayerMoveCom moveCom, Collider2DCom collider2DCom)
         {
@@ -221,7 +256,7 @@ namespace Demo.Behavior
             return false;
         }
 
-        private bool CheckCanJump(PlayerMoveCom moveCom,Vector2 inputMove)
+        private bool CheckCanJump(PlayerMoveCom moveCom, Vector2 inputMove)
         {
             if (inputMove.y == 0)
                 return false;
@@ -287,10 +322,11 @@ namespace Demo.Behavior
         {
             if (moveCom.ReqMoveSpeed == 0)
                 return;
-            DirType dirType = moveCom.ReqMoveSpeed >0 ? DirType.Right: DirType.Left;
+            DirType dirType = moveCom.ReqMoveSpeed > 0 ? DirType.Right : DirType.Left;
             transCom.Roate(dirType);
         }
 
+        #endregion 
         #endregion
     }
 }

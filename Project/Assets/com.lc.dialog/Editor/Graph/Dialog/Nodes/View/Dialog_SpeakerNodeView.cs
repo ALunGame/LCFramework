@@ -15,7 +15,7 @@
 
 //        public Dialog_SpeakerNodeView()
 //        {
-//            actorCnfs = ConfigSetting.GetConfigAssets<ActorCnf>();
+//            actorCnfs = ExcelReadCtrl.GetConfig<ActorCnf>();
 //        }
 
 //        protected override void OnInitialized()

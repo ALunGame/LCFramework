@@ -1,24 +1,13 @@
-﻿using LCJson;
-using LCLoad;
-using System.Collections;
-using System.Collections.Generic;
-using Demo.Config;
+﻿using System.Collections.Generic;
 using System;
-using LCToolkit;
 
-
-namespace LCConfig
+namespace Demo.Config
 {
-    /// <summary>
-    /// ItemCnf配置
-    /// </summary>
-    public class TBItemCnf : Dictionary<Int32, ItemCnf>
+    
+    public class TbItemCnf : Dictionary<int, ItemCnf>
     {
-        /// <summary>
-        /// 添加ItemCnf
-        /// </summary>
-		/// <param name="key1">物品Id</param>
-        public void AddConfig(Int32 key1, ItemCnf config)
+        
+        public void AddConfig(int key1, ItemCnf config)
         {
             
             if (!this.ContainsKey(key1))
@@ -27,9 +16,6 @@ namespace LCConfig
             }
         }
 
-        /// <summary>
-        /// 添加ItemCnf
-        /// </summary>
         public void AddConfig(List<ItemCnf> configs)
         {
             foreach (var item in configs)
@@ -40,5 +26,6 @@ namespace LCConfig
         }
 
     }
+
 }
 

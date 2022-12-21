@@ -3,6 +3,7 @@ using LCNode.View.Utils;
 using LCToolkit;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine.UIElements;
 
@@ -14,6 +15,13 @@ namespace LCNode.View
 
         public override void BuildContextualMenu(ContextualMenuPopulateEvent evt)
         {
+            evt.menu.AppendAction("Create Group", delegate
+            {
+                var group = new BaseGroup() { groupName = "New Group" };
+                group.nodes.AddRange(selection.Where(select => select is BaseNodeView).Select(select => (select as BaseNodeView).Model.guid));
+                CommandDispacter.Do(new AddGroupCommand(Model, group));
+            }, (DropdownMenuAction a) => selection.Find(s => s is BaseNodeView) != null ? DropdownMenuAction.Status.Normal : DropdownMenuAction.Status.Hidden);
+            
             base.BuildContextualMenu(evt);
 
             evt.menu.MenuItems().RemoveAll(item =>
@@ -97,6 +105,11 @@ namespace LCNode.View
         protected virtual Type GetNodeViewType(BaseNode node)
         {
             return GraphProcessorEditorUtility.GetNodeViewType(node.GetType());
+        }
+        
+        protected virtual Type GetGroupViewType(BaseGroup group)
+        {
+            return GraphProcessorEditorUtility.GetGroupViewType(group.GetType());
         }
 
         protected virtual Type GetConnectionViewType(BaseConnection connection)
@@ -223,7 +236,7 @@ namespace LCNode.View
             //是子类
             if (fromType.IsSubclassOf(toType))
             {
-                return false;
+                return true;
             }
 
             //是否可以强转

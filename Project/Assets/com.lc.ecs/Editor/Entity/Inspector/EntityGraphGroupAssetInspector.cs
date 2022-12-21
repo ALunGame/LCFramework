@@ -58,15 +58,12 @@ namespace LCECS.EntityGraph
 
         public void DrawTemplateGraph(EntityGraphGroupAsset groupAsset)
         {
-            if (groupAsset.entity_template == null)
+            EntityGraphAsset tmpGraph = groupAsset.GetTemplateGraph();
+            if (tmpGraph == null)
             {
                 if (GUILayout.Button("创建实体模板", GUILayout.Height(50)))
                 {
-                    groupAsset.entity_template = CreateInstance<EntityGraphAsset>();
-                    EditorUtility.SetDirty(groupAsset.entity_template);
-                    EditorUtility.SetDirty(groupAsset);
-                    AssetDatabase.SaveAssets();
-                    AssetDatabase.Refresh();
+                    groupAsset.CreateTemplateGraph();
                 }
             }
             else
@@ -75,15 +72,11 @@ namespace LCECS.EntityGraph
                     EditorGUILayout.LabelField("实体模板", GUILayout.Width(150));
 
                     if (GUILayout.Button("打开", GUILayout.Width(50)))
-                        BaseGraphWindow.Open(groupAsset.entity_template);
+                        BaseGraphWindow.Open(tmpGraph);
 
                     if (GUILayout.Button("删除", GUILayout.Width(50)))
                     {
-                        DestroyImmediate(groupAsset.entity_template, true);
-                        groupAsset.entity_template = null;
-                        EditorUtility.SetDirty(groupAsset);
-                        AssetDatabase.SaveAssets();
-                        AssetDatabase.Refresh();
+                        groupAsset.RemoveGraph(tmpGraph);
                     }
                 });
             }
@@ -91,8 +84,13 @@ namespace LCECS.EntityGraph
 
         public void DrawGraph(EntityGraphGroupAsset groupAsset, InternalBaseGraphAsset graphAsset)
         {
+            if (graphAsset.name == "实体模板")
+            {
+                return;
+            }
             GUILayoutExtension.HorizontalGroup(() => {
-                EditorGUILayout.LabelField(graphAsset.name, GUILayout.Width(150));
+                EntityGraphAsset entityGraph = graphAsset as EntityGraphAsset;
+                EditorGUILayout.LabelField($"{entityGraph.entityId} - {entityGraph.entityName}", GUILayout.Width(150));
 
                 if (GUILayout.Button("打开", GUILayout.Width(50)))
                     BaseGraphWindow.Open(graphAsset);

@@ -33,7 +33,7 @@ namespace LCECS
 		GazeSurround,
 
         /// <summary>
-        /// StopBev
+        /// 停止行为
         /// </summary>
 		StopBev,
 
@@ -45,22 +45,38 @@ namespace LCECS
         /// <summary>
         /// Storage
         /// </summary>
-        Storage,
+		Storage,
 
         /// <summary>
         /// Produce
         /// </summary>
-        Produce,
+		Produce,
 
         /// <summary>
         /// Rest
         /// </summary>
-        Rest,
+		Rest,
+
+        /// <summary>
+        /// ActorSetActive
+        /// </summary>
+		ActorSetActive,
 
         /// <summary>
         /// Sleep
         /// </summary>
-        Sleep,
+		Sleep,
+
+        /// <summary>
+        /// MoveToActor
+        /// </summary>
+		MoveToActor,
+
+        /// <summary>
+        /// InputMove
+        /// </summary>
+		InputMove,
+
     }
 }
 

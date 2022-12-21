@@ -23,29 +23,29 @@ namespace Demo.Behavior
             WorkerCom workerCom = workData.MEntity.GetCom<WorkerCom>();
             WayPointMoveCom wayPointMoveCom = workData.MEntity.GetCom<WayPointMoveCom>();
 
-            if (workerCom.managerActor == null)
-            {
-                wayPointMoveCom.currRoadCnf = null;
-                return;
-            }
+            //if (workerCom.managerActor == null)
+            //{
+            //    wayPointMoveCom.currRoadCnf = null;
+            //    return;
+            //}
 
-            Actor buildingActor = workerCom.managerActor.GetCom<ManagerCom>().buildingActor;
-            Actor actor         = LCMap.MapLocate.Map.GetActor(wData.Uid);
-            ActorCnf actorCnf      = LCConfig.Config.ActorCnf[actor.Id];
+            //Actor buildingActor = workerCom.managerActor.GetCom<ManagerCom>().buildingActor;
+            //Actor actor         = LCMap.MapLocate.Map.GetActor(wData.Uid);
+            //ActorCnf actorCnf      = LCConfig.Config.ActorCnf[actor.Id];
 
-            TransCom targetTransformCom = buildingActor.GetCom<TransCom>();
-            TransCom transformCom = workData.MEntity.GetCom<TransCom>();
-            if (Vector2.Distance(targetTransformCom.Pos, transformCom.Pos) <= actorCnf.interactiveRange)
-            {
-                wayPointMoveCom.currRoadCnf = null;
-                return;
-            }
+            //TransCom targetTransformCom = buildingActor.GetCom<TransCom>();
+            //TransCom transformCom = workData.MEntity.GetCom<TransCom>();
+            //if (Vector2.Distance(targetTransformCom.Pos, transformCom.Pos) <= actorCnf.interactiveRange)
+            //{
+            //    wayPointMoveCom.currRoadCnf = null;
+            //    return;
+            //}
 
-            if (WayPointMoveSystem.RoadCnf.CalcRoadPos(buildingActor.Pos, out var endPos))
-            {
-                wData.AddBlackboardValue(BEV_BlackboardKey.InteractiveActorUid, buildingActor.Uid);
-                wayPointMoveCom.SetWayPointTarget(endPos);
-            }
+            //if (WayPointMoveSystem.RoadCnf.CalcRoadPos(buildingActor.Pos, out var endPos))
+            //{
+            //    wData.AddBlackboardValue(BEV_BlackboardKey.InteractiveActorUid, buildingActor.Uid);
+            //    wayPointMoveCom.SetWayPointTarget(endPos);
+            //}
         }
 
         protected override int OnRunning(NodeData wData)

@@ -1,1 +1,7 @@
-﻿[{"mType":"Demo.Com.BuildingCom","buildingType":0,"isActive":true},{"mType":"LCECS.Core.TransCom","<InitPos>k__BackingField":{"mType":"UnityEngine.Vector3","x":0.0,"y":0.0,"z":0.0},"<InitRoate>k__BackingField":{"mType":"UnityEngine.Vector3","x":0.0,"y":0.0,"z":0.0},"<InitScale>k__BackingField":{"mType":"UnityEngine.Vector3","x":0.0,"y":0.0,"z":0.0},"<Pos>k__BackingField":{"mType":"UnityEngine.Vector3","x":0.0,"y":0.0,"z":0.0},"<Roate>k__BackingField":{"mType":"UnityEngine.Vector3","x":0.0,"y":0.0,"z":0.0},"<Scale>k__BackingField":{"mType":"UnityEngine.Vector3","x":0.0,"y":0.0,"z":0.0},"isActive":true},{"mType":"Demo.BagCom","itemlist":[{"mType":"Demo.BagItem","id":401,"cnt":10,"maxCnt":-1}],"isActive":true}]
+﻿
+[
+    {
+        "mType" : "Demo.Com.BasePropertyCom",
+        "isActive" : true
+    }
+]

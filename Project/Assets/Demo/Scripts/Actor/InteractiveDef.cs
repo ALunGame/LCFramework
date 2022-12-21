@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using UnityEngine;
 
 namespace Demo
@@ -9,6 +9,7 @@ namespace Demo
 
     public enum InteractiveType
     {
+        GiveItem,
         Collect,
         Produce,
         Repair,

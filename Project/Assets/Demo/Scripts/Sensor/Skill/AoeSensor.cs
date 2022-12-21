@@ -36,7 +36,7 @@ namespace Demo
 
             Shape checkShape    = aoeObj.CalcArea();
 
-            //ÏÈ¼ì²âÍæ¼Ò
+            //å…ˆæ£€æµ‹çŽ©å®¶
             Entity playerEntity = LCECS.ECSLocate.Player.GetPlayerEntity();
             CampCom playerCampCom = playerEntity.GetCom<CampCom>();
             if (playerEntity != null && playerEntity.Uid != uid && playerCampCom.Camp != selfCampCom.Camp)
@@ -49,7 +49,7 @@ namespace Demo
             }
 
 
-            //µÐ¶ÔÑÝÔ±
+            //æ•Œå¯¹æ¼”å‘˜
             foreach (var item in mapArea.Actors)
             {
                 if (item.Key == aoeObj.ower.EntityUid)

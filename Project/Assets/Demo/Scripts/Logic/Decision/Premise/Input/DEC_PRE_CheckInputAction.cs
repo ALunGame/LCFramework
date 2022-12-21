@@ -1,4 +1,4 @@
-﻿using Demo.Com;
+using Demo.Com;
 using LCECS;
 using LCECS.Core.Tree.Base;
 using System;
@@ -7,6 +7,7 @@ namespace Demo.Decision
 {
     public class DEC_PRE_CheckInputAction : NodePremise
     {
+        [NonSerialized]
         public InputAction checkAction;
         [NonSerialized]
         private InputCom inputCom = null;

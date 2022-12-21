@@ -1,4 +1,4 @@
-﻿using LCNode.Model;
+using LCNode.Model;
 using LCNode.View;
 using LCTask.TaskGraph;
 using LCToolkit;

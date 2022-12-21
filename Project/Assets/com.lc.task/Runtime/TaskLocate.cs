@@ -7,28 +7,20 @@ namespace LCTask
     public static class TaskLocate
     {
         public static TaskLogServer Log = new TaskLogServer();
-        public static TaskConfigServer Config = new TaskConfigServer();
+        public static TaskConfigServer Config;
         public static TaskServer Task;
-
-        private static TaskGameData gameData;
-        public static TaskGameData GameData 
-        { 
-            get 
-            { 
-                if (gameData == null)
-                    gameData = LCToolkit.ToolkitLocate.GameData.GetGameData<TaskGameData>();
-                return gameData; 
-            } 
-        }
 
         public static void Init()
         {
+            Config = new TaskConfigServer();
+            Config.Init();
+            
             Task = new TaskServer();
+            Task.Init();
         }
 
         public static void Clear()
         {
-            gameData = null;
         }
     } 
 }

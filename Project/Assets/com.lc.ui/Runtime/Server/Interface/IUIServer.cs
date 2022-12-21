@@ -1,4 +1,4 @@
-﻿namespace LCUI
+namespace LCUI
 {
     public interface IUIServer
     {

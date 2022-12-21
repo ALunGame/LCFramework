@@ -27,13 +27,13 @@ MonoBehaviour:
     searchPath: Assets/Editor/Skill
   - typeName: BehaviorGroupAsset
     typeFullName: LCECS.Tree.BehaviorGroupAsset
-    searchPath: Assets/Editor/ECS
+    searchPath: Assets/Editor/ECS/Behavior
   - typeName: DecisionGroupAsset
     typeFullName: LCECS.Tree.DecisionGroupAsset
-    searchPath: Assets/Editor/ECS
+    searchPath: Assets/Editor/ECS/Decision
   - typeName: EntityGraphGroupAsset
     typeFullName: LCECS.EntityGraph.EntityGraphGroupAsset
-    searchPath: Assets/Editor/ECS
+    searchPath: Assets/Editor/ECS/Entity
   - typeName: DialogGraphGroupAsset
     typeFullName: LCDialog.DialogGraph.DialogGraphGroupAsset
     searchPath: Assets/Editor/Dialog

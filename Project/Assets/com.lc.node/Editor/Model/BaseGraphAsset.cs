@@ -1,4 +1,4 @@
-﻿using LCNode.Model.Internal;
+using LCNode.Model.Internal;
 using System;
 using UnityEngine;
 using UnityEditor;

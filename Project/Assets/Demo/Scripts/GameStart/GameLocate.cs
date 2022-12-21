@@ -9,21 +9,22 @@ namespace Demo
     {
         public static GameLogServer Log = new GameLogServer();
 
+        public static FuncModuleCtrl FuncModule = new FuncModuleCtrl();
+
+
         public static GameCenter Center { get; private set; }
 
         public static ShapeRenderCom ShapeRender { get; private set; }
 
         private static InputCom _InputCom = null;
 
-        public static WorkServer WorkServer { get; private set; }
-
         public static TimerServer TimerServer { get; private set; }
 
         public static void Init(GameCenter center)
         {
             Center = center;
-            WorkServer = new WorkServer();
             TimerServer = new TimerServer();
+            FuncModule.Init();
         }
 
         public static void Clear()
@@ -31,6 +32,7 @@ namespace Demo
             Center      = null;
             ShapeRender = null;
             _InputCom   = null;
+            FuncModule.Clear(); 
         }
 
         public static void SetShapeRenderCom(ShapeRenderCom shapeRenderCom)
@@ -38,7 +40,7 @@ namespace Demo
             ShapeRender = shapeRenderCom;
         }
 
-        public static void PushInputAction(InputAction action,ParamData param)
+        public static void PushInputAction(InputAction action,RequestData param)
         {
             if (_InputCom == null)
                 _InputCom = ECSLocate.ECS.GetWorld().GetCom<InputCom>();

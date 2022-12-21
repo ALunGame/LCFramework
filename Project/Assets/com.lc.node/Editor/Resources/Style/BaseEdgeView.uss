@@ -7,8 +7,7 @@
     --edge-width: 7;
 }
 
-.edge:selected {
-    --edge-color: #00FFDE;
+.edge:checked {
     --edge-width: 5;
 }
 

@@ -1,4 +1,4 @@
-﻿using Demo.Com;
+using Demo.Com;
 using LCECS.Core.Tree;
 using LCECS.Core.Tree.Base;
 using LCECS.Core.Tree.Nodes.Action;
@@ -11,16 +11,16 @@ namespace Demo.Behavior
     {
         protected override void OnEnter(NodeData wData)
         {
-            EntityWorkData workData = wData as EntityWorkData;
-            //参数
-            ParamData paramData = workData.GetParam();
-            string gazeUid = paramData.GetString();
-            Vector2 gazeRange = paramData.GetVect2();
-            //组件
-            GazeSurroundCom gazeSurroundCom = workData.MEntity.GetCom<GazeSurroundCom>();
-            gazeSurroundCom.gazeUid = gazeUid;
-            gazeSurroundCom.gazeRange = gazeRange;
-            gazeSurroundCom.Enable();
+            // EntityWorkData workData = wData as EntityWorkData;
+            // //参数
+            // ParamData paramData = workData.GetParam();
+            // string gazeUid = paramData.GetString();
+            // Vector2 gazeRange = paramData.GetVect2();
+            // //组件
+            // GazeSurroundCom gazeSurroundCom = workData.MEntity.GetCom<GazeSurroundCom>();
+            // gazeSurroundCom.gazeUid = gazeUid;
+            // gazeSurroundCom.gazeRange = gazeRange;
+            // gazeSurroundCom.Enable();
         }
 
         protected override int OnRunning(NodeData wData)

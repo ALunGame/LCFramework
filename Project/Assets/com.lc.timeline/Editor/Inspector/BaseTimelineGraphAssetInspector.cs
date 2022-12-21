@@ -1,4 +1,4 @@
-﻿using LCNode.Model;
+using LCNode.Model;
 using LCNode.Model.Internal;
 using LCNode.View;
 using UnityEditor;

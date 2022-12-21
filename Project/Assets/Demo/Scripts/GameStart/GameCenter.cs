@@ -7,6 +7,7 @@ using UnityEngine;
 using LCMap;
 using LCDialog;
 using LCECS.Core;
+using LCTask;
 
 namespace Demo
 {
@@ -79,13 +80,16 @@ namespace Demo
 
         private void Start()
         {
-            MapLocate.Map.Enter(testMapId);
-            _DecCenter.Start_ThreadUpdate();
+            MapLocate.Map.Enter(testMapId, () =>
+            {
+                _DecCenter.Start_ThreadUpdate();
 
-            GameLocate.WorkServer.AfterMapInit();
-            GameLocate.TimerServer.Init();
-            //string uid = DialogLocate.Dialog.CreateDialog(new AddDialogInfo(DialogType.Bubble, 1001, 1));
-            //DialogLocate.Dialog.Play(uid);
+                //GameLocate.WorkServer.AfterMapInit();
+                GameLocate.TimerServer.Init();
+                //string uid = DialogLocate.Dialog.CreateDialog(new AddDialogInfo(DialogType.Bubble, 1001, 1));
+                //DialogLocate.Dialog.Play(uid);
+
+            });
         }
 
         private void Update()
@@ -121,6 +125,7 @@ namespace Demo
         {
             SkillLocate.SetSkillServer(new SkillServer());
             SkillLocate.SetDamageServer(new DamageServer());
+            TaskLocate.Init();
         }
 
         /// <summary>
@@ -128,14 +133,16 @@ namespace Demo
         /// </summary>
         public void InitECS()
         {
-            _DecCenter.Init();
             _EcsCenter.Init(requestSortAsset, systemSortAsset);
 
             //创建世界实体
-            Entity worldEntity = ECSLocate.ECS.CreateEntity("world_999", -999);
+            Entity worldEntity = ECSLocate.ECS.CreateEntity("world_0", 0);
             if (worldEntity.GetCom(out BindGoCom bindGoCom))
                 bindGoCom.SetBindGo(new GameObject("<------------EntityWorld---------->"));
+            worldEntity.Enable();
             ECSLocate.ECS.SetWorld(worldEntity);
+
+            _DecCenter.Init();
         }
 
         /// <summary>
@@ -168,6 +175,7 @@ namespace Demo
 
         #region 按钮事件
 
+        private RequestInputMove intputMoveParam = new RequestInputMove();
         private void Execute_KeyEvent()
         {
             if (LeftKey.CheckEvent() || RightKey.CheckEvent())
@@ -175,8 +183,8 @@ namespace Demo
 
             if (Input.GetMouseButtonDown(0))
             {
-                paramData.SetString("100101");
-                GameLocate.PushInputAction(Com.InputAction.Skill, paramData);
+                // paramData.SetString("100101");
+                // GameLocate.PushInputAction(Com.InputAction.Skill, paramData);
             }
             else
             {
@@ -188,8 +196,8 @@ namespace Demo
                     move.y = 1;
                 }
 
-                paramData.SetVect2(move);
-                GameLocate.PushInputAction(Com.InputAction.Move, paramData);
+                intputMoveParam.inputMove = move;
+                GameLocate.PushInputAction(Com.InputAction.Move, intputMoveParam);
             }
 
 

@@ -3,21 +3,22 @@ using LCECS.Layer.Behavior;
 using LCJson;
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace LCECS.Server.Layer
 {
     public class BehaviorServer : IBehaviorServer
     {
-        private Dictionary<RequestId, BehaviorTree> BevDict = new Dictionary<RequestId, BehaviorTree>();
+        private Dictionary<RequestId, List<BehaviorTree>> BevDict = new Dictionary<RequestId, List<BehaviorTree>>();
         
         public void Init()
         {
             foreach (var item in Enum.GetValues(typeof(RequestId)))
             {
-                BehaviorTree tree = LoadBehavior((RequestId)item);
-                if (tree != null)
+                List<BehaviorTree> trees = LoadBehavior((RequestId)item);
+                if (trees != null)
                 {
-                    BevDict.Add((RequestId)item, tree);
+                    BevDict.Add((RequestId)item, trees);
                 }
             }
         }
@@ -25,19 +26,28 @@ namespace LCECS.Server.Layer
         public void ReqBev(EntityWorkData workData, RequestId clearReqId)
         {
             //删除
-            if (BevDict.TryGetValue(clearReqId, out BehaviorTree lastBehavior))
-                lastBehavior.RemoveWorkData(workData);
+            if (BevDict.TryGetValue(clearReqId, out List<BehaviorTree> lastBehaviors))
+            {
+                foreach (var bev in lastBehaviors)
+                {
+                    bev.RemoveWorkData(workData);
+                }
+            }
+            
             //执行
-            BehaviorTree currBehavior = GetBehavior(workData.CurrReqId);
+            BehaviorTree currBehavior = GetBehavior(workData.CurrReqId,workData);
             if (currBehavior != null)
                 currBehavior.AddWorkData(workData);
         }
 
         public void Execute()
         {
-            foreach (BehaviorTree item in BevDict.Values)
+            foreach (List<BehaviorTree> items in BevDict.Values)
             {
-                item.Execute();
+                foreach (var tree in items)
+                {
+                    tree.Execute();
+                }
             }
         }
 
@@ -45,26 +55,43 @@ namespace LCECS.Server.Layer
         /// 获得行为树
         /// </summary>
         /// <returns></returns>
-        private BehaviorTree GetBehavior(RequestId reqId)
+        private BehaviorTree GetBehavior(RequestId reqId,EntityWorkData workData)
         {
             if (!BevDict.ContainsKey(reqId))
             {
                 return null;
             }
-            return BevDict[reqId];
+            
+            List<BehaviorTree> items = BevDict[reqId];
+            for (int i = 0; i < items.Count; i++)
+            {
+                if (items[i].Evaluate(workData))
+                {
+                    return items[i];
+                }   
+            }
+            return null;
         }
 
         /// <summary>
         /// 加载行为树
         /// </summary>
         /// <returns></returns>
-        private BehaviorTree LoadBehavior(RequestId treeId)
+        private List<BehaviorTree> LoadBehavior(RequestId treeId)
         {
             string jsonStr = LCLoad.LoadHelper.LoadString(ECSDefPath.GetBevTreeCnfName(treeId));
-            BehaviorTree behavior = JsonMapper.ToObject<BehaviorTree>(jsonStr);
-            if (behavior == null)
+            try
+            {
+                List<BehaviorTree> behaviors = JsonMapper.ToObject<List<BehaviorTree>>(jsonStr);
+                if (behaviors == null)
+                    return null;
+                return behaviors;
+            }
+            catch (Exception e)
+            {
+                ECSLocate.Log.LogError("行为树序列化失败",treeId);
                 return null;
-            return behavior;
+            }
         }
     }
 }

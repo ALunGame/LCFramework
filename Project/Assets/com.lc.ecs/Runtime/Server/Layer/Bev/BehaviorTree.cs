@@ -67,6 +67,22 @@ namespace LCECS.Layer.Behavior
         }
 
         /// <summary>
+        /// 判断实体是否可以进入该行为树
+        /// </summary>
+        /// <param name="workData"></param>
+        /// <returns></returns>
+        public bool Evaluate(EntityWorkData workData)
+        {
+            NodePremise nodePremise = tree.nodePremise;
+            if (nodePremise == null)
+            {
+                return true;
+            }
+
+            return nodePremise.IsTrue(workData);
+        }
+
+        /// <summary>
         /// 执行行为
         /// </summary>
         public void Execute()

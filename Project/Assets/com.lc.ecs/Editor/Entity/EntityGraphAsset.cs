@@ -7,5 +7,8 @@ namespace LCECS.EntityGraph
     {
         [Header("实体Id")]
         public int entityId;
+
+        [Header("实体名")]
+        public string entityName;
     }
 }

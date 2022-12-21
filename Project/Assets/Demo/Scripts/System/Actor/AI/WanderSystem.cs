@@ -11,7 +11,7 @@ namespace Demo.System
     /// </summary>
     public class WanderSystem : BaseSystem
     {
-        protected override List<Type> RegListenComs()
+        protected override List<Type> RegContainListenComs()
         {
             return new List<Type>() { typeof(WanderCom), typeof(TransCom), typeof(Collider2DCom), typeof(BasePropertyCom),  };
         }

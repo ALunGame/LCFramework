@@ -1,1 +1,22 @@
-﻿{"mType":"LCECS.Layer.Behavior.BehaviorTree","reqId":4,"tree":{"mType":"LCECS.Core.Tree.Nodes.NodeRoot","Uid":"9156d442-3f5c-42b0-8777-b288a3c99b53","childNodes":[{"mType":"Demo.Behavior.BEV_ACT_GazeSurround","Uid":"ede67e78-a470-4c7e-b223-27d305bf7336","childNodes":null,"nodePremise":null}],"nodePremise":null},"HandleList":[]}
+﻿
+[
+    {
+        "mType" : "LCECS.Layer.Behavior.BehaviorTree",
+        "reqId" : 4,
+        "tree"  : {
+            "mType" : "LCECS.Core.Tree.Nodes.NodeRoot",
+            "Uid"   : "9156d442-3f5c-42b0-8777-b288a3c99b53",
+            "childNodes" : [
+                {
+                    "mType" : "Demo.Behavior.BEV_ACT_GazeSurround",
+                    "Uid"   : "ede67e78-a470-4c7e-b223-27d305bf7336",
+                    "childNodes" : null,
+                    "nodePremise" : null
+                }
+            ],
+            "nodePremise" : null
+        },
+        "HandleList" : [
+        ]
+    }
+]

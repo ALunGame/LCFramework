@@ -4,75 +4,75 @@ using UnityEngine;
 namespace LCSkill
 {
     /// <summary>
-    /// ¼¼ÄÜÌø×ª
+    /// æŠ€èƒ½è·³è½¬
     /// </summary>
     public class TimelineGoTo
     {
         ///<summary>
-        ///×ÔÉí´¦ÓÚÊ±¼äµã
+        ///è‡ªèº«å¤„äºæ—¶é—´ç‚¹
         ///</summary>
         public float atDuration;
 
         ///<summary>
-        ///Ìø×ªµ½Ê±¼äµã
+        ///è·³è½¬åˆ°æ—¶é—´ç‚¹
         ///</summary>
         public float gotoDuration;
     }
 
     /// <summary>
-    /// ¼¼ÄÜTimelineÅäÖÃ
+    /// æŠ€èƒ½Timelineé…ç½®
     /// </summary>
     public struct TimelineModel
     {
         /// <summary>
-        /// ¼¼ÄÜ±íÏÖÃû
+        /// æŠ€èƒ½è¡¨ç°å
         /// </summary>
         public string name;
 
         /// <summary>
-        /// ×ÜÊ±³¤
+        /// æ€»æ—¶é•¿
         /// </summary>
         public float duration;
 
         /// <summary>
-        /// TimelineÖ´ĞĞ½Úµã
+        /// Timelineæ‰§è¡ŒèŠ‚ç‚¹
         /// </summary>
         public List<TimelineFunc> nodes;
 
         /// <summary>
-        /// Ìø×ª½Úµã
+        /// è·³è½¬èŠ‚ç‚¹
         /// </summary>
         public TimelineGoTo goToNode;
     }
 
     /// <summary>
-    /// ÔËĞĞÊ±´´½¨µÄ¼¼ÄÜTimeline¶ÔÏó
-    /// ËûÊÇ±ÈUnity¸üÇáÁ¿µÄTimeline£¬Ö»ÊÇ¼ÇÂ¼Ä³¸öÊ±¿Ì×ö¹Ì¶¨µÄÊÂÇé
+    /// è¿è¡Œæ—¶åˆ›å»ºçš„æŠ€èƒ½Timelineå¯¹è±¡
+    /// ä»–æ˜¯æ¯”Unityæ›´è½»é‡çš„Timelineï¼Œåªæ˜¯è®°å½•æŸä¸ªæ—¶åˆ»åšå›ºå®šçš„äº‹æƒ…
     /// </summary>
     public class TimelineObj
     {
         /// <summary>
-        /// Í¨¹ıÄÇ¸ö¼¼ÄÜ´´½¨µÄ
+        /// é€šè¿‡é‚£ä¸ªæŠ€èƒ½åˆ›å»ºçš„
         /// </summary>
         public string skillId;
 
         /// <summary>
-        /// ÅäÖÃĞÅÏ¢
+        /// é…ç½®ä¿¡æ¯
         /// </summary>
         public TimelineModel model;
 
         /// <summary>
-        /// ²¥·ÅTimelineµÄÓµÓĞÕß
+        /// æ’­æ”¾Timelineçš„æ‹¥æœ‰è€…
         /// </summary>
         public SkillCom ower;
 
         /// <summary>
-        /// ÔËĞĞÊ±³¤
+        /// è¿è¡Œæ—¶é•¿
         /// </summary>
         public float timeElapsed = 0;
 
         /// <summary>
-        /// ±¶ËÙ
+        /// å€é€Ÿ
         /// </summary>
         public float timeScale
         {
@@ -88,12 +88,12 @@ namespace LCSkill
         private float _timeScale = 1.00f;
 
         /// <summary>
-        /// ÊÇ·ñÍê³É
+        /// æ˜¯å¦å®Œæˆ
         /// </summary>
         public bool isFinish = false;
 
         /// <summary>
-        /// TimelineµÄÒ»Ğ©²ÎÊı
+        /// Timelineçš„ä¸€äº›å‚æ•°
         /// </summary>
         public Dictionary<string, object> timelineParam = new Dictionary<string, object>();
 

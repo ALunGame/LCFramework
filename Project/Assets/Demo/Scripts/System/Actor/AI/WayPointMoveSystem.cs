@@ -16,7 +16,7 @@ namespace Demo.System
 
         public static TbMapRoadCnf RoadCnf;
 
-        protected override List<Type> RegListenComs()
+        protected override List<Type> RegContainListenComs()
         {
             string jsonStr = LoadHelper.LoadString(CnfFileName);
             List<MapRoadCnf> roadCnfs = JsonMapper.ToObject<List<MapRoadCnf>>(jsonStr);

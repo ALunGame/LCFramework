@@ -49,12 +49,24 @@ MonoBehaviour:
   - typeName: DragCameraSystem
     typeFullName: Demo.System.DragCameraSystem
     sort: 14
+  - typeName: MoveSystem
+    typeFullName: Demo.MoveSystem
+    sort: 14
+  - typeName: MoveWithColliderSystem
+    typeFullName: Demo.MoveWithColliderSystem
+    sort: 15
   - typeName: PlayerMoveSystem
     typeFullName: Demo.System.PlayerMoveSystem
     sort: 16
   - typeName: GazeSurroundSystem
     typeFullName: Demo.System.GazeSurroundSystem
     sort: 16
+  - typeName: MoveRequestSystem
+    typeFullName: Demo.MoveRequestSystem
+    sort: 16
+  - typeName: WorkSystem
+    typeFullName: Demo.Scripts.System.Actor.WorkSystem
+    sort: 17
   fixedUpdateSystems:
   - typeName: BuffSystem
     typeFullName: LCSkill.BuffSystem

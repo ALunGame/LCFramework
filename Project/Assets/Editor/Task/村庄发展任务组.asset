@@ -1,0 +1,70 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40c7267031c0b494da1f4ccfee566cfd, type: 3}
+  m_Name: "\u6751\u5E84\u53D1\u5C55\u4EFB\u52A1\u7EC4"
+  m_EditorClassIdentifier: 
+--- !u!114 &2802320525277369283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a513205062770864caa1925733596e19, type: 3}
+  m_Name: "\u9636\u6BB5\u4E00"
+  m_EditorClassIdentifier: 
+  serializedGraph: "\r\n{\r\n    \"mType\" : \"LCTask.TaskGraph.TaskGraph\",\r\n   
+    \"pos\"   : {\r\n        \"mType\" : \"UnityEngine.Vector3\",\r\n        \"x\"    
+    : 391.0,\r\n        \"y\"     : 360.0,\r\n        \"z\"     : 0.0\r\n    },\r\n   
+    \"zoom\"  : {\r\n        \"mType\" : \"UnityEngine.Vector3\",\r\n        \"x\"    
+    : 1.14999997615814,\r\n        \"y\"     : 1.14999997615814,\r\n        \"z\"    
+    : 1.0\r\n    },\r\n    \"nodes\" : {\r\n        \"mType\" : \"System.Collections.Generic.Dictionary`2[[System.String,
+    mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089],[LCNode.Model.BaseNode,
+    Assembly-CSharp-Editor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]\",\r\n       
+    \"a8f26b8d-0f03-44f8-9632-e7c7f40dd643\" : {\r\n            \"mType\" : \"LCTask.TaskGraph.Task_AcceptNode\",\r\n           
+    \"actionFuncs\" : null,\r\n            \"actionListenFuncs\" : null,\r\n           
+    \"actionSuccess\"     : null,\r\n            \"actionFail\"        : null,\r\n           
+    \"taskId\"            : 10001,\r\n            \"conditionFuncs\"    : null,\r\n           
+    \"target\"            : null,\r\n            \"targetDisplayFuncs\" : null,\r\n           
+    \"guid\"               : \"a8f26b8d-0f03-44f8-9632-e7c7f40dd643\",\r\n           
+    \"position\"           : {\r\n                \"mType\" : \"UnityEngine.Vector2\",\r\n               
+    \"x\"     : -47.0,\r\n                \"y\"     : -169.0\r\n            },\r\n           
+    \"inIndex\"            : -1,\r\n            \"outIndex\"           : -1\r\n       
+    },\r\n        \"5a4c4160-7ee5-4880-9dd7-3be6ad0f27a9\" : {\r\n            \"mType\"
+    : \"LCTask.TaskGraph.Task_ExecuteNode\",\r\n            \"actionFuncs\" : null,\r\n           
+    \"actionListenFuncs\" : null,\r\n            \"actionSuccess\"     : null,\r\n           
+    \"actionFail\"        : null,\r\n            \"taskId\"            : 10001,\r\n           
+    \"conditionFuncs\"    : null,\r\n            \"target\"            : null,\r\n           
+    \"targetDisplayFuncs\" : null,\r\n            \"guid\"               : \"5a4c4160-7ee5-4880-9dd7-3be6ad0f27a9\",\r\n           
+    \"position\"           : {\r\n                \"mType\" : \"UnityEngine.Vector2\",\r\n               
+    \"x\"     : -47.0,\r\n                \"y\"     : 81.0\r\n            },\r\n           
+    \"inIndex\"            : -1,\r\n            \"outIndex\"           : -1\r\n       
+    },\r\n        \"dab33fe2-be04-4cba-a8c8-92624788ef88\" : {\r\n            \"mType\"
+    : \"Demo.Task.Task_ACT_SendRepairActorCmd\",\r\n            \"actorId\" : 301,\r\n           
+    \"needWait\" : false,\r\n            \"parentNode\" : null,\r\n            \"guid\"      
+    : \"dab33fe2-be04-4cba-a8c8-92624788ef88\",\r\n            \"position\"   : {\r\n               
+    \"mType\" : \"UnityEngine.Vector2\",\r\n                \"x\"     : 288.0,\r\n               
+    \"y\"     : -278.0\r\n            },\r\n            \"inIndex\"    : 0,\r\n           
+    \"outIndex\"   : -1\r\n        },\r\n        \"f3f7bab8-2d5c-4590-9a6d-ebcac2d68375\"
+    : {\r\n            \"mType\" : \"Demo.Task.Task_ACT_SendRepairActorCmd\",\r\n           
+    \"actorId\" : 302,\r\n            \"needWait\" : false,\r\n            \"parentNode\"
+    : null,\r\n            \"guid\"       : \"f3f7bab8-2d5c-4590-9a6d-ebcac2d68375\",\r\n           
+    \"position\"   : {\r\n                \"mType\" : \"UnityEngine.Vector2\",\r\n               
+    \"x\"     : 203.0,\r\n                \"y\"     : -86.0\r\n            },\r\n           
+    \"inIndex\"    : 0,\r\n            \"outIndex\"   : -1\r\n        }\r\n    },\r\n   
+    \"groups\" : [\r\n    ],\r\n    \"connections\" : [\r\n        {\r\n           
+    \"mType\" : \"LCNode.Model.BaseConnection\",\r\n            \"from\"  : \"a8f26b8d-0f03-44f8-9632-e7c7f40dd643\",\r\n           
+    \"fromPortName\" : \"\\u63A5\\u53D7\\u884C\\u4E3A\",\r\n            \"to\"          
+    : \"dab33fe2-be04-4cba-a8c8-92624788ef88\",\r\n            \"toPortName\"   :
+    \"\\u7236\\u8282\\u70B9\"\r\n        }\r\n    ]\r\n}"

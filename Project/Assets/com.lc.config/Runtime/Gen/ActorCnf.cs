@@ -1,0 +1,51 @@
+﻿using System;
+using LCMap;
+
+namespace LCMap
+{
+    
+    /// <summary>
+    /// 演员配置
+    /// </summary>
+    public class ActorCnf
+    {
+        
+        /// <summary>
+        /// 演员Id
+        /// </summary>
+        public int id;
+
+        /// <summary>
+        /// 演员名
+        /// </summary>
+        public string name;
+
+        /// <summary>
+        /// 演员类型
+        /// </summary>
+        public ActorType type;
+
+        /// <summary>
+        /// 实体Id
+        /// </summary>
+        public int entityId;
+
+        /// <summary>
+        /// 预制体
+        /// </summary>
+        public string prefab;
+
+        /// <summary>
+        /// 交互范围
+        /// </summary>
+        public int interactiveRange;
+
+        /// <summary>
+        /// 移动速度
+        /// </summary>
+        public int moveSpeed;
+
+    }
+
+}
+

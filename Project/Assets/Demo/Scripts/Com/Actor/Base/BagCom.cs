@@ -1,4 +1,4 @@
-﻿using LCECS.Core;
+using LCECS.Core;
 using System.Collections.Generic;
 
 namespace Demo
@@ -18,7 +18,7 @@ namespace Demo
 
         }
 
-        public BagItem(int id,int cnt,int maxCnt)
+        public BagItem(int id,int cnt,int maxCnt = -1)
         {
             this.id = id;
             this.cnt = cnt;
@@ -65,10 +65,7 @@ namespace Demo
     {
         public List<BagItem> itemlist = new List<BagItem>();
 
-        public bool AddItem(int itemId,int itemCnt)
-        {
-            return GetBagItem(itemId).Add(itemCnt);
-        }
+        #region Get
 
         public BagItem GetBagItem(int itemId)
         {
@@ -80,21 +77,87 @@ namespace Demo
                 }
             }
             BagItem bagItem = new BagItem();
-            bagItem.id      = itemId;
-            bagItem.cnt     = 0;
+            bagItem.id = itemId;
+            bagItem.cnt = 0;
             itemlist.Add(bagItem);
             return bagItem;
         }
+
+        public int GetItemCnt(int itemId)
+        {
+            if (CheckHasItem(itemId))
+            {
+                return GetBagItem(itemId).cnt;
+            }
+            return 0;
+        }
+
+        public int GetItemLeftAddCnt(int itemId)
+        {
+            if (CheckHasItem(itemId))
+            {
+                return GetBagItem(itemId).GetLeftCnt();
+            }
+            return 0;
+        }
+
+        #endregion
+
+        #region Add
+
+        public bool AddItem(int itemId, int itemCnt)
+        {
+            return GetBagItem(itemId).Add(itemCnt);
+        }
+
+        public void AddItem(BagItem pItem)
+        {
+            BagItem currItem = GetBagItem(pItem.id);
+            int currLeftCnt = currItem.GetLeftCnt();
+            if (currLeftCnt >= pItem.cnt)
+            {
+                currItem.Add(pItem.cnt);
+                pItem.cnt = 0;
+            }
+            else
+            {
+                currItem.Add(currLeftCnt);
+                pItem.cnt = pItem.cnt - currLeftCnt;
+            }
+        }
+
+        #endregion
+
+        #region Remove
 
         public bool RemoveItem(int itemId, int itemCnt)
         {
             return GetBagItem(itemId).Remove(itemCnt);
         }
 
+        #endregion
+
+        #region Check
+
         public bool CheckItemIsOutMax(int itemId)
         {
             return GetBagItem(itemId).CheckIsOutMax();
         }
+
+
+        public bool CheckHasItem(int itemId)
+        {
+            foreach (var item in itemlist)
+            {
+                if (item.id == itemId)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        #endregion
 
         public void CoverItem(BagItem bagItem)
         {

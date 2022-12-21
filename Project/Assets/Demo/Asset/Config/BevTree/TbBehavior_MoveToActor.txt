@@ -1,0 +1,15 @@
+﻿
+[
+    {
+        "mType" : "LCECS.Layer.Behavior.BehaviorTree",
+        "reqId" : 12,
+        "tree"  : {
+            "mType" : "LCECS.Core.Tree.Nodes.NodeRoot",
+            "Uid"   : "ff194242-41ed-46e0-a618-e3a3ac80b148",
+            "childNodes" : null,
+            "nodePremise" : null
+        },
+        "HandleList" : [
+        ]
+    }
+]

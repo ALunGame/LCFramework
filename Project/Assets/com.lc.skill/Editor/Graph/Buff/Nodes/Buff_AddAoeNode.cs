@@ -1,4 +1,4 @@
-﻿using LCNode;
+using LCNode;
 
 namespace LCSkill.BuffGraph
 {

@@ -1,4 +1,4 @@
-﻿using LCECS.Core.Tree.Base;
+using LCECS.Core.Tree.Base;
 
 namespace LCECS.Core.Tree.Nodes.Control
 {

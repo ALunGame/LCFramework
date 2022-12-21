@@ -1,4 +1,4 @@
-﻿using LCNode;
+using LCNode;
 using LCNode.View;
 using UnityEngine.UIElements;
 using LCSkill.AoeGraph;

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace LCTask
 {
     /// <summary>
-    /// ÈÎÎñÄ¿±ê±íÏÖº¯Êı
+    /// ä»»åŠ¡ç›®æ ‡è¡¨ç°å‡½æ•°
     /// </summary>
     public abstract class TaskTargetDisplayFunc
     {
@@ -13,66 +13,66 @@ namespace LCTask
     }
 
     /// <summary>
-    /// ÈÎÎñÌõ¼şº¯Êı
+    /// ä»»åŠ¡æ¡ä»¶å‡½æ•°
     /// </summary>
     public abstract class TaskConditionFunc
     {
         public bool checkValue = true;
-        public ConditionType conditionType;
+        public ConditionRelated conditionType;
 
         public abstract bool CheckTure(TaskObj taskObj);
     }
 
     /// <summary>
-    /// ÈÎÎñ¼àÌıº¯Êı
+    /// ä»»åŠ¡ç›‘å¬å‡½æ•°
     /// </summary>
     public abstract class TaskListenFunc
     {
         /// <summary>
-        /// ¿ªÆô¼àÌı
+        /// å¼€å¯ç›‘å¬
         /// </summary>
         /// <param name="taskObj"></param>
         public abstract void Listen(TaskObj taskObj);
         
         /// <summary>
-        /// ÇåÀí¼àÌı
+        /// æ¸…ç†ç›‘å¬
         /// </summary>
         public abstract void Clear(TaskObj taskObj);
     }
 
     /// <summary>
-    /// ÈÎÎñĞĞÎª×´Ì¬
+    /// ä»»åŠ¡è¡Œä¸ºçŠ¶æ€
     /// </summary>
     public enum TaskActionState
     {
         /// <summary>
-        /// ´íÎó
+        /// é”™è¯¯
         /// </summary>
         Error,
 
         /// <summary>
-        /// Íê³É
+        /// å®Œæˆ
         /// </summary>
         Finished,
 
         /// <summary>
-        /// Ê§°Ü
+        /// å¤±è´¥
         /// </summary>
         Fail,  
         
         /// <summary>
-        /// ÕıÔÚÖ´ĞĞ
+        /// æ­£åœ¨æ‰§è¡Œ
         /// </summary>
         Running,
 
         /// <summary>
-        /// µÈ´ıÖ´ĞĞ
+        /// ç­‰å¾…æ‰§è¡Œ
         /// </summary>
         Wait,
     }
 
     /// <summary>
-    /// ÈÎÎñĞĞÎªº¯Êı
+    /// ä»»åŠ¡è¡Œä¸ºå‡½æ•°
     /// </summary>
     public abstract class TaskActionFunc
     {
@@ -81,7 +81,7 @@ namespace LCTask
         public TaskActionState ActionState { get => actionState;}
 
         /// <summary>
-        /// ¿ªÊ¼Ö´ĞĞĞĞÎª
+        /// å¼€å§‹æ‰§è¡Œè¡Œä¸º
         /// </summary>
         /// <param name="taskObj"></param>
         public void Start(TaskObj taskObj)
@@ -89,11 +89,26 @@ namespace LCTask
             if (actionState != TaskActionState.Wait)
                 return;
             this.taskObj = taskObj;
-            actionState = OnStart(taskObj);
+            TaskLocate.Log.Log("è¡Œä¸ºå¼€å§‹æ‰§è¡Œ>>>>",this.GetType().Name);
+            TaskActionState tState = OnStart(taskObj);
+            
+            //è·å–åœ¨Startä¸­å›è°ƒå·²ç»å®Œæˆ
+            if (actionState == TaskActionState.Finished)
+                return;
+            actionState = tState;
         }
 
         /// <summary>
-        /// ÔËĞĞÖĞ
+        /// è¡Œä¸ºå®Œæˆ
+        /// </summary>
+        public void Finish()
+        {
+            TaskLocate.Log.Log("è¡Œä¸ºå®Œæˆ>>>>",this.GetType().Name);
+            actionState = TaskActionState.Finished;
+        }
+
+        /// <summary>
+        /// è¿è¡Œä¸­
         /// </summary>
         public void Running()
         {
@@ -103,7 +118,7 @@ namespace LCTask
         }
 
         /// <summary>
-        /// ĞĞÎªÇåÀí
+        /// è¡Œä¸ºæ¸…ç†
         /// </summary>
         public void Clear()
         {
@@ -111,13 +126,13 @@ namespace LCTask
         }
 
         /// <summary>
-        /// ÖØÖÃĞĞÎª
+        /// é‡ç½®è¡Œä¸º
         /// </summary>
         public void Reset()
         {
             if (actionState == TaskActionState.Error)
             {
-                TaskLocate.Log.LogError("ÖØÖÃÈÎÎñĞĞÎª×´Ì¬Ê§°Ü£¬ĞĞÎªÊ§°Ü>>>>", this.GetType().Name);
+                TaskLocate.Log.LogError("é‡ç½®ä»»åŠ¡è¡Œä¸ºçŠ¶æ€å¤±è´¥ï¼Œè¡Œä¸ºå¤±è´¥>>>>", this.GetType().Name);
                 return;
             }
             actionState = TaskActionState.Wait;
@@ -125,19 +140,19 @@ namespace LCTask
         }
 
         /// <summary>
-        /// ¿ªÊ¼Ö´ĞĞĞĞÎªÊ±
+        /// å¼€å§‹æ‰§è¡Œè¡Œä¸ºæ—¶
         /// </summary>
         /// <param name="taskObj"></param>
         protected abstract TaskActionState OnStart(TaskObj taskObj);
 
         /// <summary>
-        /// ÔËĞĞÖĞÃ¿Ö¡µ÷ÓÃ£¬×¢ÒâĞÔÄÜ
+        /// è¿è¡Œä¸­æ¯å¸§è°ƒç”¨ï¼Œæ³¨æ„æ€§èƒ½ï¼Œå½“è¡Œä¸ºåœ¨Startå®Œæˆä¸äº†é»˜è®¤ä¸€ç›´Running
         /// </summary>
         /// <returns></returns>
-        protected virtual TaskActionState OnRunning(TaskObj taskObj) { return TaskActionState.Finished; }
+        protected virtual TaskActionState OnRunning(TaskObj taskObj) { return TaskActionState.Running; }
 
         /// <summary>
-        /// ÇåÀíÊ±
+        /// æ¸…ç†æ—¶
         /// </summary>
         /// <returns></returns>
         protected abstract void OnClear(TaskObj taskObj);

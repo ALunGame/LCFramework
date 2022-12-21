@@ -6,10 +6,10 @@ namespace Demo
     [ExecuteAlways]
     public class MapEnvHelper : MonoBehaviour
     {
-        [Header("µØÍ¼³ß´ç")]
+        [Header("åœ°å›¾å°ºå¯¸")]
         public Vector2Int mapSize;
 
-        [Header("ÏÔÊ¾µØÍ¼±ê³ß")]
+        [Header("æ˜¾ç¤ºåœ°å›¾æ ‡å°º")]
         public bool showRuler = true;
 
         private Rect areaRect;
@@ -31,7 +31,7 @@ namespace Demo
             GizmosHelper.DrawRect(areaRect, Color.red);
             Vector3 center = areaRect.center;
 
-            //XÖá
+            //Xè½´
             GizmosHelper.DrawLine(new Vector3(areaRect.xMin, center.y, 0), new Vector3(areaRect.xMax, center.y, 0),Color.blue);
             GizmosHelper.DrawLine(new Vector3(center.x, areaRect.yMin, 0), new Vector3(center.x, areaRect.yMax, 0),Color.blue);
         }

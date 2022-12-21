@@ -8,7 +8,7 @@ namespace Demo.System
 {
     public class TransformSystem : BaseSystem
     {
-        protected override List<Type> RegListenComs()
+        protected override List<Type> RegContainListenComs()
         {
             return new List<Type>() { typeof(TransCom), typeof(Collider2DCom), typeof(AnimCom) };
         }

@@ -1,4 +1,4 @@
-﻿using LCTimeline;
+using LCTimeline;
 using SkillSystem.ED.Timeline;
 using System;
 

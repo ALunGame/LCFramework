@@ -1,4 +1,4 @@
-﻿using LCNode.Model;
+using LCNode.Model;
 using LCNode.View.Utils;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine.UIElements;

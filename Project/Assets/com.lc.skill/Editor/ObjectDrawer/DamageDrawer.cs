@@ -1,4 +1,4 @@
-﻿using LCToolkit;
+using LCToolkit;
 using LCToolkit.Core;
 using UnityEditor;
 using UnityEngine;

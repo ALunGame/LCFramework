@@ -23,7 +23,7 @@ namespace LCMap
                 bigLabel.value.stretchWidth = true;
             }
 
-            if (GUILayout.Button("´´½¨Ä¿Â¼", GUILayout.Height(30)))
+            if (GUILayout.Button("åˆ›å»ºç›®å½•", GUILayout.Height(30)))
             {
                 MapSetting mapSetting = target as MapSetting;
                 Directory.CreateDirectory(mapSetting.MapSearchPath);

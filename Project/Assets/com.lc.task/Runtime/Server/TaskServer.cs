@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Demo.UserData;
 using UnityEngine;
 
 namespace LCTask
@@ -7,36 +8,31 @@ namespace LCTask
     public class TaskServer : ITaskServer
     {
         private TaskCom taskCom;
-
-        /// <summary>
-        /// Ìí¼ÓÒ»¸öÈÎÎñ
-        /// </summary>
-        /// <param name="pTaskId"></param>
-        /// <returns></returns>
-        public bool AddTask(int pTaskId, TaskStage taskStage = TaskStage.Accept)
+        
+        public void Init()
         {
-            TaskObj taskObj = taskCom.GetTask(pTaskId);
-            if (taskObj != null)
-            {
-                TaskLocate.Log.LogWarning("Ìí¼ÓÈÎÎñÊ§°Ü,ÖØ¸´ÈÎÎñId",pTaskId);
-                return false;
-            }
-            if (TaskLocate.Config.GetTaskModel(pTaskId,out var model))
-            {
-                taskObj = new TaskObj(pTaskId, model);
-                taskObj.ExecuteTargetsDisplay(taskStage);
-                taskCom.AddTask(taskObj);
-                return true;
-            }
-            else
-            {
-                TaskLocate.Log.LogWarning("Ìí¼ÓÈÎÎñÊ§°Ü,Ã»ÓĞÈÎÎñÅäÖÃ", pTaskId);
-                return false;
-            }
+            InitDataChange();
         }
 
+        public void Clear()
+        {
+        }
+
+        public void SetTaskCom(TaskCom pTaskCom)
+        {
+            taskCom = pTaskCom;
+            foreach (int taskId in TaskData.Instance.AcceptTasks)
+            {
+                OnAcceptTask(taskId);
+            }
+            foreach (int taskId in TaskData.Instance.ExecuteTasks)
+            {
+                OnExecuteTask(taskId);
+            }
+        }
+        
         /// <summary>
-        /// ½ÓÊÜÈÎÎñ
+        /// æ¥å—ä»»åŠ¡
         /// </summary>
         /// <returns></returns>
         public bool AcceptTask(int pTaskId)
@@ -44,14 +40,14 @@ namespace LCTask
             TaskObj taskObj = taskCom.GetTask(pTaskId);
             if (taskObj == null)
             {
-                TaskLocate.Log.LogError("½ÓÊÜÈÎÎñÊ§°Ü,Ã»ÓĞ´ËÈÎÎñ", pTaskId);
+                TaskLocate.Log.LogError("æ¥å—ä»»åŠ¡å¤±è´¥,æ²¡æœ‰æ­¤ä»»åŠ¡", pTaskId);
                 return false;
             }
             return taskObj.Accept();
         }
 
         /// <summary>
-        /// Ìá½»ÈÎÎñ
+        /// æäº¤ä»»åŠ¡
         /// </summary>
         /// <returns></returns>
         public bool ExecuteTask(int pTaskId)
@@ -59,19 +55,142 @@ namespace LCTask
             TaskObj taskObj = taskCom.GetTask(pTaskId);
             if (taskObj == null)
             {
-                TaskLocate.Log.LogError("½ÓÊÜÈÎÎñÊ§°Ü,Ã»ÓĞ´ËÈÎÎñ", pTaskId);
+                TaskLocate.Log.LogError("æ¥å—ä»»åŠ¡å¤±è´¥,æ²¡æœ‰æ­¤ä»»åŠ¡", pTaskId);
                 return false;
             }
             return taskObj.Execute();
         }
 
         /// <summary>
-        /// ÈÎÎñÍê³ÉÊ±
+        /// ä»»åŠ¡å®Œæˆ
+        /// </summary>
+        /// <param name="pTaskI"></param>
+        public void FinishTask(int pTaskId)
+        {
+            TaskData.Instance.AddFinishTask(pTaskId);
+        }
+        
+        #region æ•°æ®æ”¹å˜äº‹ä»¶
+
+        private void InitDataChange()
+        {
+            TaskData.Instance.OnAcceptTaskChanged += OnAcceptTask;
+            TaskData.Instance.OnExecuteTaskChanged += OnExecuteTask;
+            TaskData.Instance.OnFinishTaskChanged += OnFinsihTask;
+            TaskData.Instance.OnRemoveTaskChanged += OnRemoveTask;
+        }
+
+        private void OnAcceptTask(int pTaskId)
+        {
+            if (taskCom == null)
+            {
+                return;
+            }
+            
+            SetStageOrAddTask(pTaskId, TaskWaitState.Accept);
+        }
+        
+        private void OnExecuteTask(int pTaskId)
+        {
+            if (taskCom == null)
+            {
+                return;
+            }
+            SetStageOrAddTask(pTaskId, TaskWaitState.Execute);
+        }
+        
+        private void OnFinsihTask(int pTaskId)
+        {
+            if (taskCom == null)
+            {
+                return;
+            }
+
+            ExecuteTaskFinishActions(pTaskId);
+        }
+        
+        private void OnRemoveTask(int pTaskId)
+        {
+            if (taskCom == null)
+            {
+                return;
+            }
+            TaskLocate.Task.RemoveTask(pTaskId);
+        }
+        
+        /// <summary>
+        /// è®¾ç½®ä»»åŠ¡é˜¶æ®µæˆ–æ·»åŠ ä»»åŠ¡
         /// </summary>
         /// <param name="pTaskId"></param>
-        public void OnTaskFinish(int pTaskId)
+        /// <param name="taskStage"></param>
+        private void SetStageOrAddTask(int pTaskId, TaskWaitState pWaitState)
+        {
+            if (pWaitState == TaskWaitState.None)
+            {
+                return;
+            }
+            TaskObj taskObj = taskCom.GetTask(pTaskId);
+            if (taskObj == null)
+            {
+                if (TaskLocate.Config.GetTaskModel(pTaskId,out var model))
+                {
+                    taskObj = new TaskObj(pTaskId, model);
+                    taskCom.AddTask(taskObj);
+                }
+                else
+                {
+                    TaskLocate.Log.LogWarning("æ·»åŠ ä»»åŠ¡å¤±è´¥,æ²¡æœ‰ä»»åŠ¡é…ç½®", pTaskId);
+                    return;
+                }
+
+            }
+            //è®¾ç½®é˜¶æ®µ
+            taskObj.SetWaitState(pWaitState);
+
+            //è‡ªåŠ¨æ‰§è¡Œ
+            TaskStage tStage = pWaitState == TaskWaitState.Accept ? TaskStage.Accept : TaskStage.Execute;
+            if (taskObj.CheckCanAutoDoStage(tStage))
+            {
+                if (tStage == TaskStage.Accept)
+                {
+                    AcceptTask(pTaskId);
+                }
+                else if (tStage == TaskStage.Execute)
+                {
+                    ExecuteTask(pTaskId);
+                }
+            }
+        }
+
+        /// <summary>
+        /// æ‰§è¡Œä»»åŠ¡å®Œæˆè¡Œä¸º
+        /// </summary>
+        /// <param name="pTaskId"></param>
+        private void ExecuteTaskFinishActions(int pTaskId)
+        {
+            if (taskCom == null)
+            {
+                return;
+            }
+            TaskObj taskObj = taskCom.GetTask(pTaskId);
+            if (taskObj == null)
+            {
+                return;
+            }
+
+            taskObj.ExecuteFinishActions();
+        }
+        
+        /// <summary>
+        /// ä»»åŠ¡å®Œæˆæ—¶
+        /// </summary>
+        /// <param name="pTaskId"></param>
+        public void RemoveTask(int pTaskId)
         {
             taskCom.RemoveTask(pTaskId);
         }
+
+        #endregion
+
     }
 }

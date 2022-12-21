@@ -1,4 +1,4 @@
-﻿using Demo.Com;
+using Demo.Com;
 using Demo.System;
 using LCECS.Core;
 using LCECS.Core.Tree;
@@ -32,6 +32,7 @@ namespace Demo.Behavior
 
             Actor actor = LCMap.MapLocate.Map.GetActor(wData.Uid);
             ActorCnf actorCnf = LCConfig.Config.ActorCnf[actor.Id];
+
             TransCom targetTransformCom = actors[0].GetCom<TransCom>();
             TransCom transformCom = workData.MEntity.GetCom<TransCom>();
             if (Vector2.Distance(targetTransformCom.Pos, transformCom.Pos) <= actorCnf.interactiveRange)

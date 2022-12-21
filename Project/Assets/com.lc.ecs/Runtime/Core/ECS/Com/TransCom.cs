@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using static UnityEngine.EventSystems.EventTrigger;
 
 namespace LCECS.Core
 {
@@ -31,10 +32,9 @@ namespace LCECS.Core
         [NonSerialized]
         private TransData transData = new TransData();
 
-        protected override void OnInit(Entity entity)
+        protected override void OnAwake(Entity pEntity)
         {
-            base.OnInit(entity);
-            BindGoCom bindGoCom = entity.GetCom<BindGoCom>();
+            BindGoCom bindGoCom = pEntity.GetCom<BindGoCom>();
             if (bindGoCom != null)
             {
                 bindGoCom.RegGoChange(OnBindGoChange);
@@ -44,20 +44,23 @@ namespace LCECS.Core
         private void OnBindGoChange(GameObject pGo)
         {
             trans = pGo.transform;
-            Pos = pGo.transform.position;
-            Roate = pGo.transform.localEulerAngles;
-            Scale = pGo.transform.localScale;
+            pGo.transform.position = Pos;
+            pGo.transform.localEulerAngles = Roate;
+            pGo.transform.localScale = Scale;
 
             InitPos = Pos;
             InitRoate = Roate;
             InitScale = Scale;
         }
 
-        public void SetPos(Vector3 pPos)
+        public void SetPos(Vector3 pPos,bool pJustData = false)
         {
             Pos = pPos;
-            if (trans != null)
+            if (trans != null && !pJustData)
+            {
                 trans.position = Pos;
+            }
+
         }
 
         public void SetRoate(Vector3 pRoate)
@@ -156,6 +159,17 @@ namespace LCECS.Core
                 transData.setScale = false;
             pScale = transData.scale;
             return true;
+        }
+
+        public void UpdateWaitTransData()
+        {
+            if (transData.setPos)
+                SetPos(transData.pos);
+            if (transData.setRoate)
+                SetRoate(transData.roate);
+            if (transData.setScale)
+                SetScale(transData.scale);
+            ClearWaitTransData();
         }
 
         public void ClearWaitTransData()

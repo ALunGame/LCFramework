@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using LCToolkit;
+using static UnityEngine.EventSystems.EventTrigger;
 
 namespace Demo.Com
 {
@@ -50,9 +51,9 @@ namespace Demo.Com
 
         #endregion
 
-        protected override void OnInit(Entity entity)
+        protected override void OnAwake(Entity pEntity)
         {
-            ActorDisplayCom actorDisplayCom = entity.GetCom<ActorDisplayCom>();
+            ActorDisplayCom actorDisplayCom = pEntity.GetCom<ActorDisplayCom>();
             if (actorDisplayCom != null)
             {
                 this._actorDisplayCom = actorDisplayCom;

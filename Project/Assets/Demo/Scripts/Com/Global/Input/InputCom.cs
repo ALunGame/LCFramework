@@ -8,7 +8,7 @@ using System;
 namespace Demo.Com
 {
     /// <summary>
-    /// ÊäÈëĞĞÎª
+    /// è¾“å…¥è¡Œä¸º
     /// </summary>
     public enum InputAction
     {
@@ -20,27 +20,27 @@ namespace Demo.Com
     public class InputCom : BaseCom
     {
         /// <summary>
-        /// ÉÏÒ»¸öĞĞÎª
+        /// ä¸Šä¸€ä¸ªè¡Œä¸º
         /// </summary>
         public InputAction LastAction { get; private set; }
 
         /// <summary>
-        /// µ±Ç°ĞĞÎª
+        /// å½“å‰è¡Œä¸º
         /// </summary>
         public InputAction CurrAction { get; private set; }
 
         /// <summary>
-        /// ²ÎÊı
+        /// å‚æ•°
         /// </summary>
         [NonSerialized]
-        public ParamData Param = new ParamData();
+        public RequestData Param;
 
         /// <summary>
-        /// ÊäÈëĞĞÎª
+        /// è¾“å…¥è¡Œä¸º
         /// </summary>
-        /// <param name="action">ĞĞÎª</param>
-        /// <param name="param">²ÎÊı</param>
-        public void PushAction(InputAction action, ParamData param)
+        /// <param name="action">è¡Œä¸º</param>
+        /// <param name="param">å‚æ•°</param>
+        public void PushAction(InputAction action, RequestData param)
         {
             LastAction = CurrAction;
             CurrAction = action;

@@ -5,7 +5,7 @@ using UnityEngine;
 namespace LCSkill
 {
     /// <summary>
-    /// ÅäÖÃÌí¼ÓÒ»¸öBuff
+    /// é…ç½®æ·»åŠ ä¸€ä¸ªBuff
     /// </summary>
     public class AddBuffModel
     {
@@ -16,32 +16,32 @@ namespace LCSkill
         public string id = "";
 
         /// <summary>
-        /// Ìí¼ÓµÄ²ãÊı£¬¸ºÊı¾ÍÊÇ¼õÉÙ
+        /// æ·»åŠ çš„å±‚æ•°ï¼Œè´Ÿæ•°å°±æ˜¯å‡å°‘
         /// </summary>
-        [Header("Ìí¼ÓµÄ²ãÊı")]
+        [Header("æ·»åŠ çš„å±‚æ•°")]
         public int addStack;
 
         /// <summary>
-        /// ³ÖĞøÊ±¼äÉèÖÃÄ£Ê½(true:¸²¸Ç false:ÀÛ¼Ó)
+        /// æŒç»­æ—¶é—´è®¾ç½®æ¨¡å¼(true:è¦†ç›– false:ç´¯åŠ )
         /// </summary>
-        [Header("³ÖĞøÊ±¼äÉèÖÃÄ£Ê½true:¸²¸Ç false:ÀÛ¼Ó")]
+        [Header("æŒç»­æ—¶é—´è®¾ç½®æ¨¡å¼true:è¦†ç›– false:ç´¯åŠ ")]
         public bool durationSetType;
 
         /// <summary>
-        /// Ìí¼ÓµÄ³ÖĞøÊ±¼ä
+        /// æ·»åŠ çš„æŒç»­æ—¶é—´
         /// </summary>
-        [Header("³ÖĞøÊ±¼ä")]
+        [Header("æŒç»­æ—¶é—´")]
         public float duration;
 
         /// <summary>
-        /// ÊÇ·ñÊÇÒ»¸öÓÀ¾ÃµÄbuff,Èç¹û³ÖĞøÊ¹¾¢°´¼õÉÙµ½0£¬Ò²»á±»É¾³ı
+        /// æ˜¯å¦æ˜¯ä¸€ä¸ªæ°¸ä¹…çš„buff,å¦‚æœæŒç»­ä½¿åŠ²æŒ‰å‡å°‘åˆ°0ï¼Œä¹Ÿä¼šè¢«åˆ é™¤
         /// </summary>
-        [Header("ÓÀ¾Ãbuff")]
+        [Header("æ°¸ä¹…buff")]
         public bool isPermanent;
     }
 
     /// <summary>
-    /// ÅäÖÃµÄBuffÊı¾İ½á¹¹
+    /// é…ç½®çš„Buffæ•°æ®ç»“æ„
     /// </summary>
     public struct BuffModel 
     {
@@ -51,75 +51,75 @@ namespace LCSkill
         public string id;
 
         /// <summary>
-        /// BuffÃû×Ö
+        /// Buffåå­—
         /// </summary>
         public string name;
 
         /// <summary>
-        /// BuffµÄ±êÇ©
+        /// Buffçš„æ ‡ç­¾
         /// </summary>
         public string[] tags;
 
         /// <summary>
-        /// BuffÓÅÏÈ¼¶£¨ÓÅÏÈ¼¶Ô½µÍµÄbuffÔ½ºóÃæÖ´ĞĞ£©
+        /// Buffä¼˜å…ˆçº§ï¼ˆä¼˜å…ˆçº§è¶Šä½çš„buffè¶Šåé¢æ‰§è¡Œï¼‰
         /// </summary>
         public int priority;
 
         /// <summary>
-        /// ×î´ó¶Ñµş²ãÊı
+        /// æœ€å¤§å †å å±‚æ•°
         /// </summary>
         public int maxStack;
 
         /// <summary>
-        /// BuffµÄÖ´ĞĞOnTick¼ä¸ô
+        /// Buffçš„æ‰§è¡ŒOnTické—´éš”
         /// </summary>
         public float tickTime;
 
         /// <summary>
-        /// µ±ÊÍ·ÅÒ»¸ö¼¼ÄÜÊ±Ö´ĞĞµÄº¯Êı
-        /// ÎªÁË´¦Àíµ±¼¼ÄÜÊÍ·ÅÊ±£¬¸ü¸Ä¼¼ÄÜ±íÏÖ£¬±ÈÈçÃ»ÓĞÄ§·¨»¹ÒªÊÍ·Å£¬»áÖ´ĞĞÃ»ÓĞÄ§·¨µÄ¶¯»­
+        /// å½“é‡Šæ”¾ä¸€ä¸ªæŠ€èƒ½æ—¶æ‰§è¡Œçš„å‡½æ•°
+        /// ä¸ºäº†å¤„ç†å½“æŠ€èƒ½é‡Šæ”¾æ—¶ï¼Œæ›´æ”¹æŠ€èƒ½è¡¨ç°ï¼Œæ¯”å¦‚æ²¡æœ‰é­”æ³•è¿˜è¦é‡Šæ”¾ï¼Œä¼šæ‰§è¡Œæ²¡æœ‰é­”æ³•çš„åŠ¨ç”»
         /// </summary>
         public BuffOnFreedFunc onFreedFunc;
 
 
-        #region ÉúÃüÖÜÆÚº¯Êı
+        #region ç”Ÿå‘½å‘¨æœŸå‡½æ•°
 
         /// <summary>
-        /// µ±Buff±»Ìí¼Ó¡¢¸Ä±ä²ãÊıÊ±Ö´ĞĞµÄº¯Êı
+        /// å½“Buffè¢«æ·»åŠ ã€æ”¹å˜å±‚æ•°æ—¶æ‰§è¡Œçš„å‡½æ•°
         /// </summary>
         public List<BuffLifeCycleFunc> onOccurFunc;
 
         /// <summary>
-        /// BuffÔÚtickTime¼ä¸ôÖ´ĞĞµÄº¯Êı
+        /// Buffåœ¨tickTimeé—´éš”æ‰§è¡Œçš„å‡½æ•°
         /// </summary>
         public List<BuffLifeCycleFunc> onTickFunc;
 
         /// <summary>
-        /// Buff½«Òª±»ÒÆ³ıÊ±Ö´ĞĞµÄº¯Êı
+        /// Buffå°†è¦è¢«ç§»é™¤æ—¶æ‰§è¡Œçš„å‡½æ•°
         /// </summary>
         public List<BuffLifeCycleFunc> onRemovedFunc;
 
         #endregion
 
-        #region ÉËº¦Á÷³Ì
+        #region ä¼¤å®³æµç¨‹
 
         /// <summary>
-        /// ÔÚÖ´ĞĞÉËº¦Á÷³ÌÊ±£¬ÓµÓĞÕâ¸öBuff×÷Îª¹¥»÷ÕßÖ´ĞĞµÄº¯Êı
+        /// åœ¨æ‰§è¡Œä¼¤å®³æµç¨‹æ—¶ï¼Œæ‹¥æœ‰è¿™ä¸ªBuffä½œä¸ºæ”»å‡»è€…æ‰§è¡Œçš„å‡½æ•°
         /// </summary>
         public List<BuffHurtFunc> onHurtFunc;
 
         /// <summary>
-        /// ÔÚÖ´ĞĞÉËº¦Á÷³ÌÊ±£¬ÓµÓĞÕâ¸öBuff×÷Îª°¤´òÕßÖ´ĞĞµÄº¯Êı
+        /// åœ¨æ‰§è¡Œä¼¤å®³æµç¨‹æ—¶ï¼Œæ‹¥æœ‰è¿™ä¸ªBuffä½œä¸ºæŒ¨æ‰“è€…æ‰§è¡Œçš„å‡½æ•°
         /// </summary>
         public List<BuffBeHurtFunc> onBeHurtFunc;
 
         /// <summary>
-        /// ÔÚÖ´ĞĞÉËº¦Á÷³ÌÊ±£¬Èç¹û»÷É±Ä¿±êÖ´ĞĞµÄº¯Êı
+        /// åœ¨æ‰§è¡Œä¼¤å®³æµç¨‹æ—¶ï¼Œå¦‚æœå‡»æ€ç›®æ ‡æ‰§è¡Œçš„å‡½æ•°
         /// </summary>
         public List<BuffKilledFunc> onKilledFunc;
 
         /// <summary>
-        /// ÔÚÖ´ĞĞÉËº¦Á÷³ÌÊ±£¬ÓµÓĞÕâ¸öBuff±»É±ËÀÖ´ĞĞµÄº¯Êı
+        /// åœ¨æ‰§è¡Œä¼¤å®³æµç¨‹æ—¶ï¼Œæ‹¥æœ‰è¿™ä¸ªBuffè¢«æ€æ­»æ‰§è¡Œçš„å‡½æ•°
         /// </summary>
         public List<BuffBeKilledFunc> onBeKilledFunc; 
 
@@ -127,106 +127,106 @@ namespace LCSkill
     }
 
     /// <summary>
-    /// ÓÃÓÚÌí¼ÓÒ»ÌõBuffµÄĞÅÏ¢
+    /// ç”¨äºæ·»åŠ ä¸€æ¡Buffçš„ä¿¡æ¯
     /// </summary>
     public struct AddBuffInfo
     {
         /// <summary>
-        /// Ìí¼ÓµÄ·¢ÆğÕß
+        /// æ·»åŠ çš„å‘èµ·è€…
         /// </summary>
         public SkillCom ower;
 
         /// <summary>
-        /// Ìí¼ÓµÄÄ¿±ê
+        /// æ·»åŠ çš„ç›®æ ‡
         /// </summary>
         public SkillCom target;
 
         /// <summary>
-        /// Ìí¼ÓµÄBuffId
+        /// æ·»åŠ çš„BuffId
         /// </summary>
         public BuffModel buffModel;
 
         /// <summary>
-        /// Ìí¼ÓµÄ²ãÊı£¬¸ºÊı¾ÍÊÇ¼õÉÙ
+        /// æ·»åŠ çš„å±‚æ•°ï¼Œè´Ÿæ•°å°±æ˜¯å‡å°‘
         /// </summary>
         public int addStack;
 
         /// <summary>
-        /// ³ÖĞøÊ±¼äÉèÖÃÄ£Ê½(true:¸²¸Ç false:ÀÛ¼Ó)
+        /// æŒç»­æ—¶é—´è®¾ç½®æ¨¡å¼(true:è¦†ç›– false:ç´¯åŠ )
         /// </summary>
         public bool durationSetType;
 
         /// <summary>
-        /// Ìí¼ÓµÄ³ÖĞøÊ±¼ä
+        /// æ·»åŠ çš„æŒç»­æ—¶é—´
         /// </summary>
         public float duration;
 
         /// <summary>
-        /// ÊÇ·ñÊÇÒ»¸öÓÀ¾ÃµÄbuff,Èç¹û³ÖĞøÊ¹¾¢°´¼õÉÙµ½0£¬Ò²»á±»É¾³ı
+        /// æ˜¯å¦æ˜¯ä¸€ä¸ªæ°¸ä¹…çš„buff,å¦‚æœæŒç»­ä½¿åŠ²æŒ‰å‡å°‘åˆ°0ï¼Œä¹Ÿä¼šè¢«åˆ é™¤
         /// </summary>
         public bool isPermanent;
     }
 
     /// <summary>
-    /// ÔËĞĞÖĞ¹ÒÔÚÉíÉÏµÄBuff
+    /// è¿è¡Œä¸­æŒ‚åœ¨èº«ä¸Šçš„Buff
     /// </summary>
     public class BuffObj
     {
         /// <summary>
-        /// Êı¾İ
+        /// æ•°æ®
         /// </summary>
         public BuffModel model;
 
         /// <summary>
-        /// Ê£ÓàÊ±¼ä
+        /// å‰©ä½™æ—¶é—´
         /// </summary>
         public float duration;
 
         /// <summary>
-        /// ÊÇ·ñÊÇÒ»¸öÓÀ¾ÃBuff
+        /// æ˜¯å¦æ˜¯ä¸€ä¸ªæ°¸ä¹…Buff
         /// </summary>
         public bool isPermanent;
 
         /// <summary>
-        /// µ±Ç°²ãÊı
+        /// å½“å‰å±‚æ•°
         /// </summary>
         public int stack;
 
         /// <summary>
-        /// Õâ¸öBuffÊÇÍ¨¹ıË­Ìí¼ÓµÄ£¨¿ÉÒÔÊÇ¿Õ£©
+        /// è¿™ä¸ªBuffæ˜¯é€šè¿‡è°æ·»åŠ çš„ï¼ˆå¯ä»¥æ˜¯ç©ºï¼‰
         /// </summary>
         public SkillCom originer;
 
         /// <summary>
-        /// Õâ¸öBuffµÄÓµÓĞÕß
+        /// è¿™ä¸ªBuffçš„æ‹¥æœ‰è€…
         /// </summary>
         public SkillCom ower;
 
         /// <summary>
-        /// Õâ¸öBuff´æÔÚÊ±¼ä
+        /// è¿™ä¸ªBuffå­˜åœ¨æ—¶é—´
         /// </summary>
         public float timeElapsed = 0;
 
         /// <summary>
-        /// Õâ¸öBuffÖ´ĞĞ¶àÉÙ´ÎonTick
+        /// è¿™ä¸ªBuffæ‰§è¡Œå¤šå°‘æ¬¡onTick
         /// </summary>
         public int tickCnt = 0;
 
         ///<summary>
-        ///buffµÄÒ»Ğ©²ÎÊı£¬ÕâĞ©²ÎÊıÊÇÂß¼­Ê¹ÓÃµÄ£¬±ÈÈçwowÖĞÄÁÊ¦µÄ¶Ü»¹ÄÜÎüÊÕ¶àÉÙÉËº¦£¬¾Í¿ÉÒÔ¼ÇÂ¼ÔÚbuffParamÀïÃæ
+        ///buffçš„ä¸€äº›å‚æ•°ï¼Œè¿™äº›å‚æ•°æ˜¯é€»è¾‘ä½¿ç”¨çš„ï¼Œæ¯”å¦‚wowä¸­ç‰§å¸ˆçš„ç›¾è¿˜èƒ½å¸æ”¶å¤šå°‘ä¼¤å®³ï¼Œå°±å¯ä»¥è®°å½•åœ¨buffParamé‡Œé¢
         ///</summary>
         public Dictionary<string, object> buffParam = new Dictionary<string, object>();
 
         /// <summary>
-        /// ´´½¨Buff¶ÔÏó
+        /// åˆ›å»ºBuffå¯¹è±¡
         /// </summary>
-        /// <param name="originer">Buff´´½¨Õß(¿ÉÒÔÎª¿Õ)</param>
-        /// <param name="model">BuffÅäÖÃÊı¾İ</param>
-        /// <param name="ower">BuffĞ¯´øÕß</param>
-        /// <param name="duration">³ÖĞøÊ±¼ä</param>
-        /// <param name="stack">Buff²ãÊı</param>
-        /// <param name="permanent">ÊÇ²»ÊÇÓÀ¾ÃBuff</param>
-        /// <param name="buffParam">Buff²ÎÊı</param>
+        /// <param name="originer">Buffåˆ›å»ºè€…(å¯ä»¥ä¸ºç©º)</param>
+        /// <param name="model">Buffé…ç½®æ•°æ®</param>
+        /// <param name="ower">Buffæºå¸¦è€…</param>
+        /// <param name="duration">æŒç»­æ—¶é—´</param>
+        /// <param name="stack">Buffå±‚æ•°</param>
+        /// <param name="permanent">æ˜¯ä¸æ˜¯æ°¸ä¹…Buff</param>
+        /// <param name="buffParam">Buffå‚æ•°</param>
         public BuffObj(SkillCom originer,BuffModel model, SkillCom ower, float duration, int stack, bool permanent = false)
         {
             this.originer = originer;

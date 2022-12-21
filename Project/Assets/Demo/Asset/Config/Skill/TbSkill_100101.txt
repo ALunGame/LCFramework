@@ -1,1 +1,12 @@
-﻿{"mType":"LCSkill.SkillModel","id":"100101","name":"skill_100101","condition":null,"costs":[],"timeline":"100101","addBuffs":[]}
+﻿
+{
+    "mType" : "LCSkill.SkillModel",
+    "id"    : "100101",
+    "name"  : "skill_100101",
+    "condition" : null,
+    "costs"     : [
+    ],
+    "timeline"  : "100101",
+    "addBuffs"  : [
+    ]
+}

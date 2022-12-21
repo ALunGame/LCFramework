@@ -1,4 +1,4 @@
-﻿using LCECS.Core;
+using LCECS.Core;
 using LCToolkit;
 using LCToolkit.Core;
 using System;

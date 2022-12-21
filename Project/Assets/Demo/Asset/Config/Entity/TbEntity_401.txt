@@ -1,1 +1,14 @@
-﻿[{"mType":"Demo.BagCom","itemlist":[],"isActive":true},{"mType":"LCECS.Core.TransCom","<InitPos>k__BackingField":{"mType":"UnityEngine.Vector3","x":0.0,"y":0.0,"z":0.0},"<InitRoate>k__BackingField":{"mType":"UnityEngine.Vector3","x":0.0,"y":0.0,"z":0.0},"<InitScale>k__BackingField":{"mType":"UnityEngine.Vector3","x":0.0,"y":0.0,"z":0.0},"<Pos>k__BackingField":{"mType":"UnityEngine.Vector3","x":0.0,"y":0.0,"z":0.0},"<Roate>k__BackingField":{"mType":"UnityEngine.Vector3","x":0.0,"y":0.0,"z":0.0},"<Scale>k__BackingField":{"mType":"UnityEngine.Vector3","x":0.0,"y":0.0,"z":0.0},"isActive":true}]
+﻿
+[
+    {
+        "mType" : "Demo.Com.OutputItemCom",
+        "outputInfos" : [
+            {
+                "mType" : "Config.ItemInfo",
+                "itemId" : 401,
+                "itemCnt" : 1
+            }
+        ],
+        "isActive"    : true
+    }
+]

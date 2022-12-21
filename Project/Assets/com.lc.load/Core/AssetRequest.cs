@@ -13,32 +13,32 @@ namespace LCLoad
     }
 
     /// <summary>
-    /// Ò»¸ö×ÊÔ´¼ÓÔØÇëÇó
+    /// ä¸€ä¸ªèµ„æºåŠ è½½è¯·æ±‚
     /// </summary>
     public class AssetRequest
     {
         /// <summary>
-        /// ¼ÓÔØ×´Ì¬
+        /// åŠ è½½çŠ¶æ€
         /// </summary>
         protected LoadState loadState = LoadState.Init;
 
         /// <summary>
-        /// ×ÊÔ´Ãû
+        /// èµ„æºå
         /// </summary>
         protected string assetName = string.Empty;
 
         /// <summary>
-        /// ¼ÓÔØ¾ä±ú
+        /// åŠ è½½å¥æŸ„
         /// </summary>
         protected AsyncOperationHandle handle;
 
         /// <summary>
-        /// ÒıÓÃ¼ÆÊı
+        /// å¼•ç”¨è®¡æ•°
         /// </summary>
         protected int useCnt = 0;
 
         /// <summary>
-        /// ÊÇ·ñÍê³É
+        /// æ˜¯å¦å®Œæˆ
         /// </summary>
         public virtual bool isDone
         {
@@ -58,7 +58,7 @@ namespace LCLoad
         }
         
         /// <summary>
-        /// ¼ÓÔØ
+        /// åŠ è½½
         /// </summary>
         internal virtual void Load<T>(Action<T> onComplete) where T : UnityEngine.Object
         {
@@ -66,7 +66,7 @@ namespace LCLoad
         }
 
         /// <summary>
-        /// Ğ¶ÔØ
+        /// å¸è½½
         /// </summary>
         internal virtual void Unload()
         {
@@ -99,7 +99,7 @@ namespace LCLoad
     public class BundleAssetRequestAsync : AssetRequest
     {
         /// <summary>
-        /// ¼ÓÔØÍê±Ï»Øµ÷
+        /// åŠ è½½å®Œæ¯•å›è°ƒ
         /// </summary>
         protected Action<AsyncOperationHandle> loadCompleteFunc;
 

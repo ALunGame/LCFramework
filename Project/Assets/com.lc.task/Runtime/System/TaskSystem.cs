@@ -1,4 +1,4 @@
-﻿using LCECS;
+using LCECS;
 using LCECS.Core;
 using System;
 using System.Collections.Generic;
@@ -7,7 +7,7 @@ namespace LCTask
 {
     public class TaskSystem : BaseSystem
     {
-        protected override List<Type> RegListenComs()
+        protected override List<Type> RegContainListenComs()
         {
             return new List<Type>() {typeof(TaskCom) };
         }

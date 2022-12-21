@@ -47,11 +47,11 @@ namespace LCTask
                 return trueValue;
             else
             {
-                if (confunc.conditionType == ConditionType.AND)
+                if (confunc.conditionType == ConditionRelated.AND)
                 {
                     return trueValue && checkCondition(nextIndex, pTaskObj);
                 }
-                else if (confunc.conditionType == ConditionType.OR)
+                else if (confunc.conditionType == ConditionRelated.OR)
                 {
                     return trueValue || checkCondition(nextIndex, pTaskObj);
                 }
@@ -68,7 +68,7 @@ namespace LCTask
         /// <returns></returns>
         public bool CheckAutoExecute()
         {
-            if (mapId == MapLocate.AllMapId && actorIds.Count <= 0)
+            if (mapId == MapLocate.AllMapId && (actorIds == null || actorIds.Count <= 0))
                 return true;
             return false;
         }

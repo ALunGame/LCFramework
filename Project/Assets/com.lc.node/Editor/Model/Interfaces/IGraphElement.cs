@@ -1,4 +1,4 @@
-﻿namespace LCNode.Model
+namespace LCNode.Model
 {
     public interface IGraphElement
     {

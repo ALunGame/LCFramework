@@ -10,7 +10,7 @@ namespace LCSkill
     /// </summary>
     public class BuffSystem : BaseSystem
     {
-        protected override List<Type> RegListenComs()
+        protected override List<Type> RegContainListenComs()
         {
             return new List<Type>() { typeof(SkillCom) };
         }

@@ -118,11 +118,11 @@ namespace LCTask
                 return trueValue;
             else
             {
-                if (confunc.conditionType == ConditionType.AND)
+                if (confunc.conditionType == ConditionRelated.AND)
                 {
                     return trueValue && checkCondition(conditionFuncs,nextIndex, pTaskObj);
                 }
-                else if (confunc.conditionType == ConditionType.OR)
+                else if (confunc.conditionType == ConditionRelated.OR)
                 {
                     return trueValue || checkCondition(conditionFuncs,nextIndex, pTaskObj);
                 }

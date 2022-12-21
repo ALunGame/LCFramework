@@ -9,8 +9,13 @@ namespace LCECS.Core
     /// </summary>
     public class DecisionCom : BaseCom
     {
-        public int DecisionId { get; private set; }
-        public DecisionThread DecisionThread { get; private set; }
+        public int DecisionId;
+        public DecisionThread DecisionThread;
+
+        protected override void OnAwake(Entity pEntity)
+        {
+            SetDecisionId(DecisionId);
+        }
 
         public void SetDecisionId(int pDecisionId)
         {

@@ -1,4 +1,4 @@
-﻿using LCNode.Model.Internal;
+using LCNode.Model.Internal;
 using LCToolkit;
 using System;
 using System.Collections.Generic;

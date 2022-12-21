@@ -1,4 +1,4 @@
-﻿using Demo.Com;
+using Demo.Com;
 using LCECS.Core;
 using System;
 using System.Collections.Generic;
@@ -27,6 +27,12 @@ namespace Demo
         {
             Vector3 roate = new Vector3(0, pDir == DirType.Right ? 0 : 180, 0);
             pTransCom.Roate(roate);
+        }
+
+        public static void SetDir(this TransCom pTransCom, DirType pDir)
+        {
+            Vector3 roate = new Vector3(0, pDir == DirType.Right ? 0 : 180, 0);
+            pTransCom.SetRoate(roate);
         }
     }
 }

@@ -9,7 +9,7 @@ using UnityEngine.UIElements;
 namespace LCToolkit.Core
 {
     /// <summary>
-    /// ×Ô¶¨ÒåInspector»æÖÆ
+    /// è‡ªå®šä¹‰Inspectorç»˜åˆ¶
     /// </summary>
     public class CustomInspectorDrawer : Attribute
     {
@@ -19,7 +19,7 @@ namespace LCToolkit.Core
     }
 
     /// <summary>
-    /// InspectorÃæ°å»æÖÆÆ÷
+    /// Inspectoré¢æ¿ç»˜åˆ¶å™¨
     /// </summary>
     public class ObjectInspectorDrawer
     {
@@ -48,7 +48,7 @@ namespace LCToolkit.Core
 
         private static List<Type> GetBaseTypes(Type objectType)
         {
-            //Ö»ÕÒËÄ²ã
+            //åªæ‰¾å››å±‚
             List<Type> baseTypes = new List<Type>();
             if (objectType.BaseType != null)
             {
@@ -65,13 +65,13 @@ namespace LCToolkit.Core
             return baseTypes;
         }
 
-        //»ñµÃ¶ÔÏó»æÖÆÀà
+        //è·å¾—å¯¹è±¡ç»˜åˆ¶ç±»
         private static Type GetEditorType(Type objectType)
         {
             if (ObjectEditorTypeCache.TryGetValue(objectType, out Type editorType))
                 return editorType;
 
-            //½Ó¿Ú
+            //æ¥å£
             Type[] interfaces = objectType.GetInterfaces();
             if (interfaces != null && interfaces.Length > 0)
             {
@@ -82,7 +82,7 @@ namespace LCToolkit.Core
                 }
             }
 
-            //¸¸Àà
+            //çˆ¶ç±»
             List<Type> baseTypes = GetBaseTypes(objectType);
             foreach (Type type in baseTypes)
             {
@@ -98,7 +98,7 @@ namespace LCToolkit.Core
             return Activator.CreateInstance(GetEditorType(_targetObject.GetType()), true) as ObjectInspectorDrawer;
         }
 
-        //´´½¨¶ÔÏó»æÖÆÀà
+        //åˆ›å»ºå¯¹è±¡ç»˜åˆ¶ç±»
         public static ObjectInspectorDrawer CreateEditor(object _targetObject)
         {
             ObjectInspectorDrawer objectEditor = InternalCreateEditor(_targetObject);
@@ -137,7 +137,7 @@ namespace LCToolkit.Core
 
         protected ObjectInspectorDrawer() { }
 
-        #region ³õÊ¼»¯
+        #region åˆå§‹åŒ–
 
         void Init(object _target)
         {
@@ -162,7 +162,7 @@ namespace LCToolkit.Core
         #endregion
 
         /// <summary>
-        /// ±êÌâ
+        /// æ ‡é¢˜
         /// </summary>
         public virtual string GetTitle() { return string.Empty; }
 

@@ -54,7 +54,7 @@ namespace Demo.Com
         public Vector3 ReqMove;
 
 
-        protected override void OnInit(Entity pEntity)
+        protected override void OnAwake(Entity pEntity)
         {
             BindGoCom bindGoCom = pEntity.GetCom<BindGoCom>();
             if (bindGoCom != null)

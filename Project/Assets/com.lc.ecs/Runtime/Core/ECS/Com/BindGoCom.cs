@@ -14,14 +14,13 @@ namespace LCECS.Core
 
         public GameObject Go { get { return go.Value; } }
 
-        protected override void OnInit(Entity entity)
-        {
-            base.OnInit(entity);
-        }
-
         public void SetBindGo(GameObject pGo)
         {
             go.Value = pGo;
+#if UNITY_EDITOR
+            EntityHelperCom helperCom = pGo.transform.GetOrAddCom<EntityHelperCom>();
+            helperCom.SetEntity(ECSLocate.ECS.GetEntity(EntityUid));
+#endif
         }
 
         public void RegGoChange(Action<GameObject> callBack)

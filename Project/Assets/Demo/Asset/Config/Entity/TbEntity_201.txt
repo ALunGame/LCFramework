@@ -1,1 +1,108 @@
-﻿[{"mType":"Demo.Com.BasePropertyCom","Food":{"mType":"Demo.Com.PropertyInfo","max":0,"min":0,"curr":0},"Hp":{"mType":"Demo.Com.PropertyInfo","max":0,"min":0,"curr":0},"Attack":{"mType":"Demo.Com.PropertyInfo","max":0,"min":0,"curr":0},"MoveSpeed":{"mType":"Demo.Com.PropertyInfo","max":10,"min":0,"curr":1},"ActionSpeed":{"mType":"Demo.Com.PropertyInfo","max":10,"min":0,"curr":1},"isActive":true},{"mType":"Demo.Com.AnimCom","isActive":true},{"mType":"LCECS.Core.TransCom","<InitPos>k__BackingField":{"mType":"UnityEngine.Vector3","x":0.0,"y":0.0,"z":0.0},"<InitRoate>k__BackingField":{"mType":"UnityEngine.Vector3","x":0.0,"y":0.0,"z":0.0},"<InitScale>k__BackingField":{"mType":"UnityEngine.Vector3","x":0.0,"y":0.0,"z":0.0},"<Pos>k__BackingField":{"mType":"UnityEngine.Vector3","x":0.0,"y":0.0,"z":0.0},"<Roate>k__BackingField":{"mType":"UnityEngine.Vector3","x":0.0,"y":0.0,"z":0.0},"<Scale>k__BackingField":{"mType":"UnityEngine.Vector3","x":0.0,"y":0.0,"z":0.0},"isActive":true},{"mType":"Demo.Com.CollectCom","collectActorId":401,"collectMaxCnt":2,"isActive":true},{"mType":"Demo.Com.WayPointMoveCom","isActive":true},{"mType":"Demo.Com.Collider2DCom","_cacheVects":[{"mType":"UnityEngine.Vector2","x":0.0,"y":0.0},{"mType":"UnityEngine.Vector2","x":0.0,"y":0.0},{"mType":"UnityEngine.Vector2","x":0.0,"y":0.0},{"mType":"UnityEngine.Vector2","x":0.0,"y":0.0}],"isActive":false},{"mType":"Demo.BagCom","itemlist":[{"mType":"Demo.BagItem","id":401,"cnt":0,"maxCnt":2}],"isActive":true},{"mType":"Demo.Com.WorkerCom","workType":0,"managerActorId":202,"isActive":true}]
+﻿
+[
+    {
+        "mType" : "LCMap.ActorInteractiveCom",
+        "interactiveDis" : 2,
+        "isActive"       : true
+    },
+    {
+        "mType" : "Demo.Com.BasePropertyCom",
+        "isActive" : true
+    },
+    {
+        "mType" : "Demo.Com.WorkerCom",
+        "isActive" : true
+    },
+    {
+        "mType" : "LCECS.Core.BindGoCom",
+        "isActive" : true
+    },
+    {
+        "mType" : "Demo.BagCom",
+        "itemlist" : [
+        ],
+        "isActive" : true
+    },
+    {
+        "mType" : "Demo.Com.AnimCom",
+        "isActive" : true
+    },
+    {
+        "mType" : "LCMap.ActorDisplayCom",
+        "<StateGo>k__BackingField" : null,
+        "<DisplayGo>k__BackingField" : null,
+        "<CameraFollowGo>k__BackingField" : null,
+        "<ClickCollider>k__BackingField"  : null,
+        "<BodyCollider>k__BackingField"   : null,
+        "isActive"                        : true
+    },
+    {
+        "mType" : "Demo.ProduceItemCom",
+        "produceItems" : [
+            401,
+            402
+        ],
+        "isActive"     : true
+    },
+    {
+        "mType" : "Demo.Com.BubbleCom",
+        "bubbleCom" : null,
+        "bubbleRoot" : null,
+        "isActive"   : true
+    },
+    {
+        "mType" : "LCECS.Core.TransCom",
+        "<InitPos>k__BackingField" : {
+            "mType" : "UnityEngine.Vector3",
+            "x"     : 0.0,
+            "y"     : 0.0,
+            "z"     : 0.0
+        },
+        "<InitRoate>k__BackingField" : {
+            "mType" : "UnityEngine.Vector3",
+            "x"     : 0.0,
+            "y"     : 0.0,
+            "z"     : 0.0
+        },
+        "<InitScale>k__BackingField" : {
+            "mType" : "UnityEngine.Vector3",
+            "x"     : 0.0,
+            "y"     : 0.0,
+            "z"     : 0.0
+        },
+        "<Pos>k__BackingField"       : {
+            "mType" : "UnityEngine.Vector3",
+            "x"     : 0.0,
+            "y"     : 0.0,
+            "z"     : 0.0
+        },
+        "<Roate>k__BackingField"     : {
+            "mType" : "UnityEngine.Vector3",
+            "x"     : 0.0,
+            "y"     : 0.0,
+            "z"     : 0.0
+        },
+        "<Scale>k__BackingField"     : {
+            "mType" : "UnityEngine.Vector3",
+            "x"     : 0.0,
+            "y"     : 0.0,
+            "z"     : 0.0
+        },
+        "isActive"                   : true
+    },
+    {
+        "mType" : "LCECS.Core.DecisionCom",
+        "DecisionId" : 0,
+        "DecisionThread" : 0,
+        "isActive"       : true
+    },
+    {
+        "mType" : "Demo.Com.MoveCom",
+        "Mass"  : 1,
+        "isActive" : true
+    },
+    {
+        "mType" : "Demo.Com.MoveRequestCom",
+        "isActive" : true
+    }
+]

@@ -87,19 +87,22 @@ public class TestEnterMap : MonoBehaviour
     {
         LCSkill.SkillLocate.SetSkillServer(new SkillServer());
         LCSkill.SkillLocate.SetDamageServer(new DamageServer());    
-        MapLocate.Map.Enter(1001);
-        InitKeyCallBack();
+        MapLocate.Map.Enter(1001,(() =>
+        {
+            InitKeyCallBack();
+        }));
+       
     }
 
     private void InitKeyCallBack()
     {
         LeftKey.SetDoubleClickCallBack(() => {
-            Debug.LogError("Ë«»÷LeftKey¡·¡·¡·¡·");
+            Debug.LogError("åŒå‡»LeftKeyã€‹ã€‹ã€‹ã€‹");
             paramData.SetString("100102");
             ECSLocate.Player.PushPlayerReq(RequestId.PushSkill, paramData);
         });
         RightKey.SetDoubleClickCallBack(() => {
-            Debug.LogError("Ë«»÷RightKey¡·¡·¡·¡·");
+            Debug.LogError("åŒå‡»RightKeyã€‹ã€‹ã€‹ã€‹");
             paramData.SetString("100102");
             ECSLocate.Player.PushPlayerReq(RequestId.PushSkill, paramData);
         });

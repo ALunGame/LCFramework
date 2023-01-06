@@ -5,6 +5,7 @@ using LCNode;
 using System;
 using System.Collections.Generic;
 using Config;
+using Demo.Com.MainActor;
 using Demo.Scripts.Com.Work;
 
 namespace Demo
@@ -156,6 +157,44 @@ namespace Demo
         public override BaseCom CreateRuntimeNode()
         {
             PlayerCom com = new PlayerCom();
+            return com;
+        }
+    }
+    
+    [NodeMenuItem("演员/玩家/玩家移动组件")]
+    public class Entity_Actor_MainActorMoveCom : Entity_ComNode
+    {
+        public override string Title { get => "玩家移动组件"; set => base.Title = value; }
+        public override string Tooltip { get => "玩家移动组件"; set => base.Tooltip = value; }
+        public override Type RuntimeNode => typeof(MainActorMoveCom);
+
+        [NodeValue("移动速度")]
+        public float MoveSpeed = 12;
+        [NodeValue("爬墙速度")]
+        public float ClimbSpeed = 6;
+        
+        [NodeValue("一段跳最大距离")]
+        public float JumpDis = 1;
+        [NodeValue("一段跳跳跃速度")]
+        public float JumpSpeed = 18;
+        
+        [NodeValue("可以二段跳最小距离")]
+        public float JumpSecondCanDis = 0.2f;			   
+        [NodeValue("二段跳最大距离")]
+        public float JumpSecondDis = 0.5f;            
+        [NodeValue("二段跳跳跃速度")]
+        public float JumpSecondSpeed = 20;
+        
+        public override BaseCom CreateRuntimeNode()
+        {
+            MainActorMoveCom com = new MainActorMoveCom();
+            com.MoveSpeed = MoveSpeed;
+            com.ClimbSpeed = ClimbSpeed;
+            com.JumpDis = JumpDis;
+            com.JumpSpeed = JumpSpeed;
+            com.JumpSecondCanDis = JumpSecondCanDis;
+            com.JumpSecondDis = JumpSecondDis;
+            com.JumpSecondSpeed = JumpSecondSpeed;
             return com;
         }
     }
@@ -418,6 +457,20 @@ namespace Demo
         public override BaseCom CreateRuntimeNode()
         {
             InputCom com = new InputCom();
+            return com;
+        }
+    }
+    
+    [NodeMenuItem("全局/输入/玩家输入组件")]
+    public class Entity_Global_MainActorInputCom : Entity_ComNode
+    {
+        public override string Title { get => "玩家输入组件"; set => base.Title = value; }
+        public override string Tooltip { get => "玩家输入组件"; set => base.Tooltip = value; }
+        public override Type RuntimeNode => typeof(MainActorInputCom);
+
+        public override BaseCom CreateRuntimeNode()
+        {
+            MainActorInputCom com = new MainActorInputCom();
             return com;
         }
     }

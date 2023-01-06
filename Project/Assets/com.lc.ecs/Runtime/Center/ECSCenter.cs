@@ -52,14 +52,7 @@ namespace LCECS
                 object systemObj = ReflectionHelper.CreateInstance(systemType);
                 BaseSystem system = systemObj as BaseSystem;
                 system.Init();
-                ECSLocate.ECS.RegUpdateSystem(system);
-            }
-            foreach (var item in systemSortAsset.GetSystemSorts(SystemType.FixedUpdate))
-            {
-                Type systemType = ReflectionHelper.GetType(item.typeFullName);
-                BaseSystem system = ReflectionHelper.CreateInstance(systemType) as BaseSystem;
-                system.Init();
-                ECSLocate.ECS.RegFixedUpdateSystem(system);
+                ECSLocate.ECS.RegSystem(system);
             }
         }
 

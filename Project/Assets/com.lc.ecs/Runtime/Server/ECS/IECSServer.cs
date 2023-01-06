@@ -63,16 +63,10 @@ namespace LCECS.Server.ECS
         void CheckEntityInSystem(string uid);
 
         /// <summary>
-        /// 注册在Update中更新的系统
+        /// 注册系统
         /// </summary>
         /// <param name="system"></param>
-        void RegUpdateSystem(BaseSystem system);
-
-        /// <summary>
-        /// 注册在FixedUpdate中更新的系统
-        /// </summary>
-        /// <param name="system"></param>
-        void RegFixedUpdateSystem(BaseSystem system);
+        void RegSystem(BaseSystem system);
 
         /// <summary>
         /// 执行UpdateSystem

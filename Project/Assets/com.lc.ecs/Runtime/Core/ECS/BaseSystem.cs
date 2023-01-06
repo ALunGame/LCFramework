@@ -122,6 +122,27 @@ namespace LCECS.Core
             }
         }
 
+        public void FixedUpdateExecute()
+        {
+            if (IdHandleComsDict.Count == 0)
+                return;
+
+            if (OpenTest)
+                stopwatch.Restart();
+            foreach (List<BaseCom> coms in IdHandleComsDict.Values)
+            {
+                FixedUpdateHandleComs(coms);
+            }
+            if (OpenTest)
+            {
+                stopwatch.Stop();
+                if (stopwatch.Elapsed.TotalMilliseconds >= ExcuteWarnTime)
+                {
+                    ECSLocate.Log.LogWarning("系统运行超时>>>>", this.GetType(), stopwatch.Elapsed.TotalMilliseconds);
+                }
+            }
+        }
+
         public void Clear()
         {
             ContainComs.Clear();
@@ -142,6 +163,12 @@ namespace LCECS.Core
 
         //处理组件
         protected abstract void HandleComs(List<BaseCom> comList);
+
+        //物理帧处理
+        protected virtual void FixedUpdateHandleComs(List<BaseCom> comList)
+        {
+            
+        }
 
         //当组件添加检测的时候
         protected virtual void OnAddCheckComs(List<BaseCom> comList)

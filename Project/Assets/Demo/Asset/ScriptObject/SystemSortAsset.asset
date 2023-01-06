@@ -37,11 +37,11 @@ MonoBehaviour:
   - typeName: TaskSystem
     typeFullName: LCTask.TaskSystem
     sort: 12
-  - typeName: TransformSystem
-    typeFullName: Demo.System.TransformSystem
-    sort: 13
   - typeName: TimerSystem
     typeFullName: Demo.System.TimerSystem
+    sort: 13
+  - typeName: TransformSystem
+    typeFullName: Demo.System.TransformSystem
     sort: 13
   - typeName: FollowCameraSystem
     typeFullName: Demo.System.FollowCameraSystem
@@ -67,6 +67,12 @@ MonoBehaviour:
   - typeName: WorkSystem
     typeFullName: Demo.Scripts.System.Actor.WorkSystem
     sort: 17
+  - typeName: MainActorInputSystem
+    typeFullName: Demo.System.MainActorInputSystem
+    sort: 18
+  - typeName: MainActorMoveSystem
+    typeFullName: Demo.System.MainActor.MainActorMoveSystem
+    sort: 19
   fixedUpdateSystems:
   - typeName: BuffSystem
     typeFullName: LCSkill.BuffSystem

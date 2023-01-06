@@ -98,8 +98,13 @@
     },
     {
         "mType" : "Demo.Com.MoveCom",
-        "Mass"  : 1,
-        "isActive" : true
+        "CurrVelocity" : {
+            "mType" : "UnityEngine.Vector2",
+            "x"     : 0.0,
+            "y"     : 0.0
+        },
+        "Mass"         : 1,
+        "isActive"     : true
     },
     {
         "mType" : "Demo.Com.MoveRequestCom",

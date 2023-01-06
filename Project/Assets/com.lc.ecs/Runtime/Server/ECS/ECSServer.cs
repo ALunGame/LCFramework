@@ -28,23 +28,15 @@ namespace LCECS.Server.ECS
         //实体列表
         private Dictionary<string, Entity> entityDict = new Dictionary<string, Entity>();
 
-        //所有Update系统
-        private List<BaseSystem> systemUpdateList = new List<BaseSystem>();
-
-        //所有FixedUpdate系统
-        private List<BaseSystem> systemFixedUpdateList = new List<BaseSystem>();
+        //系统
+        private List<BaseSystem> systemList = new List<BaseSystem>();
 
         //检测系统是否检测该实体
         private void CheckEntityInSystem(Entity entity)
         {
-            for (int i = 0; i < systemUpdateList.Count; i++)
+            for (int i = 0; i < systemList.Count; i++)
             {
-                systemUpdateList[i].CheckEntity(entity);
-            }
-
-            for (int i = 0; i < systemFixedUpdateList.Count; i++)
-            {
-                systemFixedUpdateList[i].CheckEntity(entity);
+                systemList[i].CheckEntity(entity);
             }
         }
 
@@ -150,37 +142,29 @@ namespace LCECS.Server.ECS
 
         #region System
 
-        public void RegUpdateSystem(BaseSystem system)
+        public void RegSystem(BaseSystem system)
         {
-            if (systemUpdateList.Contains(system))
+            if (systemList.Contains(system))
                 return;
-            systemUpdateList.Add(system);
-        }
-
-        public void RegFixedUpdateSystem(BaseSystem system)
-        {
-            if (systemFixedUpdateList.Contains(system))
-                return;
-            systemFixedUpdateList.Add(system);
+            systemList.Add(system);
         }
 
         public void ExcuteUpdateSystem()
         {
-            for (int i = 0; i < systemUpdateList.Count; i++)
+            for (int i = 0; i < systemList.Count; i++)
             {
-                systemUpdateList[i].Excute();
+                systemList[i].Excute();
             }
         }
 
         public void ExcuteFixedUpdateSystem()
         {
-            for (int i = 0; i < systemFixedUpdateList.Count; i++)
+            for (int i = 0; i < systemList.Count; i++)
             {
-                systemFixedUpdateList[i].Excute();
+                systemList[i].FixedUpdateExecute();
             }
         }
-
-
+        
         #endregion
 
         public void Clear()

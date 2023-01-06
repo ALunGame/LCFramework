@@ -23,7 +23,6 @@ namespace Demo
             MoveCom moveCom = (MoveCom)comList[0];
             TransCom transCom = (TransCom)comList[1];
             
-            
             float xPos = moveCom.CurrentMoveInfo.xDelta;
             float yPos = moveCom.CurrentMoveInfo.jumpSpeed * Time.deltaTime;
 

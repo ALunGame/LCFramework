@@ -29,7 +29,7 @@ namespace Demo.Com
         public override string ToString()
         {
             string box = $"Box-->Up:{Up} Down:{Down} Left:{Left} Right:{Right}";
-            string corner = $"Corner-->UpRight:{UpRightCorner} UpLeft:{UpLeftCorner} DownRight:{DownRightCorner} DownLeft:{DownLeftCorner}";
+            string corner = $" Corner-->UpRight:{UpRightCorner} UpLeft:{UpLeftCorner} DownRight:{DownRightCorner} DownLeft:{DownLeftCorner}";
             return box + corner;
         }
     }
@@ -39,6 +39,10 @@ namespace Demo.Com
         public Vector2 centerPos;
         public Vector2 size;
 
+        public ColliderCheckInfo()
+        {
+            
+        }
         public ColliderCheckInfo(Vector2 pCenter,Vector2 pSize)
         {
             centerPos = pCenter;

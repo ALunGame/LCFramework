@@ -24,18 +24,23 @@ namespace Demo
 
         protected override void HandleComs(List<BaseCom> comList)
         {
-            MoveCom moveCom = GetCom<MoveCom>(comList[0]);
-            TransCom transCom = GetCom<TransCom>(comList[1]);
-            Collider2DCom collider2DCom = GetCom<Collider2DCom>(comList[2]);
-
-            Rigidbody2D rig2d = collider2DCom.rig2D;
-            //碰撞更新
-            UpdateColliderInfo(collider2DCom);
-
-            MoveState moveState = CalcMoveState(collider2DCom, moveCom.CurrentMoveInfo);
-            moveCom.SetCurrMoveState(moveState);
-            HandleGravity(moveCom.CurrentMoveInfo, moveCom, collider2DCom);
-            ExecuteMoveState(moveState, collider2DCom, moveCom);
+            // MoveCom moveCom = GetCom<MoveCom>(comList[0]);
+            // TransCom transCom = GetCom<TransCom>(comList[1]);
+            // Collider2DCom collider2DCom = GetCom<Collider2DCom>(comList[2]);
+            //
+            // Rigidbody2D rig2d = collider2DCom.rig2D;
+            // //碰撞更新
+            // UpdateColliderInfo(collider2DCom);
+            //
+            // MoveState moveState = CalcMoveState(collider2DCom, moveCom.CurrentMoveInfo);
+            //
+            // if (moveCom.CurrentMoveInfo.needJump)
+            // {
+            //     Debug.LogWarning($"跳跃》》》》》{moveState}-->{collider2DCom.Collider}");
+            // }
+            // moveCom.SetCurrMoveState(moveState);
+            // //HandleGravity(moveCom.CurrentMoveInfo, moveCom, collider2DCom);
+            // ExecuteMoveState(moveState, collider2DCom, moveCom);
         }
 
         #region 碰撞更新
@@ -190,7 +195,7 @@ namespace Demo
                     if (moveSpeed > 0)
                     {
                         //爬墙
-                        if (pCollider2DCom.Collider.UpLeftCorner)
+                        if (pCollider2DCom.Collider.UpRightCorner)
                         {
                             if (needJump)
                             {
@@ -230,19 +235,23 @@ namespace Demo
             //在地面不处理重力
             if (moveState <= MoveState.MoveJump_Ground)
             {
-                //没有跳跃，跳跃速度也不为0
-                if (!pMoveInfo.needJump && pCollider2DCom.rig2D.velocity.y < 0)
-                {
-                    pCollider2DCom.rig2D.velocity = new Vector2(pCollider2DCom.rig2D.velocity.x, 0);
-                }
-
-                pCollider2DCom.rig2D.mass = MoveCom.DefaultMass;
                 return;
             }
-            //抓墙和挂墙无重力
-            if (moveState == MoveState.Grab_Wall || moveState == MoveState.Hang_Wall)
+            
+            //墙上移动
+            if (moveState >= MoveState.Move_Wall && moveState <= MoveState.MoveJump_Wall)
             {
-                pCollider2DCom.rig2D.mass = 0;
+                if (pCollider2DCom.rig2D.velocity.y < 0)
+                {
+                    
+                }
+                pCollider2DCom.rig2D.velocity = new Vector2(pCollider2DCom.rig2D.velocity.x, 0);
+                return;
+            }
+            
+            //抓墙和挂墙无重力
+            if (moveState >= MoveState.Grab_Wall && moveState <= MoveState.HangJump_Wall)
+            {
                 pCollider2DCom.rig2D.velocity = new Vector2(pCollider2DCom.rig2D.velocity.x, 0);
                 return;
             }
@@ -331,14 +340,12 @@ namespace Demo
                         {
                             if (pCollider2DCom.Collider.Left)
                             {
-                                HandleJump(pCollider2DCom, pMoveCom);
-                                pCollider2DCom.rig2D.velocity = new Vector2(10, pCollider2DCom.rig2D.velocity.y);
+                                HandleJump(pCollider2DCom, pMoveCom,500);
                             }
 
                             if (pCollider2DCom.Collider.Right)
                             {
-                                HandleJump(pCollider2DCom, pMoveCom);
-                                pCollider2DCom.rig2D.velocity = new Vector2(-10, pCollider2DCom.rig2D.velocity.y);
+                                HandleJump(pCollider2DCom, pMoveCom,-500);
                             }
                         }
                     }
@@ -358,7 +365,7 @@ namespace Demo
             }
         }
         
-        private void HandleJump(Collider2DCom pCollider2DCom,MoveCom pMoveCom)
+        private void HandleJump(Collider2DCom pCollider2DCom,MoveCom pMoveCom,float pXForce = 0)
         {
             if (pCollider2DCom.Collider.Up || !pMoveCom.CurrentMoveInfo.needJump)
             {
@@ -366,7 +373,7 @@ namespace Demo
                 return;
             }
             pCollider2DCom.rig2D.velocity = new Vector2(pCollider2DCom.rig2D.velocity.x, 0);
-            pCollider2DCom.rig2D.AddForce(new Vector2(0,pMoveCom.CurrentMoveInfo.jumpSpeed));
+            pCollider2DCom.rig2D.AddForce(new Vector2(pXForce,pMoveCom.CurrentMoveInfo.jumpSpeed));
             pMoveCom.CurrentMoveInfo.needJump = false;
         }
 

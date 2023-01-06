@@ -1,11 +1,11 @@
 ﻿
 [
     {
-        "mType" : "Demo.Com.BasePropertyCom",
+        "mType" : "LCECS.Core.BindGoCom",
         "isActive" : true
     },
     {
-        "mType" : "LCECS.Core.BindGoCom",
+        "mType" : "Demo.Com.BasePropertyCom",
         "isActive" : true
     },
     {
@@ -62,41 +62,22 @@
         "isActive"                   : true
     },
     {
-        "mType" : "Demo.Com.MoveCom",
-        "Mass"  : 1,
-        "isActive" : true
+        "mType" : "Demo.Com.MainActor.MainActorMoveCom",
+        "FixHorizon" : false,
+        "ClimbSpeed" : 6,
+        "JumpDis"    : 1,
+        "JumpSpeed"  : 18,
+        "JumpSecondCanDis" : 0.2,
+        "JumpSecondDis"    : 0.5,
+        "JumpSecondSpeed"  : 20,
+        "MoveSpeed"        : 12,
+        "isActive"         : true
     },
     {
         "mType" : "LCECS.Core.DecisionCom",
         "DecisionId" : 1,
         "DecisionThread" : 0,
         "isActive"       : true
-    },
-    {
-        "mType" : "Demo.Com.Collider2DCom",
-        "_cacheVects" : [
-            {
-                "mType" : "UnityEngine.Vector2",
-                "x"     : 0.0,
-                "y"     : 0.0
-            },
-            {
-                "mType" : "UnityEngine.Vector2",
-                "x"     : 0.0,
-                "y"     : 0.0
-            },
-            {
-                "mType" : "UnityEngine.Vector2",
-                "x"     : 0.0,
-                "y"     : 0.0
-            },
-            {
-                "mType" : "UnityEngine.Vector2",
-                "x"     : 0.0,
-                "y"     : 0.0
-            }
-        ],
-        "isActive"    : true
     },
     {
         "mType" : "Demo.Com.PlayerCom",

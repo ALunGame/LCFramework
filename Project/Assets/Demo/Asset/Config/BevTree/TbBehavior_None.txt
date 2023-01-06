@@ -5,7 +5,7 @@
         "reqId" : 0,
         "tree"  : {
             "mType" : "LCECS.Core.Tree.Nodes.NodeRoot",
-            "Uid"   : "7a9958ef-5b17-40ff-94b9-4e9d1066a293",
+            "Uid"   : "78be6c8e-5532-4e1f-9d18-0a6d36c12c6b",
             "childNodes" : null,
             "nodePremise" : null
         },

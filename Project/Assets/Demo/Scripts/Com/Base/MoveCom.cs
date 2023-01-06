@@ -19,6 +19,7 @@ namespace Demo
         Move_Wall,              //在墙上移动
         Jump_Wall,              //在墙上跳
         MoveJump_Wall,          //在墙上移动和跳
+        
         Grab_Wall,              //抓墙
         GrabJump_Wall,          //抓墙跳
         Hang_Wall,              //挂墙
@@ -77,6 +78,7 @@ namespace Demo.Com
             {MoveState.MoveJump_Sky,"jumpUp"},
         };
 
+        [NonSerialized]
         public const float DefaultMass = 1;
         
         [NonSerialized]

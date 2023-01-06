@@ -15,6 +15,19 @@
         "isActive"                    : true
     },
     {
+        "mType" : "Demo.Com.MainActorInputCom",
+        "LeftMoveKey" : 0,
+        "RightMoveKey" : 0,
+        "Jump"         : 0,
+        "Dash"         : 0,
+        "Climb"        : 0,
+        "v"            : 0,
+        "h"            : 0,
+        "MoveDir"      : 0,
+        "JumpFrame"    : 0,
+        "isActive"     : true
+    },
+    {
         "mType" : "LCTask.TaskCom",
         "isActive" : true
     }

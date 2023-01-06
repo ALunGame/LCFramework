@@ -94,7 +94,7 @@ namespace Demo
 
         private void Update()
         {
-            Execute_KeyEvent();
+            //Execute_KeyEvent();
             _DecCenter.Execute_Update();
             _EcsCenter.Execute_Update();
         }

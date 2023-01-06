@@ -29,9 +29,140 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff61f231dc79c984c8042c61b477a480, type: 3}
   m_Name: entity_1
   m_EditorClassIdentifier: 
-  serializedGraph: '{"mType":"LCECS.EntityGraph.EntityGraph","pos":{"mType":"UnityEngine.Vector3","x":-22.0,"y":130.0,"z":0.0},"zoom":{"mType":"UnityEngine.Vector3","x":1.0,"y":1.0,"z":1.0},"nodes":{"mType":"System.Collections.Generic.Dictionary`2[[System.String,
+  serializedGraph: "\r\n{\r\n    \"mType\" : \"LCECS.EntityGraph.EntityGraph\",\r\n   
+    \"pos\"   : {\r\n        \"mType\" : \"UnityEngine.Vector3\",\r\n        \"x\"    
+    : -21.0,\r\n        \"y\"     : 203.0,\r\n        \"z\"     : 0.0\r\n    },\r\n   
+    \"zoom\"  : {\r\n        \"mType\" : \"UnityEngine.Vector3\",\r\n        \"x\"    
+    : 0.869565188884735,\r\n        \"y\"     : 0.869565188884735,\r\n        \"z\"    
+    : 1.0\r\n    },\r\n    \"nodes\" : {\r\n        \"mType\" : \"System.Collections.Generic.Dictionary`2[[System.String,
     mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089],[LCNode.Model.BaseNode,
-    Assembly-CSharp-Editor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]","423cd0e7-f477-4614-80f7-a0f2127a9c85":{"mType":"LCECS.EntityGraph.Entity_Node","coms":null,"guid":"423cd0e7-f477-4614-80f7-a0f2127a9c85","position":{"mType":"UnityEngine.Vector2","x":517.0,"y":-119.0},"inIndex":-1,"outIndex":-1},"6b29451b-3d2d-4576-96af-d73020f858ae":{"mType":"LCECS.EntityGraph.Entity_Entity_BindGoCom","parentNode":null,"isActive":true,"guid":"6b29451b-3d2d-4576-96af-d73020f858ae","position":{"mType":"UnityEngine.Vector2","x":259.0,"y":61.0},"inIndex":1,"outIndex":-1},"aed09f95-a8fc-45e8-8d5e-771f889c8276":{"mType":"LCECS.EntityGraph.Entity_Entity_TransCom","parentNode":null,"isActive":true,"guid":"aed09f95-a8fc-45e8-8d5e-771f889c8276","position":{"mType":"UnityEngine.Vector2","x":586.0,"y":61.0},"inIndex":4,"outIndex":-1},"120dd59f-b312-4a50-a839-c687341522e6":{"mType":"LCECS.EntityGraph.Entity_Entity_DecisionCom","decisionId":1,"decisionThread":0,"parentNode":null,"isActive":true,"guid":"120dd59f-b312-4a50-a839-c687341522e6","position":{"mType":"UnityEngine.Vector2","x":747.0,"y":61.0},"inIndex":6,"outIndex":-1},"69155a45-d43f-4e38-b4dd-0f5a58b2664e":{"mType":"Demo.Entity_Actor_BasePropertyCom","Food":{"mType":"Demo.Com.PropertyInfo","max":0,"min":0,"curr":0},"Hp":{"mType":"Demo.Com.PropertyInfo","max":0,"min":0,"curr":0},"Attack":{"mType":"Demo.Com.PropertyInfo","max":0,"min":0,"curr":0},"MoveSpeed":{"mType":"Demo.Com.PropertyInfo","max":10,"min":0,"curr":5},"JumpSpeed":{"mType":"Demo.Com.PropertyInfo","max":10,"min":0,"curr":5},"ActionSpeed":{"mType":"Demo.Com.PropertyInfo","max":10,"min":0,"curr":0},"parentNode":null,"isActive":true,"guid":"69155a45-d43f-4e38-b4dd-0f5a58b2664e","position":{"mType":"UnityEngine.Vector2","x":250.0,"y":195.0},"inIndex":0,"outIndex":-1},"badebc41-bf44-4528-a1f1-3871d960ab19":{"mType":"Demo.Entity_Actor_AnimCom","parentNode":null,"isActive":true,"guid":"badebc41-bf44-4528-a1f1-3871d960ab19","position":{"mType":"UnityEngine.Vector2","x":428.0,"y":195.0},"inIndex":3,"outIndex":-1},"4cbda46b-e41a-44d7-860c-6b76d003bd9e":{"mType":"Demo.Entity_Actor_BubbleCom","parentNode":null,"isActive":true,"guid":"4cbda46b-e41a-44d7-860c-6b76d003bd9e","position":{"mType":"UnityEngine.Vector2","x":572.0,"y":195.0},"inIndex":4,"outIndex":-1},"386d343e-1808-4a2a-aba7-70da34d77db4":{"mType":"Demo.Entity_Actor_MoveCom","Mass":1,"parentNode":null,"isActive":true,"guid":"386d343e-1808-4a2a-aba7-70da34d77db4","position":{"mType":"UnityEngine.Vector2","x":711.0,"y":195.0},"inIndex":5,"outIndex":-1},"36ddb722-6494-4951-b15a-665c9a4127d5":{"mType":"LCMap.Entity_Actor_DisplayCom","parentNode":null,"isActive":true,"guid":"36ddb722-6494-4951-b15a-665c9a4127d5","position":{"mType":"UnityEngine.Vector2","x":419.0,"y":61.0},"inIndex":2,"outIndex":-1},"c4aa905f-c8bb-49fd-857e-5e50f3401484":{"mType":"LCMap.Entity_Actor_InteractiveCom","parentNode":null,"isActive":true,"guid":"c4aa905f-c8bb-49fd-857e-5e50f3401484","position":{"mType":"UnityEngine.Vector2","x":259.0,"y":306.0},"inIndex":2,"outIndex":-1},"3af2e23b-7ad7-4a00-a312-00d821b0cc7b":{"mType":"Demo.Entity_Actor_BagCom","items":[],"parentNode":null,"isActive":true,"guid":"3af2e23b-7ad7-4a00-a312-00d821b0cc7b","position":{"mType":"UnityEngine.Vector2","x":401.0,"y":306.0},"inIndex":3,"outIndex":-1},"4200bbbb-a313-4a18-8aee-cffd871db438":{"mType":"Demo.Entity_Actor_GravityCom","Mass":1,"parentNode":null,"isActive":true,"guid":"4200bbbb-a313-4a18-8aee-cffd871db438","position":{"mType":"UnityEngine.Vector2","x":549.0,"y":306.0},"inIndex":6,"outIndex":-1},"e9fe34cd-7cb0-4316-bca6-f86a024cdee8":{"mType":"Demo.Entity_Actor_Collider2DCom","parentNode":null,"isActive":true,"guid":"e9fe34cd-7cb0-4316-bca6-f86a024cdee8","position":{"mType":"UnityEngine.Vector2","x":868.0,"y":195.0},"inIndex":7,"outIndex":-1},"131e10b2-928e-4f8c-b919-71ece3a6f2cd":{"mType":"Demo.Entity_Actor_PlayerCom","parentNode":null,"isActive":true,"guid":"131e10b2-928e-4f8c-b919-71ece3a6f2cd","position":{"mType":"UnityEngine.Vector2","x":1030.0,"y":82.0},"inIndex":8,"outIndex":-1}},"connections":[{"mType":"LCNode.Model.BaseConnection","from":"423cd0e7-f477-4614-80f7-a0f2127a9c85","fromPortName":"\u7EC4\u4EF6\u5217\u8868","to":"6b29451b-3d2d-4576-96af-d73020f858ae","toPortName":"\u7236\u8282\u70B9"},{"mType":"LCNode.Model.BaseConnection","from":"423cd0e7-f477-4614-80f7-a0f2127a9c85","fromPortName":"\u7EC4\u4EF6\u5217\u8868","to":"aed09f95-a8fc-45e8-8d5e-771f889c8276","toPortName":"\u7236\u8282\u70B9"},{"mType":"LCNode.Model.BaseConnection","from":"423cd0e7-f477-4614-80f7-a0f2127a9c85","fromPortName":"\u7EC4\u4EF6\u5217\u8868","to":"69155a45-d43f-4e38-b4dd-0f5a58b2664e","toPortName":"\u7236\u8282\u70B9"},{"mType":"LCNode.Model.BaseConnection","from":"423cd0e7-f477-4614-80f7-a0f2127a9c85","fromPortName":"\u7EC4\u4EF6\u5217\u8868","to":"386d343e-1808-4a2a-aba7-70da34d77db4","toPortName":"\u7236\u8282\u70B9"},{"mType":"LCNode.Model.BaseConnection","from":"423cd0e7-f477-4614-80f7-a0f2127a9c85","fromPortName":"\u7EC4\u4EF6\u5217\u8868","to":"36ddb722-6494-4951-b15a-665c9a4127d5","toPortName":"\u7236\u8282\u70B9"},{"mType":"LCNode.Model.BaseConnection","from":"423cd0e7-f477-4614-80f7-a0f2127a9c85","fromPortName":"\u7EC4\u4EF6\u5217\u8868","to":"e9fe34cd-7cb0-4316-bca6-f86a024cdee8","toPortName":"\u7236\u8282\u70B9"},{"mType":"LCNode.Model.BaseConnection","from":"423cd0e7-f477-4614-80f7-a0f2127a9c85","fromPortName":"\u7EC4\u4EF6\u5217\u8868","to":"120dd59f-b312-4a50-a839-c687341522e6","toPortName":"\u7236\u8282\u70B9"},{"mType":"LCNode.Model.BaseConnection","from":"423cd0e7-f477-4614-80f7-a0f2127a9c85","fromPortName":"\u7EC4\u4EF6\u5217\u8868","to":"131e10b2-928e-4f8c-b919-71ece3a6f2cd","toPortName":"\u7236\u8282\u70B9"},{"mType":"LCNode.Model.BaseConnection","from":"423cd0e7-f477-4614-80f7-a0f2127a9c85","fromPortName":"\u7EC4\u4EF6\u5217\u8868","to":"badebc41-bf44-4528-a1f1-3871d960ab19","toPortName":"\u7236\u8282\u70B9"}]}'
+    Assembly-CSharp-Editor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]\",\r\n       
+    \"423cd0e7-f477-4614-80f7-a0f2127a9c85\" : {\r\n            \"mType\" : \"LCECS.EntityGraph.Entity_Node\",\r\n           
+    \"coms\"  : null,\r\n            \"guid\"  : \"423cd0e7-f477-4614-80f7-a0f2127a9c85\",\r\n           
+    \"position\" : {\r\n                \"mType\" : \"UnityEngine.Vector2\",\r\n               
+    \"x\"     : 517.0,\r\n                \"y\"     : -119.0\r\n            },\r\n           
+    \"inIndex\"  : -1,\r\n            \"outIndex\" : -1\r\n        },\r\n       
+    \"6b29451b-3d2d-4576-96af-d73020f858ae\" : {\r\n            \"mType\" : \"LCECS.EntityGraph.Entity_Entity_BindGoCom\",\r\n           
+    \"parentNode\" : null,\r\n            \"isActive\"   : true,\r\n            \"guid\"      
+    : \"6b29451b-3d2d-4576-96af-d73020f858ae\",\r\n            \"position\"   : {\r\n               
+    \"mType\" : \"UnityEngine.Vector2\",\r\n                \"x\"     : 102.0,\r\n               
+    \"y\"     : 72.0\r\n            },\r\n            \"inIndex\"    : 0,\r\n           
+    \"outIndex\"   : -1\r\n        },\r\n        \"aed09f95-a8fc-45e8-8d5e-771f889c8276\"
+    : {\r\n            \"mType\" : \"LCECS.EntityGraph.Entity_Entity_TransCom\",\r\n           
+    \"parentNode\" : null,\r\n            \"isActive\"   : true,\r\n            \"guid\"      
+    : \"aed09f95-a8fc-45e8-8d5e-771f889c8276\",\r\n            \"position\"   : {\r\n               
+    \"mType\" : \"UnityEngine.Vector2\",\r\n                \"x\"     : 549.0,\r\n               
+    \"y\"     : 61.0\r\n            },\r\n            \"inIndex\"    : 4,\r\n           
+    \"outIndex\"   : -1\r\n        },\r\n        \"120dd59f-b312-4a50-a839-c687341522e6\"
+    : {\r\n            \"mType\" : \"LCECS.EntityGraph.Entity_Entity_DecisionCom\",\r\n           
+    \"decisionId\" : 1,\r\n            \"decisionThread\" : 0,\r\n            \"parentNode\"    
+    : null,\r\n            \"isActive\"       : true,\r\n            \"guid\"          
+    : \"120dd59f-b312-4a50-a839-c687341522e6\",\r\n            \"position\"      
+    : {\r\n                \"mType\" : \"UnityEngine.Vector2\",\r\n               
+    \"x\"     : 781.0,\r\n                \"y\"     : 61.0\r\n            },\r\n           
+    \"inIndex\"        : 6,\r\n            \"outIndex\"       : -1\r\n        },\r\n       
+    \"69155a45-d43f-4e38-b4dd-0f5a58b2664e\" : {\r\n            \"mType\" : \"Demo.Entity_Actor_BasePropertyCom\",\r\n           
+    \"parentNode\" : null,\r\n            \"isActive\"   : true,\r\n            \"guid\"      
+    : \"69155a45-d43f-4e38-b4dd-0f5a58b2664e\",\r\n            \"position\"   : {\r\n               
+    \"mType\" : \"UnityEngine.Vector2\",\r\n                \"x\"     : 215.0,\r\n               
+    \"y\"     : 195.0\r\n            },\r\n            \"inIndex\"    : 1,\r\n           
+    \"outIndex\"   : -1\r\n        },\r\n        \"badebc41-bf44-4528-a1f1-3871d960ab19\"
+    : {\r\n            \"mType\" : \"Demo.Entity_Actor_AnimCom\",\r\n           
+    \"parentNode\" : null,\r\n            \"isActive\"   : true,\r\n            \"guid\"      
+    : \"badebc41-bf44-4528-a1f1-3871d960ab19\",\r\n            \"position\"   : {\r\n               
+    \"mType\" : \"UnityEngine.Vector2\",\r\n                \"x\"     : 419.0,\r\n               
+    \"y\"     : 195.0\r\n            },\r\n            \"inIndex\"    : 3,\r\n           
+    \"outIndex\"   : -1\r\n        },\r\n        \"4cbda46b-e41a-44d7-860c-6b76d003bd9e\"
+    : {\r\n            \"mType\" : \"Demo.Entity_Actor_BubbleCom\",\r\n           
+    \"parentNode\" : null,\r\n            \"isActive\"   : true,\r\n            \"guid\"      
+    : \"4cbda46b-e41a-44d7-860c-6b76d003bd9e\",\r\n            \"position\"   : {\r\n               
+    \"mType\" : \"UnityEngine.Vector2\",\r\n                \"x\"     : 573.0,\r\n               
+    \"y\"     : 639.0\r\n            },\r\n            \"inIndex\"    : 4,\r\n           
+    \"outIndex\"   : -1\r\n        },\r\n        \"386d343e-1808-4a2a-aba7-70da34d77db4\"
+    : {\r\n            \"mType\" : \"Demo.Entity_Actor_MoveCom\",\r\n           
+    \"Mass\"  : 1,\r\n            \"parentNode\" : null,\r\n            \"isActive\"  
+    : true,\r\n            \"guid\"       : \"386d343e-1808-4a2a-aba7-70da34d77db4\",\r\n           
+    \"position\"   : {\r\n                \"mType\" : \"UnityEngine.Vector2\",\r\n               
+    \"x\"     : 822.0,\r\n                \"y\"     : 638.0\r\n            },\r\n           
+    \"inIndex\"    : 6,\r\n            \"outIndex\"   : -1\r\n        },\r\n       
+    \"36ddb722-6494-4951-b15a-665c9a4127d5\" : {\r\n            \"mType\" : \"LCMap.Entity_Actor_DisplayCom\",\r\n           
+    \"parentNode\" : null,\r\n            \"isActive\"   : true,\r\n            \"guid\"      
+    : \"36ddb722-6494-4951-b15a-665c9a4127d5\",\r\n            \"position\"   : {\r\n               
+    \"mType\" : \"UnityEngine.Vector2\",\r\n                \"x\"     : 331.0,\r\n               
+    \"y\"     : 61.0\r\n            },\r\n            \"inIndex\"    : 2,\r\n           
+    \"outIndex\"   : -1\r\n        },\r\n        \"c4aa905f-c8bb-49fd-857e-5e50f3401484\"
+    : {\r\n            \"mType\" : \"LCMap.Entity_Actor_InteractiveCom\",\r\n           
+    \"parentNode\" : null,\r\n            \"isActive\"   : true,\r\n            \"guid\"      
+    : \"c4aa905f-c8bb-49fd-857e-5e50f3401484\",\r\n            \"position\"   : {\r\n               
+    \"mType\" : \"UnityEngine.Vector2\",\r\n                \"x\"     : 227.0,\r\n               
+    \"y\"     : 517.0\r\n            },\r\n            \"inIndex\"    : 2,\r\n           
+    \"outIndex\"   : -1\r\n        },\r\n        \"3af2e23b-7ad7-4a00-a312-00d821b0cc7b\"
+    : {\r\n            \"mType\" : \"Demo.Entity_Actor_BagCom\",\r\n            \"items\"
+    : [\r\n            ],\r\n            \"parentNode\" : null,\r\n            \"isActive\"  
+    : true,\r\n            \"guid\"       : \"3af2e23b-7ad7-4a00-a312-00d821b0cc7b\",\r\n           
+    \"position\"   : {\r\n                \"mType\" : \"UnityEngine.Vector2\",\r\n               
+    \"x\"     : 369.0,\r\n                \"y\"     : 517.0\r\n            },\r\n           
+    \"inIndex\"    : 3,\r\n            \"outIndex\"   : -1\r\n        },\r\n       
+    \"4200bbbb-a313-4a18-8aee-cffd871db438\" : {\r\n            \"mType\" : \"Demo.Entity_Actor_GravityCom\",\r\n           
+    \"Mass\"  : 1,\r\n            \"parentNode\" : null,\r\n            \"isActive\"  
+    : true,\r\n            \"guid\"       : \"4200bbbb-a313-4a18-8aee-cffd871db438\",\r\n           
+    \"position\"   : {\r\n                \"mType\" : \"UnityEngine.Vector2\",\r\n               
+    \"x\"     : 517.0,\r\n                \"y\"     : 517.0\r\n            },\r\n           
+    \"inIndex\"    : 6,\r\n            \"outIndex\"   : -1\r\n        },\r\n       
+    \"e9fe34cd-7cb0-4316-bca6-f86a024cdee8\" : {\r\n            \"mType\" : \"Demo.Entity_Actor_Collider2DCom\",\r\n           
+    \"parentNode\" : null,\r\n            \"isActive\"   : true,\r\n            \"guid\"      
+    : \"e9fe34cd-7cb0-4316-bca6-f86a024cdee8\",\r\n            \"position\"   : {\r\n               
+    \"mType\" : \"UnityEngine.Vector2\",\r\n                \"x\"     : 948.0,\r\n               
+    \"y\"     : 551.0\r\n            },\r\n            \"inIndex\"    : 6,\r\n           
+    \"outIndex\"   : -1\r\n        },\r\n        \"131e10b2-928e-4f8c-b919-71ece3a6f2cd\"
+    : {\r\n            \"mType\" : \"Demo.Entity_Actor_PlayerCom\",\r\n           
+    \"parentNode\" : null,\r\n            \"isActive\"   : true,\r\n            \"guid\"      
+    : \"131e10b2-928e-4f8c-b919-71ece3a6f2cd\",\r\n            \"position\"   : {\r\n               
+    \"mType\" : \"UnityEngine.Vector2\",\r\n                \"x\"     : 1316.0,\r\n               
+    \"y\"     : 52.0\r\n            },\r\n            \"inIndex\"    : 7,\r\n           
+    \"outIndex\"   : -1\r\n        },\r\n        \"c3920d8e-0c29-4a74-82a3-40d0f2a17ddb\"
+    : {\r\n            \"mType\" : \"Demo.Entity_Actor_MainActorMoveCom\",\r\n           
+    \"MoveSpeed\" : 12,\r\n            \"ClimbSpeed\" : 6,\r\n            \"JumpDis\"   
+    : 1,\r\n            \"JumpSpeed\"  : 18,\r\n            \"JumpSecondCanDis\"
+    : 0.2,\r\n            \"JumpSecondDis\"    : 0.5,\r\n            \"JumpSecondSpeed\" 
+    : 20,\r\n            \"parentNode\"       : null,\r\n            \"isActive\"        
+    : true,\r\n            \"guid\"             : \"c3920d8e-0c29-4a74-82a3-40d0f2a17ddb\",\r\n           
+    \"position\"         : {\r\n                \"mType\" : \"UnityEngine.Vector2\",\r\n               
+    \"x\"     : 665.0,\r\n                \"y\"     : 185.0\r\n            },\r\n           
+    \"inIndex\"          : 5,\r\n            \"outIndex\"         : -1\r\n       
+    }\r\n    },\r\n    \"groups\" : [\r\n    ],\r\n    \"connections\" : [\r\n       
+    {\r\n            \"mType\" : \"LCNode.Model.BaseConnection\",\r\n           
+    \"from\"  : \"423cd0e7-f477-4614-80f7-a0f2127a9c85\",\r\n            \"fromPortName\"
+    : \"\\u7EC4\\u4EF6\\u5217\\u8868\",\r\n            \"to\"           : \"6b29451b-3d2d-4576-96af-d73020f858ae\",\r\n           
+    \"toPortName\"   : \"\\u7236\\u8282\\u70B9\"\r\n        },\r\n        {\r\n           
+    \"mType\" : \"LCNode.Model.BaseConnection\",\r\n            \"from\"  : \"423cd0e7-f477-4614-80f7-a0f2127a9c85\",\r\n           
+    \"fromPortName\" : \"\\u7EC4\\u4EF6\\u5217\\u8868\",\r\n            \"to\"          
+    : \"aed09f95-a8fc-45e8-8d5e-771f889c8276\",\r\n            \"toPortName\"   :
+    \"\\u7236\\u8282\\u70B9\"\r\n        },\r\n        {\r\n            \"mType\"
+    : \"LCNode.Model.BaseConnection\",\r\n            \"from\"  : \"423cd0e7-f477-4614-80f7-a0f2127a9c85\",\r\n           
+    \"fromPortName\" : \"\\u7EC4\\u4EF6\\u5217\\u8868\",\r\n            \"to\"          
+    : \"69155a45-d43f-4e38-b4dd-0f5a58b2664e\",\r\n            \"toPortName\"   :
+    \"\\u7236\\u8282\\u70B9\"\r\n        },\r\n        {\r\n            \"mType\"
+    : \"LCNode.Model.BaseConnection\",\r\n            \"from\"  : \"423cd0e7-f477-4614-80f7-a0f2127a9c85\",\r\n           
+    \"fromPortName\" : \"\\u7EC4\\u4EF6\\u5217\\u8868\",\r\n            \"to\"          
+    : \"36ddb722-6494-4951-b15a-665c9a4127d5\",\r\n            \"toPortName\"   :
+    \"\\u7236\\u8282\\u70B9\"\r\n        },\r\n        {\r\n            \"mType\"
+    : \"LCNode.Model.BaseConnection\",\r\n            \"from\"  : \"423cd0e7-f477-4614-80f7-a0f2127a9c85\",\r\n           
+    \"fromPortName\" : \"\\u7EC4\\u4EF6\\u5217\\u8868\",\r\n            \"to\"          
+    : \"120dd59f-b312-4a50-a839-c687341522e6\",\r\n            \"toPortName\"   :
+    \"\\u7236\\u8282\\u70B9\"\r\n        },\r\n        {\r\n            \"mType\"
+    : \"LCNode.Model.BaseConnection\",\r\n            \"from\"  : \"423cd0e7-f477-4614-80f7-a0f2127a9c85\",\r\n           
+    \"fromPortName\" : \"\\u7EC4\\u4EF6\\u5217\\u8868\",\r\n            \"to\"          
+    : \"131e10b2-928e-4f8c-b919-71ece3a6f2cd\",\r\n            \"toPortName\"   :
+    \"\\u7236\\u8282\\u70B9\"\r\n        },\r\n        {\r\n            \"mType\"
+    : \"LCNode.Model.BaseConnection\",\r\n            \"from\"  : \"423cd0e7-f477-4614-80f7-a0f2127a9c85\",\r\n           
+    \"fromPortName\" : \"\\u7EC4\\u4EF6\\u5217\\u8868\",\r\n            \"to\"          
+    : \"badebc41-bf44-4528-a1f1-3871d960ab19\",\r\n            \"toPortName\"   :
+    \"\\u7236\\u8282\\u70B9\"\r\n        },\r\n        {\r\n            \"mType\"
+    : \"LCNode.Model.BaseConnection\",\r\n            \"from\"  : \"423cd0e7-f477-4614-80f7-a0f2127a9c85\",\r\n           
+    \"fromPortName\" : \"\\u7EC4\\u4EF6\\u5217\\u8868\",\r\n            \"to\"          
+    : \"c3920d8e-0c29-4a74-82a3-40d0f2a17ddb\",\r\n            \"toPortName\"   :
+    \"\\u7236\\u8282\\u70B9\"\r\n        }\r\n    ]\r\n}"
   entityId: 1
   entityName: "\u73A9\u5BB6"
 --- !u!114 &11400000

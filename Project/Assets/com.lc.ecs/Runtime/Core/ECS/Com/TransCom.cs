@@ -60,7 +60,6 @@ namespace LCECS.Core
             {
                 trans.position = Pos;
             }
-
         }
 
         public void SetRoate(Vector3 pRoate)
@@ -75,6 +74,13 @@ namespace LCECS.Core
             Scale = pScale;
             if (trans != null)
                 trans.localScale = Scale;
+        }
+
+        public void UpdateTrans()
+        {
+            Pos = trans.position;
+            Roate = trans.localEulerAngles;
+            Scale = trans.localScale;
         }
 
         /// <summary>

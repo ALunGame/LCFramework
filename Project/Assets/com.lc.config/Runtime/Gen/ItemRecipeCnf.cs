@@ -6,7 +6,7 @@ namespace Demo.Config
 {
     
     /// <summary>
-    /// 物品配方配置
+    /// 物品配方信息
     /// </summary>
     public class ItemRecipeCnf
     {

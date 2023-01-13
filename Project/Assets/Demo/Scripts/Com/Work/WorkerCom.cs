@@ -46,15 +46,15 @@ namespace Demo.Com
         {
             if (currCmd.CanExecute())
             {
-                currCmd.Execute(WorkFinish);
+                currCmd.Execute();
             }
         }
 
-        private void WorkFinish(WorkCommand pRequest)
+        public void WorkFinish(WorkCommand pCmd)
         {
-            if (!pRequest.Equals(currCmd))
+            if (!pCmd.Equals(currCmd))
             {
-                GameLocate.Log.LogError("工作完成失败，完成的请求不是当前请求");
+                GameLocate.Log.LogError($"工作完成失败，完成的请求:{pCmd}不是当前请求:{currCmd}");
                 return;
             }
             currCmd = null;

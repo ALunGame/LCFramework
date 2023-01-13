@@ -297,6 +297,22 @@ MonoBehaviour:
     m_Address: Actor_tx_map101_leftBigDoor
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: ecf515cc9be84014582d22530cdc5974
+    m_Address: Actor_weapon_axe
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 443405357b8512c42b579f1495c9ac53
+    m_Address: Actor_weapon_pickaxe
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 3152f242fd990644787bcdbc034df392
+    m_Address: Actor_weapon_shovel
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: e4a5ee5d9b9957748a0fe1f8f7cbcf44
+    m_Address: Actor_weapon_hammer
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: c106a54d1dad7c34dbca1e47199c97a1, type: 2}
   m_SchemaSet:

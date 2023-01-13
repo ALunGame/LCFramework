@@ -4,7 +4,7 @@ namespace Demo.Config
 {
     
     /// <summary>
-    /// 演员基础属性配置
+    /// 演员基础属性
     /// </summary>
     public class ActorBasePropertyCnf
     {

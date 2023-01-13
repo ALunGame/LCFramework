@@ -44,6 +44,7 @@ namespace Demo.Com.MainActor
         [NonSerialized] private bool isMove = true;            //是否允许左右移动
         [NonSerialized] private RaycastHit2D[] HorizontalBox;
         
+        [NonSerialized] private Actor actor;
         [NonSerialized] private TransCom trans;
         [NonSerialized] private BindGoCom bindGo;
         [NonSerialized] private ActorDisplayCom displayCom;
@@ -53,6 +54,7 @@ namespace Demo.Com.MainActor
         protected override void OnAwake(Entity pEntity)
         {
             input = ECSLocate.ECS.GetWorld().GetCom<MainActorInputCom>();
+            actor = pEntity as Actor;
             trans = pEntity.GetCom<TransCom>();
             bindGo = pEntity.GetCom<BindGoCom>();
             bindGo.RegGoChange(OnBindGoChange);
@@ -228,7 +230,7 @@ namespace Demo.Com.MainActor
             }
             if(lastDir != currDir)
             {
-                trans.SetDir(currDir);
+                actor.SetDir(currDir);
             }
         }
         
@@ -270,7 +272,7 @@ namespace Demo.Com.MainActor
         {
             if (moveCollider.UpBox.Length == 1)
             {
-                var pointDis = moveCollider.UpBox[0].point.x - Center.y;
+                var pointDis = moveCollider.UpBox[0].point.x - Center.x;
                 if (pointDis > 0.34f)
                 {
                     var offsetPos = Mathf.Floor(rig2D.position.x);

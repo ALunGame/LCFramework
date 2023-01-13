@@ -13,8 +13,7 @@ namespace Demo.UI
     {
 
     }
-
-    [UIPanelId(UIPanelId.FightUI)]
+    
     public class FightUIPanel : UIPanel<FightUIPanelModel>
     {
         //左移动按钮

@@ -30,5 +30,11 @@
     {
         "mType" : "LCTask.TaskCom",
         "isActive" : true
+    },
+    {
+        "mType" : "Demo.Com.TimerCom",
+        "timerInfos" : [
+        ],
+        "isActive"   : true
     }
 ]

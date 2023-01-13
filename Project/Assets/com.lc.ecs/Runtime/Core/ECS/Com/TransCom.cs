@@ -62,17 +62,17 @@ namespace LCECS.Core
             }
         }
 
-        public void SetRoate(Vector3 pRoate)
+        public void SetRoate(Vector3 pRoate,bool pJustData = false)
         {
             Roate = pRoate;
-            if (trans != null)
+            if (trans != null && !pJustData)
                 trans.localEulerAngles = Roate;
         }
 
-        public void SetScale(Vector3 pScale)
+        public void SetScale(Vector3 pScale,bool pJustData = false)
         {
             Scale = pScale;
-            if (trans != null)
+            if (trans != null && !pJustData)
                 trans.localScale = Scale;
         }
 

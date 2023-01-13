@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Demo;
 
 namespace LCUI
 {
@@ -6,10 +7,10 @@ namespace LCUI
     {
         class PanelStack
         {
-            public UIPanelId panelId;
+            public UIPanelDef panelId;
             public InternalUIPanel panel;
 
-            public PanelStack(UIPanelId panelId, InternalUIPanel panel)
+            public PanelStack(UIPanelDef panelId, InternalUIPanel panel)
             {
                 this.panelId = panelId;
                 this.panel = panel;
@@ -32,14 +33,15 @@ namespace LCUI
 
         public override List<UIShowRule> CheckRules => rules;
 
-        public override void OnShowPanel(UIPanelId panelId, InternalUIPanel panel)
+        public override void OnShowPanel(UIPanelDef panelId, InternalUIPanel panel)
         {
-            if (panel.DefaultShowRule == UIShowRule.Overlay_NoNeedBack || panel.DefaultShowRule == UIShowRule.HideOther_NoNeedBack)
+            UIPanelCnf panelCnf = UILocate.UI.GetPanelCnf(panelId);
+            if (panelCnf.showRule == UIShowRule.Overlay_NoNeedBack || panelCnf.showRule == UIShowRule.HideOther_NoNeedBack)
                 return;
             stack.Push(new PanelStack(panelId, panel));
         }
 
-        public override void OnHidePanel(UIPanelId panelId, InternalUIPanel panel)
+        public override void OnHidePanel(UIPanelDef panelId, InternalUIPanel panel)
         {
             if (stack.Count <= 0)
                 return;

@@ -45,12 +45,17 @@ namespace Demo.UI
         private UIComGlue<Transform> emojiTrans = new UIComGlue<Transform>("Box/Center/Emoji");
         private UIComGlue<Transform> dialogTrans = new UIComGlue<Transform>("Box/Center/Dailog");
 
-        public override void OnShow()
+        public override void OnAwake()
         {
             BindModel.emoji.RegisterValueChangedEvent(RefreshEmoji);
             BindModel.content.RegisterValueChangedEvent(RefreshContent);
             BindModel.name.RegisterValueChangedEvent(RefreshTalkName);
             BindModel.isPlaying.RegisterValueChangedEvent(OnPlayingChange);
+        }
+
+        public override void OnShow()
+        {
+           
         }
 
         public override void OnHide()

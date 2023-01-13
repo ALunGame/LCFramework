@@ -78,15 +78,30 @@ namespace #KEY#
 
         public List<ClassInfo> GenAllClass()
         {
-            List<ClassInfo> classInfos = GetAllClass();
-            foreach (ClassInfo classInfo in classInfos)
+            List<ClassInfo> resClassInfos = new List<ClassInfo>();
+            
+            ExcelPackage tPackage = null;
+            List<ExcelWorksheet> sheets = ExcelReader.ReadAllSheets(excelPath,out tPackage);
+            
+            for (int i = 0; i < sheets.Count; i++)
             {
-                GenClassCode(classInfo);
+                allClassStr = "";
+                ExcelWorksheet tSheet = sheets[i];
+                List<ClassInfo> classInfos = GetAllClass(tSheet);
+                resClassInfos.AddRange(classInfos);
+                
+                foreach (ClassInfo classInfo in classInfos)
+                {
+                    GenClassCode(classInfo);
+                }
+                
+                //创建代码
+                IOHelper.WriteText(usingStr+allClassStr,ExcelReadSetting.Setting.GenCodeRootPath + $"/TbCustomClass_{i}.cs");
             }
-            //创建代码
-            IOHelper.WriteText(usingStr+allClassStr,ExcelReadSetting.Setting.GenCodeRootPath + "/TbCustomClass.cs");
-
-            return classInfos;
+            
+            tPackage.Dispose();
+            
+            return resClassInfos;
         }
 
         private void GenClassCode(ClassInfo pClassInfo)
@@ -149,12 +164,12 @@ namespace #KEY#
             }
         }
 
-        public List<ClassInfo> GetAllClass()
+        public List<ClassInfo> GetAllClass(ExcelWorksheet sheet)
         {
             List<ClassInfo> classInfos = new List<ClassInfo>();
             
-            ExcelPackage tPackage = null;
-            ExcelWorksheet sheet = ExcelReader.ReadAllSheets(excelPath,out tPackage)[0];
+            // ExcelPackage tPackage = null;
+            // ExcelWorksheet sheet = ExcelReader.ReadAllSheets(excelPath,out tPackage)[0];
             
             //最大行
             int _MaxRowNum = sheet.Dimension.End.Row;
@@ -226,9 +241,28 @@ namespace #KEY#
                 }
             }
             
-            tPackage.Dispose();
+            //tPackage.Dispose();
 
             return classInfos;
         }
+
+        public List<ClassInfo> GetAllClass()
+        {
+            List<ClassInfo> resClassInfos = new List<ClassInfo>();
+            
+            ExcelPackage tPackage = null;
+            List<ExcelWorksheet> sheets = ExcelReader.ReadAllSheets(excelPath,out tPackage);
+            
+            for (int i = 0; i < sheets.Count; i++)
+            {
+                ExcelWorksheet tSheet = sheets[i];
+                List<ClassInfo> classInfos = GetAllClass(tSheet);
+                resClassInfos.AddRange(classInfos);
+            }
+            
+            tPackage.Dispose();
+            return resClassInfos;
+        }
+        
     }
 }

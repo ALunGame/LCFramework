@@ -1,0 +1,103 @@
+﻿
+[
+    {
+        "mType" : "Demo.Config.ActorBasePropertyCnf",
+        "id"    : 101,
+        "hp"    : 100,
+        "moveSpeed" : 5,
+        "jumpSpeed" : 10,
+        "attack"    : 1,
+        "defense"   : 1,
+        "actionSpeed" : 1
+    },
+    {
+        "mType" : "Demo.Config.ActorBasePropertyCnf",
+        "id"    : 201,
+        "hp"    : 100,
+        "moveSpeed" : 5,
+        "jumpSpeed" : 10,
+        "attack"    : 1,
+        "defense"   : 1,
+        "actionSpeed" : 1
+    },
+    {
+        "mType" : "Demo.Config.ActorBasePropertyCnf",
+        "id"    : 202,
+        "hp"    : 100,
+        "moveSpeed" : 5,
+        "jumpSpeed" : 10,
+        "attack"    : 1,
+        "defense"   : 1,
+        "actionSpeed" : 1
+    },
+    {
+        "mType" : "Demo.Config.ActorBasePropertyCnf",
+        "id"    : 203,
+        "hp"    : 100,
+        "moveSpeed" : 5,
+        "jumpSpeed" : 10,
+        "attack"    : 1,
+        "defense"   : 1,
+        "actionSpeed" : 1
+    },
+    {
+        "mType" : "Demo.Config.ActorBasePropertyCnf",
+        "id"    : 204,
+        "hp"    : 100,
+        "moveSpeed" : 5,
+        "jumpSpeed" : 10,
+        "attack"    : 1,
+        "defense"   : 1,
+        "actionSpeed" : 1
+    },
+    {
+        "mType" : "Demo.Config.ActorBasePropertyCnf",
+        "id"    : 205,
+        "hp"    : 100,
+        "moveSpeed" : 5,
+        "jumpSpeed" : 10,
+        "attack"    : 1,
+        "defense"   : 1,
+        "actionSpeed" : 1
+    },
+    {
+        "mType" : "Demo.Config.ActorBasePropertyCnf",
+        "id"    : 206,
+        "hp"    : 100,
+        "moveSpeed" : 5,
+        "jumpSpeed" : 10,
+        "attack"    : 1,
+        "defense"   : 1,
+        "actionSpeed" : 1
+    },
+    {
+        "mType" : "Demo.Config.ActorBasePropertyCnf",
+        "id"    : 207,
+        "hp"    : 100,
+        "moveSpeed" : 5,
+        "jumpSpeed" : 10,
+        "attack"    : 1,
+        "defense"   : 1,
+        "actionSpeed" : 1
+    },
+    {
+        "mType" : "Demo.Config.ActorBasePropertyCnf",
+        "id"    : 208,
+        "hp"    : 100,
+        "moveSpeed" : 5,
+        "jumpSpeed" : 10,
+        "attack"    : 1,
+        "defense"   : 1,
+        "actionSpeed" : 1
+    },
+    {
+        "mType" : "Demo.Config.ActorBasePropertyCnf",
+        "id"    : 210,
+        "hp"    : 100,
+        "moveSpeed" : 5,
+        "jumpSpeed" : 10,
+        "attack"    : 1,
+        "defense"   : 1,
+        "actionSpeed" : 1
+    }
+]

@@ -1,4 +1,5 @@
-﻿using Demo.Com;
+﻿using Config;
+using Demo.Com;
 using Demo.Config;
 using LCMap;
 
@@ -100,13 +101,17 @@ namespace Demo
             //0，移动到命令发起者演员身边
             MoveRequestCom.MoveToActorInteractiveRange(executor,originator, () =>
             {
-                //1，扣除生产道具
-                executor.GetCom(out BagCom exbagCom);
-                exbagCom.RemoveItem(itemId, itemCnt);
-                //2，添加对方道具
-                originator.GetCom(out BagCom orbagCom);
-                orbagCom.AddItem(itemId, itemCnt);
-                ExecuteFinish();
+                originator.ExecuteInteractive(executor,InteractiveType.GiveItem, (InteractiveState state) =>
+                {
+                    if (state == InteractiveState.Success)
+                    {
+                        ExecuteFinish();
+                    }   
+                    else if (state == InteractiveState.Fail)
+                    {
+                        OnExecute();
+                    }
+                },new ItemInfo(itemId,itemCnt));
             });
         }
     }

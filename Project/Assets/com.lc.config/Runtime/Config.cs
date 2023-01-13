@@ -3,8 +3,9 @@ using System;
 using System.Collections.Generic;
 using LCLoad;
 using TT;
-using LCMap;
 using Demo.Config;
+using LCMap;
+using Demo;
 
 
 namespace LCConfig
@@ -31,47 +32,9 @@ namespace LCConfig
             }
         }
 
-        private static TbActorCnf _ActorCnf = null;
-        /// <summary>
-        /// 演员配置
-        /// </summary>
-        public static TbActorCnf ActorCnf
-        {
-            get
-            {
-                if (_ActorCnf == null)
-                {
-                    string jsonStr = LoadHelper.LoadString("TbActorCnf");
-                    List<ActorCnf> configs = LCJson.JsonMapper.ToObject<List<ActorCnf>>(jsonStr);
-                    _ActorCnf = new TbActorCnf();
-                    _ActorCnf.AddConfig(configs);
-                }
-                return _ActorCnf;
-            }
-        }
-
-        private static TbActorBasePropertyCnf _ActorBasePropertyCnf = null;
-        /// <summary>
-        /// 演员基础属性配置
-        /// </summary>
-        public static TbActorBasePropertyCnf ActorBasePropertyCnf
-        {
-            get
-            {
-                if (_ActorBasePropertyCnf == null)
-                {
-                    string jsonStr = LoadHelper.LoadString("TbActorBasePropertyCnf");
-                    List<ActorBasePropertyCnf> configs = LCJson.JsonMapper.ToObject<List<ActorBasePropertyCnf>>(jsonStr);
-                    _ActorBasePropertyCnf = new TbActorBasePropertyCnf();
-                    _ActorBasePropertyCnf.AddConfig(configs);
-                }
-                return _ActorBasePropertyCnf;
-            }
-        }
-
         private static TbItemCnf _ItemCnf = null;
         /// <summary>
-        /// 物品配置
+        /// 物品信息
         /// </summary>
         public static TbItemCnf ItemCnf
         {
@@ -90,7 +53,7 @@ namespace LCConfig
 
         private static TbItemRecipeCnf _ItemRecipeCnf = null;
         /// <summary>
-        /// 物品配方配置
+        /// 物品配方信息
         /// </summary>
         public static TbItemRecipeCnf ItemRecipeCnf
         {
@@ -109,7 +72,7 @@ namespace LCConfig
 
         private static TbItemRepairCnf _ItemRepairCnf = null;
         /// <summary>
-        /// 物品修复配置
+        /// 物品修复信息
         /// </summary>
         public static TbItemRepairCnf ItemRepairCnf
         {
@@ -126,9 +89,66 @@ namespace LCConfig
             }
         }
 
+        private static TbActorCnf _ActorCnf = null;
+        /// <summary>
+        /// 演员信息
+        /// </summary>
+        public static TbActorCnf ActorCnf
+        {
+            get
+            {
+                if (_ActorCnf == null)
+                {
+                    string jsonStr = LoadHelper.LoadString("TbActorCnf");
+                    List<ActorCnf> configs = LCJson.JsonMapper.ToObject<List<ActorCnf>>(jsonStr);
+                    _ActorCnf = new TbActorCnf();
+                    _ActorCnf.AddConfig(configs);
+                }
+                return _ActorCnf;
+            }
+        }
+
+        private static TbActorBasePropertyCnf _ActorBasePropertyCnf = null;
+        /// <summary>
+        /// 演员基础属性
+        /// </summary>
+        public static TbActorBasePropertyCnf ActorBasePropertyCnf
+        {
+            get
+            {
+                if (_ActorBasePropertyCnf == null)
+                {
+                    string jsonStr = LoadHelper.LoadString("TbActorBasePropertyCnf");
+                    List<ActorBasePropertyCnf> configs = LCJson.JsonMapper.ToObject<List<ActorBasePropertyCnf>>(jsonStr);
+                    _ActorBasePropertyCnf = new TbActorBasePropertyCnf();
+                    _ActorBasePropertyCnf.AddConfig(configs);
+                }
+                return _ActorBasePropertyCnf;
+            }
+        }
+
+        private static TbWeaponCnf _WeaponCnf = null;
+        /// <summary>
+        /// 武器基础属性
+        /// </summary>
+        public static TbWeaponCnf WeaponCnf
+        {
+            get
+            {
+                if (_WeaponCnf == null)
+                {
+                    string jsonStr = LoadHelper.LoadString("TbWeaponCnf");
+                    List<WeaponCnf> configs = LCJson.JsonMapper.ToObject<List<WeaponCnf>>(jsonStr);
+                    _WeaponCnf = new TbWeaponCnf();
+                    _WeaponCnf.AddConfig(configs);
+                }
+                return _WeaponCnf;
+            }
+        }
+
         private static TbEventCnf _EventCnf = null;
         /// <summary>
-        /// 事件配置
+        /// 事件信息
         /// </summary>
         public static TbEventCnf EventCnf
         {
@@ -145,18 +165,31 @@ namespace LCConfig
             }
         }
 
+        private static TbUIPanelCnf _UIPanelCnf = null;
+        /// <summary>
+        /// 界面配置
+        /// </summary>
+        public static TbUIPanelCnf UIPanelCnf
+        {
+            get
+            {
+                if (_UIPanelCnf == null)
+                {
+                    string jsonStr = LoadHelper.LoadString("TbUIPanelCnf");
+                    List<UIPanelCnf> configs = LCJson.JsonMapper.ToObject<List<UIPanelCnf>>(jsonStr);
+                    _UIPanelCnf = new TbUIPanelCnf();
+                    _UIPanelCnf.AddConfig(configs);
+                }
+                return _UIPanelCnf;
+            }
+        }
+
 
         public static void Reload()
         {
 
             if(_Test!= null)
 				_Test.Clear();
-
-            if(_ActorCnf!= null)
-				_ActorCnf.Clear();
-
-            if(_ActorBasePropertyCnf!= null)
-				_ActorBasePropertyCnf.Clear();
 
             if(_ItemCnf!= null)
 				_ItemCnf.Clear();
@@ -167,8 +200,20 @@ namespace LCConfig
             if(_ItemRepairCnf!= null)
 				_ItemRepairCnf.Clear();
 
+            if(_ActorCnf!= null)
+				_ActorCnf.Clear();
+
+            if(_ActorBasePropertyCnf!= null)
+				_ActorBasePropertyCnf.Clear();
+
+            if(_WeaponCnf!= null)
+				_WeaponCnf.Clear();
+
             if(_EventCnf!= null)
 				_EventCnf.Clear();
+
+            if(_UIPanelCnf!= null)
+				_UIPanelCnf.Clear();
 
         }
     }

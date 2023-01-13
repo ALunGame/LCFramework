@@ -209,5 +209,22 @@ namespace LCToolkit
             return strResult == string.Empty ? "./" : strResult;
         }
 
+        /// <summary>
+        /// 绝对路径转Unity编辑器目录
+        /// </summary>
+        /// <returns></returns>
+        public static string GetUnityRelativePath(string strFullPath)
+        {
+            if (!strFullPath.Contains("Assets"))
+            {
+                Debug.LogError("绝对路径转Unity编辑器目录出错，该目录不是编辑器下目录 "+strFullPath);
+                return "";
+            }
+
+            string resPath = strFullPath.Replace("\\","/");
+            int assetIndex = resPath.IndexOf("Assets");
+            resPath = resPath.Substring(assetIndex, resPath.Length - assetIndex);
+            return resPath;
+        }
     }
 }

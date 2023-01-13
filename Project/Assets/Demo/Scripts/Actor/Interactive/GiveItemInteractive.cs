@@ -1,30 +1,34 @@
 ﻿using DG.Tweening;
 using LCMap;
 using System.Collections.Generic;
+using Config;
 using UnityEngine;
 
 namespace Demo
 {
+    /// <summary>
+    /// 给与物品交互
+    /// </summary>
     public class GiveItemInteractive : ActorInteractive
     {
-        public List<BagItem> giveItems = new List<BagItem>();
-
         public override int Type => (int)InteractiveType.GiveItem;
 
-        protected override bool OnExecute(Actor pInteractiveActor)
+        protected override InteractiveState OnExecute(Actor pInteractiveActor, params object[] pParams)
         {
-            BagCom owerBagCom = actor.GetCom<BagCom>();
-            BagCom interactiveBagCom = pInteractiveActor.GetCom<BagCom>();
-            for (int i = 0; i < giveItems.Count; i++)
-            {
-                owerBagCom.AddItem(giveItems[i]);
-                interactiveBagCom.RemoveItem(giveItems[i].id, giveItems[i].cnt);
-            }
+            ItemInfo itemInfo = (ItemInfo)pParams[0];
+            
+            //1，扣除道具
+            pInteractiveActor.GetCom(out BagCom exbagCom);
+            exbagCom.RemoveItem(itemInfo);
+            
+            //2，添加对方道具
+            actor.GetCom(out BagCom orbagCom);
+            orbagCom.AddItem(itemInfo);
 
             actor.GetStateGo().transform.DOComplete(false);
             actor.GetStateGo().transform.DOPunchPosition(new Vector3(-0.2f * actor.GetDirValue(), 0, 0), 0.1f, 1, 0);
 
-            return true;
+            return InteractiveState.Success;
         }
     }
 }

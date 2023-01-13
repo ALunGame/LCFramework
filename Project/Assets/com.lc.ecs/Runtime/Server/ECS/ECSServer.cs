@@ -125,6 +125,21 @@ namespace LCECS.Server.ECS
             return entityDict[uid];
         }
 
+        public List<Entity> GetEntitys(int pEntityId)
+        {
+            Dictionary<string, Entity> entityMap = GetAllEntitys();
+            List<Entity> entities = new List<Entity>();
+            foreach (Entity entity in entityMap.Values)
+            {
+                if (entity.EntityId == pEntityId)
+                {
+                    entities.Add(entity);
+                }
+            }
+
+            return entities;
+        }
+
         public Dictionary<string, Entity> GetAllEntitys()
         {
             return entityDict;

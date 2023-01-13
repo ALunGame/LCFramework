@@ -154,3 +154,23 @@ MonoBehaviour:
     groupTemplateApplicationMode: 1
     simplified: 0
     addressReplacement: 
+  - path: ^Assets/Demo/Asset/Effect/Animation/[^\x22]+/*.anim
+    matchType: 1
+    groupName: EffectAnimation
+    LabelMode: 1
+    labelRefs: []
+    dynamicLabels: []
+    groupTemplate: {fileID: 11400000, guid: afd24fc416a2d11478e3db337d942408, type: 2}
+    groupTemplateApplicationMode: 1
+    simplified: 1
+    addressReplacement: 
+  - path: ^Assets/Demo/Asset/UI/Textures/Dynamic/[^\x22]+/*.spriteatlas
+    matchType: 1
+    groupName: UITexturesDynamic
+    LabelMode: 1
+    labelRefs: []
+    dynamicLabels: []
+    groupTemplate: {fileID: 11400000, guid: afd24fc416a2d11478e3db337d942408, type: 2}
+    groupTemplateApplicationMode: 1
+    simplified: 1
+    addressReplacement: 

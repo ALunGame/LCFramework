@@ -6,11 +6,11 @@ namespace LCUI
 
         void Clear();
 
-        T GetPanelModel<T>(UIPanelId panelId) where T : UIModel;
+        T GetPanelModel<T>(UIPanelDef panelId) where T : UIModel;
 
-        void Show(UIPanelId panelId);
+        void Show(UIPanelDef panelId);
 
-        void Hide(UIPanelId panelId);
+        void Hide(UIPanelDef panelId);
 
         void HideAllActivePanel();
 

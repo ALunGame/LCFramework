@@ -99,5 +99,25 @@
         "attack"    : 1,
         "defense"   : 1,
         "actionSpeed" : 1
+    },
+    {
+        "mType" : "Demo.Config.ActorBasePropertyCnf",
+        "id"    : 301,
+        "hp"    : 100,
+        "moveSpeed" : 5,
+        "jumpSpeed" : 10,
+        "attack"    : 1,
+        "defense"   : 1,
+        "actionSpeed" : 1
+    },
+    {
+        "mType" : "Demo.Config.ActorBasePropertyCnf",
+        "id"    : 302,
+        "hp"    : 100,
+        "moveSpeed" : 5,
+        "jumpSpeed" : 10,
+        "attack"    : 1,
+        "defense"   : 1,
+        "actionSpeed" : 1
     }
 ]

@@ -26,7 +26,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   serializedGraph: "\r\n{\r\n    \"mType\" : \"LCTask.TaskGraph.TaskGraph\",\r\n   
     \"pos\"   : {\r\n        \"mType\" : \"UnityEngine.Vector3\",\r\n        \"x\"    
-    : 391.0,\r\n        \"y\"     : 360.0,\r\n        \"z\"     : 0.0\r\n    },\r\n   
+    : 391.0,\r\n        \"y\"     : 420.0,\r\n        \"z\"     : 0.0\r\n    },\r\n   
     \"zoom\"  : {\r\n        \"mType\" : \"UnityEngine.Vector3\",\r\n        \"x\"    
     : 1.14999997615814,\r\n        \"y\"     : 1.14999997615814,\r\n        \"z\"    
     : 1.0\r\n    },\r\n    \"nodes\" : {\r\n        \"mType\" : \"System.Collections.Generic.Dictionary`2[[System.String,
@@ -54,17 +54,28 @@ MonoBehaviour:
     : \"Demo.Task.Task_ACT_SendRepairActorCmd\",\r\n            \"actorId\" : 301,\r\n           
     \"needWait\" : false,\r\n            \"parentNode\" : null,\r\n            \"guid\"      
     : \"dab33fe2-be04-4cba-a8c8-92624788ef88\",\r\n            \"position\"   : {\r\n               
-    \"mType\" : \"UnityEngine.Vector2\",\r\n                \"x\"     : 288.0,\r\n               
-    \"y\"     : -278.0\r\n            },\r\n            \"inIndex\"    : 0,\r\n           
+    \"mType\" : \"UnityEngine.Vector2\",\r\n                \"x\"     : 260.0,\r\n               
+    \"y\"     : -153.0\r\n            },\r\n            \"inIndex\"    : 1,\r\n           
     \"outIndex\"   : -1\r\n        },\r\n        \"f3f7bab8-2d5c-4590-9a6d-ebcac2d68375\"
     : {\r\n            \"mType\" : \"Demo.Task.Task_ACT_SendRepairActorCmd\",\r\n           
     \"actorId\" : 302,\r\n            \"needWait\" : false,\r\n            \"parentNode\"
     : null,\r\n            \"guid\"       : \"f3f7bab8-2d5c-4590-9a6d-ebcac2d68375\",\r\n           
     \"position\"   : {\r\n                \"mType\" : \"UnityEngine.Vector2\",\r\n               
-    \"x\"     : 203.0,\r\n                \"y\"     : -86.0\r\n            },\r\n           
-    \"inIndex\"    : 0,\r\n            \"outIndex\"   : -1\r\n        }\r\n    },\r\n   
-    \"groups\" : [\r\n    ],\r\n    \"connections\" : [\r\n        {\r\n           
+    \"x\"     : 251.0,\r\n                \"y\"     : -34.0\r\n            },\r\n           
+    \"inIndex\"    : 2,\r\n            \"outIndex\"   : -1\r\n        },\r\n       
+    \"be07f56b-a053-439f-907f-e24abc88207c\" : {\r\n            \"mType\" : \"Demo.Task.Task_ACT_SetActorBaseProperty\",\r\n           
+    \"actorId\" : 301,\r\n            \"propertyType\" : 0,\r\n            \"value\"       
+    : \"0\",\r\n            \"parentNode\"   : null,\r\n            \"guid\"        
+    : \"be07f56b-a053-439f-907f-e24abc88207c\",\r\n            \"position\"     :
+    {\r\n                \"mType\" : \"UnityEngine.Vector2\",\r\n               
+    \"x\"     : 251.0,\r\n                \"y\"     : -309.0\r\n            },\r\n           
+    \"inIndex\"      : 0,\r\n            \"outIndex\"     : -1\r\n        }\r\n   
+    },\r\n    \"groups\" : [\r\n    ],\r\n    \"connections\" : [\r\n        {\r\n           
     \"mType\" : \"LCNode.Model.BaseConnection\",\r\n            \"from\"  : \"a8f26b8d-0f03-44f8-9632-e7c7f40dd643\",\r\n           
+    \"fromPortName\" : \"\\u63A5\\u53D7\\u884C\\u4E3A\",\r\n            \"to\"          
+    : \"be07f56b-a053-439f-907f-e24abc88207c\",\r\n            \"toPortName\"   :
+    \"\\u7236\\u8282\\u70B9\"\r\n        },\r\n        {\r\n            \"mType\"
+    : \"LCNode.Model.BaseConnection\",\r\n            \"from\"  : \"a8f26b8d-0f03-44f8-9632-e7c7f40dd643\",\r\n           
     \"fromPortName\" : \"\\u63A5\\u53D7\\u884C\\u4E3A\",\r\n            \"to\"          
     : \"dab33fe2-be04-4cba-a8c8-92624788ef88\",\r\n            \"toPortName\"   :
     \"\\u7236\\u8282\\u70B9\"\r\n        }\r\n    ]\r\n}"

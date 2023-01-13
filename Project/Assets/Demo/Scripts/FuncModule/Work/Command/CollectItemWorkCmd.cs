@@ -60,14 +60,17 @@ namespace Demo
                 //1，移动到命令发起者演员身边
                 MoveRequestCom.MoveToActorInteractiveRange(executor,originator, () =>
                 {
-                    //1，扣除采集道具
-                    executor.GetCom(out BagCom exbagCom);
-                    exbagCom.RemoveItem(itemId, itemCnt);
-                    //2，添加对方道具
-                    originator.GetCom(out BagCom orbagCom);
-                    orbagCom.AddItem(itemId, itemCnt);
-                
-                    ExecuteFinish();
+                    originator.ExecuteInteractive(executor,InteractiveType.GiveItem, (InteractiveState state) =>
+                    {
+                        if (state == InteractiveState.Success)
+                        {
+                            ExecuteFinish();
+                        }   
+                        else if (state == InteractiveState.Fail)
+                        {
+                            OnExecute();
+                        }
+                    },new ItemInfo(itemId,itemCnt));
                 });
             }
             else
@@ -75,19 +78,10 @@ namespace Demo
                 //1，产出演员身边
                 MoveRequestCom.MoveToActorInteractiveRange(executor,outputActor, () =>
                 {
-                    //1，产出物品
-                    outputActor.GetCom(out OutputItemCom outputItemCom);
-                    ItemInfo outputItem = outputItemCom.GetOutputInfo(itemId);
-
-                    //2，采集物品
-                    executor.GetCom(out BagCom exbagCom);
-                    exbagCom.AddItem(outputItem.itemId, outputItem.itemCnt);
-                    
-                    //3，记录采集数量
-                    collectCnt += outputItem.itemCnt;
-                    
-                    //4，继续执行
-                    OnExecute();
+                    outputActor.ExecuteInteractive(executor,InteractiveType.Collect, (InteractiveState state) =>
+                    {
+                        OnExecute();
+                    }, itemId);
                 });
             }
         }

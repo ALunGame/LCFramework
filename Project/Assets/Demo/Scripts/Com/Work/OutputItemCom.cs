@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System;
 using Config;
+using LCMap;
 
 namespace Demo.Com
 {
@@ -11,6 +12,15 @@ namespace Demo.Com
     public class OutputItemCom : BaseCom
     {
         public List<ItemInfo> outputInfos = new List<ItemInfo>();
+
+        protected override void OnAwake(Entity pEntity)
+        {
+            if (pEntity is Actor)
+            {
+                Actor actor = pEntity as Actor;
+                actor.AddInteractive(new CollectInteractive());
+            }
+        }
 
         /// <summary>
         /// 检测是否输出该物品

@@ -15,14 +15,9 @@ namespace Demo.UI
 
         public Func<string,bool> skipCallBack = null;
     }
-
-    [UIPanelId(UIPanelId.BubbleDialogChoosePanel)]
+    
     public class BubbleDialogChoosePanel : UIPanel<BubbleDialogChoosePanelModel>
     {
-        public override UIShowRule DefaultShowRule { get => UIShowRule.Overlay_NoNeedBack; set => base.DefaultShowRule = value; }
-        public override UILayer Layer { get => UILayer.Top; set => base.Layer = value; }
-        public override string UIPrefabName { get => "BubbleDialogChoosePanel"; set => base.UIPrefabName = value; }
-
         private UIComGlue<Transform> chooseTrans = new UIComGlue<Transform>("Center/Choose");
         private UICacheGlue chooseItem = new UICacheGlue("Center/Choose/Prefab/DisposeBtn", "Center/Choose/ChooseRoot/List", true, true);
 
@@ -64,7 +59,7 @@ namespace Demo.UI
         {
             if (string.IsNullOrEmpty(uid))
             {
-                UILocate.UI.Hide(UIPanelId.BubbleDialogChoosePanel);
+                UILocate.UI.Hide(UIPanelDef.BubbleDialogChoosePanel);
                 return;
             }
         }

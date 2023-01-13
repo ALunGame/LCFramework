@@ -5,6 +5,7 @@ using LCConfig.Excel.GenCode;
 using LCConfig.Excel.GenCode.Property;
 using LCMap;
 using LCTask;
+using LCToolkit;
 using OfficeOpenXml;
 using UnityEngine;
 
@@ -22,10 +23,13 @@ using Config;
 using System.Collections.Generic;
 using Config;
 using Config;
-using LCMap;
-using LCMap;
 using Demo.Config;
+using LCMap;
+using LCMap;
 using Demo;
+using Demo;
+
+using LCUI;
 #endregion AutoGenUsing
 
 namespace LCConfig.Excel.Export
@@ -38,6 +42,25 @@ namespace LCConfig.Excel.Export
                     Action<GenConfigInfo, List<BaseProperty>, List<Dictionary<string, List<string>>>>>();
 
 #region AutoGenCode
+        private void Export_UIPanelCnf(GenConfigInfo pGenInfo,List<BaseProperty> pProps,List<Dictionary<string, List<string>>> propValuelist)
+        {
+            List<UIPanelCnf> cnfs = new List<UIPanelCnf>();
+            foreach (var propDict in propValuelist)
+            {
+                UIPanelCnf cnf = new UIPanelCnf();
+				cnf.id = (UIPanelDef)GetProp(pProps,"id").Parse(propDict["id"][0]);
+				cnf.prefab = (string)GetProp(pProps,"prefab").Parse(propDict["prefab"][0]);
+				cnf.script = (string)GetProp(pProps,"script").Parse(propDict["script"][0]);
+				cnf.layer = (UILayer)GetProp(pProps,"layer").Parse(propDict["layer"][0]);
+				cnf.canvas = (UICanvasType)GetProp(pProps,"canvas").Parse(propDict["canvas"][0]);
+				cnf.showRule = (UIShowRule)GetProp(pProps,"showRule").Parse(propDict["showRule"][0]);
+
+                cnfs.Add(cnf);
+            }
+                
+            pGenInfo.SaveJson(cnfs);    
+        }
+
         private void Export_EventCnf(GenConfigInfo pGenInfo,List<BaseProperty> pProps,List<Dictionary<string, List<string>>> propValuelist)
         {
             List<EventCnf> cnfs = new List<EventCnf>();
@@ -83,6 +106,64 @@ namespace LCConfig.Excel.Export
             pGenInfo.SaveJson(cnfs);    
         }
 
+        private void Export_WeaponCnf(GenConfigInfo pGenInfo,List<BaseProperty> pProps,List<Dictionary<string, List<string>>> propValuelist)
+        {
+            List<WeaponCnf> cnfs = new List<WeaponCnf>();
+            foreach (var propDict in propValuelist)
+            {
+                WeaponCnf cnf = new WeaponCnf();
+				cnf.id = (int)GetProp(pProps,"id").Parse(propDict["id"][0]);
+				cnf.name = (string)GetProp(pProps,"name").Parse(propDict["name"][0]);
+				cnf.prefab = (string)GetProp(pProps,"prefab").Parse(propDict["prefab"][0]);
+				cnf.useAnim = (string)GetProp(pProps,"useAnim").Parse(propDict["useAnim"][0]);
+				cnf.useSkillId = (int)GetProp(pProps,"useSkillId").Parse(propDict["useSkillId"][0]);
+
+                cnfs.Add(cnf);
+            }
+                
+            pGenInfo.SaveJson(cnfs);    
+        }
+
+        private void Export_ActorBasePropertyCnf(GenConfigInfo pGenInfo,List<BaseProperty> pProps,List<Dictionary<string, List<string>>> propValuelist)
+        {
+            List<ActorBasePropertyCnf> cnfs = new List<ActorBasePropertyCnf>();
+            foreach (var propDict in propValuelist)
+            {
+                ActorBasePropertyCnf cnf = new ActorBasePropertyCnf();
+				cnf.id = (int)GetProp(pProps,"id").Parse(propDict["id"][0]);
+				cnf.hp = (int)GetProp(pProps,"hp").Parse(propDict["hp"][0]);
+				cnf.moveSpeed = (float)GetProp(pProps,"moveSpeed").Parse(propDict["moveSpeed"][0]);
+				cnf.jumpSpeed = (float)GetProp(pProps,"jumpSpeed").Parse(propDict["jumpSpeed"][0]);
+				cnf.attack = (float)GetProp(pProps,"attack").Parse(propDict["attack"][0]);
+				cnf.defense = (float)GetProp(pProps,"defense").Parse(propDict["defense"][0]);
+				cnf.actionSpeed = (float)GetProp(pProps,"actionSpeed").Parse(propDict["actionSpeed"][0]);
+
+                cnfs.Add(cnf);
+            }
+                
+            pGenInfo.SaveJson(cnfs);    
+        }
+
+        private void Export_ActorCnf(GenConfigInfo pGenInfo,List<BaseProperty> pProps,List<Dictionary<string, List<string>>> propValuelist)
+        {
+            List<ActorCnf> cnfs = new List<ActorCnf>();
+            foreach (var propDict in propValuelist)
+            {
+                ActorCnf cnf = new ActorCnf();
+				cnf.id = (int)GetProp(pProps,"id").Parse(propDict["id"][0]);
+				cnf.name = (string)GetProp(pProps,"name").Parse(propDict["name"][0]);
+				cnf.type = (ActorType)GetProp(pProps,"type").Parse(propDict["type"][0]);
+				cnf.entityId = (int)GetProp(pProps,"entityId").Parse(propDict["entityId"][0]);
+				cnf.prefab = (string)GetProp(pProps,"prefab").Parse(propDict["prefab"][0]);
+				cnf.interactiveRange = (int)GetProp(pProps,"interactiveRange").Parse(propDict["interactiveRange"][0]);
+				cnf.moveSpeed = (int)GetProp(pProps,"moveSpeed").Parse(propDict["moveSpeed"][0]);
+
+                cnfs.Add(cnf);
+            }
+                
+            pGenInfo.SaveJson(cnfs);    
+        }
+
         private void Export_ItemRepairCnf(GenConfigInfo pGenInfo,List<BaseProperty> pProps,List<Dictionary<string, List<string>>> propValuelist)
         {
             List<ItemRepairCnf> cnfs = new List<ItemRepairCnf>();
@@ -90,6 +171,7 @@ namespace LCConfig.Excel.Export
             {
                 ItemRepairCnf cnf = new ItemRepairCnf();
 				cnf.id = (int)GetProp(pProps,"id").Parse(propDict["id"][0]);
+				cnf.addHp = (int)GetProp(pProps,"addHp").Parse(propDict["addHp"][0]);
 
                 cnf.repairs = new List<ItemInfo>();
                 for (int i = 0; i < propDict["repairs"].Count; i++)
@@ -143,46 +225,6 @@ namespace LCConfig.Excel.Export
                 ItemCnf cnf = new ItemCnf();
 				cnf.id = (int)GetProp(pProps,"id").Parse(propDict["id"][0]);
 				cnf.name = (string)GetProp(pProps,"name").Parse(propDict["name"][0]);
-
-                cnfs.Add(cnf);
-            }
-                
-            pGenInfo.SaveJson(cnfs);    
-        }
-
-        private void Export_ActorBasePropertyCnf(GenConfigInfo pGenInfo,List<BaseProperty> pProps,List<Dictionary<string, List<string>>> propValuelist)
-        {
-            List<ActorBasePropertyCnf> cnfs = new List<ActorBasePropertyCnf>();
-            foreach (var propDict in propValuelist)
-            {
-                ActorBasePropertyCnf cnf = new ActorBasePropertyCnf();
-				cnf.id = (int)GetProp(pProps,"id").Parse(propDict["id"][0]);
-				cnf.hp = (int)GetProp(pProps,"hp").Parse(propDict["hp"][0]);
-				cnf.moveSpeed = (float)GetProp(pProps,"moveSpeed").Parse(propDict["moveSpeed"][0]);
-				cnf.jumpSpeed = (float)GetProp(pProps,"jumpSpeed").Parse(propDict["jumpSpeed"][0]);
-				cnf.attack = (float)GetProp(pProps,"attack").Parse(propDict["attack"][0]);
-				cnf.defense = (float)GetProp(pProps,"defense").Parse(propDict["defense"][0]);
-				cnf.actionSpeed = (float)GetProp(pProps,"actionSpeed").Parse(propDict["actionSpeed"][0]);
-
-                cnfs.Add(cnf);
-            }
-                
-            pGenInfo.SaveJson(cnfs);    
-        }
-
-        private void Export_ActorCnf(GenConfigInfo pGenInfo,List<BaseProperty> pProps,List<Dictionary<string, List<string>>> propValuelist)
-        {
-            List<ActorCnf> cnfs = new List<ActorCnf>();
-            foreach (var propDict in propValuelist)
-            {
-                ActorCnf cnf = new ActorCnf();
-				cnf.id = (int)GetProp(pProps,"id").Parse(propDict["id"][0]);
-				cnf.name = (string)GetProp(pProps,"name").Parse(propDict["name"][0]);
-				cnf.type = (ActorType)GetProp(pProps,"type").Parse(propDict["type"][0]);
-				cnf.entityId = (int)GetProp(pProps,"entityId").Parse(propDict["entityId"][0]);
-				cnf.prefab = (string)GetProp(pProps,"prefab").Parse(propDict["prefab"][0]);
-				cnf.interactiveRange = (int)GetProp(pProps,"interactiveRange").Parse(propDict["interactiveRange"][0]);
-				cnf.moveSpeed = (int)GetProp(pProps,"moveSpeed").Parse(propDict["moveSpeed"][0]);
 
                 cnfs.Add(cnf);
             }
@@ -274,17 +316,21 @@ namespace LCConfig.Excel.Export
                 return;
             }
 #region AutoRegExportFunc
+			exportFuncDict.Add("UIPanelCnf",Export_UIPanelCnf);
+
 			exportFuncDict.Add("EventCnf",Export_EventCnf);
+
+			exportFuncDict.Add("WeaponCnf",Export_WeaponCnf);
+
+			exportFuncDict.Add("ActorBasePropertyCnf",Export_ActorBasePropertyCnf);
+
+			exportFuncDict.Add("ActorCnf",Export_ActorCnf);
 
 			exportFuncDict.Add("ItemRepairCnf",Export_ItemRepairCnf);
 
 			exportFuncDict.Add("ItemRecipeCnf",Export_ItemRecipeCnf);
 
 			exportFuncDict.Add("ItemCnf",Export_ItemCnf);
-
-			exportFuncDict.Add("ActorBasePropertyCnf",Export_ActorBasePropertyCnf);
-
-			exportFuncDict.Add("ActorCnf",Export_ActorCnf);
 
 			exportFuncDict.Add("Test",Export_Test);
 #endregion AutoRegExportFunc
@@ -368,7 +414,7 @@ namespace LCConfig.Excel.Export
                                     if (!prop.CanCatch(value))
                                     {
                                         isSuccess = false;
-                                        //Debug.LogWarning($"表格导出出错，类型不匹配{value}--->{prop.TypeName}:{prop.name} Sheet:{pSheet.Name}");
+                                        Debug.LogWarning($"表格导出出错，类型不匹配{value}--->{prop.TypeName}:{prop.name} Sheet:{pSheet.Name} Col:{col} Row:{row}");
                                         break;
                                     }
                                 }
@@ -378,13 +424,22 @@ namespace LCConfig.Excel.Export
                                 if (!prop.CanCatch(value))
                                 {
                                     isSuccess = false;
-                                    //Debug.LogWarning($"表格导出出错，类型不匹配{value}--->{prop.TypeName}:{prop.name} Sheet:{pSheet.Name}");
+                                    Debug.LogWarning($"表格导出出错，类型不匹配{value}--->{prop.TypeName}:{prop.name} Sheet:{pSheet.Name} Col:{col} Row:{row}");
                                     break;
                                 } 
                             }
                             values.Add(value);
                         }
-                        propValueDict.Add(propName,values);
+
+                        if (isSuccess)
+                        {
+                            propValueDict.Add(propName,values);
+                        }
+                        else
+                        {
+                            break;
+                        }
+                        
                     }
 
                     if (isSuccess)
@@ -406,7 +461,11 @@ namespace LCConfig.Excel.Export
                 List<ExcelWorksheet> sheets = new List<ExcelWorksheet>();
                 foreach (string filePath in info.filePaths)
                     sheets.AddRange(ExcelReader.ReadAllSheets(filePath,out tPackage, info.sheetName));
-                
+
+                if (!sheets.IsLegal())
+                {
+                    Debug.LogError($"导出失败，没有对应工作簿:{info.filePaths[0]}-->{info.sheetName}");
+                }
                 List<BaseProperty> props = ExcelGenCode.GetPropsByCommonExcel(sheets[0], out var propDict);
                 exportFuncDict[info.className].Invoke(info,props,GetAllPropValuelist(props,sheets,propDict));
                 
@@ -432,6 +491,26 @@ namespace LCConfig.Excel.Export
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

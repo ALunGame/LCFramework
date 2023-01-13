@@ -41,7 +41,13 @@ namespace LCConfig.Excel.GenCode
             List<ExcelWorksheet> sheets = new List<ExcelWorksheet>();
             foreach (string filePath in pInfo.filePaths)
                 sheets.AddRange(ExcelReader.ReadAllSheets(filePath,out tPackage, pInfo.sheetName));
-                
+
+            if (!sheets.IsLegal())
+            {
+                Debug.LogError($"生成代码失败，没有对应工作簿:{pInfo.filePaths[0]}-->{pInfo.sheetName}");
+                return;
+            }
+            
             List<BaseProperty> props = ExcelGenCode.GetPropsByCommonExcel(sheets[0], out var propDict);
             foreach (BaseProperty prop in props)
             {
@@ -187,14 +193,27 @@ namespace LCConfig.Excel.GenCode
                     }
                     else
                     {
-                       
+                        bool hasDefault = false;
+                        int defaultRow = 0;
                         for (int j = 2; j <= _MaxRowNum; j++)
                         {
                             string firstValue = ExcelReader.GetCellValue(pSheet,j, 1).ToString();
                             //特殊标记
                             if (firstValue.Contains("##"))
+                            {
+                                if (firstValue == "##default")
+                                {
+                                    hasDefault = true;
+                                    defaultRow = j;
+                                }
                                 continue;
+                            }
+                            
                             string value =  ExcelReader.GetCellValue(pSheet,j, col).ToString();
+                            if (hasDefault && string.IsNullOrEmpty(value))
+                            {
+                                value = ExcelReader.GetCellValue(pSheet,defaultRow, col).ToString();
+                            }
                             if (string.IsNullOrEmpty(value))
                             {
                                 StringProperty strProp = new StringProperty();
@@ -282,14 +301,29 @@ namespace LCConfig.Excel.GenCode
                     }
                     else
                     {
+                        bool hasDefault = false;
+                        int defaultRow = 0;
+                        
                         BaseProperty prop = null;
                         for (int j = 2; j <= _MaxRowNum; j++)
                         {
                             string firstValue = ExcelReader.GetCellValue(pSheet,j, 1).ToString();
                             //特殊标记
                             if (firstValue.Contains("##"))
+                            {
+                                if (firstValue == "##default")
+                                {
+                                    hasDefault = true;
+                                    defaultRow = j;
+                                }
                                 continue;
+                            }
+                            
                             string value = ExcelReader.GetCellValue(pSheet,j, col).ToString();
+                            if (hasDefault && string.IsNullOrEmpty(value))
+                            {
+                                value = ExcelReader.GetCellValue(pSheet,defaultRow, col).ToString();
+                            }
                             if (string.IsNullOrEmpty(value))
                             {
                                 Debug.LogWarning($"集合类型，没有填默认值，当作字符串处理{propName}--->{pSheet.Name}");
@@ -381,7 +415,11 @@ namespace LCConfig.Excel.GenCode
                 if (propName == "")
                 {
                     if (!string.IsNullOrEmpty(lastPropName))
-                        propColDict[lastPropName].Add(i);
+                    {
+                        string newPropName = lastPropName.Replace("#", "");
+                        newPropName = newPropName.Replace("$", "");
+                        propColDict[newPropName].Add(i);
+                    }
                 }
                 else
                 {

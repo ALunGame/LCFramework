@@ -6,7 +6,7 @@ namespace Demo.Config
 {
     
     /// <summary>
-    /// 物品修复配置
+    /// 物品修复信息
     /// </summary>
     public class ItemRepairCnf
     {
@@ -17,7 +17,12 @@ namespace Demo.Config
         public int id;
 
         /// <summary>
-        /// 每格生命修复需要的材料
+        /// 每次增加的Hp
+        /// </summary>
+        public int addHp;
+
+        /// <summary>
+        /// 增加的Hp需要的材料
         /// </summary>
         public List<ItemInfo> repairs;
 

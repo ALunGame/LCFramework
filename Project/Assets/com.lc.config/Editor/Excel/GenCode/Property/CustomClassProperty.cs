@@ -15,7 +15,17 @@ namespace LCConfig.Excel.GenCode.Property
         public override string TypeName { get=>classInfo.className; }
         public override string NameSpace
         {
-            get => $"using {classInfo.nameSpace};";
+            get
+            {
+                if (string.IsNullOrEmpty(classInfo.nameSpace))
+                {
+                    return "";
+                }
+                else
+                {
+                    return $"using {classInfo.nameSpace};";
+                }
+            }
         }
         
         public override bool CanCatch(string pValue)

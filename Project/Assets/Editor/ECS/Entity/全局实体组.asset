@@ -26,10 +26,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   serializedGraph: "\r\n{\r\n    \"mType\" : \"LCECS.EntityGraph.EntityGraph\",\r\n   
     \"pos\"   : {\r\n        \"mType\" : \"UnityEngine.Vector3\",\r\n        \"x\"    
-    : 3.0,\r\n        \"y\"     : 94.0,\r\n        \"z\"     : 0.0\r\n    },\r\n   
+    : -406.0,\r\n        \"y\"     : 108.0,\r\n        \"z\"     : 0.0\r\n    },\r\n   
     \"zoom\"  : {\r\n        \"mType\" : \"UnityEngine.Vector3\",\r\n        \"x\"    
-    : 1.0,\r\n        \"y\"     : 1.0,\r\n        \"z\"     : 1.0\r\n    },\r\n   
-    \"nodes\" : {\r\n        \"mType\" : \"System.Collections.Generic.Dictionary`2[[System.String,
+    : 1.14999997615814,\r\n        \"y\"     : 1.14999997615814,\r\n        \"z\"    
+    : 1.0\r\n    },\r\n    \"nodes\" : {\r\n        \"mType\" : \"System.Collections.Generic.Dictionary`2[[System.String,
     mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089],[LCNode.Model.BaseNode,
     Assembly-CSharp-Editor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]\",\r\n       
     \"fee97cf1-13d8-4175-a448-cc312f5ed9b1\" : {\r\n            \"mType\" : \"LCECS.EntityGraph.Entity_Node\",\r\n           
@@ -66,6 +66,12 @@ MonoBehaviour:
     : \"26adac96-ec0e-45b8-84ec-66238e831718\",\r\n            \"position\"   : {\r\n               
     \"mType\" : \"UnityEngine.Vector2\",\r\n                \"x\"     : 629.0,\r\n               
     \"y\"     : 286.0\r\n            },\r\n            \"inIndex\"    : 3,\r\n           
+    \"outIndex\"   : -1\r\n        },\r\n        \"66041d2d-8f53-4676-9db6-a9e416dc950d\"
+    : {\r\n            \"mType\" : \"Demo.Entity_Global_TimerCom\",\r\n           
+    \"parentNode\" : null,\r\n            \"isActive\"   : true,\r\n            \"guid\"      
+    : \"66041d2d-8f53-4676-9db6-a9e416dc950d\",\r\n            \"position\"   : {\r\n               
+    \"mType\" : \"UnityEngine.Vector2\",\r\n                \"x\"     : 878.0,\r\n               
+    \"y\"     : 286.0\r\n            },\r\n            \"inIndex\"    : 5,\r\n           
     \"outIndex\"   : -1\r\n        }\r\n    },\r\n    \"groups\" : [\r\n    ],\r\n   
     \"connections\" : [\r\n        {\r\n            \"mType\" : \"LCNode.Model.BaseConnection\",\r\n           
     \"from\"  : \"fee97cf1-13d8-4175-a448-cc312f5ed9b1\",\r\n            \"fromPortName\"
@@ -86,6 +92,10 @@ MonoBehaviour:
     : \"LCNode.Model.BaseConnection\",\r\n            \"from\"  : \"fee97cf1-13d8-4175-a448-cc312f5ed9b1\",\r\n           
     \"fromPortName\" : \"\\u7EC4\\u4EF6\\u5217\\u8868\",\r\n            \"to\"          
     : \"26adac96-ec0e-45b8-84ec-66238e831718\",\r\n            \"toPortName\"   :
+    \"\\u7236\\u8282\\u70B9\"\r\n        },\r\n        {\r\n            \"mType\"
+    : \"LCNode.Model.BaseConnection\",\r\n            \"from\"  : \"fee97cf1-13d8-4175-a448-cc312f5ed9b1\",\r\n           
+    \"fromPortName\" : \"\\u7EC4\\u4EF6\\u5217\\u8868\",\r\n            \"to\"          
+    : \"66041d2d-8f53-4676-9db6-a9e416dc950d\",\r\n            \"toPortName\"   :
     \"\\u7236\\u8282\\u70B9\"\r\n        }\r\n    ]\r\n}"
   entityId: 0
   entityName: "\u4E16\u754C"

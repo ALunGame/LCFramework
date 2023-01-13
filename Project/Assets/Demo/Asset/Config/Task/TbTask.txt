@@ -17,6 +17,12 @@
             ],
             "actionFuncs"       : [
                 {
+                    "mType" : "Demo.Task.TaskSetActorBasePropertyFunc",
+                    "actorId" : 301,
+                    "propertyType" : 0,
+                    "value"        : "0"
+                },
+                {
                     "mType" : "Demo.Task.TaskRepairActorCmdFunc",
                     "actorId" : 301,
                     "needWait" : false

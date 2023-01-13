@@ -1,4 +1,5 @@
-﻿using LCNode;
+﻿using Demo.Com;
+using LCNode;
 using LCTask;
 using LCTask.TaskGraph;
 
@@ -74,4 +75,31 @@ namespace Demo.Task
 
     #endregion
 
+    #region 演员
+    
+    [NodeMenuItem("演员/设置演员基础属性")]
+    public class Task_ACT_SetActorBaseProperty : Task_CommonActionFuncNode
+    {
+        public override string Title { get => "设置演员基础属性"; set => base.Title = value; }
+        public override string Tooltip { get => "设置演员基础属性"; set => base.Tooltip = value; }
+
+        [NodeValue("演员Id")]
+        public int actorId;
+        [NodeValue("属性类型")]
+        public BasePropertyType propertyType;
+        [NodeValue("属性值")]
+        public string value;
+
+        public override TaskActionFunc CreateFunc()
+        {
+            TaskSetActorBasePropertyFunc func = new TaskSetActorBasePropertyFunc();
+            func.actorId = actorId;
+            func.propertyType = propertyType;
+            func.value = value;
+            return func;
+        }
+    }
+    
+
+    #endregion
 }

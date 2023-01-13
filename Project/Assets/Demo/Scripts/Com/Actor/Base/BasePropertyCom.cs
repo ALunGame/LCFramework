@@ -149,6 +149,16 @@ namespace Demo.Com
             return new PropertyFloat(0, 0, 0);
         }
     }
+
+    public enum BasePropertyType
+    {
+        HP,
+        MoveSpeed,
+        JumpSpeed,
+        Attack,
+        Defense,
+        ActionSpeed,
+    }
     
     /// <summary>
     /// 基础属性
@@ -179,8 +189,8 @@ namespace Demo.Com
         /// 行动速度（攻击速度）
         /// </summary>
         [NonSerialized] public PropertyFloat ActionSpeed = new PropertyFloat();
-
-        protected override void OnInit(Entity pEntity)
+        
+        protected override void OnAwake(Entity pEntity)
         {
             if (pEntity is Actor)
             {
@@ -194,6 +204,8 @@ namespace Demo.Com
                     Defense = new PropertyFloat(propertyCnf.defense, propertyCnf.defense, 0);
                     ActionSpeed = new PropertyFloat(propertyCnf.actionSpeed, propertyCnf.actionSpeed, 0);
                 }
+                
+                actor.AddInteractive(new RepairInteractive());
             }
         }
     }

@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: EffectAnimation
+  m_EditorClassIdentifier: 
+  m_GroupName: EffectAnimation
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 4ae249ff2afac3b4485131d056c97097
+  m_SerializeEntries:
+  - m_GUID: fdc045981f9f8924eb4e6b82578d33a5
+    m_Address: anim_tool_use
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: c106a54d1dad7c34dbca1e47199c97a1, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: ab40704ecef9f8545895046f25c84e20, type: 2}
+    - {fileID: 11400000, guid: 6e7cf7dbfb15e7146ae30eb90b151a23, type: 2}

@@ -1,0 +1,35 @@
+﻿
+[
+    {
+        "mType" : "Demo.Config.WeaponCnf",
+        "id"    : 10,
+        "name"  : "\u65A7\u5B50",
+        "prefab" : "Actor_weapon_axe",
+        "useAnim" : "anim_tool_use",
+        "useSkillId" : 0
+    },
+    {
+        "mType" : "Demo.Config.WeaponCnf",
+        "id"    : 11,
+        "name"  : "\u9524\u5B50",
+        "prefab" : "Actor_weapon_hammer",
+        "useAnim" : "anim_tool_use",
+        "useSkillId" : 0
+    },
+    {
+        "mType" : "Demo.Config.WeaponCnf",
+        "id"    : 12,
+        "name"  : "\u9550\u5934",
+        "prefab" : "Actor_weapon_pickaxe",
+        "useAnim" : "anim_tool_use",
+        "useSkillId" : 0
+    },
+    {
+        "mType" : "Demo.Config.WeaponCnf",
+        "id"    : 13,
+        "name"  : "\u94F2\u5B50",
+        "prefab" : "Actor_weapon_shovel",
+        "useAnim" : "anim_tool_use",
+        "useSkillId" : 0
+    }
+]

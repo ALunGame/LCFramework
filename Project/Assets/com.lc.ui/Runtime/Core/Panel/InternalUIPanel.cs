@@ -9,50 +9,6 @@ namespace LCUI
     /// </summary>
     public abstract class InternalUIPanel
     {
-        #region 配置字段
-
-        private UICanvasType _CanvasType;
-        /// <summary>
-        /// 画布类型
-        /// </summary>
-        public virtual UICanvasType CanvasType
-        {
-            get { return _CanvasType; }
-            set { _CanvasType = value; }
-        }
-
-        private UILayer _Layer;
-        /// <summary>
-        /// 层级
-        /// </summary>
-        public virtual UILayer Layer
-        {
-            get { return _Layer; }
-            set { _Layer = value; }
-        }
-
-        private UIShowRule _DefaultShowRule;
-        /// <summary>
-        /// 默认显示规则
-        /// </summary>
-        public virtual UIShowRule DefaultShowRule
-        {
-            get { return _DefaultShowRule; }
-            set { _DefaultShowRule = value; }
-        }
-
-        private string _UIPrefabName;
-        /// <summary>
-        /// 默认预制体名
-        /// </summary>
-        public virtual string UIPrefabName
-        {
-            get { return _UIPrefabName; }
-            set { _UIPrefabName = value; }
-        }
-
-        #endregion
-
         #region 界面数据
 
         public abstract UIModel Model { get; }

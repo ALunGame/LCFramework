@@ -5,12 +5,33 @@ using Demo;
 
 namespace LCMap
 {
+    /// <summary>
+    /// 交互状态
+    /// </summary>
+    public enum InteractiveState
+    {
+        /// <summary>
+        /// 正在执行
+        /// </summary>
+        Executing,
+        /// <summary>
+        /// 交互成功
+        /// </summary>
+        Success,
+        /// <summary>
+        /// 交互失败
+        /// </summary>
+        Fail,
+    }
+    
     public abstract class ActorInteractive
     {
         public abstract int Type { get;}
 
         protected Actor actor;
         protected ActorInteractiveCom interactiveCom;
+
+        public InteractiveState State { get; private set; }
 
         //创建交互
         public void Create(Actor pActor, ActorInteractiveCom pInteractiveCom)
@@ -77,24 +98,46 @@ namespace LCMap
         /// </summary>
         /// <param name="pInteractiveActor">交互的演员</param>
         /// <returns></returns>
-        public bool Execute(Actor pInteractiveActor)
+        public void Execute(Actor pInteractiveActor, params object[] pParams)
         {
-            return OnExecute(pInteractiveActor);
+            State = OnExecute(pInteractiveActor,pParams);
+            if (State == InteractiveState.Success)
+            {
+                Success();
+            }
+            else if (State == InteractiveState.Fail)
+            {
+                Fail();
+            }
         }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="pInteractiveActor">交互的演员</param>
+        /// <param name="pParams"></param>
         /// <returns>返回是否完成交互</returns>
-        protected virtual bool OnExecute(Actor pInteractiveActor)
+        protected virtual InteractiveState OnExecute(Actor pInteractiveActor,params object[] pParams)
         {
-            return false;
+            return InteractiveState.Success;
         }
 
-        protected void Finish()
+        /// <summary>
+        /// 交互成功
+        /// </summary>
+        protected void Success()
         {
-            interactiveCom.ExecuteFinish();
+            State = InteractiveState.Success;
+            interactiveCom.ExecuteFinish(State);
+        }
+
+        /// <summary>
+        /// 交互失败
+        /// </summary>
+        protected void Fail()
+        {
+            State = InteractiveState.Fail;
+            interactiveCom.ExecuteFinish(State);
         }
     }
 
@@ -114,7 +157,7 @@ namespace LCMap
         [NonSerialized]
         private string executingKey = "";
         [NonSerialized]
-        private Action executeFinishCallBack;
+        private Action<InteractiveState> executeFinishCallBack;
 
         public bool IsExecuting { get { return isExecuting; } }
         public string ExecutingKey { get { return executingKey; } }
@@ -189,7 +232,7 @@ namespace LCMap
             return null;
         }
 
-        public void Execute(Actor pActor, ActorInteractive pInteractive, Action pExecuteFinishCallBack = null)
+        public void Execute(Actor pActor, ActorInteractive pInteractive, Action<InteractiveState> pExecuteFinishCallBack = null, params object[] pParams)
         {
             if (isExecuting)
             {
@@ -210,17 +253,16 @@ namespace LCMap
             isExecuting = true;
             executingKey = pInteractive.GetHasKey();
             executeFinishCallBack = pExecuteFinishCallBack;
-            if (tInteractive.Execute(pActor))
-                ExecuteFinish();
+            tInteractive.Execute(pActor,pParams);
         }
 
-        public void ExecuteFinish()
+        public void ExecuteFinish(InteractiveState pState)
         {
             isExecuting = false;
             executingKey = "";
-            Action func = executeFinishCallBack;
+            Action<InteractiveState> func = executeFinishCallBack;
             executeFinishCallBack = null;
-            func?.Invoke();
+            func?.Invoke(pState);
         }
 
         protected override void OnDisable()

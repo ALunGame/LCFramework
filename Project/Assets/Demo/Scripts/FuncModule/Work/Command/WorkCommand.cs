@@ -1,5 +1,6 @@
 ﻿using LCMap;
 using System;
+using Demo.Com;
 
 namespace Demo
 {
@@ -10,9 +11,17 @@ namespace Demo
 
         //命令执行者
         protected Actor executor;
+        protected WorkerCom executorWorkerCom;
 
         public event Action<WorkCommand> workFinishCallBack;
         private bool isExcuting = false;
+
+        public override string ToString()
+        {
+            string originatorUid = originator == null ? "null" : originator.Uid;
+            string executorUid = executor == null ? "null" : executor.Uid;
+            return $"命令:{GetType()} 发起者:{originatorUid} --> 执行者:{executorUid}";
+        }
 
         public void SetOriginator(Actor pActor)
         {
@@ -22,24 +31,24 @@ namespace Demo
         public void SetExecutor(Actor pActor)
         {
             executor = pActor;
+            executorWorkerCom = pActor.GetCom<WorkerCom>();
             OnCommandTook();
         }
 
-        public void Execute(Action<WorkCommand> pFinishCallBack)
+        public void Execute()
         {
             if (isExcuting)
                 return;
             isExcuting = true;
-            
-            if (pFinishCallBack != null)
-                workFinishCallBack += pFinishCallBack;
-            
             OnExecute();
         }
 
         public void ExecuteFinish()
         {
-            workFinishCallBack?.Invoke(this);
+            executorWorkerCom.WorkFinish(this);
+            Action<WorkCommand> func = workFinishCallBack;
+            workFinishCallBack = null;
+            func?.Invoke(this);
         }
 
         public void ExecuteFail()

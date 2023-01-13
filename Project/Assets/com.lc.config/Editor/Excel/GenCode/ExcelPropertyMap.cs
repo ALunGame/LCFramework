@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System;
 using System.Text.RegularExpressions;
 using LCConfig.Excel.GenCode.CommonExcel;
+using LCToolkit;
 using NUnit.Framework;
 using UnityEngine;
 
@@ -80,7 +81,17 @@ namespace LCConfig.Excel.GenCode.Property
                 }
             }
 
-            Debug.LogError($"该值 {pTypeName} 没有可以转换的属性声明！！！");
+            Type type = ReflectionHelper.GetType(pTypeName);
+            if (type != null)
+            {
+                if (type.IsEnum)
+                {
+                    DefaultEnumProperty enumProperty = new DefaultEnumProperty(type);
+                    return enumProperty;
+                }
+            }
+
+            Debug.LogError($"该类型 {pTypeName} 没有可以转换的属性声明！！！");
             return null;
         }
 
@@ -110,7 +121,18 @@ namespace LCConfig.Excel.GenCode.Property
                     return true;
                 }
             }
+            
+            Type type = ReflectionHelper.GetType(pTypeName);
+            if (type != null)
+            {
+                if (type.IsEnum)
+                {
+                    DefaultEnumProperty enumProperty = new DefaultEnumProperty(type);
+                    return true;
+                }
+            }
 
+            Debug.LogError($"该类型 {pTypeName} 没有可以转换的属性声明！！！");
             return false;
         }
     }

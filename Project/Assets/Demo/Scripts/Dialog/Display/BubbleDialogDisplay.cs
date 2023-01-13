@@ -75,7 +75,7 @@ namespace Demo.Dialog
 
             if (hasPlayer || (stepModel.disposes != null && stepModel.disposes.Count > 0))
             {
-                BubbleDialogChoosePanelModel model = UILocate.UI.GetPanelModel<BubbleDialogChoosePanelModel>(UIPanelId.BubbleDialogChoosePanel);
+                BubbleDialogChoosePanelModel model = UILocate.UI.GetPanelModel<BubbleDialogChoosePanelModel>(UIPanelDef.BubbleDialogChoosePanel);
                 model.dialogUid.Value = dialog.Uid;
                 model.stepModel.Value = stepModel;
                 model.skipCallBack = (uid) =>
@@ -91,7 +91,7 @@ namespace Demo.Dialog
                     }
                     return true;
                 };
-                UILocate.UI.Show(UIPanelId.BubbleDialogChoosePanel);
+                UILocate.UI.Show(UIPanelDef.BubbleDialogChoosePanel);
             }
         }
 
@@ -108,10 +108,10 @@ namespace Demo.Dialog
                 coms[i].Hide();
             }
             bubbleComDict.Remove(dialog.Uid);
-            BubbleDialogChoosePanelModel model = UILocate.UI.GetPanelModel<BubbleDialogChoosePanelModel>(UIPanelId.BubbleDialogChoosePanel);
+            BubbleDialogChoosePanelModel model = UILocate.UI.GetPanelModel<BubbleDialogChoosePanelModel>(UIPanelDef.BubbleDialogChoosePanel);
             if (model.dialogUid.Value == dialog.Uid)
             {
-                UILocate.UI.Hide(UIPanelId.BubbleDialogChoosePanel);
+                UILocate.UI.Hide(UIPanelDef.BubbleDialogChoosePanel);
             }
         }
     }

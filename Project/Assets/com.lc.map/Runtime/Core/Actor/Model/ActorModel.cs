@@ -111,17 +111,17 @@ namespace LCMap
             interactiveCom.Remove(pInteractive);
         }
 
-        public void ExecuteInteractive(Actor pActor, ActorInteractive pInteractive, Action pExecuteFinishCallBack = null)
+        public void ExecuteInteractive(Actor pActor, ActorInteractive pInteractive, Action<InteractiveState> pExecuteFinishCallBack = null, params object[] pParams)
         {
-            interactiveCom.Execute(pActor, pInteractive, pExecuteFinishCallBack);
+            interactiveCom.Execute(pActor, pInteractive, pExecuteFinishCallBack,pParams);
         }
 
-        public void ExecuteInteractive(Actor pActor, InteractiveType pInteractiveType, Action pExecuteFinishCallBack = null)
+        public void ExecuteInteractive(Actor pActor, InteractiveType pInteractiveType, Action<InteractiveState> pExecuteFinishCallBack = null, params object[] pParams)
         {
             ActorInteractive interactive = interactiveCom.Get(pInteractiveType);
             if (interactive != null)
             {
-                ExecuteInteractive(pActor, interactive, pExecuteFinishCallBack);
+                ExecuteInteractive(pActor, interactive, pExecuteFinishCallBack,pParams);
             }
         }
 

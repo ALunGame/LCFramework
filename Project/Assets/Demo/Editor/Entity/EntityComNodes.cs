@@ -373,6 +373,24 @@ namespace Demo
 
     #endregion
 
+    #region 交互
+
+    [NodeMenuItem("演员/交互/武器组件")]
+    public class Entity_Actor_WeaponCom : Entity_ComNode
+    {
+        public override string Title { get => "武器组件"; set => base.Title = value; }
+        public override string Tooltip { get => "武器组件"; set => base.Tooltip = value; }
+        public override Type RuntimeNode => typeof(WeaponCom);
+
+        public override BaseCom CreateRuntimeNode()
+        {
+            WeaponCom com = new WeaponCom();
+            return com;
+        }
+    }
+
+    #endregion
+
     #endregion
 
     #region 全局

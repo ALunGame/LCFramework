@@ -265,6 +265,10 @@ MonoBehaviour:
     m_Address: TbActorBasePropertyCnf
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: ed32f342d470ea74799a940faa179339
+    m_Address: TbWeaponCnf
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: c106a54d1dad7c34dbca1e47199c97a1, type: 2}
   m_SchemaSet:

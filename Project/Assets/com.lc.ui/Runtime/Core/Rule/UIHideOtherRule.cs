@@ -12,7 +12,7 @@ namespace LCUI
 
         public override List<UIShowRule> CheckRules => rules;
 
-        public override void OnShowPanel(UIPanelId panelId, InternalUIPanel panel)
+        public override void OnShowPanel(UIPanelDef panelId, InternalUIPanel panel)
         {
             UILocate.UI.HideAllActivePanel();
         }

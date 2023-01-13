@@ -4,7 +4,7 @@ namespace Demo.Config
 {
     
     /// <summary>
-    /// 物品配置
+    /// 物品信息
     /// </summary>
     public class ItemCnf
     {

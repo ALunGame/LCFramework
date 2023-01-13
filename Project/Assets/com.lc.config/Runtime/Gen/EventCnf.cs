@@ -7,7 +7,7 @@ namespace Demo.Config
 {
     
     /// <summary>
-    /// 事件配置
+    /// 事件信息
     /// </summary>
     public class EventCnf
     {

@@ -1,6 +1,8 @@
+using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using LCConfig.Excel.GenCode.CommonExcel;
+using LCToolkit;
 
 namespace LCConfig.Excel.GenCode.Property
 {
@@ -134,7 +136,22 @@ namespace LCConfig.Excel.GenCode.Property
         public EnumInfo enumInfo;
         
         public override string TypeName { get => enumInfo.enumName; }
-        public override string NameSpace { get => $"using {enumInfo.nameSpace};" ; }
+
+        public override string NameSpace
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(enumInfo.nameSpace))
+                {
+                    return "";
+                }
+                else
+                {
+                    return $"using {enumInfo.nameSpace};";
+                }
+            }
+        }
+        
         public override bool CanBeKey { get => true; }
         
         public override bool CanCatch(string pValue)
@@ -159,6 +176,48 @@ namespace LCConfig.Excel.GenCode.Property
                 {
                     return fieldInfo.value;
                 }
+            }
+            return 0;
+        }
+
+        public override string CreateExportStr(string pExportName, string pRowValueName)
+        {
+            string codeStr = "\t\t\t\t#NAME#.#PRONAME# = (#ValueTypeName#)GetProp(pProps,\"#PRONAME#\").Parse(propDict[\"#PRONAME#\"][0]);";
+            codeStr = Regex.Replace(codeStr, "#NAME#", pExportName);
+            codeStr = Regex.Replace(codeStr, "#PRONAME#", name);
+            codeStr = Regex.Replace(codeStr, "#ValueTypeName#", TypeName);
+            return codeStr;
+        }
+    }
+
+    internal class DefaultEnumProperty : BaseProperty
+    {
+        private Type enumType;
+        public override string TypeName { get => enumType.Name; }
+        public override string NameSpace { get => $"using {enumType.Namespace};" ; }
+        public override bool CanBeKey { get => true; }
+
+        public DefaultEnumProperty(Type enumType)
+        {
+            this.enumType = enumType;
+        }
+        
+        public override bool CanCatch(string pValue)
+        {
+            object value;
+            if (Enum.TryParse(ReflectionHelper.GetType(TypeName),pValue,out value))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public override object Parse(string pValue)
+        {
+            object value;
+            if (Enum.TryParse(ReflectionHelper.GetType(TypeName),pValue,out value))
+            {
+                return value;
             }
             return 0;
         }

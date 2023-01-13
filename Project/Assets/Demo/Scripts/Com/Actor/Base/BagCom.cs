@@ -1,5 +1,7 @@
 using LCECS.Core;
 using System.Collections.Generic;
+using Config;
+using LCMap;
 
 namespace Demo
 {
@@ -65,6 +67,16 @@ namespace Demo
     {
         public List<BagItem> itemlist = new List<BagItem>();
 
+
+        protected override void OnAwake(Entity pEntity)
+        {
+            if (pEntity is Actor)
+            {
+                Actor actor = pEntity as Actor;
+                actor.AddInteractive(new GiveItemInteractive());
+            }
+        }
+
         #region Get
 
         public BagItem GetBagItem(int itemId)
@@ -110,6 +122,11 @@ namespace Demo
             return GetBagItem(itemId).Add(itemCnt);
         }
 
+        public bool AddItem(ItemInfo pInfo)
+        {
+            return GetBagItem(pInfo.itemId).Add(pInfo.itemCnt);
+        }
+
         public void AddItem(BagItem pItem)
         {
             BagItem currItem = GetBagItem(pItem.id);
@@ -133,6 +150,11 @@ namespace Demo
         public bool RemoveItem(int itemId, int itemCnt)
         {
             return GetBagItem(itemId).Remove(itemCnt);
+        }
+        
+        public bool RemoveItem(ItemInfo pInfo)
+        {
+            return GetBagItem(pInfo.itemId).Remove(pInfo.itemCnt);
         }
 
         #endregion

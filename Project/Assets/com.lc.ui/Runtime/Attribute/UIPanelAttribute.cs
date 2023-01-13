@@ -8,9 +8,9 @@ namespace LCUI
         /// <summary>
         /// 界面Id
         /// </summary>
-        public UIPanelId PanelId { get; private set; }
+        public UIPanelDef PanelId { get; private set; }
 
-        public UIPanelIdAttribute(UIPanelId panelId)
+        public UIPanelIdAttribute(UIPanelDef panelId)
         {
             PanelId = panelId;
         }

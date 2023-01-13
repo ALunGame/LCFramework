@@ -24,7 +24,11 @@ namespace LCMap
 
         public static void SetRoate(this Actor pActor, Vector3 pRoate)
         {
-            pActor.Trans.SetRoate(pRoate);
+            if (pActor.DisplayCom.DisplayGo != null)
+            {
+                pActor.DisplayCom.DisplayGo.transform.localEulerAngles = pRoate;
+            }
+            pActor.Trans.SetRoate(pRoate,true);
         }
 
         public static void SetScale(this Actor pActor, Vector3 pScale)

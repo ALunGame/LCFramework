@@ -3,6 +3,7 @@
     {
         "mType" : "Demo.Config.ItemRepairCnf",
         "id"    : 301,
+        "addHp" : 10,
         "repairs" : [
             {
                 "mType" : "Config.ItemInfo",
@@ -14,6 +15,7 @@
     {
         "mType" : "Demo.Config.ItemRepairCnf",
         "id"    : 302,
+        "addHp" : 10,
         "repairs" : [
             {
                 "mType" : "Config.ItemInfo",

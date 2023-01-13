@@ -7,15 +7,18 @@ namespace Demo
 {
     public static partial class ActorExtend
     {
-        public static int GetDirValue(this Actor pActor)
+
+
+        #region Set
+
+        public static void SetDir(this Actor pActor, DirType pDir)
         {
-            return pActor.Trans.GetDir() == DirType.Right ? 1 : -1;
+            int dirValue = pDir == DirType.Right ? 0 : 1;
+            Vector3 roate = new Vector3(0, dirValue*180, 0);
+            pActor.SetRoate(roate);
         }
 
-        public static DirType GetDir(this Actor pActor)
-        {
-            return pActor.Trans.GetDir();
-        }
+        #endregion
 
         #region Move
 
@@ -32,6 +35,17 @@ namespace Demo
         #endregion
 
         #region Get
+        
+        public static int GetDirValue(this Actor pActor)
+        {
+            return pActor.GetDir() == DirType.Right ? 1 : -1;
+        }
+
+        public static DirType GetDir(this Actor pActor)
+        {
+            DirType dirType = pActor.DisplayCom.DisplayGo.transform.localEulerAngles.y == 0 ? DirType.Right : DirType.Left;
+            return dirType;
+        }
 
         /// <summary>
         /// 获得最近的演员

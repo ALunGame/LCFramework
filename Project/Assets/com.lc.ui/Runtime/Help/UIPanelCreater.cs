@@ -1,5 +1,6 @@
 ﻿
 using System.Collections;
+using Demo;
 using UnityEngine;
 using LCLoad;
 using LCToolkit;
@@ -17,23 +18,25 @@ namespace LCUI
         /// <param name="panel"></param>
         /// <param name="trans"></param>
         /// <returns></returns>
-        public static void CreateUIPanelTrans(InternalUIPanel panel)
+        public static void CreateUIPanelTrans(UIPanelDef panelId,InternalUIPanel panel)
         {
-            RectTransform panelRootTrans = UILocate.UICenter.GetUILayerTrans(panel.Layer, panel.CanvasType);
+            UIPanelCnf panelCnf = UILocate.UI.GetPanelCnf(panelId);
+
+            RectTransform panelRootTrans = UILocate.UICenter.GetUILayerTrans(panelCnf.layer, panelCnf.canvas);
             if (panelRootTrans == null)
             {
-                UILocate.Log.LogError("创建界面节点失败,没有找到层级节点>>>", panel.Layer, panel.CanvasType);
+                UILocate.Log.LogError("创建界面节点失败,没有找到层级节点>>>", panelCnf.layer, panelCnf.canvas);
                 return;
             }
-            if (string.IsNullOrEmpty(panel.UIPrefabName))
+            if (string.IsNullOrEmpty(panelCnf.prefab))
             {
-                UILocate.Log.LogError("创建界面节点失败,没有声明预制体>>>",panel.UIPrefabName);
+                UILocate.Log.LogError("创建界面节点失败,没有声明预制体>>>",panelCnf.prefab);
                 return;
             }
-            GameObject goAsset = LoadHelper.LoadPrefab(panel.UIPrefabName);
+            GameObject goAsset = LoadHelper.LoadPrefab(panelCnf.prefab);
             if (goAsset == null)
             {
-                UILocate.Log.LogError("创建界面节点失败,没有找到预制体>>>", panel.UIPrefabName);
+                UILocate.Log.LogError("创建界面节点失败,没有找到预制体>>>", panelCnf.prefab);
                 return;
             }
             GameObject panGo = GameObject.Instantiate(goAsset);

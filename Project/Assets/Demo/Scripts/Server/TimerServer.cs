@@ -32,5 +32,14 @@ namespace Demo.Server
             timerCom.AddTimer(timerInfo);
             return timerInfo;
         }
+
+        public void StopTimer(TimerInfo pInfo)
+        {
+            if (pInfo == null)
+            {
+                return;
+            }
+            timerCom.StopTimer(pInfo);
+        }
     }
 }

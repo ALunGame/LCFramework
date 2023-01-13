@@ -1,45 +1,38 @@
 using LCToolkit;
 using System;
 using System.Collections.Generic;
+using Demo;
 
 namespace LCUI
 {
     public class UIServer : IUIServer
     {
         //界面和类型的映射
-        private Dictionary<UIPanelId,Type> panelTypeDict = new Dictionary<UIPanelId,Type>();
+        private Dictionary<UIPanelDef,Type> panelTypeDict = new Dictionary<UIPanelDef,Type>();
 
         //界面规则
         private List<UIRule> rules = new List<UIRule>();
 
         //激活的界面
-        private Dictionary<UIPanelId, InternalUIPanel> activePanelDict = new Dictionary<UIPanelId, InternalUIPanel>();
+        private Dictionary<UIPanelDef, InternalUIPanel> activePanelDict = new Dictionary<UIPanelDef, InternalUIPanel>();
 
         //界面缓存
-        private Dictionary<UIPanelId, InternalUIPanel> cachePanelDict = new Dictionary<UIPanelId, InternalUIPanel>();
+        private Dictionary<UIPanelDef, InternalUIPanel> cachePanelDict = new Dictionary<UIPanelDef, InternalUIPanel>();
 
         /// <summary>
         /// 所有的激活界面
         /// </summary>
-        public IReadOnlyDictionary<UIPanelId, InternalUIPanel> ActivePanelDict { get => activePanelDict; }
+        public IReadOnlyDictionary<UIPanelDef, InternalUIPanel> ActivePanelDict { get => activePanelDict; }
 
         public void Init()
         {
             rules.Add(new UIStackRule(this));
             rules.Add(new UIHideOtherRule(this));
-            foreach (var item in ReflectionHelper.GetChildTypes<InternalUIPanel>())
+
+            foreach (UIPanelCnf uiPanelCnf in LCConfig.Config.UIPanelCnf.Values)
             {
-                if (item.IsAbstract)
-                    continue;
-                if (AttributeHelper.TryGetTypeAttribute<UIPanelIdAttribute>(item,out var attr))
-                {
-                    if (panelTypeDict.ContainsKey(attr.PanelId))
-                    {
-                        UILocate.Log.LogError("声明的UIId重复>>>", item, attr.PanelId);
-                        continue;
-                    }
-                    panelTypeDict.Add(attr.PanelId, item);
-                }
+                Type uiPanlType = ReflectionHelper.GetType(uiPanelCnf.script);
+                panelTypeDict.Add(uiPanelCnf.id, uiPanlType);
             }
         }
 
@@ -53,7 +46,7 @@ namespace LCUI
             cachePanelDict.Clear();
         }
 
-        public T GetPanelModel<T>(UIPanelId panelId) where T : UIModel
+        public T GetPanelModel<T>(UIPanelDef panelId) where T : UIModel
         {
             InternalUIPanel panel = GetPanel(panelId);
 
@@ -65,7 +58,7 @@ namespace LCUI
             return (T)panel.Model;
         }
 
-        public void Show(UIPanelId panelId)
+        public void Show(UIPanelDef panelId)
         {
             InternalUIPanel panel = GetPanel(panelId);
             foreach (var item in rules)
@@ -75,7 +68,7 @@ namespace LCUI
             ExecuteShowPanel(panelId, panel);
         }
 
-        public void Hide(UIPanelId panelId)
+        public void Hide(UIPanelDef panelId)
         {
             InternalUIPanel panel = ExecuteHidePanel(panelId);
             foreach (var item in rules)
@@ -86,7 +79,7 @@ namespace LCUI
 
         public void HideAllActivePanel()
         {
-            foreach (UIPanelId paneId in new List<UIPanelId>(activePanelDict.Keys))
+            foreach (UIPanelDef paneId in new List<UIPanelDef>(activePanelDict.Keys))
             {
                 ExecuteHidePanel(paneId);
             }
@@ -112,7 +105,7 @@ namespace LCUI
         /// </summary>
         /// <param name="panelId">界面Id</param>
         /// <returns></returns>
-        private InternalUIPanel GetPanel(UIPanelId panelId)
+        private InternalUIPanel GetPanel(UIPanelDef panelId)
         {
             if (activePanelDict.ContainsKey(panelId))
                 return activePanelDict[panelId];
@@ -126,6 +119,7 @@ namespace LCUI
                 return null;
             }
 
+            UIPanelCnf panelCnf = UILocate.UI.GetPanelCnf(panelId);
             Type panelType = panelTypeDict[panelId];
             InternalUIPanel panel = (InternalUIPanel)ReflectionHelper.CreateInstance(panelType);
             return panel;
@@ -134,18 +128,18 @@ namespace LCUI
         /// <summary>
         /// 创建界面节点
         /// </summary>
-        private void CreatePanelTrans(InternalUIPanel panel)
+        private void CreatePanelTrans(UIPanelDef panelId,InternalUIPanel panel)
         {
             if (panel.transform != null)
                 return;
-            UIPanelCreater.CreateUIPanelTrans(panel);
+            UIPanelCreater.CreateUIPanelTrans(panelId,panel);
         }
 
         #endregion
 
         #region 界面显示
 
-        private void ExecuteShowPanel(UIPanelId panelId,InternalUIPanel panel)
+        private void ExecuteShowPanel(UIPanelDef panelId,InternalUIPanel panel)
         {
             //放入Active
             if (!activePanelDict.ContainsKey(panelId))
@@ -156,7 +150,7 @@ namespace LCUI
                 cachePanelDict.Remove(panelId);
 
             //尝试创建
-            CreatePanelTrans(panel);
+            CreatePanelTrans(panelId,panel);
 
             //调用显示
             panel.Show();
@@ -166,7 +160,7 @@ namespace LCUI
 
         #region 界面隐藏
 
-        private InternalUIPanel ExecuteHidePanel(UIPanelId panelId)
+        private InternalUIPanel ExecuteHidePanel(UIPanelDef panelId)
         {
             if (!activePanelDict.ContainsKey(panelId))
                 return null; 
@@ -187,14 +181,14 @@ namespace LCUI
 
         #region 回收池
 
-        public void PushInCache(UIPanelId panelId, InternalUIPanel panel)
+        public void PushInCache(UIPanelDef panelId, InternalUIPanel panel)
         {
             if (!activePanelDict.ContainsKey(panelId))
                 activePanelDict.Remove(panelId);
             cachePanelDict.Add(panelId, panel);
         }
 
-        public InternalUIPanel PopInCache(UIPanelId panelId)
+        public InternalUIPanel PopInCache(UIPanelDef panelId)
         {
             if (!cachePanelDict.ContainsKey(panelId))
                 return null;
@@ -202,6 +196,16 @@ namespace LCUI
             cachePanelDict.Remove(panelId);
             return panel;
         }
+
+        #endregion
+
+        #region 配置
+
+        public UIPanelCnf GetPanelCnf(global::UIPanelDef pPanelId)
+        {
+            return LCConfig.Config.UIPanelCnf[pPanelId];
+        }
+        
 
         #endregion
     } 

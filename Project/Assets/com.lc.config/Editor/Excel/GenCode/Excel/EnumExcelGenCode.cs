@@ -61,14 +61,28 @@ namespace #KEY#
 
         public List<EnumInfo> GenAllClass()
         {
-            List<EnumInfo> enumInfos = GetAllEnum();
-            foreach (EnumInfo enumInfo in enumInfos)
+            List<EnumInfo> resEnumInfos = new List<EnumInfo>();
+            ExcelPackage tPackage = null;
+            List<ExcelWorksheet> sheets = ExcelReader.ReadAllSheets(excelPath,out tPackage);
+
+            for (int i = 0; i < sheets.Count; i++)
             {
-                GenClassCode(enumInfo);
+                allClassStr = "";
+                ExcelWorksheet tSheet = sheets[i];
+                List<EnumInfo> enumInfos = GetAllEnum(tSheet);
+                resEnumInfos.AddRange(enumInfos);
+                
+                foreach (EnumInfo enumInfo in enumInfos)
+                {
+                    GenClassCode(enumInfo);
+                }
+                
+                //创建代码
+                IOHelper.WriteText(allClassStr,ExcelReadSetting.Setting.GenCodeRootPath + $"/TbCustomEnum_{i}.cs");
             }
-            //创建代码
-            IOHelper.WriteText(allClassStr,ExcelReadSetting.Setting.GenCodeRootPath + "/TbCustomEnum.cs");
-            return enumInfos;
+            
+            tPackage.Dispose();
+            return resEnumInfos;
         }
 
         private void GenClassCode(EnumInfo pClassInfo)
@@ -97,12 +111,10 @@ namespace #KEY#
             }
         }
 
-        public List<EnumInfo> GetAllEnum()
+        public List<EnumInfo> GetAllEnum(ExcelWorksheet sheet)
         {
             List<EnumInfo> enumInfos = new List<EnumInfo>();
-            ExcelPackage tPackage = null;
-            ExcelWorksheet sheet = ExcelReader.ReadAllSheets(excelPath,out tPackage)[0];
-            
+
             //最大行
             int _MaxRowNum = sheet.Dimension.End.Row;
             //最小行
@@ -183,11 +195,26 @@ namespace #KEY#
                     }
                 }
             }
-
-            
-            tPackage.Dispose();
             
             return enumInfos;
+        }
+
+        public List<EnumInfo> GetAllEnum()
+        {
+            List<EnumInfo> resEnumInfos = new List<EnumInfo>();
+            ExcelPackage tPackage = null;
+            List<ExcelWorksheet> sheets = ExcelReader.ReadAllSheets(excelPath,out tPackage);
+            
+            for (int i = 0; i < sheets.Count; i++)
+            {
+                allClassStr = "";
+                ExcelWorksheet tSheet = sheets[i];
+                List<EnumInfo> enumInfos = GetAllEnum(tSheet);
+                resEnumInfos.AddRange(enumInfos);
+            }
+            
+            tPackage.Dispose();
+            return resEnumInfos;
         }
     }
 }

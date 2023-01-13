@@ -9,12 +9,12 @@ namespace Demo.Com
     public enum TimerType
     {
         /// <summary>
-        /// Ê±¼ä
+        /// ç§’
         /// </summary>
         Time,
 
         /// <summary>
-        /// Ö¡Êý
+        /// Ö¡å¸§
         /// </summary>
         Frame,
     }
@@ -35,7 +35,7 @@ namespace Demo.Com
         /// <param name="type"></param>
         /// <param name="waitTime"></param>
         /// <param name="callBack"></param>
-        /// <param name="loopCnt">Ñ­»·´ÎÊý£¬-1ÎÞÏÞ</param>
+        /// <param name="loopCnt">Ñ­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½-1ï¿½ï¿½ï¿½ï¿½</param>
         public TimerInfo(TimerType type,float waitTime,Action callBack,int loopCnt = 1)
         {
             this.type = type;

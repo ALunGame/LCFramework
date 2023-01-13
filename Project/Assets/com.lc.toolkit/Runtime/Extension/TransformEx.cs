@@ -22,6 +22,22 @@ namespace LCToolkit
                 return false;
             return true;
         }
+        
+        public static void HideAllChild(this Transform pTrans)
+        {
+            if (pTrans == null)
+                return;
+            int childCnt = pTrans.childCount;
+            if (childCnt <= 0)
+            {
+                return;;
+            }
+
+            for (int i = 0; i < childCnt; i++)
+            {
+                pTrans.GetChild(i).SetActive(null,false);
+            }
+        }
 
         /// <summary>
         /// 重置位置,旋转,缩放,

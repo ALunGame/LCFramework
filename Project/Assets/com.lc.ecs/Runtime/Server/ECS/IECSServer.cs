@@ -51,6 +51,13 @@ namespace LCECS.Server.ECS
         Entity GetEntity(string uid);
 
         /// <summary>
+        /// 获得实体
+        /// </summary>
+        /// <param name="pEntityId"></param>
+        /// <returns></returns>
+        List<Entity> GetEntitys(int pEntityId);
+
+        /// <summary>
         /// 获得所有实体
         /// </summary>
         /// <returns></returns>

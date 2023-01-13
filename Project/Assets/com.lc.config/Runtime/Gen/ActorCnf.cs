@@ -5,7 +5,7 @@ namespace LCMap
 {
     
     /// <summary>
-    /// 演员配置
+    /// 演员信息
     /// </summary>
     public class ActorCnf
     {

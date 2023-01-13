@@ -1,0 +1,14 @@
+﻿
+[
+    {
+        "mType" : "Demo.Config.ItemRecipeCnf",
+        "id"    : 402,
+        "recipes" : [
+            {
+                "mType" : "Config.ItemInfo",
+                "itemId" : 401,
+                "itemCnt" : 2
+            }
+        ]
+    }
+]

@@ -101,27 +101,20 @@ namespace Demo
         {
             MoveRequestCom.MoveToActorInteractiveRange(executor,repairActor, () =>
             {
-                //1，扣除修复道具
-                ItemRepairCnf itemRecipeCnf = LCConfig.Config.ItemRepairCnf[repairActor.Id];
-                executor.GetCom(out BagCom bagCom);
-                for (int i = 0; i < itemRecipeCnf.repairs.Count; i++)
+                repairActor.ExecuteInteractive(executor, InteractiveType.Repair, (InteractiveState state) =>
                 {
-                    ItemInfo repairCnf = itemRecipeCnf.repairs[i];
-                    bagCom.RemoveItem(repairCnf.itemId, repairCnf.itemCnt);
-                }
-                //2，增加血量
-                repairProperty.Hp.Curr++;
-                //3，判断血量是否已经满了
-                if (repairProperty.Hp.CheckOutTotal())
-                {
-                    ExecuteFinish();
-                }
-                //4，没满发送命令
-                else
-                {
-                    ExecuteFail();
-                    SendRepairNeedCmds();
-                }
+                    //3，判断血量是否已经满了
+                    if (repairProperty.Hp.CheckOutTotal())
+                    {
+                        ExecuteFinish();
+                    }
+                    //4，没满发送命令
+                    else
+                    {
+                        ExecuteFail();
+                        SendRepairNeedCmds();
+                    }
+                });
             });
         }
     }

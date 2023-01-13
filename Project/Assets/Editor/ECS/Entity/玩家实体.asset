@@ -52,7 +52,7 @@ MonoBehaviour:
     \"parentNode\" : null,\r\n            \"isActive\"   : true,\r\n            \"guid\"      
     : \"aed09f95-a8fc-45e8-8d5e-771f889c8276\",\r\n            \"position\"   : {\r\n               
     \"mType\" : \"UnityEngine.Vector2\",\r\n                \"x\"     : 549.0,\r\n               
-    \"y\"     : 61.0\r\n            },\r\n            \"inIndex\"    : 4,\r\n           
+    \"y\"     : 61.0\r\n            },\r\n            \"inIndex\"    : 5,\r\n           
     \"outIndex\"   : -1\r\n        },\r\n        \"120dd59f-b312-4a50-a839-c687341522e6\"
     : {\r\n            \"mType\" : \"LCECS.EntityGraph.Entity_Entity_DecisionCom\",\r\n           
     \"decisionId\" : 1,\r\n            \"decisionThread\" : 0,\r\n            \"parentNode\"    
@@ -60,18 +60,18 @@ MonoBehaviour:
     : \"120dd59f-b312-4a50-a839-c687341522e6\",\r\n            \"position\"      
     : {\r\n                \"mType\" : \"UnityEngine.Vector2\",\r\n               
     \"x\"     : 781.0,\r\n                \"y\"     : 61.0\r\n            },\r\n           
-    \"inIndex\"        : 6,\r\n            \"outIndex\"       : -1\r\n        },\r\n       
+    \"inIndex\"        : 7,\r\n            \"outIndex\"       : -1\r\n        },\r\n       
     \"69155a45-d43f-4e38-b4dd-0f5a58b2664e\" : {\r\n            \"mType\" : \"Demo.Entity_Actor_BasePropertyCom\",\r\n           
     \"parentNode\" : null,\r\n            \"isActive\"   : true,\r\n            \"guid\"      
     : \"69155a45-d43f-4e38-b4dd-0f5a58b2664e\",\r\n            \"position\"   : {\r\n               
     \"mType\" : \"UnityEngine.Vector2\",\r\n                \"x\"     : 215.0,\r\n               
-    \"y\"     : 195.0\r\n            },\r\n            \"inIndex\"    : 1,\r\n           
+    \"y\"     : 195.0\r\n            },\r\n            \"inIndex\"    : 2,\r\n           
     \"outIndex\"   : -1\r\n        },\r\n        \"badebc41-bf44-4528-a1f1-3871d960ab19\"
     : {\r\n            \"mType\" : \"Demo.Entity_Actor_AnimCom\",\r\n           
     \"parentNode\" : null,\r\n            \"isActive\"   : true,\r\n            \"guid\"      
     : \"badebc41-bf44-4528-a1f1-3871d960ab19\",\r\n            \"position\"   : {\r\n               
     \"mType\" : \"UnityEngine.Vector2\",\r\n                \"x\"     : 419.0,\r\n               
-    \"y\"     : 195.0\r\n            },\r\n            \"inIndex\"    : 3,\r\n           
+    \"y\"     : 195.0\r\n            },\r\n            \"inIndex\"    : 4,\r\n           
     \"outIndex\"   : -1\r\n        },\r\n        \"4cbda46b-e41a-44d7-860c-6b76d003bd9e\"
     : {\r\n            \"mType\" : \"Demo.Entity_Actor_BubbleCom\",\r\n           
     \"parentNode\" : null,\r\n            \"isActive\"   : true,\r\n            \"guid\"      
@@ -89,7 +89,7 @@ MonoBehaviour:
     \"parentNode\" : null,\r\n            \"isActive\"   : true,\r\n            \"guid\"      
     : \"36ddb722-6494-4951-b15a-665c9a4127d5\",\r\n            \"position\"   : {\r\n               
     \"mType\" : \"UnityEngine.Vector2\",\r\n                \"x\"     : 331.0,\r\n               
-    \"y\"     : 61.0\r\n            },\r\n            \"inIndex\"    : 2,\r\n           
+    \"y\"     : 61.0\r\n            },\r\n            \"inIndex\"    : 3,\r\n           
     \"outIndex\"   : -1\r\n        },\r\n        \"c4aa905f-c8bb-49fd-857e-5e50f3401484\"
     : {\r\n            \"mType\" : \"LCMap.Entity_Actor_InteractiveCom\",\r\n           
     \"parentNode\" : null,\r\n            \"isActive\"   : true,\r\n            \"guid\"      
@@ -119,7 +119,7 @@ MonoBehaviour:
     \"parentNode\" : null,\r\n            \"isActive\"   : true,\r\n            \"guid\"      
     : \"131e10b2-928e-4f8c-b919-71ece3a6f2cd\",\r\n            \"position\"   : {\r\n               
     \"mType\" : \"UnityEngine.Vector2\",\r\n                \"x\"     : 1316.0,\r\n               
-    \"y\"     : 52.0\r\n            },\r\n            \"inIndex\"    : 7,\r\n           
+    \"y\"     : 52.0\r\n            },\r\n            \"inIndex\"    : 8,\r\n           
     \"outIndex\"   : -1\r\n        },\r\n        \"c3920d8e-0c29-4a74-82a3-40d0f2a17ddb\"
     : {\r\n            \"mType\" : \"Demo.Entity_Actor_MainActorMoveCom\",\r\n           
     \"MoveSpeed\" : 12,\r\n            \"ClimbSpeed\" : 6,\r\n            \"JumpDis\"   
@@ -129,13 +129,19 @@ MonoBehaviour:
     : true,\r\n            \"guid\"             : \"c3920d8e-0c29-4a74-82a3-40d0f2a17ddb\",\r\n           
     \"position\"         : {\r\n                \"mType\" : \"UnityEngine.Vector2\",\r\n               
     \"x\"     : 665.0,\r\n                \"y\"     : 185.0\r\n            },\r\n           
-    \"inIndex\"          : 5,\r\n            \"outIndex\"         : -1\r\n       
-    }\r\n    },\r\n    \"groups\" : [\r\n    ],\r\n    \"connections\" : [\r\n       
-    {\r\n            \"mType\" : \"LCNode.Model.BaseConnection\",\r\n           
-    \"from\"  : \"423cd0e7-f477-4614-80f7-a0f2127a9c85\",\r\n            \"fromPortName\"
-    : \"\\u7EC4\\u4EF6\\u5217\\u8868\",\r\n            \"to\"           : \"6b29451b-3d2d-4576-96af-d73020f858ae\",\r\n           
-    \"toPortName\"   : \"\\u7236\\u8282\\u70B9\"\r\n        },\r\n        {\r\n           
+    \"inIndex\"          : 6,\r\n            \"outIndex\"         : -1\r\n       
+    },\r\n        \"830c9034-3764-4dae-8f6d-fb7716a53e0c\" : {\r\n            \"mType\"
+    : \"Demo.Entity_Actor_WeaponCom\",\r\n            \"parentNode\" : null,\r\n           
+    \"isActive\"   : true,\r\n            \"guid\"       : \"830c9034-3764-4dae-8f6d-fb7716a53e0c\",\r\n           
+    \"position\"   : {\r\n                \"mType\" : \"UnityEngine.Vector2\",\r\n               
+    \"x\"     : 102.0,\r\n                \"y\"     : 378.0\r\n            },\r\n           
+    \"inIndex\"    : 1,\r\n            \"outIndex\"   : -1\r\n        }\r\n    },\r\n   
+    \"groups\" : [\r\n    ],\r\n    \"connections\" : [\r\n        {\r\n           
     \"mType\" : \"LCNode.Model.BaseConnection\",\r\n            \"from\"  : \"423cd0e7-f477-4614-80f7-a0f2127a9c85\",\r\n           
+    \"fromPortName\" : \"\\u7EC4\\u4EF6\\u5217\\u8868\",\r\n            \"to\"          
+    : \"6b29451b-3d2d-4576-96af-d73020f858ae\",\r\n            \"toPortName\"   :
+    \"\\u7236\\u8282\\u70B9\"\r\n        },\r\n        {\r\n            \"mType\"
+    : \"LCNode.Model.BaseConnection\",\r\n            \"from\"  : \"423cd0e7-f477-4614-80f7-a0f2127a9c85\",\r\n           
     \"fromPortName\" : \"\\u7EC4\\u4EF6\\u5217\\u8868\",\r\n            \"to\"          
     : \"aed09f95-a8fc-45e8-8d5e-771f889c8276\",\r\n            \"toPortName\"   :
     \"\\u7236\\u8282\\u70B9\"\r\n        },\r\n        {\r\n            \"mType\"
@@ -162,6 +168,10 @@ MonoBehaviour:
     : \"LCNode.Model.BaseConnection\",\r\n            \"from\"  : \"423cd0e7-f477-4614-80f7-a0f2127a9c85\",\r\n           
     \"fromPortName\" : \"\\u7EC4\\u4EF6\\u5217\\u8868\",\r\n            \"to\"          
     : \"c3920d8e-0c29-4a74-82a3-40d0f2a17ddb\",\r\n            \"toPortName\"   :
+    \"\\u7236\\u8282\\u70B9\"\r\n        },\r\n        {\r\n            \"mType\"
+    : \"LCNode.Model.BaseConnection\",\r\n            \"from\"  : \"423cd0e7-f477-4614-80f7-a0f2127a9c85\",\r\n           
+    \"fromPortName\" : \"\\u7EC4\\u4EF6\\u5217\\u8868\",\r\n            \"to\"          
+    : \"830c9034-3764-4dae-8f6d-fb7716a53e0c\",\r\n            \"toPortName\"   :
     \"\\u7236\\u8282\\u70B9\"\r\n        }\r\n    ]\r\n}"
   entityId: 1
   entityName: "\u73A9\u5BB6"

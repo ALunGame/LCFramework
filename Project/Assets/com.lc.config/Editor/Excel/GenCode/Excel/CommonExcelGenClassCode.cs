@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using com.lc.config.Editor.Excel.Core;
 using LCConfig.Excel.GenCode.Property;
+using UnityEngine;
 
 namespace LCConfig.Excel.GenCode.CommonExcel
 {
@@ -52,6 +53,7 @@ namespace #KEY#
                 tStr = Regex.Replace(tStr, "#PRONAME#", prop.name);
                 tStr = Regex.Replace(tStr, "#Comment#", prop.comment);
                 propStr += tStr;
+                
                 if (!usingNamsList.Contains(prop.NameSpace))
                 {
                     usingNamsList.Add(prop.NameSpace);

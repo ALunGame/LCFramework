@@ -13,30 +13,30 @@ namespace LCUI
 
         public abstract List<UIShowRule> CheckRules { get; }
 
-        public void ShowPanel(UIPanelId panelId, InternalUIPanel panel)
+        public void ShowPanel(UIPanelDef panelId, InternalUIPanel panel)
         {
-            if (!CheckRules.Contains(panel.DefaultShowRule))
+            if (!CheckRules.Contains(UILocate.UI.GetPanelCnf(panelId).showRule))
             {
                 return;
             }
             OnShowPanel(panelId, panel);
         }
 
-        public virtual void OnShowPanel(UIPanelId panelId,InternalUIPanel panel)
+        public virtual void OnShowPanel(UIPanelDef panelId,InternalUIPanel panel)
         {
 
         }
 
-        public void HidePanel(UIPanelId panelId, InternalUIPanel panel)
+        public void HidePanel(UIPanelDef panelId, InternalUIPanel panel)
         {
-            if (!CheckRules.Contains(panel.DefaultShowRule))
+            if (!CheckRules.Contains(UILocate.UI.GetPanelCnf(panelId).showRule))
             {
                 return;
             }
             OnHidePanel(panelId, panel);
         }
 
-        public virtual void OnHidePanel(UIPanelId panelId, InternalUIPanel panel)
+        public virtual void OnHidePanel(UIPanelDef panelId, InternalUIPanel panel)
         {
 
         }

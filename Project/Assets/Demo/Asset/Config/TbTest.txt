@@ -45,8 +45,8 @@
             },
             "Resource" : {
                 "mType" : "Config.ItemInfo",
-                "itemId" : 11,
-                "itemCnt" : 10
+                "itemId" : 1,
+                "itemCnt" : 102
             }
         }
     },
@@ -71,32 +71,32 @@
         "type"     : 1,
         "info"     : {
             "mType" : "Config.ItemInfo",
-            "itemId" : 2,
-            "itemCnt" : 200
+            "itemId" : 1,
+            "itemCnt" : 101
         },
         "infos"    : [
             {
                 "mType" : "Config.ItemInfo",
-                "itemId" : 22,
-                "itemCnt" : 0
+                "itemId" : 1,
+                "itemCnt" : 101
             },
             {
                 "mType" : "Config.ItemInfo",
-                "itemId" : 22,
-                "itemCnt" : 200
+                "itemId" : 11,
+                "itemCnt" : 11
             }
         ],
         "infomap"  : {
             "mType" : "System.Collections.Generic.Dictionary`2[[Config.ItemType, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null],[Config.ItemInfo, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]",
             "Currency" : {
                 "mType" : "Config.ItemInfo",
-                "itemId" : 22,
-                "itemCnt" : 0
+                "itemId" : 1,
+                "itemCnt" : 100
             },
             "Resource" : {
                 "mType" : "Config.ItemInfo",
-                "itemId" : 22,
-                "itemCnt" : 200
+                "itemId" : 1,
+                "itemCnt" : 100
             }
         }
     }

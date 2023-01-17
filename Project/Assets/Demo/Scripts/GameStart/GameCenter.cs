@@ -8,6 +8,7 @@ using LCMap;
 using LCDialog;
 using LCECS.Core;
 using LCTask;
+using LCUI;
 
 namespace Demo
 {
@@ -89,6 +90,7 @@ namespace Demo
                 //string uid = DialogLocate.Dialog.CreateDialog(new AddDialogInfo(DialogType.Bubble, 1001, 1));
                 //DialogLocate.Dialog.Play(uid);
 
+                UILocate.UI.Show(UIPanelDef.MainUIPanel);
             });
         }
 

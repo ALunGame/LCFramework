@@ -4,7 +4,7 @@
     "treeId" : 0,
     "tree"   : {
         "mType" : "LCECS.Core.Tree.Nodes.NodeRoot",
-        "Uid"   : "8dbc84b2-d8e5-44cf-a0a1-669eceb56b41",
+        "Uid"   : "785e79b8-e5ca-453b-8ac8-4d6414017033",
         "childNodes" : null,
         "nodePremise" : null
     },

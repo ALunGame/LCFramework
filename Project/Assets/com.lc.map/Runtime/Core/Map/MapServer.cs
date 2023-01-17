@@ -250,6 +250,7 @@ namespace LCMap
 
             //保存
             PlayerActor = tActor;
+            LCECS.ECSLocate.Player.SetPlayerEntity(tActor);
             LCECS.ECSLayerLocate.Info.GetSensor<GlobalSensor>(LCECS.SensorType.Global).FollowActor.Value = PlayerActor;
         }
 

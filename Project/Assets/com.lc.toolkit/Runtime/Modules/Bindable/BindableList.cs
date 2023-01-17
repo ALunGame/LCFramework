@@ -126,7 +126,7 @@ namespace LCToolkit
         #region Public
 
         /// <summary>
-        /// 娉ㄥ唽娣诲姞
+        /// 注册添加
         /// </summary>
         /// <param name="onItemAdd"></param>
         public void RegisterAdd(Action<T> onItemAdd)
@@ -135,7 +135,7 @@ namespace LCToolkit
         }
 
         /// <summary>
-        /// 鍒犻櫎娣诲姞
+        /// 清除添加
         /// </summary>
         /// <param name="onItemAdd"></param>
         public void UnregisterAdd(Action<T> onItemAdd)
@@ -144,76 +144,76 @@ namespace LCToolkit
         }
 
         /// <summary>
-        /// 娉ㄥ唽鎻掑叆
+        /// 注册插入
         /// </summary>
         /// <param name="onItemAdd"></param>
-        public void RegisterInserted(Action<T> onItemAdd)
+        public void RegisterInserted(Action<int,T> onItemInserted)
         {
-            this.onAdded += onItemAdd;
+            this.onInserted += onItemInserted;
         }
 
         /// <summary>
-        /// 鍒犻櫎鎻掑叆
+        /// 清理插入
         /// </summary>
         /// <param name="onItemAdd"></param>
-        public void UnregisterInserted(Action<T> onItemAdd)
+        public void UnregisterInserted(Action<int,T> onItemInserted)
         {
-            this.onAdded -= onItemAdd;
+            this.onInserted -= onItemInserted;
         }
 
         /// <summary>
-        /// 娉ㄥ唽绉婚櫎
+        /// 注册移除
         /// </summary>
         /// <param name="onItemAdd"></param>
-        public void RegisterRemove(Action<T> onItemAdd)
+        public void RegisterRemove(Action<T> onItemRemove)
         {
-            this.onAdded += onItemAdd;
+            this.onRemoved += onItemRemove;
         }
 
         /// <summary>
-        /// 鍒犻櫎绉婚櫎
+        /// 清理移除
         /// </summary>
         /// <param name="onItemAdd"></param>
-        public void UnregisterRemove(Action<T> onItemAdd)
+        public void UnregisterRemove(Action<T> onItemRemove)
         {
-            this.onAdded -= onItemAdd;
+            this.onRemoved -= onItemRemove;
         }
 
         /// <summary>
-        /// 娉ㄥ唽鏀瑰彉
+        /// 注册改变
         /// </summary>
         /// <param name="onItemAdd"></param>
-        public void RegisterItemChange(Action<T> onItemAdd)
+        public void RegisterItemChange(Action<T> onItemChanged)
         {
-            this.onAdded += onItemAdd;
+            this.onItemChanged += onItemChanged;
         }
 
         /// <summary>
-        /// 鍒犻櫎鏀瑰彉
+        /// 清理改变
         /// </summary>
         /// <param name="onItemAdd"></param>
-        public void UnregisterItemChange(Action<T> onItemAdd)
+        public void UnregisterItemChange(Action<T> onItemChanged)
         {
-            this.onAdded -= onItemAdd;
+            this.onItemChanged -= onItemChanged;
         }
 
 
         /// <summary>
-        /// 娉ㄥ唽娓呯┖
+        /// 注册清空
         /// </summary>
         /// <param name="onItemAdd"></param>
-        public void RegisterClear(Action<T> onItemAdd)
+        public void RegisterClear(Action onClear)
         {
-            this.onAdded += onItemAdd;
+            this.onClear += onClear;
         }
 
         /// <summary>
-        /// 鍒犻櫎娓呯┖
+        /// 清理清空
         /// </summary>
         /// <param name="onItemAdd"></param>
-        public void UnregisterClear(Action<T> onItemAdd)
+        public void UnregisterClear(Action onClear)
         {
-            this.onAdded -= onItemAdd;
+            this.onClear -= onClear;
         }
 
         #endregion

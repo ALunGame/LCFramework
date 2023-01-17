@@ -8,7 +8,13 @@
         "entityId" : 1,
         "prefab"   : "Actor_Main",
         "interactiveRange" : 2,
-        "moveSpeed"        : 5
+        "moveSpeed"        : 5,
+        "defaultSkills"    : [
+            100101,
+            100102
+        ],
+        "defaultBuffs"     : [
+        ]
     },
     {
         "mType" : "LCMap.ActorCnf",
@@ -18,7 +24,11 @@
         "entityId" : 201,
         "prefab"   : "Actor_villager1",
         "interactiveRange" : 2,
-        "moveSpeed"        : 5
+        "moveSpeed"        : 5,
+        "defaultSkills"    : [
+        ],
+        "defaultBuffs"     : [
+        ]
     },
     {
         "mType" : "LCMap.ActorCnf",
@@ -28,7 +38,11 @@
         "entityId" : 201,
         "prefab"   : "Actor_villager2",
         "interactiveRange" : 2,
-        "moveSpeed"        : 5
+        "moveSpeed"        : 5,
+        "defaultSkills"    : [
+        ],
+        "defaultBuffs"     : [
+        ]
     },
     {
         "mType" : "LCMap.ActorCnf",
@@ -38,7 +52,11 @@
         "entityId" : 202,
         "prefab"   : "Actor_villager3",
         "interactiveRange" : 2,
-        "moveSpeed"        : 5
+        "moveSpeed"        : 5,
+        "defaultSkills"    : [
+        ],
+        "defaultBuffs"     : [
+        ]
     },
     {
         "mType" : "LCMap.ActorCnf",
@@ -48,7 +66,11 @@
         "entityId" : 202,
         "prefab"   : "Actor_villager4",
         "interactiveRange" : 2,
-        "moveSpeed"        : 5
+        "moveSpeed"        : 5,
+        "defaultSkills"    : [
+        ],
+        "defaultBuffs"     : [
+        ]
     },
     {
         "mType" : "LCMap.ActorCnf",
@@ -58,7 +80,11 @@
         "entityId" : 203,
         "prefab"   : "Actor_villager5",
         "interactiveRange" : 2,
-        "moveSpeed"        : 5
+        "moveSpeed"        : 5,
+        "defaultSkills"    : [
+        ],
+        "defaultBuffs"     : [
+        ]
     },
     {
         "mType" : "LCMap.ActorCnf",
@@ -68,7 +94,11 @@
         "entityId" : 203,
         "prefab"   : "Actor_villager6",
         "interactiveRange" : 2,
-        "moveSpeed"        : 5
+        "moveSpeed"        : 5,
+        "defaultSkills"    : [
+        ],
+        "defaultBuffs"     : [
+        ]
     },
     {
         "mType" : "LCMap.ActorCnf",
@@ -78,7 +108,11 @@
         "entityId" : 204,
         "prefab"   : "Actor_villager7",
         "interactiveRange" : 2,
-        "moveSpeed"        : 5
+        "moveSpeed"        : 5,
+        "defaultSkills"    : [
+        ],
+        "defaultBuffs"     : [
+        ]
     },
     {
         "mType" : "LCMap.ActorCnf",
@@ -88,7 +122,11 @@
         "entityId" : 204,
         "prefab"   : "Actor_villager8",
         "interactiveRange" : 2,
-        "moveSpeed"        : 5
+        "moveSpeed"        : 5,
+        "defaultSkills"    : [
+        ],
+        "defaultBuffs"     : [
+        ]
     },
     {
         "mType" : "LCMap.ActorCnf",
@@ -98,7 +136,11 @@
         "entityId" : 210,
         "prefab"   : "Actor_villager9",
         "interactiveRange" : 2,
-        "moveSpeed"        : 5
+        "moveSpeed"        : 5,
+        "defaultSkills"    : [
+        ],
+        "defaultBuffs"     : [
+        ]
     },
     {
         "mType" : "LCMap.ActorCnf",
@@ -108,7 +150,11 @@
         "entityId" : 301,
         "prefab"   : "Actor_tx_map101_leftBigDoor",
         "interactiveRange" : 2,
-        "moveSpeed"        : 0
+        "moveSpeed"        : 0,
+        "defaultSkills"    : [
+        ],
+        "defaultBuffs"     : [
+        ]
     },
     {
         "mType" : "LCMap.ActorCnf",
@@ -118,7 +164,11 @@
         "entityId" : 301,
         "prefab"   : "Actor_tx_map101_rightBigDoor",
         "interactiveRange" : 2,
-        "moveSpeed"        : 0
+        "moveSpeed"        : 0,
+        "defaultSkills"    : [
+        ],
+        "defaultBuffs"     : [
+        ]
     },
     {
         "mType" : "LCMap.ActorCnf",
@@ -128,6 +178,10 @@
         "entityId" : 401,
         "prefab"   : "Actor_tx_map101_tree_1",
         "interactiveRange" : 2,
-        "moveSpeed"        : 0
+        "moveSpeed"        : 0,
+        "defaultSkills"    : [
+        ],
+        "defaultBuffs"     : [
+        ]
     }
 ]

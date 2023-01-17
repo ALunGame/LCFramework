@@ -13,17 +13,9 @@ namespace LCSkill
         public override string Tooltip { get => "技能组件"; set => base.Tooltip = value; }
         public override Type RuntimeNode => typeof(SkillCom);
 
-        [NodeValue("初始Buff")]
-        public List<string> initialBuffs = new List<string>();
-
-        [NodeValue("初始技能")]
-        public List<string> initialSkills = new List<string>();
-
         public override BaseCom CreateRuntimeNode()
         {
             SkillCom skillCom = new SkillCom();
-            skillCom.initialSkills = initialSkills;
-            skillCom.initialBuffs = initialBuffs;
             return skillCom;
         }
     }

@@ -46,12 +46,6 @@
     },
     {
         "mType" : "Demo.Com.WeaponCom",
-        "animClipCache" : {
-            "mType" : "System.Collections.Generic.Dictionary`2[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089],[UnityEngine.AnimationClip, UnityEngine.AnimationModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-            "anim_tool_use" : {
-                "mType" : "UnityEngine.AnimationClip"
-            }
-        },
         "weaponRootTrans" : null,
         "weaponId"        : {
             "mType" : "LCToolkit.BindableValue`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]",

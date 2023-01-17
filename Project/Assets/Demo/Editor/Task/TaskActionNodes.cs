@@ -5,6 +5,31 @@ using LCTask.TaskGraph;
 
 namespace Demo.Task
 {
+    #region 事件
+
+    [NodeMenuItem("事件/完成事件")]
+    public class Task_ACT_FinishEvent : Task_CommonActionFuncNode
+    {
+        public override string Title { get => "完成事件"; set => base.Title = value; }
+        public override string Tooltip { get => "完成事件"; set => base.Tooltip = value; }
+
+        [NodeValue("事件Id")]
+        public int eventId;
+        [NodeValue("是否成功")]
+        public bool sucess;
+
+        public override TaskActionFunc CreateFunc()
+        {
+            TaskFinishEventFunc func = new TaskFinishEventFunc();
+            func.eventId = eventId;
+            func.sucess = sucess;
+            return func;
+        }
+    }
+
+    #endregion
+    
+    
     #region 工作
 
     [NodeMenuItem("工作/发送采集物品命令")]

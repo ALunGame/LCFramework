@@ -4,27 +4,54 @@ using UnityEngine;
 
 namespace Demo.Com
 {
+    public class MainActorInputKey
+    {
+        public Func<bool> CheckKeyDown;
+        public Func<bool> CheckKey;
+        public Func<bool> CheckKeyUp;
+
+        public bool KeyDown()
+        {
+            return CheckKeyDown == null ? false : CheckKeyDown();
+        }
+        
+        public bool Key()
+        {
+            return CheckKey == null ? false : CheckKey();
+        }
+        
+        public bool KeyUp()
+        {
+            return CheckKeyUp == null ? false : CheckKeyUp();
+        }
+    }
+    
     public class MainActorInputCom : BaseCom
     {
-        public KeyCode LeftMoveKey;
-        public KeyCode RightMoveKey;
-        public KeyCode Jump;
-        public KeyCode Dash;
-        public KeyCode Climb;
-        
+        // public KeyCode LeftMoveKey;
+        // public KeyCode RightMoveKey;
+        // public KeyCode Jump;
+        [NonSerialized] public KeyCode Dash;
+        [NonSerialized] public KeyCode Climb;
+
+
+        [NonSerialized] public MainActorInputKey LeftMoveKey = new MainActorInputKey();
+        [NonSerialized] public MainActorInputKey RightMoveKey = new MainActorInputKey();
+        [NonSerialized] public MainActorInputKey Jump = new MainActorInputKey();
+
         /// <summary>
         /// 竖直输入
         /// </summary>
-        public float v;
+        [NonSerialized] public float v;
         
         /// <summary>
         /// 水平输入
         /// </summary>
-        public float h;
+        [NonSerialized] public float h;
         
-        public int MoveDir;
+        [NonSerialized] public int MoveDir;
         
-        private int JumpFrame;
+        [NonSerialized] private int JumpFrame;
         
         /// <summary>
         /// 按下跳跃
@@ -32,7 +59,7 @@ namespace Demo.Com
         public bool JumpKeyDown {
             get
             {
-                if(Input.GetKeyDown(Jump))
+                if(Jump.KeyDown())
                 {
                     return true;
                 }
@@ -44,7 +71,6 @@ namespace Demo.Com
             }
         }
         
-        public bool JumpKey { get { return Input.GetKey(Jump); } }
         
         public bool ClimbKey { get {return Input.GetKey(Climb); } }
         
@@ -52,11 +78,11 @@ namespace Demo.Com
 
         protected override void OnAwake(Entity pEntity)
         {
-            Jump = KeyCode.Space;
-            Dash = KeyCode.E;
-            Climb = KeyCode.Q;
-            LeftMoveKey = KeyCode.A;
-            RightMoveKey = KeyCode.D;
+            // Jump = KeyCode.Space;
+            // Dash = KeyCode.E;
+            // Climb = KeyCode.Q;
+            // LeftMoveKey = KeyCode.A;
+            // RightMoveKey = KeyCode.D;
         }
         
         public void Update()
@@ -64,7 +90,7 @@ namespace Demo.Com
             CheckHorzontalMove();
             v = Input.GetAxisRaw("Vertical");
             h = Input.GetAxisRaw("Horizontal");
-            if (Input.GetKeyDown(Jump))
+            if (Jump.KeyDown())
             {
                 JumpFrame = 3;       //在落地前3帧按起跳仍然能跳
             }
@@ -81,18 +107,18 @@ namespace Demo.Com
         private void CheckHorzontalMove()
         {
             //按下右方向并且左键或者没有
-            if (Input.GetKeyDown(RightMoveKey) && h <= 0)
+            if (RightMoveKey.KeyDown() && h <= 0)
             {
                 MoveDir = 1;
             }
-            else if (Input.GetKeyDown(LeftMoveKey) && h >= 0)
+            else if (LeftMoveKey.KeyDown() && h >= 0)
             {
 		
                 MoveDir = -1;
             }
-            else if (Input.GetKeyUp(RightMoveKey))
+            else if (RightMoveKey.KeyUp())
             {
-                if (Input.GetKey(LeftMoveKey))  //放开右键的时候仍按着左键
+                if (LeftMoveKey.Key())  //放开右键的时候仍按着左键
                 {
                     MoveDir = -1;
                 }
@@ -101,9 +127,9 @@ namespace Demo.Com
                     MoveDir = 0;
                 }
             }
-            else if (Input.GetKeyUp(LeftMoveKey))
+            else if (LeftMoveKey.KeyUp())
             {
-                if (Input.GetKey(RightMoveKey))
+                if (RightMoveKey.Key())
                 {
                     MoveDir = 1;
                 }

@@ -269,6 +269,14 @@ MonoBehaviour:
     m_Address: TbWeaponCnf
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 09d469b39f59fbf4ebcfe00a1f46a596
+    m_Address: TbUIPanelCnf
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: c425063426162dc42a238fdfbaf4b2fb
+    m_Address: TbEntity_-9999
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: c106a54d1dad7c34dbca1e47199c97a1, type: 2}
   m_SchemaSet:

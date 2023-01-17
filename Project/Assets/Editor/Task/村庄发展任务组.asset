@@ -26,9 +26,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   serializedGraph: "\r\n{\r\n    \"mType\" : \"LCTask.TaskGraph.TaskGraph\",\r\n   
     \"pos\"   : {\r\n        \"mType\" : \"UnityEngine.Vector3\",\r\n        \"x\"    
-    : 391.0,\r\n        \"y\"     : 420.0,\r\n        \"z\"     : 0.0\r\n    },\r\n   
+    : 60.0,\r\n        \"y\"     : 619.0,\r\n        \"z\"     : 0.0\r\n    },\r\n   
     \"zoom\"  : {\r\n        \"mType\" : \"UnityEngine.Vector3\",\r\n        \"x\"    
-    : 1.14999997615814,\r\n        \"y\"     : 1.14999997615814,\r\n        \"z\"    
+    : 1.52087497711182,\r\n        \"y\"     : 1.52087497711182,\r\n        \"z\"    
     : 1.0\r\n    },\r\n    \"nodes\" : {\r\n        \"mType\" : \"System.Collections.Generic.Dictionary`2[[System.String,
     mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089],[LCNode.Model.BaseNode,
     Assembly-CSharp-Editor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]\",\r\n       
@@ -52,7 +52,7 @@ MonoBehaviour:
     \"inIndex\"            : -1,\r\n            \"outIndex\"           : -1\r\n       
     },\r\n        \"dab33fe2-be04-4cba-a8c8-92624788ef88\" : {\r\n            \"mType\"
     : \"Demo.Task.Task_ACT_SendRepairActorCmd\",\r\n            \"actorId\" : 301,\r\n           
-    \"needWait\" : false,\r\n            \"parentNode\" : null,\r\n            \"guid\"      
+    \"needWait\" : true,\r\n            \"parentNode\" : null,\r\n            \"guid\"      
     : \"dab33fe2-be04-4cba-a8c8-92624788ef88\",\r\n            \"position\"   : {\r\n               
     \"mType\" : \"UnityEngine.Vector2\",\r\n                \"x\"     : 260.0,\r\n               
     \"y\"     : -153.0\r\n            },\r\n            \"inIndex\"    : 1,\r\n           

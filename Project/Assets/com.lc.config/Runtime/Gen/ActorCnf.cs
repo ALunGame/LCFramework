@@ -1,5 +1,7 @@
 ﻿using System;
 using LCMap;
+using System.Collections.Generic;
+using System;
 
 namespace LCMap
 {
@@ -44,6 +46,16 @@ namespace LCMap
         /// 移动速度
         /// </summary>
         public int moveSpeed;
+
+        /// <summary>
+        /// 默认技能
+        /// </summary>
+        public List<int> defaultSkills;
+
+        /// <summary>
+        /// 默认Buff
+        /// </summary>
+        public List<int> defaultBuffs;
 
     }
 

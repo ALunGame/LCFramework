@@ -50,6 +50,9 @@ namespace Demo.Com.MainActor
         [NonSerialized] private ActorDisplayCom displayCom;
         [NonSerialized] private MainActorInputCom input;
         [NonSerialized] private AnimCom animCom;
+        
+        
+        [NonSerialized] private bool banMove;
 
         protected override void OnAwake(Entity pEntity)
         {
@@ -81,6 +84,9 @@ namespace Demo.Com.MainActor
 
         public void Update()
         {
+            if (banMove)
+                return;
+            
             //更新碰撞
             moveCollider.UpdateRaycastHitInfos();
             
@@ -131,6 +137,9 @@ namespace Demo.Com.MainActor
 
         public void FixedUpdate()
         {
+            if (banMove)
+                return;
+            
             if(CoyotetimeFram > 0)
             {
                 CoyotetimeFram--;
@@ -324,6 +333,15 @@ namespace Demo.Com.MainActor
         private void ChangeState(MainActorMoveState pState)
         {
             moveState = pState;
+        }
+
+        public void BanMove(bool pBanMove, string pBanReason = "")
+        {
+            banMove = pBanMove;
+            if (banMove)
+            {
+                GameLocate.Log.Log("禁止移动》》》",pBanReason);
+            }
         }
 
         #endregion

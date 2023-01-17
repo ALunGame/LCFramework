@@ -10,5 +10,6 @@ namespace LCMap
         public static MapLogServer Log = new MapLogServer();
         public static MapServer Map = new MapServer();
         public static ActorServer Actor = new ActorServer();
+        public static ActorRequestServer ActorRequest = new ActorRequestServer();
     }
 }

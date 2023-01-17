@@ -21,7 +21,10 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/b21cc983ee7249368cf4edb24af0dd7f35b9b0/ef/f893bdfa/FileSystemWatcher.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/b21cc983ee7249368cf4edb24af0dd7f35b9b0/f2/80fcf3d5/FileSystemEventHandler.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/b7f3f927b2fb45af9f06b7b94f1a7fc07400/6c/8983e05a/Input.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/d4cde64232cf45659d86aafa597faa7746a800/33/d3357cac/Int32.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/d4cde64232cf45659d86aafa597faa7746a800/a2/7b84ebdc/List`1.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/d4cde64232cf45659d86aafa597faa7746a800/a5/6aba09e9/Number.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/d4cde64232cf45659d86aafa597faa7746a800/a6/fc92666a/ReadOnlySpan`1.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/d4cde64232cf45659d86aafa597faa7746a800/ec/66e5778e/Dictionary`2.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/f1212ad1dec44ce7b7147976b91869c3157800/00/2d1d74b9/Transform.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/f1212ad1dec44ce7b7147976b91869c3157800/2f/59a6b879/Bounds.cs" root0="SKIP_HIGHLIGHTING" />
@@ -69,10 +72,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="42356">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" />
+      <option name="pid" value="42356" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -90,149 +93,30 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Demo/Scripts/FuncModule/Work/Command/RepairActorWorkCmd.cs</url>
-          <line>114</line>
-          <properties documentPath="E:\Mine\Git\LCFramework\LCFramework\Project\Assets\Demo\Scripts\FuncModule\Work\Command\RepairActorWorkCmd.cs" initialLine="114" containingFunctionPresentation="lambda expression inside method 'RepairActor'">
+          <url>file://$PROJECT_DIR$/Assets/Demo/Scripts/UI/UIPanel/Main/Partial/MainUI_FightPanel.cs</url>
+          <line>31</line>
+          <properties documentPath="E:\Mine\Git\LCFramework\LCFramework\Project\Assets\Demo\Scripts\UI\UIPanel\Main\Partial\MainUI_FightPanel.cs" initialLine="30" containingFunctionPresentation="method 'OnAwake'">
             <startOffsets>
-              <option value="3505" />
+              <option value="957" />
             </startOffsets>
             <endOffsets>
-              <option value="3526" />
+              <option value="1021" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="41" />
+          <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Demo/Scripts/FuncModule/Work/Command/ProduceItemWorkCmd.cs</url>
-          <line>101</line>
-          <properties documentPath="E:\Mine\Git\LCFramework\LCFramework\Project\Assets\Demo\Scripts\FuncModule\Work\Command\ProduceItemWorkCmd.cs" initialLine="101" containingFunctionPresentation="method 'OnExecute'">
+          <url>file://$PROJECT_DIR$/Assets/Demo/Scripts/UI/UIPanel/Main/Partial/MainUI_FightPanel.cs</url>
+          <line>52</line>
+          <properties documentPath="E:\Mine\Git\LCFramework\LCFramework\Project\Assets\Demo\Scripts\UI\UIPanel\Main\Partial\MainUI_FightPanel.cs" initialLine="51" containingFunctionPresentation="method 'InitMoveBtn'">
             <startOffsets>
-              <option value="3047" />
+              <option value="1473" />
             </startOffsets>
             <endOffsets>
-              <option value="3611" />
+              <option value="1682" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="42" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Demo/Scripts/FuncModule/Work/Command/ProduceItemWorkCmd.cs</url>
-          <line>41</line>
-          <properties documentPath="E:\Mine\Git\LCFramework\LCFramework\Project\Assets\Demo\Scripts\FuncModule\Work\Command\ProduceItemWorkCmd.cs" initialLine="41" containingFunctionPresentation="method 'OnCommandTook'">
-            <startOffsets>
-              <option value="985" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1071" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="43" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Demo/Scripts/FuncModule/Work/Command/ProduceItemWorkCmd.cs</url>
-          <line>103</line>
-          <properties documentPath="E:\Mine\Git\LCFramework\LCFramework\Project\Assets\Demo\Scripts\FuncModule\Work\Command\ProduceItemWorkCmd.cs" initialLine="103" containingFunctionPresentation="lambda expression inside method 'OnExecute'">
-            <startOffsets>
-              <option value="3147" />
-            </startOffsets>
-            <endOffsets>
-              <option value="3595" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="44" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Demo/Scripts/Com/Actor/Base/BagCom.cs</url>
-          <line>156</line>
-          <properties documentPath="E:\Mine\Git\LCFramework\LCFramework\Project\Assets\Demo\Scripts\Com\Actor\Base\BagCom.cs" initialLine="156" containingFunctionPresentation="method 'RemoveItem'">
-            <startOffsets>
-              <option value="3486" />
-            </startOffsets>
-            <endOffsets>
-              <option value="3540" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="45" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/com.lc.load/Editor/AssetImportCheck/AssetChangeDisposeServer.cs</url>
-          <line>53</line>
-          <properties documentPath="E:\Mine\Git\LCFramework\LCFramework\Project\Assets\com.lc.load\Editor\AssetImportCheck\AssetChangeDisposeServer.cs" initialLine="53" containingFunctionPresentation="constructor 'AssetChangeDisposeServer'">
-            <startOffsets>
-              <option value="1041" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1106" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="49" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/com.lc.toolkit/Editor/Help/IOHelper.cs</url>
-          <line>217</line>
-          <properties documentPath="E:\Mine\Git\LCFramework\LCFramework\Project\Assets\com.lc.toolkit\Editor\Help\IOHelper.cs" initialLine="217" containingFunctionPresentation="method 'GetUnityRelativePath'">
-            <startOffsets>
-              <option value="6919" />
-            </startOffsets>
-            <endOffsets>
-              <option value="6955" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="50" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/com.lc.load/Editor/AssetAutoSetting/SpriteAtlasDirectoryDispose.cs</url>
-          <line>34</line>
-          <properties documentPath="E:\Mine\Git\LCFramework\LCFramework\Project\Assets\com.lc.load\Editor\AssetAutoSetting\SpriteAtlasDirectoryDispose.cs" initialLine="34" containingFunctionPresentation="method 'OnDirectoryChange'">
-            <startOffsets>
-              <option value="1030" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1073" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="51" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/com.lc.toolkit/Editor/Help/UnityEditorHelper.cs</url>
-          <line>23</line>
-          <properties documentPath="E:\Mine\Git\LCFramework\LCFramework\Project\Assets\com.lc.toolkit\Editor\Help\UnityEditorHelper.cs" initialLine="23" containingFunctionPresentation="method 'OnEditorUpdate'">
-            <startOffsets>
-              <option value="651" />
-            </startOffsets>
-            <endOffsets>
-              <option value="693" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="52" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <condition expression="pInfo.className==&quot;UIPanelCnf&quot;" language="C#" />
-          <url>file://$PROJECT_DIR$/Assets/com.lc.config/Editor/Excel/GenCode/Excel/CommonExcelGenClassCode.cs</url>
-          <line>48</line>
-          <properties documentPath="E:\Mine\Git\LCFramework\LCFramework\Project\Assets\com.lc.config\Editor\Excel\GenCode\Excel\CommonExcelGenClassCode.cs" initialLine="48" containingFunctionPresentation="method 'GenClassCode'">
-            <startOffsets>
-              <option value="1102" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1150" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="54" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <condition expression="pInfo.className==&quot;UIPanelCnf&quot;" language="C#" />
-          <url>file://$PROJECT_DIR$/Assets/com.lc.config/Editor/Excel/GenCode/ExcelGenCode.cs</url>
-          <line>34</line>
-          <properties documentPath="E:\Mine\Git\LCFramework\LCFramework\Project\Assets\com.lc.config\Editor\Excel\GenCode\ExcelGenCode.cs" initialLine="34" containingFunctionPresentation="method 'GenCommonExcelCode'">
-            <startOffsets>
-              <option value="978" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1024" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="56" />
+          <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

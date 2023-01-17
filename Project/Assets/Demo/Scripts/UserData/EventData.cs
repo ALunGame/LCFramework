@@ -10,20 +10,12 @@ namespace Demo.UserData
         /// 当前事件列表
         /// </summary>
         public List<int> CurrEventIds { get => currEventIds; }
-        /// <summary>
-        /// 当前事件变化
-        /// </summary>
-        public event Action OnCurrEventChanged;
-        
+
         private List<int> finsihEventIds = new List<int>();
         /// <summary>
         /// 完成事件列表
         /// </summary>
         public List<int> FinsihEventIds { get => finsihEventIds; }
-        /// <summary>
-        /// 完成事件变化
-        /// </summary>
-        public event Action OnFinsihEventChanged;
 
 
         #region Add
@@ -32,7 +24,7 @@ namespace Demo.UserData
         {
             if (!currEventIds.Contains(pEventId))
                 currEventIds.Add(pEventId);
-            OnCurrEventChanged?.Invoke();
+            UpdateUserData();
         }
         
         public void AddFinsihEvent(int pEventId)
@@ -41,7 +33,7 @@ namespace Demo.UserData
                 currEventIds.Remove(pEventId);
             if (!finsihEventIds.Contains(pEventId))
                 finsihEventIds.Add(pEventId);
-            OnFinsihEventChanged?.Invoke();
+            UpdateUserData();
         }
 
         #endregion
@@ -52,7 +44,7 @@ namespace Demo.UserData
         {
             if (currEventIds.Contains(pEventId))
                 currEventIds.Remove(pEventId);
-            OnCurrEventChanged?.Invoke();
+            UpdateUserData();
         }
 
         #endregion

@@ -106,7 +106,7 @@ namespace LCSkill
         /// 技能效果
         /// </summary>
         public string timeline;
-
+        
         /// <summary>
         /// 学会技能时，获得的Buff
         /// </summary>

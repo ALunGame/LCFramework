@@ -55,6 +55,10 @@ namespace LCMap
     public class Actor : Entity
     {
         public int Id;
+        
+        public int CurrRequestId;
+        public Action RequestFinishCallBack;
+        
         public string StateName { get { return displayCom.StateName; } }
 
         [NonSerialized]

@@ -205,7 +205,7 @@ namespace LCConfig.Excel.GenCode.Property
         public override bool CanCatch(string pValue)
         {
             object value;
-            if (Enum.TryParse(ReflectionHelper.GetType(TypeName),pValue,out value))
+            if (Enum.TryParse(enumType,pValue,out value))
             {
                 return true;
             }
@@ -215,7 +215,7 @@ namespace LCConfig.Excel.GenCode.Property
         public override object Parse(string pValue)
         {
             object value;
-            if (Enum.TryParse(ReflectionHelper.GetType(TypeName),pValue,out value))
+            if (Enum.TryParse(enumType,pValue,out value))
             {
                 return value;
             }

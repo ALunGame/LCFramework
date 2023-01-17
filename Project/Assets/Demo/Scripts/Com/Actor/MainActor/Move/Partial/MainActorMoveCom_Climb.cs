@@ -75,21 +75,7 @@ namespace Demo.Com.MainActor
             //蹬墙跳
             if(input.JumpKeyDown)
             {
-                if(input.ClimbKey)
-                {
-                    if((input.h > 0 && GetDirInt < 0) || (input.h < 0 && GetDirInt > 0))
-                    {
-                        Jump(new Vector2(8 * -GetDirInt, 0), new Vector2(24 , 0));
-                    }
-                    else
-                    {
-                        Jump();
-                    }
-                }
-                else
-                {
-                    Jump(new Vector2(8 * -GetDirInt, 0), new Vector2(24 , 0));
-                }
+                Jump(new Vector2(8 * -GetDirInt, 0), new Vector2(24 , 0));
             }
 
         }

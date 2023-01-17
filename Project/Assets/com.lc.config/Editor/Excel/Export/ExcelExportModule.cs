@@ -158,6 +158,30 @@ namespace LCConfig.Excel.Export
 				cnf.interactiveRange = (int)GetProp(pProps,"interactiveRange").Parse(propDict["interactiveRange"][0]);
 				cnf.moveSpeed = (int)GetProp(pProps,"moveSpeed").Parse(propDict["moveSpeed"][0]);
 
+                cnf.defaultSkills = new List<int>();
+                for (int i = 0; i < propDict["defaultSkills"].Count; i++)
+                {
+                    string value = propDict["defaultSkills"][i];
+                    if (string.IsNullOrEmpty(value))
+                    {
+                        break;
+                    }
+                    cnf.defaultSkills.Add((int)GetProp(pProps,"defaultSkills").Parse(value));
+                }; 
+            
+
+                cnf.defaultBuffs = new List<int>();
+                for (int i = 0; i < propDict["defaultBuffs"].Count; i++)
+                {
+                    string value = propDict["defaultBuffs"][i];
+                    if (string.IsNullOrEmpty(value))
+                    {
+                        break;
+                    }
+                    cnf.defaultBuffs.Add((int)GetProp(pProps,"defaultBuffs").Parse(value));
+                }; 
+            
+
                 cnfs.Add(cnf);
             }
                 
@@ -491,6 +515,8 @@ namespace LCConfig.Excel.Export
         }
     }
 }
+
+
 
 
 

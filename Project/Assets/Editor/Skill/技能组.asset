@@ -12,9 +12,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d76ca80ad251d243acfdcbe89751432, type: 3}
   m_Name: skill_100101
   m_EditorClassIdentifier: 
-  serializedGraph: '{"mType":"LCSkill.SkillGraph.SkillGraph","pos":{"mType":"UnityEngine.Vector3","x":0.0,"y":163.0,"z":0.0},"zoom":{"mType":"UnityEngine.Vector3","x":1.0,"y":1.0,"z":1.0},"nodes":{"mType":"System.Collections.Generic.Dictionary`2[[System.String,
+  serializedGraph: "\r\n{\r\n    \"mType\" : \"LCSkill.SkillGraph.SkillGraph\",\r\n   
+    \"pos\"   : {\r\n        \"mType\" : \"UnityEngine.Vector3\",\r\n        \"x\"    
+    : -242.0,\r\n        \"y\"     : 156.0,\r\n        \"z\"     : 0.0\r\n    },\r\n   
+    \"zoom\"  : {\r\n        \"mType\" : \"UnityEngine.Vector3\",\r\n        \"x\"    
+    : 1.52087497711182,\r\n        \"y\"     : 1.52087497711182,\r\n        \"z\"    
+    : 1.0\r\n    },\r\n    \"nodes\" : {\r\n        \"mType\" : \"System.Collections.Generic.Dictionary`2[[System.String,
     mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089],[LCNode.Model.BaseNode,
-    Assembly-CSharp-Editor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]","3ca7d242-2b30-404b-833d-eac8cdf1d0fa":{"mType":"LCSkill.SkillGraph.Skill_Node","condition":null,"costs":null,"addBuffs":null,"timeline":"100101","guid":"3ca7d242-2b30-404b-833d-eac8cdf1d0fa","position":{"mType":"UnityEngine.Vector2","x":137.0,"y":-16.0}}},"connections":[]}'
+    Assembly-CSharp-Editor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]\",\r\n       
+    \"3ca7d242-2b30-404b-833d-eac8cdf1d0fa\" : {\r\n            \"mType\" : \"LCSkill.SkillGraph.Skill_Node\",\r\n           
+    \"condition\" : null,\r\n            \"costs\"     : null,\r\n            \"addBuffs\" 
+    : null,\r\n            \"timeline\"  : \"100101\",\r\n            \"guid\"     
+    : \"3ca7d242-2b30-404b-833d-eac8cdf1d0fa\",\r\n            \"position\"  : {\r\n               
+    \"mType\" : \"UnityEngine.Vector2\",\r\n                \"x\"     : 324.0,\r\n               
+    \"y\"     : -21.0\r\n            },\r\n            \"inIndex\"   : -1,\r\n           
+    \"outIndex\"  : -1\r\n        }\r\n    },\r\n    \"groups\" : [\r\n    ],\r\n   
+    \"connections\" : [\r\n    ]\r\n}"
   skillId: 100101
 --- !u!114 &-7147025337253763545
 MonoBehaviour:

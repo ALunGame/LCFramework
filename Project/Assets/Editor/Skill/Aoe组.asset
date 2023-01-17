@@ -12,9 +12,52 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6c8efba6f25e314aa305232421793db, type: 3}
   m_Name: aoe_100101
   m_EditorClassIdentifier: 
-  serializedGraph: '{"mType":"LCSkill.AoeGraph.AoeGraph","pos":{"mType":"UnityEngine.Vector3","x":303.0,"y":81.0,"z":0.0},"zoom":{"mType":"UnityEngine.Vector3","x":1.0,"y":1.0,"z":1.0},"nodes":{"mType":"System.Collections.Generic.Dictionary`2[[System.String,
+  serializedGraph: "\r\n{\r\n    \"mType\" : \"LCSkill.AoeGraph.AoeGraph\",\r\n   
+    \"pos\"   : {\r\n        \"mType\" : \"UnityEngine.Vector3\",\r\n        \"x\"    
+    : 190.0,\r\n        \"y\"     : 65.0,\r\n        \"z\"     : 0.0\r\n    },\r\n   
+    \"zoom\"  : {\r\n        \"mType\" : \"UnityEngine.Vector3\",\r\n        \"x\"    
+    : 1.32249999046326,\r\n        \"y\"     : 1.32249999046326,\r\n        \"z\"    
+    : 1.0\r\n    },\r\n    \"nodes\" : {\r\n        \"mType\" : \"System.Collections.Generic.Dictionary`2[[System.String,
     mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089],[LCNode.Model.BaseNode,
-    Assembly-CSharp-Editor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]","75e0c8a7-97b9-413e-9da2-9ff18f018b46":{"mType":"LCSkill.AoeGraph.Aoe_Node","asset":{"mType":"LCToolkit.UnityObjectAsset","assetType":0,"ObjName":null,"ObjPath":null},"areaShape":{"mType":"LCToolkit.Shape","ShapeType":0,"AABBMin":{"mType":"UnityEngine.Vector2","x":0.0,"y":0.0},"AABBMax":{"mType":"UnityEngine.Vector2","x":1.0,"y":1.0},"Center":{"mType":"UnityEngine.Vector2","x":0.0,"y":0.0},"CircleRadius":0,"PolygonVertices":[]},"tickTime":-1,"moveFunc":null,"onCreateFunc":null,"onTickFunc":null,"onRemovedFunc":null,"onActorEnterFunc":null,"onActorLeaveFunc":null,"onBulletEnterFunc":null,"onBulletLeaveFunc":null,"guid":"75e0c8a7-97b9-413e-9da2-9ff18f018b46","position":{"mType":"UnityEngine.Vector2","x":0.0,"y":0.0}},"632b13a3-b18b-4aaf-9073-73cb3c28fef6":{"mType":"LCSkill.AoeGraph.Aoe_ActorEnterDamageNode","damage":{"mType":"LCSkill.DamageModel","damages":[{"mType":"LCSkill.DamageInfo","damage":10,"type":0,"hitRate":1,"criticalRate":0}],"addBuffs":[]},"parentNode":null,"guid":"632b13a3-b18b-4aaf-9073-73cb3c28fef6","position":{"mType":"UnityEngine.Vector2","x":361.0,"y":99.0}}},"connections":[{"mType":"LCNode.Model.BaseConnection","from":"75e0c8a7-97b9-413e-9da2-9ff18f018b46","fromPortName":"\u5F53\u6F14\u5458\u8FDB\u5165\u65F6","to":"632b13a3-b18b-4aaf-9073-73cb3c28fef6","toPortName":"\u7236\u8282\u70B9"}]}'
+    Assembly-CSharp-Editor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]\",\r\n       
+    \"75e0c8a7-97b9-413e-9da2-9ff18f018b46\" : {\r\n            \"mType\" : \"LCSkill.AoeGraph.Aoe_Node\",\r\n           
+    \"asset\" : {\r\n                \"mType\" : \"LCToolkit.UnityObjectAsset\",\r\n               
+    \"assetType\" : 0,\r\n                \"ObjName\"   : null,\r\n               
+    \"ObjPath\"   : null\r\n            },\r\n            \"areaShape\" : {\r\n               
+    \"mType\" : \"LCToolkit.Shape\",\r\n                \"ShapeType\" : 0,\r\n               
+    \"AABBMin\"   : {\r\n                    \"mType\" : \"UnityEngine.Vector2\",\r\n                   
+    \"x\"     : 0.0,\r\n                    \"y\"     : 0.0\r\n                },\r\n               
+    \"AABBMax\"   : {\r\n                    \"mType\" : \"UnityEngine.Vector2\",\r\n                   
+    \"x\"     : 1.0,\r\n                    \"y\"     : 1.0\r\n                },\r\n               
+    \"Center\"    : {\r\n                    \"mType\" : \"UnityEngine.Vector2\",\r\n                   
+    \"x\"     : 0.0,\r\n                    \"y\"     : 0.0\r\n                },\r\n               
+    \"CircleRadius\" : 0,\r\n                \"PolygonVertices\" : [\r\n               
+    ]\r\n            },\r\n            \"tickTime\"  : -1,\r\n            \"moveFunc\" 
+    : null,\r\n            \"onCreateFunc\" : null,\r\n            \"onTickFunc\"  
+    : null,\r\n            \"onRemovedFunc\" : null,\r\n            \"onActorEnterFunc\"
+    : null,\r\n            \"onActorLeaveFunc\" : null,\r\n            \"onBulletEnterFunc\"
+    : null,\r\n            \"onBulletLeaveFunc\" : null,\r\n            \"guid\"             
+    : \"75e0c8a7-97b9-413e-9da2-9ff18f018b46\",\r\n            \"position\"         
+    : {\r\n                \"mType\" : \"UnityEngine.Vector2\",\r\n               
+    \"x\"     : 0.0,\r\n                \"y\"     : 0.0\r\n            },\r\n           
+    \"inIndex\"           : -1,\r\n            \"outIndex\"          : -1\r\n       
+    },\r\n        \"632b13a3-b18b-4aaf-9073-73cb3c28fef6\" : {\r\n            \"mType\"
+    : \"LCSkill.AoeGraph.Aoe_ActorEnterDamageNode\",\r\n            \"damage\" :
+    {\r\n                \"mType\" : \"LCSkill.DamageModel\",\r\n               
+    \"damages\" : [\r\n                    {\r\n                        \"mType\"
+    : \"LCSkill.DamageInfo\",\r\n                        \"damage\" : 10,\r\n                       
+    \"type\"   : 0,\r\n                        \"hitRate\" : 1,\r\n                       
+    \"criticalRate\" : 0\r\n                    }\r\n                ],\r\n               
+    \"addBuffs\" : [\r\n                ]\r\n            },\r\n            \"parentNode\"
+    : null,\r\n            \"guid\"       : \"632b13a3-b18b-4aaf-9073-73cb3c28fef6\",\r\n           
+    \"position\"   : {\r\n                \"mType\" : \"UnityEngine.Vector2\",\r\n               
+    \"x\"     : 361.0,\r\n                \"y\"     : 99.0\r\n            },\r\n           
+    \"inIndex\"    : 0,\r\n            \"outIndex\"   : -1\r\n        }\r\n    },\r\n   
+    \"groups\" : [\r\n    ],\r\n    \"connections\" : [\r\n        {\r\n           
+    \"mType\" : \"LCNode.Model.BaseConnection\",\r\n            \"from\"  : \"75e0c8a7-97b9-413e-9da2-9ff18f018b46\",\r\n           
+    \"fromPortName\" : \"\\u5F53\\u6F14\\u5458\\u8FDB\\u5165\\u65F6\",\r\n           
+    \"to\"           : \"632b13a3-b18b-4aaf-9073-73cb3c28fef6\",\r\n            \"toPortName\"  
+    : \"\\u7236\\u8282\\u70B9\"\r\n        }\r\n    ]\r\n}"
   aoeId: 100101
 --- !u!114 &-1827610720920577386
 MonoBehaviour:

@@ -25,7 +25,7 @@
                 {
                     "mType" : "Demo.Task.TaskRepairActorCmdFunc",
                     "actorId" : 301,
-                    "needWait" : false
+                    "needWait" : true
                 }
             ],
             "actionSuccess"     : [

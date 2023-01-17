@@ -25,5 +25,18 @@ namespace Demo.UI
                 clickFunc?.Invoke();
             });
         }
+        
+        public static void ClearClick(Transform trans, string path)
+        {
+            Transform btnTrans = trans;
+            if (!string.IsNullOrEmpty(path))
+                btnTrans = trans.Find(path);
+            BaseButton btnCom = btnTrans.GetComponent<BaseButton>();
+            if (btnCom == null)
+            {
+                return;
+            }
+            btnCom.SetClick(null);
+        } 
     }
 }

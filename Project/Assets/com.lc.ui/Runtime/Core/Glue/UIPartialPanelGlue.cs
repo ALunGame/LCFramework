@@ -75,7 +75,7 @@ namespace LCUI
                 }
                 else
                 {
-                    if (!_Panel.transform.Find(_PanelPath,out Transform _PartialPanelTrans))
+                    if (!_Panel.transform.Find(_PanelPath,out _PartialPanelTrans))
                     {
                         UILocate.Log.LogError("分布视图出错，路径上没有对应节点",_PanelPath);
                     }

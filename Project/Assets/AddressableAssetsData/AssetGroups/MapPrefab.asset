@@ -53,6 +53,10 @@ MonoBehaviour:
     m_Address: Map000_Env
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 3204ddb88652c884e9348011b7787fbe
+    m_Address: Map9999_Env
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: c106a54d1dad7c34dbca1e47199c97a1, type: 2}
   m_SchemaSet:

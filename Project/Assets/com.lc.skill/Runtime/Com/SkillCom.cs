@@ -1,5 +1,7 @@
 ﻿using LCECS.Core;
 using System.Collections.Generic;
+using LCMap;
+using LCToolkit;
 using UnityEngine;
 
 namespace LCSkill
@@ -10,11 +12,6 @@ namespace LCSkill
     /// </summary>
     public class SkillCom : BaseCom
     {
-        //初始技能
-        public List<string> initialSkills = new List<string>();
-        //初始Buff
-        public List<string> initialBuffs = new List<string>();
-
         private List<SkillObj> skills = new List<SkillObj>();
         /// <summary>
         /// 拥有的技能
@@ -27,27 +24,45 @@ namespace LCSkill
         /// </summary>
         public IReadOnlyList<BuffObj> Buffs { get => buffs; }
 
-        public IReadOnlyList<TimelineObj> Timelines { get => timelines; }
-        /// <summary>
-        /// 正在播放的Timeline
-        /// </summary>
-        private List<TimelineObj> timelines = new List<TimelineObj>();
+        private TimelineObj timeline;
 
-        protected override void OnInit(Entity pEntity)
+        public TimelineObj Timeline
         {
-            for (int i = 0; i < initialBuffs.Count; i++)
+            get
             {
-                AddBuffModel addBuffModel = new AddBuffModel();
-                addBuffModel.id = initialBuffs[i];
-                addBuffModel.addStack = 1;
-                addBuffModel.durationSetType = true;
-                addBuffModel.duration = 1;
-                addBuffModel.isPermanent = true;
-                SkillLocate.Skill.CreateBuff(this, this, addBuffModel);
+                return timeline;
             }
-            for (int i = 0; i < initialSkills.Count; i++)
+        }
+        
+        
+        protected override void OnAwake(Entity pEntity)
+        {
+            if (pEntity is Actor)
             {
-                SkillLocate.Skill.LearnSkill(this, initialSkills[i]);
+                Actor actor = pEntity as Actor;
+                ActorCnf actorCnf = LCConfig.Config.ActorCnf[actor.Id];
+                if (actorCnf.defaultSkills.IsLegal())
+                {
+                    for (int i = 0; i < actorCnf.defaultSkills.Count; i++)
+                    {
+                        int skillId = actorCnf.defaultSkills[i];
+                        SkillLocate.Skill.LearnSkill(this, skillId.ToString());
+                    }
+                }
+                if (actorCnf.defaultBuffs.IsLegal())
+                {
+                    for (int i = 0; i < actorCnf.defaultBuffs.Count; i++)
+                    {
+                        int buffId = actorCnf.defaultBuffs[i];
+                        AddBuffModel addBuffModel = new AddBuffModel();
+                        addBuffModel.id = buffId.ToString();
+                        addBuffModel.addStack = 1;
+                        addBuffModel.durationSetType = true;
+                        addBuffModel.duration = 1;
+                        addBuffModel.isPermanent = true;
+                        SkillLocate.Skill.CreateBuff(this, this, addBuffModel);
+                    }
+                }
             }
         }
 
@@ -89,6 +104,19 @@ namespace LCSkill
         /// <returns>是否释放成功</returns>
         internal bool ReleaseSkill(string skillId)
         {
+            if (timeline != null)
+            {
+                if (timeline.isFinish)
+                {
+                    timeline = null;
+                }
+                else
+                {
+                    LCSkill.SkillLocate.Log.LogError("释放技能失败，正在释放技能",skillId);
+                    return false;
+                }
+            }
+            
             SkillObj skillObj = GetSkill(skillId);
             if (skillObj == null || skillObj.coldDown > 0)
             {
@@ -99,7 +127,7 @@ namespace LCSkill
                 return false;
             if (SkillLocate.Model.GetTimelineModel(skillObj.model.timeline, out TimelineModel model))
             {
-                TimelineObj timeline = new TimelineObj(skillId, model, this);
+                timeline = new TimelineObj(skillId, model, this);
                 //通知Buff技能即将释放
                 for (int i = 0; i < buffs.Count; i++)
                 {
@@ -110,7 +138,6 @@ namespace LCSkill
                     return false;
                 }
                 timeline.skillId = skillId;
-                timelines.Add(timeline);
                 skillObj.coldDown = 0.1f;
                 return true;
             }
@@ -149,14 +176,14 @@ namespace LCSkill
         /// <returns></returns>
         public bool CheckSkillIsFinish(string skillId)
         {
-            for (int i = 0; i < Timelines.Count; i++)
+            if (timeline == null)
             {
-                if (Timelines[i].skillId == skillId)
-                {
-                    return Timelines[i].isFinish;
-                }
+                return true;
             }
-            return true;
+            else
+            {
+                return timeline.isFinish;
+            }
         }
 
         /// <summary>
@@ -165,17 +192,17 @@ namespace LCSkill
         public void StopSkill()
         {
             Debug.LogError("StopSkill>>>>>>");
-            for (int i = 0; i < Timelines.Count; i++)
+            if (timeline == null)
             {
-                TimelineObj timelineObj = Timelines[i];
-                timelineObj.timeElapsed = timelineObj.model.duration;
-                timelineObj.isFinish = true;
-
-                for (int j = 0; j < timelineObj.model.nodes.Count; j++)
-                {
-                    TimelineFunc timelineFunc = timelineObj.model.nodes[j];
-                    timelineFunc.Exit(timelineObj);
-                }
+                return;
+            }
+            
+            timeline.timeElapsed = timeline.model.duration;
+            timeline.isFinish = true;
+            for (int j = 0; j < timeline.model.nodes.Count; j++)
+            {
+                TimelineFunc timelineFunc = timeline.model.nodes[j];
+                timelineFunc.Exit(timeline);
             }
         }
 
@@ -312,12 +339,13 @@ namespace LCSkill
 
         public void RemoveTimeline(TimelineObj timelineObj)
         {
-            for (int i = 0; i < timelines.Count; i++)
+            if (timeline == null)
             {
-                if (timelines[i].Equals(timelineObj))
-                {
-                    timelines.RemoveAt(i);
-                }
+                return;
+            }
+            if (timeline.Equals(timelineObj))
+            {
+                timeline = null;
             }
         }
 

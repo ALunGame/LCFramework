@@ -1,0 +1,111 @@
+﻿
+[
+    {
+        "mType" : "LCECS.Core.BindGoCom",
+        "isActive" : true
+    },
+    {
+        "mType" : "Demo.Com.BasePropertyCom",
+        "isActive" : true
+    },
+    {
+        "mType" : "LCMap.ActorDisplayCom",
+        "<StateGo>k__BackingField" : null,
+        "<DisplayGo>k__BackingField" : null,
+        "<CameraFollowGo>k__BackingField" : null,
+        "<ClickCollider>k__BackingField"  : null,
+        "<BodyCollider>k__BackingField"   : null,
+        "isActive"                        : true
+    },
+    {
+        "mType" : "Demo.Com.CampCom",
+        "Camp"  : 3,
+        "isActive" : true
+    },
+    {
+        "mType" : "LCECS.Core.TransCom",
+        "<InitPos>k__BackingField" : {
+            "mType" : "UnityEngine.Vector3",
+            "x"     : 0.0,
+            "y"     : 0.0,
+            "z"     : 0.0
+        },
+        "<InitRoate>k__BackingField" : {
+            "mType" : "UnityEngine.Vector3",
+            "x"     : 0.0,
+            "y"     : 0.0,
+            "z"     : 0.0
+        },
+        "<InitScale>k__BackingField" : {
+            "mType" : "UnityEngine.Vector3",
+            "x"     : 0.0,
+            "y"     : 0.0,
+            "z"     : 0.0
+        },
+        "<Pos>k__BackingField"       : {
+            "mType" : "UnityEngine.Vector3",
+            "x"     : 0.0,
+            "y"     : 0.0,
+            "z"     : 0.0
+        },
+        "<Roate>k__BackingField"     : {
+            "mType" : "UnityEngine.Vector3",
+            "x"     : 0.0,
+            "y"     : 0.0,
+            "z"     : 0.0
+        },
+        "<Scale>k__BackingField"     : {
+            "mType" : "UnityEngine.Vector3",
+            "x"     : 0.0,
+            "y"     : 0.0,
+            "z"     : 0.0
+        },
+        "isActive"                   : true
+    },
+    {
+        "mType" : "LCECS.Core.DecisionCom",
+        "DecisionId" : 0,
+        "DecisionThread" : 0,
+        "isActive"       : true
+    },
+    {
+        "mType" : "Demo.Com.PlayerCom",
+        "isActive" : true
+    },
+    {
+        "mType" : "Demo.Com.MoveCom",
+        "CurrVelocity" : {
+            "mType" : "UnityEngine.Vector2",
+            "x"     : 0.0,
+            "y"     : 0.0
+        },
+        "Mass"         : 1,
+        "isActive"     : true
+    },
+    {
+        "mType" : "Demo.Com.Collider2DCom",
+        "_cacheVects" : [
+            {
+                "mType" : "UnityEngine.Vector2",
+                "x"     : 0.0,
+                "y"     : 0.0
+            },
+            {
+                "mType" : "UnityEngine.Vector2",
+                "x"     : 0.0,
+                "y"     : 0.0
+            },
+            {
+                "mType" : "UnityEngine.Vector2",
+                "x"     : 0.0,
+                "y"     : 0.0
+            },
+            {
+                "mType" : "UnityEngine.Vector2",
+                "x"     : 0.0,
+                "y"     : 0.0
+            }
+        ],
+        "isActive"    : true
+    }
+]

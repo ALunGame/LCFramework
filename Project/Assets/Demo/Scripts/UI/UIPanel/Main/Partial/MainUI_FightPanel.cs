@@ -47,46 +47,54 @@ namespace Demo.UI
         private bool rightMoveDown;
         private bool rightMoveUp;
         private bool rightMoveHode;
+
+        private float moveValue = 0;
         
         private void InitMoveBtn()
         {
             leftMoveBtn.Com.SetDown((data) =>
             {
-                inputCom.h = -1;
+                GameLocate.Log.Log("leftMoveBtn.SetDown");
+                moveValue = -1;
                 leftMoveDown = true;
                 leftMoveUp   = false;
                 leftMoveHode = false;
             });
             leftMoveBtn.Com.SetUp((data) =>
             {
-                inputCom.h = 0;
+                GameLocate.Log.Log("leftMoveBtn.SetUp");
+                moveValue = 0;
                 leftMoveHode = false;
                 leftMoveDown = false;
                 leftMoveUp   = true;
             });
             leftMoveBtn.Com.SetHold((data) =>
             {
-                inputCom.h = -1;
+                GameLocate.Log.Log("leftMoveBtn.SetHold");
+                moveValue = -1;
                 leftMoveHode = true;
             });
             
             rightMoveBtn.Com.SetDown((data) =>
             {
-                inputCom.h = 1;
+                GameLocate.Log.Log("rightMoveBtn.SetDown");
+                moveValue = 1;
                 rightMoveDown   = true;
                 rightMoveUp     = false;
                 rightMoveHode   = false;
             });
             rightMoveBtn.Com.SetUp((data) =>
             {
-                inputCom.h = 0;
+                GameLocate.Log.Log("rightMoveBtn.SetUp");
+                moveValue = 0;
                 rightMoveHode = false;
                 rightMoveDown = false;
                 rightMoveUp   = true;
             });
             rightMoveBtn.Com.SetHold((data) =>
             {
-                inputCom.h = 1;
+                GameLocate.Log.Log("rightMoveBtn.SetHold");
+                moveValue = 1;
                 rightMoveHode = true;
             });
         }
@@ -188,6 +196,18 @@ namespace Demo.UI
             };
 
             #endregion
+
+            inputCom.GetHorizontalInput = () =>
+            {
+#if UNITY_EDITOR
+                float value = Input.GetAxisRaw("Horizontal");
+                if (value != 0)
+                {
+                    return value;
+                }
+#endif
+                return moveValue;
+            };
         }
         
 

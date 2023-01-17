@@ -39,15 +39,41 @@ namespace Demo.Com
         [NonSerialized] public MainActorInputKey RightMoveKey = new MainActorInputKey();
         [NonSerialized] public MainActorInputKey Jump = new MainActorInputKey();
 
+        [NonSerialized] public Func<float> GetVerticalInput;
+
         /// <summary>
         /// 竖直输入
         /// </summary>
-        [NonSerialized] public float v;
+        public float v
+        {
+            get
+            {
+                if (GetVerticalInput == null)
+                {
+                    return 0;
+                }
+
+                return GetVerticalInput();
+            }
+        }
         
+        [NonSerialized] public Func<float> GetHorizontalInput;
+
         /// <summary>
         /// 水平输入
         /// </summary>
-        [NonSerialized] public float h;
+        public float h
+        {
+            get
+            {
+                if (GetHorizontalInput == null)
+                {
+                    return 0;
+                }
+
+                return GetHorizontalInput();
+            }
+        }
         
         [NonSerialized] public int MoveDir;
         
@@ -88,8 +114,8 @@ namespace Demo.Com
         public void Update()
         {
             CheckHorzontalMove();
-            v = Input.GetAxisRaw("Vertical");
-            h = Input.GetAxisRaw("Horizontal");
+            // v = Input.GetAxisRaw("Vertical");
+            // h = Input.GetAxisRaw("Horizontal");
             if (Jump.KeyDown())
             {
                 JumpFrame = 3;       //在落地前3帧按起跳仍然能跳
@@ -106,12 +132,13 @@ namespace Demo.Com
         
         private void CheckHorzontalMove()
         {
+            
             //按下右方向并且左键或者没有
-            if (RightMoveKey.KeyDown() && h <= 0)
+            if (RightMoveKey.Key() && h > 0)
             {
                 MoveDir = 1;
             }
-            else if (LeftMoveKey.KeyDown() && h >= 0)
+            else if (LeftMoveKey.Key() && h < 0)
             {
 		
                 MoveDir = -1;
@@ -124,6 +151,11 @@ namespace Demo.Com
                 }
                 else
                 {
+                    if (h!=0)
+                    {
+                        GameLocate.Log.LogWarning("MoveDir == 0 daddddd>>>",h,MoveDir,Input.GetKeyDown(KeyCode.D));   
+                    }
+                    
                     MoveDir = 0;
                 }
             }
@@ -135,9 +167,15 @@ namespace Demo.Com
                 }
                 else
                 {
+                    if (h!=0)
+                    {
+                        GameLocate.Log.LogWarning("MoveDir == 0 11212132>>>",h,MoveDir);   
+                    }
                     MoveDir = 0;
                 }
             }
+            
+            GameLocate.Log.LogWarning("h>>>",h,MoveDir);   
         }
 
         public void ClearJumpFrame()

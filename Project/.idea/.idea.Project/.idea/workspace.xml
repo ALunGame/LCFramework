@@ -8,6 +8,8 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/36f62d8e760b48f7af5d32916f997ce1811400/79/c0aa6532/EditorAssemblies.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/49f5e6c9b2cc484294cc26c588653ef0284000/b6/ec21c445/FileSystemEventArgs.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/5c9faa02f24e43c5938c649e7653bb6d1f800/11/8ca1f685/RaycastHit2D.cs" root0="SKIP_HIGHLIGHTING" />
@@ -72,10 +74,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="42356">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="880">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" value="42356" />
+      <option name="pid" value="880" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -93,30 +95,31 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Demo/Scripts/UI/UIPanel/Main/Partial/MainUI_FightPanel.cs</url>
-          <line>31</line>
-          <properties documentPath="E:\Mine\Git\LCFramework\LCFramework\Project\Assets\Demo\Scripts\UI\UIPanel\Main\Partial\MainUI_FightPanel.cs" initialLine="30" containingFunctionPresentation="method 'OnAwake'">
+          <condition expression="h&gt;0" language="C#" />
+          <url>file://$PROJECT_DIR$/Assets/Demo/Scripts/Com/Global/Input/MainActorInputCom.cs</url>
+          <line>136</line>
+          <properties documentPath="E:\Mine\Git\LCFramework\LCFramework\Project\Assets\Demo\Scripts\Com\Global\Input\MainActorInputCom.cs" initialLine="136" containingFunctionPresentation="method 'CheckHorzontalMove'">
             <startOffsets>
-              <option value="957" />
+              <option value="3355" />
             </startOffsets>
             <endOffsets>
-              <option value="1021" />
+              <option value="3387" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Demo/Scripts/UI/UIPanel/Main/Partial/MainUI_FightPanel.cs</url>
-          <line>52</line>
-          <properties documentPath="E:\Mine\Git\LCFramework\LCFramework\Project\Assets\Demo\Scripts\UI\UIPanel\Main\Partial\MainUI_FightPanel.cs" initialLine="51" containingFunctionPresentation="method 'InitMoveBtn'">
+          <url>file://$PROJECT_DIR$/Assets/Demo/Scripts/Com/Actor/MainActor/Move/MainActorMoveCom.cs</url>
+          <line>157</line>
+          <properties documentPath="E:\Mine\Git\LCFramework\LCFramework\Project\Assets\Demo\Scripts\Com\Actor\MainActor\Move\MainActorMoveCom.cs" initialLine="157" containingFunctionPresentation="method 'HorizontalMove'">
             <startOffsets>
-              <option value="1473" />
+              <option value="4652" />
             </startOffsets>
             <endOffsets>
-              <option value="1682" />
+              <option value="4668" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="3" />
+          <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

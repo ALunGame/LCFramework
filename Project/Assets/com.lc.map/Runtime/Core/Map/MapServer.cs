@@ -65,18 +65,6 @@ namespace LCMap
             }
         }
 
-        private MapArea currArea;
-        /// <summary>
-        /// 当前地图区域
-        /// </summary>
-        public MapArea CurrArea
-        {
-            get
-            {
-                return currArea;
-            }
-        }
-
         private int currMaxActorUid;
         
 
@@ -122,11 +110,13 @@ namespace LCMap
             //创建主角所在区域
             MapArea area = GetPosArea(mapModel.mainActor.pos);
             CreateArea(area);
-            currArea = area;
             LCECS.ECSLayerLocate.Info.GetSensor<GlobalSensor>(LCECS.SensorType.Global).CurrArea.Value = area;
 
             //创建主角
             CreateMainActor(mapModel.mainActor);
+            
+            //进入区域
+            area.EnterArea(ActorMediator.GetMainActor());
 
             enterFinishCallBack = pFinishCallBack;
             enterFinishCallBack?.Invoke();
@@ -161,80 +151,7 @@ namespace LCMap
         //获得演员所在区域
         public MapArea GetAreaByActor(Actor pActor)
         {
-            if (PlayerActor != null && PlayerActor.Uid == pActor.Uid)
-            {
-                return GetPosArea(PlayerActor.Pos);
-            }
-            foreach (var item in areaDict)
-            {
-                if (item.Value.GetActor(pActor.Uid)!=null)
-                {
-                    return item.Value;
-                }
-            }
-            return null;
-        }
-
-        public Actor GetActor(string uid)
-        {
-            if (PlayerActor!=null && PlayerActor.Uid == uid)
-            {
-                return PlayerActor;
-            }
-            Actor actorObj = null;
-            foreach (var item in areaDict)
-            {
-                actorObj = item.Value.GetActor(uid);
-                if (actorObj != null)
-                {
-                    return actorObj;
-                }
-            }
-            return actorObj;
-        }
-
-        public List<Actor> GetActors(int actorId)
-        {
-            List<Actor> actors = new List<Actor>();
-            if (PlayerActor != null && PlayerActor.Id == actorId)
-            {
-                actors.Add(PlayerActor);
-                return actors;
-            }
-            foreach (var item in areaDict)
-            {
-                foreach (var actor in item.Value.Actors.Values)
-                {
-                    if (actor.Id == actorId)
-                    {
-                        actors.Add(actor);
-                    }
-                }
-            }
-            return actors;
-        }
-
-        public Actor GetActor(int actorId)
-        {
-            List<Actor> actors = GetActors(actorId);
-            if (actors.Count == 0)
-                return null;
-            return actors[0];
-        }
-
-        public IEnumerable<Actor> GetActors(string comTypeFullName)
-        {
-            if (PlayerActor.HasCom(comTypeFullName))
-                yield return PlayerActor;
-
-            foreach (var item in areaDict)
-            {
-                foreach (var actor in item.Value.Actors.Values)
-                {
-                    if (actor.HasCom(comTypeFullName))
-                        yield return actor;
-                }
-            }
+            return GetPosArea(pActor.Pos);
         }
 
         public Actor CreateActor(ActorInfo actorModel, MapArea mapArea)
@@ -245,19 +162,19 @@ namespace LCMap
 
         private void CreateMainActor(ActorInfo actor)
         {
-            Actor tActor = ActorCreator.CreateActor(actor);
+            Actor tActor = ActorLocate.Actor.AddActor(actor);
             tActor.Go.transform.SetParent(PlayerRoot.transform);
 
             //保存
-            PlayerActor = tActor;
+            ActorLocate.Actor.SetMainActor(tActor);
             LCECS.ECSLocate.Player.SetPlayerEntity(tActor);
-            LCECS.ECSLayerLocate.Info.GetSensor<GlobalSensor>(LCECS.SensorType.Global).FollowActor.Value = PlayerActor;
+            LCECS.ECSLayerLocate.Info.GetSensor<GlobalSensor>(LCECS.SensorType.Global).FollowActor.Value = tActor;
         }
 
         private string CalcCreateActorUid()
         {
             currMaxActorUid++;
-            return "createActor" + currMaxActorUid.ToString();
+            return "createActor_" + currMaxActorUid.ToString();
         }
     }
 }

@@ -185,7 +185,7 @@ namespace LCDialog
             List<int> actorIds = CollectDialogActorIds(dialogModel);
             for (int i = 0; i < actorIds.Count; i++)
             {
-                List<Actor> actors = MapLocate.Map.GetActors(actorIds[i]);
+                List<Actor> actors = ActorMediator.GetActors(actorIds[i]);
                 for (int j = 0; j < actors.Count; j++)
                 {
                     if (!actorUids.Contains(actors[j].Uid))

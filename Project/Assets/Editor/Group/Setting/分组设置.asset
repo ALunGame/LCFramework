@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a42eab328b2404e9210a40b7f0c0385, type: 3}
+  m_Name: "\u5206\u7EC4\u8BBE\u7F6E"
+  m_EditorClassIdentifier: 
+  groupPaths:
+  - typeName: GEGroupAsset
+    typeFullName: LCGAS.GEGroupAsset
+    searchPath: Assets/Editor/GAS/GE
+    exportPath: Assets/Demo/Asset/Config/GAS/GE
+    exportExName: txt
+  - typeName: SkillTimelineGroupAsset
+    typeFullName: LCSkill.Timeline.SkillTimelineGroupAsset
+    searchPath: Assets/Editor/Skill/Timeline
+    exportPath: Assets/Demo/Asset/Config/Skill/Timeline
+    exportExName: txt
+  - typeName: GAGroupAsset
+    typeFullName: LCGAS.GAGroupAsset
+    searchPath: Assets/Editor/GAS/GA
+    exportPath: Assets/Demo/Asset/Config/GAS/GA
+    exportExName: txt

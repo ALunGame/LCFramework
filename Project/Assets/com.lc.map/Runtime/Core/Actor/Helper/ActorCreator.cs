@@ -8,6 +8,8 @@ namespace LCMap
 {
     public static class ActorCreator
     {
+        #region Create
+
         private static Actor CreateEntity(ActorInfo actorInfo)
         {
             ActorCnf actorCnf = LCConfig.Config.ActorCnf[actorInfo.id];
@@ -23,7 +25,7 @@ namespace LCMap
             for (int i = 0; i < resComs.Count; i++)
                 actor.AddCom(resComs[i]);
 
-            //保存
+            //保存 并 调用 组件 Awake
             LCECS.ECSLocate.ECS.AddEntity(actor);
 
             //基础数据赋值
@@ -31,7 +33,6 @@ namespace LCMap
             actor.SetPos(actorInfo.pos);
             actor.SetRoate(actorInfo.roate);
             actor.SetScale(actorInfo.scale);
-
             
             return actor;
         }
@@ -62,5 +63,26 @@ namespace LCMap
             tActor.Enable();
             return tActor;
         }
+
+        #endregion
+
+        #region Destroy
+
+        /// <summary>
+        /// 销毁演员
+        /// </summary>
+        /// <param name="pActor"></param>
+        public static void DestroyActor(Actor pActor)
+        {
+            //有就先删除数据
+            if (ActorLocate.Actor.CheckHasActor(pActor))
+                ActorLocate.Actor.RemoveActor(pActor);
+            pActor.CurrArea?.ExitArea(pActor);
+            
+            LCECS.ECSLocate.ECS.RemoveEntity(pActor);
+        }
+
+        #endregion
+
     }
 }

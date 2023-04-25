@@ -1,13 +1,1 @@
-﻿
-{
-    "mType" : "LCECS.Layer.Decision.DecisionTree",
-    "treeId" : 0,
-    "tree"   : {
-        "mType" : "LCECS.Core.Tree.Nodes.NodeRoot",
-        "Uid"   : "785e79b8-e5ca-453b-8ac8-4d6414017033",
-        "childNodes" : null,
-        "nodePremise" : null
-    },
-    "EntityList" : [
-    ]
-}
+﻿{"mType":"LCECS.Layer.Decision.DecisionTree","treeId":0,"tree":{"mType":"LCECS.Core.Tree.Nodes.NodeRoot","Uid":"d4291fe5-cc81-4c1c-999e-550e4d760f9f","childNodes":null,"nodePremise":null},"EntityList":[]}

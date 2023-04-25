@@ -89,6 +89,25 @@ namespace LCConfig
             }
         }
 
+        private static TbSkillCnf _SkillCnf = null;
+        /// <summary>
+        /// 技能信息
+        /// </summary>
+        public static TbSkillCnf SkillCnf
+        {
+            get
+            {
+                if (_SkillCnf == null)
+                {
+                    string jsonStr = LoadHelper.LoadString("TbSkillCnf");
+                    List<SkillCnf> configs = LCJson.JsonMapper.ToObject<List<SkillCnf>>(jsonStr);
+                    _SkillCnf = new TbSkillCnf();
+                    _SkillCnf.AddConfig(configs);
+                }
+                return _SkillCnf;
+            }
+        }
+
         private static TbActorCnf _ActorCnf = null;
         /// <summary>
         /// 演员信息
@@ -199,6 +218,9 @@ namespace LCConfig
 
             if(_ItemRepairCnf!= null)
 				_ItemRepairCnf.Clear();
+
+            if(_SkillCnf!= null)
+				_SkillCnf.Clear();
 
             if(_ActorCnf!= null)
 				_ActorCnf.Clear();

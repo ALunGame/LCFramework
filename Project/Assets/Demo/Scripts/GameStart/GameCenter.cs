@@ -125,8 +125,6 @@ namespace Demo
         /// </summary>
         public void InitLocate()
         {
-            SkillLocate.SetSkillServer(new SkillServer());
-            SkillLocate.SetDamageServer(new DamageServer());
             TaskLocate.Init();
         }
 

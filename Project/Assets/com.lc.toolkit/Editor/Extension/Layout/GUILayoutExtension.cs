@@ -232,7 +232,7 @@ namespace LCToolkit
         /// <param name="label">折叠名</param>
         /// <param name="foldout"><是否折叠/param>
         /// <returns></returns>
-        public static void FoldoutGroup(string label, bool foldout, Action drawFunc)
+        public static void FoldoutGroup(string label, bool foldout,Action drawFunc,Action hideDrawFunc)
         {
             VerticalGroup(() =>
             {
@@ -245,32 +245,20 @@ namespace LCToolkit
                     if (rect.Contains(current.mousePosition))
                     {
                         foldout = !foldout;
-                        current.Use();
                     }
                 }
-
-                switch (current.type)
-                {
-                    case EventType.MouseDown:
-                    case EventType.MouseUp:
-                    case EventType.Repaint:
-                        GUI.Box(rect, string.Empty, GUI.skin.button);
-
-                        Rect t = rect;
-                        t.xMin += 5;
-                        t.xMax -= 5;
-                        EditorGUI.Foldout(t, foldout, label);
-                        break;
-                    default:
-                        break;
-                }
-
-                EditorGUI.indentLevel++;
-
+                
+                GUI.Box(rect, string.Empty, GUI.skin.button);
+                        
+                Rect t = rect;
+                t.xMin += 5;
+                t.xMax -= 5;
+                EditorGUI.Foldout(t, foldout, label);
+                
                 if (foldout)
                     drawFunc?.Invoke();
-
-                EditorGUI.indentLevel--;
+                else
+                    hideDrawFunc?.Invoke();
             });
         }
 

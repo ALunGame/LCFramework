@@ -1,7 +1,1 @@
-﻿
-[
-    {
-        "mType" : "Demo.Com.BasePropertyCom",
-        "isActive" : true
-    }
-]
+﻿[{"mType":"Demo.Com.BasePropertyCom","isActive":true}]

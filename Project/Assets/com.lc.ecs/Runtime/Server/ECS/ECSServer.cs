@@ -120,6 +120,21 @@ namespace LCECS.Server.ECS
             }
         }
 
+        public void RemoveEntity(Entity entity)
+        {
+            if (!entityDict.ContainsKey(entity.Uid))
+            {
+                ECSLocate.Log.LogError("删除实体失败，没有该实体", entity.Uid);
+                return;
+            }
+
+            entityDict.Remove(entity.Uid);
+            
+            entity.Destroy();
+            
+            ECSLayerLocate.Info.RemoveEntityWorkData(entity.Uid);
+        }
+
         public Entity GetEntity(string uid)
         {
             return entityDict[uid];

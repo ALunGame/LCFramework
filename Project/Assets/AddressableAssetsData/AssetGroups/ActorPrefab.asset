@@ -313,6 +313,10 @@ MonoBehaviour:
     m_Address: Actor_weapon_hammer
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 5adc43aeb55a7a1428716718dbe60f23
+    m_Address: Actor_Main_New
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: c106a54d1dad7c34dbca1e47199c97a1, type: 2}
   m_SchemaSet:

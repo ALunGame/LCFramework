@@ -9,19 +9,38 @@ namespace Demo.Com
         public Func<bool> CheckKeyDown;
         public Func<bool> CheckKey;
         public Func<bool> CheckKeyUp;
+        
+        public Func<bool> CheckLegal;
+
+        private bool IsLegal()
+        {
+            return CheckLegal == null ? true : CheckLegal();
+        }
 
         public bool KeyDown()
         {
+            if (!IsLegal())
+            {
+                return false;
+            }
             return CheckKeyDown == null ? false : CheckKeyDown();
         }
         
         public bool Key()
         {
+            if (!IsLegal())
+            {
+                return false;
+            }
             return CheckKey == null ? false : CheckKey();
         }
         
         public bool KeyUp()
         {
+            if (!IsLegal())
+            {
+                return false;
+            }
             return CheckKeyUp == null ? false : CheckKeyUp();
         }
     }
@@ -97,7 +116,6 @@ namespace Demo.Com
             }
         }
         
-        
         public bool ClimbKey { get {return Input.GetKey(Climb); } }
         
         public bool DashKeyDown { get { return Input.GetKeyDown(Dash); } }
@@ -132,7 +150,6 @@ namespace Demo.Com
         
         private void CheckHorzontalMove()
         {
-            
             //按下右方向并且左键或者没有
             if (RightMoveKey.Key() && h > 0)
             {
@@ -151,11 +168,6 @@ namespace Demo.Com
                 }
                 else
                 {
-                    if (h!=0)
-                    {
-                        GameLocate.Log.LogWarning("MoveDir == 0 daddddd>>>",h,MoveDir,Input.GetKeyDown(KeyCode.D));   
-                    }
-                    
                     MoveDir = 0;
                 }
             }
@@ -167,15 +179,9 @@ namespace Demo.Com
                 }
                 else
                 {
-                    if (h!=0)
-                    {
-                        GameLocate.Log.LogWarning("MoveDir == 0 11212132>>>",h,MoveDir);   
-                    }
                     MoveDir = 0;
                 }
             }
-            
-            GameLocate.Log.LogWarning("h>>>",h,MoveDir);   
         }
 
         public void ClearJumpFrame()

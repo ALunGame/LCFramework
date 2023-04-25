@@ -323,7 +323,7 @@ namespace Demo.Behavior
             if (moveCom.ReqMoveSpeed == 0)
                 return;
             DirType dirType = moveCom.ReqMoveSpeed > 0 ? DirType.Right : DirType.Left;
-            transCom.Roate(dirType);
+            //transCom.Roate(dirType);
         }
 
         #endregion 

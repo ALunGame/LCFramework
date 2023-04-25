@@ -86,7 +86,7 @@ namespace Demo.Task
         
         protected override TaskActionState OnStart(TaskObj taskObj)
         {
-            List<Actor> actors = LCMap.MapLocate.Map.GetActors(actorId);
+            List<Actor> actors = LCMap.ActorMediator.GetActors(actorId);
             if (actors == null || actors.Count <= 0)
             {
                 return TaskActionState.Fail;

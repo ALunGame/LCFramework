@@ -74,9 +74,9 @@ namespace Demo.System
                     yDir = 1;
                 }
 
-                //位移
-                Vector3 delta = new Vector3(dir == DirType.Right ? 1 : -1, yDir, 0);
-                transCom.MoveDir(delta, propertyCom.MoveSpeed.Curr);
+                // //位移
+                // Vector3 delta = new Vector3(dir == DirType.Right ? 1 : -1, yDir, 0);
+                // transCom.MoveDir(delta, propertyCom.MoveSpeed.Curr);
             }
         }
 

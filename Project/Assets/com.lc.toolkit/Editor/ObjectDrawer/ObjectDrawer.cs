@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace LCToolkit.Core
 {
@@ -122,11 +123,18 @@ namespace LCToolkit.Core
         private void Init(object _target)
         {
             Target = _target;
+            OnInit();
         }
 
         private void Init(object _target, FieldInfo _field)
         {
             Target = _target;
+            OnInit();
+        }
+
+        public virtual void OnInit()
+        {
+            
         }
 
         public virtual object OnGUI(Rect _position, GUIContent _label)

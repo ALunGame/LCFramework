@@ -25,11 +25,11 @@ namespace Demo.System
 
             wanderCom.WanderDir = CalcWanderMoveDir(transCom,wanderCom, collider2DCom);
 
-            //更新方向
-            transCom.Roate(wanderCom.WanderDir);
-
-            //位移
-            transCom.MoveDir(wanderCom.WanderDir, propertyCom.MoveSpeed.Curr);
+            // //更新方向
+            // transCom.Roate(wanderCom.WanderDir);
+            //
+            // //位移
+            // transCom.MoveDir(wanderCom.WanderDir, propertyCom.MoveSpeed.Curr);
         }
 
         public DirType CalcWanderMoveDir(TransCom transCom,WanderCom wanderCom, Collider2DCom collider2DCom)

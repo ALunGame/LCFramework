@@ -59,38 +59,40 @@ namespace Demo.Behavior
 
         protected override int OnRunning(NodeData wData)
         {
-            EntityWorkData workData     = wData as EntityWorkData;
-            NodeActionContext context   = GetContext<NodeActionContext>(wData);
-            PushSkillData userData = context.GetUserData<PushSkillData>();
-
-            SkillCom skillCom = workData.MEntity.GetCom<SkillCom>();
-            if (userData.skillId == "-1" || skillCom.CheckSkillIsFinish(userData.skillId))
-            {
-                Debug.LogError("完成》》》》》" + userData.skillId);
-                Debug.LogError("完成》》》》》" + skillCom.CheckSkillIsFinish(userData.skillId));
-                return NodeState.FINISHED;
-            }
-            else
-            {
-                return NodeState.EXECUTING;
-            }
+            // EntityWorkData workData     = wData as EntityWorkData;
+            // NodeActionContext context   = GetContext<NodeActionContext>(wData);
+            // PushSkillData userData = context.GetUserData<PushSkillData>();
+            //
+            // SkillCom skillCom = workData.MEntity.GetCom<SkillCom>();
+            // if (userData.skillId == "-1" || skillCom.CheckSkillIsFinish(userData.skillId))
+            // {
+            //     Debug.LogError("完成》》》》》" + userData.skillId);
+            //     Debug.LogError("完成》》》》》" + skillCom.CheckSkillIsFinish(userData.skillId));
+            //     return NodeState.FINISHED;
+            // }
+            // else
+            // {
+            //     return NodeState.EXECUTING;
+            // }
+            
+            return NodeState.FINISHED;
         }
 
         protected override void OnExit(NodeData wData, int runningStatus)
         {
-            EntityWorkData workData = wData as EntityWorkData;
-            NodeActionContext context = GetContext<NodeActionContext>(wData);
-            PushSkillData userData = context.GetUserData<PushSkillData>();
-            userData.skillId = "-1";
-
-            //打断移动
-            SkillCom skillCom = workData.MEntity.GetCom<SkillCom>();
-            skillCom.StopSkill();
-            AnimCom animCom = workData.MEntity.GetCom<AnimCom>();
-            if (animCom != null)
-            {
-                animCom.SetReqAnim(AnimSystem.IdleState);
-            }
+            // EntityWorkData workData = wData as EntityWorkData;
+            // NodeActionContext context = GetContext<NodeActionContext>(wData);
+            // PushSkillData userData = context.GetUserData<PushSkillData>();
+            // userData.skillId = "-1";
+            //
+            // //打断移动
+            // SkillCom skillCom = workData.MEntity.GetCom<SkillCom>();
+            // skillCom.StopSkill();
+            // AnimCom animCom = workData.MEntity.GetCom<AnimCom>();
+            // if (animCom != null)
+            // {
+            //     animCom.SetReqAnim(AnimSystem.IdleState);
+            // }
         }
 
     }

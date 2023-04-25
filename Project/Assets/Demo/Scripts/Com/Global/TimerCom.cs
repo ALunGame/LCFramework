@@ -35,7 +35,7 @@ namespace Demo.Com
         /// <param name="type"></param>
         /// <param name="waitTime"></param>
         /// <param name="callBack"></param>
-        /// <param name="loopCnt">ѭ��������-1����</param>
+        /// <param name="loopCnt">循环次数 -1 一直循环</param>
         public TimerInfo(TimerType type,float waitTime,Action callBack,int loopCnt = 1)
         {
             this.type = type;

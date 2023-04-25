@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace LCUI
 {
@@ -18,6 +19,9 @@ namespace LCUI
         public UICanvas StaticCanvas { get => staticCanvas;}
         public UICanvas DynamicCanvas { get => dynamicCanvas;}
 
+        private event Action updateFunc;
+        
+        private event Action fixedUpdateFunc;
 
         private void Awake()
         {
@@ -26,9 +30,20 @@ namespace LCUI
             UILocate.Init();
         }
 
+        private void Update()
+        {
+            updateFunc?.Invoke();
+        }
+
+        private void FixedUpdate()
+        {
+            fixedUpdateFunc?.Invoke();
+        }
 
         private void OnDestroy()
         {
+            updateFunc = null;
+            fixedUpdateFunc = null;
             UILocate.Clear();
         }
 
@@ -57,6 +72,58 @@ namespace LCUI
                     break;
             }
             return canvas.BaseTrans;
+        }
+
+        /// <summary>
+        /// 注册Update函数
+        /// </summary>
+        /// <param name="pUpdateFunc"></param>
+        public void RegUpdateFunc(Action pUpdateFunc)
+        {
+            if (pUpdateFunc == null)
+            {
+                return;
+            }
+            updateFunc += pUpdateFunc;
+        }
+        
+        /// <summary>
+        /// 清除Update函数
+        /// </summary>
+        /// <param name="pUpdateFunc"></param>
+        public void RemoveUpdateFunc(Action pUpdateFunc)
+        {
+            if (pUpdateFunc == null)
+            {
+                return;
+            }
+            updateFunc -= pUpdateFunc;
+        }
+        
+        /// <summary>
+        /// 注册Update函数
+        /// </summary>
+        /// <param name="pUpdateFunc"></param>
+        public void RegFixedUpdateFunc(Action pfixedUpdateFunc)
+        {
+            if (pfixedUpdateFunc == null)
+            {
+                return;
+            }
+            fixedUpdateFunc += pfixedUpdateFunc;
+        }
+        
+        /// <summary>
+        /// 清除Update函数
+        /// </summary>
+        /// <param name="pUpdateFunc"></param>
+        public void RemoveFixedUpdateFunc(Action pfixedUpdateFunc)
+        {
+            if (pfixedUpdateFunc == null)
+            {
+                return;
+            }
+            fixedUpdateFunc -= pfixedUpdateFunc;
         }
     }
 }

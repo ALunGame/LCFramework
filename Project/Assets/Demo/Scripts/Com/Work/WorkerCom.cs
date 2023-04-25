@@ -26,7 +26,7 @@ namespace Demo.Com
         public void AddWorkCmd(WorkCommand pCmd)
         {
             workCmds.Push(pCmd);
-            pCmd.SetExecutor(LCMap.MapLocate.Map.GetActor(EntityUid));
+            pCmd.SetExecutor(LCMap.ActorMediator.GetActor(EntityUid));
         }
 
         public void Work()

@@ -30,12 +30,12 @@ namespace Demo
             {
                 return;
             }
-            transCom.WaitSetPos(transCom.Pos + new Vector3(xPos,yPos));
-            transCom.UpdateWaitTransData();
-            if (xPos != 0)
-            {
-                transCom.Roate(xPos > 0 ? DirType.Right : DirType.Left);
-            }
+            // transCom.WaitSetPos(transCom.Pos + new Vector3(xPos,yPos));
+            // transCom.UpdateWaitTransData();
+            // if (xPos != 0)
+            // {
+            //     transCom.Roate(xPos > 0 ? DirType.Right : DirType.Left);
+            // }
         }
     }
 }

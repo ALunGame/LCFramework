@@ -2,6 +2,8 @@
 using LCECS.Core;
 using System;
 using System.Collections.Generic;
+using LCGAS;
+using LCToolkit;
 using UnityEngine;
 
 namespace LCMap
@@ -56,10 +58,25 @@ namespace LCMap
     {
         public int Id;
         
-        public int CurrRequestId;
-        public Action RequestFinishCallBack;
+        public ActorRequestSpec CurrRequest;
+        public int CurrRequestId
+        {
+            get
+            {
+                if (CurrRequest == null)
+                {
+                    return 0;
+                }
+                return CurrRequest.ReqId();
+            }
+        }
         
         public string StateName { get { return displayCom.StateName; } }
+        
+        /// <summary>
+        /// 当前所属区域
+        /// </summary>
+        public MapArea CurrArea { get; set; }
 
         [NonSerialized]
         private BindGoCom bindGoCom;
@@ -80,9 +97,20 @@ namespace LCMap
         [NonSerialized]
         private ActorInteractiveCom interactiveCom;
         public ActorInteractiveCom InteractiveCom { get { return interactiveCom; } }
+        
+        [NonSerialized]
+        private AbilitySystemCom abilitySystemCom;
+        public AbilitySystemCom Ability { get { return abilitySystemCom; } }
+
+        [NonSerialized]
+        private ActorDelegate actorDelegate;
+        public ActorDelegate Delegate { get { return actorDelegate; } }
+
 
         public Actor(string uid) : base(uid)
         {
+            actorDelegate = new ActorDelegate(this);
+            actorDelegate.Register(ActorDelegateNames.OnPosChange,OnActorPosChange);
         }
 
         protected override void OnInit()
@@ -91,7 +119,46 @@ namespace LCMap
             transCom        = GetOrCreateCom<TransCom>();
             displayCom      = GetOrCreateCom<ActorDisplayCom>();
             interactiveCom  = GetOrCreateCom<ActorInteractiveCom>();
+            abilitySystemCom  = GetOrCreateCom<AbilitySystemCom>();
+            
+            transCom.PosValue.RegisterValueChangedEvent((pos) =>
+            {
+                actorDelegate.ExecuteDelegate(ActorDelegateNames.OnPosChange);
+            });
         }
+
+        protected override void OnDestroy()
+        {
+            actorDelegate.Clear();
+        }
+
+        #region Delegate
+
+        private void OnActorPosChange(Actor pActor)
+        {
+            if (CurrArea == null)
+            {
+                return;
+            }
+
+            MapArea newArea = MapMediator.GetAreaByActor(pActor);
+            if (newArea.Equals(CurrArea))
+                return;
+            
+            CurrArea.ExitArea(pActor);
+            newArea.EnterArea(pActor);
+        }
+
+        #endregion
+
+        #region GA
+
+        public GameplayTagContainer GetTag()
+        {
+            return Ability.Tag;
+        }
+
+        #endregion
 
         #region Interactive
 

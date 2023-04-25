@@ -17,7 +17,7 @@ namespace LCToolkit
         /// <summary>
         /// 在Inspector面板上绘制一个对象
         /// </summary>
-        public static void DrawObjectInInspector(object _targetObject, object _owner = null)
+        public static void DrawObjectInInspector(object _targetObject, object _owner = null, Action _clickBackFunc = null)
         {
             if (_targetObject is UnityObject)
             {
@@ -26,6 +26,7 @@ namespace LCToolkit
             else
             {
                 Selection.activeObject = ObjectInspector.Instance;
+                ObjectInspector.Instance.onClickBackFunc = _clickBackFunc;
                 ObjectInspector.Instance.Init(_targetObject, _owner);
             }
         }
@@ -33,9 +34,9 @@ namespace LCToolkit
         /// <summary>
         /// 在Inspector面板上绘制一个对象
         /// </summary>
-        public static void DrawObjectInInspector(string _title, object _targetObject, object _owner = null)
+        public static void DrawObjectInInspector(string _title, object _targetObject, object _owner = null, Action _clickBackFunc = null)
         {
-            DrawObjectInInspector(_targetObject, _owner);
+            DrawObjectInInspector(_targetObject, _owner, _clickBackFunc);
             ObjectInspector.Instance.name = _title;
         }
     }

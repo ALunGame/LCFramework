@@ -1,0 +1,1 @@
+﻿{"mType":"LCSkill.Timeline.BaseTimeline","name":"","totalFrame":0,"previewGo":{"mType":"LCToolkit.UnityObjectAsset","OnObjectAssetChange":{"mType":"System.Action"},"assetType":0,"ObjName":"","ObjPath":""},"trackGroups":[{"mType":"LCSkill.Common.AnimTrackGroup","tracks":[]}]}

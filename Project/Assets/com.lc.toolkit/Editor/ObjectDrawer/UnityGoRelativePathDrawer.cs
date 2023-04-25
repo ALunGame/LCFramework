@@ -42,6 +42,7 @@ namespace LCToolkit.Core
                 {
                     target.RelativePath = tempPath;
                     target.Go = tmpGo;
+                    target.Dispatch();
                 }
             }
 

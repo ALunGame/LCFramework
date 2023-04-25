@@ -23,8 +23,9 @@ namespace Demo.Decision
         {
             EntityWorkData workData = wData as EntityWorkData;
             TransCom selfTransCom = workData.MEntity.GetCom<TransCom>();
-            Actor actor = MapLocate.Map.GetActor(workData.MEntity.Uid);
-            MapArea mapArea = MapLocate.Map.GetAreaByActor(actor);
+            Actor actor = ActorMediator.GetActor(workData.MEntity.Uid);
+
+            MapArea mapArea = actor.CurrArea;
             CampCom selfCampCom = workData.MEntity.GetCom<CampCom>();
             if (actor == null || mapArea == null)
                 return false;
@@ -70,7 +71,7 @@ namespace Demo.Decision
             }
 
             //敌对演员
-            foreach (var item in mapArea.Actors.Keys)
+            foreach (var item in mapArea.InAreaAtors.Keys)
             {
                 if (item == workData.MEntity.Uid)
                 {

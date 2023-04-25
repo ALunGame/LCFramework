@@ -238,11 +238,7 @@ namespace LCToolkit
         {
             get
             {
-                if (nullStyle == null)
-                {
-                    nullStyle = GUI.skin.label;
-                }
-                return nullStyle;
+                return GUIStyle.none;
             }
         }
     }

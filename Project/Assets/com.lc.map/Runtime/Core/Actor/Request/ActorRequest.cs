@@ -12,14 +12,20 @@
         /// </summary>
         public abstract int Weight { get; }
         
-        public virtual void OnEnter(Actor pActor, params object[] pParams)
+        public virtual void OnEnter(ActorRequestSpec pSpec, params object[] pParams)
         {
             
         }
         
-        public virtual void OnExit(Actor pActor)
+        public virtual void OnExit(ActorRequestSpec pSpec)
         {
             
+        }
+
+        public virtual ActorRequestSpec CreateSpec(Actor pActor)
+        {
+            ActorRequestSpec spec = new ActorRequestSpec(pActor, this);
+            return spec;
         }
     }
 

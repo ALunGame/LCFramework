@@ -15,7 +15,7 @@ namespace Demo.Behavior
 
         protected override void OnEnter(NodeData wData)
         {
-            Actor actor = LCMap.MapLocate.Map.GetActor(wData.Uid);
+            Actor actor = LCMap.ActorMediator.GetActor(wData.Uid);
             actor.IsActive = isActive;
             if (!string.IsNullOrEmpty(stateName))
                 actor.DisplayCom.SetState(stateName);

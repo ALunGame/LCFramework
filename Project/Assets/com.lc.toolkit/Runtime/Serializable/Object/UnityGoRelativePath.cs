@@ -1,4 +1,5 @@
-﻿using LCJson;
+﻿using System;
+using LCJson;
 using UnityEngine;
 
 
@@ -15,6 +16,8 @@ namespace LCToolkit
 
         [JsonIgnore]
         public GameObject Go;
+        
+        public event Action OnObjectAssetChange;
 
         //相对路径
         public string RelativePath;
@@ -24,7 +27,17 @@ namespace LCToolkit
             RootGo = rootGo;
         }
 
+        public UnityGoRelativePath()
+        {
+            
+        }
+        
 #if UNITY_EDITOR
+        
+        public void SetRootGo(GameObject rootGo)
+        {
+            RootGo = rootGo;
+        }
 
         public GameObject GetObj()
         {
@@ -34,7 +47,18 @@ namespace LCToolkit
             Transform tmpObj = RootGo.transform.Find(RelativePath);
             return tmpObj.gameObject;
         }
+        
+        public void UpdateObj()
+        {
+            GameObject tGo = GetObj();
+            Go = tGo;
+            Dispatch();
+        }
 
+        public void Dispatch()
+        {
+            OnObjectAssetChange?.Invoke();
+        }
 #endif
     }
 }

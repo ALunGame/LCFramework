@@ -55,5 +55,13 @@ namespace LCUI
             }
             _ComTrans = trans;
         }
+
+        /// <summary>
+        /// 主动点击
+        /// </summary>
+        public void Click()
+        {
+            _BtnCallBack?.Invoke();
+        }
     }
 }

@@ -1,1 +1,27 @@
-﻿{"mType":"LCSkill.TimelineModel","name":"100501","duration":0.5366653,"nodes":[{"mType":"Demo.Skill.Timeline.SkillTimeline_PlayAnim","animName":"attack1","timeStart":0,"timeContinue":0.5333334},{"mType":"LCSkill.SkillTimeline_CreateAoe","addAoe":{"mType":"LCSkill.AddAoeModel","id":"100501","size":1,"duration":0.2,"follow":true},"timeStart":0.3441433,"timeContinue":0.192522}],"goToNode":null}
+﻿
+{
+    "mType" : "LCSkill.TimelineModel",
+    "name"  : "100501",
+    "duration" : 0.5366653,
+    "nodes"    : [
+        {
+            "mType" : "Demo.Skill.Timeline.SkillTimeline_PlayAnim",
+            "animName" : "attack1",
+            "timeStart" : 0,
+            "timeContinue" : 0.5333334
+        },
+        {
+            "mType" : "LCSkill.SkillTimeline_CreateAoe",
+            "addAoe" : {
+                "mType" : "LCSkill.AddAoeModel",
+                "id"    : "100501",
+                "size"  : 1,
+                "duration" : 0.2,
+                "follow"   : true
+            },
+            "timeStart" : 0.3441433,
+            "timeContinue" : 0.192522
+        }
+    ],
+    "goToNode" : null
+}

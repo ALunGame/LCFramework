@@ -69,6 +69,12 @@ namespace Demo.Com.MainActor
             moveAnim = new MainActorMoveAnim(this, animCom);
         }
 
+
+
+
+
+        
+
         private void OnBindGoChange(GameObject pGo)
         {
             rig2D = pGo.GetComponent<Rigidbody2D>();
@@ -342,6 +348,16 @@ namespace Demo.Com.MainActor
             {
                 GameLocate.Log.Log("禁止移动》》》",pBanReason);
             }
+        }
+
+        public void ClearHorizontalVelocity()
+        {
+            velocity.x = 0;
+        }
+        
+        public void ClearVerticalVelocity()
+        {
+            velocity.y = 0;
         }
 
         #endregion

@@ -74,13 +74,15 @@ namespace LCECS.Core
 
         public void Destroy()
         {
-            IsActive = false;
+            //禁用
+            Disable();
+            
+            //销毁
             foreach (BaseCom com in coms.Values)
             {
                 com.Destroy(false);
             }
-            ECSLocate.ECS.CheckEntityInSystem(Uid);
-            OnDisable();
+            
             OnDestroy();
         }
 

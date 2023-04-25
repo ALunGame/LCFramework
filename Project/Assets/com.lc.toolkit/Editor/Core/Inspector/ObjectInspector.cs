@@ -10,10 +10,27 @@ namespace LCToolkit.Core
 {
     public class ObjectInspector : ScriptableSingleton<ObjectInspector>
     {
+        #region Static
+
+        public static Editor objectEditor;
+
+        public static void Repaint()
+        {
+            if (objectEditor == null)
+            {
+                return;
+            }
+            objectEditor.Repaint();
+        }
+
+        #endregion
+        
         [SerializeField]
         object targetObject;
 
         public Action onTargetObjectChanged;
+
+        public Action onClickBackFunc;
 
         public object TargetObject
         {
@@ -28,11 +45,12 @@ namespace LCToolkit.Core
             }
         }
         public object Owner { get; private set; }
-
-        public void Init(object _targetObject, object _owner = null)
+        
+        public void Init(object _targetObject, object _owner = null, Action _clickBackFunc = null)
         {
             Owner = _owner;
             TargetObject = _targetObject;
+            onClickBackFunc = _clickBackFunc;
         }
     }
 
@@ -47,6 +65,7 @@ namespace LCToolkit.Core
 
         private void OnEnable()
         {
+            ObjectInspector.objectEditor = this;
             Owner = T_Target.Owner;
 
             OnEnable(T_Target.TargetObject);
@@ -58,7 +77,7 @@ namespace LCToolkit.Core
 
             void OnEnable(object _targetObject)
             {
-                objectEditor = ObjectInspectorDrawer.CreateEditor(_targetObject, Owner, this);
+                objectEditor = ObjectInspectorDrawer.CreateEditor(_targetObject, Owner, this, T_Target.onClickBackFunc);
                 if (objectEditor != null)
                 {
                     string title = objectEditor.GetTitle();
@@ -88,9 +107,24 @@ namespace LCToolkit.Core
 
         public override void OnInspectorGUI()
         {
-            //base.OnInspectorGUI();
             if (objectEditor != null)
+            {
+                if (objectEditor.onClickBackFunc != null)
+                {
+                    MiscHelper.Btn("返回",100,15, () =>
+                    {
+                        Action func = objectEditor.onClickBackFunc;
+                        objectEditor.onClickBackFunc = null;
+
+                        if (T_Target != null)
+                        {
+                            T_Target.onClickBackFunc = null;
+                        }
+                        func?.Invoke();
+                    });
+                }
                 objectEditor.OnInspectorGUI();
+            }
         }
 
         public override void DrawPreview(Rect previewArea)
@@ -152,6 +186,8 @@ namespace LCToolkit.Core
 
         private void OnDisable()
         {
+            ObjectInspector.objectEditor = null;
+
             if (objectEditor != null)
                 objectEditor.OnDisable();
         }

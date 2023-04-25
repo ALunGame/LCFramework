@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using Config;
 using Demo.Com.MainActor;
+using Demo.Com.MainActor.NewMove;
 using Demo.Scripts.Com.Work;
 
 namespace Demo
@@ -195,6 +196,20 @@ namespace Demo
             com.JumpSecondCanDis = JumpSecondCanDis;
             com.JumpSecondDis = JumpSecondDis;
             com.JumpSecondSpeed = JumpSecondSpeed;
+            return com;
+        }
+    }
+    
+    [NodeMenuItem("演员/玩家/新版玩家移动组件")]
+    public class Entity_Actor_NewMainActorMoveCom : Entity_ComNode
+    {
+        public override string Title { get => "新版玩家移动组件"; set => base.Title = value; }
+        public override string Tooltip { get => "新版玩家移动组件"; set => base.Tooltip = value; }
+        public override Type RuntimeNode => typeof(NewMainActorMoveCom);
+        
+        public override BaseCom CreateRuntimeNode()
+        {
+            NewMainActorMoveCom com = new NewMainActorMoveCom();
             return com;
         }
     }

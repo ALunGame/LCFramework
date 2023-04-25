@@ -26,7 +26,7 @@ namespace Demo.Behavior
             //    return;
             //}
 
-            //Actor actor          = LCMap.MapLocate.Map.GetActor(wData.Uid);
+            //Actor actor          = LCMap.ActorMediator.GetActor(wData.Uid);
             //ActorCnf actorCnf       = LCConfig.Config.ActorCnf[actor.Id];
 
             //TransCom targetTransformCom = buildingActor.GetCom<TransCom>();

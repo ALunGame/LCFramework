@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using UnityEditor;
+using UnityEngine;
 
 namespace LCToolkit
 {
@@ -10,23 +11,34 @@ namespace LCToolkit
         /// <summary>
         /// 播放动画
         /// </summary>
-        public static void PlayAnim(GameObject animGo, string animName, float animTime)
+        public static void PlayAnim(GameObject pAnimGo, AnimationClip pClip, float pTime)
         {
-            if (animGo == null)
+            if (pAnimGo == null)
                 return;
 
-            Animation animation = animGo.GetComponent<Animation>();
+            if (pAnimGo == null)
+                return;
+
+            Animation animation = pAnimGo.GetComponent<Animation>();
+            if (animation == null)
+            {
+                animation = pAnimGo.GetComponentInChildren<Animation>();
+            }
+            
             if (animation != null)
             {
-                PlayAnimation(animation, animName, animTime);
+                PlayAnimation(animation, pClip.name, pTime);
                 return;
             }
 
-            Animator animator = animGo.GetComponent<Animator>();
+            Animator animator = pAnimGo.GetComponent<Animator>();
+            if (animator == null)
+            {
+                animator = pAnimGo.GetComponentInChildren<Animator>();
+            }
             if (animator != null)
             {
-                PlayAnimator(animator, animName, animTime);
-                return;
+                PlayAnimator(animator, pClip, pTime);
             }
         }
 
@@ -40,7 +52,7 @@ namespace LCToolkit
             AnimationState state = anim[animName];
             if (state == null)
                 return;
-
+            
             anim.Play(state.name);
             state.time = animTime;
             state.speed = 0f;
@@ -49,24 +61,28 @@ namespace LCToolkit
         /// <summary>
         /// 播放动画
         /// </summary>
-        public static void PlayAnimator(Animator anim, string animName, float animTime)
+        public static void PlayAnimator(Animator anim, AnimationClip pClip, float pTime)
         {
             if (anim == null)
                 return;
-            anim.Play(animName);
-            anim.playbackTime = animTime;
-            anim.Update(0);
+            AnimationMode.SampleAnimationClip(anim.gameObject, pClip, pTime);
         }
 
         /// <summary>
         /// 播放特效
         /// </summary>
-        public static void PlayParticle(ParticleSystem psys, float time)
+        public static void PlayParticle(GameObject pEffectGo, float time)
         {
-            if (psys == null)
+            ParticleSystem[] particleSystems = pEffectGo.GetComponentsInChildren<ParticleSystem>();
+            if (particleSystems == null)
+            {
                 return;
-            psys.useAutoRandomSeed = false;
-            psys.Simulate(time);
+            }
+
+            for (int i = 0; i < particleSystems.Length; i++)
+            {
+                particleSystems[i].Simulate(time,false);
+            }
         }
     }
 }

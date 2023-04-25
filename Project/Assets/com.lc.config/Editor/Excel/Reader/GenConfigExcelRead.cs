@@ -4,6 +4,7 @@ using LCConfig.Excel;
 using LCConfig.Excel.GenCode;
 using LCJson;
 using LCToolkit;
+using Newtonsoft.Json;
 using OfficeOpenXml;
 using UnityEngine;
 
@@ -28,6 +29,7 @@ namespace com.lc.config.Editor.Excel.Core
                 return;
             }
             string savePath = $"{ExcelReadSetting.Setting.GenJsonRootPath}/{GetFileName()}";
+            
             string jsonStr = JsonMapper.ToJson(value);
             IOHelper.WriteText(jsonStr,savePath);
             Debug.Log($"配置导出成功>>>{className}-->{savePath}");

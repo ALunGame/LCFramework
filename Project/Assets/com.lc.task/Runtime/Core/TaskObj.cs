@@ -156,7 +156,7 @@ namespace LCTask
                 {
                     for (int i = 0; i < content.actorIds.Count; i++)
                     {
-                        Targets.AddRange(MapLocate.Map.GetActors(content.actorIds[i]));
+                        Targets.AddRange(ActorMediator.GetActors(content.actorIds[i]));
                     }
                 }
                 

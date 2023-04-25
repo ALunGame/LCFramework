@@ -30,7 +30,7 @@ namespace Demo.Behavior
             //}
 
             //Actor buildingActor = workerCom.managerActor.GetCom<ManagerCom>().buildingActor;
-            //Actor actor         = LCMap.MapLocate.Map.GetActor(wData.Uid);
+            //Actor actor         = LCMap.ActorMediator.GetActor(wData.Uid);
             //ActorCnf actorCnf      = LCConfig.Config.ActorCnf[actor.Id];
 
             //TransCom targetTransformCom = buildingActor.GetCom<TransCom>();

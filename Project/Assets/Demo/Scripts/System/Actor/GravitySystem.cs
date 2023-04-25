@@ -23,10 +23,10 @@ namespace Demo.System
             MoveCom moveCom = GetCom<MoveCom>(comList[3]);
             
             Vector3 waitPos;
-            transCom.HasWaitPos(out waitPos);
-
-            float yDelta = gravityCom.Mass * _G * Time.deltaTime;
-            transCom.WaitSetPos(new Vector3(waitPos.x, waitPos.y + yDelta));
+            // transCom.HasWaitPos(out waitPos);
+            //
+            // float yDelta = gravityCom.Mass * _G * Time.deltaTime;
+            // transCom.WaitSetPos(new Vector3(waitPos.x, waitPos.y + yDelta));
         }
     } 
 }

@@ -21,14 +21,14 @@ namespace LCToolkit
     {
         [JsonIgnore]
         public UnityObject Obj;
-
+        
         public AssetType assetType = AssetType.GameObj;
         public string ObjName = "";
         public string ObjPath = "";
 
         public UnityObjectAsset()
         {
-
+            
         }
 
         public UnityObjectAsset(AssetType assetType)
@@ -72,6 +72,27 @@ namespace LCToolkit
             return objType;
         }
 
+        public void SetObject(UnityObject pObject)
+        {
+            if (pObject == null)
+            {
+                Obj = null;
+                ObjName = "";
+                ObjPath = "";
+                return;
+            }
+            Type objType = pObject.GetType();
+            if (!objType.Equals(GetObjType()))
+            {
+                Obj = null;
+                ObjName = "";
+                ObjPath = "";
+                return;
+            }
+            Obj = pObject;
+            ObjName = AssetDatabase.GetAssetPath(pObject);
+            ObjPath = pObject.name;
+        }
 #endif
     }
 }

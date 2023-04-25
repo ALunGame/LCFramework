@@ -205,7 +205,7 @@ MonoBehaviour:
   mapCom: {fileID: 8863798686834014938}
   ActorRoot: {fileID: 7522123719142916631}
   TriggerRoot: {fileID: 1250705221176860934}
-  AreaEnv: {fileID: 0}
+  AreaEnv: {fileID: 78416405500824361, guid: 3204ddb88652c884e9348011b7787fbe, type: 3}
 --- !u!1 &2362968936996230183
 GameObject:
   m_ObjectHideFlags: 0

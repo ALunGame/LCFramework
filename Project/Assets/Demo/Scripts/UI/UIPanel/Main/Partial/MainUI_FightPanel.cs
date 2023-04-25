@@ -1,6 +1,7 @@
 ﻿using Demo.Com;
-using Demo.Mediator;
+using Demo.Com.MainActor;
 using LCECS;
+using LCMap;
 using LCToolkit;
 using LCUI;
 using UnityEngine;
@@ -25,18 +26,32 @@ namespace Demo.UI
             ActorMediator.ReleaseSkill(LCMap.MapLocate.Map.PlayerActor, 100102);
         });
 
+        private UIUpdateGlue updateGlue = new UIUpdateGlue();
+
         private MainActorInputCom inputCom;
 
         public override void OnAwake()
         {
             inputCom = ECSLocate.ECS.GetWorld().GetCom<MainActorInputCom>();
-            InitMoveBtn();
-            InitMoveInputCheckFunc();
-
-            InitJumpBtn();
-            InitJumpInputCheckFunc();
+            // InitMoveBtn();
+            // InitMoveInputCheckFunc();
+            //
+            // InitJumpBtn();
+            // InitJumpInputCheckFunc();
+            //
+            // InitMoveLegalFunc();
+            //
+            // updateGlue.SetFunc(Update);
         }
 
+        private void Update()
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                skill_1_Btn.Click();
+            }
+        }
+        
 
         #region 移动按钮事件
 
@@ -254,6 +269,48 @@ namespace Demo.UI
 #endif
                 return false;
             };
+        }
+        
+
+        #endregion
+
+        #region 移动合法检测
+
+        private void InitMoveLegalFunc()
+        {
+            inputCom.LeftMoveKey.CheckLegal = CheckCanMove;
+            
+            inputCom.RightMoveKey.CheckLegal = CheckCanMove;
+
+            inputCom.Jump.CheckLegal = CheckCanMove;
+        }
+
+        private MainActorMoveCom mainActorMoveCom;
+        private bool CheckCanMove()
+        {
+            Actor playerActor = LCMap.MapLocate.Map.PlayerActor;
+            if (playerActor == null || !playerActor.isActive)
+            {
+                return false;
+            }
+
+            if (!ActorMediator.CheckCanRequest(playerActor, ActorRequestType.Move))
+            {
+                if (mainActorMoveCom == null)
+                {
+                    mainActorMoveCom = playerActor.GetCom<MainActorMoveCom>();
+                }
+                moveValue = 0;
+                mainActorMoveCom.ClearHorizontalVelocity();
+                mainActorMoveCom.ClearVerticalVelocity();
+                return false;
+            }
+
+            if (playerActor.CurrRequestId != (int)ActorRequestType.Move)
+            {
+                ActorLocate.ActorRequest.Request(playerActor,(int)ActorRequestType.Move,null);
+            }
+            return true;
         }
         
 

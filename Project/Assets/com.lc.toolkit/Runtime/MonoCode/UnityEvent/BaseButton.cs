@@ -32,8 +32,33 @@ namespace LCToolkit
         //防止其他点击回调
         private static int lastDownBtnInstanceId = 0;
 
+        private int pressedWaitFrame = 1;
+        private int currPressedWaitFrame = 0;
+        /// <summary>
+        /// 点击
+        /// </summary>
+        public bool IsPressed { get; private set; }
+        
+        /// <summary>
+        /// 按住
+        /// </summary>
+        public bool IsHold { get; private set; }
+
         private void Update()
         {
+            if (IsPressed)
+            {
+                if (currPressedWaitFrame >= pressedWaitFrame)
+                {
+                    IsPressed = false;
+                    currPressedWaitFrame = 0;
+                }
+                else
+                {
+                    currPressedWaitFrame++;
+                }
+            }
+            
             if (eventUsed)
                 return;
 
@@ -55,19 +80,28 @@ namespace LCToolkit
 
         public void OnPointerDown(PointerEventData eventData)
         {
+            IsHold = true;
+            IsPressed = true;
+            currPressedWaitFrame = 0;
+
             if (eventUsed)
                 return;
 
             cacheEventData = eventData;
             lastDownBtnInstanceId = GetInstanceID();
+
             onDown?.Invoke(eventData);
         }
 
         public void OnPointerUp(PointerEventData eventData)
         {
+            IsHold = false;
+            IsPressed = false;
+            currPressedWaitFrame = 0;
+            
             if (eventUsed)
                 return;
-
+            
             onUp?.Invoke(eventData);
 
             if (CanClick(eventData))

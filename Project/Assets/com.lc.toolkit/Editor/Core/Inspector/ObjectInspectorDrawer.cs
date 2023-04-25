@@ -117,12 +117,12 @@ namespace LCToolkit.Core
             return objectEditor;
         }
 
-        public static ObjectInspectorDrawer CreateEditor(object _targetObject, object _owner, Editor _editor)
+        public static ObjectInspectorDrawer CreateEditor(object _targetObject, object _owner, Editor _editor,Action _clickBackFunc = null)
         {
             ObjectInspectorDrawer objectEditor = InternalCreateEditor(_targetObject);
             if (objectEditor == null) return null;
 
-            objectEditor.Init(_targetObject, _owner, _editor);
+            objectEditor.Init(_targetObject, _owner, _editor,_clickBackFunc);
             return objectEditor;
         }
 
@@ -134,29 +134,37 @@ namespace LCToolkit.Core
         public object Owner { get; private set; }
         public Editor Editor { get; private set; }
         public MonoScript Script { get; private set; }
+        
+        public Action onClickBackFunc { get; set; }
 
         protected ObjectInspectorDrawer() { }
 
         #region 初始化
 
-        void Init(object _target)
+        public void Init(object _target,Action _clickBackFunc = null)
         {
+            onClickBackFunc = _clickBackFunc;
             Target = _target;
             Script = EditorExtension.FindScriptFromType(Target.GetType());
             Fields = ReflectionHelper.GetFieldInfos(Target.GetType()).Where(field => GUILayoutExtension.CanDraw(field)).ToList();
         }
 
-        void Init(object _target, object _owner)
+        public void Init(object _target, object _owner, Action _clickBackFunc = null)
         {
             Owner = _owner;
-            Init(_target);
+            Init(_target,_clickBackFunc);
         }
 
-        void Init(object _target, object _owner, Editor _editor)
+        public void Init(object _target, object _owner, Editor _editor,Action _clickBackFunc = null)
         {
             Owner = _owner;
             Editor = _editor;
-            Init(_target);
+            Init(_target,_clickBackFunc);
+        }
+
+        public void UpdateTarget(object _target)
+        {
+            Target = _target;
         }
 
         #endregion

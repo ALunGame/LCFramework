@@ -23,7 +23,7 @@ namespace Demo.Behavior
             ////组件
             //CollectCom collectCom = workData.MEntity.GetCom<CollectCom>();
             //WayPointMoveCom wayPointMoveCom = workData.MEntity.GetCom<WayPointMoveCom>();
-            //List<Actor> actors = MapLocate.Map.GetActors(collectCom.collectActorId);
+            //List<Actor> actors = ActorMediator.GetActors(collectCom.collectActorId);
 
             //if (actors.Count <= 0)
             //{
@@ -31,7 +31,7 @@ namespace Demo.Behavior
             //    return;
             //}
 
-            //Actor actor = LCMap.MapLocate.Map.GetActor(wData.Uid);
+            //Actor actor = LCMap.ActorMediator.GetActor(wData.Uid);
             //ActorCnf actorCnf = LCConfig.Config.ActorCnf[actor.Id];
             //TransCom targetTransformCom = actors[0].GetCom<TransCom>();
             //TransCom transformCom = workData.MEntity.GetCom<TransCom>();

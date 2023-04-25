@@ -48,7 +48,7 @@ namespace LCJson
         private int indentation;
         private int indent_value;
         private StringBuilder inst_string_builder;
-        private bool pretty_print = true;
+        private bool pretty_print;
         private bool validate;
         private bool lower_case_properties;
         private TextWriter writer;
@@ -177,7 +177,7 @@ namespace LCJson
             hex_seq = new char[4];
             indentation = 0;
             indent_value = 4;
-            pretty_print = true;
+            pretty_print = false;
             validate = true;
             lower_case_properties = false;
 

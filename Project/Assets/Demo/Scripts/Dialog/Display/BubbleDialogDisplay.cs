@@ -38,7 +38,7 @@ namespace Demo.Dialog
                 for (int i = 0; i < stepModel.speakers.Count; i++)
                 {
                     int actorId = stepModel.speakers[i];
-                    actors.AddRange(MapLocate.Map.GetActors(actorId));
+                    actors.AddRange(ActorMediator.GetActors(actorId));
                 }
             }
             else

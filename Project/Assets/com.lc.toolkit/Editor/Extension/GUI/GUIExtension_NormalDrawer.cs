@@ -332,7 +332,7 @@ namespace LCToolkit
         {
             if (value == null)
             {
-                Debug.LogError("绘制字段>>>" + value.GetType().FullName);
+                Debug.LogError("绘制字段>>>" + label.text);
             }
             return DrawField(rect, value.GetType(), value, label);
         }

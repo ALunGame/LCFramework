@@ -24,7 +24,7 @@ namespace Demo.Behavior
             // //组件
             // WayPointMoveCom wayPointMoveCom = workData.MEntity.GetCom<WayPointMoveCom>();
             // List<Actor> homeActors = new List<Actor>();
-            // foreach (var item in MapLocate.Map.GetActors(typeof(BuildingCom).FullName))
+            // foreach (var item in ActorMediator.GetActors(typeof(BuildingCom).FullName))
             // {
             //     BuildingCom buildingCom = item.GetCom<BuildingCom>();
             //     if (buildingCom.buildingType == BuildingType.Village_Rest)
@@ -39,7 +39,7 @@ namespace Demo.Behavior
             //
             // Actor selHomeActor = homeActors[Random.Range(0, homeActors.Count)];
             //
-            // Actor actor      = LCMap.MapLocate.Map.GetActor(wData.Uid);
+            // Actor actor      = LCMap.ActorMediator.GetActor(wData.Uid);
             // ActorCnf actorCnf   = LCConfig.Config.ActorCnf[actor.Id];
             //
             // TransCom targetTransformCom = selHomeActor.GetCom<TransCom>();

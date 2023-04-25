@@ -1,13 +1,1 @@
-﻿
-[
-    {
-        "mType" : "Demo.Config.ItemCnf",
-        "id"    : 401,
-        "name"  : "\u6728\u6750"
-    },
-    {
-        "mType" : "Demo.Config.ItemCnf",
-        "id"    : 402,
-        "name"  : "\u6728\u677F"
-    }
-]
+﻿[{"mType":"Demo.Config.ItemCnf","id":401,"name":"\u6728\u6750"},{"mType":"Demo.Config.ItemCnf","id":402,"name":"\u6728\u677F"}]

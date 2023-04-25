@@ -1,0 +1,53 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <ui:VisualElement name="Panel" style="height: auto; width: auto; flex-grow: 1;">
+        <ui:VisualElement name="Top" style="border-left-width: 1px; border-right-width: 1px; border-top-width: 1px; border-bottom-width: 1px; height: 30px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); flex-direction: row; position: relative; top: auto; flex-grow: 0; flex-shrink: 0; max-height: 30px; min-height: 30px;">
+            <ui:VisualElement name="Left" style="height: 30px; max-height: 30px; min-height: 30px; width: 200px; max-width: 200px; min-width: 200px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); border-right-width: 1px; flex-direction: row;">
+                <ui:Label text="演示节点：" display-tooltip-when-elided="true" style="justify-content: center; -unity-text-align: middle-left; -unity-font-style: bold; color: rgb(255, 255, 255);" />
+                <uie:ObjectField type="UnityEngine.GameObject, UnityEngine.CoreModule" allow-scene-objects="false" name="PreviewGo" style="width: 127px; flex-grow: 1; -unity-text-align: middle-left; margin-top: 3px; margin-bottom: 5px;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="Right" style="height: 30px; flex-grow: 1; flex-direction: row; justify-content: center;">
+                <ui:Label text="资源:" display-tooltip-when-elided="true" style="-unity-text-align: middle-center; -unity-font-style: bold; margin-bottom: 5px;" />
+                <uie:ObjectField name="AssetObj" style="margin-top: 3px; margin-bottom: 5px;" />
+                <ui:Button text="保存" display-tooltip-when-elided="true" name="SaveBtn" style="height: 25px; width: 50px; align-items: stretch; left: auto; position: relative; right: auto;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="Middle" style="flex-direction: row; min-width: auto; width: auto; height: 50px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); border-left-width: 1px; border-right-width: 1px; align-items: stretch; max-height: 50px; min-height: 50px; flex-shrink: 1; flex-grow: 1;">
+            <ui:VisualElement name="PlayArea" style="height: 50px; width: 200px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); border-right-width: 1px; border-left-width: 0; border-top-width: 0; border-bottom-width: 0; max-width: 200px; min-width: 200px; min-height: 50px; max-height: 50px; flex-shrink: 0; flex-direction: column;">
+                <ui:VisualElement name="PlayAreaTop" style="height: 25px; max-height: 25px; min-height: 25px; flex-direction: row; justify-content: center; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); border-bottom-width: 1px;">
+                    <ui:IMGUIContainer name="StartFrameBtn" style="width: 35px;" />
+                    <ui:IMGUIContainer name="PreFrameBtn" style="width: 35px;" />
+                    <ui:IMGUIContainer name="PlayBtn" style="width: 35px;" />
+                    <ui:IMGUIContainer name="LaterFrameBtn" style="width: 35px;" />
+                    <ui:IMGUIContainer name="EndFrameBtn" style="width: 35px;" />
+                </ui:VisualElement>
+                <ui:VisualElement name="PlayAreaBottom" style="height: 25px; max-height: 25px; min-height: 25px; flex-direction: row; justify-content: center;">
+                    <ui:IMGUIContainer name="AddGroupBtn" style="position: absolute; left: 0; top: 0; bottom: 0; height: 25px; max-height: 25px; min-height: 25px; width: 100px; max-width: 100px; min-width: 100px;" />
+                    <ui:VisualElement name="Frame" style="height: 25px; max-height: 25px; min-height: 25px; flex-direction: row; width: 100px; max-width: 100px; min-width: 100px; right: 0; position: absolute; justify-content: flex-end; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); border-left-width: 0;">
+                        <uie:IntegerField value="42" name="CurrFrame" style="flex-grow: 1; -unity-text-align: middle-right;" />
+                        <ui:Label text="/" display-tooltip-when-elided="true" style="-unity-text-align: middle-center; -unity-font-style: bold;" />
+                        <ui:Label text="20000" display-tooltip-when-elided="true" name="TotalFrame" style="-unity-text-align: middle-center; -unity-font-style: bold;" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="FrameRuler" style="height: 50px; width: auto; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); border-right-width: 0; flex-direction: row; border-left-width: 0; border-top-width: 0; border-bottom-width: 0; max-height: 50px; min-height: 50px; flex-grow: 1; flex-shrink: 1;">
+                <ui:ScrollView name="Framelist" mode="Horizontal" horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="Hidden" touch-scroll-type="Unrestricted" elasticity="0.1" scroll-deceleration-rate="0.135" style="height: 50%; flex-shrink: 0; max-height: 50px; min-height: 50px;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="Bottom" style="width: auto; flex-direction: row; flex-grow: 1; flex-shrink: 1; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); border-left-width: 1px; border-right-width: 1px; border-top-width: 2px; border-bottom-width: 1px;">
+            <ui:ScrollView name="Tracklist" mode="Vertical" horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="Auto" style="height: auto; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); border-left-width: 0; border-right-width: 1px; border-top-width: 0; border-bottom-width: 0; width: 200px; max-width: 200px; min-width: 200px; flex-grow: 0; flex-shrink: 0;" />
+            <ui:VisualElement name="ClipsArea">
+                <ui:ScrollView name="ClipScrollArea" mode="VerticalAndHorizontal" horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="Hidden" touch-scroll-type="Unrestricted" elasticity="0.1" scroll-deceleration-rate="0.135" style="height: auto; flex-shrink: 0; flex-grow: 0; width: auto;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="RightScrollBox" style="height: auto; width: 13px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); border-right-width: 0; flex-direction: row; border-left-width: 0; border-top-width: 0; border-bottom-width: 0; max-height: none; min-height: auto; flex-grow: 1; position: relative; right: auto; max-width: 13px; min-width: 13px; display: flex;">
+                <ui:ScrollView name="RightScroll" mode="Vertical" horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="AlwaysVisible" touch-scroll-type="Unrestricted" elasticity="0.1" scroll-deceleration-rate="0.135" style="height: auto; width: auto; max-width: none; min-width: auto; flex-grow: 1;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="BottomScroll" style="flex-direction: row; min-width: auto; width: auto; height: 13px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); border-left-width: 1px; border-right-width: 1px; align-items: stretch; max-height: 13px; min-height: 13px; border-bottom-width: 1px; flex-grow: 1; bottom: auto; position: relative;">
+            <ui:VisualElement name="Empty" style="height: 13px; width: 200px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); border-right-width: 1px; border-left-width: 0; border-top-width: 0; border-bottom-width: 0; max-width: 200px; min-width: 200px; min-height: 13px; max-height: 13px;" />
+            <ui:VisualElement name="ScrollBox" style="height: 13px; width: auto; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); border-right-width: 0; flex-direction: row; border-left-width: 0; border-top-width: 0; border-bottom-width: 0; max-height: 13px; min-height: 13px; flex-grow: 1;">
+                <ui:ScrollView name="Scroll" mode="Horizontal" horizontal-scroller-visibility="Auto" vertical-scroller-visibility="Hidden" touch-scroll-type="Unrestricted" elasticity="0.1" scroll-deceleration-rate="0.135" style="height: auto;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="Empty" style="height: 13px; width: 13px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); border-right-width: 0; border-left-width: 1px; border-top-width: 0; border-bottom-width: 0; max-width: 13px; min-width: 13px; min-height: 13px; max-height: 13px; position: absolute; right: 0;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

@@ -32,6 +32,12 @@ namespace LCECS.Server.ECS
         void AddEntity(Entity entity);
 
         /// <summary>
+        /// 删除实体
+        /// </summary>
+        /// <param name="entity"></param>
+        void RemoveEntity(Entity entity);
+
+        /// <summary>
         /// 设置世界实体
         /// </summary>
         /// <param name="pWorld"></param>

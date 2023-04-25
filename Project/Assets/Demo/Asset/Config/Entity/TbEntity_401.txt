@@ -1,14 +1,1 @@
-﻿
-[
-    {
-        "mType" : "Demo.Com.OutputItemCom",
-        "outputInfos" : [
-            {
-                "mType" : "Config.ItemInfo",
-                "itemId" : 401,
-                "itemCnt" : 1
-            }
-        ],
-        "isActive"    : true
-    }
-]
+﻿[{"mType":"Demo.Com.OutputItemCom","outputInfos":[{"mType":"Config.ItemInfo","itemId":401,"itemCnt":1}],"isActive":true}]

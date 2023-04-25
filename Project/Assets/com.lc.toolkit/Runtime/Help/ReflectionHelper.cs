@@ -10,6 +10,12 @@ namespace LCToolkit
     /// </summary>
     public static partial class ReflectionHelper
     {
+        /// <summary>
+        /// 运行时程序集
+        /// </summary>
+        public const string RunningtimeAssemblyName = "Assembly-CSharp";
+        public const string EditorAssemblyName = "Assembly-CSharp-Editor";
+        
         //各种缓存池
         static readonly Dictionary<string, Assembly> AssemblyCache = new Dictionary<string, Assembly>();
         static readonly Dictionary<string, Type> FullNameTypeCache = new Dictionary<string, Type>();

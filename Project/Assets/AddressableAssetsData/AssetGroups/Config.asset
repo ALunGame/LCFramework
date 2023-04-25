@@ -277,6 +277,38 @@ MonoBehaviour:
     m_Address: TbEntity_-9999
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: f1938cf0d8120864ea031e05fa2a15ab
+    m_Address: GE_Player_Test
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 6d3beb1646878c54aad1340501614435
+    m_Address: "\u73A9\u5BB6\u6280\u80FDTimeline\u7EC4_11"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: db6f3ab7d10d9dd4d9abab9ce14b3293
+    m_Address: SkillTimline_Player_Test
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 08bd019d3f4973c48a50d2b8d651afc2
+    m_Address: LCSkill.SkillAbility
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 3ce15a5aa9ac83d4d91c80305471cdbc
+    m_Address: GE_Player_SkillCost
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 8936c42dec678b1448f5c01b93a8f34c
+    m_Address: GE_Player_SkillCoolDown
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: c1fde5ed6de165544b29a68b9908cf51
+    m_Address: TbMap_9999
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 2e0995d3be2344643a2321736603a703
+    m_Address: TbSkillCnf
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: c106a54d1dad7c34dbca1e47199c97a1, type: 2}
   m_SchemaSet:

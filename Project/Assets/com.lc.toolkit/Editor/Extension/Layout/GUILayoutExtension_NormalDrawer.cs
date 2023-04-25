@@ -87,7 +87,7 @@ namespace LCToolkit
                 return DrawSingleField(type, value, label);
         }
 
-        public static object DrawField(Type type, object value, string label,string tooltip)
+        public static object DrawField(Type type, object value, string label,string tooltip = "")
         {
             GUIContent lable = GUIHelper.TextContent(label, tooltip);
             return DrawField(type, value, lable);
@@ -138,7 +138,7 @@ namespace LCToolkit
                 }
 
                 //遍历类型字段
-                GUILayout.BeginVertical();
+                EditorGUILayout.BeginVertical();
                 if (DrawFoldout(hashCode, label))
                 {
                     EditorGUI.indentLevel++;
@@ -163,7 +163,7 @@ namespace LCToolkit
                     }
                     EditorGUI.indentLevel--;
                 }
-                GUILayout.EndVertical();
+                EditorGUILayout.EndVertical();
                 return value;
             }
 
@@ -214,96 +214,131 @@ namespace LCToolkit
             {
                 list = (IList)value;
             }
-            if (DrawFoldout(value.GetHashCode(), label))
+
+            bool drawItems = DrawArrayFoldout(value.GetHashCode(), label,list.Count, () =>
+            {
+                if (fieldType.IsArray)
+                {
+                    Array array2 = Array.CreateInstance(elementType, 1);
+                }
+                else
+                {
+                    Type type = list.Count > 0 ? list[list.Count - 1].GetType() : elementType;
+                    if (!typeof(UnityObject).IsAssignableFrom(type))
+                    {
+                        list.Add(ReflectionHelper.CreateInstance(type));
+                    }
+                    else
+                    {
+                        list.Add(null);
+                    }
+                }
+            });
+            
+            if (drawItems)
             {
                 EditorGUI.indentLevel++;
-                bool flag = value.GetHashCode() == editingFieldHash;
-                int count = (!flag) ? list.Count : savedArraySize;
-                int newCount = EditorGUILayout.IntField(GUIHelper.TextContent("Size"), count);
-                if (flag && editingArray && (GUIUtility.keyboardControl != currentKeyboardControl || (Event.current.keyCode == KeyCode.KeypadEnter || Event.current.keyCode == KeyCode.Return)))
-                {
-                    if (newCount != list.Count)
-                    {
-                        int currentCount = list.Count;
-                        if (newCount > currentCount)
-                        {
-                            if (fieldType.IsArray)
-                            {
-                                Array array2 = Array.CreateInstance(elementType, newCount);
-                                int num3 = -1;
-                                for (int i = 0; i < newCount; i++)
-                                {
-                                    if (i < list.Count)
-                                    {
-                                        num3 = i;
-                                    }
-                                    if (num3 == -1)
-                                    {
-                                        break;
-                                    }
-
-                                }
-                            }
-                            else
-                            {
-                                Type type = list.Count > 0 ? list[list.Count - 1].GetType() : elementType;
-                                if (!typeof(UnityObject).IsAssignableFrom(type))
-                                {
-                                    for (int i = currentCount; i < newCount; i++)
-                                        list.Add(ReflectionHelper.CreateInstance(type));
-                                }
-                                else
-                                {
-                                    for (int i = currentCount; i < newCount; i++)
-                                        list.Add(null);
-                                }
-                            }
-                        }
-                        else
-                        {
-                            if (!fieldType.IsArray)
-                            {
-                                while (list.Count > newCount)
-                                {
-                                    list.RemoveAt(list.Count - 1);
-                                }
-                            }
-                        }
-                        Event.current.Use();
-                    }
-                    editingArray = false;
-                    savedArraySize = -1;
-                    editingFieldHash = -1;
-                    GUI.changed = true;
-                }
-                else if (newCount != count)
-                {
-                    if (!editingArray)
-                    {
-                        currentKeyboardControl = GUIUtility.keyboardControl;
-                        editingArray = true;
-                        editingFieldHash = value.GetHashCode();
-                    }
-                    savedArraySize = newCount;
-                }
-
+                
                 for (int k = 0; k < list.Count; k++)
                 {
-                    object obj = list[k];
-                    label.text = $"Element {obj.GetType().Name}" + k;
-                    list[k] = DrawField(obj.GetType(), obj);
+                    object obj =  DrawArrayItem(list[k], k);
+                    if (obj == null)
+                    {
+                        list.RemoveAt(k);
+                    }
+                    else
+                    {
+                        list[k] = obj;
+                    }
                 }
-
-                //for (int k = 0; k < list.Count; k++)
-                //{
-                //    label.text = "Element " + k;
-                //    object obj = list[k];
-                //    list[k] = DrawField(obj.GetType(), obj, "Element " + k);
-                //}
-
+                
                 EditorGUI.indentLevel--;
             }
             return list;
+        }
+
+        static bool DrawArrayFoldout(object value, GUIContent label, int cnt, Action addFunc)
+        {
+            string text = string.Concat(c_EditorPrefsFoldoutKey, value.GetHashCode(), ".", label.text);
+            var @bool = GUIHelper.GetContextData(text, false);
+
+            Rect rect = GUILayoutUtility.GetRect(50, 25);
+            rect = EditorGUI.IndentedRect(rect);
+            
+            Rect addRect = new Rect(rect.position+new Vector2(rect.width-20,0),new Vector2(20,rect.height));
+            
+            Rect cntRect = new Rect(rect.position+new Vector2(rect.width-120,0),new Vector2(120,rect.height));
+            
+            Event current = Event.current;
+            if (current.type == EventType.MouseDown && current.button == 0)
+            {
+                if (addRect.Contains(current.mousePosition))
+                {
+                    addFunc?.Invoke();
+                }
+                else
+                {
+                    if (rect.Contains(current.mousePosition))
+                    {
+                        @bool.value = !@bool.value;
+                    }
+                }
+            }
+                
+            GUI.Box(rect, string.Empty, GUI.skin.button);
+            
+            GUI.Box(addRect, "+", GUI.skin.button);
+            
+            GUI.Box(cntRect, $"{cnt}items", GUI.skin.label);
+                        
+            Rect t = rect;
+            t.xMin += 5;
+            t.xMax -= 5;
+            EditorGUI.Foldout(t, @bool.value, label);
+            
+            return @bool.value;
+        }
+
+        static object DrawArrayItem(object value,int index)
+        {
+            string text = string.Concat(c_EditorPrefsFoldoutKey, value.GetHashCode(), ".", value.GetType().Name);
+            var @bool = GUIHelper.GetContextData(text, false);
+            
+            Rect rect = GUILayoutUtility.GetRect(50, 25);
+            rect = EditorGUI.IndentedRect(rect);
+
+            Rect removeRect = new Rect(rect.position+new Vector2(rect.width-20,0),new Vector2(20,rect.height));
+            
+            Event current = Event.current;
+            if (current.type == EventType.MouseDown && current.button == 0)
+            {
+                if (removeRect.Contains(current.mousePosition))
+                {
+                    return null;
+                }
+                else
+                {
+                    if (rect.Contains(current.mousePosition))
+                    {
+                        @bool.value = !@bool.value;
+                    }
+                }
+            }
+                
+            GUI.Box(rect, string.Empty, GUI.skin.button);
+            
+            GUI.Box(removeRect, "-", GUI.skin.button);
+
+            Rect t = rect;
+            t.xMin += 5;
+            t.xMax -= 5;
+            EditorGUI.Foldout(t, @bool.value, $"{index}-{value.GetType().Name}");
+
+            if (@bool.value)
+            {
+                return DrawField(value.GetType(), value);
+            }
+            return value;
         }
 
         const string c_EditorPrefsFoldoutKey = "CZToolKit.Core.Editors.Foldout.";

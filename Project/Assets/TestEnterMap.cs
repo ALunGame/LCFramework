@@ -85,8 +85,6 @@ public class TestEnterMap : MonoBehaviour
 
     void Start()
     {
-        LCSkill.SkillLocate.SetSkillServer(new SkillServer());
-        LCSkill.SkillLocate.SetDamageServer(new DamageServer());    
         MapLocate.Map.Enter(1001,(() =>
         {
             InitKeyCallBack();

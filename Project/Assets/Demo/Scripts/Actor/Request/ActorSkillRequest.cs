@@ -1,22 +1,59 @@
-﻿using Demo.Mediator;
+﻿using System.Collections.Generic;
+using LCGAS;
 using LCMap;
+using LCSkill;
+using LCToolkit;
 
 namespace Demo
 {
+    public class ActorSkillRequestSpec : ActorRequestSpec
+    {
+        public ActorSkillRequestSpec(Actor pOwnerActor, ActorRequest pModel) : base(pOwnerActor, pModel)
+        {
+        }
+        
+        private void OnActorTagChange()
+        {
+            ActorSkillRequest skillRequest = Model as ActorSkillRequest;
+            if (!Owner.Ability.Tag.HasAny(skillRequest.SkillTag))
+            {
+                ActorLocate.ActorRequest.FinishRequest(Owner,skillRequest.RequestId);
+            }
+        }
+        
+        public override void OnEnter(params object[] pParams)
+        {
+            Owner.Ability.RegTagChangeEvent(OnActorTagChange);
+            base.OnEnter(pParams);
+        }
+
+        public override void OnExit()
+        {
+            Owner.Ability.RemoveTagChangeEvent(OnActorTagChange);
+            base.OnExit();
+        }
+    }
+    
     public class ActorSkillRequest : ActorRequest
     {
         public override int RequestId { get => (int)ActorRequestType.Skill; }
         public override int Weight { get => (int)ActorRequestType.Skill; }
 
-        public override void OnEnter(Actor pActor, params object[] pParams)
+        public GameplayTagContainer SkillTag = new GameplayTagContainer(new List<string>(){"GA.Skill"});
+
+        public override void OnEnter(ActorRequestSpec pSpec, params object[] pParams)
         {
-            int skillId = (int)pParams[0];
-            ActorMediator.ReleaseSkill(pActor, skillId);
+            if (!pSpec.Owner.Ability.TryActiveGameplayAbility(AbilityNameDef.Skill, pParams))
+                ActorLocate.ActorRequest.FinishRequest(pSpec.Owner,RequestId);
         }
 
-        public override void OnExit(Actor pActor)
+        public override void OnExit(ActorRequestSpec pSpec)
         {
-            base.OnExit(pActor);
+        }
+
+        public override ActorRequestSpec CreateSpec(Actor pActor)
+        {
+            return new ActorSkillRequestSpec(pActor, this);
         }
     }
 }

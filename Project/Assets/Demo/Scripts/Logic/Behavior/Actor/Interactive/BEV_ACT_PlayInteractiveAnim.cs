@@ -33,14 +33,14 @@ namespace Demo.Behavior
             userData.isPlaying = true;
 
             //当前演员
-            Actor actorObj = LCMap.MapLocate.Map.GetActor(workData.MEntity.Uid);
+            Actor actorObj = LCMap.ActorMediator.GetActor(workData.MEntity.Uid);
             actorObj.GetStateGo().transform.DOPunchPosition(new Vector3(-0.2f * actorObj.GetDirValue(), 0, 0), animTime, 1, 0).OnComplete(() =>
             {
                 userData.isPlaying = false;
             }).SetLoops(animCnt);
 
             //当前演员
-            Actor targetActor = LCMap.MapLocate.Map.GetActor(wData.Blackboard[BEV_BlackboardKey.InteractiveActorUid].ToString());
+            Actor targetActor = LCMap.ActorMediator.GetActor(wData.Blackboard[BEV_BlackboardKey.InteractiveActorUid].ToString());
             targetActor.GetStateGo().transform.DOPunchPosition(new Vector3(-0.2f * targetActor.GetDirValue(), 0, 0), animTime, 1, 0).SetLoops(animCnt);
         }
 

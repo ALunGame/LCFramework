@@ -188,6 +188,23 @@ namespace LCConfig.Excel.Export
             pGenInfo.SaveJson(cnfs);    
         }
 
+        private void Export_SkillCnf(GenConfigInfo pGenInfo,List<BaseProperty> pProps,List<Dictionary<string, List<string>>> propValuelist)
+        {
+            List<SkillCnf> cnfs = new List<SkillCnf>();
+            foreach (var propDict in propValuelist)
+            {
+                SkillCnf cnf = new SkillCnf();
+				cnf.id = (int)GetProp(pProps,"id").Parse(propDict["id"][0]);
+				cnf.name = (string)GetProp(pProps,"name").Parse(propDict["name"][0]);
+				cnf.cd = (string)GetProp(pProps,"cd").Parse(propDict["cd"][0]);
+				cnf.timeline = (string)GetProp(pProps,"timeline").Parse(propDict["timeline"][0]);
+
+                cnfs.Add(cnf);
+            }
+                
+            pGenInfo.SaveJson(cnfs);    
+        }
+
         private void Export_ItemRepairCnf(GenConfigInfo pGenInfo,List<BaseProperty> pProps,List<Dictionary<string, List<string>>> propValuelist)
         {
             List<ItemRepairCnf> cnfs = new List<ItemRepairCnf>();
@@ -349,6 +366,8 @@ namespace LCConfig.Excel.Export
 			exportFuncDict.Add("ActorBasePropertyCnf",Export_ActorBasePropertyCnf);
 
 			exportFuncDict.Add("ActorCnf",Export_ActorCnf);
+
+			exportFuncDict.Add("SkillCnf",Export_SkillCnf);
 
 			exportFuncDict.Add("ItemRepairCnf",Export_ItemRepairCnf);
 
@@ -515,6 +534,8 @@ namespace LCConfig.Excel.Export
         }
     }
 }
+
+
 
 
 

@@ -74,14 +74,13 @@ namespace Demo
         public List<Actor> GetOutPutItemActor(int pItemId, Actor pCheckActor)
         {
             List<Actor> actors = new List<Actor>();
-            MapArea tArea = MapLocate.Map.GetAreaByActor(pCheckActor);
-            foreach (var item in tArea.Actors)
+            foreach (var item in pCheckActor.CurrArea.InAreaAtors.Values)
             {
-                if (item.Value.GetCom(out OutputItemCom outputItemCom))
+                if (item.GetCom(out OutputItemCom outputItemCom))
                 {
                     if (outputItemCom.CheckIsOutputItem(pItemId))
                     {
-                        actors.Add(item.Value);
+                        actors.Add(item);
                     }
                 }
             }

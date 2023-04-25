@@ -31,14 +31,14 @@ namespace Demo.System
             Vector2 targetPos = gazeEntity.GetCom<TransCom>().Pos;
 
             //方向
-            if (selfPos.x - targetPos.x > 0)
-                transCom.Roate(DirType.Left);
-            else
-                transCom.Roate(DirType.Right);
-
-            //移动
-            gazeSurroundCom.moveDir = CalcWanderMoveDir(selfPos, gazeSurroundCom, targetPos);
-            transCom.MoveDir(gazeSurroundCom.moveDir, propertyCom.MoveSpeed.Curr);
+            // if (selfPos.x - targetPos.x > 0)
+            //     transCom.Roate(DirType.Left);
+            // else
+            //     transCom.Roate(DirType.Right);
+            //
+            // //移动
+            // gazeSurroundCom.moveDir = CalcWanderMoveDir(selfPos, gazeSurroundCom, targetPos);
+            // transCom.MoveDir(gazeSurroundCom.moveDir, propertyCom.MoveSpeed.Curr);
         }
 
         public DirType CalcWanderMoveDir(Vector2 selfPos, GazeSurroundCom gazeSurroundCom, Vector2 targetPos)

@@ -29,9 +29,9 @@ namespace Demo.Behavior
             ExecuteInteractiveData userData = context.GetUserData<ExecuteInteractiveData>();
             
             //当前演员
-            Actor actorObj = MapLocate.Map.GetActor(workData.MEntity.Uid);
+            Actor actorObj = ActorMediator.GetActor(workData.MEntity.Uid);
             //目标演员
-            Actor targetActor = MapLocate.Map.GetActor(wData.Blackboard[BEV_BlackboardKey.InteractiveActorUid].ToString());
+            Actor targetActor = ActorMediator.GetActor(wData.Blackboard[BEV_BlackboardKey.InteractiveActorUid].ToString());
             targetActor.ExecuteInteractive(actorObj, interactiveType);
 
             //保存
@@ -48,7 +48,7 @@ namespace Demo.Behavior
             ExecuteInteractiveData userData = context.GetUserData<ExecuteInteractiveData>();
 
             //目标演员
-            Actor targetActor = LCMap.MapLocate.Map.GetActor(wData.Blackboard[BEV_BlackboardKey.InteractiveActorUid].ToString());
+            Actor targetActor = LCMap.ActorMediator.GetActor(wData.Blackboard[BEV_BlackboardKey.InteractiveActorUid].ToString());
 
             if (!targetActor.Interactiving())
                 return NodeState.FINISHED;

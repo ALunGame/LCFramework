@@ -1,15 +1,1 @@
-﻿
-[
-    {
-        "mType" : "LCECS.Layer.Behavior.BehaviorTree",
-        "reqId" : 0,
-        "tree"  : {
-            "mType" : "LCECS.Core.Tree.Nodes.NodeRoot",
-            "Uid"   : "fc6dbca9-797c-4493-98d2-1ac01d5cf98a",
-            "childNodes" : null,
-            "nodePremise" : null
-        },
-        "HandleList" : [
-        ]
-    }
-]
+﻿[{"mType":"LCECS.Layer.Behavior.BehaviorTree","reqId":0,"tree":{"mType":"LCECS.Core.Tree.Nodes.NodeRoot","Uid":"308c5701-2fd7-4f90-921b-6464ee3f9f5c","childNodes":null,"nodePremise":null},"HandleList":[]}]

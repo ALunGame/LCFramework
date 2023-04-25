@@ -66,5 +66,10 @@ namespace LCToolkit
             EditorGUILayout.Space(2);
             return shape;
         }
+
+        public override float GetHeight()
+        {
+            return 0;
+        }
     }
 }

@@ -16,26 +16,17 @@ MonoBehaviour:
   - typeName: AnimSystem
     typeFullName: Demo.System.AnimSystem
     sort: 0
-  - typeName: BuffSystem
-    typeFullName: LCSkill.BuffSystem
-    sort: 9
   - typeName: WayPointMoveSystem
     typeFullName: Demo.System.WayPointMoveSystem
     sort: 9
   - typeName: HealthSystem
     typeFullName: Demo.System.HealthSystem
     sort: 10
-  - typeName: DamageSystem
-    typeFullName: LCSkill.DamageSystem
-    sort: 10
   - typeName: Collider2DSystem
     typeFullName: Demo.System.Collider2DSystem
     sort: 10
   - typeName: DayNightSystem
     typeFullName: Demo.System.DayNightSystem
-    sort: 11
-  - typeName: TimelineSystem
-    typeFullName: LCSkill.TimelineSystem
     sort: 11
   - typeName: WanderSystem
     typeFullName: Demo.System.WanderSystem
@@ -52,20 +43,14 @@ MonoBehaviour:
   - typeName: TransformSystem
     typeFullName: Demo.System.TransformSystem
     sort: 13
-  - typeName: AoeSystem
-    typeFullName: LCSkill.AoeSystem
-    sort: 13
+  - typeName: FollowCameraSystem
+    typeFullName: Demo.System.FollowCameraSystem
+    sort: 14
   - typeName: MoveSystem
     typeFullName: Demo.MoveSystem
     sort: 14
   - typeName: DragCameraSystem
     typeFullName: Demo.System.DragCameraSystem
-    sort: 14
-  - typeName: FollowCameraSystem
-    typeFullName: Demo.System.FollowCameraSystem
-    sort: 14
-  - typeName: BulletSystem
-    typeFullName: LCSkill.BulletSystem
     sort: 14
   - typeName: MoveWithColliderSystem
     typeFullName: Demo.MoveWithColliderSystem
@@ -88,5 +73,8 @@ MonoBehaviour:
   - typeName: MainActorMoveSystem
     typeFullName: Demo.System.MainActor.MainActorMoveSystem
     sort: 19
+  - typeName: NewMainActorMoveSystem
+    typeFullName: Demo.System.MainActor.NewMainActorMoveSystem
+    sort: 25
   fixedUpdateSystems: []
   threadSystems: []

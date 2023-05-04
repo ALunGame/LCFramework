@@ -33,7 +33,7 @@ namespace Demo.Com.MainActor.NewMove
             startJumpHeight = moveCom.Pos.y;
             
             targetJumpHeight = GetContext<MainActorJumpStateContext>().targetJumpHeight + startJumpHeight;
-            currJumpHeight  = 0;
+            currJumpHeight   = startJumpHeight;
         }
 
         protected internal override void OnUpdate(float pDeltaTime, float pRealElapseSeconds)
@@ -46,7 +46,7 @@ namespace Demo.Com.MainActor.NewMove
             }
             
             //检测头顶碰撞
-            if (moveCom.Collider.CollideCheck(Vector2.up))
+            if (moveCom.Collider.CollideCheck(ColliderDirType.Up))
             {
                 AutoChangeState();
                 return;
@@ -54,12 +54,6 @@ namespace Demo.Com.MainActor.NewMove
             
             //水平速度更新
             moveCom.UpdateSpeedX(pDeltaTime);
-
-            // if (moveCom.Speed.x <= targetJumpSpeed)
-            // {
-            //     
-            // }
-            //moveCom.UpdateFullSpeedY(elapseSeconds);
             
             //高度更新
             currJumpHeight = moveCom.Pos.y;
@@ -68,11 +62,11 @@ namespace Demo.Com.MainActor.NewMove
             if (moveCom.Input.ClickJump)
             {
                 moveCom.Input.ClearJump();
-                if (moveCom.Collider.CheckWallJump(ActorDir.Left))
+                if (moveCom.Collider.CheckWall(ActorDir.Left))
                 {
                     moveCom.WallJump(ActorDir.Right);
                 }
-                else if (moveCom.Collider.CheckWallJump(ActorDir.Right))
+                else if (moveCom.Collider.CheckWall(ActorDir.Right))
                 {
                     moveCom.WallJump(ActorDir.Left);
                 }

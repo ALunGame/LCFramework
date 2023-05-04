@@ -12,7 +12,7 @@ namespace Demo.Com.MainActor.NewMove
         
         public override bool OnEvaluate()
         {
-            if (!moveCom.Collider.CollideCheck((int)moveCom.CurrDir*Vector2.right))
+            if (!moveCom.Collider.CheckWall(moveCom.CurrDir))
             {
                 return false;
             }
@@ -60,7 +60,7 @@ namespace Demo.Com.MainActor.NewMove
             {
                 if (Math.Sign(moveCom.Speed.x) == -(int)HopWaitDir || moveCom.Speed.y < 0)
                     HopWaitDir = ActorDir.None;
-                else if (!moveCom.Collider.CollideCheck(Vector2.right * (int)HopWaitDir))
+                else if (!moveCom.Collider.CheckWall(HopWaitDir))
                 {
                     Debug.LogError("翻越墙角0001");
                     moveCom.Speed.x = HopWaitXSpeed;
@@ -71,7 +71,7 @@ namespace Demo.Com.MainActor.NewMove
             }
             
             //检测面前墙壁
-            if (!moveCom.Collider.CollideCheck((int)moveCom.CurrDir*Vector2.right))
+            if (!moveCom.Collider.CheckWall(moveCom.CurrDir))
             {
                 if (moveCom.Speed.y > 0 && moveCom.Collider.ForwardUpCheck())
                 {
@@ -93,7 +93,7 @@ namespace Demo.Com.MainActor.NewMove
                 if (moveCom.Input.MoveX == (int)moveCom.CurrDir)
                 {
                     //上方阻挡
-                    if (moveCom.Collider.CollideCheck(Vector2.up))
+                    if (moveCom.Collider.CollideCheck(ColliderDirType.Up))
                     {
                         moveCom.Speed.y = Mathf.Min(moveCom.Speed.y, 0);
                         upSpeed = 0;
@@ -136,7 +136,7 @@ namespace Demo.Com.MainActor.NewMove
             moveCom.Input.MoveX = 0;
 
             //下滑碰到底部
-            if (moveCom.Speed.y < 0 && !moveCom.Collider.CollideCheck(new Vector2((int)moveCom.CurrDir, -1)))
+            if (moveCom.Speed.y < 0 && moveCom.Collider.CollideCheck(ColliderDirType.Down))
             {
                 moveCom.Speed.y = 0;
             }
@@ -149,7 +149,7 @@ namespace Demo.Com.MainActor.NewMove
         {
             Debug.LogWarning("翻越墙角>>>>>>");
             
-            bool hit = moveCom.Collider.CollideCheck(Vector2.right * (int)moveCom.CurrDir);
+            bool hit = moveCom.Collider.CheckWall(moveCom.CurrDir);
             if (hit)
             {
                 HopWaitDir = moveCom.CurrDir;

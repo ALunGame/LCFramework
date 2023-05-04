@@ -44,7 +44,7 @@ namespace Demo.Com.MainActor.NewMove
             //墙壁
             if (moveCom.Input.MoveX!=0)
             {
-                if (moveCom.Collider.CollideCheck((int)moveCom.CurrDir*Vector2.right))
+                if (moveCom.Collider.CheckWall(moveCom.CurrDir))
                 {
                     if (moveCom.Input.MoveX == (int)moveCom.CurrDir)
                     {

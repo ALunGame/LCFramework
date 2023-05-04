@@ -1,10 +1,38 @@
 ﻿using System;
+using System.Collections.Generic;
 using LCMap;
 using LCToolkit;
 using UnityEngine;
 
 namespace Demo.Com.MainActor.NewMove
 {
+    public enum ColliderDirType
+    {
+        Up,
+        Down,
+        Left,
+        Right,
+    }
+
+    public class ColliderCheckInfo
+    {
+        public Vector2 dir;
+        public Vector2 pos;
+        public Vector2 size;
+
+        public ColliderCheckInfo(Vector2 pDir, Vector2 pPos, Vector2 pSize)
+        {
+            dir = pDir;
+            pos = pPos;
+            size = pSize;
+        }
+
+        public ColliderCheckInfo()
+        {
+            
+        }
+    }
+    
     /// <summary>
     /// 主角碰撞信息
     /// </summary>
@@ -29,8 +57,17 @@ namespace Demo.Com.MainActor.NewMove
         private Vector2 checkMoveXSize;
         private Vector2 checkMoveYSize;
         
-        private Vector2 checkGroundSize;
+        private Vector2 checkVerticalSize;
+        private Vector2 checkVerticalPos;
+        
+        private Vector2 checkHorizontalSize;
+        private Vector2 checkHorizontalPos;
+
         private Vector2 checkGroundPos;
+        
+        
+        private Dictionary<ColliderDirType,ColliderCheckInfo> checkInfoMap = new Dictionary<ColliderDirType, ColliderCheckInfo>();
+        
         
         /// <summary>
         /// 检测的碰撞层
@@ -50,6 +87,8 @@ namespace Demo.Com.MainActor.NewMove
             moveCom = pMoveCom;
             GroundMask = LayerMask.GetMask("Map");
             IsLegal = false;
+            
+
         }
 
         public void SetRect(BoxCollider2D pCollider2D)
@@ -61,8 +100,45 @@ namespace Demo.Com.MainActor.NewMove
             checkMoveXSize = new Vector2(ColliderRect.size.x, ColliderRect.size.y - DEVIATION*2);
             checkMoveYSize = new Vector2(ColliderRect.size.x - DEVIATION*2, ColliderRect.size.y);
             
-            checkGroundSize = new Vector2(ColliderRect.size.x - DEVIATION*2, ColliderRect.size.y / 2);
-            checkGroundPos = new Vector2(0, -checkGroundSize.y/2);
+            checkVerticalSize = new Vector2(ColliderRect.size.x - DEVIATION*2, ColliderRect.size.y / 2);
+            checkVerticalPos = new Vector2(0, checkVerticalSize.y/2);
+            
+            checkHorizontalSize = new Vector2(ColliderRect.size.x / 2, ColliderRect.size.y - DEVIATION*2);
+            checkHorizontalPos = new Vector2(checkHorizontalSize.x / 2, 0);
+
+
+            checkGroundPos = new Vector2(0, -checkVerticalSize.y/2);
+
+            CollectColliderCheckInfo();
+        }
+
+        private void CollectColliderCheckInfo()
+        {
+            checkInfoMap.Clear();
+            
+            ColliderCheckInfo upInfo = new ColliderCheckInfo();
+            upInfo.dir = Vector2.up;
+            upInfo.pos = new Vector2(0,checkVerticalSize.y/2);
+            upInfo.size = new Vector2(ColliderRect.size.x - DEVIATION*2, ColliderRect.size.y / 2);
+            checkInfoMap.Add(ColliderDirType.Up,upInfo);
+            
+            ColliderCheckInfo downInfo = new ColliderCheckInfo();
+            downInfo.dir = Vector2.down;
+            downInfo.pos = new Vector2(0,-checkVerticalSize.y/2);
+            downInfo.size = new Vector2(ColliderRect.size.x - DEVIATION*2, ColliderRect.size.y / 2);
+            checkInfoMap.Add(ColliderDirType.Down,downInfo);
+            
+            ColliderCheckInfo leftInfo = new ColliderCheckInfo();
+            leftInfo.dir = Vector2.left;
+            leftInfo.pos = new Vector2(-checkHorizontalSize.x / 2,0);
+            leftInfo.size = new Vector2(ColliderRect.size.x / 2, ColliderRect.size.y - DEVIATION * 2);
+            checkInfoMap.Add(ColliderDirType.Left,leftInfo);
+            
+            ColliderCheckInfo rightInfo = new ColliderCheckInfo();
+            rightInfo.dir = Vector2.right;
+            rightInfo.pos = new Vector2(checkHorizontalSize.x / 2,0);
+            rightInfo.size = new Vector2(ColliderRect.size.x / 2, ColliderRect.size.y - DEVIATION * 2);
+            checkInfoMap.Add(ColliderDirType.Right,rightInfo);
         }
         
         public void Init()
@@ -117,8 +193,11 @@ namespace Demo.Com.MainActor.NewMove
         /// <returns></returns>
         public bool CheckGround(Vector2 pOffset)
         {
-            Vector2 origion = ColliderPos() + pOffset + checkGroundPos;
-            int hitCnt = Physics2DEx.BoxCastNonAllocDraw(origion, checkGroundSize,Vector2.down, results, DEVIATION, GroundMask, Color.white, Color.red);
+            ColliderCheckInfo checkInfo = checkInfoMap[ColliderDirType.Down];
+            Vector2 checkPos  = ColliderPos() + checkInfo.pos + pOffset;
+            Vector2 checkSize = checkInfo.size;
+
+            int hitCnt = Physics2DEx.BoxCastNonAllocDraw(checkPos, checkSize,Vector2.down, results, DEVIATION, GroundMask, Color.white, Color.red);
             
             if (hitCnt >0)
             {
@@ -132,9 +211,17 @@ namespace Demo.Com.MainActor.NewMove
         /// </summary>
         /// <param name="pDir"></param>
         /// <returns></returns>
-        public bool CheckWallJump(ActorDir pDir)
+        public bool CheckWall(ActorDir pDir)
         {
-            return CollideCheck(Vector2.right * (int) pDir, MainActorConst.WallJumpCheckDist);
+            if (pDir == ActorDir.Left)
+            {
+                return CollideCheck(ColliderDirType.Left);
+            }
+            else if (pDir == ActorDir.Right)
+            {
+                return CollideCheck(ColliderDirType.Right);
+            }
+            return false;
         }
         
         /// <summary>
@@ -149,7 +236,16 @@ namespace Demo.Com.MainActor.NewMove
             
             return Physics2DEx.OverlapBoxDraw(ColliderPos() + pDir * (pDist + DEVIATION), ColliderRect.size, GroundMask);
         }
-        
+
+        public bool CollideCheck(ColliderDirType pDir, float pDist = 0)
+        {
+            ColliderCheckInfo checkInfo = checkInfoMap[pDir];
+
+            Vector2 checkPos  = ColliderPos() + checkInfo.pos + checkInfo.dir * (pDist + DEVIATION);
+            Vector2 checkSize = checkInfo.size;
+            return Physics2DEx.OverlapBoxDraw(checkPos, checkSize, GroundMask);
+        }
+
         /// <summary>
         /// 攀爬检查
         /// </summary>
@@ -238,14 +334,19 @@ namespace Demo.Com.MainActor.NewMove
             Vector2 moved = Vector2.zero;
             Vector2 direct = Math.Sign(pDistX) > 0 ? Vector2.right : Vector2.left;
             Vector2 origion = ColliderPos();
-            int hitCnt = Physics2DEx.BoxCastNonAllocDraw(origion, checkMoveXSize, direct, results, Mathf.Abs(pDistX) + DEVIATION, GroundMask);
+
+            ColliderDirType checkType = Math.Sign(pDistX) > 0 ? ColliderDirType.Right : ColliderDirType.Left;
+            ColliderCheckInfo checkInfo = checkInfoMap[checkType];
+            Vector2 checkPos  = ColliderPos() + checkInfo.pos;
+            Vector2 checkSize = checkInfo.size;
+            
+            int hitCnt = Physics2DEx.BoxCastNonAllocDraw(checkPos, checkSize, direct, results, Mathf.Abs(pDistX) + DEVIATION, GroundMask,Color.clear, Color.black);
             
             if (hitCnt>0)
             {
                 Vector2 offset = direct * Mathf.Max((results[0].distance - DEVIATION), 0);
                 //如果发生碰撞,则移动距离
                 moved += offset;
-                Debug.LogError($"如果发生碰撞,则移动距离>>>>{offset}");
                 return moved.x;
             }
             else
@@ -309,6 +410,7 @@ namespace Demo.Com.MainActor.NewMove
             if (!CorrectY(tempDist))
             {
                 moveCom.Speed.y = 0;//未完成校正，则速度清零
+                Debug.LogError("未完成校正，则速度清零");
                 return;
             }
         }
@@ -320,7 +422,12 @@ namespace Demo.Com.MainActor.NewMove
             Vector2 direct = Math.Sign(pDistY) > 0 ? Vector2.up : Vector2.down;
             Vector2 origion = ColliderPos();
             
-            int hitCnt = Physics2DEx.BoxCastNonAllocDraw(origion, checkMoveYSize, direct, results, Mathf.Abs(pDistY) + DEVIATION, GroundMask);
+            ColliderDirType checkType = Math.Sign(pDistY) > 0 ? ColliderDirType.Up : ColliderDirType.Down;
+            ColliderCheckInfo checkInfo = checkInfoMap[checkType];
+            Vector2 checkPos  = ColliderPos() + checkInfo.pos;
+            Vector2 checkSize = checkInfo.size;
+            
+            int hitCnt = Physics2DEx.BoxCastNonAllocDraw(checkPos, checkSize, direct, results, Mathf.Abs(pDistY) + DEVIATION, GroundMask,Color.clear, Color.black);
             
             if (hitCnt>0)
             {

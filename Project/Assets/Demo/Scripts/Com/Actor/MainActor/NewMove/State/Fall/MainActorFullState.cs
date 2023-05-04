@@ -24,11 +24,11 @@ namespace Demo.Com.MainActor.NewMove
             //检测跳跃
             if (moveCom.Input.ClickJump)
             {
-                if (moveCom.Collider.CheckWallJump(ActorDir.Left))
+                if (moveCom.Collider.CheckWall(ActorDir.Left))
                 {
                     moveCom.WallJump(ActorDir.Right);
                 }
-                else if (moveCom.Collider.CheckWallJump(ActorDir.Right))
+                else if (moveCom.Collider.CheckWall(ActorDir.Right))
                 {
                     moveCom.WallJump(ActorDir.Left);
                 }

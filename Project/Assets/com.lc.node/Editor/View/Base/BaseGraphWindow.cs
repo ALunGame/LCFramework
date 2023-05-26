@@ -28,7 +28,7 @@ namespace LCNode.View
             get { return graphAsset; }
             protected set { graphAsset = value; }
         }
-        public BaseGraph Graph
+        public BaseGraphVM Graph
         {
             get;
             private set;
@@ -185,8 +185,10 @@ namespace LCNode.View
             }
         }
 
-        protected void InternalLoad(BaseGraph graph, CommandDispatcher commandDispatcher)
+        protected void InternalLoad(BaseGraphVM graph, CommandDispatcher commandDispatcher)
         {
+            graph.Enable();
+            
             GraphView = NewGraphView(graph);
             if (GraphView == null)
                 return;
@@ -212,7 +214,9 @@ namespace LCNode.View
             GraphAsset = graphAsset as UnityObject;
             CommandDispatcher = new CommandDispatcher();
 
-            InternalLoad(graphAsset.DeserializeGraph(), CommandDispatcher);
+            BaseGraph baseGraph = graphAsset.DeserializeGraph();
+            BaseGraphVM graphVM = ViewModelFactory.CreateViewModel(baseGraph) as BaseGraphVM;
+            InternalLoad(graphVM, CommandDispatcher);
         }
 
         // 保存
@@ -221,7 +225,7 @@ namespace LCNode.View
             try
             {
                 if (GraphAsset is IGraphAsset graphAsset)
-                    graphAsset.SaveGraph(Graph);
+                    graphAsset.SaveGraph(Graph.Model);
                 GraphView.SetDirty();
                 AssetDatabase.SaveAssets();
                 AssetDatabase.Refresh();
@@ -250,7 +254,7 @@ namespace LCNode.View
         #endregion
 
         #region Overrides
-        protected virtual BaseGraphView NewGraphView(BaseGraph graph)
+        protected virtual BaseGraphView NewGraphView(BaseGraphVM graph)
         {
             return new BaseGraphView();
         }

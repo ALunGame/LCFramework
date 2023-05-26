@@ -1,12 +1,14 @@
-﻿using System;
+﻿using MemoryPack;
+using System;
 
-namespace Demo.Config
+namespace Cnf
 {
     
     /// <summary>
     /// 武器基础属性
     /// </summary>
-    public class WeaponCnf
+    [MemoryPackable]
+    public partial class WeaponCnf
     {
         
         /// <summary>

@@ -11,9 +11,12 @@ namespace LCDialog.DialogGraph
     public class DialogDisposeFuncData { }
 
     /// <summary>
-    /// 对话选项函数
+    /// 对话选项函数 ,目前还没有实现
     /// </summary>
-    public abstract class Dialog_DisposeFuncNode : BaseNode
+    
+    //
+    //[MemoryPackUnion(0, typeof(FooClass))]
+    public abstract partial class Dialog_DisposeFuncNode : BaseNode
     {
         public override string Title { get => "对话选项函数"; set => base.Title = value; }
 
@@ -31,7 +34,7 @@ namespace LCDialog.DialogGraph
     /// 对话选项
     /// </summary>
     [NodeMenuItem("选项")]
-    public class Dialog_DisposeNode : BaseNode
+    public partial class Dialog_DisposeNode : BaseNode
     {
         public override string Title { get => "对话选项"; set => base.Title = value; }
         public override string Tooltip { get => "对话选项"; set => base.Tooltip = value; }
@@ -56,7 +59,7 @@ namespace LCDialog.DialogGraph
 
             //函数
             model.onChooseFuncs = new List<DialogDisposeFunc>();
-            List<Dialog_DisposeFuncNode> funcNodes = NodeHelper.GetNodeOutNodes<Dialog_DisposeFuncNode>(Owner, this, "当点击选项时");
+            List<Dialog_DisposeFuncNode> funcNodes = NodeHelper.GetNodeOutNodes<Dialog_DisposeFuncNode>(Owner.Model, this, "当点击选项时");
             if (funcNodes.Count > 0)
             {
                 for (int i = 0; i < funcNodes.Count; i++)
@@ -93,15 +96,18 @@ namespace LCDialog.DialogGraph
     /// 对话说话的说话演员
     /// </summary>
     [NodeMenuItem("说话对象")]
-    public class Dialog_SpeakerNode : Map_ActorNode
+    
+    public partial class Dialog_SpeakerNode : Map_ActorNode
     {
         [OutputPort("父节点", BasePort.Capacity.Single, BasePort.Orientation.Vertical)]
+
         public MapActorData parentNode;
     }
 
     public class DialogStepData { }
 
-    public abstract class Dialog_BaseStepNode : BaseNode
+    
+    public abstract partial class Dialog_BaseStepNode : BaseNode
     {
         [InputPort("父节点", BasePort.Capacity.Single)]
         public DialogStepData parentNode;
@@ -112,7 +118,7 @@ namespace LCDialog.DialogGraph
         public void GetNextStep(Dialog_BaseStepNode node, ref List<Dialog_BaseStepNode> resNodes)
         {
             resNodes.Add(node);
-            List<Dialog_BaseStepNode> nodes = NodeHelper.GetNodeOutNodes<Dialog_BaseStepNode>(Owner, node, "下一步");
+            List<Dialog_BaseStepNode> nodes = NodeHelper.GetNodeOutNodes<Dialog_BaseStepNode>(Owner.Model, node, "下一步");
             if (nodes.Count > 0)
             {
                 GetNextStep(nodes[0], ref resNodes);
@@ -126,7 +132,7 @@ namespace LCDialog.DialogGraph
     /// 对话步骤
     /// </summary>
     [NodeMenuItem("步骤")]
-    public class Dialog_StepNode : Dialog_BaseStepNode
+    public partial class Dialog_StepNode : Dialog_BaseStepNode
     {
         public enum SpeakerType
         {
@@ -165,7 +171,7 @@ namespace LCDialog.DialogGraph
             //说话对象
             model.speakerType = (LCDialog.SpeakerType)((int)speakerType);
             model.speakers = new List<int>();
-            List<Dialog_SpeakerNode> speakerNodes = NodeHelper.GetNodeOutNodes<Dialog_SpeakerNode>(Owner, this, "说话的对象");
+            List<Dialog_SpeakerNode> speakerNodes = NodeHelper.GetNodeOutNodes<Dialog_SpeakerNode>(Owner.Model, this, "说话的对象");
             if (speakerNodes.Count > 0)
             {
                 model.speakers = speakerNodes[0].GetActorIds();
@@ -173,7 +179,7 @@ namespace LCDialog.DialogGraph
 
             //函数
             model.onPlayFuncs = new List<DialogStepFunc>();
-            List<Dialog_StepFuncNode> funcNodes = NodeHelper.GetNodeOutNodes<Dialog_StepFuncNode>(Owner, this, "当播放对话时");
+            List<Dialog_StepFuncNode> funcNodes = NodeHelper.GetNodeOutNodes<Dialog_StepFuncNode>(Owner.Model, this, "当播放对话时");
             if (funcNodes.Count > 0)
             {
                 for (int i = 0; i < funcNodes.Count; i++)
@@ -189,7 +195,7 @@ namespace LCDialog.DialogGraph
     /// 对话选项
     /// </summary>
     [NodeMenuItem("选项步骤")]
-    public class Dialog_DisposeStepNode : Dialog_BaseStepNode
+    public partial class Dialog_DisposeStepNode : Dialog_BaseStepNode
     {
         public override string Title { get => "选项步骤"; set => base.Title = value; }
         public override Color TitleColor { get => Color.red; set => base.TitleColor = value; }
@@ -219,7 +225,7 @@ namespace LCDialog.DialogGraph
             //说话对象
             model.speakerType = (LCDialog.SpeakerType)((int)speakerType);
             model.speakers = new List<int>();
-            List<Dialog_SpeakerNode> speakerNodes = NodeHelper.GetNodeOutNodes<Dialog_SpeakerNode>(Owner, this, "说话的对象");
+            List<Dialog_SpeakerNode> speakerNodes = NodeHelper.GetNodeOutNodes<Dialog_SpeakerNode>(Owner.Model, this, "说话的对象");
             if (speakerNodes.Count > 0)
             {
                 model.speakers = speakerNodes[0].GetActorIds();
@@ -227,7 +233,7 @@ namespace LCDialog.DialogGraph
 
             //分支
             model.disposes = new List<DialogDisposeModel>();
-            List<Dialog_DisposeNode> disposeNodes = NodeHelper.GetNodeOutNodes<Dialog_DisposeNode>(Owner, this, "对话选项");
+            List<Dialog_DisposeNode> disposeNodes = NodeHelper.GetNodeOutNodes<Dialog_DisposeNode>(Owner.Model, this, "对话选项");
             if (disposeNodes.Count > 0)
             {
                 for (int i = 0; i < disposeNodes.Count; i++)
@@ -240,7 +246,7 @@ namespace LCDialog.DialogGraph
 
             //函数
             model.onPlayFuncs = new List<DialogStepFunc>();
-            List<Dialog_StepFuncNode> funcNodes = NodeHelper.GetNodeOutNodes<Dialog_StepFuncNode>(Owner, this, "当播放对话时");
+            List<Dialog_StepFuncNode> funcNodes = NodeHelper.GetNodeOutNodes<Dialog_StepFuncNode>(Owner.Model, this, "当播放对话时");
             if (funcNodes.Count > 0)
             {
                 for (int i = 0; i < funcNodes.Count; i++)
@@ -257,7 +263,7 @@ namespace LCDialog.DialogGraph
     #endregion
 
     [NodeMenuItem("对话")]
-    public class Dialog_Node : BaseNode
+    public partial class Dialog_Node : BaseNode
     {
         [NodeValue("对话Id")]
         public int id;
@@ -274,7 +280,7 @@ namespace LCDialog.DialogGraph
             model.steps = new List<DialogStepModel>();
 
             List<Dialog_BaseStepNode> resNodes = new List<Dialog_BaseStepNode>();
-            List<Dialog_BaseStepNode> nodes = NodeHelper.GetNodeOutNodes<Dialog_BaseStepNode>(Owner, this, "对话步骤");
+            List<Dialog_BaseStepNode> nodes = NodeHelper.GetNodeOutNodes<Dialog_BaseStepNode>(Owner.Model, this, "对话步骤");
             if (nodes.Count > 0)
             {
                 nodes[0].GetNextStep(nodes[0], ref resNodes);

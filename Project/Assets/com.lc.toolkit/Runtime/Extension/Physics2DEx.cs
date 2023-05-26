@@ -75,11 +75,13 @@ namespace LCToolkit
             return res;
         }
         
-        public static bool OverlapPointDraw(Vector2 pPos, int layerMask)
+        public static int OverlapPointDraw(Vector2 pPos, Collider2D[] resCols, int layerMask)
         {
-            bool res = Physics2D.OverlapPoint(pPos, layerMask);
+            int resCnt = Physics2D.OverlapPointNonAlloc(pPos, resCols, layerMask);
+            
+            Debug.LogWarning("pPos>>"+pPos);
 
-            Color box_color = res ? Color.green : Color.blue;
+            Color box_color = resCnt > 0 ? Color.green : Color.blue;
             
             float half_width = 0.2f / 2;
             float half_height = 0.2f / 2;
@@ -94,7 +96,7 @@ namespace LCToolkit
             Debug.DrawLine(p4, p3, box_color);
             Debug.DrawLine(p3, p1, box_color);
 
-            return res;
+            return resCnt;
         }
         
     }

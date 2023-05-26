@@ -1,7 +1,7 @@
 ﻿using DG.Tweening;
 using LCMap;
 using System.Collections.Generic;
-using Config;
+using Cnf;
 using UnityEngine;
 
 namespace Demo

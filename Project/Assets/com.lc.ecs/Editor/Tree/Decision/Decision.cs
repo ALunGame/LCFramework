@@ -11,14 +11,24 @@ namespace LCECS.Tree
 {
     public class Decision : BaseGraph
     {
+        
+    }
+    
+    [NodeViewModel(typeof(Decision))]
+    public class DecisionVM : BaseGraphVM
+    {
         [NonSerialized]
         private List<Type> NodeTypes = new List<Type>();
 
+        public DecisionVM(BaseGraph model) : base(model)
+        {
+        }
+        
         protected override void OnEnabled()
         {
             base.OnEnabled();
             CollectNodeTypes();
-            foreach (var item in nodes)
+            foreach (var item in Model.nodes)
             {
                 if (item.Value is Tree_RootNode)
                 {
@@ -85,6 +95,5 @@ namespace LCECS.Tree
                 yield return type;
             }
         }
-
     }
 }

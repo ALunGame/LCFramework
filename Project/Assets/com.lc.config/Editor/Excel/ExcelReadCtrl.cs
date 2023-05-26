@@ -1,13 +1,16 @@
 
 using System.Collections.Generic;
 using System.IO;
+using aaa;
 using com.lc.config.Editor.Excel.Core;
 using LCConfig.Excel.Export;
 using LCConfig.Excel.GenCode;
 using LCConfig.Excel.GenCode.CommonExcel;
 using LCConfig.Excel.GenCode.Property;
 using LCToolkit;
+using MemoryPack;
 using OfficeOpenXml;
+using TT;
 using UnityEditor;
 using UnityEngine;
 
@@ -73,6 +76,23 @@ namespace LCConfig.Excel
         public static void OpenExcelRootPath()
         {
             MiscHelper.OpenDirectory(ExcelReadSetting.Setting.ConfigRootPath);
+        }
+        
+        [MenuItem("表格/测试")]
+        public static void Test()
+        {
+            Women women = new Women();
+            women.Name = "aaaaa";
+            women.aaa = 1;
+            women.bbbb = 2;
+            Debug.Log($"women : {women.Name}");
+            
+            byte[] bytes = MemoryPackSerializer.Serialize(women);
+
+            Women newWomen = MemoryPackSerializer.Deserialize<Women>(bytes);
+            newWomen.Name = "zzzz";
+            Debug.Log($"women : {newWomen.Name} ,{newWomen.aaa},{newWomen.bbbb}");
+
         }
         
         public static List<T> GetConfig<T>() where T:new()

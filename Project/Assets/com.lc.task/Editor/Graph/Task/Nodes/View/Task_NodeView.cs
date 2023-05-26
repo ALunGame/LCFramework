@@ -15,7 +15,7 @@ namespace LCTask.TaskGraph
 
         public override void CreateSelectMenu(DropdownMenu dropdownMenu)
         {
-            Task_Node node = Model as Task_Node;
+            Task_Node node = Model.Model as Task_Node;
             dropdownMenu.AppendAction("设置任务Id", delegate
             {
                 MiscHelper.Input("输入新任务Id", (x) =>
@@ -29,7 +29,7 @@ namespace LCTask.TaskGraph
 
         private void RefreshTitle()
         {
-            Task_Node node = Model as Task_Node;
+            Task_Node node = Model.Model as Task_Node;
             if (node is Task_AcceptNode)
             {
                 node.Title = $"接受{node.taskId}任务";

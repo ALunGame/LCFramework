@@ -15,7 +15,7 @@ namespace LCNode.View
     /// <summary>
     /// 节点显示
     /// </summary>
-    public partial class BaseNodeView : NodeView, IBindableView<BaseNode>
+    public partial class BaseNodeView : NodeView, IBindableView<BaseNodeVM>
     {
         #region 字段
         Label titleLabel;
@@ -46,7 +46,7 @@ namespace LCNode.View
             }
         }
         public BaseGraphView Owner { get; private set; }
-        public BaseNode Model { get; protected set; }
+        public BaseNodeVM Model { get; protected set; }
         #endregion
 
         public BaseNodeView()
@@ -83,17 +83,17 @@ namespace LCNode.View
 
         #region Initialization
 
-        public void SetUp(BaseNode node, BaseGraphView graphView)
+        public void SetUp(BaseNodeVM node, BaseGraphView graphView)
         {
             Model = node;
             Owner = graphView;
 
             // 初始化
             base.SetPosition(new Rect(Model.Position == default ? Vector2.zero : Model.Position, GetPosition().size));
-            OnTitleChanged(Model.Title);
-            tooltip = Model.Tooltip;
-            titleContainer.style.backgroundColor = Model.TitleColor;
-            TitleLabel.style.color = Model.TitleColor.GetLuminance() > 0.5f && Model.TitleColor.a > 0.5f ? Color.black : Color.white * 0.9f;
+            OnTitleChanged(Model.Model.Title);
+            tooltip = Model.Model.Tooltip;
+            titleContainer.style.backgroundColor = Model.Model.TitleColor;
+            TitleLabel.style.color = Model.Model.TitleColor.GetLuminance() > 0.5f && Model.Model.TitleColor.a > 0.5f ? Color.black : Color.white * 0.9f;
 
             //创建节点内部值
             CreateDrawerValues();
@@ -123,13 +123,13 @@ namespace LCNode.View
 
         private void InitPorts()
         {
-            void AddPortView(BasePort port)
+            void AddPortView(BasePortVM port)
             {
                 if (port == null)
                     return;
                 BasePortView portView = NewPortView(port);
                 portView.SetUp(port, Owner);
-                portViews[port.name] = portView;
+                portViews[port.Model.name] = portView;
 
                 if (portView.orientation == Orientation.Horizontal)
                 {
@@ -161,11 +161,11 @@ namespace LCNode.View
         private void CreateDrawerValues()
         {
             int index = 0;
-            foreach (FieldInfo item in ReflectionHelper.GetFieldInfos(Model.GetType()))
+            foreach (FieldInfo item in ReflectionHelper.GetFieldInfos(Model.ModelType))
             {
                 if (AttributeHelper.TryGetFieldAttribute(item, out NodeValueAttribute nodeValueAttribute))
                 {
-                    VisualElement element = ElementExtension.DrawField(nodeValueAttribute.Lable,item.FieldType, item.GetValue(Model), (object var) =>
+                    VisualElement element = ElementExtension.DrawField(nodeValueAttribute.Lable,item.FieldType, item.GetValue(Model.Model), (object var) =>
                     {
                         Owner.CommandDispacter.Do(new ChangeNodeValueCommand(Model, item, var, () =>
                         {
@@ -190,8 +190,8 @@ namespace LCNode.View
 
                     //自动绑定
                     ViewModel model = Model;
-                    model[nodeValueAttribute.Lable] = new BindableProperty(() => item.GetValue(Model), (object value) => {
-                        item.SetValue(Model, value);
+                    model[nodeValueAttribute.Lable] = new BindableProperty(() => item.GetValue(Model.Model), (object value) => {
+                        item.SetValue(Model.Model, value);
                         RefreshDrawerValues();
                     }, nodeValueAttribute.Tooltip);
                 }
@@ -202,7 +202,7 @@ namespace LCNode.View
         {
             foreach (var item in nodeValueElements)
             {
-                ElementExtension.SetFieldValue(item.Key, item.Value.GetValue(Model));
+                ElementExtension.SetFieldValue(item.Key, item.Value.GetValue(Model.Model));
             }
             OnDrawerValuesChange();
         }
@@ -212,11 +212,11 @@ namespace LCNode.View
         #region 数据监听
         protected virtual void BindingProperties()
         {
-            Model.OnTitleChanged += OnTitleChanged;
-            Model.OnTitleColorChanged += OnTitleColorChanged;
-            Model.OnTooltipChanged += OnTooltipChanged;
+            Model.Model.OnTitleChanged += OnTitleChanged;
+            Model.Model.OnTitleColorChanged += OnTitleColorChanged;
+            Model.Model.OnTooltipChanged += OnTooltipChanged;
 
-            Model.BindingProperty<Vector2>(BaseNode.POSITION_NAME, OnPositionChanged);
+            Model.BindingProperty<Vector2>(BaseNodeVM.POSITION_NAME, OnPositionChanged);
 
             Model.onPortAdded += OnPortAdded;
             Model.onPortRemoved += OnPortRemoved;
@@ -237,11 +237,11 @@ namespace LCNode.View
 
         }
 
-        void OnPortAdded(BasePort port)
+        void OnPortAdded(BasePortVM port)
         {
             BasePortView portView = NewPortView(port);
             portView.SetUp(port, Owner);
-            portViews[port.name] = portView;
+            portViews[port.Model.name] = portView;
 
             if (portView.orientation == Orientation.Horizontal)
             {
@@ -260,23 +260,23 @@ namespace LCNode.View
             RefreshPorts();
         }
 
-        void OnPortRemoved(BasePort port)
+        void OnPortRemoved(BasePortVM port)
         {
-            portViews[port.name].RemoveFromHierarchy();
-            portViews.Remove(port.name);
+            portViews[port.Model.name].RemoveFromHierarchy();
+            portViews.Remove(port.Model.name);
             RefreshPorts();
         }
 
         void OnTitleChanged(string title)
         {
-            if (Model.inIndex != -1)
+            if (Model.Model.inIndex != -1)
             {
-                title = $"({Model.inIndex}) {title}";
+                title = $"({Model.Model.inIndex}) {title}";
             }
 
-            if (Model.outIndex != -1)
+            if (Model.Model.outIndex != -1)
             {
-                title = $"{title} ({Model.outIndex})";
+                title = $"{title} ({Model.Model.outIndex})";
             }
 
             base.title = title;

@@ -18,8 +18,11 @@ namespace LCNode.View
             evt.menu.AppendAction("Create Group", delegate
             {
                 var group = new BaseGroup() { groupName = "New Group" };
-                group.nodes.AddRange(selection.Where(select => select is BaseNodeView).Select(select => (select as BaseNodeView).Model.guid));
-                CommandDispacter.Do(new AddGroupCommand(Model, group));
+                group.nodes.AddRange(selection.Where(select => select is BaseNodeView).Select(select => (select as BaseNodeView).Model.Model.guid));
+                
+                var vm = ViewModelFactory.CreateViewModel(group) as BaseGroupVM;
+
+                CommandDispacter.Do(new AddGroupCommand(Model, vm));
             }, (DropdownMenuAction a) => selection.Find(s => s is BaseNodeView) != null ? DropdownMenuAction.Status.Normal : DropdownMenuAction.Status.Hidden);
             
             base.BuildContextualMenu(evt);
@@ -102,17 +105,17 @@ namespace LCNode.View
             return Model.GetNodeTypes();
         }
 
-        protected virtual Type GetNodeViewType(BaseNode node)
+        protected virtual Type GetNodeViewType(BaseNodeVM node)
         {
-            return GraphProcessorEditorUtility.GetNodeViewType(node.GetType());
+            return GraphProcessorEditorUtility.GetNodeViewType(node.ModelType);
         }
         
-        protected virtual Type GetGroupViewType(BaseGroup group)
+        protected virtual Type GetGroupViewType(BaseGroupVM group)
         {
-            return GraphProcessorEditorUtility.GetGroupViewType(group.GetType());
+            return GraphProcessorEditorUtility.GetGroupViewType(group.ModelType);
         }
 
-        protected virtual Type GetConnectionViewType(BaseConnection connection)
+        protected virtual Type GetConnectionViewType(BaseConnectionVM connection)
         {
             return typeof(BaseConnectionView);
         }
@@ -165,41 +168,44 @@ namespace LCNode.View
 
             //序列化节点
             Dictionary<string, string> saveUidMap = new Dictionary<string, string>();
-            Dictionary<string, BaseNode> newNodeMap = new Dictionary<string, BaseNode>();
+            Dictionary<string, BaseNodeVM> newNodeMap = new Dictionary<string, BaseNodeVM>();
             for (int i = 0; i < nodes.Count; i++)
             {
-                BaseNode oldNode = nodes[i].Model;
-                string dataStr = LCJson.JsonMapper.ToJson(oldNode);
+                BaseNodeVM oldNode = nodes[i].Model;
+                string dataStr = LCJson.JsonMapper.ToJson(oldNode.Model);
 
-                string oldUid = oldNode.guid;
+                string oldUid = oldNode.GUID;
                 string newUid = Model.GenerateNodeGUID();
 
                 BaseNode newNode = LCJson.JsonMapper.ToObject<BaseNode>(dataStr);
                 newNode.guid = newUid;
                 newNode.position += new UnityEngine.Vector2(nodes[i].contentRect.width + 100, 0);
                 saveUidMap.Add(oldUid, newUid);
-
-                CommandDispacter.Do(new AddNodeCommand(Model, newNode));
-                newNodeMap.Add(newUid, newNode);
+                
+                BaseNodeVM newNodeVM = ViewModelFactory.CreateViewModel(newNode) as BaseNodeVM;
+                
+                CommandDispacter.Do(new AddNodeCommand(Model, newNodeVM));
+                newNodeMap.Add(newUid, newNodeVM);
             }
 
             //序列化链接
             for (int i = 0; i < edges.Count; i++)
             {
-                BaseConnection connectionView = edges[i].Model;
-                string dataStr = LCJson.JsonMapper.ToJson(connectionView);
+                BaseConnectionVM connectionView = edges[i].Model;
+                
+                string dataStr = LCJson.JsonMapper.ToJson(connectionView.Model);
                 BaseConnection newConnection = LCJson.JsonMapper.ToObject<BaseConnection>(dataStr);
 
                 //链接替换
-                BaseNode from = null;
-                string fromPortName = connectionView.fromPortName;
+                BaseNodeVM from = null;
+                string fromPortName = connectionView.Model.fromPortName;
                 if (saveUidMap.ContainsKey(newConnection.from))
                 {
                     from = newNodeMap[saveUidMap[newConnection.from]];
                 }
 
-                BaseNode to = null;
-                string toPortName = connectionView.toPortName;
+                BaseNodeVM to = null;
+                string toPortName = connectionView.Model.toPortName;
                 if (saveUidMap.ContainsKey(newConnection.to))
                 {
                     to = newNodeMap[saveUidMap[newConnection.to]];
@@ -217,7 +223,7 @@ namespace LCNode.View
             if (toPortView.direction == portView.direction)
                 return false;
             // 类型兼容查询
-            if (!TypesAreConnectable(portView.Model.type, toPortView.Model.type))
+            if (!TypesAreConnectable(portView.Model.Model.type, toPortView.Model.Model.type))
                 return false;
             return true;
         }

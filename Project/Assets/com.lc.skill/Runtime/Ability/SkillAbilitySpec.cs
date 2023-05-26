@@ -1,4 +1,5 @@
-﻿using Demo.Config;
+﻿using Cnf;
+using Demo.Config;
 using LCGAS;
 using LCSkill.Timeline;
 

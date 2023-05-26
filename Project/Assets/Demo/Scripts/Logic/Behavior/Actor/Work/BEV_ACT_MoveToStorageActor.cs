@@ -20,8 +20,8 @@ namespace Demo.Behavior
             EntityWorkData workData = wData as EntityWorkData;
 
             //组件
-            WorkerCom workerCom = workData.MEntity.GetCom<WorkerCom>();
-            WayPointMoveCom wayPointMoveCom = workData.MEntity.GetCom<WayPointMoveCom>();
+            // WorkerCom workerCom = workData.MEntity.GetCom<WorkerCom>();
+            // WayPointMoveCom wayPointMoveCom = workData.MEntity.GetCom<WayPointMoveCom>();
 
             //if (workerCom.managerActor == null)
             //{
@@ -50,20 +50,20 @@ namespace Demo.Behavior
 
         protected override int OnRunning(NodeData wData)
         {
-            EntityWorkData workData = wData as EntityWorkData;
-            WayPointMoveCom wayPointMoveCom = workData.MEntity.GetCom<WayPointMoveCom>();
-            if (wayPointMoveCom.CheckIsFinish())
-            {
-                return NodeState.FINISHED;
-            }
+            // EntityWorkData workData = wData as EntityWorkData;
+            // WayPointMoveCom wayPointMoveCom = workData.MEntity.GetCom<WayPointMoveCom>();
+            // if (wayPointMoveCom.CheckIsFinish())
+            // {
+            //     return NodeState.FINISHED;
+            // }
             return NodeState.EXECUTING;
         }
 
         protected override void OnExit(NodeData wData, int runningStatus)
         {
-            EntityWorkData workData = wData as EntityWorkData;
-            WayPointMoveCom wayPointMoveCom = workData.MEntity.GetCom<WayPointMoveCom>();
-            wayPointMoveCom.Clear();
+            // EntityWorkData workData = wData as EntityWorkData;
+            // WayPointMoveCom wayPointMoveCom = workData.MEntity.GetCom<WayPointMoveCom>();
+            // wayPointMoveCom.Clear();
         }
     }
 }

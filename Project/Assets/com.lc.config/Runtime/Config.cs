@@ -2,8 +2,9 @@
 using System;
 using System.Collections.Generic;
 using LCLoad;
+using MemoryPack;
 using TT;
-using Demo.Config;
+using Cnf;
 using LCMap;
 using Demo;
 
@@ -23,8 +24,8 @@ namespace LCConfig
             {
                 if (_Test == null)
                 {
-                    string jsonStr = LoadHelper.LoadString("TbTest");
-                    List<Test> configs = LCJson.JsonMapper.ToObject<List<Test>>(jsonStr);
+                    Byte[] byteArray = LoadHelper.LoadBytes("TbTest");
+                    List<Test> configs = MemoryPackSerializer.Deserialize<List<Test>>(byteArray);
                     _Test = new TbTest();
                     _Test.AddConfig(configs);
                 }
@@ -42,8 +43,8 @@ namespace LCConfig
             {
                 if (_ItemCnf == null)
                 {
-                    string jsonStr = LoadHelper.LoadString("TbItemCnf");
-                    List<ItemCnf> configs = LCJson.JsonMapper.ToObject<List<ItemCnf>>(jsonStr);
+                    Byte[] byteArray = LoadHelper.LoadBytes("TbItemCnf");
+                    List<ItemCnf> configs = MemoryPackSerializer.Deserialize<List<ItemCnf>>(byteArray);
                     _ItemCnf = new TbItemCnf();
                     _ItemCnf.AddConfig(configs);
                 }
@@ -61,8 +62,8 @@ namespace LCConfig
             {
                 if (_ItemRecipeCnf == null)
                 {
-                    string jsonStr = LoadHelper.LoadString("TbItemRecipeCnf");
-                    List<ItemRecipeCnf> configs = LCJson.JsonMapper.ToObject<List<ItemRecipeCnf>>(jsonStr);
+                    Byte[] byteArray = LoadHelper.LoadBytes("TbItemRecipeCnf");
+                    List<ItemRecipeCnf> configs = MemoryPackSerializer.Deserialize<List<ItemRecipeCnf>>(byteArray);
                     _ItemRecipeCnf = new TbItemRecipeCnf();
                     _ItemRecipeCnf.AddConfig(configs);
                 }
@@ -80,8 +81,8 @@ namespace LCConfig
             {
                 if (_ItemRepairCnf == null)
                 {
-                    string jsonStr = LoadHelper.LoadString("TbItemRepairCnf");
-                    List<ItemRepairCnf> configs = LCJson.JsonMapper.ToObject<List<ItemRepairCnf>>(jsonStr);
+                    Byte[] byteArray = LoadHelper.LoadBytes("TbItemRepairCnf");
+                    List<ItemRepairCnf> configs = MemoryPackSerializer.Deserialize<List<ItemRepairCnf>>(byteArray);
                     _ItemRepairCnf = new TbItemRepairCnf();
                     _ItemRepairCnf.AddConfig(configs);
                 }
@@ -99,8 +100,8 @@ namespace LCConfig
             {
                 if (_SkillCnf == null)
                 {
-                    string jsonStr = LoadHelper.LoadString("TbSkillCnf");
-                    List<SkillCnf> configs = LCJson.JsonMapper.ToObject<List<SkillCnf>>(jsonStr);
+                    Byte[] byteArray = LoadHelper.LoadBytes("TbSkillCnf");
+                    List<SkillCnf> configs = MemoryPackSerializer.Deserialize<List<SkillCnf>>(byteArray);
                     _SkillCnf = new TbSkillCnf();
                     _SkillCnf.AddConfig(configs);
                 }
@@ -118,8 +119,8 @@ namespace LCConfig
             {
                 if (_ActorCnf == null)
                 {
-                    string jsonStr = LoadHelper.LoadString("TbActorCnf");
-                    List<ActorCnf> configs = LCJson.JsonMapper.ToObject<List<ActorCnf>>(jsonStr);
+                    Byte[] byteArray = LoadHelper.LoadBytes("TbActorCnf");
+                    List<ActorCnf> configs = MemoryPackSerializer.Deserialize<List<ActorCnf>>(byteArray);
                     _ActorCnf = new TbActorCnf();
                     _ActorCnf.AddConfig(configs);
                 }
@@ -137,8 +138,8 @@ namespace LCConfig
             {
                 if (_ActorBasePropertyCnf == null)
                 {
-                    string jsonStr = LoadHelper.LoadString("TbActorBasePropertyCnf");
-                    List<ActorBasePropertyCnf> configs = LCJson.JsonMapper.ToObject<List<ActorBasePropertyCnf>>(jsonStr);
+                    Byte[] byteArray = LoadHelper.LoadBytes("TbActorBasePropertyCnf");
+                    List<ActorBasePropertyCnf> configs = MemoryPackSerializer.Deserialize<List<ActorBasePropertyCnf>>(byteArray);
                     _ActorBasePropertyCnf = new TbActorBasePropertyCnf();
                     _ActorBasePropertyCnf.AddConfig(configs);
                 }
@@ -156,8 +157,8 @@ namespace LCConfig
             {
                 if (_WeaponCnf == null)
                 {
-                    string jsonStr = LoadHelper.LoadString("TbWeaponCnf");
-                    List<WeaponCnf> configs = LCJson.JsonMapper.ToObject<List<WeaponCnf>>(jsonStr);
+                    Byte[] byteArray = LoadHelper.LoadBytes("TbWeaponCnf");
+                    List<WeaponCnf> configs = MemoryPackSerializer.Deserialize<List<WeaponCnf>>(byteArray);
                     _WeaponCnf = new TbWeaponCnf();
                     _WeaponCnf.AddConfig(configs);
                 }
@@ -175,8 +176,8 @@ namespace LCConfig
             {
                 if (_EventCnf == null)
                 {
-                    string jsonStr = LoadHelper.LoadString("TbEventCnf");
-                    List<EventCnf> configs = LCJson.JsonMapper.ToObject<List<EventCnf>>(jsonStr);
+                    Byte[] byteArray = LoadHelper.LoadBytes("TbEventCnf");
+                    List<EventCnf> configs = MemoryPackSerializer.Deserialize<List<EventCnf>>(byteArray);
                     _EventCnf = new TbEventCnf();
                     _EventCnf.AddConfig(configs);
                 }
@@ -194,8 +195,8 @@ namespace LCConfig
             {
                 if (_UIPanelCnf == null)
                 {
-                    string jsonStr = LoadHelper.LoadString("TbUIPanelCnf");
-                    List<UIPanelCnf> configs = LCJson.JsonMapper.ToObject<List<UIPanelCnf>>(jsonStr);
+                    Byte[] byteArray = LoadHelper.LoadBytes("TbUIPanelCnf");
+                    List<UIPanelCnf> configs = MemoryPackSerializer.Deserialize<List<UIPanelCnf>>(byteArray);
                     _UIPanelCnf = new TbUIPanelCnf();
                     _UIPanelCnf.AddConfig(configs);
                 }

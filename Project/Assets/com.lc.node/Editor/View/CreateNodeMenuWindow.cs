@@ -16,8 +16,8 @@ namespace LCNode.View
         private IEnumerable<Type> nodeTypes;
 
         class PortInfo { 
-            public List<BasePort> InPorts = new List<BasePort>();
-            public List<BasePort> OutPorts = new List<BasePort>();
+            public List<BasePortVM> InPorts = new List<BasePortVM>();
+            public List<BasePortVM> OutPorts = new List<BasePortVM>();
         }
         private Dictionary<Type, PortInfo> nodePortMap = new Dictionary<Type, PortInfo>();
 
@@ -53,15 +53,15 @@ namespace LCNode.View
                 {
                     if (AttributeHelper.TryGetFieldAttribute(item, out NodeValueAttribute nodeValueAttribute))
                         continue;
-                    BasePort port = null;
+                    BasePortVM port = null;
                     if (AttributeHelper.TryGetFieldAttribute(item, out InputPortAttribute inputAttr))
                     {
-                        port = new BasePort(inputAttr.name, inputAttr.orientation, inputAttr.direction, inputAttr.capacity, item.FieldType, inputAttr.setIndex);
+                        port = new BasePortVM(inputAttr.name, inputAttr.orientation, inputAttr.direction, inputAttr.capacity, item.FieldType, inputAttr.setIndex);
                         portInfo.InPorts.Add(port);
                     }
                     if (AttributeHelper.TryGetFieldAttribute(item, out OutputPortAttribute outputAttr))
                     {
-                        port = new BasePort(outputAttr.name, outputAttr.orientation, outputAttr.direction, outputAttr.capacity, item.FieldType, outputAttr.setIndex);
+                        port = new BasePortVM(outputAttr.name, outputAttr.orientation, outputAttr.direction, outputAttr.capacity, item.FieldType, outputAttr.setIndex);
                         portInfo.OutPorts.Add(port);
                     }
                 }
@@ -114,7 +114,7 @@ namespace LCNode.View
             }
         }
 
-        private BaseNode waitConnectNode = null;
+        private BaseNodeVM waitConnectNode = null;
         private string waitConnectPortName = null;
         private bool checkInPort = false;
         private Dictionary<Type, string> nodePortNameMap = new Dictionary<Type, string>();
@@ -127,15 +127,15 @@ namespace LCNode.View
             waitConnectNode = null;
             waitConnectPortName = null;
 
-            void CollectNodePortName(BasePort checkPort, Type nodeType, PortInfo portInfo, bool isInPort)
+            void CollectNodePortName(BasePortVM checkPort, Type nodeType, PortInfo portInfo, bool isInPort)
             {
                 if (isInPort)
                 {
                     for (int i = 0; i < portInfo.InPorts.Count; i++)
                     {
-                        if (graphView.TypesAreConnectable(checkPort.type, portInfo.InPorts[i].type))
+                        if (graphView.TypesAreConnectable(checkPort.Model.type, portInfo.InPorts[i].Model.type))
                         {
-                            nodePortNameMap.Add(nodeType, portInfo.InPorts[i].name);
+                            nodePortNameMap.Add(nodeType, portInfo.InPorts[i].Model.name);
                             return;
                         }
                     }
@@ -144,9 +144,9 @@ namespace LCNode.View
                 {
                     for (int i = 0; i < portInfo.OutPorts.Count; i++)
                     {
-                        if (graphView.TypesAreConnectable(checkPort.type, portInfo.OutPorts[i].type))
+                        if (graphView.TypesAreConnectable(checkPort.Model.type, portInfo.OutPorts[i].Model.type))
                         {
-                            nodePortNameMap.Add(nodeType, portInfo.OutPorts[i].name);
+                            nodePortNameMap.Add(nodeType, portInfo.OutPorts[i].Model.name);
                             return;
                         }
                     }
@@ -158,7 +158,7 @@ namespace LCNode.View
                 return;
             BasePortView portView = port as BasePortView;
             waitConnectNode = portView.Model.Owner;
-            waitConnectPortName = portView.Model.name;
+            waitConnectPortName = portView.Model.Model.name;
             checkInPort = waitConnectNode.GetPortDirection(waitConnectPortName) == BasePort.Direction.Input ? true : false;
 
             foreach (var item in nodePortMap)
@@ -219,7 +219,7 @@ namespace LCNode.View
             var windowMousePosition = windowRoot.ChangeCoordinatesTo(windowRoot.parent, context.screenMousePosition - graphView.GraphWindow.position.position);
             var graphMousePosition = graphView.contentViewContainer.WorldToLocal(windowMousePosition);
 
-            BaseNode createNode = graphView.Model.NewNode(searchTreeEntry.userData as Type, graphMousePosition);
+            BaseNodeVM createNode = graphView.Model.NewNode(searchTreeEntry.userData as Type, graphMousePosition);
 
             //自动连接
             if (ConnectionFilter != null)

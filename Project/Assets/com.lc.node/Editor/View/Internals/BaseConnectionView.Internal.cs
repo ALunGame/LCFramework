@@ -9,9 +9,9 @@ namespace LCNode.View
     /// <summary>
     /// 连接显示
     /// </summary>
-    public partial class BaseConnectionView : Edge, IBindableView<BaseConnection>
+    public partial class BaseConnectionView : Edge, IBindableView<BaseConnectionVM>
     {
-        public BaseConnection Model { get; private set; }
+        public BaseConnectionVM Model { get; private set; }
         protected BaseGraphView Owner { get; private set; }
 
         public BaseConnectionView() : base()
@@ -20,7 +20,7 @@ namespace LCNode.View
             this.RegisterCallback<MouseEnterEvent>(OnMouseEnter);
         }
 
-        public void SetUp(BaseConnection connection, BaseGraphView graphView)
+        public void SetUp(BaseConnectionVM connection, BaseGraphView graphView)
         {
             Model = connection;
             Owner = graphView;

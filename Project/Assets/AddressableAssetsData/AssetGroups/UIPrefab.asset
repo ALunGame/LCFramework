@@ -21,14 +21,17 @@ MonoBehaviour:
     m_Address: BubbleDialogChoosePanel
     m_ReadOnly: 0
     m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f4e2daa12ebd2ce449365896dbe69020
     m_Address: BubbleDialogCom
     m_ReadOnly: 0
     m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8be3379859c167f45ba84e3fd99bc57c
     m_Address: MainUIPanel
     m_ReadOnly: 0
     m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: c106a54d1dad7c34dbca1e47199c97a1, type: 2}
   m_SchemaSet:

@@ -1,7 +1,7 @@
 ﻿using Demo.Com;
 using LCMap;
 using System.Collections.Generic;
-using Config;
+using Cnf;
 
 namespace Demo
 {

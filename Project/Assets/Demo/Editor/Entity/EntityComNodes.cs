@@ -4,7 +4,7 @@ using LCECS.EntityGraph;
 using LCNode;
 using System;
 using System.Collections.Generic;
-using Config;
+using Cnf;
 using Demo.Com.MainActor;
 using Demo.Com.MainActor.NewMove;
 using Demo.Scripts.Com.Work;
@@ -21,11 +21,6 @@ namespace Demo
         public override string Title { get => "基础属性组件"; set => base.Title = value; }
         public override string Tooltip { get => "基础属性组件"; set => base.Tooltip = value; }
         public override Type RuntimeNode => typeof(BasePropertyCom);
-
-        protected override void OnEnabled()
-        {
-            base.OnEnabled();
-        }
 
         public override BaseCom CreateRuntimeNode()
         {
@@ -282,20 +277,6 @@ namespace Demo
         public override BaseCom CreateRuntimeNode()
         {
             GazeSurroundCom com = new GazeSurroundCom();
-            return com;
-        }
-    }
-
-    [NodeMenuItem("演员/AI/道路移动组件")]
-    public class Entity_Actor_WayPointMoveCom : Entity_ComNode
-    {
-        public override string Title { get => "道路移动组件"; set => base.Title = value; }
-        public override string Tooltip { get => "道路移动组件"; set => base.Tooltip = value; }
-        public override Type RuntimeNode => typeof(WayPointMoveCom);
-
-        public override BaseCom CreateRuntimeNode()
-        {
-            WayPointMoveCom com = new WayPointMoveCom();
             return com;
         }
     }

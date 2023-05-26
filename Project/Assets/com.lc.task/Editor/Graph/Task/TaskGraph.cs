@@ -8,9 +8,17 @@ namespace LCTask.TaskGraph
 {
     public class TaskGraph : BaseGraph
     {
+        
+    }
+    public class TaskGraphVM : BaseGraphVM
+    {
         [NonSerialized]
         private List<Type> NodeTypes = new List<Type>();
 
+        public TaskGraphVM(BaseGraph model) : base(model)
+        {
+        }
+        
         protected override void OnEnabled()
         {
             base.OnEnabled();

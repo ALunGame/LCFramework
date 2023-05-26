@@ -1,14 +1,16 @@
-﻿using System;
+﻿using MemoryPack;
+using System;
 using System.Collections.Generic;
-using Config;
+using Cnf;
 
-namespace Demo.Config
+namespace Cnf
 {
     
     /// <summary>
     /// 物品配方信息
     /// </summary>
-    public class ItemRecipeCnf
+    [MemoryPackable]
+    public partial class ItemRecipeCnf
     {
         
         /// <summary>

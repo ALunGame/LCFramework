@@ -1,12 +1,14 @@
-﻿using System;
+﻿using MemoryPack;
+using System;
 
-namespace Demo.Config
+namespace Cnf
 {
     
     /// <summary>
     /// 物品信息
     /// </summary>
-    public class ItemCnf
+    [MemoryPackable]
+    public partial class ItemCnf
     {
         
         /// <summary>

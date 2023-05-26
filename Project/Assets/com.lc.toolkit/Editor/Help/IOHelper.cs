@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using UnityEditor;
@@ -27,6 +28,27 @@ namespace LCToolkit
             using (StreamWriter sw = new StreamWriter(fullPath, false, Encoding.UTF8))
             {
                 sw.WriteLine(str);
+            }
+        }
+        
+        /// <summary>
+        /// 写入文件
+        /// </summary>
+        /// <param name="bytes">内容</param>
+        /// <param name="path">路径</param>
+        public static void WriteBytes(Byte[] bytes, string path)
+        {
+            string fullPath = Path.GetFullPath(path);
+            if (!Directory.Exists(Path.GetDirectoryName(fullPath)))
+            {
+                Directory.CreateDirectory(Path.GetDirectoryName(fullPath));
+            }
+            using (FileStream fs = new FileStream(fullPath, FileMode.OpenOrCreate))
+            {
+                fs.Write(bytes,0,bytes.Length);
+                fs.Flush();
+                fs.Close();
+                fs.Dispose();
             }
         }
 

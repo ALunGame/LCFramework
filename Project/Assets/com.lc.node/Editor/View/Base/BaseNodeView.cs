@@ -140,7 +140,7 @@ namespace LCNode.View
     {
         protected virtual void OnInitialized() { }
 
-        public virtual BasePortView NewPortView(BasePort port)
+        public virtual BasePortView NewPortView(BasePortVM port)
         {
             return new BasePortView(port, new EdgeConnectorListener(Owner));
         }

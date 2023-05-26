@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using Config;
+using Cnf;
 using Demo.Com;
 using Demo.Config;
 using Demo.Scripts.Com.Work;

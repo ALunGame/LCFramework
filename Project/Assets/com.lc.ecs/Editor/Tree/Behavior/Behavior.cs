@@ -9,14 +9,25 @@ namespace LCECS.Tree
 {
     public class Behavior : BaseGraph
     {
+        
+    }
+    
+    [NodeViewModel(typeof(Behavior))]
+    public class BehaviorVM : BaseGraphVM
+    {
         [NonSerialized]
         private List<Type> NodeTypes = new List<Type>();
 
+        
+        public BehaviorVM(BaseGraph model) : base(model)
+        {
+        }
+        
         protected override void OnEnabled()
         {
             base.OnEnabled();
             CollectNodeTypes();
-            foreach (var item in nodes)
+            foreach (var item in Model.nodes)
             {
                 if (item.Value is Tree_RootNode)
                 {

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MemoryPack;
+using System;
 using LCMap;
 using System.Collections.Generic;
 using System;
@@ -9,7 +10,8 @@ namespace LCMap
     /// <summary>
     /// 演员信息
     /// </summary>
-    public class ActorCnf
+    [MemoryPackable]
+    public partial class ActorCnf
     {
         
         /// <summary>

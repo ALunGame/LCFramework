@@ -100,11 +100,12 @@ namespace Demo.Com.MainActor.NewMove
                         trySlip = true;
                     }
                     //前上方没有阻挡，翻越
-                    else if (moveCom.Collider.ForwardUpCheck()){
+                    else if (!moveCom.Collider.ForwardUpCheck()){
                         ClimbHop();
                         return;
                     }
                 }
+                //抓墙
                 else
                 {
                     trySlip = true;
@@ -147,8 +148,6 @@ namespace Demo.Com.MainActor.NewMove
         /// </summary>
         public void ClimbHop()
         {
-            Debug.LogWarning("翻越墙角>>>>>>");
-            
             bool hit = moveCom.Collider.CheckWall(moveCom.CurrDir);
             if (hit)
             {

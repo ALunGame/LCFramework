@@ -1,15 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using MemoryPack;
 using System;
 using System.Collections.Generic;
 using System;
+using System.Collections.Generic;
 using System;
-using Config;
+using System;
+using Cnf;
 using System.Collections.Generic;
-using Config;
+using Cnf;
 using System.Collections.Generic;
-using Config;
-using Config;
+using Cnf;
+using Cnf;
 
 namespace TT
 {
@@ -17,7 +18,8 @@ namespace TT
     /// <summary>
     /// 测试
     /// </summary>
-    public class Test
+    [MemoryPackable]
+    public partial class Test
     {
         
         /// <summary>

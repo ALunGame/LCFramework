@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System;
 
-namespace Demo.Config
+namespace Cnf
 {
     
     public class TbSkillCnf : Dictionary<int, SkillCnf>

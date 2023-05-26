@@ -51,24 +51,11 @@ namespace Demo.Com.MainActor.NewMove
         /// </summary>
         public Rect ColliderRect { get; private set; }
         
-        private Vector2 checkUpSize;
-        private Vector2 checkDownSize;
-        
-        private Vector2 checkMoveXSize;
-        private Vector2 checkMoveYSize;
-        
-        private Vector2 checkVerticalSize;
-        private Vector2 checkVerticalPos;
-        
-        private Vector2 checkHorizontalSize;
-        private Vector2 checkHorizontalPos;
-
-        private Vector2 checkGroundPos;
-        
-        
+        /// <summary>
+        /// 检测区域
+        /// </summary>
         private Dictionary<ColliderDirType,ColliderCheckInfo> checkInfoMap = new Dictionary<ColliderDirType, ColliderCheckInfo>();
-        
-        
+
         /// <summary>
         /// 检测的碰撞层
         /// </summary>
@@ -80,6 +67,7 @@ namespace Demo.Com.MainActor.NewMove
         public bool IsLegal { get; private set;}
 
         private RaycastHit2D[] results = new RaycastHit2D[4];
+        private Collider2D[] colResults = new Collider2D[4];
         private NewMainActorMoveCom moveCom;
 
         public MainActorCollider(NewMainActorMoveCom pMoveCom, Actor pActor)
@@ -87,8 +75,6 @@ namespace Demo.Com.MainActor.NewMove
             moveCom = pMoveCom;
             GroundMask = LayerMask.GetMask("Map");
             IsLegal = false;
-            
-
         }
 
         public void SetRect(BoxCollider2D pCollider2D)
@@ -96,18 +82,6 @@ namespace Demo.Com.MainActor.NewMove
             Collider2D = pCollider2D;
             ColliderRect = new Rect(pCollider2D.offset, pCollider2D.size);
             IsLegal = true;
-            
-            checkMoveXSize = new Vector2(ColliderRect.size.x, ColliderRect.size.y - DEVIATION*2);
-            checkMoveYSize = new Vector2(ColliderRect.size.x - DEVIATION*2, ColliderRect.size.y);
-            
-            checkVerticalSize = new Vector2(ColliderRect.size.x - DEVIATION*2, ColliderRect.size.y / 2);
-            checkVerticalPos = new Vector2(0, checkVerticalSize.y/2);
-            
-            checkHorizontalSize = new Vector2(ColliderRect.size.x / 2, ColliderRect.size.y - DEVIATION*2);
-            checkHorizontalPos = new Vector2(checkHorizontalSize.x / 2, 0);
-
-
-            checkGroundPos = new Vector2(0, -checkVerticalSize.y/2);
 
             CollectColliderCheckInfo();
         }
@@ -118,26 +92,26 @@ namespace Demo.Com.MainActor.NewMove
             
             ColliderCheckInfo upInfo = new ColliderCheckInfo();
             upInfo.dir = Vector2.up;
-            upInfo.pos = new Vector2(0,checkVerticalSize.y/2);
             upInfo.size = new Vector2(ColliderRect.size.x - DEVIATION*2, ColliderRect.size.y / 2);
+            upInfo.pos = new Vector2(0,upInfo.size.y/2);
             checkInfoMap.Add(ColliderDirType.Up,upInfo);
             
             ColliderCheckInfo downInfo = new ColliderCheckInfo();
             downInfo.dir = Vector2.down;
-            downInfo.pos = new Vector2(0,-checkVerticalSize.y/2);
             downInfo.size = new Vector2(ColliderRect.size.x - DEVIATION*2, ColliderRect.size.y / 2);
+            downInfo.pos = new Vector2(0,-downInfo.size.y/2);
             checkInfoMap.Add(ColliderDirType.Down,downInfo);
             
             ColliderCheckInfo leftInfo = new ColliderCheckInfo();
             leftInfo.dir = Vector2.left;
-            leftInfo.pos = new Vector2(-checkHorizontalSize.x / 2,0);
             leftInfo.size = new Vector2(ColliderRect.size.x / 2, ColliderRect.size.y - DEVIATION * 2);
+            leftInfo.pos = new Vector2(-leftInfo.size.x / 2,0);
             checkInfoMap.Add(ColliderDirType.Left,leftInfo);
             
             ColliderCheckInfo rightInfo = new ColliderCheckInfo();
             rightInfo.dir = Vector2.right;
-            rightInfo.pos = new Vector2(checkHorizontalSize.x / 2,0);
             rightInfo.size = new Vector2(ColliderRect.size.x / 2, ColliderRect.size.y - DEVIATION * 2);
+            rightInfo.pos = new Vector2(rightInfo.size.x / 2,0);
             checkInfoMap.Add(ColliderDirType.Right,rightInfo);
         }
         
@@ -273,15 +247,15 @@ namespace Demo.Com.MainActor.NewMove
         {
             int direct = moveCom.CurrDir == ActorDir.Right ? 1 : -1;
             
-            Vector2 origin = ColliderPos() + Vector2.up * ColliderRect.size.y / 2f + Vector2.right * direct * (ColliderRect.size.x / 2f + STEP);
+            Vector2 origin = ColliderPos() + Vector2.up * ColliderRect.size.y / 2f + Vector2.right * (direct * (ColliderRect.size.x / 2f + STEP));
             Vector2 point1 = origin + Vector2.up * (-0.4f + pAddY);
 
-            if(Physics2DEx.OverlapPointDraw(point1, GroundMask))
+            if(Physics2DEx.OverlapPointDraw(point1,colResults, GroundMask) > 0)
             {
                 return true;
             }
             Vector2 point2 = origin + Vector2.up * (0.4f + pAddY);
-            if (Physics2DEx.OverlapPointDraw(point2, GroundMask))
+            if (Physics2DEx.OverlapPointDraw(point2,colResults, GroundMask) > 0)
             {
                 return true;
             }
@@ -410,7 +384,6 @@ namespace Demo.Com.MainActor.NewMove
             if (!CorrectY(tempDist))
             {
                 moveCom.Speed.y = 0;//未完成校正，则速度清零
-                Debug.LogError("未完成校正，则速度清零");
                 return;
             }
         }

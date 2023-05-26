@@ -1,4 +1,5 @@
-﻿
+﻿using MemoryPack;
+
 using System;
 using LCUI;
 
@@ -8,7 +9,8 @@ namespace Demo
     /// <summary>
     /// 界面配置
     /// </summary>
-    public class UIPanelCnf
+    [MemoryPackable]
+    public partial class UIPanelCnf
     {
         
         /// <summary>

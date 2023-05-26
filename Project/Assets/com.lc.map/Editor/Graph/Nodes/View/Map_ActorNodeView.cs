@@ -61,7 +61,7 @@ namespace LCMap
 
         private void DrawActors()
         {
-            Map_ActorNode node = Model as Map_ActorNode;
+            Map_ActorNode node = Model.Model as Map_ActorNode;
             foreach (var item in btnActorList)
             {
                 RemoveActorItemBtn(item.Key);
@@ -120,7 +120,7 @@ namespace LCMap
 
         private void OnClickRemoveActor(int actorId)
         {
-            Map_ActorNode node = Model as Map_ActorNode;
+            Map_ActorNode node = Model.Model as Map_ActorNode;
             for (int i = 0; i < node.actorIds.Count; i++)
             {
                 if (node.actorIds[i] == actorId)
@@ -133,7 +133,7 @@ namespace LCMap
 
         private void OnClickSelActor(int index,int actorId, Button selActorBtn)
         {
-            Map_ActorNode node = Model as Map_ActorNode;
+            Map_ActorNode node = Model.Model as Map_ActorNode;
             List<int> actors = GetCurrActors();
             for (int i = 0; i < actors.Count; i++)
             {
@@ -161,7 +161,7 @@ namespace LCMap
 
         private void OnClickAddActor()
         {
-            Map_ActorNode node = Model as Map_ActorNode;
+            Map_ActorNode node = Model.Model as Map_ActorNode;
 
             int leftActorId = -1;
             List<int> actors = GetCurrActors();
@@ -185,21 +185,21 @@ namespace LCMap
 
         private void OnClickClearActor()
         {
-            Map_ActorNode node = Model as Map_ActorNode;
+            Map_ActorNode node = Model.Model as Map_ActorNode;
             node.actorIds.Clear();
             DrawActors();
         }
 
         private bool CheckActorIdIsSafe(int actorId)
         {
-            Map_ActorNode node = Model as Map_ActorNode;
+            Map_ActorNode node = Model.Model as Map_ActorNode;
             List<int> actors = GetCurrActors();
             return actors.Contains(actorId);
         }
 
         private List<int> GetCurrActors()
         {
-            Map_ActorNode node = Model as Map_ActorNode;
+            Map_ActorNode node = Model.Model as Map_ActorNode;
             List<int> actors = new List<int>();
             if (node.mapId == MapNodeId.所有地图)
             {

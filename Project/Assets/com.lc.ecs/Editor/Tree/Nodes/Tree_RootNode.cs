@@ -15,11 +15,6 @@ namespace LCECS.Tree
         [InputPort("前提", BasePort.Capacity.Multi, setIndex = true)]
         public PremiseData premise;
 
-        protected override void OnEnabled()
-        {
-            base.OnEnabled();
-        }
-
         private NodePremise CreatePremise()
         {
             NodePremise genNodePremise(Tree_PremiseNode preNode, NodePremise lastPre)
@@ -30,7 +25,7 @@ namespace LCECS.Tree
                 return nodePremise;
             }
 
-            List<Tree_PremiseNode> nodes = NodeHelper.GetNodeInNodes<Tree_PremiseNode>(Owner, this);
+            List<Tree_PremiseNode> nodes = NodeHelper.GetNodeInNodes<Tree_PremiseNode>(Owner.Model, this);
             if (nodes.Count<=0)
                 return null;
             NodePremise startPremise = null;
@@ -72,7 +67,7 @@ namespace LCECS.Tree
         /// <returns></returns>
         public List<Node> CreateChildNodes()
         {
-            List<Tree_BaseNode> nodes = NodeHelper.GetNodeOutNodes<Tree_BaseNode>(Owner, this);
+            List<Tree_BaseNode> nodes = NodeHelper.GetNodeOutNodes<Tree_BaseNode>(Owner.Model, this);
             if (nodes.Count <= 0)
                 return null;
             List<Node> childNodes = new List<Node>();
@@ -93,11 +88,6 @@ namespace LCECS.Tree
 
         [OutputPort("子节点", BasePort.Capacity.Single, BasePort.Orientation.Vertical)]
         public NodeData childNode;
-
-        protected override void OnEnabled()
-        {
-            base.OnEnabled();
-        }
 
         public override Node CreateRuntimeNode()
         {

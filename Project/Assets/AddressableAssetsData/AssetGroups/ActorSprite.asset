@@ -21,54 +21,67 @@ MonoBehaviour:
     m_Address: Assets/Demo/Asset/Actors/Monster/1005/Sprite
     m_ReadOnly: 0
     m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 60b07606982cbb540ae7286107c6ef04
     m_Address: Assets/Demo/Asset/Actors/Player/1001/Sprite
     m_ReadOnly: 0
     m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 59df872393fe38e49841b6e1c8e946bf
     m_Address: Assets/Demo/Asset/Actors/Item/Sprite
     m_ReadOnly: 0
     m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 2198f46d7dd227346915307ad1475b7c
     m_Address: Assets/Demo/Asset/Actors/Building/Sprite
     m_ReadOnly: 0
     m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 7a0ecb2d8a2d3344c835fa8cd1bcbf68
     m_Address: Assets/Demo/Asset/Actors/Villagers/villager7/Sprite
     m_ReadOnly: 0
     m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 7a370d4d523929a4eac5f2a98d21613f
     m_Address: Assets/Demo/Asset/Actors/Villagers/villager2/Sprite
     m_ReadOnly: 0
     m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 51b519e1c35c13f47ab094a43ab776ac
     m_Address: Assets/Demo/Asset/Actors/Villagers/villager9/Sprite
     m_ReadOnly: 0
     m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 9cf2f5b61b85235468cbbe3aaf302ce6
     m_Address: Assets/Demo/Asset/Actors/Villagers/villager1/Sprite
     m_ReadOnly: 0
     m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 3ad2bdce0ac61514790b869918f98dc0
     m_Address: Assets/Demo/Asset/Actors/Villagers/villager5/Sprite
     m_ReadOnly: 0
     m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: da8507a603e1f4f4cbd1320779140f20
     m_Address: Assets/Demo/Asset/Actors/Villagers/villager3/Sprite
     m_ReadOnly: 0
     m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ddc73c03a6fdcda48af2f3b2cd1cf6fe
     m_Address: Assets/Demo/Asset/Actors/Villagers/villager6/Sprite
     m_ReadOnly: 0
     m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: cdb01ca135b7e794f9b2e60d5b8c41f4
     m_Address: Assets/Demo/Asset/Actors/Villagers/villager4/Sprite
     m_ReadOnly: 0
     m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 468ca877bb419774e8cc66e01e44f72c
     m_Address: Assets/Demo/Asset/Actors/Villagers/villager8/Sprite
     m_ReadOnly: 0
     m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: c106a54d1dad7c34dbca1e47199c97a1, type: 2}
   m_SchemaSet:

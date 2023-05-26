@@ -16,8 +16,8 @@ namespace LCNode.Inspector
         static GUIHelper.ContextDataCache ContextDataCache = new GUIHelper.ContextDataCache();
         static HashSet<string> IgnoreProperties = new HashSet<string>()
         {
-            BaseGraph.POS_NAME,
-            BaseGraph.ZOOM_NAME
+            BaseGraphVM.POS_NAME,
+            BaseGraphVM.ZOOM_NAME
         };
 
         public override void OnInspectorGUI()

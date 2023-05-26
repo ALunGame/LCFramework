@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System;
 using System.Collections.Generic;
-using Config;
+using Cnf;
 
-namespace Demo.Config
+namespace Cnf
 {
     
     public class TbItemRecipeCnf : Dictionary<int, ItemRecipeCnf>

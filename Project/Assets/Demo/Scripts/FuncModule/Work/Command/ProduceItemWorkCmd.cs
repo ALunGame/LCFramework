@@ -1,4 +1,4 @@
-﻿using Config;
+﻿using Cnf;
 using Demo.Com;
 using Demo.Config;
 using LCMap;

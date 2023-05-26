@@ -1,12 +1,14 @@
-﻿using System;
+﻿using MemoryPack;
+using System;
 
-namespace Config
+namespace Cnf
 {
     
     /// <summary>
     /// 物品信息
     /// </summary>
-    public class TestInfo
+    [MemoryPackable]
+    public partial class TestInfo
     {
         
         /// <summary>
@@ -19,6 +21,7 @@ namespace Config
         /// </summary>
         public int itemCnt;
 
+        [MemoryPackConstructor]
         public TestInfo(){}
 
         public TestInfo(int itemId,int itemCnt)

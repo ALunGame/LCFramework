@@ -45,7 +45,7 @@
                 return 0;
             }
 
-            return com.GetValue(attrName.Name, attributeValueType);
+            return com.GetAttrValue(attrName.Name, attributeValueType);
         }
 
         public bool SetValue(GameplayEffectSpec pSpec, float pValue)
@@ -56,7 +56,7 @@
                 LCGAS.GASLocate.Log.LogError("ModifierAttr.SetValue失败,没有对应组件",attrName,pSpec.Model.name);
                 return false;
             }
-            return com.SetValue(attrName.Name, pValue);
+            return com.SetAttrValue(attrName.Name, pValue);
         }
     }
     

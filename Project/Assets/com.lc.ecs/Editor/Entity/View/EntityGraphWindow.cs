@@ -23,7 +23,7 @@ namespace LCECS.EntityGraph
 
         private void CreateRunningTimeToolbar(ToolbarView toolbar)
         {
-            EntityGraph graph = Graph as EntityGraph;
+            EntityGraphVM graph = Graph as EntityGraphVM;
             //查看所有节点
             ToolbarButton btnSelEntity = new ToolbarButton()
             {
@@ -63,7 +63,7 @@ namespace LCECS.EntityGraph
 
             MiscHelper.Menu(selStrs, (int x) =>
             {
-                EntityGraph graph = Graph as EntityGraph;
+                EntityGraphVM graph = Graph as EntityGraphVM;
                 graph.RunningTimeEntity = entities[x];
                 btnSelEntity.text = selStrs[x];
             });

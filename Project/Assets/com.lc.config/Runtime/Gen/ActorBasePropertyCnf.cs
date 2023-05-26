@@ -1,12 +1,14 @@
-﻿using System;
+﻿using MemoryPack;
+using System;
 
-namespace Demo.Config
+namespace Cnf
 {
     
     /// <summary>
     /// 演员基础属性
     /// </summary>
-    public class ActorBasePropertyCnf
+    [MemoryPackable]
+    public partial class ActorBasePropertyCnf
     {
         
         /// <summary>

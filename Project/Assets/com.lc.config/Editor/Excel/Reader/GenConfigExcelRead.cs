@@ -4,6 +4,7 @@ using LCConfig.Excel;
 using LCConfig.Excel.GenCode;
 using LCJson;
 using LCToolkit;
+using MemoryPack;
 using Newtonsoft.Json;
 using OfficeOpenXml;
 using UnityEngine;
@@ -30,8 +31,12 @@ namespace com.lc.config.Editor.Excel.Core
             }
             string savePath = $"{ExcelReadSetting.Setting.GenJsonRootPath}/{GetFileName()}";
             
-            string jsonStr = JsonMapper.ToJson(value);
-            IOHelper.WriteText(jsonStr,savePath);
+            // string jsonStr = JsonMapper.ToJson(value);
+            // IOHelper.WriteText(jsonStr,savePath);
+
+            var data = MemoryPackSerializer.Serialize(value.GetType(), value);
+            
+            IOHelper.WriteBytes(data,savePath);
             Debug.Log($"配置导出成功>>>{className}-->{savePath}");
         }
 

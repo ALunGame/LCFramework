@@ -23,15 +23,15 @@ namespace LCNode.View.Utils
         {
             BaseGraphView tempGraphView = graphView as BaseGraphView;
 
-            BaseNode from = (edge.output.node as BaseNodeView).Model;
-            BasePort fromPort = (edge.output as BasePortView).Model;
-            BaseNode to = (edge.input.node as BaseNodeView).Model;
-            BasePort toPort = (edge.input as BasePortView).Model;
+            BaseNodeVM from = (edge.output.node as BaseNodeView).Model;
+            BasePortVM fromPort = (edge.output as BasePortView).Model;
+            BaseNodeVM to = (edge.input.node as BaseNodeView).Model;
+            BasePortVM toPort = (edge.input as BasePortView).Model;
             // 如果连线不是一个新建的连线就重定向
-            if (edge.userData is BaseConnection connection)
-                tempGraphView.CommandDispacter.Do(new ConnectionRedirectCommand(tempGraphView.Model, connection, from, fromPort.name, to, toPort.name));
+            if (edge.userData is BaseConnectionVM connection)
+                tempGraphView.CommandDispacter.Do(new ConnectionRedirectCommand(tempGraphView.Model, connection, from, fromPort.Model.name, to, toPort.Model.name));
             else
-                tempGraphView.CommandDispacter.Do(new ConnectCommand(tempGraphView.Model, from, fromPort.name, to, toPort.name));
+                tempGraphView.CommandDispacter.Do(new ConnectCommand(tempGraphView.Model, from, fromPort.Model.name, to, toPort.Model.name));
         }
 
         /// <summary> 拖到空白松开时触发 </summary>

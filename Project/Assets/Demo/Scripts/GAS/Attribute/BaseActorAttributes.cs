@@ -2,7 +2,7 @@
 
 namespace Demo.GAS.Attribute
 {
-    public static class BaseActorAttributeDef
+    public static partial class AttributeDef
     {
         public const string CurrHP  = "当前血量";
         public const string MaxHP   = "最大血量";
@@ -18,7 +18,7 @@ namespace Demo.GAS.Attribute
     /// </summary>
     public class Attr_ActorCurrHP : AttributeValue
     {
-        public override string Name { get => BaseActorAttributeDef.CurrHP; }
+        public override string Name { get => AttributeDef.CurrHP; }
 
         public Attr_ActorCurrHP()
         {
@@ -32,7 +32,7 @@ namespace Demo.GAS.Attribute
     /// </summary>
     public class Attr_ActorMaxHP : AttributeValue
     {
-        public override string Name { get => BaseActorAttributeDef.MaxHP; }
+        public override string Name { get => AttributeDef.MaxHP; }
 
         public Attr_ActorMaxHP()
         {
@@ -46,7 +46,7 @@ namespace Demo.GAS.Attribute
     /// </summary>
     public class Attr_ActorAttack : AttributeValue
     {
-        public override string Name { get => BaseActorAttributeDef.Attack; }
+        public override string Name { get => AttributeDef.Attack; }
     }
     
     /// <summary>
@@ -54,7 +54,7 @@ namespace Demo.GAS.Attribute
     /// </summary>
     public class Attr_ActorDefense : AttributeValue
     {
-        public override string Name { get => BaseActorAttributeDef.Defense; }
+        public override string Name { get => AttributeDef.Defense; }
     }
     
     /// <summary>
@@ -62,6 +62,6 @@ namespace Demo.GAS.Attribute
     /// </summary>
     public class Attr_ActorSpeed : AttributeValue
     {
-        public override string Name { get => BaseActorAttributeDef.Speed; }
+        public override string Name { get => AttributeDef.Speed; }
     }
 }

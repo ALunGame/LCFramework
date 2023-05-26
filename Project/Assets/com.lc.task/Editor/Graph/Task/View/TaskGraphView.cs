@@ -31,12 +31,12 @@ namespace LCTask
 
                 CommandDispacter.BeginGroup();
 
-                BaseNode createAcceptNode = Model.NewNode(typeof(Task_AcceptNode), pos);
-                ((Task_AcceptNode)createAcceptNode).taskId = taskId;
+                BaseNodeVM createAcceptNode = Model.NewNode(typeof(Task_AcceptNode), pos);
+                ((Task_AcceptNode)createAcceptNode.Model).taskId = taskId;
                 CommandDispacter.Do(new AddNodeCommand(Model, createAcceptNode));
 
-                BaseNode createExecuteNode = Model.NewNode(typeof(Task_ExecuteNode), pos + new Vector2(0,250));
-                ((Task_ExecuteNode)createExecuteNode).taskId = taskId;
+                BaseNodeVM createExecuteNode = Model.NewNode(typeof(Task_ExecuteNode), pos + new Vector2(0,250));
+                ((Task_ExecuteNode)createExecuteNode.Model).taskId = taskId;
                 CommandDispacter.Do(new AddNodeCommand(Model, createExecuteNode));
 
                 CommandDispacter.EndGroup();

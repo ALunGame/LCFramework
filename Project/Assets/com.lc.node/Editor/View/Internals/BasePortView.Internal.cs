@@ -14,8 +14,8 @@ namespace LCNode.View
     {
         public Image Icon { get; }
         public BaseGraphView GraphView { get; private set; }
-        public BasePort Model { get; private set; }
-        public Dictionary<BaseConnection, BaseConnectionView> ConnectionViews { get; private set; }
+        public BasePortVM Model { get; private set; }
+        public Dictionary<BaseConnectionVM, BaseConnectionView> ConnectionViews { get; private set; }
 
         protected BasePortView(Orientation orientation, Direction direction, Capacity capacity, Type type, IEdgeConnectorListener connectorListener) : base(orientation, direction, capacity, type)
         {
@@ -39,17 +39,17 @@ namespace LCNode.View
             }
 
             m_EdgeConnector = new EdgeConnector<BaseConnectionView>(connectorListener);
-            ConnectionViews = new Dictionary<BaseConnection, BaseConnectionView>();
+            ConnectionViews = new Dictionary<BaseConnectionVM, BaseConnectionView>();
             this.AddManipulator(m_EdgeConnector);
         }
 
-        public void SetUp(BasePort port, BaseGraphView graphView)
+        public void SetUp(BasePortVM port, BaseGraphView graphView)
         {
             Model = port;
             GraphView = graphView;
 
-            portName = port.name;
-            tooltip = port.name;
+            portName = port.Model.name;
+            tooltip = port.Model.name;
         }
 
         public virtual void Connect(BaseConnectionView connection)

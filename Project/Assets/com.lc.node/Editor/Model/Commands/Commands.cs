@@ -15,12 +15,19 @@ namespace LCNode.Model
     /// </summary>
     public class AddNodeCommand : ICommand
     {
-        BaseGraph graph;
-        BaseNode node;
-        public AddNodeCommand(BaseGraph graph, BaseNode node)
+        BaseGraphVM graph;
+        BaseNodeVM node;
+        
+        public AddNodeCommand(BaseGraphVM graph, BaseNodeVM node)
         {
             this.graph = graph;
             this.node = node;
+        }
+        
+        public AddNodeCommand(BaseGraphVM graph, BaseNode node)
+        {
+            this.graph = graph;
+            this.node  = ViewModelFactory.CreateViewModel(node) as BaseNodeVM;
         }
 
         public void Do()
@@ -39,11 +46,11 @@ namespace LCNode.Model
     /// </summary>
     public class RemoveNodeCommand : ICommand
     {
-        BaseGraph graph;
-        BaseNode node;
+        BaseGraphVM graph;
+        BaseNodeVM node;
 
-        List<BaseConnection> connections = new List<BaseConnection>();
-        public RemoveNodeCommand(BaseGraph graph, BaseNode node)
+        List<BaseConnectionVM> connections = new List<BaseConnectionVM>();
+        public RemoveNodeCommand(BaseGraphVM graph, BaseNodeVM node)
         {
             this.graph = graph;
             this.node = node;
@@ -76,10 +83,10 @@ namespace LCNode.Model
 
     public class AddGroupCommand : ICommand
     {
-        public BaseGraph graph;
-        public BaseGroup group;
+        public BaseGraphVM graph;
+        public BaseGroupVM group;
 
-        public AddGroupCommand(BaseGraph graph, BaseGroup group)
+        public AddGroupCommand(BaseGraphVM graph, BaseGroupVM group)
         {
             this.graph = graph;
             this.group = group;
@@ -98,10 +105,10 @@ namespace LCNode.Model
 
     public class RemoveGroupCommand : ICommand
     {
-        public BaseGraph graph;
-        public BaseGroup group;
+        public BaseGraphVM graph;
+        public BaseGroupVM group;
 
-        public RemoveGroupCommand(BaseGraph graph, BaseGroup group)
+        public RemoveGroupCommand(BaseGraphVM graph, BaseGroupVM group)
         {
             this.graph = graph;
             this.group = group;
@@ -120,10 +127,10 @@ namespace LCNode.Model
 
     public class MoveGroupsCommand : ICommand
     {
-        Dictionary<BaseGroup, Vector2> oldPos = new Dictionary<BaseGroup, Vector2>();
-        Dictionary<BaseGroup, Vector2> newPos = new Dictionary<BaseGroup, Vector2>();
+        Dictionary<BaseGroupVM, Vector2> oldPos = new Dictionary<BaseGroupVM, Vector2>();
+        Dictionary<BaseGroupVM, Vector2> newPos = new Dictionary<BaseGroupVM, Vector2>();
 
-        public MoveGroupsCommand(Dictionary<BaseGroup, Vector2> groups)
+        public MoveGroupsCommand(Dictionary<BaseGroupVM, Vector2> groups)
         {
             this.newPos = groups;
             foreach (var pair in groups)
@@ -151,11 +158,11 @@ namespace LCNode.Model
 
     public class RenameGroupCommand : ICommand
     {
-        public BaseGroup group;
+        public BaseGroupVM group;
         public string oldName;
         public string newName;
 
-        public RenameGroupCommand(BaseGroup group, string newName)
+        public RenameGroupCommand(BaseGroupVM group, string newName)
         {
             this.group = group;
             this.oldName = group.GroupName;
@@ -177,20 +184,20 @@ namespace LCNode.Model
 
     public class AddPortCommand : ICommand
     {
-        BaseNode node;
-        BasePort port;
+        BaseNodeVM node;
+        BasePortVM port;
         bool successed = false;
 
-        public AddPortCommand(BaseNode node, string name, BasePort.Orientation orientation, BasePort.Direction direction, BasePort.Capacity capacity, Type type = null)
+        public AddPortCommand(BaseNodeVM node, string name, BasePort.Orientation orientation, BasePort.Direction direction, BasePort.Capacity capacity, Type type = null)
         {
             this.node = node;
-            port = new BasePort(name, orientation, direction, capacity, type);
+            port = new BasePortVM(name, orientation, direction, capacity, type);
         }
 
         public void Do()
         {
             successed = false;
-            if (!node.Ports.ContainsKey(port.name))
+            if (!node.Ports.ContainsKey(port.Model.name))
             {
                 node.AddPort(port);
                 successed = true;
@@ -212,17 +219,17 @@ namespace LCNode.Model
     /// </summary>
     public class RemovePortCommand : ICommand
     {
-        BaseNode node;
-        BasePort port;
+        BaseNodeVM node;
+        BasePortVM port;
         bool successed = false;
 
-        public RemovePortCommand(BaseNode node, BasePort port)
+        public RemovePortCommand(BaseNodeVM node, BasePortVM port)
         {
             this.node = node;
             this.port = port;
         }
 
-        public RemovePortCommand(BaseNode node, string name)
+        public RemovePortCommand(BaseNodeVM node, string name)
         {
             this.node = node;
             node.Ports.TryGetValue(name, out port);
@@ -231,7 +238,7 @@ namespace LCNode.Model
         public void Do()
         {
             successed = false;
-            if (node.Ports.ContainsKey(port.name))
+            if (node.Ports.ContainsKey(port.Model.name))
             {
                 node.AddPort(port);
                 successed = true;
@@ -253,16 +260,16 @@ namespace LCNode.Model
     /// </summary>
     public class ConnectCommand : ICommand
     {
-        private readonly BaseGraph graph;
-        private readonly BaseNode from;
+        private readonly BaseGraphVM graph;
+        private readonly BaseNodeVM from;
         private readonly string fromPortName;
-        private readonly BaseNode to;
+        private readonly BaseNodeVM to;
         private readonly string toPortName;
 
-        BaseConnection connection;
-        HashSet<BaseConnection> replacedConnections = new HashSet<BaseConnection>();
+        BaseConnectionVM connection;
+        HashSet<BaseConnectionVM> replacedConnections = new HashSet<BaseConnectionVM>();
 
-        public ConnectCommand(BaseGraph graph, BaseNode from, string fromPortName, BaseNode to, string toPortName)
+        public ConnectCommand(BaseGraphVM graph, BaseNodeVM from, string fromPortName, BaseNodeVM to, string toPortName)
         {
             this.graph = graph;
             this.from = from;
@@ -271,7 +278,7 @@ namespace LCNode.Model
             this.toPortName = toPortName;
         }
 
-        public ConnectCommand(BaseGraph graph, BaseConnection connection)
+        public ConnectCommand(BaseGraphVM graph, BaseConnectionVM connection)
         {
             this.graph = graph;
             this.connection = connection;
@@ -284,14 +291,14 @@ namespace LCNode.Model
         public void Do()
         {
             replacedConnections.Clear();
-            if (from.Ports[fromPortName].capacity == BasePort.Capacity.Single)
+            if (from.Ports[fromPortName].Model.capacity == BasePort.Capacity.Single)
             {
                 foreach (var connection in from.Ports[fromPortName].Connections)
                 {
                     replacedConnections.Add(connection);
                 }
             }
-            if (to.Ports[toPortName].capacity == BasePort.Capacity.Single)
+            if (to.Ports[toPortName].Model.capacity == BasePort.Capacity.Single)
             {
                 foreach (var connection in to.Ports[toPortName].Connections)
                 {
@@ -326,18 +333,18 @@ namespace LCNode.Model
     /// </summary>
     public class ConnectionRedirectCommand : ICommand
     {
-        BaseGraph graph;
-        BaseConnection connection;
+        BaseGraphVM graph;
+        BaseConnectionVM connection;
 
-        BaseNode oldFrom, oldTo;
+        BaseNodeVM oldFrom, oldTo;
         string oldFromPortName, oldToPortName;
 
-        BaseNode newFrom, newTo;
+        BaseNodeVM newFrom, newTo;
         string newFromPortName, newToPortName;
 
-        List<BaseConnection> replacedConnections = new List<BaseConnection>();
+        List<BaseConnectionVM> replacedConnections = new List<BaseConnectionVM>();
 
-        public ConnectionRedirectCommand(BaseGraph graph, BaseConnection connection, BaseNode from, string fromPortName, BaseNode to, string toPortName)
+        public ConnectionRedirectCommand(BaseGraphVM graph, BaseConnectionVM connection, BaseNodeVM from, string fromPortName, BaseNodeVM to, string toPortName)
         {
             this.graph = graph;
             this.connection = connection;
@@ -358,12 +365,12 @@ namespace LCNode.Model
             replacedConnections.Clear();
             if (connection.FromNodeGUID == newFrom.GUID && connection.FromPortName == newFromPortName)
             {
-                if (newTo.Ports[newToPortName].capacity == BasePort.Capacity.Single)
+                if (newTo.Ports[newToPortName].Model.capacity == BasePort.Capacity.Single)
                     replacedConnections.AddRange(newTo.Ports[newToPortName].Connections);
             }
             else
             {
-                if (newFrom.Ports[newFromPortName].capacity == BasePort.Capacity.Single)
+                if (newFrom.Ports[newFromPortName].Model.capacity == BasePort.Capacity.Single)
                     replacedConnections.AddRange(newFrom.Ports[newFromPortName].Connections);
             }
 
@@ -390,11 +397,11 @@ namespace LCNode.Model
     /// </summary>
     public class DisconnectCommand : ICommand
     {
-        BaseGraph graph;
+        BaseGraphVM graph;
 
-        BaseConnection connection;
+        BaseConnectionVM connection;
 
-        public DisconnectCommand(BaseGraph graph, BaseConnection connection)
+        public DisconnectCommand(BaseGraphVM graph, BaseConnectionVM connection)
         {
             this.graph = graph;
             this.connection = connection;
@@ -416,11 +423,11 @@ namespace LCNode.Model
     /// </summary>
     public class MoveNodeCommand : ICommand
     {
-        BaseNode node;
+        BaseNodeVM node;
         Vector2 currentPosition;
         Vector2 targetPosition;
 
-        public MoveNodeCommand(BaseNode node, Vector2 position)
+        public MoveNodeCommand(BaseNodeVM node, Vector2 position)
         {
             this.node = node;
             currentPosition = node.Position;
@@ -443,10 +450,10 @@ namespace LCNode.Model
     /// </summary>
     public class MoveNodesCommand : ICommand
     {
-        Dictionary<BaseNode, Vector2> oldPos = new Dictionary<BaseNode, Vector2>();
-        Dictionary<BaseNode, Vector2> newPos = new Dictionary<BaseNode, Vector2>();
+        Dictionary<BaseNodeVM, Vector2> oldPos = new Dictionary<BaseNodeVM, Vector2>();
+        Dictionary<BaseNodeVM, Vector2> newPos = new Dictionary<BaseNodeVM, Vector2>();
 
-        public MoveNodesCommand(Dictionary<BaseNode, Vector2> newPos)
+        public MoveNodesCommand(Dictionary<BaseNodeVM, Vector2> newPos)
         {
             this.newPos = newPos;
         }

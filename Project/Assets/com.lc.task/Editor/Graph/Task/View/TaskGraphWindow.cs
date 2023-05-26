@@ -9,7 +9,7 @@ namespace LCTask.TaskGraph
     [CustomGraphWindow(typeof(TaskGraph))]
     public class TaskGraphWindow : BaseGraphWindow
     {
-        protected override BaseGraphView NewGraphView(BaseGraph graph)
+        protected override BaseGraphView NewGraphView(BaseGraphVM graph)
         {
             return new TaskGraphView();
         }

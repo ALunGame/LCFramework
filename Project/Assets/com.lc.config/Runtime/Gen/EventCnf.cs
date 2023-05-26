@@ -1,15 +1,17 @@
-﻿using System;
-using Demo;
+﻿using MemoryPack;
+using System;
+using Cnf;
 using System.Collections.Generic;
-using Config;
+using Cnf;
 
-namespace Demo.Config
+namespace Cnf
 {
     
     /// <summary>
     /// 事件信息
     /// </summary>
-    public class EventCnf
+    [MemoryPackable]
+    public partial class EventCnf
     {
         
         /// <summary>

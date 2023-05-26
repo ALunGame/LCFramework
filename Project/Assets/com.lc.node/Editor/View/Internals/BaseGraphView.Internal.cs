@@ -18,7 +18,7 @@ namespace LCNode.View
     /// <summary>
     /// 视图显示
     /// </summary>
-    public partial class BaseGraphView : GraphView, IBindableView<BaseGraph>
+    public partial class BaseGraphView : GraphView, IBindableView<BaseGraphVM>
     {
         #region 属性
         public event Action onDirty;
@@ -29,9 +29,9 @@ namespace LCNode.View
         public CommandDispatcher CommandDispacter { get; private set; }
         public UnityObject GraphAsset { get { return GraphWindow.GraphAsset; } }
         public Dictionary<string, BaseNodeView> NodeViews { get; private set; } = new Dictionary<string, BaseNodeView>();
-        public Dictionary<BaseGroup, BaseGroupView> GroupViews { get; private set; } = new Dictionary<BaseGroup, BaseGroupView>();
+        public Dictionary<BaseGroupVM, BaseGroupView> GroupViews { get; private set; } = new Dictionary<BaseGroupVM, BaseGroupView>();
 
-        public BaseGraph Model { get; set; }
+        public BaseGraphVM Model { get; set; }
 
         #endregion
 
@@ -49,7 +49,7 @@ namespace LCNode.View
         }
 
         #region Initialize
-        public void SetUp(BaseGraph graph, BaseGraphWindow window, CommandDispatcher commandDispacter)
+        public void SetUp(BaseGraphVM graph, BaseGraphWindow window, CommandDispatcher commandDispacter)
         {
             Model = graph;
             GraphWindow = window;
@@ -151,31 +151,31 @@ namespace LCNode.View
             SetDirty();
         }
 
-        void OnNodeAdded(BaseNode node)
+        void OnNodeAdded(BaseNodeVM node)
         {
             AddNodeView(node);
             SetDirty();
         }
 
-        void OnNodeRemoved(BaseNode node)
+        void OnNodeRemoved(BaseNodeVM node)
         {
             RemoveNodeView(NodeViews[node.GUID]);
             SetDirty();
         }
         
-        void OnGroupAdded(BaseGroup group)
+        void OnGroupAdded(BaseGroupVM group)
         {
             AddGroupView(group);
             SetDirty();
         }
 
-        void OnGroupRemoved(BaseGroup group)
+        void OnGroupRemoved(BaseGroupVM group)
         {
             RemoveGroupView(GroupViews[group]);
             SetDirty();
         }
 
-        void OnConnected(BaseConnection connection)
+        void OnConnected(BaseConnectionVM connection)
         {
             var from = NodeViews[connection.FromNodeGUID];
             var to = NodeViews[connection.ToNodeGUID];
@@ -183,7 +183,7 @@ namespace LCNode.View
             SetDirty();
         }
 
-        void OnDisconnected(BaseConnection connection)
+        void OnDisconnected(BaseConnectionVM connection)
         {
             edges.ForEach(edge =>
             {
@@ -195,8 +195,8 @@ namespace LCNode.View
 
         protected virtual void BindingProperties()
         {
-            Model.BindingProperty<Vector3>(BaseGraph.POS_NAME, OnPositionChanged);
-            Model.BindingProperty<Vector3>(BaseGraph.ZOOM_NAME, OnScaleChanged);
+            Model.BindingProperty<Vector3>(BaseGraphVM.POS_NAME, OnPositionChanged);
+            Model.BindingProperty<Vector3>(BaseGraphVM.ZOOM_NAME, OnScaleChanged);
 
             Model.onNodeAdded += OnNodeAdded;
             Model.onNodeRemoved += OnNodeRemoved;
@@ -239,9 +239,9 @@ namespace LCNode.View
             {
                 CommandDispacter.BeginGroup();
                 // 当节点移动之后，与之连接的接口重新排序
-                Dictionary<BaseNode, Vector2> newPos = new Dictionary<BaseNode, Vector2>();
-                Dictionary<BaseGroup, Vector2> groupNewPos = new Dictionary<BaseGroup, Vector2>();
-                HashSet<BasePort> ports = new HashSet<BasePort>();
+                Dictionary<BaseNodeVM, Vector2> newPos = new Dictionary<BaseNodeVM, Vector2>();
+                Dictionary<BaseGroupVM, Vector2> groupNewPos = new Dictionary<BaseGroupVM, Vector2>();
+                HashSet<BasePortVM> ports = new HashSet<BasePortVM>();
                 
                 changes.movedElements.RemoveAll(element =>
                 {
@@ -254,7 +254,7 @@ namespace LCNode.View
                             {
                                 foreach (var connection in port.Connections)
                                 {
-                                    if (port.direction == BasePort.Direction.Input)
+                                    if (port.Model.direction == BasePort.Direction.Input)
                                     {
                                         ports.Add(connection.FromNode.Ports[connection.FromPortName]);
                                     }
@@ -365,7 +365,7 @@ namespace LCNode.View
         #endregion
 
         #region 方法
-        public BaseNodeView AddNodeView(BaseNode node)
+        public BaseNodeView AddNodeView(BaseNodeVM node)
         {
             Type nodeViewType = GetNodeViewType(node);
             BaseNodeView nodeView = Activator.CreateInstance(nodeViewType) as BaseNodeView;
@@ -381,7 +381,7 @@ namespace LCNode.View
             NodeViews.Remove(nodeView.Model.GUID);
         }
         
-        public BaseGroupView AddGroupView(BaseGroup group)
+        public BaseGroupView AddGroupView(BaseGroupVM group)
         {
             Type groupViewType = GetGroupViewType(group);
             BaseGroupView groupView = Activator.CreateInstance(groupViewType) as BaseGroupView;
@@ -400,7 +400,7 @@ namespace LCNode.View
             GroupViews.Remove(groupView.Model);
         }
 
-        public BaseConnectionView ConnectView(BaseNodeView from, BaseNodeView to, BaseConnection connection)
+        public BaseConnectionView ConnectView(BaseNodeView from, BaseNodeView to, BaseConnectionVM connection)
         {
             var edgeView = Activator.CreateInstance(GetConnectionViewType(connection), true) as BaseConnectionView;
             edgeView.SetUp(connection, this);

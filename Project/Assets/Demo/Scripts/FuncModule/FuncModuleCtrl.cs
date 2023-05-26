@@ -16,14 +16,20 @@ namespace Demo
             OnInit();
         }
 
-        public virtual void OnInit() { }
 
         public void Clear()
         {
             OnClear();
         }
 
+        public virtual void OnInit() { }
+        
+        public virtual void OnEnterMap(int pMapId) { }
+        
         public virtual void OnClear() { }
+        
+        public virtual void OnExitMap(int pMapId) { }
+
     }
 
 
@@ -52,7 +58,10 @@ namespace Demo
 
         public void Clear()
         {
-
+            for (int i = 0; i < modules.Count; i++)
+            {
+                modules[i].Clear();
+            }
         }
     }
 }

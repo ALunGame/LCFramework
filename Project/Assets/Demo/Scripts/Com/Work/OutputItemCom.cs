@@ -1,7 +1,7 @@
 ﻿using LCECS.Core;
 using System.Collections.Generic;
 using System;
-using Config;
+using Cnf;
 using LCMap;
 
 namespace Demo.Com

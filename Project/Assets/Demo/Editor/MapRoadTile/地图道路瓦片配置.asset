@@ -14,59 +14,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tiles:
   - sprite: {fileID: 21300000, guid: 7634ff0d685034c4fba2e0c59846b375, type: 3}
-    roadPos: {x: 1, y: 1}
-    animName: 
+    roadPos: {x: 0, y: 1}
+    roadType: 0
   - sprite: {fileID: 21300000, guid: 1dd839d90860674468e4e8c2d64fd464, type: 3}
-    roadPos: {x: 1, y: 1}
-    animName: 
+    roadPos: {x: 0, y: 1}
+    roadType: 0
   - sprite: {fileID: 21300000, guid: b50e64680e9c46f488d51b3d44720551, type: 3}
-    roadPos: {x: 1, y: 1}
-    animName: 
-  - sprite: {fileID: 21300000, guid: f19d8ae7ebaa7c643831d991ab2612c5, type: 3}
-    roadPos: {x: 1, y: 1}
-    animName: 
+    roadPos: {x: 0, y: 1}
+    roadType: 0
   - sprite: {fileID: 21300000, guid: 8167fc5034db05b4a81bc5bb3d10712f, type: 3}
-    roadPos: {x: 1, y: 1}
-    animName: 
+    roadPos: {x: 0, y: 1}
+    roadType: 0
   - sprite: {fileID: 21300000, guid: faead15beb106e443b6eaf333c488c67, type: 3}
-    roadPos: {x: 1, y: 1}
-    animName: 
-  - sprite: {fileID: 21300000, guid: cda96a61896be3e4b91b1c8bb4a7889c, type: 3}
-    roadPos: {x: 1, y: 1}
-    animName: 
-  - sprite: {fileID: 21300000, guid: 4533822a59da26f409c328959f7f47a1, type: 3}
-    roadPos: {x: 1, y: 1}
-    animName: 
-  - sprite: {fileID: 21300000, guid: 28714f484cffcc74ebb81ea40b12b3c7, type: 3}
-    roadPos: {x: 1, y: 1}
-    animName: 
-  - sprite: {fileID: 21300000, guid: 904e9fdaffb54f84c882e34b6d218ada, type: 3}
-    roadPos: {x: 1, y: 1}
-    animName: 
+    roadPos: {x: 0, y: 1}
+    roadType: 0
   - sprite: {fileID: 21300000, guid: 8af6fb789a633e44d88dfbc1f4e87d08, type: 3}
-    roadPos: {x: 1, y: 1}
-    animName: 
-  - sprite: {fileID: 21300000, guid: 4e09440682abede4a862441ff501e91f, type: 3}
-    roadPos: {x: 1, y: 1}
-    animName: 
+    roadPos: {x: 0, y: 1}
+    roadType: 0
   - sprite: {fileID: 21300000, guid: 155c96e77e42ca245a64ebd97b5b4158, type: 3}
-    roadPos: {x: 1, y: 1}
-    animName: 
+    roadPos: {x: 0, y: 1}
+    roadType: 0
   - sprite: {fileID: 21300000, guid: b0d6ce00279b30142b38c9bd0c4642fe, type: 3}
-    roadPos: {x: 1, y: 1}
-    animName: 
-  - sprite: {fileID: 21300000, guid: e0c0faa539bccc544b944b1eb9238417, type: 3}
-    roadPos: {x: 1, y: 1}
-    animName: 
-  - sprite: {fileID: 21300000, guid: 7c6db88d8c02efb43b34d39f717bcc77, type: 3}
-    roadPos: {x: 0.5, y: 0.5}
-    animName: 
-  - sprite: {fileID: 21300000, guid: d0020576cbe94344ab5a7f799569a686, type: 3}
-    roadPos: {x: 0.5, y: 0.5}
-    animName: 
-  - sprite: {fileID: 21300000, guid: 2713f6232d17a3a4fbda2c73d1f9131d, type: 3}
-    roadPos: {x: 1, y: 1}
-    animName: 
-  - sprite: {fileID: 21300000, guid: bfa550c875250f549a99ead8e9f4dc25, type: 3}
-    roadPos: {x: 1, y: 1}
-    animName: 
+    roadPos: {x: 0, y: 1}
+    roadType: 0

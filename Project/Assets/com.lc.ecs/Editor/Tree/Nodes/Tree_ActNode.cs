@@ -12,11 +12,6 @@ namespace LCECS.Tree
 
         [InputPort("节点", BasePort.Capacity.Single, BasePort.Orientation.Vertical)]
         public NodeData node;
-
-        protected override void OnEnabled()
-        {
-            base.OnEnabled();
-        }
     }
 
     [NodeMenuItem("常用/延时")]

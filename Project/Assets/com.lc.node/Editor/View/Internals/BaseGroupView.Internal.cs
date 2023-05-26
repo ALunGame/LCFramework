@@ -11,13 +11,13 @@ using GroupView = UnityEditor.Experimental.GraphView.Group;
 
 namespace LCNode.View
 {
-    public partial class BaseGroupView : GroupView, IBindableView<BaseGroup>
+    public partial class BaseGroupView : GroupView, IBindableView<BaseGroupVM>
     {
         bool WithoutNotify { get; set; }
         public TextField TitleField { get; private set; }
         public ColorField BackgroudColorField { get; private set; }
         public Label TitleLabel { get; private set; }
-        public BaseGroup Model { get; protected set; }
+        public BaseGroupVM Model { get; protected set; }
         public BaseGraphView Owner { get; private set; }
         
         
@@ -36,7 +36,7 @@ namespace LCNode.View
             TitleField.RegisterCallback<FocusOutEvent>(evt => { Input.imeCompositionMode = IMECompositionMode.Auto; });
         }
 
-        public void SetUp(BaseGroup group, BaseGraphView graphView)
+        public void SetUp(BaseGroupVM group, BaseGraphView graphView)
         {
             this.Model = group;
             this.Owner = graphView;
@@ -89,17 +89,17 @@ namespace LCNode.View
             Owner.SetDirty();
         }
 
-        private void OnNodesAdded(IEnumerable<BaseNode> nodes)
+        private void OnNodesAdded(IEnumerable<BaseNodeVM> nodes)
         {
             WithoutNotify = true;
-            base.AddElements(nodes.Select(node => Owner.NodeViews[node.guid]));
+            base.AddElements(nodes.Select(node => Owner.NodeViews[node.Model.guid]));
             WithoutNotify = false;
         }
 
-        private void OnNodesRemoved(IEnumerable<BaseNode> nodes)
+        private void OnNodesRemoved(IEnumerable<BaseNodeVM> nodes)
         {
             WithoutNotify = true;
-            base.RemoveElements(nodes.Select(node => Owner.NodeViews[node.guid]));
+            base.RemoveElements(nodes.Select(node => Owner.NodeViews[node.Model.guid]));
             WithoutNotify = false;
         }
         #endregion

@@ -1,12 +1,14 @@
-﻿using System;
+﻿using MemoryPack;
+using System;
 
-namespace Demo.Config
+namespace Cnf
 {
     
     /// <summary>
     /// 技能信息
     /// </summary>
-    public class SkillCnf
+    [MemoryPackable]
+    public partial class SkillCnf
     {
         
         /// <summary>

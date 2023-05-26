@@ -28,7 +28,7 @@ namespace LCTask.TaskGraph
         private List<TaskConditionFunc> GetConditionFuncs()
         {
             List<TaskConditionFunc> funcs = new List<TaskConditionFunc>();
-            List<Task_ConditionFuncNode> conditionNodes = NodeHelper.GetNodeOutNodes<Task_ConditionFuncNode>(Owner, this, "分支条件");
+            List<Task_ConditionFuncNode> conditionNodes = NodeHelper.GetNodeOutNodes<Task_ConditionFuncNode>(Owner.Model, this, "分支条件");
             if (conditionNodes.Count > 0)
             {
                 for (int i = 0; i < conditionNodes.Count; i++)
@@ -42,7 +42,7 @@ namespace LCTask.TaskGraph
         public List<TaskActionFunc> GetActionFuncs()
         {
             List<TaskActionFunc> funcs = new List<TaskActionFunc>();
-            List<Task_ActionFuncNode> nodes = NodeHelper.GetNodeOutNodes<Task_ActionFuncNode>(Owner, this, "分支行为");
+            List<Task_ActionFuncNode> nodes = NodeHelper.GetNodeOutNodes<Task_ActionFuncNode>(Owner.Model, this, "分支行为");
             if (nodes.Count > 0)
             {
                 for (int i = 0; i < nodes.Count; i++)
@@ -77,7 +77,7 @@ namespace LCTask.TaskGraph
         public override TaskActionFunc CreateFunc()
         {
             TaskBranchFunc branchFunc = new TaskBranchFunc();
-            List<Task_BranchNode> nodes = NodeHelper.GetNodeOutNodes<Task_BranchNode>(Owner, this, "分支");
+            List<Task_BranchNode> nodes = NodeHelper.GetNodeOutNodes<Task_BranchNode>(Owner.Model, this, "分支");
             if (nodes.Count > 0)
             {
                 for (int i = 0; i < nodes.Count; i++)

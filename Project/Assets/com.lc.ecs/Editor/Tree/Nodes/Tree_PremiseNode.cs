@@ -19,11 +19,6 @@ namespace LCECS.Tree
         [NodeValue("前提关系")]
         public PremiseType premiseType = PremiseType.AND;
 
-        protected override void OnEnabled()
-        {
-            base.OnEnabled();
-        }
-
         /// <summary>
         /// 获得运行时前提
         /// </summary>
@@ -39,5 +34,13 @@ namespace LCECS.Tree
         }
 
         public abstract NodePremise CreateRuntimeNode();
+    }
+
+    [NodeViewModel(typeof(Tree_PremiseNode))]
+    public abstract class Tree_PremiseNodeVM : BaseNodeVM
+    {
+        protected Tree_PremiseNodeVM(BaseNode model) : base(model)
+        {
+        }
     }
 }

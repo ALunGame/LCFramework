@@ -1,5 +1,5 @@
 ﻿
-namespace Config
+namespace Cnf
 {
     
     /// <summary>
@@ -72,7 +72,7 @@ namespace LCMap
 }
 
 
-namespace Demo
+namespace Cnf
 {
     
     /// <summary>

@@ -1,4 +1,5 @@
 using System.Collections;
+using LCToolkit;
 using UnityEngine;
 
 namespace LCMap
@@ -10,5 +11,14 @@ namespace LCMap
         public static MapLogServer Log = new MapLogServer();
         public static MapServer Map = new MapServer();
 
+        public static void Init()
+        {
+            Log = new MapLogServer();
+            Map = new MapServer();
+        }
+
+        public static void Clear()
+        {
+        }
     }
 }

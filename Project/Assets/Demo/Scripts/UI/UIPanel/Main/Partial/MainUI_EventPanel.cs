@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Cnf;
 using Demo.Config;
 using Demo.UserData;
 using LCToolkit;

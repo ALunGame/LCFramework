@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System;
-using Demo;
+using Cnf;
 using System.Collections.Generic;
-using Config;
+using Cnf;
 
-namespace Demo.Config
+namespace Cnf
 {
     
     public class TbEventCnf : Dictionary<int, EventCnf>

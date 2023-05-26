@@ -1,14 +1,16 @@
-﻿using System;
+﻿using MemoryPack;
+using System;
 using System.Collections.Generic;
-using Config;
+using Cnf;
 
-namespace Demo.Config
+namespace Cnf
 {
     
     /// <summary>
     /// 物品修复信息
     /// </summary>
-    public class ItemRepairCnf
+    [MemoryPackable]
+    public partial class ItemRepairCnf
     {
         
         /// <summary>

@@ -422,7 +422,7 @@ namespace LCJson
                     return conv_op.Invoke(null,
                                            new object[] { reader.Value });
 
-                Debug.LogError($"Ö¸¶¨µÄ×ª»»³ö´í {reader.Value} {json_type} {inst_type}");
+                Debug.LogError($"æŒ‡å®šçš„è½¬æ¢å‡ºé”™ {reader.Value} {json_type} {inst_type}");
                 return null;
             }
 
@@ -478,14 +478,14 @@ namespace LCJson
             }
             else if (reader.Token == JsonToken.ObjectStart)
             {
-                //¶ÁÈ¡ÀàĞÍ
+                //è¯»å–ç±»å‹
                 reader.Read();
                 object typeFullName = ReadValue(typeof(string), reader).ToString();
                 Type objType = Extensions.Extensions.GetTypeByFullName(typeFullName.ToString());
                 if (objType == null)
                 {
-                    Debug.LogError($"ĞòÁĞ»¯Àà³ö´í£¬Ã»ÓĞÕÒµ½Ö¸¶¨µÄÀà {typeFullName}");
-                    //¶ªÆúĞòÁĞ»¯
+                    Debug.LogError($"åºåˆ—åŒ–ç±»å‡ºé”™ï¼Œæ²¡æœ‰æ‰¾åˆ°æŒ‡å®šçš„ç±» {typeFullName}");
+                    //ä¸¢å¼ƒåºåˆ—åŒ–
                     while (true)
                     {
                         reader.Read();
@@ -521,8 +521,8 @@ namespace LCJson
                             }
                             catch (Exception e)
                             {
-                                Debug.LogErrorFormat("ĞòÁĞ»¯Ê§°Ü,×Ö¶Î{0}²»¿ÉÉèÖÃ{1}>>>", prop_data.Info.Name, prop_data.Type);
-                                break;
+                                Debug.LogErrorFormat("åºåˆ—åŒ–å¤±è´¥,å­—æ®µ{0}ä¸å¯è®¾ç½®{1}>>>", prop_data.Info.Name, prop_data.Type);
+                                continue;
                             }
                         }
                         else
@@ -993,7 +993,7 @@ namespace LCJson
             foreach (PropertyMetadata p_data in props)
             {
                 
-                //¼ì²âºöÂÔÊôĞÔ
+                //æ£€æµ‹å¿½ç•¥å±æ€§
                 var skipAttributesList = p_data.Info.GetCustomAttributes(typeof(JsonIgnore), true);
                 var skipAttributes = skipAttributesList as ICollection<Attribute>;
                 if (skipAttributes.Count > 0)
@@ -1001,7 +1001,7 @@ namespace LCJson
                     continue;
                 }
 
-                //¼ì²âÎŞĞèĞòÁĞ»¯ÊôĞÔ
+                //æ£€æµ‹æ— éœ€åºåˆ—åŒ–å±æ€§
                 var nonSerializedAttributes = p_data.Info.GetCustomAttributes(typeof(NonSerializedAttribute), true);
                 var nonSerAttributes = nonSerializedAttributes as ICollection<NonSerializedAttribute>;
                 if (nonSerAttributes.Count > 0)
@@ -1016,7 +1016,7 @@ namespace LCJson
                                 writer, writer_is_private, depth + 1);
                 }
 
-                //ÊôĞÔ¾Í²»¸Ã¶Á
+                //å±æ€§å°±ä¸è¯¥è¯»
                 //else
                 //{
                 //    PropertyInfo p_info = (PropertyInfo)p_data.Info;

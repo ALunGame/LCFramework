@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Config;
+using Cnf;
 using Demo.Config;
 using Demo.UserData;
 using LCToolkit;

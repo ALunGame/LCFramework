@@ -45,7 +45,7 @@ namespace LCECS.EntityGraph
         {
             List<BaseCom> coms = new List<BaseCom>();
             //组件节点
-            List<Entity_ComNode> nodes = NodeHelper.GetNodeOutNodes<Entity_ComNode>(Owner, this);
+            List<Entity_ComNode> nodes = NodeHelper.GetNodeOutNodes<Entity_ComNode>(Owner.Model, this);
             if (nodes.Count > 0)
             {
                 for (int i = 0; i < nodes.Count; i++)

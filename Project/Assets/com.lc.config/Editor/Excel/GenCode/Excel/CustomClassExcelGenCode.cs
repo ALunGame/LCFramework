@@ -37,7 +37,8 @@ namespace #KEY#
     /// <summary>
     /// #ClassComment#
     /// </summary>
-    public class #KEY#
+    [MemoryPackable]
+    public partial class #KEY#
     {
         #STR#
     }
@@ -50,6 +51,7 @@ namespace #KEY#
         public #TYPE# #PRONAME#;
 ";
         private const string constructFunc1 = @"
+        [MemoryPackConstructor]
         public #KEY#(){}
 ";
         private const string constructFunc2 = @"
@@ -67,7 +69,7 @@ namespace #KEY#
         
         
         private string excelPath;
-        private string usingStr;
+        private string usingStr = "using MemoryPack;\n";
         private string allClassStr = "";
         public List<string> usingList = new List<string>();
 

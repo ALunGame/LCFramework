@@ -36,8 +36,8 @@ namespace LCECS.EntityGraph
         public override void OnInspectorGUI()
         {
             EntityComNodeView comNodeView = Target as EntityComNodeView;
-            Entity_ComNode comNode = comNodeView.Model as Entity_ComNode;
-            EntityGraph graph = comNode.Owner as EntityGraph;
+            Entity_ComNode comNode = comNodeView.Model.Model as Entity_ComNode;
+            EntityGraphVM graph = comNode.Owner as EntityGraphVM;
             if (graph.RunningTimeEntity == null)
             {
                 base.OnInspectorGUI();
@@ -51,7 +51,7 @@ namespace LCECS.EntityGraph
         private void DrawRunningTimeEntity(Entity entity)
         {
             EntityComNodeView comNodeView = Target as EntityComNodeView;
-            Entity_ComNode comNode = comNodeView.Model as Entity_ComNode;
+            Entity_ComNode comNode = comNodeView.Model.Model as Entity_ComNode;
             foreach (var item in entity.GetComs())
             {
                 if (item.GetType() == comNode.RuntimeNode)

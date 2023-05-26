@@ -1,6 +1,8 @@
-﻿using LCJson;
+﻿using System;
+using LCJson;
 using LCToolkit;
 using System.Collections.Generic;
+using Demo;
 using UnityEditor;
 using UnityEngine;
 
@@ -11,6 +13,10 @@ namespace LCMap
         private static GUIHelper.ContextDataCache ContextDataCache = new GUIHelper.ContextDataCache();
 
         private static Dictionary<string, List<ActorCnf>> ActorDict = new Dictionary<string, List<ActorCnf>>();
+
+        public static Action<ED_MapCom> OnSaveMapCallBack;
+        
+        public static Action<ED_MapCom,Dictionary<string, MapRoadTileInfo>> OnExportMapCallBack;
 
         [MenuItem("地图/编辑", true)]
         public static bool CheckHasSetting()
@@ -114,6 +120,20 @@ namespace LCMap
 
                 if (GUILayout.Button("导出所有配置", GUILayout.Width(BtnWidth), GUILayout.Height(BtnHeight)))
                 {
+                    MapRoadTileConfig roadTileConfig = AssetDatabase.LoadAssetAtPath<MapRoadTileConfig>("Assets/Demo/Editor/MapRoadTile/地图道路瓦片配置.asset");
+                    Dictionary<string, MapRoadTileInfo> mapRoadDict = new Dictionary<string, MapRoadTileInfo>();
+                    foreach (MapRoadTileInfo tile in roadTileConfig.tiles)
+                    {
+                        if (mapRoadDict.ContainsKey(tile.sprite.name))
+                        {
+                            Debug.LogError("重复的地图道路" + tile.sprite.name);
+                        }
+                        else
+                        {
+                            mapRoadDict.Add(tile.sprite.name, tile);
+                        }
+                    }
+                    
                     ED_MapCom.ActorCnfs = MapSetting.GetActorCnfs();
                     List<ED_MapCom> maps = MapSetting.GetAllMaps();
                     for (int i = 0; i < maps.Count; i++)
@@ -124,7 +144,9 @@ namespace LCMap
 
                         string filePath = MapSetting.GetMapModelSavePath(model.mapId.ToString());
                         IOHelper.WriteText(JsonMapper.ToJson(model), filePath);
-
+                        
+                        OnExportMapCallBack?.Invoke(eD_MapCom,mapRoadDict);
+                        
                         DestroyImmediate(eD_MapCom.gameObject);
                         Debug.Log($"地图配置生成成功>>>>{filePath}");
                     }
@@ -179,7 +201,18 @@ namespace LCMap
             if (map == null)
                 return;
             string mapPath = MapSetting.Setting.MapSearchPath + "/" + map.name + ".prefab";
-            PrefabUtility.SaveAsPrefabAsset(map.gameObject, mapPath);
+
+            OnSaveMapCallBack?.Invoke(map);
+            
+            if (!PrefabUtility.IsPartOfPrefabInstance(map.gameObject))
+            {
+                PrefabUtility.SaveAsPrefabAsset(map.gameObject, mapPath);
+            }
+            else
+            {
+                PrefabUtility.ApplyPrefabInstance(map.gameObject, InteractionMode.AutomatedAction);
+            }
+            
             GameObject.DestroyImmediate(map.gameObject);
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();

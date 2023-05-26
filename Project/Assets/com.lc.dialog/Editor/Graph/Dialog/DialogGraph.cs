@@ -3,19 +3,31 @@ using LCNode.Model;
 using LCToolkit;
 using System;
 using System.Collections.Generic;
+using MemoryPack;
 
 namespace LCDialog.DialogGraph
 {
-    public class DialogGraph : BaseGraph
+    [MemoryPackable]
+    public partial class DialogGraph : BaseGraph
+    {
+        
+    }
+    
+    [NodeViewModel(typeof(DialogGraph))]
+    public class DialogGraphVM : BaseGraphVM
     {
         [NonSerialized]
         private List<Type> NodeTypes = new List<Type>();
 
+        public DialogGraphVM(BaseGraph model) : base(model)
+        {
+        }
+        
         protected override void OnEnabled()
         {
             base.OnEnabled();
             CollectNodeTypes();
-            foreach (var item in nodes)
+            foreach (var item in Model.nodes)
             {
                 if (item.Value is Dialog_Node)
                 {

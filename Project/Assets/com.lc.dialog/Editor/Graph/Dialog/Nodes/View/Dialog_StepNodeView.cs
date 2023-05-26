@@ -18,15 +18,16 @@ namespace LCDialog.DialogGraph
             contents = nodeBorder.Q(name: "contents");
             StyleSheet style = AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/com.lc.dialog/Editor/Graph/Dialog/Nodes/View/Style/Dialog_StepNodeView.uss");
             textField = new TextField();
-            textField.tooltip = "¶Ô»°ÄÚÈÝ";
+            textField.tooltip = "å¯¹è¯å†…å®¹";
             textField.styleSheets.Add(style);
+            textField.name = "contents_Text";
             contents.Add(textField);
         }
 
         protected override void OnInitialized()
         {
             base.OnInitialized();
-            Dialog_StepNode node = Model as Dialog_StepNode;
+            Dialog_StepNode node = Model.Model as Dialog_StepNode;
             textField.value = node.content;
             textField.RegisterValueChangedCallback((e) =>
             {
@@ -36,7 +37,7 @@ namespace LCDialog.DialogGraph
 
         private void OnTextContentChange(string newValue)
         {
-            Dialog_StepNode node = Model as Dialog_StepNode;
+            Dialog_StepNode node = Model.Model as Dialog_StepNode;
             Owner.CommandDispacter.Do(new ChangeValueCommand(node.content, newValue,(str) =>
             {
                 node.content = str.ToString();

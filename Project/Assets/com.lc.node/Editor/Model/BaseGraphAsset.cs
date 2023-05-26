@@ -3,6 +3,7 @@ using System;
 using Newtonsoft.Json;
 using UnityEngine;
 using UnityEditor;
+using MemoryPack;
 
 namespace LCNode.Model
 {
@@ -28,7 +29,6 @@ namespace LCNode.Model
             var graph = LCJson.JsonMapper.ToObject<BaseGraph>(serializedGraph);
             if (graph == null)
                 graph = new GraphClass();
-            graph.Enable();
             return graph;
         }
 

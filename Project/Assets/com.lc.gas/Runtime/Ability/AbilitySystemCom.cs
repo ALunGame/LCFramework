@@ -79,7 +79,13 @@ namespace LCGAS
 
         #region Attribute
 
-        public float GetValue(string pAttrName, AttributeValueType pValueType = AttributeValueType.Base)
+        /// <summary>
+        /// 获得属性
+        /// </summary>
+        /// <param name="pAttrName"></param>
+        /// <param name="pValueType"></param>
+        /// <returns></returns>
+        public float GetAttrValue(string pAttrName, AttributeValueType pValueType = AttributeValueType.Curr)
         {
             if (!Attr.HasAttr(pAttrName))
             {
@@ -102,7 +108,14 @@ namespace LCGAS
             return 0;
         }
 
-        public bool SetValue(string pAttrName, float pValue, AttributeValueType pValueType = AttributeValueType.Base)
+        /// <summary>
+        /// 设置属性
+        /// </summary>
+        /// <param name="pAttrName"></param>
+        /// <param name="pValue"></param>
+        /// <param name="pValueType"></param>
+        /// <returns></returns>
+        public bool SetAttrValue(string pAttrName, float pValue, AttributeValueType pValueType = AttributeValueType.Base)
         {
             if (!Attr.HasAttr(pAttrName))
             {

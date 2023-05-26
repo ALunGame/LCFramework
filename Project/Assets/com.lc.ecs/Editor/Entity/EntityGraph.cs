@@ -9,6 +9,12 @@ namespace LCECS.EntityGraph
 {
     public class EntityGraph : BaseGraph
     {
+        
+    }
+    
+    [NodeViewModel(typeof(EntityGraph))]
+    public class EntityGraphVM : BaseGraphVM
+    {
         /// <summary>
         /// 运行时实体
         /// </summary>
@@ -16,11 +22,15 @@ namespace LCECS.EntityGraph
         public Entity RunningTimeEntity;
 
         public override List<string> NodeNamespace => new List<string>() { "LCECS.EntityGraph" };
+        
+        public EntityGraphVM(BaseGraph model) : base(model)
+        {
+        }
 
         protected override void OnEnabled()
         {
             base.OnEnabled();
-            foreach (var item in nodes)
+            foreach (var item in Model.nodes)
             {
                 if (item.Value is Entity_Node)
                 {
@@ -32,7 +42,7 @@ namespace LCECS.EntityGraph
 
         private bool CheckHasCom(Type comType)
         {
-            foreach (var item in nodes)
+            foreach (var item in Model.nodes)
             {
                 if (item.Value.GetType() == comType)
                 {

@@ -9,7 +9,7 @@ using LCECS.Core;
 
 namespace LCMap
 {
-    public class MapServer
+    public class MapServer : BaseServer
     {
         private GameObject mapRoot;
         /// <summary>
@@ -70,6 +70,10 @@ namespace LCMap
 
         //地图区域
         public Dictionary<int, MapArea> areaDict = new Dictionary<int, MapArea>();
+        public Dictionary<int, MapArea> AreaDict
+        {
+            get => areaDict;
+        }
         //地图配置
         private Dictionary<int, MapInfo> mapCnf = new Dictionary<int, MapInfo>();
 
@@ -88,6 +92,8 @@ namespace LCMap
             return model;
         }
 
+        #region 流程
+
         public void Enter(int pMapId,Action pFinishCallBack)
         {
             MapInfo mapModel = GetMapCnf(pMapId);
@@ -97,8 +103,18 @@ namespace LCMap
                 return;
             }
 
+            //数据
             this.currMapId = pMapId;
             this.currMaxActorUid = mapModel.currMaxActorUid;
+            this.enterFinishCallBack = pFinishCallBack;
+            
+            //初始化
+            Init();
+        }
+
+        public override void OnInit()
+        {
+            MapInfo mapModel = GetMapCnf(currMapId);
 
             //区域
             for (int i = 0; i < mapModel.areas.Count; i++)
@@ -117,16 +133,20 @@ namespace LCMap
             
             //进入区域
             area.EnterArea(ActorMediator.GetMainActor());
-
-            enterFinishCallBack = pFinishCallBack;
-            enterFinishCallBack?.Invoke();
         }
 
         public void Exit()
         {
-
+            Clear();
         }
 
+        public override void OnClear()
+        {
+            base.OnClear();
+        }
+
+        #endregion
+        
         private void CreateArea(MapArea area)
         {
             GameObject go = area.Create();

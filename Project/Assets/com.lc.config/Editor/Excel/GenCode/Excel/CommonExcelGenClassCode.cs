@@ -19,7 +19,8 @@ namespace #KEY#
     /// <summary>
     /// #Comment#
     /// </summary>
-    public class #KEY#
+    [MemoryPackable]
+    public partial class #KEY#
     {
         #STR#
     }
@@ -43,7 +44,7 @@ namespace #KEY#
 
         public string GenClassCode(List<BaseProperty> pProps,GenConfigInfo pInfo)
         {
-            string usingNameStr = "";
+            string usingNameStr = "using MemoryPack;\n";
             string propStr = "";
             
             List<string> usingNamsList = new List<string>();

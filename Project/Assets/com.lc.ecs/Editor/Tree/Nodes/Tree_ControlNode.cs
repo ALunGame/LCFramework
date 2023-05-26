@@ -13,11 +13,6 @@ namespace LCECS.Tree
 
         [InputPort("父节点", BasePort.Capacity.Single, BasePort.Orientation.Vertical)]
         public NodeData parentNode;
-
-        protected override void OnEnabled()
-        {
-            base.OnEnabled();
-        }
     }
 
     [NodeMenuItem("控制/循环")]
@@ -31,11 +26,6 @@ namespace LCECS.Tree
 
         [NodeValue("循环次数")]
         public int loopCnt;
-
-        protected override void OnEnabled()
-        {
-            base.OnEnabled();
-        }
 
         public override Node CreateRuntimeNode()
         {
@@ -61,11 +51,6 @@ namespace LCECS.Tree
         [NodeValue("完成类型", "AND:全部结束 OR:一个结束")]
         public NodeParallelType excuteType = NodeParallelType.AND;
 
-        protected override void OnEnabled()
-        {
-            base.OnEnabled();
-        }
-
         public override Node CreateRuntimeNode()
         {
             NodeControlParallel controlParallel = new NodeControlParallel();
@@ -85,11 +70,6 @@ namespace LCECS.Tree
         [OutputPort("子节点", BasePort.Capacity.Multi, BasePort.Orientation.Vertical, setIndex = true)]
         public NodeData childNodes;
 
-        protected override void OnEnabled()
-        {
-            base.OnEnabled();
-        }
-
         public override Node CreateRuntimeNode()
         {
             NodeControlRandomSelector randomSelector = new NodeControlRandomSelector();
@@ -106,11 +86,6 @@ namespace LCECS.Tree
 
         [OutputPort("子节点", BasePort.Capacity.Multi, BasePort.Orientation.Vertical, setIndex = true)]
         public NodeData childNodes;
-
-        protected override void OnEnabled()
-        {
-            base.OnEnabled();
-        }
 
         public override Node CreateRuntimeNode()
         {
@@ -129,11 +104,6 @@ namespace LCECS.Tree
 
         [OutputPort("子节点", BasePort.Capacity.Multi, BasePort.Orientation.Vertical, setIndex = true)]
         public NodeData childNodes;
-
-        protected override void OnEnabled()
-        {
-            base.OnEnabled();
-        }
 
         public override Node CreateRuntimeNode()
         {

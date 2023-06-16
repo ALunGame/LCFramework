@@ -44,7 +44,6 @@ namespace Demo
 
         public ConditionFuncModule Condition { get; private set; }
         public EventFuncModule Event { get; private set; }
-        public WorkFuncModule Work { get; private set; }
         
         public void Init()
         {
@@ -52,8 +51,6 @@ namespace Demo
             AddModule(Condition);
             Event = new EventFuncModule();
             AddModule(Event);
-            Work = new WorkFuncModule();
-            AddModule(Work);
         }
 
         public void Clear()

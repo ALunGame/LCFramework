@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using AStar;
+using UnityEngine;
 
 namespace Demo.AStar
 {
@@ -8,22 +10,45 @@ namespace Demo.AStar
         Four,
     }
     
+    public class PathGridConnectInfo
+    {
+        public int inGridId;
+        public Vector2Int inPoint;
+
+        public int outGridId;
+        public Vector2Int outPoint;
+
+        public PathGridConnectInfo(int inGridId, Vector2Int inPoint, int outGridId, Vector2Int outPoint)
+        {
+            this.inGridId = inGridId;
+            this.inPoint = inPoint;
+            this.outGridId = outGridId;
+            this.outPoint = outPoint;
+        }
+
+        public PathGridConnectInfo()
+        {
+
+        }
+    }
+
+    
     /// <summary>
     /// 寻路网格
     /// </summary>
     public class PathGrid
     {
-        public FinderType FinderType {get; private set;}
+        public FinderType FinderType {get; set;}
         
         /// <summary>
         /// 网格Id
         /// </summary>
-        public int Id { get; private set; }
+        public int Id { get; set; }
         
         /// <summary>
         /// 网格类型
         /// </summary>
-        public int GridType { get; private set; }
+        public int GridType { get; set; }
 
         /// <summary>
         /// 网格左下位置
@@ -39,6 +64,11 @@ namespace Demo.AStar
         /// 范围
         /// </summary>
         public RectInt Rect { get; private set; }
+        
+        /// <summary>
+        /// 连接信息
+        /// </summary>
+        public List<PathGridConnectInfo> ConnectInfos = new List<PathGridConnectInfo>();
         
         /// <summary>
         /// 格子信息
@@ -67,6 +97,23 @@ namespace Demo.AStar
                     grid[x, x] = new PathNode(x, y);
                 }
             }
+        }
+
+        public void SetRoads(List<RoadCnf> pRoads)
+        {
+            for (int i = 0; i < pRoads.Count; i++)
+            {
+                RoadCnf roadCnf = pRoads[i];
+                SetRoad(roadCnf);
+            }
+        }
+        
+        public void SetRoad(RoadCnf pRoad)
+        {
+            Vector2Int gridPos = TileToGridPos(pRoad.tilePos);
+
+            PathNode pathNode = grid[gridPos.x, gridPos.y];
+            pathNode.SetObs(pRoad.roadType == MapRoadType.Obstruct,new RoadInfo(pRoad.roadType));
         }
         
         /// <summary>
@@ -124,11 +171,11 @@ namespace Demo.AStar
             return grid[pGridPos.x, pGridPos.y].IsObs;
         }
 
-        public void SetObs(Vector2Int pGridPos, bool pIsObs)
+        public void SetObs(Vector2Int pGridPos, bool pIsObs, RoadInfo pInfo = null)
         {
             if (!CheckPointIsLegal(pGridPos.x, pGridPos.y))
                 return;
-            grid[pGridPos.x, pGridPos.y].IsObs = pIsObs;
+            grid[pGridPos.x, pGridPos.y].SetObs(pIsObs,pInfo);
         }
     }
 }

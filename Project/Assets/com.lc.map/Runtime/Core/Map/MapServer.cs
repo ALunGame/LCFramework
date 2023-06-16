@@ -92,6 +92,11 @@ namespace LCMap
             return model;
         }
 
+        public MapServer()
+        {
+            SetLogicMapping(new MapServerLogicMapping());
+        }
+
         #region 流程
 
         public void Enter(int pMapId,Action pFinishCallBack)

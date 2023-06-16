@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace LCToolkit
 {
@@ -55,22 +56,16 @@ namespace LCToolkit
             if (logicMapping == null)
                 return default;
 
-            foreach (IServerLogicModule baseServerLogicModule in logicMapping.BeforeServerInitLogics)
+            Type type = typeof(T);
+            if (logicMapping.BeforeServerInitLogics.ContainsKey(type))
             {
-                if (baseServerLogicModule.GetType() == typeof(T))
-                {
-                    return (T)baseServerLogicModule;
-                }
+                return (T)logicMapping.BeforeServerInitLogics[type];
             }
-            
-            foreach (IServerLogicModule baseServerLogicModule in logicMapping.AfterServerInitLogics)
+            if (logicMapping.AfterServerInitLogics.ContainsKey(type))
             {
-                if (baseServerLogicModule.GetType() == typeof(T))
-                {
-                    return (T)baseServerLogicModule;
-                }
+                return (T)logicMapping.AfterServerInitLogics[type];
             }
-            
+
             return default;
         }
 

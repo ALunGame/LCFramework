@@ -416,9 +416,18 @@ namespace LCConfig.Excel.GenCode
                 {
                     if (!string.IsNullOrEmpty(lastPropName))
                     {
-                        string newPropName = lastPropName.Replace("#", "");
-                        newPropName = newPropName.Replace("$", "");
-                        propColDict[newPropName].Add(i);
+                        for (int j = _MinRowNum; j <= _MaxRowNum; j++)
+                        {
+                            string value = ExcelReader.GetCellValue(pSheet, j, i);
+                            if (string.IsNullOrEmpty(value))
+                            {
+                                continue;
+                            }
+                            string newPropName = lastPropName.Replace("#", "");
+                            newPropName = newPropName.Replace("$", "");
+                            propColDict[newPropName].Add(i);
+                            break;
+                        }
                     }
                 }
                 else

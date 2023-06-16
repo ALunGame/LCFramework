@@ -1,12 +1,13 @@
 using System;
 using System.Collections.Generic;
+using AStar;
+using Demo.AStar;
 using UnityEditor;
 using UnityEngine;
 using LCToolkit;
 using UnityEngine.Tilemaps;
 using LCJson;
 using Demo.System;
-using Map;
 
 namespace Demo
 {

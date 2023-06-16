@@ -128,6 +128,63 @@ namespace LCConfig
             }
         }
 
+        private static TbActorLifeCnf _ActorLifeCnf = null;
+        /// <summary>
+        /// 演员生活
+        /// </summary>
+        public static TbActorLifeCnf ActorLifeCnf
+        {
+            get
+            {
+                if (_ActorLifeCnf == null)
+                {
+                    Byte[] byteArray = LoadHelper.LoadBytes("TbActorLifeCnf");
+                    List<ActorLifeCnf> configs = MemoryPackSerializer.Deserialize<List<ActorLifeCnf>>(byteArray);
+                    _ActorLifeCnf = new TbActorLifeCnf();
+                    _ActorLifeCnf.AddConfig(configs);
+                }
+                return _ActorLifeCnf;
+            }
+        }
+
+        private static TbActorProduceCnf _ActorProduceCnf = null;
+        /// <summary>
+        /// 生产工作策略
+        /// </summary>
+        public static TbActorProduceCnf ActorProduceCnf
+        {
+            get
+            {
+                if (_ActorProduceCnf == null)
+                {
+                    Byte[] byteArray = LoadHelper.LoadBytes("TbActorProduceCnf");
+                    List<ActorProduceCnf> configs = MemoryPackSerializer.Deserialize<List<ActorProduceCnf>>(byteArray);
+                    _ActorProduceCnf = new TbActorProduceCnf();
+                    _ActorProduceCnf.AddConfig(configs);
+                }
+                return _ActorProduceCnf;
+            }
+        }
+
+        private static TbActorCollectCnf _ActorCollectCnf = null;
+        /// <summary>
+        /// 采集工作策略
+        /// </summary>
+        public static TbActorCollectCnf ActorCollectCnf
+        {
+            get
+            {
+                if (_ActorCollectCnf == null)
+                {
+                    Byte[] byteArray = LoadHelper.LoadBytes("TbActorCollectCnf");
+                    List<ActorCollectCnf> configs = MemoryPackSerializer.Deserialize<List<ActorCollectCnf>>(byteArray);
+                    _ActorCollectCnf = new TbActorCollectCnf();
+                    _ActorCollectCnf.AddConfig(configs);
+                }
+                return _ActorCollectCnf;
+            }
+        }
+
         private static TbActorBasePropertyCnf _ActorBasePropertyCnf = null;
         /// <summary>
         /// 演员基础属性
@@ -225,6 +282,15 @@ namespace LCConfig
 
             if(_ActorCnf!= null)
 				_ActorCnf.Clear();
+
+            if(_ActorLifeCnf!= null)
+				_ActorLifeCnf.Clear();
+
+            if(_ActorProduceCnf!= null)
+				_ActorProduceCnf.Clear();
+
+            if(_ActorCollectCnf!= null)
+				_ActorCollectCnf.Clear();
 
             if(_ActorBasePropertyCnf!= null)
 				_ActorBasePropertyCnf.Clear();

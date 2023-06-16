@@ -38,3 +38,40 @@ namespace Cnf
 }
 
 
+namespace Cnf
+{
+    
+    /// <summary>
+    /// 动画信息
+    /// </summary>
+    [MemoryPackable]
+    public partial class AnimInfo
+    {
+        
+        /// <summary>
+        /// 动画名
+        /// </summary>
+        public string animName;
+
+        /// <summary>
+        /// 动画播放次数
+        /// </summary>
+        public int animCnt;
+
+        [MemoryPackConstructor]
+        public AnimInfo(){}
+
+        public AnimInfo(string animName,int animCnt)
+        {
+            
+            this.animName=animName;
+
+            this.animCnt=animCnt;
+
+        }
+
+    }
+
+}
+
+

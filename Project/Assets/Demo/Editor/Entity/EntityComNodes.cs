@@ -7,7 +7,6 @@ using System.Collections.Generic;
 using Cnf;
 using Demo.Com.MainActor;
 using Demo.Com.MainActor.NewMove;
-using Demo.Scripts.Com.Work;
 
 namespace Demo
 {
@@ -285,87 +284,87 @@ namespace Demo
 
     #region 工作
 
-    [NodeMenuItem("演员/工作/工人组件")]
-    public class Entity_Actor_WorkerCom : Entity_ComNode
-    {
-        public override string Title { get => "工人组件"; set => base.Title = value; }
-        public override string Tooltip { get => "工人组件"; set => base.Tooltip = value; }
-        public override Type RuntimeNode => typeof(WorkerCom);
-
-        public override BaseCom CreateRuntimeNode()
-        {
-            WorkerCom com = new WorkerCom();
-            return com;
-        }
-    }
-
-    [NodeMenuItem("演员/工作/管理者组件")]
-    public class Entity_Actor_ManagerCom : Entity_ComNode
-    {
-        public override string Title { get => "管理者组件"; set => base.Title = value; }
-        public override string Tooltip { get => "管理者组件"; set => base.Tooltip = value; }
-        public override Type RuntimeNode => typeof(ManagerCom);
-
-        public override BaseCom CreateRuntimeNode()
-        {
-            ManagerCom com = new ManagerCom();
-            return com;
-        }
-    }
-
-    [NodeMenuItem("演员/工作/产出物品组件")]
-    public class Entity_Actor_OutputItemCom : Entity_ComNode
-    {
-        public override string Title { get => "产出物品组件"; set => base.Title = value; }
-        public override string Tooltip { get => "产出物品组件"; set => base.Tooltip = value; }
-        public override Type RuntimeNode => typeof(OutputItemCom);
-
-        [NodeValue("产出信息")]
-        public List<ItemInfo> outputInfos = new List<ItemInfo>();
-
-        public override BaseCom CreateRuntimeNode()
-        {
-            OutputItemCom com = new OutputItemCom();
-            com.outputInfos = outputInfos;
-            return com;
-        }
-    }
-    
-    [NodeMenuItem("演员/工作/生产物品组件")]
-    public class Entity_Actor_ProduceItemCom : Entity_ComNode
-    {
-        public override string Title { get => "生产物品组件"; set => base.Title = value; }
-        public override string Tooltip { get => "生产物品组件"; set => base.Tooltip = value; }
-        public override Type RuntimeNode => typeof(ProduceItemCom);
-
-        [NodeValue("可以生产的物品Id")]
-        public List<int> produceItems = new List<int>();
-
-        public override BaseCom CreateRuntimeNode()
-        {
-            ProduceItemCom com = new ProduceItemCom();
-            com.produceItems = produceItems;
-            return com;
-        }
-    }
-    
-    [NodeMenuItem("演员/工作/修理物品组件")]
-    public class Entity_Actor_RepairItemCom : Entity_ComNode
-    {
-        public override string Title { get => "生产物品组件"; set => base.Title = value; }
-        public override string Tooltip { get => "生产物品组件"; set => base.Tooltip = value; }
-        public override Type RuntimeNode => typeof(RepairItemCom);
-
-        [NodeValue("可以修复的物品Id")]
-        public List<int> items = new List<int>();
-
-        public override BaseCom CreateRuntimeNode()
-        {
-            RepairItemCom com = new RepairItemCom();
-            com.itemIds = items;
-            return com;
-        }
-    }
+    // [NodeMenuItem("演员/工作/工人组件")]
+    // public class Entity_Actor_WorkerCom : Entity_ComNode
+    // {
+    //     public override string Title { get => "工人组件"; set => base.Title = value; }
+    //     public override string Tooltip { get => "工人组件"; set => base.Tooltip = value; }
+    //     public override Type RuntimeNode => typeof(WorkerCom);
+    //
+    //     public override BaseCom CreateRuntimeNode()
+    //     {
+    //         WorkerCom com = new WorkerCom();
+    //         return com;
+    //     }
+    // }
+    //
+    // [NodeMenuItem("演员/工作/管理者组件")]
+    // public class Entity_Actor_ManagerCom : Entity_ComNode
+    // {
+    //     public override string Title { get => "管理者组件"; set => base.Title = value; }
+    //     public override string Tooltip { get => "管理者组件"; set => base.Tooltip = value; }
+    //     public override Type RuntimeNode => typeof(ManagerCom);
+    //
+    //     public override BaseCom CreateRuntimeNode()
+    //     {
+    //         ManagerCom com = new ManagerCom();
+    //         return com;
+    //     }
+    // }
+    //
+    // [NodeMenuItem("演员/工作/产出物品组件")]
+    // public class Entity_Actor_OutputItemCom : Entity_ComNode
+    // {
+    //     public override string Title { get => "产出物品组件"; set => base.Title = value; }
+    //     public override string Tooltip { get => "产出物品组件"; set => base.Tooltip = value; }
+    //     public override Type RuntimeNode => typeof(OutputItemCom);
+    //
+    //     [NodeValue("产出信息")]
+    //     public List<ItemInfo> outputInfos = new List<ItemInfo>();
+    //
+    //     public override BaseCom CreateRuntimeNode()
+    //     {
+    //         OutputItemCom com = new OutputItemCom();
+    //         com.outputInfos = outputInfos;
+    //         return com;
+    //     }
+    // }
+    //
+    // [NodeMenuItem("演员/工作/生产物品组件")]
+    // public class Entity_Actor_ProduceItemCom : Entity_ComNode
+    // {
+    //     public override string Title { get => "生产物品组件"; set => base.Title = value; }
+    //     public override string Tooltip { get => "生产物品组件"; set => base.Tooltip = value; }
+    //     public override Type RuntimeNode => typeof(ProduceItemCom);
+    //
+    //     [NodeValue("可以生产的物品Id")]
+    //     public List<int> produceItems = new List<int>();
+    //
+    //     public override BaseCom CreateRuntimeNode()
+    //     {
+    //         ProduceItemCom com = new ProduceItemCom();
+    //         com.produceItems = produceItems;
+    //         return com;
+    //     }
+    // }
+    //
+    // [NodeMenuItem("演员/工作/修理物品组件")]
+    // public class Entity_Actor_RepairItemCom : Entity_ComNode
+    // {
+    //     public override string Title { get => "生产物品组件"; set => base.Title = value; }
+    //     public override string Tooltip { get => "生产物品组件"; set => base.Tooltip = value; }
+    //     public override Type RuntimeNode => typeof(RepairItemCom);
+    //
+    //     [NodeValue("可以修复的物品Id")]
+    //     public List<int> items = new List<int>();
+    //
+    //     public override BaseCom CreateRuntimeNode()
+    //     {
+    //         RepairItemCom com = new RepairItemCom();
+    //         com.itemIds = items;
+    //         return com;
+    //     }
+    // }
 
     #endregion
 

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using AStar;
+using UnityEngine;
 
 namespace Demo.AStar
 {
@@ -45,25 +46,34 @@ namespace Demo.AStar
     
     public class PathNode
     {
-        //路径点位置
-        private int x;
-        private int y;
-
         /// <summary>
         /// 是否是阻挡
         /// </summary>
-        public bool IsObs = true;
+        public bool IsObs { get; private set; }
         
-        public int X { get => x;}
-        public int Y { get => y;}
-
-        //锁定不可改变行走状态
-        public bool isLocked = false;
+        public int X { get; private set; }
+        public int Y { get; private set; }
+        
+        //额外信息
+        public RoadInfo Info { get; private set; }
 
         public PathNode(int posX,int posY)
         {
-            x = posX;
-            y = posY;
+            X = posX;
+            X = posY;
+        }
+
+        public void SetObs(bool pIsObs,RoadInfo pInfo = null)
+        {
+            IsObs = pIsObs;
+            if (pInfo == null)
+            {
+                Info = IsObs ? RoadInfo.ObsInfo : RoadInfo.NormalInfo;
+            }
+            else
+            {
+                Info = pInfo;
+            }
         }
 
         public override string ToString()
@@ -81,7 +91,7 @@ namespace Demo.AStar
             if (obj is PathNode)
             {
                 PathNode node = (PathNode)obj;
-                return node.x == x && node.y == y;
+                return node.X == X && node.Y == Y;
             }
             return false;
         }

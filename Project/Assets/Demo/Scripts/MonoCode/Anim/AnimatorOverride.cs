@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using Demo.Com;
+using Demo.Help;
 using UnityEngine;
 
 namespace Demo
@@ -87,6 +89,36 @@ namespace Demo
         public string GetAnimLayer()
         {
             return CurrLayerName;
+        }
+
+        public float GetClipTime(string animName, AnimLayer layer = AnimLayer.Side)
+        {
+            string checkName = layer.ToString().ToLower();
+            AnimOverrideInfo selLayerInfo = null;
+            foreach (var item in AnimLayers)
+            {
+                if (item.name == checkName)
+                {
+                    selLayerInfo = item;
+                    break;
+                }
+            }
+            
+            if (selLayerInfo == null)
+            {
+                return AnimHelp.GetClipTime(animator,animName);
+            }
+            
+            Dictionary<string, AnimationClip> clipDict = GetAnimClipDict(selLayerInfo);
+            foreach (var item in clipDict)
+            {
+                if (item.Key == animName)
+                {
+                    return item.Value.length;
+                }
+            }
+            
+            return AnimHelp.GetClipTime(animator,animName);
         }
 
         private Dictionary<string, AnimationClip> GetAnimClipDict(AnimOverrideInfo layerInfo)

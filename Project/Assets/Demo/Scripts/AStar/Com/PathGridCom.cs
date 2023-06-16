@@ -9,7 +9,6 @@ namespace Demo.AStar.Com
     public class PathGridCom : MonoBehaviour
     {
         public int gridId;
-        [Header("区域类型:0:默认 1:水域")]
         public int gridType;
         public RectInt gridRect;
 
@@ -47,11 +46,14 @@ namespace Demo.AStar.Com
         {
             gridRect = CalcGridRect(this);
             PathGrid grid = new PathGrid();
+            grid.Id = gridId;
+            grid.GridType = gridType;
             grid.Init(gridRect);
+            grid.ConnectInfos = CreateConnectInfos();
             return grid;
         }
 
-        public List<PathGridConnectInfo> CreateConnectInfos()
+        private List<PathGridConnectInfo> CreateConnectInfos()
         {
             List<PathGridConnectInfo> infos = new List<PathGridConnectInfo>();
             PathGridConnectCom[] connectComs = GetComponentsInChildren<PathGridConnectCom>();

@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using AStar;
+using Demo.AStar;
 using Demo.AStar.Com;
 using LCConfig.Excel;
 using LCConfig.Excel.GenCode;
 using LCMap;
 using LCToolkit;
-using Map;
 using MemoryPack;
 using UnityEditor;
 using UnityEngine;

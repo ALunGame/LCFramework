@@ -62,10 +62,5 @@ namespace Demo.Task
         protected override void OnClear(TaskObj taskObj)
         {
         }
-
-        private void WaitCmdFinish(WorkCommand pCmd)
-        {
-            Finish();
-        }
     }
 }

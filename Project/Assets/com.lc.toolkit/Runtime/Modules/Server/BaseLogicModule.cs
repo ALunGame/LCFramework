@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using LCMap;
 
 namespace LCToolkit
@@ -7,17 +8,22 @@ namespace LCToolkit
     public abstract class ServerLogicModuleMapping
     {
 
-        private List<IServerLogicModule> beforeServerInitLogics = null;
+        private Dictionary<Type,IServerLogicModule> beforeServerInitLogics = null;
         /// <summary>
         /// 服务初始化之前调用逻辑
         /// </summary>
-        public List<IServerLogicModule> BeforeServerInitLogics
+        public Dictionary<Type,IServerLogicModule> BeforeServerInitLogics
         {
             get
             {
                 if (beforeServerInitLogics == null)
                 {
-                    beforeServerInitLogics = RegBeforeServerInitLogics();
+                    beforeServerInitLogics = new Dictionary<Type, IServerLogicModule>();
+                    List<IServerLogicModule> modules = RegBeforeServerInitLogics();
+                    foreach (IServerLogicModule module in modules)
+                    {
+                        beforeServerInitLogics.Add(module.GetType(),module);
+                    }
                 }
 
                 return beforeServerInitLogics;
@@ -31,18 +37,22 @@ namespace LCToolkit
         public abstract List<IServerLogicModule> RegBeforeServerInitLogics();
 
         
-        private List<IServerLogicModule> afterServerInitLogics = null;
+        private Dictionary<Type,IServerLogicModule> afterServerInitLogics = null;
         /// <summary>
         /// 服务初始化之后调用逻辑
         /// </summary>
-        public List<IServerLogicModule> AfterServerInitLogics {
+        public Dictionary<Type,IServerLogicModule> AfterServerInitLogics {
             get
             {
                 if (afterServerInitLogics == null)
                 {
-                    afterServerInitLogics = RegAfterServerInitLogics();
+                    afterServerInitLogics = new Dictionary<Type, IServerLogicModule>();
+                    List<IServerLogicModule> modules = RegAfterServerInitLogics();
+                    foreach (IServerLogicModule module in modules)
+                    {
+                        afterServerInitLogics.Add(module.GetType(),module);
+                    }
                 }
-
                 return afterServerInitLogics;
             }
         }
@@ -52,23 +62,22 @@ namespace LCToolkit
         /// </summary>
         /// <returns></returns>
         public abstract List<IServerLogicModule> RegAfterServerInitLogics();
-
-
+        
         public void ExecuteInit(BaseServer pServer, bool pBefore)
         {
-            List<IServerLogicModule> logics = pBefore ? BeforeServerInitLogics : AfterServerInitLogics;
-            for (int i = 0; i < logics.Count; i++)
+            Dictionary<Type,IServerLogicModule> logics = pBefore ? BeforeServerInitLogics : AfterServerInitLogics;
+            foreach (IServerLogicModule module in logics.Values)
             {
-                logics[i].Init(pServer);
+                module.Init(pServer);
             }
         }
         
         public void ExecuteClear(bool pBefore)
         {
-            List<IServerLogicModule> logics = pBefore ? BeforeServerInitLogics : AfterServerInitLogics;
-            for (int i = 0; i < logics.Count; i++)
+            Dictionary<Type,IServerLogicModule> logics = pBefore ? BeforeServerInitLogics : AfterServerInitLogics;
+            foreach (IServerLogicModule module in logics.Values)
             {
-                logics[i].Clear();
+                module.Clear();
             }
         }
     }

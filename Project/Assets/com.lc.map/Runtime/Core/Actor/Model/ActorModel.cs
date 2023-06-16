@@ -54,7 +54,7 @@ namespace LCMap
         }
     }
 
-    public class Actor : Entity
+    public partial class Actor : Entity
     {
         public int Id;
         

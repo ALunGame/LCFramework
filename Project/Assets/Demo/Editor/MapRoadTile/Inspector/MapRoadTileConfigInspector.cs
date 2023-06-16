@@ -1,5 +1,6 @@
-﻿using LCToolkit;
-using Map;
+﻿using AStar;
+using Demo.AStar;
+using LCToolkit;
 using UnityEditor;
 using UnityEngine;
 

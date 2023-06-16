@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using Demo.Logic;
+using LCMap;
 using UnityEngine;
 
 namespace Demo.AStar.Com
@@ -135,7 +137,12 @@ namespace Demo.AStar.Com
         private List<Vector2Int> findPaths = new List<Vector2Int>();
         private Action<List<Vector2Int>> finishCallBack;
         private bool waitFinish = false;
-        
+
+        private void Awake()
+        {
+            MapLocate.Map.GetLogicModule<MapSeekPathLogic>().AddCom(this);
+        }
+
         private void OnDisable()
         {
             Clear();
@@ -144,6 +151,7 @@ namespace Demo.AStar.Com
         private void OnDestroy()
         {
             Clear();
+            MapLocate.Map.GetLogicModule<MapSeekPathLogic>().RemoveCom(this);
         }
 
         public void ReqFindPath(Vector2Int pStartPoint, Vector2Int pTargetPoint, List<PathfinderGridInfo> gridInfos, Action<List<Vector2Int>> finishCallBack)

@@ -8,25 +8,6 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/118947caee7e40a8bbd4b97d83dc3c1fa000/74/fed5cc50/Tile.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/1b5a54bf0ae04c9abb7f7c64341a4384171a00/30/68917800/IMGUIContainer.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/391154401d904e0ca279fe00c621b01b46ac00/64/bca7af5d/ConcurrentDictionary`2.cs" root0="SKIP_HIGHLIGHTING" />
@@ -81,10 +62,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="58824">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" value="58824" />
+      <option name="pid" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -128,30 +109,45 @@
           <option name="timeStamp" value="12" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/com.lc.dialog/Editor/Graph/Dialog/Nodes/View/Dialog_StepNodeView.cs</url>
-          <line>17</line>
-          <properties documentPath="G:\Mine\LCFramework\Project\Assets\com.lc.dialog\Editor\Graph\Dialog\Nodes\View\Dialog_StepNodeView.cs" initialLine="17" containingFunctionPresentation="constructor 'Dialog_StepNodeView'">
-            <startOffsets>
-              <option value="386" />
-            </startOffsets>
-            <endOffsets>
-              <option value="428" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="13" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Demo/Editor/Map/MapEditorFunc.cs</url>
-          <line>28</line>
+          <line>29</line>
           <properties documentPath="G:\Mine\LCFramework\Project\Assets\Demo\Editor\Map\MapEditorFunc.cs" initialLine="23" containingFunctionPresentation="method 'HandleSaveMap'">
             <startOffsets>
-              <option value="754" />
+              <option value="774" />
             </startOffsets>
             <endOffsets>
-              <option value="839" />
+              <option value="859" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="16" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <condition expression="pSheet.Name == &quot;生产工作策略&quot;" language="C#" />
+          <url>file://$PROJECT_DIR$/Assets/com.lc.config/Editor/Excel/GenCode/ExcelGenCode.cs</url>
+          <line>113</line>
+          <properties documentPath="G:\Mine\LCFramework\Project\Assets\com.lc.config\Editor\Excel\GenCode\ExcelGenCode.cs" initialLine="113" containingFunctionPresentation="method 'GetPropsByCommonExcel'">
+            <startOffsets>
+              <option value="4627" />
+            </startOffsets>
+            <endOffsets>
+              <option value="4649" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <condition expression="propName == &quot;anim&quot;" language="C#" />
+          <url>file://$PROJECT_DIR$/Assets/com.lc.config/Editor/Excel/GenCode/ExcelGenCode.cs</url>
+          <line>414</line>
+          <properties documentPath="G:\Mine\LCFramework\Project\Assets\com.lc.config\Editor\Excel\GenCode\ExcelGenCode.cs" initialLine="414" containingFunctionPresentation="method 'GetPropColDict'">
+            <startOffsets>
+              <option value="18112" />
+            </startOffsets>
+            <endOffsets>
+              <option value="18131" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="18" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

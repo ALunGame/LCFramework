@@ -24,7 +24,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff61f231dc79c984c8042c61b477a480, type: 3}
   m_Name: entity_0
   m_EditorClassIdentifier: 
-  serializedGraph: '{"mType":"LCECS.EntityGraph.EntityGraph","pos":{"mType":"UnityEngine.Vector3","x":3.0,"y":18.0,"z":0.0},"zoom":{"mType":"UnityEngine.Vector3","x":1.0,"y":1.0,"z":1.0},"nodes":{"mType":"System.Collections.Generic.Dictionary`2[[System.String,
+  serializedGraph: '{"mType":"LCECS.EntityGraph.EntityGraph","pos":{"mType":"UnityEngine.Vector3","x":429.0,"y":163.0,"z":0.0},"zoom":{"mType":"UnityEngine.Vector3","x":0.657516241073608,"y":0.657516241073608,"z":1.0},"nodes":{"mType":"System.Collections.Generic.Dictionary`2[[System.String,
     mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089],[LCNode.Model.BaseNode,
     Assembly-CSharp-Editor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]","62709e08-1e4b-4042-bf92-1aef60bc702f":{"mType":"LCECS.EntityGraph.Entity_Node","coms":null,"guid":"62709e08-1e4b-4042-bf92-1aef60bc702f","position":{"mType":"UnityEngine.Vector2","x":723.0,"y":161.0},"inIndex":-1,"outIndex":-1},"eaa2656f-b6c7-4f6a-87a3-ad388287a741":{"mType":"Demo.Entity_Global_FollowCameraCom","parentNode":null,"isActive":true,"guid":"eaa2656f-b6c7-4f6a-87a3-ad388287a741","position":{"mType":"UnityEngine.Vector2","x":668.0,"y":301.0},"inIndex":0,"outIndex":-1}},"groups":[],"connections":[{"mType":"LCNode.Model.BaseConnection","from":"62709e08-1e4b-4042-bf92-1aef60bc702f","fromPortName":"\u7EC4\u4EF6\u5217\u8868","to":"eaa2656f-b6c7-4f6a-87a3-ad388287a741","toPortName":"\u7236\u8282\u70B9"}]}'
   entityId: 0

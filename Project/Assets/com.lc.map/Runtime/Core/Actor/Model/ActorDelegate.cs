@@ -32,13 +32,17 @@ namespace LCMap
     {
         private Actor actor;
         private Dictionary<string, OnActorChange> delegateDict = new Dictionary<string, OnActorChange>();
+        
+        private void OnActorNullFunc(Actor pActor)
+        {
+        }
 
         public ActorDelegate(Actor pActor)
         {
             actor = pActor;
             foreach (string delegateName in ActorDelegateNames.AllDelegateNames)
             {
-                delegateDict.Add(delegateName,null);
+                delegateDict.Add(delegateName,OnActorNullFunc);
             }
         }
 
@@ -70,7 +74,7 @@ namespace LCMap
         /// <param name="pDelegate"></param>
         public void Register(string pDelegateName, OnActorChange pDelegate)
         {
-            if (delegateDict.ContainsKey(pDelegateName))
+            if (!delegateDict.ContainsKey(pDelegateName))
             {
                 ActorLocate.Log.LogError("注册演员委托失败，没有对应委托名",pDelegateName);
                 return;
@@ -85,7 +89,7 @@ namespace LCMap
         /// <param name="pDelegate"></param>
         public void Remove(string pDelegateName, OnActorChange pDelegate)
         {
-            if (delegateDict.ContainsKey(pDelegateName))
+            if (!delegateDict.ContainsKey(pDelegateName))
             {
                 ActorLocate.Log.LogError("移除演员委托失败，没有对应委托名",pDelegateName);
                 return;

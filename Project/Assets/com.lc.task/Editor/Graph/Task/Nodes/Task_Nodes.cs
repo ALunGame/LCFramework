@@ -169,7 +169,7 @@ namespace LCTask.TaskGraph
 
         public int GetTargetMapId()
         {
-            List<Task_TargetNode> targetNodes = NodeHelper.GetNodeOutNodes<Task_TargetNode>(Owner.Model, this, "阶段目标");
+            List<Task_TargetNode> targetNodes = NodeHelper.GetNodeOutNodes<Task_TargetNode>(Owner, this, "阶段目标");
             if (targetNodes.Count > 0)
             {
                 return (int)targetNodes[0].mapId;
@@ -179,7 +179,7 @@ namespace LCTask.TaskGraph
 
         public List<int> GetTargetActorIds()
         {
-            List<Task_TargetNode> targetNodes = NodeHelper.GetNodeOutNodes<Task_TargetNode>(Owner.Model, this, "阶段目标");
+            List<Task_TargetNode> targetNodes = NodeHelper.GetNodeOutNodes<Task_TargetNode>(Owner, this, "阶段目标");
             if (targetNodes.Count > 0)
             {
                 return targetNodes[0].GetActorIds();
@@ -190,7 +190,7 @@ namespace LCTask.TaskGraph
         public List<TaskConditionFunc> GetConditionFuncs()
         {
             List<TaskConditionFunc> funcs = new List<TaskConditionFunc>();
-            List<Task_ConditionFuncNode> conditionNodes = NodeHelper.GetNodeOutNodes<Task_ConditionFuncNode>(Owner.Model, this, "阶段条件");
+            List<Task_ConditionFuncNode> conditionNodes = NodeHelper.GetNodeOutNodes<Task_ConditionFuncNode>(Owner, this, "阶段条件");
             if (conditionNodes.Count > 0)
             {
                 for (int i = 0; i < conditionNodes.Count; i++)
@@ -204,7 +204,7 @@ namespace LCTask.TaskGraph
         public List<TaskTargetDisplayFunc> GetDisplayFuncs()
         {
             List<TaskTargetDisplayFunc> funcs = new List<TaskTargetDisplayFunc>();
-            List<Task_TargetDisplayFuncNode> nodes = NodeHelper.GetNodeOutNodes<Task_TargetDisplayFuncNode>(Owner.Model, this, "阶段目标表现");
+            List<Task_TargetDisplayFuncNode> nodes = NodeHelper.GetNodeOutNodes<Task_TargetDisplayFuncNode>(Owner, this, "阶段目标表现");
             if (nodes.Count > 0)
             {
                 for (int i = 0; i < nodes.Count; i++)
@@ -250,7 +250,7 @@ namespace LCTask.TaskGraph
         private List<TaskListenFunc> GetActionListenFuncs()
         {
             List<TaskListenFunc> funcs = new List<TaskListenFunc>();
-            List<Task_ListenFuncNode> nodes = NodeHelper.GetNodeOutNodes<Task_ListenFuncNode>(Owner.Model, this, "接受监听");
+            List<Task_ListenFuncNode> nodes = NodeHelper.GetNodeOutNodes<Task_ListenFuncNode>(Owner, this, "接受监听");
             if (nodes.Count > 0)
             {
                 for (int i = 0; i < nodes.Count; i++)
@@ -268,7 +268,7 @@ namespace LCTask.TaskGraph
         public List<TaskActionFunc> GetActionFuncs()
         {
             List<TaskActionFunc> funcs = new List<TaskActionFunc>();
-            List<Task_ActionFuncNode> nodes = NodeHelper.GetNodeOutNodes<Task_ActionFuncNode>(Owner.Model, this, "接受行为");
+            List<Task_ActionFuncNode> nodes = NodeHelper.GetNodeOutNodes<Task_ActionFuncNode>(Owner, this, "接受行为");
             if (nodes.Count > 0)
             {
                 for (int i = 0; i < nodes.Count; i++)
@@ -282,7 +282,7 @@ namespace LCTask.TaskGraph
         public List<TaskActionFunc> GetActionSuccessFuncs()
         {
             List<TaskActionFunc> funcs = new List<TaskActionFunc>();
-            List<Task_ActionFuncNode> nodes = NodeHelper.GetNodeOutNodes<Task_ActionFuncNode>(Owner.Model, this, "接受成功");
+            List<Task_ActionFuncNode> nodes = NodeHelper.GetNodeOutNodes<Task_ActionFuncNode>(Owner, this, "接受成功");
             if (nodes.Count > 0)
             {
                 for (int i = 0; i < nodes.Count; i++)
@@ -296,7 +296,7 @@ namespace LCTask.TaskGraph
         public List<TaskActionFunc> GetActionFailFuncs()
         {
             List<TaskActionFunc> funcs = new List<TaskActionFunc>();
-            List<Task_ActionFuncNode> nodes = NodeHelper.GetNodeOutNodes<Task_ActionFuncNode>(Owner.Model, this, "接受失败");
+            List<Task_ActionFuncNode> nodes = NodeHelper.GetNodeOutNodes<Task_ActionFuncNode>(Owner, this, "接受失败");
             if (nodes.Count > 0)
             {
                 for (int i = 0; i < nodes.Count; i++)
@@ -343,7 +343,7 @@ namespace LCTask.TaskGraph
         private List<TaskListenFunc> GetActionListenFuncs()
         {
             List<TaskListenFunc> funcs = new List<TaskListenFunc>();
-            List<Task_ListenFuncNode> nodes = NodeHelper.GetNodeOutNodes<Task_ListenFuncNode>(Owner.Model, this, "接受监听");
+            List<Task_ListenFuncNode> nodes = NodeHelper.GetNodeOutNodes<Task_ListenFuncNode>(Owner, this, "接受监听");
             if (nodes.Count > 0)
             {
                 for (int i = 0; i < nodes.Count; i++)
@@ -361,7 +361,7 @@ namespace LCTask.TaskGraph
         public List<TaskActionFunc> GetActionFuncs()
         {
             List<TaskActionFunc> funcs = new List<TaskActionFunc>();
-            List<Task_ActionFuncNode> nodes = NodeHelper.GetNodeOutNodes<Task_ActionFuncNode>(Owner.Model, this, "提交行为");
+            List<Task_ActionFuncNode> nodes = NodeHelper.GetNodeOutNodes<Task_ActionFuncNode>(Owner, this, "提交行为");
             if (nodes.Count > 0)
             {
                 for (int i = 0; i < nodes.Count; i++)
@@ -375,7 +375,7 @@ namespace LCTask.TaskGraph
         public List<TaskActionFunc> GetActionSuccessFuncs()
         {
             List<TaskActionFunc> funcs = new List<TaskActionFunc>();
-            List<Task_ActionFuncNode> nodes = NodeHelper.GetNodeOutNodes<Task_ActionFuncNode>(Owner.Model, this, "提交成功");
+            List<Task_ActionFuncNode> nodes = NodeHelper.GetNodeOutNodes<Task_ActionFuncNode>(Owner, this, "提交成功");
             if (nodes.Count > 0)
             {
                 for (int i = 0; i < nodes.Count; i++)
@@ -389,7 +389,7 @@ namespace LCTask.TaskGraph
         public List<TaskActionFunc> GetActionFailFuncs()
         {
             List<TaskActionFunc> funcs = new List<TaskActionFunc>();
-            List<Task_ActionFuncNode> nodes = NodeHelper.GetNodeOutNodes<Task_ActionFuncNode>(Owner.Model, this, "提交失败");
+            List<Task_ActionFuncNode> nodes = NodeHelper.GetNodeOutNodes<Task_ActionFuncNode>(Owner, this, "提交失败");
             if (nodes.Count > 0)
             {
                 for (int i = 0; i < nodes.Count; i++)

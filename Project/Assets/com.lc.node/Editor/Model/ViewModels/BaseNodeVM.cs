@@ -27,9 +27,11 @@ namespace LCNode.Model
         #region Properties
         public BaseNode Model { get; }
         public Type ModelType { get; }
+
+        private BaseGraphVM owner;
         public BaseGraphVM Owner
         {
-            get { return Model.Owner; }
+            get { return owner; }
         }
         public string GUID
         {
@@ -54,7 +56,7 @@ namespace LCNode.Model
 
         internal void Enable(BaseGraphVM graph)
         {
-            Model.owner = graph;
+            owner = graph;
             ports = new Dictionary<string, BasePortVM>();
             InitPort();
             //位置绑定
@@ -191,6 +193,7 @@ namespace LCNode.Model
                 return null;
             var node = Activator.CreateInstance(type) as BaseNode;
             node.position = position;
+            node.Owner = graph.Model;
             IDAllocation(node, graph);
             return ViewModelFactory.CreateViewModel(node) as BaseNodeVM;
         }

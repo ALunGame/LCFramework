@@ -25,7 +25,7 @@ namespace LCECS.Tree
                 return nodePremise;
             }
 
-            List<Tree_PremiseNode> nodes = NodeHelper.GetNodeInNodes<Tree_PremiseNode>(Owner.Model, this);
+            List<Tree_PremiseNode> nodes = NodeHelper.GetNodeInNodes<Tree_PremiseNode>(Owner, this);
             if (nodes.Count<=0)
                 return null;
             NodePremise startPremise = null;
@@ -67,7 +67,7 @@ namespace LCECS.Tree
         /// <returns></returns>
         public List<Node> CreateChildNodes()
         {
-            List<Tree_BaseNode> nodes = NodeHelper.GetNodeOutNodes<Tree_BaseNode>(Owner.Model, this);
+            List<Tree_BaseNode> nodes = NodeHelper.GetNodeOutNodes<Tree_BaseNode>(Owner, this);
             if (nodes.Count <= 0)
                 return null;
             List<Node> childNodes = new List<Node>();

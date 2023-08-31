@@ -62,10 +62,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="79592">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" />
+      <option name="pid" value="79592" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -148,6 +148,32 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="18" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/com.lc.map/Runtime/Core/Actor/Model/ActorDelegate.cs</url>
+          <line>10</line>
+          <properties documentPath="G:\WorkCopy\LCFramework\Project\Assets\com.lc.map\Runtime\Core\Actor\Model\ActorDelegate.cs" initialLine="10" containingFunctionPresentation="constructor 'ActorDelegateNames'">
+            <startOffsets>
+              <option value="267" />
+            </startOffsets>
+            <endOffsets>
+              <option value="478" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="19" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/com.lc.map/Runtime/Core/Actor/Model/ActorDelegate.cs</url>
+          <line>61</line>
+          <properties documentPath="G:\WorkCopy\LCFramework\Project\Assets\com.lc.map\Runtime\Core\Actor\Model\ActorDelegate.cs" initialLine="57" containingFunctionPresentation="method 'ExecuteDelegate'">
+            <startOffsets>
+              <option value="1906" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1951" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="20" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

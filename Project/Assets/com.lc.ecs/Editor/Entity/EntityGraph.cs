@@ -44,7 +44,7 @@ namespace LCECS.EntityGraph
         {
             foreach (var item in Model.nodes)
             {
-                if (item.Value.GetType() == comType)
+                if (item.Value != null && item.Value.GetType() == comType)
                 {
                     return true;
                 }

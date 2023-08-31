@@ -24,58 +24,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a513205062770864caa1925733596e19, type: 3}
   m_Name: "\u9636\u6BB5\u4E00"
   m_EditorClassIdentifier: 
-  serializedGraph: "\r\n{\r\n    \"mType\" : \"LCTask.TaskGraph.TaskGraph\",\r\n   
-    \"pos\"   : {\r\n        \"mType\" : \"UnityEngine.Vector3\",\r\n        \"x\"    
-    : 60.0,\r\n        \"y\"     : 619.0,\r\n        \"z\"     : 0.0\r\n    },\r\n   
-    \"zoom\"  : {\r\n        \"mType\" : \"UnityEngine.Vector3\",\r\n        \"x\"    
-    : 1.52087497711182,\r\n        \"y\"     : 1.52087497711182,\r\n        \"z\"    
-    : 1.0\r\n    },\r\n    \"nodes\" : {\r\n        \"mType\" : \"System.Collections.Generic.Dictionary`2[[System.String,
+  serializedGraph: '{"mType":"LCTask.TaskGraph.TaskGraph","pos":{"mType":"UnityEngine.Vector3","x":359.0,"y":435.0,"z":0.0},"zoom":{"mType":"UnityEngine.Vector3","x":0.756143689155579,"y":0.756143689155579,"z":1.0},"nodes":{"mType":"System.Collections.Generic.Dictionary`2[[System.String,
     mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089],[LCNode.Model.BaseNode,
-    Assembly-CSharp-Editor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]\",\r\n       
-    \"a8f26b8d-0f03-44f8-9632-e7c7f40dd643\" : {\r\n            \"mType\" : \"LCTask.TaskGraph.Task_AcceptNode\",\r\n           
-    \"actionFuncs\" : null,\r\n            \"actionListenFuncs\" : null,\r\n           
-    \"actionSuccess\"     : null,\r\n            \"actionFail\"        : null,\r\n           
-    \"taskId\"            : 10001,\r\n            \"conditionFuncs\"    : null,\r\n           
-    \"target\"            : null,\r\n            \"targetDisplayFuncs\" : null,\r\n           
-    \"guid\"               : \"a8f26b8d-0f03-44f8-9632-e7c7f40dd643\",\r\n           
-    \"position\"           : {\r\n                \"mType\" : \"UnityEngine.Vector2\",\r\n               
-    \"x\"     : -47.0,\r\n                \"y\"     : -169.0\r\n            },\r\n           
-    \"inIndex\"            : -1,\r\n            \"outIndex\"           : -1\r\n       
-    },\r\n        \"5a4c4160-7ee5-4880-9dd7-3be6ad0f27a9\" : {\r\n            \"mType\"
-    : \"LCTask.TaskGraph.Task_ExecuteNode\",\r\n            \"actionFuncs\" : null,\r\n           
-    \"actionListenFuncs\" : null,\r\n            \"actionSuccess\"     : null,\r\n           
-    \"actionFail\"        : null,\r\n            \"taskId\"            : 10001,\r\n           
-    \"conditionFuncs\"    : null,\r\n            \"target\"            : null,\r\n           
-    \"targetDisplayFuncs\" : null,\r\n            \"guid\"               : \"5a4c4160-7ee5-4880-9dd7-3be6ad0f27a9\",\r\n           
-    \"position\"           : {\r\n                \"mType\" : \"UnityEngine.Vector2\",\r\n               
-    \"x\"     : -47.0,\r\n                \"y\"     : 81.0\r\n            },\r\n           
-    \"inIndex\"            : -1,\r\n            \"outIndex\"           : -1\r\n       
-    },\r\n        \"dab33fe2-be04-4cba-a8c8-92624788ef88\" : {\r\n            \"mType\"
-    : \"Demo.Task.Task_ACT_SendRepairActorCmd\",\r\n            \"actorId\" : 301,\r\n           
-    \"needWait\" : true,\r\n            \"parentNode\" : null,\r\n            \"guid\"      
-    : \"dab33fe2-be04-4cba-a8c8-92624788ef88\",\r\n            \"position\"   : {\r\n               
-    \"mType\" : \"UnityEngine.Vector2\",\r\n                \"x\"     : 260.0,\r\n               
-    \"y\"     : -153.0\r\n            },\r\n            \"inIndex\"    : 1,\r\n           
-    \"outIndex\"   : -1\r\n        },\r\n        \"f3f7bab8-2d5c-4590-9a6d-ebcac2d68375\"
-    : {\r\n            \"mType\" : \"Demo.Task.Task_ACT_SendRepairActorCmd\",\r\n           
-    \"actorId\" : 302,\r\n            \"needWait\" : false,\r\n            \"parentNode\"
-    : null,\r\n            \"guid\"       : \"f3f7bab8-2d5c-4590-9a6d-ebcac2d68375\",\r\n           
-    \"position\"   : {\r\n                \"mType\" : \"UnityEngine.Vector2\",\r\n               
-    \"x\"     : 251.0,\r\n                \"y\"     : -34.0\r\n            },\r\n           
-    \"inIndex\"    : 2,\r\n            \"outIndex\"   : -1\r\n        },\r\n       
-    \"be07f56b-a053-439f-907f-e24abc88207c\" : {\r\n            \"mType\" : \"Demo.Task.Task_ACT_SetActorBaseProperty\",\r\n           
-    \"actorId\" : 301,\r\n            \"propertyType\" : 0,\r\n            \"value\"       
-    : \"0\",\r\n            \"parentNode\"   : null,\r\n            \"guid\"        
-    : \"be07f56b-a053-439f-907f-e24abc88207c\",\r\n            \"position\"     :
-    {\r\n                \"mType\" : \"UnityEngine.Vector2\",\r\n               
-    \"x\"     : 251.0,\r\n                \"y\"     : -309.0\r\n            },\r\n           
-    \"inIndex\"      : 0,\r\n            \"outIndex\"     : -1\r\n        }\r\n   
-    },\r\n    \"groups\" : [\r\n    ],\r\n    \"connections\" : [\r\n        {\r\n           
-    \"mType\" : \"LCNode.Model.BaseConnection\",\r\n            \"from\"  : \"a8f26b8d-0f03-44f8-9632-e7c7f40dd643\",\r\n           
-    \"fromPortName\" : \"\\u63A5\\u53D7\\u884C\\u4E3A\",\r\n            \"to\"          
-    : \"be07f56b-a053-439f-907f-e24abc88207c\",\r\n            \"toPortName\"   :
-    \"\\u7236\\u8282\\u70B9\"\r\n        },\r\n        {\r\n            \"mType\"
-    : \"LCNode.Model.BaseConnection\",\r\n            \"from\"  : \"a8f26b8d-0f03-44f8-9632-e7c7f40dd643\",\r\n           
-    \"fromPortName\" : \"\\u63A5\\u53D7\\u884C\\u4E3A\",\r\n            \"to\"          
-    : \"dab33fe2-be04-4cba-a8c8-92624788ef88\",\r\n            \"toPortName\"   :
-    \"\\u7236\\u8282\\u70B9\"\r\n        }\r\n    ]\r\n}"
+    Assembly-CSharp-Editor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]","a8f26b8d-0f03-44f8-9632-e7c7f40dd643":{"mType":"LCTask.TaskGraph.Task_AcceptNode","actionFuncs":null,"actionListenFuncs":null,"actionSuccess":null,"actionFail":null,"taskId":10001,"conditionFuncs":null,"target":null,"targetDisplayFuncs":null,"guid":"a8f26b8d-0f03-44f8-9632-e7c7f40dd643","position":{"mType":"UnityEngine.Vector2","x":-47.0,"y":-169.0},"inIndex":-1,"outIndex":-1},"5a4c4160-7ee5-4880-9dd7-3be6ad0f27a9":{"mType":"LCTask.TaskGraph.Task_ExecuteNode","actionFuncs":null,"actionListenFuncs":null,"actionSuccess":null,"actionFail":null,"taskId":10001,"conditionFuncs":null,"target":null,"targetDisplayFuncs":null,"guid":"5a4c4160-7ee5-4880-9dd7-3be6ad0f27a9","position":{"mType":"UnityEngine.Vector2","x":-47.0,"y":81.0},"inIndex":-1,"outIndex":-1},"dab33fe2-be04-4cba-a8c8-92624788ef88":null,"inIndex":null,"outIndex":null},"groups":[],"connections":[]}'

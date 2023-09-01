@@ -16,7 +16,7 @@ namespace LCSkill.Timeline
                 return modelDict[Name];
             }
 
-            string str = LCLoad.LoadHelper.LoadString(Name);
+            string str = IAFramework.GameContext.Asset.LoadString(Name);
             BaseTimeline timeline = LCJson.JsonMapper.ToObject<BaseTimeline>(str);
             modelDict.Add(Name,timeline);
             return timeline;

@@ -1,4 +1,6 @@
-﻿using LCToolkit;
+﻿using System;
+using IAToolkit;
+using LCToolkit;
 using UnityEditor;
 using UnityEngine;
 
@@ -7,6 +9,8 @@ namespace LCGAS
     [CreateAssetMenu(fileName = "GE组", menuName = "GAS/GE组", order = 2)]
     internal class GEGroupAsset : GroupAsset<GEAsset>
     {
+        public override Type ChildType { get => typeof(GEAsset); }
+        
         public override string DisplayName { get => "GE"; }
         
         public override void OpenChildAsset(GroupChildAsset pAsset)

@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using IAToolkit;
 using LCToolkit;
 using UnityEditor;
 using UnityEngine;
+using MiscHelper = LCToolkit.MiscHelper;
 
 namespace LCGAS
 {
@@ -10,7 +12,9 @@ namespace LCGAS
     internal class GAGroupAsset : GroupAsset<GAAsset>
     {
         public override string DisplayName { get =>"能力"; }
-        
+
+        public override Type ChildType { get => typeof(GAAsset); }
+
         public override void OpenChildAsset(GroupChildAsset pAsset)
         {
             Selection.activeObject = pAsset;

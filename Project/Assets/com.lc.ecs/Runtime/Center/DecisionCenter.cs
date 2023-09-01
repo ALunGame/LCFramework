@@ -223,7 +223,7 @@ namespace LCECS
         /// <returns></returns>
         private DecisionTree LoadDecision(int treeId)
         {
-            string jsonStr = LCLoad.LoadHelper.LoadString(ECSDefPath.GetDecTreeCnfName(treeId));
+            string jsonStr = IAFramework.GameContext.Asset.LoadString(ECSDefPath.GetDecTreeCnfName(treeId));
             DecisionTree decision = JsonMapper.ToObject<DecisionTree>(jsonStr);
             if (decision == null)
                 return null;

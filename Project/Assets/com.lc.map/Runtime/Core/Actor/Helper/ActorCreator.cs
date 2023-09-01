@@ -1,6 +1,5 @@
 ﻿using LCConfig;
 using LCECS.Core;
-using LCLoad;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -41,7 +40,7 @@ namespace LCMap
         {
             ActorCnf actorCnf = LCConfig.Config.ActorCnf[pActor.Id];
             //预制体
-            GameObject assetGo = LoadHelper.LoadPrefab(actorCnf.prefab);
+            GameObject assetGo = IAFramework.GameContext.Asset.LoadPrefab(actorCnf.prefab);
             GameObject actorGo = GameObject.Instantiate(assetGo);
             pActor.SetBindGo(actorGo);
 

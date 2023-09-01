@@ -16,12 +16,7 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: 5b29dd5f726d7a249938e05cf5c8abb2
-  m_SerializeEntries:
-  - m_GUID: c64ca814645ffa842850d0ae5b3d5c57
-    m_Address: Assets/Demo/Asset/UI/Textures/Static/Dialog
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
+  m_SerializeEntries: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: c106a54d1dad7c34dbca1e47199c97a1, type: 2}
   m_SchemaSet:

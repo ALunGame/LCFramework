@@ -6,15 +6,9 @@ namespace LCNode.Model
     public partial class BaseNode
     {
         #region NonSerialized
-        
-        [NonSerialized]
-        public BaseGraphVM owner;
-        
-        public BaseGraphVM Owner
-        {
-            get { return owner; }
-        }
-        
+
+        public BaseGraph Owner { get; set; }
+
         [NonSerialized]
         public Action<string> OnTitleChanged;
         
@@ -76,5 +70,10 @@ namespace LCNode.Model
         internal int inIndex = -1;
         /// <summary> 输出索引 </summary>
         internal int outIndex = -1;
+
+        public BaseNode()
+        {
+            
+        }
     }
 }

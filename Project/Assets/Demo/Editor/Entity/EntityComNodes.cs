@@ -28,20 +28,6 @@ namespace Demo
         }
     }
 
-    [NodeMenuItem("演员/基础/动画组件")]
-    public class Entity_Actor_AnimCom : Entity_ComNode
-    {
-        public override string Title { get => "动画组件"; set => base.Title = value; }
-        public override string Tooltip { get => "动画组件"; set => base.Tooltip = value; }
-        public override Type RuntimeNode => typeof(AnimCom);
-
-        public override BaseCom CreateRuntimeNode()
-        {
-            AnimCom animCom = new AnimCom();
-            return animCom;
-        }
-    }
-
     [NodeMenuItem("演员/基础/背包组件")]
     public class Entity_Actor_BagCom : Entity_ComNode
     {

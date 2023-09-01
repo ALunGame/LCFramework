@@ -171,7 +171,7 @@ namespace Demo.Com
                             animName = "jumpDown";
                         }
                     }
-                    animCom.SetReqAnim(animName);
+                    animCom.PlayAnim(animName);
                 }
             }
         }

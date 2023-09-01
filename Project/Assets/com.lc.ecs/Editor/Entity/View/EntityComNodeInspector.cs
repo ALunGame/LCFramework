@@ -36,8 +36,7 @@ namespace LCECS.EntityGraph
         public override void OnInspectorGUI()
         {
             EntityComNodeView comNodeView = Target as EntityComNodeView;
-            Entity_ComNode comNode = comNodeView.Model.Model as Entity_ComNode;
-            EntityGraphVM graph = comNode.Owner as EntityGraphVM;
+            EntityGraphVM graph = comNodeView.Owner.Model as EntityGraphVM;
             if (graph.RunningTimeEntity == null)
             {
                 base.OnInspectorGUI();

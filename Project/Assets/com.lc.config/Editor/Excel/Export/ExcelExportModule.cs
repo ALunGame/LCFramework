@@ -143,62 +143,6 @@ namespace LCConfig.Excel.Export
             pGenInfo.SaveJson(cnfs);    
         }
 
-        private void Export_ActorCollectCnf(GenConfigInfo pGenInfo,List<BaseProperty> pProps,List<Dictionary<string, List<string>>> propValuelist)
-        {
-            List<ActorCollectCnf> cnfs = new List<ActorCollectCnf>();
-            foreach (var propDict in propValuelist)
-            {
-                ActorCollectCnf cnf = new ActorCollectCnf();
-				cnf.id = (int)GetProp(pProps,"id").Parse(propDict["id"][0]);
-
-                cnf.workeCollect = new List<ItemInfo>();
-                for (int i = 0; i < propDict["workeCollect"].Count; i++)
-                {
-                    string value = propDict["workeCollect"][i];
-                    if (string.IsNullOrEmpty(value))
-                    {
-                        break;
-                    }
-                    cnf.workeCollect.Add((ItemInfo)GetProp(pProps,"workeCollect").Parse(value));
-                }; 
-            
-				cnf.time = (float)GetProp(pProps,"time").Parse(propDict["time"][0]);
-				cnf.anim = (AnimInfo)GetProp(pProps,"anim").Parse(propDict["anim"][0]);
-
-                cnfs.Add(cnf);
-            }
-                
-            pGenInfo.SaveJson(cnfs);    
-        }
-
-        private void Export_ActorProduceCnf(GenConfigInfo pGenInfo,List<BaseProperty> pProps,List<Dictionary<string, List<string>>> propValuelist)
-        {
-            List<ActorProduceCnf> cnfs = new List<ActorProduceCnf>();
-            foreach (var propDict in propValuelist)
-            {
-                ActorProduceCnf cnf = new ActorProduceCnf();
-				cnf.id = (int)GetProp(pProps,"id").Parse(propDict["id"][0]);
-
-                cnf.workeOutput = new List<int>();
-                for (int i = 0; i < propDict["workeOutput"].Count; i++)
-                {
-                    string value = propDict["workeOutput"][i];
-                    if (string.IsNullOrEmpty(value))
-                    {
-                        break;
-                    }
-                    cnf.workeOutput.Add((int)GetProp(pProps,"workeOutput").Parse(value));
-                }; 
-            
-				cnf.time = (float)GetProp(pProps,"time").Parse(propDict["time"][0]);
-				cnf.anim = (AnimInfo)GetProp(pProps,"anim").Parse(propDict["anim"][0]);
-
-                cnfs.Add(cnf);
-            }
-                
-            pGenInfo.SaveJson(cnfs);    
-        }
-
         private void Export_ActorLifeCnf(GenConfigInfo pGenInfo,List<BaseProperty> pProps,List<Dictionary<string, List<string>>> propValuelist)
         {
             List<ActorLifeCnf> cnfs = new List<ActorLifeCnf>();
@@ -436,10 +380,6 @@ namespace LCConfig.Excel.Export
 
 			exportFuncDict.Add("ActorBasePropertyCnf",Export_ActorBasePropertyCnf);
 
-			exportFuncDict.Add("ActorCollectCnf",Export_ActorCollectCnf);
-
-			exportFuncDict.Add("ActorProduceCnf",Export_ActorProduceCnf);
-
 			exportFuncDict.Add("ActorLifeCnf",Export_ActorLifeCnf);
 
 			exportFuncDict.Add("ActorCnf",Export_ActorCnf);
@@ -611,6 +551,7 @@ namespace LCConfig.Excel.Export
         }
     }
 }
+
 
 
 

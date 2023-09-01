@@ -16,17 +16,7 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: a9a3eb70da393004da34f2e27f08a9f0
-  m_SerializeEntries:
-  - m_GUID: 7f77e6f6d301b154b9fc4637575f0fd3
-    m_Address: Assets/Demo/Asset/Common/Mat/DashTrail.mat
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 9c32078edf4e60547808c2db150c4d10
-    m_Address: Assets/Demo/Asset/Common/Mat/WaveMat.mat
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
+  m_SerializeEntries: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: c106a54d1dad7c34dbca1e47199c97a1, type: 2}
   m_SchemaSet:

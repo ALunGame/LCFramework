@@ -10,7 +10,7 @@ namespace LCConfig.Excel.GenCode.CommonExcel
         private const string FileStr = @"
 using System;
 using System.Collections.Generic;
-using LCLoad;
+using IAFramework;
 using MemoryPack;
 #USINGNAME#
 
@@ -42,7 +42,7 @@ namespace LCConfig
             {
                 if (#NAME01# == null)
                 {
-                    Byte[] byteArray = LoadHelper.LoadBytes(""#NAME03#"");
+                    Byte[] byteArray = GameContext.Asset.LoadBytes(""#NAME03#"");
                     List<#TYPE#> configs = MemoryPackSerializer.Deserialize<List<#TYPE#>>(byteArray);
                     #NAME01# = new #CLASS#();
                     #NAME01#.AddConfig(configs);

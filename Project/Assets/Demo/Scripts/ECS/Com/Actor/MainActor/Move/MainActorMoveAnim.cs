@@ -51,7 +51,7 @@ namespace Demo.Com.MainActor
                 animName = "jumpDown";
             }
             
-            animCom.SetReqAnim(animName);
+            animCom.PlayAnim(animName);
         }
     }
 }

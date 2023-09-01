@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Cnf;
 using Demo.Config;
 using LCECS.Core;
-using LCLoad;
 using LCMap;
 using LCToolkit;
 using UnityEngine;
@@ -55,7 +54,7 @@ namespace Demo.Com
                 
                 if (!weaponRootTrans.Find(weaponCnf.prefab, out weaponTrans))
                 {
-                    GameObject assetGo = LoadHelper.LoadPrefab(weaponCnf.prefab);
+                    GameObject assetGo = IAFramework.GameContext.Asset.LoadPrefab(weaponCnf.prefab);
                     GameObject weaponGo = GameObject.Instantiate(assetGo);
                     weaponGo.name = weaponCnf.prefab;
                     weaponGo.transform.SetParent(weaponRootTrans);
@@ -71,7 +70,7 @@ namespace Demo.Com
 
         private AnimationClip GetClip(string pClipName)
         {
-            AnimationClip clip = LCLoad.LoadHelper.Load<AnimationClip>(pClipName);
+            AnimationClip clip = IAFramework.GameContext.Asset.LoadAssetSync<AnimationClip>(pClipName);
             return clip;
         }
 
@@ -89,7 +88,7 @@ namespace Demo.Com
                 
                 if (!weaponRootTrans.Find(weaponCnf.prefab, out weaponTrans))
                 {
-                    GameObject assetGo = LoadHelper.LoadPrefab(weaponCnf.prefab);
+                    GameObject assetGo = IAFramework.GameContext.Asset.LoadPrefab(weaponCnf.prefab);
                     GameObject weaponGo = GameObject.Instantiate(assetGo);
                     weaponGo.name = weaponCnf.prefab;
                     weaponGo.transform.SetParent(weaponRootTrans);
@@ -147,7 +146,7 @@ namespace Demo.Com
             AnimationClip clip = anim.GetClip(pWeaponCnf.useAnim);
             if (clip == null)
             {
-                clip = LCLoad.LoadHelper.Load<AnimationClip>(pWeaponCnf.useAnim);
+                clip = IAFramework.GameContext.Asset.LoadAssetSync<AnimationClip>(pWeaponCnf.useAnim);
                 anim.AddClip(clip,pWeaponCnf.useAnim);
             }
             

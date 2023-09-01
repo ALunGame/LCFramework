@@ -2,7 +2,6 @@
 using LCECS.Core;
 using LCECS.Data;
 using LCJson;
-using LCLoad;
 using LCMap;
 using System;
 using System.Collections.Generic;
@@ -72,7 +71,7 @@ namespace LCECS.Server.ECS
                 jsonStr = entityComsCnf[pCnfId];
             else
             {
-                jsonStr = LoadHelper.LoadString(ECSDefPath.GetEntityCnfName(pCnfId));
+                jsonStr = IAFramework.GameContext.Asset.LoadString(ECSDefPath.GetEntityCnfName(pCnfId));
                 entityComsCnf.Add(pCnfId, jsonStr);
             }
             return JsonMapper.ToObject<List<BaseCom>>(jsonStr);

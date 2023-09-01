@@ -57,7 +57,7 @@ namespace LCToolkit
             //创建新的
             if (takeGo == null)
             {
-                GameObject go = LCLoad.LoadHelper.LoadPrefab(name);
+                GameObject go = IAFramework.GameContext.Asset.LoadPrefab(name);
                 if (go == null)
                 {
                     ToolkitLocate.Log.LogError("没有找到对应资源>>>>", name);

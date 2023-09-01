@@ -8,22 +8,66 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/10b6135e63434fdba4fc6c109928ab3b50800/ab/23513ee9/AttributeHelper.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/118947caee7e40a8bbd4b97d83dc3c1fa000/74/fed5cc50/Tile.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/1b5a54bf0ae04c9abb7f7c64341a4384171a00/30/68917800/IMGUIContainer.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/1b5a54bf0ae04c9abb7f7c64341a4384171a00/e0/99b1a950/VisualElement.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/391154401d904e0ca279fe00c621b01b46ac00/04/867707ec/List`1.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/391154401d904e0ca279fe00c621b01b46ac00/64/bca7af5d/ConcurrentDictionary`2.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/391154401d904e0ca279fe00c621b01b46ac00/f0/d3234975/TextWriter.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/391154401d904e0ca279fe00c621b01b46ac00/fd/c3a5a4a9/Dictionary`2.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/46e1bf9196684231bfdf718689da7102945400/06/2ec91da3/SerializedProperty.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/46e1bf9196684231bfdf718689da7102945400/52/a49944c7/PrefabUtility.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/46e1bf9196684231bfdf718689da7102945400/6a/61dcc5af/EditorGUI.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/46e1bf9196684231bfdf718689da7102945400/8c/e364e579/InteractionMode.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/46e1bf9196684231bfdf718689da7102945400/8d/02ff061f/AttributeHelper.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/46e1bf9196684231bfdf718689da7102945400/ae/efa27105/InspectorElement.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/46e1bf9196684231bfdf718689da7102945400/eb/755d0fa7/SerializedObject.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/513de9334a004fcaa808903cf09b1a383dc00/30/924b8c6a/Node.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/513de9334a004fcaa808903cf09b1a383dc00/d1/c4afe88c/GraphElement.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/5a41d6b7189842eca409fd0b1c3e3dcf17bf78/0a/cce827a0/Thread.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/865a16dad8f3433f9d5c9b698c415f4535e388/35/68e0ccef/FileSystemWatcher.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/e17944dc3c824e30af7da0a4ebe81ca316f000/18/56f4962b/TextAsset.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/e17944dc3c824e30af7da0a4ebe81ca316f000/bc/dbb6de22/Object.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/f2b940ae3a684d9a8833e2f4628085939800/a4/54b00beb/Tilemap.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/IAFramework/GameStart/StreamingAsset/StreamingAssetsHelper.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/TestTask.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/IA-Packages/com.ia.ecs/Editor/Entity/EntityGraph.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/IA-Packages/com.ia.engine/Editor/AssetAutoSetting/SpriteAtlasAutoSetting.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/IA-Packages/com.ia.engine/Editor/AssetAutoSetting/SpriteAtlasDirectoryDispose.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/IA-Packages/com.ia.engine/Editor/AssetImportCheck/AssetChangeDisposeServer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/IA-Packages/com.ia.engine/Editor/AssetImportCheck/AssetImportCheck.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/IA-Packages/com.ia.engine/Editor/AssetImportCheck/AssetImportCheckSetting.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/IA-Packages/com.ia.engine/Runtime/Extension/CSharp/CSharpEx.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/IA-Packages/com.ia.engine/Runtime/Helper/AttributeHelper.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/IA-Packages/com.ia.server/Runtime/Core/BaseLogicModule.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/IA-Packages/com.ia.toolkit/Editor/Extension/GUI/GUIExtension_NormalDrawer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/IA-Packages/com.ia.toolkit/Editor/Modules/GameplayTag/Draw/GameplayTagContainerDrawer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/IA-Packages/com.ia.toolkit/Editor/Modules/GameplayTag/Element/GameplayTagNode_Element.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/IA-Packages/com.ia.toolkit/Editor/Modules/GameplayTag/Element/GameplayTagRow_Element.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/IA-Packages/com.ia.toolkit/Editor/Modules/GameplayTag/Element/GameplayTagsTop_Element.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/IA-Packages/com.ia.toolkit/Editor/Modules/GameplayTag/GameplayTagsSetting.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/IA-Packages/com.ia.toolkit/Editor/Modules/GameplayTag/Inspector/GameplayTagComInspector.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/IA-Packages/com.ia.toolkit/Editor/Modules/GameplayTag/Inspector/GameplayTagsInspector.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/IA-Packages/com.ia.toolkit/Editor/Modules/GameplayTag/Model/GameplayTagNode.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/IA-Packages/com.ia.toolkit/Editor/Modules/GroupAsset/Inspector/GroupAssetInspector.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/IA-Packages/com.ia.toolkit/Editor/Modules/GroupAsset/Inspector/GroupAssetSettingInspector.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/IA-Packages/com.ia.toolkit/Editor/Modules/GroupAsset/Inspector/GroupChildAssetInspector.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/IA-Packages/com.ia.toolkit/Editor/Modules/GroupAsset/ObjectDrawer/GroupChildAssetNameDrawer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/IA-Packages/com.ia.toolkit/Editor/Modules/GroupAsset/Window/GroupAssetListWindow.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/IA-Packages/com.ia.toolkit/Runtime/Attribute/ObjectDrawerAttribute.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/IA-Packages/com.ia.toolkit/Runtime/Attribute/ReadOnlyAttribute.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/IA-Packages/com.ia.toolkit/Runtime/Modules/GameplayTag/GameplayTagCom.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/IA-Packages/com.ia.toolkit/Runtime/Modules/GameplayTag/GameplayTagContainer.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/IA-Packages/com.ia.toolkit/Runtime/Modules/GameplayTag/GameplayTags.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/IA-Packages/com.ia.toolkit/Runtime/Modules/GroupAsset/GroupChildAssetName.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/IA-Packages/com.ia.toolkit/Runtime/Serializable/Object/UnityGoRelativePath.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/IA-Packages/com.ia.toolkit/Runtime/Serializable/Object/UnityObjectAsset.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.2d.tilemap@1.0.0/Editor/UI/GridPaintingToolbar.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.2d.tilemap@1.0.0/Editor/UI/TilePaletteBrushesButton.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.shadergraph@14.0.7/Editor/Generation/Processors/CustomInterpolatorUtils.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.shadergraph@14.0.7/Editor/Generation/Processors/Generator.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.shadergraph@14.0.7/Editor/Generation/Processors/PropertyCollector.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.shadergraph@14.0.7/Editor/Serialization/MultiJsonInternal.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -39,7 +83,7 @@
     &quot;Discover.Launch.Via.Unity&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;XThreadsFramesViewSplitterKey&quot;: &quot;0.46890426&quot;,
+    &quot;XThreadsFramesViewSplitterKey&quot;: &quot;0.37313432&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
 }</component>
@@ -62,10 +106,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="101692">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" />
+      <option name="pid" value="101692" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -109,19 +153,6 @@
           <option name="timeStamp" value="12" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Demo/Editor/Map/MapEditorFunc.cs</url>
-          <line>29</line>
-          <properties documentPath="G:\Mine\LCFramework\Project\Assets\Demo\Editor\Map\MapEditorFunc.cs" initialLine="23" containingFunctionPresentation="method 'HandleSaveMap'">
-            <startOffsets>
-              <option value="774" />
-            </startOffsets>
-            <endOffsets>
-              <option value="859" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="16" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <condition expression="pSheet.Name == &quot;生产工作策略&quot;" language="C#" />
           <url>file://$PROJECT_DIR$/Assets/com.lc.config/Editor/Excel/GenCode/ExcelGenCode.cs</url>
           <line>113</line>
@@ -148,6 +179,97 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="18" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/IAFramework/GameStart/Server/Procedure/GameStart_ClearAssetCache.cs</url>
+          <line>16</line>
+          <properties documentPath="G:\Mine\LCFramework\Project\Assets\IAFramework\GameStart\Server\Procedure\GameStart_ClearAssetCache.cs" initialLine="16" containingFunctionPresentation="method 'Operation_Completed'">
+            <startOffsets>
+              <option value="528" />
+            </startOffsets>
+            <endOffsets>
+              <option value="568" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="19" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/com.lc.task/Editor/Graph/Task/Nodes/Task_Nodes.cs</url>
+          <line>270</line>
+          <properties documentPath="G:\Mine\LCFramework\Project\Assets\com.lc.task\Editor\Graph\Task\Nodes\Task_Nodes.cs" initialLine="270" containingFunctionPresentation="method 'GetActionFuncs'">
+            <startOffsets>
+              <option value="7900" />
+            </startOffsets>
+            <endOffsets>
+              <option value="8003" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="20" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/com.lc.task/Editor/Graph/Task/TaskGraphGroupAsset.cs</url>
+          <line>49</line>
+          <properties documentPath="G:\Mine\LCFramework\Project\Assets\com.lc.task\Editor\Graph\Task\TaskGraphGroupAsset.cs" initialLine="49" containingFunctionPresentation="method 'ExportGraph'">
+            <startOffsets>
+              <option value="1727" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1801" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="21" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/com.lc.task/Editor/Graph/Task/Nodes/Task_Nodes.cs</url>
+          <line>314</line>
+          <properties documentPath="G:\Mine\LCFramework\Project\Assets\com.lc.task\Editor\Graph\Task\Nodes\Task_Nodes.cs" initialLine="314" containingFunctionPresentation="method 'CreateContent'">
+            <startOffsets>
+              <option value="9375" />
+            </startOffsets>
+            <endOffsets>
+              <option value="9414" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="22" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/com.lc.node/Editor/Model/BaseGraphAsset.cs</url>
+          <line>31</line>
+          <properties documentPath="G:\Mine\LCFramework\Project\Assets\com.lc.node\Editor\Model\BaseGraphAsset.cs" initialLine="31" containingFunctionPresentation="method 'DeserializeGraph'">
+            <startOffsets>
+              <option value="878" />
+            </startOffsets>
+            <endOffsets>
+              <option value="927" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="23" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/com.lc.toolkit/Editor/Modules/GroupAsset/GroupAsset.cs</url>
+          <line>105</line>
+          <properties documentPath="G:\Mine\LCFramework\Project\Assets\com.lc.toolkit\Editor\Modules\GroupAsset\GroupAsset.cs" initialLine="105" containingFunctionPresentation="method 'CreateChildAsset'">
+            <startOffsets>
+              <option value="3149" />
+            </startOffsets>
+            <endOffsets>
+              <option value="3191" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="25" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/IA-Packages/com.ia.toolkit/Editor/Modules/GroupAsset/GroupAsset.cs</url>
+          <line>143</line>
+          <properties documentPath="G:\Mine\LCFramework\Project\IA-Packages\com.ia.toolkit\Editor\Modules\GroupAsset\GroupAsset.cs" initialLine="143" containingFunctionPresentation="method 'OnClickExport'">
+            <startOffsets>
+              <option value="4445" />
+            </startOffsets>
+            <endOffsets>
+              <option value="4491" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="27" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

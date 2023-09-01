@@ -30,7 +30,7 @@ namespace LCSkill.Common
                 return;
             }
             AnimCom animCom = entity.GetCom<AnimCom>();
-            animCom.SetReqAnim(clip.ObjName);
+            animCom.PlayAnim(clip.ObjName);
         }
 
         public override void OnExit(SkillTimelineSpec pSpec)

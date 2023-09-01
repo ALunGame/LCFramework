@@ -59,7 +59,7 @@ namespace LCDialog.DialogGraph
 
             //函数
             model.onChooseFuncs = new List<DialogDisposeFunc>();
-            List<Dialog_DisposeFuncNode> funcNodes = NodeHelper.GetNodeOutNodes<Dialog_DisposeFuncNode>(Owner.Model, this, "当点击选项时");
+            List<Dialog_DisposeFuncNode> funcNodes = NodeHelper.GetNodeOutNodes<Dialog_DisposeFuncNode>(Owner, this, "当点击选项时");
             if (funcNodes.Count > 0)
             {
                 for (int i = 0; i < funcNodes.Count; i++)
@@ -118,7 +118,7 @@ namespace LCDialog.DialogGraph
         public void GetNextStep(Dialog_BaseStepNode node, ref List<Dialog_BaseStepNode> resNodes)
         {
             resNodes.Add(node);
-            List<Dialog_BaseStepNode> nodes = NodeHelper.GetNodeOutNodes<Dialog_BaseStepNode>(Owner.Model, node, "下一步");
+            List<Dialog_BaseStepNode> nodes = NodeHelper.GetNodeOutNodes<Dialog_BaseStepNode>(Owner, node, "下一步");
             if (nodes.Count > 0)
             {
                 GetNextStep(nodes[0], ref resNodes);
@@ -171,7 +171,7 @@ namespace LCDialog.DialogGraph
             //说话对象
             model.speakerType = (LCDialog.SpeakerType)((int)speakerType);
             model.speakers = new List<int>();
-            List<Dialog_SpeakerNode> speakerNodes = NodeHelper.GetNodeOutNodes<Dialog_SpeakerNode>(Owner.Model, this, "说话的对象");
+            List<Dialog_SpeakerNode> speakerNodes = NodeHelper.GetNodeOutNodes<Dialog_SpeakerNode>(Owner, this, "说话的对象");
             if (speakerNodes.Count > 0)
             {
                 model.speakers = speakerNodes[0].GetActorIds();
@@ -179,7 +179,7 @@ namespace LCDialog.DialogGraph
 
             //函数
             model.onPlayFuncs = new List<DialogStepFunc>();
-            List<Dialog_StepFuncNode> funcNodes = NodeHelper.GetNodeOutNodes<Dialog_StepFuncNode>(Owner.Model, this, "当播放对话时");
+            List<Dialog_StepFuncNode> funcNodes = NodeHelper.GetNodeOutNodes<Dialog_StepFuncNode>(Owner, this, "当播放对话时");
             if (funcNodes.Count > 0)
             {
                 for (int i = 0; i < funcNodes.Count; i++)
@@ -225,7 +225,7 @@ namespace LCDialog.DialogGraph
             //说话对象
             model.speakerType = (LCDialog.SpeakerType)((int)speakerType);
             model.speakers = new List<int>();
-            List<Dialog_SpeakerNode> speakerNodes = NodeHelper.GetNodeOutNodes<Dialog_SpeakerNode>(Owner.Model, this, "说话的对象");
+            List<Dialog_SpeakerNode> speakerNodes = NodeHelper.GetNodeOutNodes<Dialog_SpeakerNode>(Owner, this, "说话的对象");
             if (speakerNodes.Count > 0)
             {
                 model.speakers = speakerNodes[0].GetActorIds();
@@ -233,7 +233,7 @@ namespace LCDialog.DialogGraph
 
             //分支
             model.disposes = new List<DialogDisposeModel>();
-            List<Dialog_DisposeNode> disposeNodes = NodeHelper.GetNodeOutNodes<Dialog_DisposeNode>(Owner.Model, this, "对话选项");
+            List<Dialog_DisposeNode> disposeNodes = NodeHelper.GetNodeOutNodes<Dialog_DisposeNode>(Owner, this, "对话选项");
             if (disposeNodes.Count > 0)
             {
                 for (int i = 0; i < disposeNodes.Count; i++)
@@ -246,7 +246,7 @@ namespace LCDialog.DialogGraph
 
             //函数
             model.onPlayFuncs = new List<DialogStepFunc>();
-            List<Dialog_StepFuncNode> funcNodes = NodeHelper.GetNodeOutNodes<Dialog_StepFuncNode>(Owner.Model, this, "当播放对话时");
+            List<Dialog_StepFuncNode> funcNodes = NodeHelper.GetNodeOutNodes<Dialog_StepFuncNode>(Owner, this, "当播放对话时");
             if (funcNodes.Count > 0)
             {
                 for (int i = 0; i < funcNodes.Count; i++)
@@ -280,7 +280,7 @@ namespace LCDialog.DialogGraph
             model.steps = new List<DialogStepModel>();
 
             List<Dialog_BaseStepNode> resNodes = new List<Dialog_BaseStepNode>();
-            List<Dialog_BaseStepNode> nodes = NodeHelper.GetNodeOutNodes<Dialog_BaseStepNode>(Owner.Model, this, "对话步骤");
+            List<Dialog_BaseStepNode> nodes = NodeHelper.GetNodeOutNodes<Dialog_BaseStepNode>(Owner, this, "对话步骤");
             if (nodes.Count > 0)
             {
                 nodes[0].GetNextStep(nodes[0], ref resNodes);

@@ -16,17 +16,7 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: d63f89bf11adbb740bde929b6fa47fdb
-  m_SerializeEntries:
-  - m_GUID: 1693d577fb6d22348af567c88fab3c88
-    m_Address: Assets/Demo/Asset/Common/Fonts/HYTangMeiRen95W.ttf
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: cf5b02d63150f1445af84e4da457fea6
-    m_Address: Assets/Demo/Asset/Common/Fonts/BaseFont.ttf
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
+  m_SerializeEntries: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: c106a54d1dad7c34dbca1e47199c97a1, type: 2}
   m_SchemaSet:

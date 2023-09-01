@@ -78,17 +78,17 @@ namespace Demo.System
             {
                 if (moveCom.Rig.velocity.y > 0)
                 {
-                    animCom.SetReqAnim("jumpUp");
+                    animCom.PlayAnim("jumpUp");
                     return;
                 }
                 if (moveCom.Rig.velocity.x != 0)
                 {
-                    animCom.SetReqAnim("run");
+                    animCom.PlayAnim("run");
                     return;
                 }
                 else
                 {
-                    animCom.SetReqAnim("idle");
+                    animCom.PlayAnim("idle");
                     return;
                 }
             }
@@ -96,7 +96,7 @@ namespace Demo.System
             {
                 if (collider2DCom.Collider.Left || collider2DCom.Collider.Right)
                 {
-                    animCom.SetReqAnim("climb");
+                    animCom.PlayAnim("climb");
                     return;
                 }
                 //绌轰腑
@@ -104,12 +104,12 @@ namespace Demo.System
                 {
                     if (moveCom.Rig.velocity.y > 0)
                     {
-                        animCom.SetReqAnim("jumpUp");
+                        animCom.PlayAnim("jumpUp");
                         return;
                     }
                     else
                     {
-                        animCom.SetReqAnim("jumpDown");
+                        animCom.PlayAnim("jumpDown");
                         return;
                     }
                 }

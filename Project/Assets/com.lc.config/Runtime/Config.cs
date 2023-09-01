@@ -1,7 +1,7 @@
 ﻿
 using System;
 using System.Collections.Generic;
-using LCLoad;
+using IAFramework;
 using MemoryPack;
 using TT;
 using Cnf;
@@ -24,7 +24,7 @@ namespace LCConfig
             {
                 if (_Test == null)
                 {
-                    Byte[] byteArray = LoadHelper.LoadBytes("TbTest");
+                    Byte[] byteArray = GameContext.Asset.LoadBytes("TbTest");
                     List<Test> configs = MemoryPackSerializer.Deserialize<List<Test>>(byteArray);
                     _Test = new TbTest();
                     _Test.AddConfig(configs);
@@ -43,7 +43,7 @@ namespace LCConfig
             {
                 if (_ItemCnf == null)
                 {
-                    Byte[] byteArray = LoadHelper.LoadBytes("TbItemCnf");
+                    Byte[] byteArray = GameContext.Asset.LoadBytes("TbItemCnf");
                     List<ItemCnf> configs = MemoryPackSerializer.Deserialize<List<ItemCnf>>(byteArray);
                     _ItemCnf = new TbItemCnf();
                     _ItemCnf.AddConfig(configs);
@@ -62,7 +62,7 @@ namespace LCConfig
             {
                 if (_ItemRecipeCnf == null)
                 {
-                    Byte[] byteArray = LoadHelper.LoadBytes("TbItemRecipeCnf");
+                    Byte[] byteArray = GameContext.Asset.LoadBytes("TbItemRecipeCnf");
                     List<ItemRecipeCnf> configs = MemoryPackSerializer.Deserialize<List<ItemRecipeCnf>>(byteArray);
                     _ItemRecipeCnf = new TbItemRecipeCnf();
                     _ItemRecipeCnf.AddConfig(configs);
@@ -81,7 +81,7 @@ namespace LCConfig
             {
                 if (_ItemRepairCnf == null)
                 {
-                    Byte[] byteArray = LoadHelper.LoadBytes("TbItemRepairCnf");
+                    Byte[] byteArray = GameContext.Asset.LoadBytes("TbItemRepairCnf");
                     List<ItemRepairCnf> configs = MemoryPackSerializer.Deserialize<List<ItemRepairCnf>>(byteArray);
                     _ItemRepairCnf = new TbItemRepairCnf();
                     _ItemRepairCnf.AddConfig(configs);
@@ -100,7 +100,7 @@ namespace LCConfig
             {
                 if (_SkillCnf == null)
                 {
-                    Byte[] byteArray = LoadHelper.LoadBytes("TbSkillCnf");
+                    Byte[] byteArray = GameContext.Asset.LoadBytes("TbSkillCnf");
                     List<SkillCnf> configs = MemoryPackSerializer.Deserialize<List<SkillCnf>>(byteArray);
                     _SkillCnf = new TbSkillCnf();
                     _SkillCnf.AddConfig(configs);
@@ -119,7 +119,7 @@ namespace LCConfig
             {
                 if (_ActorCnf == null)
                 {
-                    Byte[] byteArray = LoadHelper.LoadBytes("TbActorCnf");
+                    Byte[] byteArray = GameContext.Asset.LoadBytes("TbActorCnf");
                     List<ActorCnf> configs = MemoryPackSerializer.Deserialize<List<ActorCnf>>(byteArray);
                     _ActorCnf = new TbActorCnf();
                     _ActorCnf.AddConfig(configs);
@@ -138,7 +138,7 @@ namespace LCConfig
             {
                 if (_ActorLifeCnf == null)
                 {
-                    Byte[] byteArray = LoadHelper.LoadBytes("TbActorLifeCnf");
+                    Byte[] byteArray = GameContext.Asset.LoadBytes("TbActorLifeCnf");
                     List<ActorLifeCnf> configs = MemoryPackSerializer.Deserialize<List<ActorLifeCnf>>(byteArray);
                     _ActorLifeCnf = new TbActorLifeCnf();
                     _ActorLifeCnf.AddConfig(configs);
@@ -157,7 +157,7 @@ namespace LCConfig
             {
                 if (_ActorProduceCnf == null)
                 {
-                    Byte[] byteArray = LoadHelper.LoadBytes("TbActorProduceCnf");
+                    Byte[] byteArray = GameContext.Asset.LoadBytes("TbActorProduceCnf");
                     List<ActorProduceCnf> configs = MemoryPackSerializer.Deserialize<List<ActorProduceCnf>>(byteArray);
                     _ActorProduceCnf = new TbActorProduceCnf();
                     _ActorProduceCnf.AddConfig(configs);
@@ -176,7 +176,7 @@ namespace LCConfig
             {
                 if (_ActorCollectCnf == null)
                 {
-                    Byte[] byteArray = LoadHelper.LoadBytes("TbActorCollectCnf");
+                    Byte[] byteArray = GameContext.Asset.LoadBytes("TbActorCollectCnf");
                     List<ActorCollectCnf> configs = MemoryPackSerializer.Deserialize<List<ActorCollectCnf>>(byteArray);
                     _ActorCollectCnf = new TbActorCollectCnf();
                     _ActorCollectCnf.AddConfig(configs);
@@ -195,7 +195,7 @@ namespace LCConfig
             {
                 if (_ActorBasePropertyCnf == null)
                 {
-                    Byte[] byteArray = LoadHelper.LoadBytes("TbActorBasePropertyCnf");
+                    Byte[] byteArray = GameContext.Asset.LoadBytes("TbActorBasePropertyCnf");
                     List<ActorBasePropertyCnf> configs = MemoryPackSerializer.Deserialize<List<ActorBasePropertyCnf>>(byteArray);
                     _ActorBasePropertyCnf = new TbActorBasePropertyCnf();
                     _ActorBasePropertyCnf.AddConfig(configs);
@@ -214,7 +214,7 @@ namespace LCConfig
             {
                 if (_WeaponCnf == null)
                 {
-                    Byte[] byteArray = LoadHelper.LoadBytes("TbWeaponCnf");
+                    Byte[] byteArray = GameContext.Asset.LoadBytes("TbWeaponCnf");
                     List<WeaponCnf> configs = MemoryPackSerializer.Deserialize<List<WeaponCnf>>(byteArray);
                     _WeaponCnf = new TbWeaponCnf();
                     _WeaponCnf.AddConfig(configs);
@@ -233,7 +233,7 @@ namespace LCConfig
             {
                 if (_EventCnf == null)
                 {
-                    Byte[] byteArray = LoadHelper.LoadBytes("TbEventCnf");
+                    Byte[] byteArray = GameContext.Asset.LoadBytes("TbEventCnf");
                     List<EventCnf> configs = MemoryPackSerializer.Deserialize<List<EventCnf>>(byteArray);
                     _EventCnf = new TbEventCnf();
                     _EventCnf.AddConfig(configs);
@@ -252,7 +252,7 @@ namespace LCConfig
             {
                 if (_UIPanelCnf == null)
                 {
-                    Byte[] byteArray = LoadHelper.LoadBytes("TbUIPanelCnf");
+                    Byte[] byteArray = GameContext.Asset.LoadBytes("TbUIPanelCnf");
                     List<UIPanelCnf> configs = MemoryPackSerializer.Deserialize<List<UIPanelCnf>>(byteArray);
                     _UIPanelCnf = new TbUIPanelCnf();
                     _UIPanelCnf.AddConfig(configs);

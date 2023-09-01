@@ -1,4 +1,3 @@
-using LCLoad;
 using LCMap;
 using UnityEngine;
 
@@ -20,7 +19,7 @@ namespace Demo.Server
             itemActor.uid = $"item_{startUid--}";
             itemActor.id  = entityId;
 
-            GameObject itemAsset = LoadHelper.LoadPrefab(itemPrefab);
+            GameObject itemAsset = IAFramework.GameContext.Asset.LoadPrefab(itemPrefab);
             GameObject itemGo    = GameObject.Instantiate(itemAsset, itemRoot.transform);
             itemGo.transform.position = itemPos;
             Actor actorObj    = ActorCreator.CreateActor(itemActor,itemGo);

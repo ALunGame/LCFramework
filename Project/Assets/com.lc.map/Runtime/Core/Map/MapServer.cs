@@ -2,7 +2,6 @@
 using LCConfig;
 using System.Collections.Generic;
 using UnityEngine;
-using LCLoad;
 using LCToolkit;
 using Demo;
 using LCECS.Core;
@@ -86,7 +85,7 @@ namespace LCMap
                 return mapCnf[pMapId];
             }
             string mapAssetName = ConfigDef.GetCnfNoExName("Map_" + pMapId);
-            string jsonStr = LoadHelper.LoadString(mapAssetName);
+            string jsonStr = IAFramework.GameContext.Asset.LoadString(mapAssetName);
             MapInfo model = LCJson.JsonMapper.ToObject<MapInfo>(jsonStr);
             mapCnf.Add(pMapId, model);
             return model;

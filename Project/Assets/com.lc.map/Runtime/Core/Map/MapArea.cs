@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using LCLoad;
 using LCToolkit;
 using LCConfig;
 using Cinemachine;
@@ -43,7 +42,7 @@ namespace LCMap
             AreaRootGo = new GameObject("Area_"+Id);
 
             //预制体
-            GameObject assetGo = LoadHelper.LoadPrefab(Model.areaPrefab);
+            GameObject assetGo = IAFramework.GameContext.Asset.LoadPrefab(Model.areaPrefab);
             AreaEnvGo = GameObject.Instantiate(assetGo);
             AreaEnvGo.transform.SetParent(AreaRootGo.transform);
             AreaEnvGo.transform.Reset();

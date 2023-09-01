@@ -1,5 +1,4 @@
-﻿using LCLoad;
-using LCToolkit;
+﻿using LCToolkit;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -124,7 +123,7 @@ namespace LCUI
                     }
                     else
                     {
-                        cacheItem = LoadHelper.LoadPrefab(cacheItemName);
+                        cacheItem = IAFramework.GameContext.Asset.LoadPrefab(cacheItemName);
                         if (cacheItem == null)
                             UILocate.Log.LogError("缓存对象绑定失败，没有缓存对象！！", cacheItemName);
                     }

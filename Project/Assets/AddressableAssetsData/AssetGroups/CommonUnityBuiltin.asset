@@ -16,12 +16,7 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: 02f3319835b7aaf42b3854c39bda727b
-  m_SerializeEntries:
-  - m_GUID: cede4ef0db12fb641b988847ba5dcd48
-    m_Address: Assets/Demo/Asset/Common/UnityBuiltin
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
+  m_SerializeEntries: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: c106a54d1dad7c34dbca1e47199c97a1, type: 2}
   m_SchemaSet:

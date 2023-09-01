@@ -1,6 +1,12 @@
 {
   "dependencies": {
+    "com.ia.ecs": "file:../IA-Packages/com.ia.ecs",
+    "com.ia.engine": "file:../IA-Packages/com.ia.engine",
+    "com.ia.nodegraph": "file:../IA-Packages/com.ia.nodegraph",
+    "com.ia.server": "file:../IA-Packages/com.ia.server",
+    "com.ia.toolkit": "file:../IA-Packages/com.ia.toolkit",
     "com.littlebigfun.addressable-importer": "file:../../Packages/unity-addressable-importer",
+    "com.tuyoogame.yooasset": "1.5.3-preview",
     "com.unity.2d.sprite": "1.0.0",
     "com.unity.2d.tilemap": "1.0.0",
     "com.unity.addressables": "1.21.9",
@@ -50,5 +56,14 @@
     "com.unity.modules.vr": "1.0.0",
     "com.unity.modules.wind": "1.0.0",
     "com.unity.modules.xr": "1.0.0"
-  }
+  },
+  "scopedRegistries": [
+    {
+      "name": "package.openupm.cn",
+      "url": "https://package.openupm.cn",
+      "scopes": [
+        "com.tuyoogame.yooasset"
+      ]
+    }
+  ]
 }

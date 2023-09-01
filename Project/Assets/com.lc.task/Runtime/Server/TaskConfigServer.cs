@@ -1,5 +1,4 @@
 using LCJson;
-using LCLoad;
 using System.Collections.Generic;
 
 namespace LCTask
@@ -11,7 +10,7 @@ namespace LCTask
         public void Init()
         {
             string assetName = TaskDef.GetTaskCnfName();
-            string jsonStr   = LoadHelper.LoadString(assetName);
+            string jsonStr   = IAFramework.GameContext.Asset.LoadString(assetName);
             if (string.IsNullOrEmpty(jsonStr))
             {
                 TaskLocate.Log.LogError("任务配置加载失败没有资源", assetName);

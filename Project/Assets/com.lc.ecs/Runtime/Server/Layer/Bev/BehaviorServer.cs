@@ -79,7 +79,7 @@ namespace LCECS.Server.Layer
         /// <returns></returns>
         private List<BehaviorTree> LoadBehavior(RequestId treeId)
         {
-            string jsonStr = LCLoad.LoadHelper.LoadString(ECSDefPath.GetBevTreeCnfName(treeId));
+            string jsonStr = IAFramework.GameContext.Asset.LoadString(ECSDefPath.GetBevTreeCnfName(treeId));
             try
             {
                 List<BehaviorTree> behaviors = JsonMapper.ToObject<List<BehaviorTree>>(jsonStr);

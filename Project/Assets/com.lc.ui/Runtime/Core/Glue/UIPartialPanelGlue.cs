@@ -1,4 +1,4 @@
-﻿using LCLoad;
+﻿using IAFramework;
 using LCToolkit;
 using UnityEngine;
 
@@ -64,7 +64,7 @@ namespace LCUI
             {
                 if (string.IsNullOrEmpty(_PanelPath))
                 {
-                    GameObject tGo = LoadHelper.CreateGo(_PrefabName);
+                    GameObject tGo = GameContext.Asset.CreateGo(_PrefabName);
                     if (_Panel.transform.Find(_PrefabBindPath,out Transform bindTrans))
                     {
                         tGo.transform.SetParent(bindTrans);

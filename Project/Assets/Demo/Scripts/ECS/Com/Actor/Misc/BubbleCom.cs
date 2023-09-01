@@ -1,6 +1,5 @@
 using Demo.UI;
 using LCECS.Core;
-using LCLoad;
 using LCMap;
 using LCToolkit;
 using LCUI;
@@ -46,7 +45,7 @@ namespace Demo.Com
                 return bubbleCom;
             }
 
-            GameObject bubbleAssetGo = LoadHelper.LoadPrefab("BubbleDialogCom");
+            GameObject bubbleAssetGo = IAFramework.GameContext.Asset.LoadPrefab("BubbleDialogCom");
             GameObject bubbleTrans   = GameObject.Instantiate(bubbleAssetGo);
             bubbleTrans.GetComponent<Canvas>().worldCamera = Camera.main;
             bubbleTrans.transform.SetParent(bubbleRoot);

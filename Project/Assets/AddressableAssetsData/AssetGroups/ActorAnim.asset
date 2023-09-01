@@ -16,72 +16,7 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: 271c983a1a084834f99df952467cd83f
-  m_SerializeEntries:
-  - m_GUID: fe5230509ecbd2e44aeced9d8a570160
-    m_Address: Assets/Demo/Asset/Actors/Monster/1005/Anim
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 1817ee6ec998a0a43aaf91094f22c7ba
-    m_Address: Assets/Demo/Asset/Actors/Player/1001/Anim
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: c6fa318361e8bf54488d90a34190941f
-    m_Address: Assets/Demo/Asset/Actors/Item/Anim
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: e39f318a07955424ba75d26a133f8650
-    m_Address: Assets/Demo/Asset/Actors/Building/Anim
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 8205967e54610cf42ad91d5879fc2818
-    m_Address: Assets/Demo/Asset/Actors/Villagers/villager1/Anim
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 1d148906a2a3698408bead1ee6cc1db9
-    m_Address: Assets/Demo/Asset/Actors/Villagers/villager2/Anim
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 5fa5211b357604e48bae21e11996c631
-    m_Address: Assets/Demo/Asset/Actors/Villagers/villager3/Anim
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 982e7de2368388e49924758b68421df8
-    m_Address: Assets/Demo/Asset/Actors/Villagers/villager4/Anim
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: dba1d3028abc9f64090431ab4d547f47
-    m_Address: Assets/Demo/Asset/Actors/Villagers/villager5/Anim
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: cf0f1a0a191a5304ca99af2abf2f8487
-    m_Address: Assets/Demo/Asset/Actors/Villagers/villager6/Anim
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: a2cf1512cbe5e514a9890bb238def1dc
-    m_Address: Assets/Demo/Asset/Actors/Villagers/villager7/Anim
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 6dbdf0f62735b9840b1cdb09a830313b
-    m_Address: Assets/Demo/Asset/Actors/Villagers/villager8/Anim
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 5bc5c019fd0ef654ab7589def9dc8118
-    m_Address: Assets/Demo/Asset/Actors/Villagers/villager9/Anim
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
+  m_SerializeEntries: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: c106a54d1dad7c34dbca1e47199c97a1, type: 2}
   m_SchemaSet:

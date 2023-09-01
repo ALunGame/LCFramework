@@ -16,57 +16,7 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: dd5acf02e67d4ce4d952e66a85e0d09a
-  m_SerializeEntries:
-  - m_GUID: c6ef28f78a8bec74baceeab8ebdb6c69
-    m_Address: 1001_Env
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 6912254b81256764a84ac28bd932a458
-    m_Address: map_fence_1
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 5301ebe95c6d4ea4eaefdeec957feb31
-    m_Address: map_building_stall
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 9900f473552849e4da51a89838eebcc7
-    m_Address: map_building_center_1
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 58b816316ee5e83429892d9a35520e58
-    m_Address: map_building_weapon_1
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: f89a1d04e08dce74ebfc5de77ca7cc09
-    m_Address: map_building_house_1
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 90a46bcc336155e41b2ebdb24e1e2aa9
-    m_Address: Map1_Env
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: e12af0485d159d54bb257c4308086d33
-    m_Address: Map101_Env
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 7a42f2bc3e033204da61cc6ccd441e3f
-    m_Address: Map000_Env
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 3204ddb88652c884e9348011b7787fbe
-    m_Address: Map9999_Env
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
+  m_SerializeEntries: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: c106a54d1dad7c34dbca1e47199c97a1, type: 2}
   m_SchemaSet:

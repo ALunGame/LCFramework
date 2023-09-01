@@ -1,13 +1,14 @@
 ﻿using System;
-using LCToolkit;
+using IAToolkit;
 using UnityEditor;
 using UnityEngine;
+using IOHelper = LCToolkit.IOHelper;
 
 namespace LCSkill.Timeline
 {
     public class SkillTimelineAsset : GroupChildAsset
     {
-        public GameObject previewGo;
+        public GameObject previewGo = null;
         public Action clickBackFunc = null;
 
         public override void Open(object pOwner = null, Action _clickBackFunc = null)

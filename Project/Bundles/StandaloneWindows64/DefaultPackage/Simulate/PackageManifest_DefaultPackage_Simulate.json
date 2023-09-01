@@ -1,0 +1,3284 @@
+{
+    "FileVersion": "1.5.2",
+    "EnableAddressable": true,
+    "LocationToLower": false,
+    "IncludeAssetGUID": false,
+    "OutputNameStyle": 1,
+    "PackageName": "DefaultPackage",
+    "PackageVersion": "Simulate",
+    "AssetList": [
+        {
+            "Address": "Actor_tx_map101_barShopHouse",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Actors/Prefabs/Buildings/Actor_tx_map101_barShopHouse.prefab",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 0,
+            "DependIDs": []
+        },
+        {
+            "Address": "Actor_tx_map101_baseShopHouse",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Actors/Prefabs/Buildings/Actor_tx_map101_baseShopHouse.prefab",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 1,
+            "DependIDs": []
+        },
+        {
+            "Address": "Actor_tx_map101_foodShopHouse",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Actors/Prefabs/Buildings/Actor_tx_map101_foodShopHouse.prefab",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 2,
+            "DependIDs": []
+        },
+        {
+            "Address": "Actor_tx_map101_leftBigDoor",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Actors/Prefabs/Buildings/Actor_tx_map101_leftBigDoor.prefab",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 3,
+            "DependIDs": []
+        },
+        {
+            "Address": "Actor_tx_map101_oreFactoryHouse",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Actors/Prefabs/Buildings/Actor_tx_map101_oreFactoryHouse.prefab",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 4,
+            "DependIDs": []
+        },
+        {
+            "Address": "Actor_tx_map101_plantFactoryHouse",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Actors/Prefabs/Buildings/Actor_tx_map101_plantFactoryHouse.prefab",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 5,
+            "DependIDs": []
+        },
+        {
+            "Address": "Actor_tx_map101_restHouse01",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Actors/Prefabs/Buildings/Actor_tx_map101_restHouse01.prefab",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 6,
+            "DependIDs": []
+        },
+        {
+            "Address": "Actor_tx_map101_restHouse02",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Actors/Prefabs/Buildings/Actor_tx_map101_restHouse02.prefab",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 7,
+            "DependIDs": []
+        },
+        {
+            "Address": "Actor_tx_map101_restHouse03",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Actors/Prefabs/Buildings/Actor_tx_map101_restHouse03.prefab",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 8,
+            "DependIDs": []
+        },
+        {
+            "Address": "Actor_tx_map101_restHouse04",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Actors/Prefabs/Buildings/Actor_tx_map101_restHouse04.prefab",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 9,
+            "DependIDs": []
+        },
+        {
+            "Address": "Actor_tx_map101_restHouse05",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Actors/Prefabs/Buildings/Actor_tx_map101_restHouse05.prefab",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 10,
+            "DependIDs": []
+        },
+        {
+            "Address": "Actor_tx_map101_rightBigDoor",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Actors/Prefabs/Buildings/Actor_tx_map101_rightBigDoor.prefab",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 11,
+            "DependIDs": []
+        },
+        {
+            "Address": "Actor_tx_map101_secretShopHouse",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Actors/Prefabs/Buildings/Actor_tx_map101_secretShopHouse.prefab",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 12,
+            "DependIDs": []
+        },
+        {
+            "Address": "Actor_tx_map101_soldierFactoryHouse",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Actors/Prefabs/Buildings/Actor_tx_map101_soldierFactoryHouse.prefab",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 13,
+            "DependIDs": []
+        },
+        {
+            "Address": "Actor_tx_map101_studyHouse",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Actors/Prefabs/Buildings/Actor_tx_map101_studyHouse.prefab",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 14,
+            "DependIDs": []
+        },
+        {
+            "Address": "Actor_tx_map101_towerHouse",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Actors/Prefabs/Buildings/Actor_tx_map101_towerHouse.prefab",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 15,
+            "DependIDs": []
+        },
+        {
+            "Address": "Actor_tx_map101_villageHeadHouse",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Actors/Prefabs/Buildings/Actor_tx_map101_villageHeadHouse.prefab",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 16,
+            "DependIDs": []
+        },
+        {
+            "Address": "Actor_tx_map101_villagerSpawnPoint",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Actors/Prefabs/Buildings/Actor_tx_map101_villagerSpawnPoint.prefab",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 17,
+            "DependIDs": []
+        },
+        {
+            "Address": "Actor_tx_map101_weaponFactoryHouse",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Actors/Prefabs/Buildings/Actor_tx_map101_weaponFactoryHouse.prefab",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 18,
+            "DependIDs": []
+        },
+        {
+            "Address": "Actor_Item",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Actors/Prefabs/Items/Actor_Item.prefab",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 19,
+            "DependIDs": []
+        },
+        {
+            "Address": "Actor_tx_item_anvil",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Actors/Prefabs/Items/Actor_tx_item_anvil.prefab",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 20,
+            "DependIDs": []
+        },
+        {
+            "Address": "Actor_tx_item_barrel",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Actors/Prefabs/Items/Actor_tx_item_barrel.prefab",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 21,
+            "DependIDs": []
+        },
+        {
+            "Address": "Actor_tx_item_bucket",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Actors/Prefabs/Items/Actor_tx_item_bucket.prefab",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 22,
+            "DependIDs": []
+        },
+        {
+            "Address": "Actor_tx_item_bush_a",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Actors/Prefabs/Items/Actor_tx_item_bush_a.prefab",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 23,
+            "DependIDs": []
+        },
+        {
+            "Address": "Actor_tx_item_bush_b",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Actors/Prefabs/Items/Actor_tx_item_bush_b.prefab",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 24,
+            "DependIDs": []
+        },
+        {
+            "Address": "Actor_tx_item_bush_c",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Actors/Prefabs/Items/Actor_tx_item_bush_c.prefab",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 25,
+            "DependIDs": []
+        },
+        {
+            "Address": "Actor_tx_item_chest_golden",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Actors/Prefabs/Items/Actor_tx_item_chest_golden.prefab",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 26,
+            "DependIDs": []
+        },
+        {
+            "Address": "Actor_tx_item_chest_iron",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Actors/Prefabs/Items/Actor_tx_item_chest_iron.prefab",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 27,
+            "DependIDs": []
+        },
+        {
+            "Address": "Actor_tx_item_chest_silver",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Actors/Prefabs/Items/Actor_tx_item_chest_silver.prefab",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 28,
+            "DependIDs": []
+        },
+        {
+            "Address": "Actor_tx_item_chest_wooden",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Actors/Prefabs/Items/Actor_tx_item_chest_wooden.prefab",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 29,
+            "DependIDs": []
+        },
+        {
+            "Address": "Actor_tx_item_crate_large",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Actors/Prefabs/Items/Actor_tx_item_crate_large.prefab",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 30,
+            "DependIDs": []
+        },
+        {
+            "Address": "Actor_tx_item_crate_small",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Actors/Prefabs/Items/Actor_tx_item_crate_small.prefab",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 31,
+            "DependIDs": []
+        },
+        {
+            "Address": "Actor_tx_item_grass_a",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Actors/Prefabs/Items/Actor_tx_item_grass_a.prefab",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 32,
+            "DependIDs": []
+        },
+        {
+            "Address": "Actor_tx_item_grass_b",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Actors/Prefabs/Items/Actor_tx_item_grass_b.prefab",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 33,
+            "DependIDs": []
+        },
+        {
+            "Address": "Actor_tx_item_grass_c",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Actors/Prefabs/Items/Actor_tx_item_grass_c.prefab",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 34,
+            "DependIDs": []
+        },
+        {
+            "Address": "Actor_tx_item_grass_d",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Actors/Prefabs/Items/Actor_tx_item_grass_d.prefab",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 35,
+            "DependIDs": []
+        },
+        {
+            "Address": "Actor_tx_item_grass_e",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Actors/Prefabs/Items/Actor_tx_item_grass_e.prefab",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 36,
+            "DependIDs": []
+        },
+        {
+            "Address": "Actor_tx_item_grass_f",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Actors/Prefabs/Items/Actor_tx_item_grass_f.prefab",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 37,
+            "DependIDs": []
+        },
+        {
+            "Address": "Actor_tx_item_gunny_bag_a",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Actors/Prefabs/Items/Actor_tx_item_gunny_bag_a.prefab",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 38,
+            "DependIDs": []
+        },
+        {
+            "Address": "Actor_tx_item_gunny_bag_b",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Actors/Prefabs/Items/Actor_tx_item_gunny_bag_b.prefab",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 39,
+            "DependIDs": []
+        },
+        {
+            "Address": "Actor_tx_item_hay_bale",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Actors/Prefabs/Items/Actor_tx_item_hay_bale.prefab",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 40,
+            "DependIDs": []
+        },
+        {
+            "Address": "Actor_tx_item_hay_pile",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Actors/Prefabs/Items/Actor_tx_item_hay_pile.prefab",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 41,
+            "DependIDs": []
+        },
+        {
+            "Address": "Actor_tx_item_pot_a",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Actors/Prefabs/Items/Actor_tx_item_pot_a.prefab",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 42,
+            "DependIDs": []
+        },
+        {
+            "Address": "Actor_tx_item_pot_b",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Actors/Prefabs/Items/Actor_tx_item_pot_b.prefab",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 43,
+            "DependIDs": []
+        },
+        {
+            "Address": "Actor_tx_item_pot_c",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Actors/Prefabs/Items/Actor_tx_item_pot_c.prefab",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 44,
+            "DependIDs": []
+        },
+        {
+            "Address": "Actor_tx_item_road_lamp",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Actors/Prefabs/Items/Actor_tx_item_road_lamp.prefab",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 45,
+            "DependIDs": []
+        },
+        {
+            "Address": "Actor_tx_item_scarecrow",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Actors/Prefabs/Items/Actor_tx_item_scarecrow.prefab",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 46,
+            "DependIDs": []
+        },
+        {
+            "Address": "Actor_tx_item_spike",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Actors/Prefabs/Items/Actor_tx_item_spike.prefab",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 47,
+            "DependIDs": []
+        },
+        {
+            "Address": "Actor_tx_item_training_dummy",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Actors/Prefabs/Items/Actor_tx_item_training_dummy.prefab",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 48,
+            "DependIDs": []
+        },
+        {
+            "Address": "Actor_tx_item_tree_a",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Actors/Prefabs/Items/Actor_tx_item_tree_a.prefab",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 49,
+            "DependIDs": []
+        },
+        {
+            "Address": "Actor_tx_item_tree_b",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Actors/Prefabs/Items/Actor_tx_item_tree_b.prefab",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 50,
+            "DependIDs": []
+        },
+        {
+            "Address": "Actor_tx_item_well",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Actors/Prefabs/Items/Actor_tx_item_well.prefab",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 51,
+            "DependIDs": []
+        },
+        {
+            "Address": "Actor_tx_item_wood_logs",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Actors/Prefabs/Items/Actor_tx_item_wood_logs.prefab",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 52,
+            "DependIDs": []
+        },
+        {
+            "Address": "Actor_1005",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Actors/Prefabs/Monsters/Actor_1005.prefab",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 53,
+            "DependIDs": []
+        },
+        {
+            "Address": "Actor_Main",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Actors/Prefabs/Players/Actor_Main.prefab",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 54,
+            "DependIDs": []
+        },
+        {
+            "Address": "Actor_Main_New",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Actors/Prefabs/Players/Actor_Main_New.prefab",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 55,
+            "DependIDs": []
+        },
+        {
+            "Address": "Actor_tx_map101_tree_1",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Actors/Prefabs/Trees/Actor_tx_map101_tree_1.prefab",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 56,
+            "DependIDs": []
+        },
+        {
+            "Address": "Actor_tx_map101_tree_2",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Actors/Prefabs/Trees/Actor_tx_map101_tree_2.prefab",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 57,
+            "DependIDs": []
+        },
+        {
+            "Address": "Actor_tx_map101_tree_3",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Actors/Prefabs/Trees/Actor_tx_map101_tree_3.prefab",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 58,
+            "DependIDs": []
+        },
+        {
+            "Address": "Actor_tx_map101_tree_4",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Actors/Prefabs/Trees/Actor_tx_map101_tree_4.prefab",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 59,
+            "DependIDs": []
+        },
+        {
+            "Address": "Actor_tx_map101_tree_5",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Actors/Prefabs/Trees/Actor_tx_map101_tree_5.prefab",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 60,
+            "DependIDs": []
+        },
+        {
+            "Address": "Actor_tx_map101_tree_6",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Actors/Prefabs/Trees/Actor_tx_map101_tree_6.prefab",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 61,
+            "DependIDs": []
+        },
+        {
+            "Address": "Actor_villager1",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Actors/Prefabs/Villagers/Actor_villager1.prefab",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 62,
+            "DependIDs": []
+        },
+        {
+            "Address": "Actor_villager2",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Actors/Prefabs/Villagers/Actor_villager2.prefab",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 63,
+            "DependIDs": []
+        },
+        {
+            "Address": "Actor_villager3",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Actors/Prefabs/Villagers/Actor_villager3.prefab",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 64,
+            "DependIDs": []
+        },
+        {
+            "Address": "Actor_villager4",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Actors/Prefabs/Villagers/Actor_villager4.prefab",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 65,
+            "DependIDs": []
+        },
+        {
+            "Address": "Actor_villager5",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Actors/Prefabs/Villagers/Actor_villager5.prefab",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 66,
+            "DependIDs": []
+        },
+        {
+            "Address": "Actor_villager6",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Actors/Prefabs/Villagers/Actor_villager6.prefab",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 67,
+            "DependIDs": []
+        },
+        {
+            "Address": "Actor_villager7",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Actors/Prefabs/Villagers/Actor_villager7.prefab",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 68,
+            "DependIDs": []
+        },
+        {
+            "Address": "Actor_villager8",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Actors/Prefabs/Villagers/Actor_villager8.prefab",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 69,
+            "DependIDs": []
+        },
+        {
+            "Address": "Actor_villager9",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Actors/Prefabs/Villagers/Actor_villager9.prefab",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 70,
+            "DependIDs": []
+        },
+        {
+            "Address": "Actor_weapon_axe",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Actors/Prefabs/Weapons/Actor_weapon_axe.prefab",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 71,
+            "DependIDs": []
+        },
+        {
+            "Address": "Actor_weapon_hammer",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Actors/Prefabs/Weapons/Actor_weapon_hammer.prefab",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 72,
+            "DependIDs": []
+        },
+        {
+            "Address": "Actor_weapon_pickaxe",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Actors/Prefabs/Weapons/Actor_weapon_pickaxe.prefab",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 73,
+            "DependIDs": []
+        },
+        {
+            "Address": "Actor_weapon_shovel",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Actors/Prefabs/Weapons/Actor_weapon_shovel.prefab",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 74,
+            "DependIDs": []
+        },
+        {
+            "Address": "BaseFont SDF",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Common/Fonts/BaseFont SDF.asset",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 75,
+            "DependIDs": []
+        },
+        {
+            "Address": "BaseFont",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Common/Fonts/BaseFont.ttf",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 76,
+            "DependIDs": []
+        },
+        {
+            "Address": "HYTangMeiRen95W",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Common/Fonts/HYTangMeiRen95W.ttf",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 77,
+            "DependIDs": []
+        },
+        {
+            "Address": "DashTrail",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Common/Mat/DashTrail.mat",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 78,
+            "DependIDs": []
+        },
+        {
+            "Address": "WaveMat",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Common/Mat/WaveMat.mat",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 79,
+            "DependIDs": []
+        },
+        {
+            "Address": "LCWave",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Common/Shader/LCWave.shader",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 80,
+            "DependIDs": []
+        },
+        {
+            "Address": "TbBehavior_ActorSetActive",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Config/BevTree/TbBehavior_ActorSetActive.txt",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 81,
+            "DependIDs": []
+        },
+        {
+            "Address": "TbBehavior_Collect",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Config/BevTree/TbBehavior_Collect.txt",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 82,
+            "DependIDs": []
+        },
+        {
+            "Address": "TbBehavior_GazeSurround",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Config/BevTree/TbBehavior_GazeSurround.txt",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 83,
+            "DependIDs": []
+        },
+        {
+            "Address": "TbBehavior_InputMove",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Config/BevTree/TbBehavior_InputMove.txt",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 84,
+            "DependIDs": []
+        },
+        {
+            "Address": "TbBehavior_Jump",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Config/BevTree/TbBehavior_Jump.txt",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 85,
+            "DependIDs": []
+        },
+        {
+            "Address": "TbBehavior_Move",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Config/BevTree/TbBehavior_Move.txt",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 86,
+            "DependIDs": []
+        },
+        {
+            "Address": "TbBehavior_MoveToActor",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Config/BevTree/TbBehavior_MoveToActor.txt",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 87,
+            "DependIDs": []
+        },
+        {
+            "Address": "TbBehavior_None",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Config/BevTree/TbBehavior_None.txt",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 88,
+            "DependIDs": []
+        },
+        {
+            "Address": "TbBehavior_Produce",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Config/BevTree/TbBehavior_Produce.txt",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 89,
+            "DependIDs": []
+        },
+        {
+            "Address": "TbBehavior_PushSkill",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Config/BevTree/TbBehavior_PushSkill.txt",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 90,
+            "DependIDs": []
+        },
+        {
+            "Address": "TbBehavior_Rest",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Config/BevTree/TbBehavior_Rest.txt",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 91,
+            "DependIDs": []
+        },
+        {
+            "Address": "TbBehavior_Sleep",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Config/BevTree/TbBehavior_Sleep.txt",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 92,
+            "DependIDs": []
+        },
+        {
+            "Address": "TbBehavior_StopBev",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Config/BevTree/TbBehavior_StopBev.txt",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 93,
+            "DependIDs": []
+        },
+        {
+            "Address": "TbBehavior_Storage",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Config/BevTree/TbBehavior_Storage.txt",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 94,
+            "DependIDs": []
+        },
+        {
+            "Address": "TbBehavior_Wander",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Config/BevTree/TbBehavior_Wander.txt",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 95,
+            "DependIDs": []
+        },
+        {
+            "Address": "TbDecision_-999",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Config/DecTree/TbDecision_-999.txt",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 96,
+            "DependIDs": []
+        },
+        {
+            "Address": "TbDecision_0",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Config/DecTree/TbDecision_0.txt",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 97,
+            "DependIDs": []
+        },
+        {
+            "Address": "TbDecision_1",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Config/DecTree/TbDecision_1.txt",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 98,
+            "DependIDs": []
+        },
+        {
+            "Address": "TbDecision_2",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Config/DecTree/TbDecision_2.txt",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 99,
+            "DependIDs": []
+        },
+        {
+            "Address": "TbDecision_201",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Config/DecTree/TbDecision_201.txt",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 100,
+            "DependIDs": []
+        },
+        {
+            "Address": "TbDecision_202",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Config/DecTree/TbDecision_202.txt",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 101,
+            "DependIDs": []
+        },
+        {
+            "Address": "TbDecision_220",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Config/DecTree/TbDecision_220.txt",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 102,
+            "DependIDs": []
+        },
+        {
+            "Address": "TbBubbleDialog",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Config/Dialog/TbBubbleDialog.txt",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 103,
+            "DependIDs": []
+        },
+        {
+            "Address": "TbEntity_-999",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Config/Entity/TbEntity_-999.txt",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 104,
+            "DependIDs": []
+        },
+        {
+            "Address": "TbEntity_-9999",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Config/Entity/TbEntity_-9999.txt",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 105,
+            "DependIDs": []
+        },
+        {
+            "Address": "TbEntity_0",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Config/Entity/TbEntity_0.txt",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 106,
+            "DependIDs": []
+        },
+        {
+            "Address": "TbEntity_1",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Config/Entity/TbEntity_1.txt",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 107,
+            "DependIDs": []
+        },
+        {
+            "Address": "TbEntity_2",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Config/Entity/TbEntity_2.txt",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 108,
+            "DependIDs": []
+        },
+        {
+            "Address": "TbEntity_201",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Config/Entity/TbEntity_201.txt",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 109,
+            "DependIDs": []
+        },
+        {
+            "Address": "TbEntity_202",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Config/Entity/TbEntity_202.txt",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 110,
+            "DependIDs": []
+        },
+        {
+            "Address": "TbEntity_210",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Config/Entity/TbEntity_210.txt",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 111,
+            "DependIDs": []
+        },
+        {
+            "Address": "TbEntity_220",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Config/Entity/TbEntity_220.txt",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 112,
+            "DependIDs": []
+        },
+        {
+            "Address": "TbEntity_301",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Config/Entity/TbEntity_301.txt",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 113,
+            "DependIDs": []
+        },
+        {
+            "Address": "TbEntity_320",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Config/Entity/TbEntity_320.txt",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 114,
+            "DependIDs": []
+        },
+        {
+            "Address": "TbEntity_340",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Config/Entity/TbEntity_340.txt",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 115,
+            "DependIDs": []
+        },
+        {
+            "Address": "TbEntity_401",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Config/Entity/TbEntity_401.txt",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 116,
+            "DependIDs": []
+        },
+        {
+            "Address": "TbEntity_501",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Config/Entity/TbEntity_501.txt",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 117,
+            "DependIDs": []
+        },
+        {
+            "Address": "LCSkill.SkillAbility",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Config/GAS/GA/LCSkill.SkillAbility.txt",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 118,
+            "DependIDs": []
+        },
+        {
+            "Address": "GameplayTags",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Config/GAS/GameplayTags.json",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 119,
+            "DependIDs": []
+        },
+        {
+            "Address": "GE_Player_SkillCoolDown",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Config/GAS/GE/GE_Player_SkillCoolDown.txt",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 120,
+            "DependIDs": []
+        },
+        {
+            "Address": "GE_Player_SkillCost",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Config/GAS/GE/GE_Player_SkillCost.txt",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 121,
+            "DependIDs": []
+        },
+        {
+            "Address": "GE_Player_Test",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Config/GAS/GE/GE_Player_Test.txt",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 122,
+            "DependIDs": []
+        },
+        {
+            "Address": "TbMap_0",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Config/Map/TbMap_0.txt",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 123,
+            "DependIDs": []
+        },
+        {
+            "Address": "TbMap_1",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Config/Map/TbMap_1.txt",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 124,
+            "DependIDs": []
+        },
+        {
+            "Address": "TbMap_101",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Config/Map/TbMap_101.txt",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 125,
+            "DependIDs": []
+        },
+        {
+            "Address": "TbMap_1001",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Config/Map/TbMap_1001.txt",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 126,
+            "DependIDs": []
+        },
+        {
+            "Address": "TbMap_9999",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Config/Map/TbMap_9999.txt",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 127,
+            "DependIDs": []
+        },
+        {
+            "Address": "TbSk_Timeline_1",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Config/Sk_Timeline/TbSk_Timeline_1.txt",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 128,
+            "DependIDs": []
+        },
+        {
+            "Address": "TbSk_Timeline_2",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Config/Sk_Timeline/TbSk_Timeline_2.txt",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 129,
+            "DependIDs": []
+        },
+        {
+            "Address": "TbSk_Timeline_100101",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Config/Sk_Timeline/TbSk_Timeline_100101.txt",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 130,
+            "DependIDs": []
+        },
+        {
+            "Address": "TbSk_Timeline_100102",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Config/Sk_Timeline/TbSk_Timeline_100102.txt",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 131,
+            "DependIDs": []
+        },
+        {
+            "Address": "TbSk_Timeline_100501",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Config/Sk_Timeline/TbSk_Timeline_100501.txt",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 132,
+            "DependIDs": []
+        },
+        {
+            "Address": "TbAoe_100101",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Config/Skill/TbAoe_100101.txt",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 133,
+            "DependIDs": []
+        },
+        {
+            "Address": "TbAoe_100501",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Config/Skill/TbAoe_100501.txt",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 134,
+            "DependIDs": []
+        },
+        {
+            "Address": "TbBuff_100102",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Config/Skill/TbBuff_100102.txt",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 135,
+            "DependIDs": []
+        },
+        {
+            "Address": "TbBuff_enemyBeHurt",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Config/Skill/TbBuff_enemyBeHurt.txt",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 136,
+            "DependIDs": []
+        },
+        {
+            "Address": "TbBuff_playerBeHurt",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Config/Skill/TbBuff_playerBeHurt.txt",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 137,
+            "DependIDs": []
+        },
+        {
+            "Address": "TbSkill_100101",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Config/Skill/TbSkill_100101.txt",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 138,
+            "DependIDs": []
+        },
+        {
+            "Address": "TbSkill_100102",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Config/Skill/TbSkill_100102.txt",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 139,
+            "DependIDs": []
+        },
+        {
+            "Address": "TbSkill_100501",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Config/Skill/TbSkill_100501.txt",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 140,
+            "DependIDs": []
+        },
+        {
+            "Address": "SkillTimline_Player_Test",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Config/Skill/Timeline/SkillTimline_Player_Test.txt",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 141,
+            "DependIDs": []
+        },
+        {
+            "Address": "玩家技能Timeline组_11",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Config/Skill/Timeline/玩家技能Timeline组_11.txt",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 142,
+            "DependIDs": []
+        },
+        {
+            "Address": "TbTask",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Config/Task/TbTask.txt",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 143,
+            "DependIDs": []
+        },
+        {
+            "Address": "TbActorBasePropertyCnf",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Config/TbActorBasePropertyCnf.txt",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 144,
+            "DependIDs": []
+        },
+        {
+            "Address": "TbActorCnf",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Config/TbActorCnf.txt",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 145,
+            "DependIDs": []
+        },
+        {
+            "Address": "TbEventCnf",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Config/TbEventCnf.txt",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 146,
+            "DependIDs": []
+        },
+        {
+            "Address": "TbItemCnf",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Config/TbItemCnf.txt",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 147,
+            "DependIDs": []
+        },
+        {
+            "Address": "TbItemRecipeCnf",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Config/TbItemRecipeCnf.txt",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 148,
+            "DependIDs": []
+        },
+        {
+            "Address": "TbItemRepairCnf",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Config/TbItemRepairCnf.txt",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 149,
+            "DependIDs": []
+        },
+        {
+            "Address": "TbMapRoadCnf",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Config/TbMapRoadCnf.txt",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 150,
+            "DependIDs": []
+        },
+        {
+            "Address": "TbSkillCnf",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Config/TbSkillCnf.txt",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 151,
+            "DependIDs": []
+        },
+        {
+            "Address": "TbTest",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Config/TbTest.txt",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 152,
+            "DependIDs": []
+        },
+        {
+            "Address": "TbUIPanelCnf",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Config/TbUIPanelCnf.txt",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 153,
+            "DependIDs": []
+        },
+        {
+            "Address": "TbWeaponCnf",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Config/TbWeaponCnf.txt",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 154,
+            "DependIDs": []
+        },
+        {
+            "Address": "1001_Env",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Maps/Prefabs/1001_Env.prefab",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 155,
+            "DependIDs": []
+        },
+        {
+            "Address": "Map000_Env",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Maps/Prefabs/Map000_Env.prefab",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 156,
+            "DependIDs": []
+        },
+        {
+            "Address": "Map101_Env",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Maps/Prefabs/Map101_Env.prefab",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 157,
+            "DependIDs": []
+        },
+        {
+            "Address": "Map9999_Env",
+            "AssetPath": "Assets/GameAsset/BundleAssets/Maps/Prefabs/Map9999_Env.prefab",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 158,
+            "DependIDs": []
+        },
+        {
+            "Address": "dialog_dispose_1",
+            "AssetPath": "Assets/GameAsset/BundleAssets/UI/Assets/Textures/Dynamic/Dialog/dialog_dispose_1.png",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 159,
+            "DependIDs": []
+        },
+        {
+            "Address": "emoji1",
+            "AssetPath": "Assets/GameAsset/BundleAssets/UI/Assets/Textures/Dynamic/Emoji/emoji1.png",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 160,
+            "DependIDs": []
+        },
+        {
+            "Address": "emoji2",
+            "AssetPath": "Assets/GameAsset/BundleAssets/UI/Assets/Textures/Dynamic/Emoji/emoji2.png",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 160,
+            "DependIDs": []
+        },
+        {
+            "Address": "emoji3",
+            "AssetPath": "Assets/GameAsset/BundleAssets/UI/Assets/Textures/Dynamic/Emoji/emoji3.png",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 160,
+            "DependIDs": []
+        },
+        {
+            "Address": "emoji4",
+            "AssetPath": "Assets/GameAsset/BundleAssets/UI/Assets/Textures/Dynamic/Emoji/emoji4.png",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 160,
+            "DependIDs": []
+        },
+        {
+            "Address": "emoji5",
+            "AssetPath": "Assets/GameAsset/BundleAssets/UI/Assets/Textures/Dynamic/Emoji/emoji5.png",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 160,
+            "DependIDs": []
+        },
+        {
+            "Address": "emoji6",
+            "AssetPath": "Assets/GameAsset/BundleAssets/UI/Assets/Textures/Dynamic/Emoji/emoji6.png",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 160,
+            "DependIDs": []
+        },
+        {
+            "Address": "emoji7",
+            "AssetPath": "Assets/GameAsset/BundleAssets/UI/Assets/Textures/Dynamic/Emoji/emoji7.png",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 160,
+            "DependIDs": []
+        },
+        {
+            "Address": "emoji8",
+            "AssetPath": "Assets/GameAsset/BundleAssets/UI/Assets/Textures/Dynamic/Emoji/emoji8.png",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 160,
+            "DependIDs": []
+        },
+        {
+            "Address": "emoji9",
+            "AssetPath": "Assets/GameAsset/BundleAssets/UI/Assets/Textures/Dynamic/Emoji/emoji9.png",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 160,
+            "DependIDs": []
+        },
+        {
+            "Address": "emoji10",
+            "AssetPath": "Assets/GameAsset/BundleAssets/UI/Assets/Textures/Dynamic/Emoji/emoji10.png",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 160,
+            "DependIDs": []
+        },
+        {
+            "Address": "item_axe",
+            "AssetPath": "Assets/GameAsset/BundleAssets/UI/Assets/Textures/Dynamic/ItemIcon/item_axe.png",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 161,
+            "DependIDs": []
+        },
+        {
+            "Address": "item_hammer",
+            "AssetPath": "Assets/GameAsset/BundleAssets/UI/Assets/Textures/Dynamic/ItemIcon/item_hammer.png",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 161,
+            "DependIDs": []
+        },
+        {
+            "Address": "item_pickaxe",
+            "AssetPath": "Assets/GameAsset/BundleAssets/UI/Assets/Textures/Dynamic/ItemIcon/item_pickaxe.png",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 161,
+            "DependIDs": []
+        },
+        {
+            "Address": "item_shovel",
+            "AssetPath": "Assets/GameAsset/BundleAssets/UI/Assets/Textures/Dynamic/ItemIcon/item_shovel.png",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 161,
+            "DependIDs": []
+        },
+        {
+            "Address": "item_twig",
+            "AssetPath": "Assets/GameAsset/BundleAssets/UI/Assets/Textures/Dynamic/ItemIcon/item_twig.png",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 161,
+            "DependIDs": []
+        },
+        {
+            "Address": "item_wood",
+            "AssetPath": "Assets/GameAsset/BundleAssets/UI/Assets/Textures/Dynamic/ItemIcon/item_wood.png",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 161,
+            "DependIDs": []
+        },
+        {
+            "Address": "a_dynamic_newfolder",
+            "AssetPath": "Assets/GameAsset/BundleAssets/UI/Assets/Textures/Dynamic/NewFolder/a_dynamic_newfolder.spriteatlas",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 162,
+            "DependIDs": []
+        },
+        {
+            "Address": "item_axe121133",
+            "AssetPath": "Assets/GameAsset/BundleAssets/UI/Assets/Textures/Dynamic/NewFolder/item_axe121133.png",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 162,
+            "DependIDs": []
+        },
+        {
+            "Address": "item_wood - 副本",
+            "AssetPath": "Assets/GameAsset/BundleAssets/UI/Assets/Textures/Dynamic/NewFolder/item_wood - 副本.png",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 162,
+            "DependIDs": []
+        },
+        {
+            "Address": "BubbleDialogChoosePanel",
+            "AssetPath": "Assets/GameAsset/BundleAssets/UI/Prefabs/Dialog/Bubble/BubbleDialogChoosePanel.prefab",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 163,
+            "DependIDs": []
+        },
+        {
+            "Address": "BubbleDialogCom",
+            "AssetPath": "Assets/GameAsset/BundleAssets/UI/Prefabs/Dialog/Bubble/BubbleDialogCom.prefab",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 163,
+            "DependIDs": []
+        },
+        {
+            "Address": "MainUIPanel",
+            "AssetPath": "Assets/GameAsset/BundleAssets/UI/Prefabs/Main/MainUIPanel.prefab",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 164,
+            "DependIDs": []
+        }
+    ],
+    "BundleList": [
+        {
+            "BundleName": "assets_gameasset_bundleassets_actors_prefabs_buildings_actor_tx_map101_barshophouse.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_actors_prefabs_buildings_actor_tx_map101_baseshophouse.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_actors_prefabs_buildings_actor_tx_map101_foodshophouse.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_actors_prefabs_buildings_actor_tx_map101_leftbigdoor.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_actors_prefabs_buildings_actor_tx_map101_orefactoryhouse.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_actors_prefabs_buildings_actor_tx_map101_plantfactoryhouse.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_actors_prefabs_buildings_actor_tx_map101_resthouse01.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_actors_prefabs_buildings_actor_tx_map101_resthouse02.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_actors_prefabs_buildings_actor_tx_map101_resthouse03.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_actors_prefabs_buildings_actor_tx_map101_resthouse04.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_actors_prefabs_buildings_actor_tx_map101_resthouse05.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_actors_prefabs_buildings_actor_tx_map101_rightbigdoor.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_actors_prefabs_buildings_actor_tx_map101_secretshophouse.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_actors_prefabs_buildings_actor_tx_map101_soldierfactoryhouse.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_actors_prefabs_buildings_actor_tx_map101_studyhouse.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_actors_prefabs_buildings_actor_tx_map101_towerhouse.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_actors_prefabs_buildings_actor_tx_map101_villageheadhouse.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_actors_prefabs_buildings_actor_tx_map101_villagerspawnpoint.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_actors_prefabs_buildings_actor_tx_map101_weaponfactoryhouse.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_actors_prefabs_items_actor_item.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_actors_prefabs_items_actor_tx_item_anvil.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_actors_prefabs_items_actor_tx_item_barrel.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_actors_prefabs_items_actor_tx_item_bucket.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_actors_prefabs_items_actor_tx_item_bush_a.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_actors_prefabs_items_actor_tx_item_bush_b.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_actors_prefabs_items_actor_tx_item_bush_c.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_actors_prefabs_items_actor_tx_item_chest_golden.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_actors_prefabs_items_actor_tx_item_chest_iron.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_actors_prefabs_items_actor_tx_item_chest_silver.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_actors_prefabs_items_actor_tx_item_chest_wooden.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_actors_prefabs_items_actor_tx_item_crate_large.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_actors_prefabs_items_actor_tx_item_crate_small.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_actors_prefabs_items_actor_tx_item_grass_a.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_actors_prefabs_items_actor_tx_item_grass_b.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_actors_prefabs_items_actor_tx_item_grass_c.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_actors_prefabs_items_actor_tx_item_grass_d.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_actors_prefabs_items_actor_tx_item_grass_e.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_actors_prefabs_items_actor_tx_item_grass_f.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_actors_prefabs_items_actor_tx_item_gunny_bag_a.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_actors_prefabs_items_actor_tx_item_gunny_bag_b.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_actors_prefabs_items_actor_tx_item_hay_bale.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_actors_prefabs_items_actor_tx_item_hay_pile.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_actors_prefabs_items_actor_tx_item_pot_a.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_actors_prefabs_items_actor_tx_item_pot_b.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_actors_prefabs_items_actor_tx_item_pot_c.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_actors_prefabs_items_actor_tx_item_road_lamp.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_actors_prefabs_items_actor_tx_item_scarecrow.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_actors_prefabs_items_actor_tx_item_spike.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_actors_prefabs_items_actor_tx_item_training_dummy.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_actors_prefabs_items_actor_tx_item_tree_a.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_actors_prefabs_items_actor_tx_item_tree_b.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_actors_prefabs_items_actor_tx_item_well.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_actors_prefabs_items_actor_tx_item_wood_logs.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_actors_prefabs_monsters_actor_1005.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_actors_prefabs_players_actor_main.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_actors_prefabs_players_actor_main_new.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_actors_prefabs_trees_actor_tx_map101_tree_1.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_actors_prefabs_trees_actor_tx_map101_tree_2.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_actors_prefabs_trees_actor_tx_map101_tree_3.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_actors_prefabs_trees_actor_tx_map101_tree_4.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_actors_prefabs_trees_actor_tx_map101_tree_5.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_actors_prefabs_trees_actor_tx_map101_tree_6.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_actors_prefabs_villagers_actor_villager1.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_actors_prefabs_villagers_actor_villager2.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_actors_prefabs_villagers_actor_villager3.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_actors_prefabs_villagers_actor_villager4.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_actors_prefabs_villagers_actor_villager5.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_actors_prefabs_villagers_actor_villager6.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_actors_prefabs_villagers_actor_villager7.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_actors_prefabs_villagers_actor_villager8.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_actors_prefabs_villagers_actor_villager9.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_actors_prefabs_weapons_actor_weapon_axe.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_actors_prefabs_weapons_actor_weapon_hammer.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_actors_prefabs_weapons_actor_weapon_pickaxe.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_actors_prefabs_weapons_actor_weapon_shovel.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_common_fonts_basefont sdf.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_common_fonts_basefont.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_common_fonts_hytangmeiren95w.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_common_mat_dashtrail.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_common_mat_wavemat.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "unityshaders.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_config_bevtree_tbbehavior_actorsetactive.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_config_bevtree_tbbehavior_collect.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_config_bevtree_tbbehavior_gazesurround.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_config_bevtree_tbbehavior_inputmove.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_config_bevtree_tbbehavior_jump.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_config_bevtree_tbbehavior_move.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_config_bevtree_tbbehavior_movetoactor.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_config_bevtree_tbbehavior_none.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_config_bevtree_tbbehavior_produce.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_config_bevtree_tbbehavior_pushskill.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_config_bevtree_tbbehavior_rest.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_config_bevtree_tbbehavior_sleep.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_config_bevtree_tbbehavior_stopbev.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_config_bevtree_tbbehavior_storage.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_config_bevtree_tbbehavior_wander.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_config_dectree_tbdecision_-999.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_config_dectree_tbdecision_0.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_config_dectree_tbdecision_1.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_config_dectree_tbdecision_2.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_config_dectree_tbdecision_201.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_config_dectree_tbdecision_202.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_config_dectree_tbdecision_220.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_config_dialog_tbbubbledialog.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_config_entity_tbentity_-999.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_config_entity_tbentity_-9999.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_config_entity_tbentity_0.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_config_entity_tbentity_1.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_config_entity_tbentity_2.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_config_entity_tbentity_201.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_config_entity_tbentity_202.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_config_entity_tbentity_210.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_config_entity_tbentity_220.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_config_entity_tbentity_301.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_config_entity_tbentity_320.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_config_entity_tbentity_340.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_config_entity_tbentity_401.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_config_entity_tbentity_501.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_config_gas_ga_lcskill_skillability.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_config_gas_gameplaytags.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_config_gas_ge_ge_player_skillcooldown.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_config_gas_ge_ge_player_skillcost.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_config_gas_ge_ge_player_test.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_config_map_tbmap_0.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_config_map_tbmap_1.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_config_map_tbmap_101.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_config_map_tbmap_1001.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_config_map_tbmap_9999.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_config_sk_timeline_tbsk_timeline_1.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_config_sk_timeline_tbsk_timeline_2.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_config_sk_timeline_tbsk_timeline_100101.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_config_sk_timeline_tbsk_timeline_100102.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_config_sk_timeline_tbsk_timeline_100501.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_config_skill_tbaoe_100101.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_config_skill_tbaoe_100501.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_config_skill_tbbuff_100102.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_config_skill_tbbuff_enemybehurt.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_config_skill_tbbuff_playerbehurt.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_config_skill_tbskill_100101.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_config_skill_tbskill_100102.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_config_skill_tbskill_100501.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_config_skill_timeline_skilltimline_player_test.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_config_skill_timeline_玩家技能timeline组_11.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_config_task_tbtask.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_config_tbactorbasepropertycnf.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_config_tbactorcnf.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_config_tbeventcnf.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_config_tbitemcnf.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_config_tbitemrecipecnf.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_config_tbitemrepaircnf.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_config_tbmaproadcnf.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_config_tbskillcnf.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_config_tbtest.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_config_tbuipanelcnf.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_config_tbweaponcnf.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_maps_prefabs_1001_env.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_maps_prefabs_map000_env.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_maps_prefabs_map101_env.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_maps_prefabs_map9999_env.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_ui_assets_textures_dynamic_dialog.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_ui_assets_textures_dynamic_emoji.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_ui_assets_textures_dynamic_itemicon.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_ui_assets_textures_dynamic_newfolder.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_ui_prefabs_dialog_bubble.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        },
+        {
+            "BundleName": "assets_gameasset_bundleassets_ui_prefabs_main.bundle",
+            "UnityCRC": 0,
+            "FileHash": "00000000000000000000000000000000",
+            "FileCRC": "00000000",
+            "FileSize": 0,
+            "IsRawFile": false,
+            "LoadMethod": 0,
+            "Tags": [],
+            "ReferenceIDs": []
+        }
+    ]
+}

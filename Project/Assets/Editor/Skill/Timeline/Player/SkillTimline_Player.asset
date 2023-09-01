@@ -12,3 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39dceeb75e324b82b7f593ac2f1c8825, type: 3}
   m_Name: SkillTimline_Player
   m_EditorClassIdentifier: 
+  ChildAssetPaths:
+  - {fileID: 102900000, guid: 72fe608145447ab4993e077a381dfba9, type: 3}

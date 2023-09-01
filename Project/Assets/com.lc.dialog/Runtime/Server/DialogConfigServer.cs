@@ -1,5 +1,4 @@
 ﻿using LCJson;
-using LCLoad;
 using System;
 using System.Collections.Generic;
 
@@ -14,7 +13,7 @@ namespace LCDialog
             foreach (var item in Enum.GetValues(typeof(DialogType)))
             {
                 string assetName = DialogDef.GetDialogCnfName((DialogType)item);
-                string jsonStr = LoadHelper.LoadString(assetName);
+                string jsonStr = IAFramework.GameContext.Asset.LoadString(assetName);
                 if (string.IsNullOrEmpty(jsonStr))
                 {
                     DialogLocate.Log.LogError("没有对话类型的配置", item);

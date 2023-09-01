@@ -9,34 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57f385230b1fbc949999b4af78856529, type: 3}
+  m_Script: {fileID: 11500000, guid: 761d1f0cf2bf6c74b8fe18a6f6831fae, type: 3}
   m_Name: "\u89C6\u56FE\u8BBE\u7F6E"
   m_EditorClassIdentifier: 
-  groupPaths:
-  - typeName: SkillGraphGroupAsset
-    typeFullName: LCSkill.SkillGraph.SkillGraphGroupAsset
-    searchPath: Assets/Editor/Skill
-  - typeName: BulletGraphGroupAsset
-    typeFullName: LCSkill.BulletGraph.BulletGraphGroupAsset
-    searchPath: Assets/Editor/Skill
-  - typeName: BuffGraphGroupAsset
-    typeFullName: LCSkill.BuffGraph.BuffGraphGroupAsset
-    searchPath: Assets/Editor/Skill
-  - typeName: AoeGraphGroupAsset
-    typeFullName: LCSkill.AoeGraph.AoeGraphGroupAsset
-    searchPath: Assets/Editor/Skill
-  - typeName: BehaviorGroupAsset
-    typeFullName: LCECS.Tree.BehaviorGroupAsset
-    searchPath: Assets/Editor/ECS/Behavior
-  - typeName: DecisionGroupAsset
-    typeFullName: LCECS.Tree.DecisionGroupAsset
-    searchPath: Assets/Editor/ECS/Decision
-  - typeName: EntityGraphGroupAsset
-    typeFullName: LCECS.EntityGraph.EntityGraphGroupAsset
-    searchPath: Assets/Editor/ECS/Entity
-  - typeName: DialogGraphGroupAsset
-    typeFullName: LCDialog.DialogGraph.DialogGraphGroupAsset
-    searchPath: Assets/Editor/Dialog
-  - typeName: TaskGraphGroupAsset
-    typeFullName: LCTask.TaskGraph.TaskGraphGroupAsset
-    searchPath: Assets/Editor/Task
+  groupPaths: []

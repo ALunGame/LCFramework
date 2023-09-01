@@ -29,6 +29,16 @@ namespace LCNode.Model
             var graph = LCJson.JsonMapper.ToObject<BaseGraph>(serializedGraph);
             if (graph == null)
                 graph = new GraphClass();
+            if (graph.nodes != null && graph.nodes.Count > 0)
+            {
+                foreach (BaseNode node in graph.nodes.Values)
+                {
+                    if (node != null)
+                    {
+                        node.Owner = graph;
+                    }
+                }
+            }
             return graph;
         }
 

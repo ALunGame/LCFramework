@@ -303,6 +303,7 @@ namespace LCToolkit
         public static void DrawBezierLine(Vector3 startPosition, Vector3 endPosition, float width, Color color = default(Color), Texture2D texture = null)
         {
             Handles.DrawBezier(startPosition, endPosition, startPosition - Vector3.left * 50f, endPosition + Vector3.left * 50f, color, texture, width);
+            
         }
 
         private static Type EditorGUI;

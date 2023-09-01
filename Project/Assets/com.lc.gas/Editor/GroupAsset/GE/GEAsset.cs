@@ -1,7 +1,8 @@
 ﻿using System;
-using LCToolkit;
+using IAToolkit;
 using UnityEditor;
 using UnityEngine;
+using IOHelper = LCToolkit.IOHelper;
 
 namespace LCGAS
 {

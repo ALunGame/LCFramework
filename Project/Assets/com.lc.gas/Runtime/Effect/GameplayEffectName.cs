@@ -34,7 +34,7 @@ namespace LCGAS
                 return modelDict[Name];
             }
 
-            string str = LCLoad.LoadHelper.LoadString(Name);
+            string str = IAFramework.GameContext.Asset.LoadString(Name);
             GameplayEffect effect = LCJson.JsonMapper.ToObject<GameplayEffect>(str);
             modelDict.Add(Name,effect);
             return effect;

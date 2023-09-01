@@ -16,12 +16,7 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: 7cf9d7dfc9b7a9e438c4854e54183946
-  m_SerializeEntries:
-  - m_GUID: 2bb0da39964200b409e4f8b3ade17b21
-    m_Address: Assets/Demo/Asset/Common/Shader
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
+  m_SerializeEntries: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: c106a54d1dad7c34dbca1e47199c97a1, type: 2}
   m_SchemaSet:

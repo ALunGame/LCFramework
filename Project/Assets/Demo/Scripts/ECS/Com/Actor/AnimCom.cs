@@ -17,31 +17,21 @@ namespace Demo.Com
         Back,
         Side,
     }
-
-    [Serializable]
+    
     public class AnimCom : BaseCom
     {
-        [NonSerialized]
         public const string StateExName = "_state";
         
-        [NonSerialized]
         private BindableValue<string> ReqAnimName = new BindableValue<string>();
-
-        [NonSerialized]
         private BindableValue<AnimLayer> ReqAnimLayer = new BindableValue<AnimLayer>();
         
-        [NonSerialized]
         public Animator Anim;
-
-        [NonSerialized]
+        
         public AnimatorOverride AnimOverride;
-
-        [NonSerialized]
+        
         public List<string> AnimParamList = new List<string>();
-        [NonSerialized]
         public Dictionary<AnimLayer,Dictionary<string,float>>  AnimTimeDict = new Dictionary<AnimLayer,Dictionary<string,float>>();
         
-        [NonSerialized]
         private CancellationTokenSource cancelSource;
 
         /// <summary>
@@ -119,12 +109,6 @@ namespace Demo.Com
             ReqAnimName.Value = AnimSystem.IdleState;
         }
 
-        public void SetReqAnim(string animName, AnimLayer layer = AnimLayer.Side)
-        {
-            ReqAnimName.Value = animName;
-            ReqAnimLayer.Value = layer;
-        }
-        
         public void PlayAnim(string animName, AnimLayer layer = AnimLayer.Side)
         {
             ClearTask();
@@ -132,7 +116,7 @@ namespace Demo.Com
             ReqAnimName.Value = animName;
             ReqAnimLayer.Value = layer;
         }
-        
+
         public async UniTaskVoid PlayAnimCnt(string animName, AnimLayer layer, int pCnt, Action pPreCallBack, Action pFinishCallBack)
         {
             ReqAnimLayer.Value = layer;

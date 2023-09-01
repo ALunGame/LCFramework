@@ -213,7 +213,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5a129348ce8e4346a4ecfce78a2c916, type: 3}
   m_Name: behavior_StopBev
   m_EditorClassIdentifier: 
-  serializedGraph: 
+  serializedGraph: '{"mType":"LCECS.Tree.Behavior","pos":{"mType":"UnityEngine.Vector3","x":152.0,"y":66.0,"z":0.0},"zoom":{"mType":"UnityEngine.Vector3","x":0.571753263473511,"y":0.571753263473511,"z":1.0},"nodes":{"mType":"System.Collections.Generic.Dictionary`2[[System.String,
+    mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089],[LCNode.Model.BaseNode,
+    Assembly-CSharp-Editor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]","11be5c73-f061-4bb1-b3e7-95e62fbdf9ae":{"mType":"LCECS.Tree.Tree_RootNode","childNode":null,"premise":null,"guid":"11be5c73-f061-4bb1-b3e7-95e62fbdf9ae","position":{"mType":"UnityEngine.Vector2","x":0.0,"y":0.0},"inIndex":-1,"outIndex":-1}},"groups":[],"connections":[]}'
   ReqId: 5
 --- !u!114 &-3757094016919443214
 MonoBehaviour:
@@ -263,7 +265,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5a129348ce8e4346a4ecfce78a2c916, type: 3}
   m_Name: behavior_None
   m_EditorClassIdentifier: 
-  serializedGraph: 
+  serializedGraph: '{"mType":"LCECS.Tree.Behavior","pos":{"mType":"UnityEngine.Vector3","x":0.0,"y":0.0,"z":0.0},"zoom":{"mType":"UnityEngine.Vector3","x":1.0,"y":1.0,"z":1.0},"nodes":{"mType":"System.Collections.Generic.Dictionary`2[[System.String,
+    mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089],[LCNode.Model.BaseNode,
+    Assembly-CSharp-Editor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]","deb77934-409a-4d68-bf9a-d50a06aeba3e":{"mType":"LCECS.Tree.Tree_RootNode","childNode":null,"premise":null,"guid":"deb77934-409a-4d68-bf9a-d50a06aeba3e","position":{"mType":"UnityEngine.Vector2","x":0.0,"y":0.0},"inIndex":-1,"outIndex":-1}},"groups":[],"connections":[]}'
   ReqId: 0
 --- !u!114 &-997306003983763597
 MonoBehaviour:

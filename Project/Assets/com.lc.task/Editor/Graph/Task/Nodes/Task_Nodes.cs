@@ -269,7 +269,7 @@ namespace LCTask.TaskGraph
         {
             List<TaskActionFunc> funcs = new List<TaskActionFunc>();
             List<Task_ActionFuncNode> nodes = NodeHelper.GetNodeOutNodes<Task_ActionFuncNode>(Owner, this, "接受行为");
-            if (nodes.IsLegal())
+            if (nodes.Count > 0)
             {
                 for (int i = 0; i < nodes.Count; i++)
                 {
@@ -283,7 +283,7 @@ namespace LCTask.TaskGraph
         {
             List<TaskActionFunc> funcs = new List<TaskActionFunc>();
             List<Task_ActionFuncNode> nodes = NodeHelper.GetNodeOutNodes<Task_ActionFuncNode>(Owner, this, "接受成功");
-            if (nodes.IsLegal())
+            if (nodes.Count > 0)
             {
                 for (int i = 0; i < nodes.Count; i++)
                 {
@@ -297,7 +297,7 @@ namespace LCTask.TaskGraph
         {
             List<TaskActionFunc> funcs = new List<TaskActionFunc>();
             List<Task_ActionFuncNode> nodes = NodeHelper.GetNodeOutNodes<Task_ActionFuncNode>(Owner, this, "接受失败");
-            if (nodes.IsLegal())
+            if (nodes.Count > 0)
             {
                 for (int i = 0; i < nodes.Count; i++)
                 {

@@ -17,6 +17,7 @@ namespace LCECS.Tree
             if (rootNodes.Count <= 0)
             {
                 Debug.LogError($"试图序列化出错，没有根节点");
+                return null;
             }
             Node rootNode = rootNodes[0].GetRuntimeNode();
             return rootNode;

@@ -41,6 +41,11 @@ namespace LCECS.Tree
 
                 //运行时数据结构
                 List<Node> trees = SerializeHelp.SerializeToTrees(graphData);
+                if (trees == null)
+                {
+                    Debug.LogError($"行为树生成失败>>>>{behaviorAsset.name}");
+                    continue;
+                }
                 List<BehaviorTree> models = new List<BehaviorTree>();
                 for (int j = 0; j < trees.Count; j++)
                 {

@@ -41,31 +41,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff61f231dc79c984c8042c61b477a480, type: 3}
   m_Name: entity_401
   m_EditorClassIdentifier: 
-  serializedGraph: "\r\n{\r\n    \"mType\" : \"LCECS.EntityGraph.EntityGraph\",\r\n   
-    \"pos\"   : {\r\n        \"mType\" : \"UnityEngine.Vector3\",\r\n        \"x\"    
-    : 7.0,\r\n        \"y\"     : 177.0,\r\n        \"z\"     : 0.0\r\n    },\r\n   
-    \"zoom\"  : {\r\n        \"mType\" : \"UnityEngine.Vector3\",\r\n        \"x\"    
-    : 1.0,\r\n        \"y\"     : 1.0,\r\n        \"z\"     : 1.0\r\n    },\r\n   
-    \"nodes\" : {\r\n        \"mType\" : \"System.Collections.Generic.Dictionary`2[[System.String,
+  serializedGraph: '{"mType":"LCECS.EntityGraph.EntityGraph","pos":{"mType":"UnityEngine.Vector3","x":214.0,"y":169.0,"z":0.0},"zoom":{"mType":"UnityEngine.Vector3","x":0.869565188884735,"y":0.869565188884735,"z":1.0},"nodes":{"mType":"System.Collections.Generic.Dictionary`2[[System.String,
     mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089],[LCNode.Model.BaseNode,
-    Assembly-CSharp-Editor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]\",\r\n       
-    \"68569278-3778-44b8-b791-9343f18dc708\" : {\r\n            \"mType\" : \"LCECS.EntityGraph.Entity_Node\",\r\n           
-    \"coms\"  : null,\r\n            \"guid\"  : \"68569278-3778-44b8-b791-9343f18dc708\",\r\n           
-    \"position\" : {\r\n                \"mType\" : \"UnityEngine.Vector2\",\r\n               
-    \"x\"     : 539.0,\r\n                \"y\"     : 41.0\r\n            },\r\n           
-    \"inIndex\"  : -1,\r\n            \"outIndex\" : -1\r\n        },\r\n       
-    \"e1342cd9-7399-4c8a-9492-c4a8707bb048\" : {\r\n            \"mType\" : \"Demo.Entity_Actor_OutputItemCom\",\r\n           
-    \"outputInfos\" : [\r\n                {\r\n                    \"mType\" : \"Config.ItemInfo\",\r\n                   
-    \"itemId\" : 401,\r\n                    \"itemCnt\" : 1\r\n                }\r\n           
-    ],\r\n            \"parentNode\"  : null,\r\n            \"isActive\"    : true,\r\n           
-    \"guid\"        : \"e1342cd9-7399-4c8a-9492-c4a8707bb048\",\r\n            \"position\"   
-    : {\r\n                \"mType\" : \"UnityEngine.Vector2\",\r\n               
-    \"x\"     : 477.0,\r\n                \"y\"     : 173.0\r\n            },\r\n           
-    \"inIndex\"     : 0,\r\n            \"outIndex\"    : -1\r\n        }\r\n   
-    },\r\n    \"groups\" : [\r\n    ],\r\n    \"connections\" : [\r\n        {\r\n           
-    \"mType\" : \"LCNode.Model.BaseConnection\",\r\n            \"from\"  : \"68569278-3778-44b8-b791-9343f18dc708\",\r\n           
-    \"fromPortName\" : \"\\u7EC4\\u4EF6\\u5217\\u8868\",\r\n            \"to\"          
-    : \"e1342cd9-7399-4c8a-9492-c4a8707bb048\",\r\n            \"toPortName\"   :
-    \"\\u7236\\u8282\\u70B9\"\r\n        }\r\n    ]\r\n}"
+    Assembly-CSharp-Editor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]","512b2430-e194-47d1-af1b-6412a8eef95e":{"mType":"LCECS.EntityGraph.Entity_Node","coms":null,"guid":"512b2430-e194-47d1-af1b-6412a8eef95e","position":{"mType":"UnityEngine.Vector2","x":0.0,"y":0.0},"inIndex":-1,"outIndex":-1}},"groups":[],"connections":[]}'
   entityId: 401
   entityName: "\u6728\u6750\u4EA7\u51FA"
